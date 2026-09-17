@@ -15,7 +15,7 @@ public final class Native950AdminCommands {
         switch (command) {
             case "god": case "infprayer": case "infadren": case "adrenaline":
             case "almighty": case "infrunes": case "infrun": case "infammo": case "commands": case "spell":
-            case "wars": case "warsretreat": case "dummy": case "testbar": case "clearbar": case "bar":
+            case "wars": case "warsretreat": case "death": case "deathsoffice": case "vorago": case "dummy": case "testbar": case "clearbar": case "bar":
             case "revo": case "revolution":
             case "heal": case "refill": case "max": case "coords": case "disengage": case "devhelp": case "devstatus":
                 return true;
@@ -53,6 +53,8 @@ public final class Native950AdminCommands {
         }
         switch (command) {
             case "wars": case "warsretreat":reply(channel,Native950WarsRetreat.teleport(p,true));break;
+            case "death": case "deathsoffice":reply(channel,Native950WarsRetreat.deathsOffice(p));break;
+            case "vorago":reply(channel,Native950WarsRetreat.voragoEntrance(p));break;
             case "dummy":reply(channel,Native950DiagnosticSpawns.spawnTrainingDummy(p));break;
             case "testbar":p.getNative950ActionBar().testBar(channel);break;
             case "clearbar":p.getNative950ActionBar().clear(channel);break;
@@ -153,7 +155,8 @@ public final class Native950AdminCommands {
             ";;search <name> [page] - find item IDs; ;;findnpc <name> [page] - find NPC IDs; ;;gearhelp - kit details.",
             "<col=ffd166>NPCS & TRAVEL</col> ;;npc <id> [1-50] - spawn your test NPCs; ;;npcs - list them.",
             ";;removenpc <index> - remove one; ;;clearnpcs [0-128] - remove nearby test NPCs; ;;dummy - training dummy.",
-            ";;wars - War's Retreat; ;;tele <x> <y> [plane] - coordinate teleport; ;;coords - current tile and region.",
+            ";;wars - War's Retreat; ;;death - Death's Office; ;;vorago - Vorago borehole entrance.",
+            ";;tele <x> <y> [plane] - coordinate teleport; ;;coords - current tile and region.",
             ";;disengage - stop native combat and movement; ;;obj <id> [type] [rotation] - diagnostic object.",
             "<col=ffd166>DEVELOPMENT</col> ;;devstatus - resource modes; ;;nxt status - native world/combat diagnostics.",
             ";;nxt level <skill ID> <level> - set a saved level; ;;nxt banker|cook|combat|skilling|agility|barbarian|wilderness|slayer.",

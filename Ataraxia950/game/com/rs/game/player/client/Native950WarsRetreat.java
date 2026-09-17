@@ -9,6 +9,10 @@ import com.rs.game.player.Skills;
 /** Paired-cache hub interactions only. Boss portals and grimoire are not boss implementations. */
 final class Native950WarsRetreat {
     static final int REGION=13214;
+    static final WorldTile WARS_RETREAT=new WorldTile(3294,10129,0);
+    static final WorldTile WARS_EXIT=new WorldTile(3107,3298,0);
+    static final WorldTile DEATHS_OFFICE=new WorldTile(3419,5270,0);
+    static final WorldTile VORAGO_ENTRANCE=new WorldTile(2972,3430,0);
     private Native950WarsRetreat(){}
     static boolean bank(int id){return id==114750||id==83634;}
     static boolean handles(WorldObject object,int option){
@@ -21,12 +25,18 @@ final class Native950WarsRetreat {
     }
     static String teleport(Player p,boolean enter){
         if(p.isDead()||p.isLocked()||p.isNative950ForceMovementActive()||p.getNextWorldTile()!=null)return "Wait until your character can teleport.";
-        WorldTile destination=enter?new WorldTile(3294,10129,0):new WorldTile(3107,3298,0);
+        WorldTile destination=enter?WARS_RETREAT:WARS_EXIT;
+        return teleport(p,destination,enter?"Welcome to War's Retreat. The bank, altar, crystals and dummy dispensers are available.":"Returning to Draynor.");
+    }
+    static String deathsOffice(Player p){return teleport(p,DEATHS_OFFICE,"Welcome to Death's Office.");}
+    static String voragoEntrance(Player p){return teleport(p,VORAGO_ENTRANCE,"Arrived at the Vorago borehole entrance north of Falador.");}
+    private static String teleport(Player p,WorldTile destination,String message){
+        if(p.isDead()||p.isLocked()||p.isNative950ForceMovementActive()||p.getNextWorldTile()!=null)return "Wait until your character can teleport.";
         World.getRegion(destination.getRegionId(),true);
         if(!World.isRegionLoaded(destination.getRegionId())||!World.canMoveNPC(destination,1))return "The destination is unavailable or blocked.";
         if(p.getNative950Combat()!=null)p.getNative950Combat().stop(p);
         p.getActionManager().forceStop();p.resetWalkSteps();p.setRouteEvent(null);p.setNextForceMovement(null);p.setNextWorldTile(destination);
-        return enter?"Welcome to War's Retreat. The bank, altar, crystals and dummy dispensers are available.":"Returning to Draynor.";
+        return message;
     }
     static void use(Player p,WorldObject object,int option){
         switch(object.getId()){

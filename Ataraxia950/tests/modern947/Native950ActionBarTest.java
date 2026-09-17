@@ -118,4 +118,9 @@ public class Native950ActionBarTest {
         assertFalse(Native950WarsRetreat.handles(new WorldObject(114761,10,0,3283,10149,0),1));
         assertTrue(Native950WarsRetreat.bank(114750));assertFalse(Native950WarsRetreat.bank(114749));
     }
+    @Test public void developerTravelDestinationsUseVerifiedLegacyWorldTiles(){
+        assertEquals(3294,Native950WarsRetreat.WARS_RETREAT.getX());assertEquals(10129,Native950WarsRetreat.WARS_RETREAT.getY());
+        assertEquals(3419,Native950WarsRetreat.DEATHS_OFFICE.getX());assertEquals(5270,Native950WarsRetreat.DEATHS_OFFICE.getY());
+        assertEquals(2972,Native950WarsRetreat.VORAGO_ENTRANCE.getX());assertEquals(3430,Native950WarsRetreat.VORAGO_ENTRANCE.getY());
+    }
 }
