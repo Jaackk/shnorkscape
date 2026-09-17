@@ -374,6 +374,9 @@ public final class Native950MeleeCombat {
             try {gear=loadouts.get(player);}catch(IllegalArgumentException unsupported){player.getPackets().sendGameMessage(unsupported.getMessage());stop(player);continue;}
             String slayerRefusal=Native950Slayer.attackRefusal(player,npc);
             if(slayerRefusal!=null){player.sendMessage(slayerRefusal);stop(player);continue;}
+            // Entity derives this deadline from the active 950 sequence's frame durations.
+            // Do not let an auto attack, Revolution, or a queued manual ability replace it early.
+            if(player.getLastAnimationEnd()<=Utils.currentTimeMillis()){
             // Revolution follows the first nine main-bar slots, like the older
             // EOC implementation, but activates through this same validated
             // manual path.  No client-only animation or unchecked callback is
@@ -407,6 +410,7 @@ public final class Native950MeleeCombat {
                 if(npc.isDead()) {npcDied(fighter,player);continue;}
                 if(damage>0 && fighter.profile.blockAnim>=0)npc.setNextAnimation(new Animation(fighter.profile.blockAnim));
                 }
+            }
             }
             if(fighter.retaliating && tick>=fighter.stunnedUntil && access.reach(npc,player) && tick>=fighter.nextAttack && !player.isDead()) {
                 fighter.nextAttack=tick+fighter.profile.attackSpeed;
