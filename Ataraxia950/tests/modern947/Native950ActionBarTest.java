@@ -98,6 +98,15 @@ public class Native950ActionBarTest {
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,254,-1,-1,2046)));
         }finally{c.finishAndReleaseAll();}
     }
+    @Test public void bootstrapSelectsTheSavedActiveBar(){
+        EmbeddedChannel c=new EmbeddedChannel();try{
+            Native950ActionBar bar=new Native950ActionBar();bar.setActiveBar(c,2);c.flush();
+            while(c.readOutbound()!=null){}
+            bar.bootstrap(c);c.flush();List<Native950Packets.Packet> packets=new ArrayList<>();Object next;
+            while((next=c.readOutbound())!=null)if(next instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)next);
+            assertTrue(hasPacket(packets,Native950Packets.varbitSmall(1893,3)));
+        }finally{c.finishAndReleaseAll();}
+    }
     private static boolean hasPacket(List<Native950Packets.Packet> packets,Native950Packets.Packet expected){
         for(Native950Packets.Packet actual:packets)if(actual.type()==expected.type()&&Arrays.equals(actual.payload(),expected.payload()))return true;
         return false;

@@ -57,7 +57,7 @@ public final class Native950ActionBar {
     static int struct(int packed){if(!valid(packed)||packed==0)return -1;Object id=RS3ClientScriptMap.getMap(enumFor(packed>>>17)).getValue((packed>>>4)&8191);return id instanceof Integer?(Integer)id:-1;}
     static String name(int packed){int id=struct(packed);return id<0?null:RS3GeneralRequirementMap.getMap(id).getStringValue(2794);}
     public void bootstrap(Channel c){
-        c.write(Native950Packets.varbitSmall(1893,1));
+        c.write(Native950Packets.varbitSmall(1893,activeBar+1));
         c.write(Native950Packets.varbitSmall(1892,0));
         refreshRevolution(c);
         enableBooks(c);
