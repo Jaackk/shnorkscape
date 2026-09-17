@@ -15,6 +15,8 @@ public final class Native950ActionBar {
     // 950 native drag-parent resolver 0x1401ab903: bit23 bypasses parent-depth clipping.
     static final int ABILITY_EVENTS=2|(2<<11)|(1<<18)|(1<<23);
     static final int BOOK_LAST_SLOT=264;
+    static final int FULL_MANUAL_MODE_VARBIT=41598;
+    static final int REVOLUTION_MODE_VARBIT=41599;
     private final int[] slots=new int[SLOTS];
     private boolean revolutionEnabled;
     public void writeSettings(Map<String,Integer> settings){for(int i=0;i<SLOTS;i++)settings.put("actionBar."+i,slots[i]);settings.put("actionBar.revolution",revolutionEnabled?1:0);}
@@ -95,8 +97,12 @@ public final class Native950ActionBar {
     }
     boolean isRevolutionEnabled(){return revolutionEnabled;}
     void setRevolutionEnabled(Channel c,boolean enabled){setRevolutionEnabled(enabled,packet->c.write(packet));}
-    void setRevolutionEnabled(boolean enabled,Consumer<Native950Packets.Packet> send){revolutionEnabled=enabled;send.accept(Native950Packets.varbitSmall(21682,revolutionEnabled?1:0));}
-    void refreshRevolution(Channel c){c.write(Native950Packets.varbitSmall(21682,revolutionEnabled?1:0));}
+    void setRevolutionEnabled(boolean enabled,Consumer<Native950Packets.Packet> send){revolutionEnabled=enabled;sendCombatMode(send);}
+    void refreshRevolution(Channel c){sendCombatMode(packet->c.write(packet));}
+    private void sendCombatMode(Consumer<Native950Packets.Packet> send){
+        send.accept(Native950Packets.varbitSmall(FULL_MANUAL_MODE_VARBIT,revolutionEnabled?0:1));
+        send.accept(Native950Packets.varbitSmall(REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0));
+    }
     void cooldown(Channel c,int structure,int currentCycle,int duration){c.write(Native950Packets.runClientScript(6570,structure,currentCycle,currentCycle+duration,1,1));}
     public void clear(Channel c){java.util.Arrays.fill(slots,0);refresh(c);reply(c,"Main action bar cleared.");}
     private static void reply(Channel c,String text){c.write(Native950Packets.gameMessage(0,text));}

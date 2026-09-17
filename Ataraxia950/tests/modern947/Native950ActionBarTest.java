@@ -50,19 +50,21 @@ public class Native950ActionBarTest {
         bar.restore(Collections.singletonMap("actionBar.0",-1));Map<String,Integer> out=new HashMap<>();bar.writeSettings(out);
         assertEquals(Integer.valueOf(0),out.get("actionBar.0"));assertEquals(15,out.size());
     }
-    @Test public void revolutionStatePersistsAndUsesTheVerifiedClientVarbit(){
+    @Test public void revolutionStatePersistsAndUsesTheVerifiedClientVarbits(){
         EmbeddedChannel c=new EmbeddedChannel();
         try{
             Native950ActionBar bar=new Native950ActionBar();bar.setRevolutionEnabled(c,true);
             assertTrue(bar.isRevolutionEnabled());Map<String,Integer> settings=new HashMap<>();bar.writeSettings(settings);
             Native950ActionBar restored=new Native950ActionBar();restored.restore(settings);assertTrue(restored.isRevolutionEnabled());
-            c.flush();Object packet;boolean config=false;
-            Native950Packets.Packet expected=Native950Packets.varbitSmall(21682,1);
+            c.flush();Object packet;boolean fullManual=false,revolution=false;
+            Native950Packets.Packet expectedFullManual=Native950Packets.varbitSmall(Native950ActionBar.FULL_MANUAL_MODE_VARBIT,0);
+            Native950Packets.Packet expectedRevolution=Native950Packets.varbitSmall(Native950ActionBar.REVOLUTION_MODE_VARBIT,1);
             while((packet=c.readOutbound())!=null)if(packet instanceof Native950Packets.Packet){
                 Native950Packets.Packet actual=(Native950Packets.Packet)packet;
-                config|=actual.type()==expected.type()&&Arrays.equals(actual.payload(),expected.payload());
+                fullManual|=actual.type()==expectedFullManual.type()&&Arrays.equals(actual.payload(),expectedFullManual.payload());
+                revolution|=actual.type()==expectedRevolution.type()&&Arrays.equals(actual.payload(),expectedRevolution.payload());
             }
-            assertTrue(config);
+            assertTrue(fullManual);assertTrue(revolution);
         }finally{c.finishAndReleaseAll();}
     }
     @Test public void cooldownUsesTheNativeActionBarScript(){

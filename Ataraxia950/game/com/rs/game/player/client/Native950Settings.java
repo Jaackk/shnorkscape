@@ -98,12 +98,9 @@ public final class Native950Settings {
                         packet -> sendRevolution(transaction, "authoritative-varbit", packet));
                 traceRevolution(transaction, "state", "actionBar.revolution="
                         + player.getNative950ActionBar().isRevolutionEnabled());
-                // The cache marks this row as server-acknowledged.  2929 is the
-                // paired client's completion path for that acknowledgement; send
-                // the persisted varbit again afterwards so its local preference
-                // reload cannot replace the server's selected combat mode.
+                // Script 2929 redraws the control from the two cache-defined
+                // combat-mode varbits just written above.
                 sendRevolution(transaction, "client-completion-script", Native950Packets.runClientScript(2929));
-                sendRevolution(transaction, "post-script-varbit", Native950Packets.varbitSmall(21682, enabled ? 1 : 0));
                 return true;
             }
             // Classic remains unavailable: restore the native row rather than claiming it changed.
