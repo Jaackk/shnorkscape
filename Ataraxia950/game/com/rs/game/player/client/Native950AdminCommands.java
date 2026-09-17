@@ -15,7 +15,8 @@ public final class Native950AdminCommands {
         switch (command) {
             case "god": case "infprayer": case "infadren": case "adrenaline":
             case "almighty": case "infrunes": case "infrun": case "infammo": case "commands":
-            case "wars": case "warsretreat": case "dummy": case "testbar": case "clearbar":
+            case "wars": case "warsretreat": case "dummy": case "testbar": case "clearbar": case "bar":
+            case "revo": case "revolution":
             case "heal": case "max": case "coords": case "disengage": case "devhelp": case "devstatus":
                 return true;
             default: return false;
@@ -42,8 +43,9 @@ public final class Native950AdminCommands {
             Native950ContentCommands.handle(p, channel, args); return;
         }
         if(command.equals("commands")) { commandList(channel,args);return; }
-        if (args.length > (command.equals("adrenaline") ? 2 : 1)) {
-            reply(channel, "Usage: ;;" + command + (command.equals("adrenaline") ? " [0-100]" : "")); return;
+        if (args.length > (command.equals("adrenaline") || command.equals("bar") ? 2 : 1)) {
+            String usage=command.equals("adrenaline") ? " [0-100]" : command.equals("bar") ? " [1-3]" : "";
+            reply(channel, "Usage: ;;" + command + usage); return;
         }
         if (!p.isActive() || p.hasFinished() || p.isDead() || p.isLocked()) {
             reply(channel, "Wait until your character can act."); return;
@@ -53,6 +55,18 @@ public final class Native950AdminCommands {
             case "dummy":reply(channel,Native950DiagnosticSpawns.spawnTrainingDummy(p));break;
             case "testbar":p.getNative950ActionBar().testBar(channel);break;
             case "clearbar":p.getNative950ActionBar().clear(channel);break;
+            case "bar":
+                if(args.length==1){reply(channel,"Active saved action bar: "+(p.getNative950ActionBar().activeBar()+1)+". Use ;;bar <1-3>.");break;}
+                int requestedBar;
+                try{requestedBar=Integer.parseInt(args[1]);}catch(NumberFormatException invalid){reply(channel,"Use ;;bar <1-3>.");break;}
+                if(requestedBar<1||requestedBar>Native950ActionBar.BARS){reply(channel,"Use ;;bar <1-3>.");break;}
+                p.getNative950ActionBar().setActiveBar(channel,requestedBar-1);
+                reply(channel,"Action bar "+requestedBar+" selected and saved.");break;
+            case "revo": case "revolution":
+                boolean revolution=!p.getNative950ActionBar().isRevolutionEnabled();
+                p.getNative950ActionBar().setRevolutionEnabled(channel,revolution);
+                reply(channel,"Server-side Revolution "+state(revolution)+" for this saved action bar.");
+                reply(channel,"The Combat Settings checkbox still awaits its native client acknowledgement fix.");break;
             case "almighty":
                 boolean enabled=!(p.isDevelopmentGodMode()&&p.getPrayer().isInfinitePrayer()
                         &&p.getCombatDefinitions().isInfiniteAdrenaline()&&p.isInfiniteRunEnergy()
@@ -141,7 +155,8 @@ public final class Native950AdminCommands {
              "npcs|List nearby test NPCs and their live indexes", "removenpc <index>|Remove one of your test NPCs",
              "clearnpcs [radius]|Remove your test NPCs", "tele <x> <y> [plane]|Teleport to coordinates",
              "coords|Show your tile and region", "disengage|Stop native combat and movement"},
-            {"DEVELOPMENT", "devstatus|Show combat resource toggle states", "nxt status|Show native world/combat diagnostics",
+            {"DEVELOPMENT", "devstatus|Show combat resource toggle states", "bar [1-3]|Show or select one of three saved action bars",
+             "revo|Toggle server-side Revolution without opening Combat Settings", "nxt status|Show native world/combat diagnostics",
              "wars|Teleport to War's Retreat", "dummy|Place one non-retaliating training dummy",
              "testbar|Replace slots 1-3 with the three supported test abilities", "clearbar|Empty the saved main action bar",
              "nxt level <skill ID> <level>|Set one saved skill", "obj <id> [type] [rotation]|Place a diagnostic object",

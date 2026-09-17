@@ -48,6 +48,13 @@ public class Native950AdminCommandsTest {
         run(";;infammo");assertTrue(p.isInfiniteAmmunition());run(";;infammo");assertFalse(p.isInfiniteAmmunition());
         run(";;infrun");assertTrue(p.isInfiniteRunEnergy());run(";;infrun");assertFalse(p.isInfiniteRunEnergy());
     }
+    @Test public void actionBarAndRevolutionControlsUseTheSavedNativeState() {
+        run(";;bar");assertEquals(0,p.getNative950ActionBar().activeBar());
+        run(";;bar 3");assertEquals(2,p.getNative950ActionBar().activeBar());
+        run(";;bar 0");run(";;bar nope");assertEquals(2,p.getNative950ActionBar().activeBar());
+        run(";;revo");assertTrue(p.getNative950ActionBar().isRevolutionEnabled());
+        run(";;revolution");assertFalse(p.getNative950ActionBar().isRevolutionEnabled());
+    }
     @Test public void permissionRequiresBothLocalDevelopmentAndAccountGrant() {
         System.clearProperty(Native950AdminCommands.ACCOUNTS);run(";;god");assertFalse(p.isDevelopmentGodMode());
         p.setRights(1);run(";;god");assertFalse(p.isDevelopmentGodMode());
