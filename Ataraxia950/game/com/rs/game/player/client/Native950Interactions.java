@@ -1514,6 +1514,12 @@ public final class Native950Interactions {
             // A gear swap changes the loadout, not the player's route or combat target.
             observeEquipment("Equipped"); return;
         }
+        String itemOption=item==null?null:item.option(cacheOption);
+        if (Native950Potions.handles(action.itemId(),itemOption)) {
+            if (!Native950Potions.drink(player,action.slot(),action.itemId())) { reject("You cannot drink that potion right now"); return; }
+            if (changedSlots(inventory,containers.inventorySnapshot())>0) transactions++;
+            observeInventory(); return;
+        }
         if(!Native950InventoryMenu.usesOrdinaryOperations(action.itemId()) || item==null || item.option(cacheOption)==null){reject("That special item menu action has not been ported yet");return;}
         if ("Light".equalsIgnoreCase(item.option(cacheOption)) && Native950Firemaking.isSupportedLog(action.itemId())) {
             walking(); player.setRouteEvent(null); player.resetWalkSteps();
@@ -1521,7 +1527,6 @@ public final class Native950Interactions {
             observeInventory();
             return;
         }
-        String itemOption = item.option(cacheOption);
         if (Native950Toolbelt.isAddOption(itemOption)) {
             Native950Toolbelt.add(player,action.slot(),action.itemId(),itemOption);
             observeInventory(); return;

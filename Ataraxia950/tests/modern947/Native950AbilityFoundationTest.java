@@ -66,6 +66,12 @@ public class Native950AbilityFoundationTest {
             Native950AutoSpells.clear(p);
         }finally{c.finishAndReleaseAll();}
     }
+    @Test public void overloadFlaskRoutesOnlyThroughTheEstablishedDrinkOwner(){
+        assertTrue(Native950Potions.handles(23531,"Drink"));
+        assertTrue(Native950Potions.handles(15332,"Drink"));
+        assertFalse(Native950Potions.handles(23531,"Drop"));
+        assertFalse(Native950Potions.handles(995,"Drink"));
+    }
     @Test public void bootstrapEnablesPrayerAndCombatSpellGridWithOnlyOptionOne(){
         EmbeddedChannel c=new EmbeddedChannel();
         try{
