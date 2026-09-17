@@ -1,0 +1,5222 @@
+{
+  "comps": [
+    {
+      "compId": 0,
+      "name": "Simple parts",
+      "xp": 20.0,
+      "weaponPerks": [
+        {
+          "perkId": 13,
+          "name": "Looting",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 7,
+          "roll": 27
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 13,
+          "name": "Looting",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 31,
+          "name": "Profane",
+          "base": 8,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 7,
+          "roll": 27
+        }
+      ]
+    },
+    {
+      "compId": 1,
+      "name": "Base parts",
+      "xp": 25.0,
+      "weaponPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 8,
+          "name": "Dragon Slayer",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 2,
+          "name": "Inaccurate",
+          "base": 8,
+          "roll": 33
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 8,
+          "name": "Dragon Slayer",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 25,
+          "name": "Turtling",
+          "base": 9,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 58,
+          "name": "Charitable",
+          "base": 7,
+          "roll": 25
+        }
+      ]
+    },
+    {
+      "compId": 2,
+      "name": "Blade parts",
+      "xp": 25.0,
+      "weaponPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 3,
+          "name": "Biting",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 43,
+          "name": "Junk Food",
+          "base": 8,
+          "roll": 33
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 3,
+          "name": "Biting",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 43,
+          "name": "Junk Food",
+          "base": 8,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 5,
+          "name": "Honed",
+          "base": 7,
+          "roll": 25
+        }
+      ]
+    },
+    {
+      "compId": 3,
+      "name": "Magic parts",
+      "xp": 25.0,
+      "weaponPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 10,
+          "name": "Undead Bait",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 35,
+          "name": "Crackling",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 42,
+          "name": "Ultimatums",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 44,
+          "name": "Energising",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 40,
+          "name": "Spendthrift",
+          "base": 5,
+          "roll": 13
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 10,
+          "name": "Undead Bait",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 35,
+          "name": "Crackling",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 42,
+          "name": "Ultimatums",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 44,
+          "name": "Energising",
+          "base": 7,
+          "roll": 27
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 5,
+          "name": "Honed",
+          "base": 7,
+          "roll": 27
+        }
+      ]
+    },
+    {
+      "compId": 4,
+      "name": "Organic parts",
+      "xp": 25.0,
+      "weaponPerks": [
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 37,
+          "name": "Invigorating",
+          "base": 5,
+          "roll": 13
+        },
+        {
+          "perkId": 2,
+          "name": "Inaccurate",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 50,
+          "name": "Mediocrity",
+          "base": 8,
+          "roll": 32
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 37,
+          "name": "Invigorating",
+          "base": 5,
+          "roll": 13
+        },
+        {
+          "perkId": 26,
+          "name": "Brief Respite",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 70,
+          "name": "Pyromaniac",
+          "base": 7,
+          "roll": 27
+        }
+      ]
+    },
+    {
+      "compId": 5,
+      "name": "Spiritual parts",
+      "xp": 25.0,
+      "weaponPerks": [
+        {
+          "perkId": 14,
+          "name": "Enlightened",
+          "base": 5,
+          "roll": 13
+        },
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 2,
+          "name": "Inaccurate",
+          "base": 8,
+          "roll": 33
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 14,
+          "name": "Enlightened",
+          "base": 5,
+          "roll": 13
+        },
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 9,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 14,
+          "name": "Enlightened",
+          "base": 5,
+          "roll": 13
+        },
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 9,
+          "roll": 33
+        }
+      ]
+    },
+    {
+      "compId": 6,
+      "name": "Stave parts",
+      "xp": 25.0,
+      "weaponPerks": [
+        {
+          "perkId": 15,
+          "name": "Glow Worm",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 10,
+          "name": "Undead Bait",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 44,
+          "name": "Energising",
+          "base": 7,
+          "roll": 27
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 15,
+          "name": "Glow Worm",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 10,
+          "name": "Undead Bait",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 44,
+          "name": "Energising",
+          "base": 7,
+          "roll": 27
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 15,
+          "name": "Glow Worm",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 68,
+          "name": "Rapid",
+          "base": 7,
+          "roll": 25
+        },
+        {
+          "perkId": 72,
+          "name": "Prosper",
+          "base": 5,
+          "roll": 5
+        }
+      ]
+    },
+    {
+      "compId": 7,
+      "name": "Tensile parts",
+      "xp": 25.0,
+      "weaponPerks": [
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 1,
+          "name": "Blunted",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 51,
+          "name": "Mysterious",
+          "base": 9,
+          "roll": 33
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 31,
+          "name": "Profane",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 51,
+          "name": "Mysterious",
+          "base": 9,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 51,
+          "name": "Mysterious",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 56,
+          "name": "Butterfingers",
+          "base": 8,
+          "roll": 32
+        }
+      ]
+    },
+    {
+      "compId": 8,
+      "name": "Head parts",
+      "xp": 25.0,
+      "weaponPerks": [
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 46,
+          "name": "Clear Headed",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 2,
+          "name": "Inaccurate",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 50,
+          "name": "Mediocrity",
+          "base": 8,
+          "roll": 32
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 46,
+          "name": "Clear Headed",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 7,
+          "roll": 27
+        }
+      ]
+    },
+    {
+      "compId": 9,
+      "name": "Connector parts",
+      "xp": 25.0,
+      "weaponPerks": [
+        {
+          "perkId": 24,
+          "name": "Scavenging",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 11,
+          "name": "Dragon Bait",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 10,
+          "name": "Undead Bait",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 20,
+          "name": "Mobile",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 30,
+          "name": "Precise",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 24,
+          "name": "Scavenging",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 11,
+          "name": "Dragon Bait",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 10,
+          "name": "Undead Bait",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 20,
+          "name": "Mobile",
+          "base": 7,
+          "roll": 28
+        }
+      ],
+      "toolPerks": []
+    },
+    {
+      "compId": 10,
+      "name": "Cover parts",
+      "xp": 25.0,
+      "weaponPerks": [
+        {
+          "perkId": 41,
+          "name": "Shield Bashing",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 41,
+          "name": "Shield Bashing",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 31,
+          "name": "Profane",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 48,
+          "name": "Bulwark",
+          "base": 9,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 59,
+          "name": "Confused",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 52,
+          "name": "Furnace",
+          "base": 7,
+          "roll": 25
+        }
+      ]
+    },
+    {
+      "compId": 11,
+      "name": "Clear parts",
+      "xp": 25.0,
+      "weaponPerks": [
+        {
+          "perkId": 15,
+          "name": "Glow Worm",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 9,
+          "name": "Demon Slayer",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 15,
+          "name": "Glow Worm",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 9,
+          "name": "Demon Slayer",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 31,
+          "name": "Profane",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 67,
+          "name": "Crystal Shield",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 15,
+          "name": "Glow Worm",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 7,
+          "roll": 28
+        }
+      ]
+    },
+    {
+      "compId": 12,
+      "name": "Delicate parts",
+      "xp": 25.0,
+      "weaponPerks": [
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 43,
+          "name": "Junk Food",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 4,
+          "name": "Equilibrium",
+          "base": 5,
+          "roll": 13
+        },
+        {
+          "perkId": 64,
+          "name": "Enhanced Efficient",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 43,
+          "name": "Junk Food",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 6,
+          "name": "Lucky",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 64,
+          "name": "Enhanced Efficient",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 56,
+          "name": "Butterfingers",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 58,
+          "name": "Charitable",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 64,
+          "name": "Enhanced Efficient",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 69,
+          "name": "Tinker",
+          "base": 7,
+          "roll": 25
+        }
+      ]
+    },
+    {
+      "compId": 13,
+      "name": "Crafted parts",
+      "xp": 30.0,
+      "weaponPerks": [
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 50,
+          "name": "Mediocrity",
+          "base": 8,
+          "roll": 33
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 49,
+          "name": "Preparation",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 8,
+          "roll": 32
+        }
+      ]
+    },
+    {
+      "compId": 14,
+      "name": "Plated parts",
+      "xp": 30.0,
+      "weaponPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 1,
+          "name": "Blunted",
+          "base": 8,
+          "roll": 32
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 29,
+          "name": "Absorbative",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 8,
+          "roll": 33
+        }
+      ]
+    },
+    {
+      "compId": 15,
+      "name": "Flexible parts",
+      "xp": 30.0,
+      "weaponPerks": [
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 11,
+          "name": "Dragon Bait",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 20,
+          "name": "Mobile",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 46,
+          "name": "Clear Headed",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 11,
+          "name": "Dragon Bait",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 20,
+          "name": "Mobile",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 46,
+          "name": "Clear Headed",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 31,
+          "name": "Profane",
+          "base": 8,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 9,
+          "roll": 33
+        }
+      ]
+    },
+    {
+      "compId": 16,
+      "name": "Deflecting parts",
+      "xp": 30.0,
+      "weaponPerks": [
+        {
+          "perkId": 41,
+          "name": "Shield Bashing",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 2,
+          "name": "Inaccurate",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 50,
+          "name": "Mediocrity",
+          "base": 8,
+          "roll": 32
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 41,
+          "name": "Shield Bashing",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 38,
+          "name": "Venomblood",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 55,
+          "name": "Imp Souled",
+          "base": 7,
+          "roll": 27
+        }
+      ]
+    },
+    {
+      "compId": 17,
+      "name": "Metallic parts",
+      "xp": 30.0,
+      "weaponPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 50,
+          "name": "Mediocrity",
+          "base": 8,
+          "roll": 33
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 48,
+          "name": "Bulwark",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 49,
+          "name": "Preparation",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 59,
+          "name": "Confused",
+          "base": 7,
+          "roll": 27
+        }
+      ]
+    },
+    {
+      "compId": 18,
+      "name": "Spiked parts",
+      "xp": 30.0,
+      "weaponPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 34,
+          "name": "Genocidal",
+          "base": 5,
+          "roll": 13
+        },
+        {
+          "perkId": 45,
+          "name": "Trophy-taker\u0027s",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 18,
+          "name": "Taunting",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 43,
+          "name": "Junk Food",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 65,
+          "name": "Flanking",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 34,
+          "name": "Genocidal",
+          "base": 5,
+          "roll": 13
+        },
+        {
+          "perkId": 45,
+          "name": "Trophy-taker\u0027s",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 18,
+          "name": "Taunting",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 43,
+          "name": "Junk Food",
+          "base": 8,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 8,
+          "roll": 32
+        }
+      ]
+    },
+    {
+      "compId": 19,
+      "name": "Smooth parts",
+      "xp": 30.0,
+      "weaponPerks": [
+        {
+          "perkId": 24,
+          "name": "Scavenging",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 10,
+          "name": "Undead Bait",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 44,
+          "name": "Energising",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 1,
+          "name": "Blunted",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 4,
+          "name": "Equilibrium",
+          "base": 5,
+          "roll": 13
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 24,
+          "name": "Scavenging",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 10,
+          "name": "Undead Bait",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 44,
+          "name": "Energising",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 47,
+          "name": "Reflexes",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 54,
+          "name": "Cheapskate",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 57,
+          "name": "Refined",
+          "base": 7,
+          "roll": 27
+        }
+      ]
+    },
+    {
+      "compId": 20,
+      "name": "Padded parts",
+      "xp": 30.0,
+      "weaponPerks": [
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 8,
+          "roll": 32
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 29,
+          "name": "Absorbative",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 31,
+          "name": "Profane",
+          "base": 8,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 53,
+          "name": "Polishing",
+          "base": 7,
+          "roll": 28
+        },
+        {
+          "perkId": 56,
+          "name": "Butterfingers",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 71,
+          "name": "Breakdown",
+          "base": 7,
+          "roll": 27
+        }
+      ]
+    },
+    {
+      "compId": 21,
+      "name": "Crystal parts",
+      "xp": 337.0,
+      "weaponPerks": [
+        {
+          "perkId": 28,
+          "name": "Efficient",
+          "base": 5,
+          "roll": 13
+        },
+        {
+          "perkId": 45,
+          "name": "Trophy-taker\u0027s",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 7,
+          "name": "Undead Slayer",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 8,
+          "roll": 32
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 28,
+          "name": "Efficient",
+          "base": 5,
+          "roll": 13
+        },
+        {
+          "perkId": 45,
+          "name": "Trophy-taker\u0027s",
+          "base": 7,
+          "roll": 27
+        },
+        {
+          "perkId": 7,
+          "name": "Undead Slayer",
+          "base": 5,
+          "roll": 15
+        },
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 8,
+          "roll": 32
+        },
+        {
+          "perkId": 25,
+          "name": "Turtling",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 31,
+          "name": "Profane",
+          "base": 8,
+          "roll": 33
+        },
+        {
+          "perkId": 66,
+          "name": "Enhanced Devoted",
+          "base": 5,
+          "roll": 15
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 28,
+          "name": "Efficient",
+          "base": 5,
+          "roll": 13
+        },
+        {
+          "perkId": 54,
+          "name": "Cheapskate",
+          "base": 8,
+          "roll": 32
+        }
+      ]
+    },
+    {
+      "compId": 22,
+      "name": "Precise components",
+      "xp": 300.0,
+      "weaponPerks": [
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 1,
+          "name": "Blunted",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 4,
+          "name": "Equilibrium",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 30,
+          "name": "Precise",
+          "base": 9,
+          "roll": 32
+        },
+        {
+          "perkId": 65,
+          "name": "Flanking",
+          "base": 9,
+          "roll": 32
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 12,
+          "roll": 44
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 5,
+          "name": "Honed",
+          "base": 9,
+          "roll": 32
+        }
+      ]
+    },
+    {
+      "compId": 23,
+      "name": "Sharp components",
+      "xp": 300.0,
+      "weaponPerks": [
+        {
+          "perkId": 11,
+          "name": "Dragon Bait",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 18,
+          "name": "Taunting",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 65,
+          "name": "Flanking",
+          "base": 9,
+          "roll": 32
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 11,
+          "name": "Dragon Bait",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 18,
+          "name": "Taunting",
+          "base": 9,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 5,
+          "name": "Honed",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 52,
+          "name": "Furnace",
+          "base": 9,
+          "roll": 33
+        }
+      ]
+    },
+    {
+      "compId": 24,
+      "name": "Powerful components",
+      "xp": 300.0,
+      "weaponPerks": [
+        {
+          "perkId": 34,
+          "name": "Genocidal",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 45,
+          "name": "Trophy-taker\u0027s",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 1,
+          "name": "Blunted",
+          "base": 12,
+          "roll": 45
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 34,
+          "name": "Genocidal",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 45,
+          "name": "Trophy-taker\u0027s",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 48,
+          "name": "Bulwark",
+          "base": 12,
+          "roll": 40
+        }
+      ],
+      "toolPerks": []
+    },
+    {
+      "compId": 25,
+      "name": "Healthy components",
+      "xp": 300.0,
+      "weaponPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 28,
+          "name": "Efficient",
+          "base": 9,
+          "roll": 32
+        },
+        {
+          "perkId": 2,
+          "name": "Inaccurate",
+          "base": 12,
+          "roll": 45
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 28,
+          "name": "Efficient",
+          "base": 9,
+          "roll": 32
+        },
+        {
+          "perkId": 38,
+          "name": "Venomblood",
+          "base": 9,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 28,
+          "name": "Efficient",
+          "base": 9,
+          "roll": 32
+        }
+      ]
+    },
+    {
+      "compId": 26,
+      "name": "Heavy components",
+      "xp": 300.0,
+      "weaponPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 12,
+          "roll": 45
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 48,
+          "name": "Bulwark",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 49,
+          "name": "Preparation",
+          "base": 9,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 56,
+          "name": "Butterfingers",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 71,
+          "name": "Breakdown",
+          "base": 12,
+          "roll": 40
+        }
+      ]
+    },
+    {
+      "compId": 27,
+      "name": "Stunning components",
+      "xp": 300.0,
+      "weaponPerks": [
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 46,
+          "name": "Clear Headed",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 50,
+          "name": "Mediocrity",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 51,
+          "name": "Mysterious",
+          "base": 12,
+          "roll": 40
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 46,
+          "name": "Clear Headed",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 51,
+          "name": "Mysterious",
+          "base": 12,
+          "roll": 40
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 51,
+          "name": "Mysterious",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 59,
+          "name": "Confused",
+          "base": 12,
+          "roll": 40
+        }
+      ]
+    },
+    {
+      "compId": 28,
+      "name": "Enhancing components",
+      "xp": 300.0,
+      "weaponPerks": [
+        {
+          "perkId": 8,
+          "name": "Dragon Slayer",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 37,
+          "name": "Invigorating",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 44,
+          "name": "Energising",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 2,
+          "name": "Inaccurate",
+          "base": 12,
+          "roll": 45
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 8,
+          "name": "Dragon Slayer",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 37,
+          "name": "Invigorating",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 44,
+          "name": "Energising",
+          "base": 12,
+          "roll": 44
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 54,
+          "name": "Cheapskate",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 57,
+          "name": "Refined",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 68,
+          "name": "Rapid",
+          "base": 12,
+          "roll": 40
+        }
+      ]
+    },
+    {
+      "compId": 29,
+      "name": "Protective components",
+      "xp": 300.0,
+      "weaponPerks": [
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 41,
+          "name": "Shield Bashing",
+          "base": 12,
+          "roll": 40
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 41,
+          "name": "Shield Bashing",
+          "base": 12,
+          "roll": 40
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 53,
+          "name": "Polishing",
+          "base": 12,
+          "roll": 40
+        }
+      ]
+    },
+    {
+      "compId": 30,
+      "name": "Evasive components",
+      "xp": 300.0,
+      "weaponPerks": [
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 1,
+          "name": "Blunted",
+          "base": 12,
+          "roll": 45
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 25,
+          "name": "Turtling",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 38,
+          "name": "Venomblood",
+          "base": 9,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 72,
+          "name": "Prosper",
+          "base": 12,
+          "roll": 8
+        }
+      ]
+    },
+    {
+      "compId": 31,
+      "name": "Precious components",
+      "xp": 300.0,
+      "weaponPerks": [
+        {
+          "perkId": 13,
+          "name": "Looting",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 24,
+          "name": "Scavenging",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 40,
+          "name": "Spendthrift",
+          "base": 9,
+          "roll": 32
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 13,
+          "name": "Looting",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 24,
+          "name": "Scavenging",
+          "base": 12,
+          "roll": 40
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 12,
+          "roll": 45
+        }
+      ]
+    },
+    {
+      "compId": 32,
+      "name": "Pious components",
+      "xp": 300.0,
+      "weaponPerks": [
+        {
+          "perkId": 14,
+          "name": "Enlightened",
+          "base": 9,
+          "roll": 32
+        },
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 11,
+          "name": "Dragon Bait",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 50,
+          "name": "Mediocrity",
+          "base": 12,
+          "roll": 44
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 14,
+          "name": "Enlightened",
+          "base": 9,
+          "roll": 32
+        },
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 11,
+          "name": "Dragon Bait",
+          "base": 12,
+          "roll": 45
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 14,
+          "name": "Enlightened",
+          "base": 9,
+          "roll": 32
+        },
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 58,
+          "name": "Charitable",
+          "base": 12,
+          "roll": 44
+        }
+      ]
+    },
+    {
+      "compId": 33,
+      "name": "Light components",
+      "xp": 320.0,
+      "weaponPerks": [
+        {
+          "perkId": 15,
+          "name": "Glow Worm",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 2,
+          "name": "Inaccurate",
+          "base": 12,
+          "roll": 45
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 15,
+          "name": "Glow Worm",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 6,
+          "name": "Lucky",
+          "base": 9,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 15,
+          "name": "Glow Worm",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 70,
+          "name": "Pyromaniac",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 68,
+          "name": "Rapid",
+          "base": 9,
+          "roll": 33
+        }
+      ]
+    },
+    {
+      "compId": 34,
+      "name": "Living components",
+      "xp": 320.0,
+      "weaponPerks": [
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 7,
+          "name": "Undead Slayer",
+          "base": 9,
+          "roll": 33
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 7,
+          "name": "Undead Slayer",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 31,
+          "name": "Profane",
+          "base": 12,
+          "roll": 45
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 12,
+          "roll": 44
+        }
+      ]
+    },
+    {
+      "compId": 35,
+      "name": "Ethereal components",
+      "xp": 320.0,
+      "weaponPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 12,
+          "roll": 40
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 26,
+          "name": "Brief Respite",
+          "base": 9,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 16,
+          "name": "Antitheism",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 12,
+          "roll": 40
+        }
+      ]
+    },
+    {
+      "compId": 36,
+      "name": "Variable components",
+      "xp": 320.0,
+      "weaponPerks": [
+        {
+          "perkId": 45,
+          "name": "Trophy-taker\u0027s",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 46,
+          "name": "Clear Headed",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 64,
+          "name": "Enhanced Efficient",
+          "base": 9,
+          "roll": 32
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 45,
+          "name": "Trophy-taker\u0027s",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 46,
+          "name": "Clear Headed",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 64,
+          "name": "Enhanced Efficient",
+          "base": 9,
+          "roll": 32
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 54,
+          "name": "Cheapskate",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 64,
+          "name": "Enhanced Efficient",
+          "base": 9,
+          "roll": 32
+        }
+      ]
+    },
+    {
+      "compId": 37,
+      "name": "Dextrous components",
+      "xp": 320.0,
+      "weaponPerks": [
+        {
+          "perkId": 9,
+          "name": "Demon Slayer",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 11,
+          "name": "Dragon Bait",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 20,
+          "name": "Mobile",
+          "base": 12,
+          "roll": 44
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 9,
+          "name": "Demon Slayer",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 11,
+          "name": "Dragon Bait",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 20,
+          "name": "Mobile",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 47,
+          "name": "Reflexes",
+          "base": 12,
+          "roll": 40
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 53,
+          "name": "Polishing",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 56,
+          "name": "Butterfingers",
+          "base": 9,
+          "roll": 33
+        }
+      ]
+    },
+    {
+      "compId": 38,
+      "name": "Strong components",
+      "xp": 320.0,
+      "weaponPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 12,
+          "roll": 45
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 29,
+          "name": "Absorbative",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 66,
+          "name": "Enhanced Devoted",
+          "base": 9,
+          "roll": 32
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 33,
+          "name": "Fatiguing",
+          "base": 12,
+          "roll": 45
+        }
+      ]
+    },
+    {
+      "compId": 39,
+      "name": "Swift components",
+      "xp": 320.0,
+      "weaponPerks": [
+        {
+          "perkId": 37,
+          "name": "Invigorating",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 41,
+          "name": "Shield Bashing",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 1,
+          "name": "Blunted",
+          "base": 12,
+          "roll": 45
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 37,
+          "name": "Invigorating",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 41,
+          "name": "Shield Bashing",
+          "base": 12,
+          "roll": 40
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 55,
+          "name": "Imp Souled",
+          "base": 12,
+          "roll": 40
+        }
+      ]
+    },
+    {
+      "compId": 40,
+      "name": "Imbued components",
+      "xp": 320.0,
+      "weaponPerks": [
+        {
+          "perkId": 35,
+          "name": "Crackling",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 42,
+          "name": "Ultimatums",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 43,
+          "name": "Junk Food",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 44,
+          "name": "Energising",
+          "base": 12,
+          "roll": 44
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 35,
+          "name": "Crackling",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 42,
+          "name": "Ultimatums",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 43,
+          "name": "Junk Food",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 44,
+          "name": "Energising",
+          "base": 12,
+          "roll": 44
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 52,
+          "name": "Furnace",
+          "base": 12,
+          "roll": 40
+        }
+      ]
+    },
+    {
+      "compId": 41,
+      "name": "Direct components",
+      "xp": 320.0,
+      "weaponPerks": [
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 3,
+          "name": "Biting",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 1,
+          "name": "Blunted",
+          "base": 12,
+          "roll": 45
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 3,
+          "name": "Biting",
+          "base": 9,
+          "roll": 33
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 58,
+          "name": "Charitable",
+          "base": 12,
+          "roll": 40
+        },
+        {
+          "perkId": 70,
+          "name": "Pyromaniac",
+          "base": 9,
+          "roll": 32
+        }
+      ]
+    },
+    {
+      "compId": 42,
+      "name": "Subtle components",
+      "xp": 320.0,
+      "weaponPerks": [
+        {
+          "perkId": 13,
+          "name": "Looting",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 20,
+          "name": "Mobile",
+          "base": 12,
+          "roll": 44
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 13,
+          "name": "Looting",
+          "base": 9,
+          "roll": 33
+        },
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 12,
+          "roll": 45
+        },
+        {
+          "perkId": 20,
+          "name": "Mobile",
+          "base": 12,
+          "roll": 44
+        },
+        {
+          "perkId": 67,
+          "name": "Crystal Shield",
+          "base": 12,
+          "roll": 40
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 59,
+          "name": "Confused",
+          "base": 12,
+          "roll": 45
+        }
+      ]
+    },
+    {
+      "compId": 43,
+      "name": "Knightly components",
+      "xp": 35.0,
+      "weaponPerks": [
+        {
+          "perkId": 18,
+          "name": "Taunting",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 18,
+          "name": "Taunting",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "toolPerks": []
+    },
+    {
+      "compId": 44,
+      "name": "Harnessed components",
+      "xp": 375.0,
+      "weaponPerks": [],
+      "armourPerks": [
+        {
+          "perkId": 47,
+          "name": "Reflexes",
+          "base": 45,
+          "roll": 8
+        },
+        {
+          "perkId": 49,
+          "name": "Preparation",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "toolPerks": []
+    },
+    {
+      "compId": 45,
+      "name": "Undead components",
+      "xp": 2250.0,
+      "weaponPerks": [
+        {
+          "perkId": 34,
+          "name": "Genocidal",
+          "base": 40,
+          "roll": 8
+        },
+        {
+          "perkId": 7,
+          "name": "Undead Slayer",
+          "base": 48,
+          "roll": 5
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 34,
+          "name": "Genocidal",
+          "base": 40,
+          "roll": 8
+        },
+        {
+          "perkId": 7,
+          "name": "Undead Slayer",
+          "base": 48,
+          "roll": 5
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 71,
+          "name": "Breakdown",
+          "base": 25,
+          "roll": 28
+        }
+      ]
+    },
+    {
+      "compId": 46,
+      "name": "Dragonfire components",
+      "xp": 1050.0,
+      "weaponPerks": [
+        {
+          "perkId": 8,
+          "name": "Dragon Slayer",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 8,
+          "name": "Dragon Slayer",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 52,
+          "name": "Furnace",
+          "base": 25,
+          "roll": 28
+        }
+      ]
+    },
+    {
+      "compId": 47,
+      "name": "Fungal components",
+      "xp": 900.0,
+      "weaponPerks": [],
+      "armourPerks": [
+        {
+          "perkId": 29,
+          "name": "Absorbative",
+          "base": 40,
+          "roll": 8
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 69,
+          "name": "Tinker",
+          "base": 10,
+          "roll": 28
+        }
+      ]
+    },
+    {
+      "compId": 48,
+      "name": "Explosive components",
+      "xp": 1000.0,
+      "weaponPerks": [
+        {
+          "perkId": 35,
+          "name": "Crackling",
+          "base": 48,
+          "roll": 5
+        },
+        {
+          "perkId": 42,
+          "name": "Ultimatums",
+          "base": 40,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 35,
+          "name": "Crackling",
+          "base": 48,
+          "roll": 5
+        },
+        {
+          "perkId": 42,
+          "name": "Ultimatums",
+          "base": 40,
+          "roll": 8
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 70,
+          "name": "Pyromaniac",
+          "base": 25,
+          "roll": 28
+        }
+      ]
+    },
+    {
+      "compId": 49,
+      "name": "Corporeal components",
+      "xp": 1500.0,
+      "weaponPerks": [],
+      "armourPerks": [
+        {
+          "perkId": 26,
+          "name": "Brief Respite",
+          "base": 40,
+          "roll": 8
+        }
+      ],
+      "toolPerks": []
+    },
+    {
+      "compId": 50,
+      "name": "Armadyl components",
+      "xp": 750.0,
+      "weaponPerks": [
+        {
+          "perkId": 30,
+          "name": "Precise",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 39,
+          "name": "Devoted",
+          "base": 39,
+          "roll": 9
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 58,
+          "name": "Charitable",
+          "base": 25,
+          "roll": 28
+        }
+      ]
+    },
+    {
+      "compId": 51,
+      "name": "Bandos components",
+      "xp": 750.0,
+      "weaponPerks": [
+        {
+          "perkId": 34,
+          "name": "Genocidal",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 34,
+          "name": "Genocidal",
+          "base": 44,
+          "roll": 8
+        },
+        {
+          "perkId": 39,
+          "name": "Devoted",
+          "base": 39,
+          "roll": 9
+        }
+      ],
+      "toolPerks": []
+    },
+    {
+      "compId": 52,
+      "name": "Brassican components",
+      "xp": 32.5,
+      "weaponPerks": [
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 36,
+          "roll": 9
+        },
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 45,
+          "roll": 8
+        },
+        {
+          "perkId": 32,
+          "name": "Brassican",
+          "base": 49,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 36,
+          "roll": 9
+        },
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 45,
+          "roll": 8
+        },
+        {
+          "perkId": 32,
+          "name": "Brassican",
+          "base": 49,
+          "roll": 8
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 22,
+          "name": "Hallucinogenic",
+          "base": 36,
+          "roll": 9
+        },
+        {
+          "perkId": 23,
+          "name": "Talking",
+          "base": 45,
+          "roll": 8
+        },
+        {
+          "perkId": 32,
+          "name": "Brassican",
+          "base": 49,
+          "roll": 8
+        }
+      ]
+    },
+    {
+      "compId": 53,
+      "name": "Saradomin components",
+      "xp": 750.0,
+      "weaponPerks": [
+        {
+          "perkId": 40,
+          "name": "Spendthrift",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 39,
+          "name": "Devoted",
+          "base": 39,
+          "roll": 9
+        }
+      ],
+      "toolPerks": []
+    },
+    {
+      "compId": 54,
+      "name": "Seren components",
+      "xp": 700.0,
+      "weaponPerks": [
+        {
+          "perkId": 14,
+          "name": "Enlightened",
+          "base": 40,
+          "roll": 8
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 48,
+          "roll": 5
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 14,
+          "name": "Enlightened",
+          "base": 40,
+          "roll": 8
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 48,
+          "roll": 5
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 14,
+          "name": "Enlightened",
+          "base": 40,
+          "roll": 8
+        },
+        {
+          "perkId": 27,
+          "name": "Wise",
+          "base": 48,
+          "roll": 5
+        }
+      ]
+    },
+    {
+      "compId": 55,
+      "name": "Zamorak components",
+      "xp": 750.0,
+      "weaponPerks": [
+        {
+          "perkId": 36,
+          "name": "Impatient",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 36,
+          "name": "Impatient",
+          "base": 44,
+          "roll": 8
+        },
+        {
+          "perkId": 39,
+          "name": "Devoted",
+          "base": 39,
+          "roll": 9
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 55,
+          "name": "Imp Souled",
+          "base": 28,
+          "roll": 29
+        }
+      ]
+    },
+    {
+      "compId": 56,
+      "name": "Zaros components",
+      "xp": 1000.0,
+      "weaponPerks": [
+        {
+          "perkId": 36,
+          "name": "Impatient",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 36,
+          "name": "Impatient",
+          "base": 44,
+          "roll": 8
+        },
+        {
+          "perkId": 66,
+          "name": "Enhanced Devoted",
+          "base": 39,
+          "roll": 9
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 55,
+          "name": "Imp Souled",
+          "base": 20,
+          "roll": 25
+        }
+      ]
+    },
+    {
+      "compId": 57,
+      "name": "Oceanic components",
+      "xp": 2100.0,
+      "weaponPerks": [
+        {
+          "perkId": 37,
+          "name": "Invigorating",
+          "base": 45,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 37,
+          "name": "Invigorating",
+          "base": 45,
+          "roll": 8
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 53,
+          "name": "Polishing",
+          "base": 25,
+          "roll": 28
+        }
+      ]
+    },
+    {
+      "compId": 58,
+      "name": "Resilient components",
+      "xp": 2100.0,
+      "weaponPerks": [],
+      "armourPerks": [
+        {
+          "perkId": 48,
+          "name": "Bulwark",
+          "base": 45,
+          "roll": 8
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 57,
+          "name": "Refined",
+          "base": 25,
+          "roll": 28
+        }
+      ]
+    },
+    {
+      "compId": 59,
+      "name": "Silent components",
+      "xp": 2100.0,
+      "weaponPerks": [],
+      "armourPerks": [
+        {
+          "perkId": 6,
+          "name": "Lucky",
+          "base": 45,
+          "roll": 8
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 5,
+          "name": "Honed",
+          "base": 25,
+          "roll": 28
+        }
+      ]
+    },
+    {
+      "compId": 60,
+      "name": "Noxious components",
+      "xp": 2500.0,
+      "weaponPerks": [
+        {
+          "perkId": 3,
+          "name": "Biting",
+          "base": 40,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 3,
+          "name": "Biting",
+          "base": 40,
+          "roll": 8
+        }
+      ],
+      "toolPerks": []
+    },
+    {
+      "compId": 61,
+      "name": "Rumbling components",
+      "xp": 2500.0,
+      "weaponPerks": [
+        {
+          "perkId": 4,
+          "name": "Equilibrium",
+          "base": 40,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [],
+      "toolPerks": []
+    },
+    {
+      "compId": 62,
+      "name": "Ascended components",
+      "xp": 2500.0,
+      "weaponPerks": [
+        {
+          "perkId": 28,
+          "name": "Efficient",
+          "base": 40,
+          "roll": 8
+        },
+        {
+          "perkId": 64,
+          "name": "Enhanced Efficient",
+          "base": 20,
+          "roll": 25
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 28,
+          "name": "Efficient",
+          "base": 40,
+          "roll": 8
+        },
+        {
+          "perkId": 64,
+          "name": "Enhanced Efficient",
+          "base": 20,
+          "roll": 25
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 28,
+          "name": "Efficient",
+          "base": 40,
+          "roll": 8
+        },
+        {
+          "perkId": 64,
+          "name": "Enhanced Efficient",
+          "base": 20,
+          "roll": 25
+        }
+      ]
+    },
+    {
+      "compId": 63,
+      "name": "Pestiferous components",
+      "xp": 1000.0,
+      "weaponPerks": [],
+      "armourPerks": [
+        {
+          "perkId": 38,
+          "name": "Venomblood",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "toolPerks": []
+    },
+    {
+      "compId": 64,
+      "name": "Fortunate components",
+      "xp": 1000.0,
+      "weaponPerks": [
+        {
+          "perkId": 13,
+          "name": "Looting",
+          "base": 13,
+          "roll": 40
+        },
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 13,
+          "roll": 40
+        },
+        {
+          "perkId": 32,
+          "name": "Brassican",
+          "base": 13,
+          "roll": 40
+        },
+        {
+          "perkId": 40,
+          "name": "Spendthrift",
+          "base": 13,
+          "roll": 40
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 13,
+          "name": "Looting",
+          "base": 13,
+          "roll": 40
+        },
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 13,
+          "roll": 40
+        },
+        {
+          "perkId": 32,
+          "name": "Brassican",
+          "base": 13,
+          "roll": 40
+        },
+        {
+          "perkId": 6,
+          "name": "Lucky",
+          "base": 13,
+          "roll": 40
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 13,
+          "roll": 40
+        },
+        {
+          "perkId": 32,
+          "name": "Brassican",
+          "base": 13,
+          "roll": 40
+        },
+        {
+          "perkId": 53,
+          "name": "Polishing",
+          "base": 13,
+          "roll": 40
+        }
+      ]
+    },
+    {
+      "compId": 65,
+      "name": "Ancient components",
+      "xp": 3000.0,
+      "weaponPerks": [
+        {
+          "perkId": 9,
+          "name": "Demon Slayer",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 9,
+          "name": "Demon Slayer",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 72,
+          "name": "Prosper",
+          "base": 50,
+          "roll": 50
+        }
+      ]
+    },
+    {
+      "compId": 66,
+      "name": "Culinary components",
+      "xp": 30.0,
+      "weaponPerks": [
+        {
+          "perkId": 37,
+          "name": "Invigorating",
+          "base": 39,
+          "roll": 9
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 37,
+          "name": "Invigorating",
+          "base": 39,
+          "roll": 9
+        },
+        {
+          "perkId": 26,
+          "name": "Brief Respite",
+          "base": 45,
+          "roll": 8
+        }
+      ],
+      "toolPerks": []
+    },
+    {
+      "compId": 67,
+      "name": "Shifting components",
+      "xp": 750.0,
+      "weaponPerks": [
+        {
+          "perkId": 28,
+          "name": "Efficient",
+          "base": 44,
+          "roll": 8
+        },
+        {
+          "perkId": 42,
+          "name": "Ultimatums",
+          "base": 45,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 28,
+          "name": "Efficient",
+          "base": 44,
+          "roll": 8
+        },
+        {
+          "perkId": 42,
+          "name": "Ultimatums",
+          "base": 45,
+          "roll": 8
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 28,
+          "name": "Efficient",
+          "base": 44,
+          "roll": 8
+        },
+        {
+          "perkId": 68,
+          "name": "Rapid",
+          "base": 25,
+          "roll": 28
+        }
+      ]
+    },
+    {
+      "compId": 68,
+      "name": "Refined components",
+      "xp": 60.0,
+      "weaponPerks": [
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 11,
+          "name": "Dragon Bait",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 44,
+          "name": "Energising",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 2,
+          "name": "Inaccurate",
+          "base": 11,
+          "roll": 25
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 11,
+          "name": "Dragon Bait",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 12,
+          "name": "Demon Bait",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 44,
+          "name": "Energising",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 26,
+          "name": "Brief Respite",
+          "base": 11,
+          "roll": 25
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 17,
+          "name": "Hoarding",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 19,
+          "name": "Committed",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 21,
+          "name": "Cautious",
+          "base": 11,
+          "roll": 25
+        },
+        {
+          "perkId": 57,
+          "name": "Refined",
+          "base": 11,
+          "roll": 25
+        }
+      ]
+    },
+    {
+      "compId": 69,
+      "name": "Shadow components",
+      "xp": 2100.0,
+      "weaponPerks": [
+        {
+          "perkId": 60,
+          "name": "Caroming",
+          "base": 40,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [],
+      "toolPerks": []
+    },
+    {
+      "compId": 70,
+      "name": "Avernic components",
+      "xp": 2100.0,
+      "weaponPerks": [
+        {
+          "perkId": 62,
+          "name": "Lunging",
+          "base": 44,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [],
+      "toolPerks": []
+    },
+    {
+      "compId": 71,
+      "name": "Ilujankan components",
+      "xp": 2100.0,
+      "weaponPerks": [
+        {
+          "perkId": 61,
+          "name": "Aftershock",
+          "base": 40,
+          "roll": 8
+        }
+      ],
+      "armourPerks": [],
+      "toolPerks": []
+    },
+    {
+      "compId": 72,
+      "name": "Cywir components",
+      "xp": 2100.0,
+      "weaponPerks": [
+        {
+          "perkId": 63,
+          "name": "Planted Feet",
+          "base": 20,
+          "roll": 20
+        }
+      ],
+      "armourPerks": [],
+      "toolPerks": []
+    },
+    {
+      "compId": 73,
+      "name": "Clockwork components",
+      "xp": 750.0,
+      "weaponPerks": [
+        {
+          "perkId": 64,
+          "name": "Enhanced Efficient",
+          "base": 45,
+          "roll": 8
+        },
+        {
+          "perkId": 65,
+          "name": "Flanking",
+          "base": 25,
+          "roll": 28
+        }
+      ],
+      "armourPerks": [
+        {
+          "perkId": 64,
+          "name": "Enhanced Efficient",
+          "base": 45,
+          "roll": 8
+        }
+      ],
+      "toolPerks": [
+        {
+          "perkId": 64,
+          "name": "Enhanced Efficient",
+          "base": 45,
+          "roll": 8
+        },
+        {
+          "perkId": 69,
+          "name": "Tinker",
+          "base": 18,
+          "roll": 28
+        }
+      ]
+    },
+    {
+      "compId": 74,
+      "name": "Faceted components",
+      "xp": 750.0,
+      "weaponPerks": [],
+      "armourPerks": [
+        {
+          "perkId": 67,
+          "name": "Crystal Shield",
+          "base": 39,
+          "roll": 9
+        },
+        {
+          "perkId": 66,
+          "name": "Enhanced Devoted",
+          "base": 45,
+          "roll": 8
+        }
+      ],
+      "toolPerks": []
+    },
+    {
+      "compId": 75,
+      "name": "Junk",
+      "xp": 0.0,
+      "weaponPerks": [],
+      "armourPerks": [],
+      "toolPerks": []
+    }
+  ],
+  "perks": [
+    {
+      "perkId": 0,
+      "name": "No effect",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 0,
+          "cost": 0
+        }
+      ]
+    },
+    {
+      "perkId": 1,
+      "name": "Blunted",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 30
+        },
+        {
+          "threshold": 70,
+          "cost": 30
+        },
+        {
+          "threshold": 120,
+          "cost": 30
+        },
+        {
+          "threshold": 155,
+          "cost": 30
+        },
+        {
+          "threshold": 195,
+          "cost": 30
+        }
+      ]
+    },
+    {
+      "perkId": 2,
+      "name": "Inaccurate",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 30
+        },
+        {
+          "threshold": 70,
+          "cost": 30
+        },
+        {
+          "threshold": 120,
+          "cost": 30
+        },
+        {
+          "threshold": 155,
+          "cost": 30
+        },
+        {
+          "threshold": 195,
+          "cost": 30
+        }
+      ]
+    },
+    {
+      "perkId": 3,
+      "name": "Biting",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 100,
+          "cost": 80
+        },
+        {
+          "threshold": 200,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 4,
+      "name": "Equilibrium",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 55,
+          "cost": 40
+        },
+        {
+          "threshold": 115,
+          "cost": 90
+        },
+        {
+          "threshold": 220,
+          "cost": 175
+        }
+      ]
+    },
+    {
+      "perkId": 5,
+      "name": "Honed",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 80,
+          "cost": 65
+        },
+        {
+          "threshold": 130,
+          "cost": 120
+        },
+        {
+          "threshold": 170,
+          "cost": 160
+        },
+        {
+          "threshold": 210,
+          "cost": 195
+        }
+      ]
+    },
+    {
+      "perkId": 6,
+      "name": "Lucky",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 80,
+          "cost": 65
+        },
+        {
+          "threshold": 130,
+          "cost": 120
+        },
+        {
+          "threshold": 170,
+          "cost": 160
+        },
+        {
+          "threshold": 210,
+          "cost": 195
+        }
+      ]
+    },
+    {
+      "perkId": 7,
+      "name": "Undead Slayer",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 8,
+      "name": "Dragon Slayer",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 9,
+      "name": "Demon Slayer",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 10,
+      "name": "Undead Bait",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 45,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 11,
+      "name": "Dragon Bait",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 45,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 12,
+      "name": "Demon Bait",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 45,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 13,
+      "name": "Looting",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 65,
+          "cost": 50
+        }
+      ]
+    },
+    {
+      "perkId": 14,
+      "name": "Enlightened",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 100,
+          "cost": 80
+        },
+        {
+          "threshold": 200,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 15,
+      "name": "Glow Worm",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 16,
+      "name": "Antitheism",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 17,
+      "name": "Hoarding",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 18,
+      "name": "Taunting",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 19,
+      "name": "Committed",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 45,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 20,
+      "name": "Mobile",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 21,
+      "name": "Cautious",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 45,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 22,
+      "name": "Hallucinogenic",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 23,
+      "name": "Talking",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 24,
+      "name": "Scavenging",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 55,
+          "cost": 40
+        },
+        {
+          "threshold": 115,
+          "cost": 90
+        },
+        {
+          "threshold": 220,
+          "cost": 175
+        }
+      ]
+    },
+    {
+      "perkId": 25,
+      "name": "Turtling",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 100,
+          "cost": 80
+        },
+        {
+          "threshold": 200,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 26,
+      "name": "Brief Respite",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 100,
+          "cost": 80
+        },
+        {
+          "threshold": 200,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 27,
+      "name": "Wise",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 100,
+          "cost": 80
+        },
+        {
+          "threshold": 200,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 28,
+      "name": "Efficient",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 35
+        },
+        {
+          "threshold": 80,
+          "cost": 70
+        },
+        {
+          "threshold": 120,
+          "cost": 100
+        }
+      ]
+    },
+    {
+      "perkId": 29,
+      "name": "Absorbative",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 55,
+          "cost": 40
+        },
+        {
+          "threshold": 115,
+          "cost": 90
+        },
+        {
+          "threshold": 220,
+          "cost": 175
+        }
+      ]
+    },
+    {
+      "perkId": 30,
+      "name": "Precise",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 80,
+          "cost": 65
+        },
+        {
+          "threshold": 130,
+          "cost": 120
+        },
+        {
+          "threshold": 170,
+          "cost": 160
+        },
+        {
+          "threshold": 210,
+          "cost": 195
+        }
+      ]
+    },
+    {
+      "perkId": 31,
+      "name": "Profane",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 45,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 32,
+      "name": "Brassican",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 33,
+      "name": "Fatiguing",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 35
+        },
+        {
+          "threshold": 90,
+          "cost": 35
+        },
+        {
+          "threshold": 180,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 34,
+      "name": "Genocidal",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 65,
+          "cost": 50
+        }
+      ]
+    },
+    {
+      "perkId": 35,
+      "name": "Crackling",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 100,
+          "cost": 80
+        },
+        {
+          "threshold": 200,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 36,
+      "name": "Impatient",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 100,
+          "cost": 80
+        },
+        {
+          "threshold": 200,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 37,
+      "name": "Invigorating",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 100,
+          "cost": 80
+        },
+        {
+          "threshold": 200,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 38,
+      "name": "Venomblood",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 39,
+      "name": "Devoted",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 55,
+          "cost": 40
+        },
+        {
+          "threshold": 115,
+          "cost": 90
+        },
+        {
+          "threshold": 220,
+          "cost": 175
+        }
+      ]
+    },
+    {
+      "perkId": 40,
+      "name": "Spendthrift",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 55,
+          "cost": 40
+        },
+        {
+          "threshold": 90,
+          "cost": 75
+        },
+        {
+          "threshold": 150,
+          "cost": 135
+        },
+        {
+          "threshold": 185,
+          "cost": 170
+        },
+        {
+          "threshold": 220,
+          "cost": 210
+        }
+      ]
+    },
+    {
+      "perkId": 41,
+      "name": "Shield Bashing",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 100,
+          "cost": 80
+        },
+        {
+          "threshold": 200,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 42,
+      "name": "Ultimatums",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 100,
+          "cost": 80
+        },
+        {
+          "threshold": 200,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 43,
+      "name": "Junk Food",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 30
+        },
+        {
+          "threshold": 90,
+          "cost": 30
+        },
+        {
+          "threshold": 180,
+          "cost": 30
+        }
+      ]
+    },
+    {
+      "perkId": 44,
+      "name": "Energising",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 100,
+          "cost": 80
+        },
+        {
+          "threshold": 200,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 45,
+      "name": "Trophy-taker\u0027s",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 80,
+          "cost": 65
+        },
+        {
+          "threshold": 130,
+          "cost": 120
+        },
+        {
+          "threshold": 170,
+          "cost": 160
+        },
+        {
+          "threshold": 210,
+          "cost": 195
+        }
+      ]
+    },
+    {
+      "perkId": 46,
+      "name": "Clear Headed",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 100,
+          "cost": 80
+        },
+        {
+          "threshold": 200,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 47,
+      "name": "Reflexes",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    },
+    {
+      "perkId": 48,
+      "name": "Bulwark",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 55,
+          "cost": 40
+        },
+        {
+          "threshold": 115,
+          "cost": 90
+        },
+        {
+          "threshold": 220,
+          "cost": 175
+        }
+      ]
+    },
+    {
+      "perkId": 49,
+      "name": "Preparation",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 55,
+          "cost": 40
+        },
+        {
+          "threshold": 115,
+          "cost": 90
+        },
+        {
+          "threshold": 220,
+          "cost": 175
+        }
+      ]
+    },
+    {
+      "perkId": 50,
+      "name": "Mediocrity",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 30
+        },
+        {
+          "threshold": 90,
+          "cost": 30
+        },
+        {
+          "threshold": 180,
+          "cost": 30
+        }
+      ]
+    },
+    {
+      "perkId": 51,
+      "name": "Mysterious",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 25,
+          "cost": 20
+        },
+        {
+          "threshold": 45,
+          "cost": 30
+        },
+        {
+          "threshold": 120,
+          "cost": 40
+        },
+        {
+          "threshold": 175,
+          "cost": 50
+        },
+        {
+          "threshold": 250,
+          "cost": 60
+        }
+      ]
+    },
+    {
+      "perkId": 52,
+      "name": "Furnace",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 55,
+          "cost": 40
+        },
+        {
+          "threshold": 115,
+          "cost": 90
+        },
+        {
+          "threshold": 220,
+          "cost": 175
+        }
+      ]
+    },
+    {
+      "perkId": 53,
+      "name": "Polishing",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 100,
+          "cost": 80
+        },
+        {
+          "threshold": 200,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 54,
+      "name": "Cheapskate",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 20
+        },
+        {
+          "threshold": 70,
+          "cost": 30
+        },
+        {
+          "threshold": 150,
+          "cost": 40
+        }
+      ]
+    },
+    {
+      "perkId": 55,
+      "name": "Imp Souled",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 80,
+          "cost": 65
+        },
+        {
+          "threshold": 130,
+          "cost": 120
+        },
+        {
+          "threshold": 170,
+          "cost": 160
+        },
+        {
+          "threshold": 210,
+          "cost": 195
+        }
+      ]
+    },
+    {
+      "perkId": 56,
+      "name": "Butterfingers",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 80,
+          "cost": 65
+        },
+        {
+          "threshold": 130,
+          "cost": 120
+        },
+        {
+          "threshold": 170,
+          "cost": 160
+        },
+        {
+          "threshold": 210,
+          "cost": 195
+        }
+      ]
+    },
+    {
+      "perkId": 57,
+      "name": "Refined",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 55,
+          "cost": 40
+        },
+        {
+          "threshold": 115,
+          "cost": 90
+        },
+        {
+          "threshold": 220,
+          "cost": 175
+        }
+      ]
+    },
+    {
+      "perkId": 58,
+      "name": "Charitable",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 30
+        },
+        {
+          "threshold": 90,
+          "cost": 75
+        },
+        {
+          "threshold": 180,
+          "cost": 135
+        }
+      ]
+    },
+    {
+      "perkId": 59,
+      "name": "Confused",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 20
+        },
+        {
+          "threshold": 70,
+          "cost": 30
+        },
+        {
+          "threshold": 150,
+          "cost": 40
+        }
+      ]
+    },
+    {
+      "perkId": 60,
+      "name": "Caroming",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 55,
+          "cost": 40
+        },
+        {
+          "threshold": 115,
+          "cost": 90
+        },
+        {
+          "threshold": 170,
+          "cost": 175
+        }
+      ]
+    },
+    {
+      "perkId": 61,
+      "name": "Aftershock",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 55,
+          "cost": 40
+        },
+        {
+          "threshold": 115,
+          "cost": 90
+        },
+        {
+          "threshold": 170,
+          "cost": 175
+        }
+      ]
+    },
+    {
+      "perkId": 62,
+      "name": "Lunging",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 55,
+          "cost": 40
+        },
+        {
+          "threshold": 115,
+          "cost": 90
+        },
+        {
+          "threshold": 170,
+          "cost": 175
+        }
+      ]
+    },
+    {
+      "perkId": 63,
+      "name": "Planted Feet",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 60,
+          "cost": 60
+        }
+      ]
+    },
+    {
+      "perkId": 64,
+      "name": "Enhanced Efficient",
+      "doubleslot": true,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 30
+        },
+        {
+          "threshold": 140,
+          "cost": 120
+        },
+        {
+          "threshold": 230,
+          "cost": 220
+        }
+      ]
+    },
+    {
+      "perkId": 65,
+      "name": "Flanking",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 30
+        },
+        {
+          "threshold": 140,
+          "cost": 110
+        },
+        {
+          "threshold": 210,
+          "cost": 180
+        }
+      ]
+    },
+    {
+      "perkId": 66,
+      "name": "Enhanced Devoted",
+      "doubleslot": true,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 30
+        },
+        {
+          "threshold": 140,
+          "cost": 120
+        },
+        {
+          "threshold": 230,
+          "cost": 220
+        }
+      ]
+    },
+    {
+      "perkId": 67,
+      "name": "Crystal Shield",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 30
+        },
+        {
+          "threshold": 150,
+          "cost": 120
+        },
+        {
+          "threshold": 180,
+          "cost": 150
+        }
+      ]
+    },
+    {
+      "perkId": 68,
+      "name": "Rapid",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 55,
+          "cost": 40
+        },
+        {
+          "threshold": 115,
+          "cost": 90
+        },
+        {
+          "threshold": 220,
+          "cost": 175
+        }
+      ]
+    },
+    {
+      "perkId": 69,
+      "name": "Tinker",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 40,
+          "cost": 20
+        },
+        {
+          "threshold": 70,
+          "cost": 30
+        },
+        {
+          "threshold": 150,
+          "cost": 40
+        }
+      ]
+    },
+    {
+      "perkId": 70,
+      "name": "Pyromaniac",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 80,
+          "cost": 65
+        },
+        {
+          "threshold": 130,
+          "cost": 120
+        },
+        {
+          "threshold": 170,
+          "cost": 160
+        },
+        {
+          "threshold": 210,
+          "cost": 195
+        }
+      ]
+    },
+    {
+      "perkId": 71,
+      "name": "Breakdown",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        },
+        {
+          "threshold": 80,
+          "cost": 65
+        },
+        {
+          "threshold": 130,
+          "cost": 120
+        },
+        {
+          "threshold": 170,
+          "cost": 160
+        },
+        {
+          "threshold": 210,
+          "cost": 195
+        }
+      ]
+    },
+    {
+      "perkId": 72,
+      "name": "Prosper",
+      "doubleslot": false,
+      "ranks": [
+        {
+          "threshold": 50,
+          "cost": 35
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+Download OpenRS2 cache 2691, Cache (Flat file):
+https://archive.openrs2.org/caches/runescape/2691
+
+Extract flat-file.tar.gz into the parent project folder. It contains cache/.
+Expected: cache/255/12.dat, not cache/cache/255/12.dat.
+Avoid cache 2687: it is also 950.1 but has different scripts.

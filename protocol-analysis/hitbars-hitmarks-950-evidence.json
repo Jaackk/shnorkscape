@@ -1,0 +1,1815 @@
+{
+  "scope": "Three standard HP bars and ordinary noncritical melee wrappers; no arbitrary hitmark admission.",
+  "bars": {
+    "0": {
+      "910": {
+        "bytes": 29,
+        "sha256": "f0e4c0c5b3c4714f07a60b0d55c2c91e7b0ce3497fd6231f870b8de73bf52cc6",
+        "hex": "02fa03fa05012c072cff082cfe0951040a51030c51170d51160b011800"
+      },
+      "947": {
+        "bytes": 29,
+        "sha256": "f0e4c0c5b3c4714f07a60b0d55c2c91e7b0ce3497fd6231f870b8de73bf52cc6",
+        "hex": "02fa03fa05012c072cff082cfe0951040a51030c51170d51160b011800"
+      },
+      "950": {
+        "bytes": 29,
+        "sha256": "f0e4c0c5b3c4714f07a60b0d55c2c91e7b0ce3497fd6231f870b8de73bf52cc6",
+        "hex": "02fa03fa05012c072cff082cfe0951040a51030c51170d51160b011800"
+      }
+    },
+    "3": {
+      "910": {
+        "bytes": 29,
+        "sha256": "f1c04433edb7b57f65f9c975782075768c94ccca7e7eb66449beb3d7d4e807a4",
+        "hex": "02fa03fa082d02072d030950f80a50f70c50fa0d50f905012c0b012200"
+      },
+      "947": {
+        "bytes": 29,
+        "sha256": "f1c04433edb7b57f65f9c975782075768c94ccca7e7eb66449beb3d7d4e807a4",
+        "hex": "02fa03fa082d02072d030950f80a50f70c50fa0d50f905012c0b012200"
+      },
+      "950": {
+        "bytes": 29,
+        "sha256": "f1c04433edb7b57f65f9c975782075768c94ccca7e7eb66449beb3d7d4e807a4",
+        "hex": "02fa03fa082d02072d030950f80a50f70c50fa0d50f905012c0b012200"
+      }
+    },
+    "4": {
+      "910": {
+        "bytes": 29,
+        "sha256": "8aa4da3217bfdd3df984661522f237cd2e8bf104dc2d3a280b43d66d0d2ef661",
+        "hex": "02fa03fa082d04072d0509514f0a51180c51510d515005012c0b012200"
+      },
+      "947": {
+        "bytes": 29,
+        "sha256": "8aa4da3217bfdd3df984661522f237cd2e8bf104dc2d3a280b43d66d0d2ef661",
+        "hex": "02fa03fa082d04072d0509514f0a51180c51510d515005012c0b012200"
+      },
+      "950": {
+        "bytes": 29,
+        "sha256": "8aa4da3217bfdd3df984661522f237cd2e8bf104dc2d3a280b43d66d0d2ef661",
+        "hex": "02fa03fa082d04072d0509514f0a51180c51510d515005012c0b012200"
+      }
+    }
+  },
+  "hitmarks": {
+    "0": {
+      "910": {
+        "bytes": 35,
+        "sha256": "228c7dbff72e8651c5f948c59c863e6d2a865247bf4d3430e9344e5ef507713c",
+        "hex": "035b4008002531000a000a015b68045b4c065b4e055b4d10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23400,
+          "sprite2": 23372,
+          "sprite3": 23374,
+          "sprite1": 23373,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "0bcb6b16d9f3da7d610278e3b6dce71e6d5244fa7b94a7eba3a503b2e6a99b9b",
+        "hex": "035b4008002531000a000a01002b045b4c065b4e055b4d10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 23372,
+          "sprite3": 23374,
+          "sprite1": 23373,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "0bcb6b16d9f3da7d610278e3b6dce71e6d5244fa7b94a7eba3a503b2e6a99b9b",
+        "hex": "035b4008002531000a000a01002b045b4c065b4e055b4d10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 23372,
+          "sprite3": 23374,
+          "sprite1": 23373,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    },
+    "14": {
+      "910": {
+        "bytes": 35,
+        "sha256": "0e2047690786c95a2577427e0c7ed94e58b1c2422adc3a67f17cfa9484fe3b90",
+        "hex": "035b4108002531000a000a015b6a045b4f065b51055b5010000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23361,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23402,
+          "sprite2": 23375,
+          "sprite3": 23377,
+          "sprite1": 23376,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "2c5cae07849cfb335cba144f55bb65403c79c9a0c64b56694da243fc0d845e07",
+        "hex": "035b4108002531000a000a01002d045b4f065b51055b5010000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23361,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 45,
+          "sprite2": 23375,
+          "sprite3": 23377,
+          "sprite1": 23376,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "2c5cae07849cfb335cba144f55bb65403c79c9a0c64b56694da243fc0d845e07",
+        "hex": "035b4108002531000a000a01002d045b4f065b51055b5010000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23361,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 45,
+          "sprite2": 23375,
+          "sprite3": 23377,
+          "sprite1": 23376,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    },
+    "106": {
+      "910": {
+        "bytes": 38,
+        "sha256": "d538f5612f874f6f3557ce3ec356c82337689f0fc0a1d8963bdcd6c84fb4d765",
+        "hex": "03117308002531000a000a01013305117a04118106118210000000010e002809003214000a00",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 10,
+          "sprite0": 4467,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 307,
+          "sprite1": 4474,
+          "sprite2": 4481,
+          "sprite3": 4482,
+          "offsetPair": [
+            0,
+            1
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 33,
+        "sha256": "0616cba3593620db08b00e02390a5b495f076c12e559616a43aa93d9b12f7696",
+        "hex": "03117308002531000a000a01000705117a0411810611820e002809003214000a00",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 10,
+          "sprite0": 4467,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 7,
+          "sprite1": 4474,
+          "sprite2": 4481,
+          "sprite3": 4482,
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 33,
+        "sha256": "0616cba3593620db08b00e02390a5b495f076c12e559616a43aa93d9b12f7696",
+        "hex": "03117308002531000a000a01000705117a0411810611820e002809003214000a00",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 10,
+          "sprite0": 4467,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 7,
+          "sprite1": 4474,
+          "sprite2": 4481,
+          "sprite3": 4482,
+          "fade": 40
+        }
+      }
+    },
+    "116": {
+      "910": {
+        "bytes": 38,
+        "sha256": "d4628ed8906499e493054b4e191b4f0dd78714b2d7f920e47060a847ef6929bf",
+        "hex": "03117308002531000a000a01013305118c04119306119410000000010e002809003214000a00",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 10,
+          "sprite0": 4467,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 307,
+          "sprite1": 4492,
+          "sprite2": 4499,
+          "sprite3": 4500,
+          "offsetPair": [
+            0,
+            1
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 33,
+        "sha256": "b7a60411071d0ffe6e1fae6df8e21f6e70c0978fe4cd49cfc991e63110007ed1",
+        "hex": "03117308002531000a000a01000705118c0411930611940e002809003214000a00",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 10,
+          "sprite0": 4467,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 7,
+          "sprite1": 4492,
+          "sprite2": 4499,
+          "sprite3": 4500,
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 33,
+        "sha256": "b7a60411071d0ffe6e1fae6df8e21f6e70c0978fe4cd49cfc991e63110007ed1",
+        "hex": "03117308002531000a000a01000705118c0411930611940e002809003214000a00",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 10,
+          "sprite0": 4467,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 7,
+          "sprite1": 4492,
+          "sprite2": 4499,
+          "sprite3": 4500,
+          "fade": 40
+        }
+      }
+    },
+    "132": {
+      "910": {
+        "bytes": 11,
+        "sha256": "89309c9561310a83a680dc4b4172a08319692cd297751337e3a2fcedebaa1d4f",
+        "hex": "116a20ffff010030006a00",
+        "decoded": {
+          "duration": 70,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "varbit": 27168,
+          "varp": -1,
+          "targets": [
+            48,
+            106,
+            -1
+          ]
+        }
+      },
+      "947": {
+        "bytes": 44,
+        "sha256": "b37d0e5cfd664fecac3cf23b481334f8c1c42b2fc5854b883d1bd1334689c103",
+        "hex": "033eac0afff601001f045b4c065b4e055b4d10000000030e00280900640800253125206d6973637574210000",
+        "decoded": {
+          "duration": 100,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 16044,
+          "offsetY": -10,
+          "font": 31,
+          "sprite2": 23372,
+          "sprite3": 23374,
+          "sprite1": 23373,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40,
+          "text": "%1% miscut!"
+        }
+      },
+      "950": {
+        "bytes": 44,
+        "sha256": "b37d0e5cfd664fecac3cf23b481334f8c1c42b2fc5854b883d1bd1334689c103",
+        "hex": "033eac0afff601001f045b4c065b4e055b4d10000000030e00280900640800253125206d6973637574210000",
+        "decoded": {
+          "duration": 100,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 16044,
+          "offsetY": -10,
+          "font": 31,
+          "sprite2": 23372,
+          "sprite3": 23374,
+          "sprite1": 23373,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40,
+          "text": "%1% miscut!"
+        }
+      }
+    },
+    "133": {
+      "910": {
+        "bytes": 69,
+        "sha256": "f6e632655054d12120cacc20ee99c5cf04698a14a694ffdd4a2763c68c7a61d7",
+        "hex": "11901dffff1e000000c900ca00cb00cc00cd00ce00e4ffffffffffffffffffffffffffffffff006a006a006a006a006a006a006a006a006a006a006a006a006a006a006a00",
+        "decoded": {
+          "duration": 70,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "varbit": 36893,
+          "varp": -1,
+          "targets": [
+            0,
+            201,
+            202,
+            203,
+            204,
+            205,
+            206,
+            228,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            -1
+          ]
+        }
+      },
+      "947": {
+        "bytes": 74,
+        "sha256": "1bf137fe8087f95e9bb182258ea72666a1e419d105895be74d3ded319b5bcae2",
+        "hex": "09003c0c0011901dffff1e000000c900ca00cb00cc00cd00ce00e4ffffffffffffffffffffffffffffffff006a006a006a006a006a006a006a006a006a006a006a006a006a006a006a00",
+        "decoded": {
+          "duration": 60,
+          "replacement": 0,
+          "numerator": 1,
+          "denominator": 1,
+          "varbit": 36893,
+          "varp": -1,
+          "targets": [
+            0,
+            201,
+            202,
+            203,
+            204,
+            205,
+            206,
+            228,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            -1
+          ]
+        }
+      },
+      "950": {
+        "bytes": 75,
+        "sha256": "5c4e17c3da80f49416a5e5ba581d9392a6026d72ad76d9c8bd0e60f8f3cac08d",
+        "hex": "09003c0c001500901dffff1e000000c900ca00cb00cc00cd00ce00e4ffffffffffffffffffffffffffffffff006a006a006a006a006a006a006a006a006a006a006a006a006a006a006a00",
+        "decoded": {
+          "duration": 60,
+          "replacement": 0,
+          "numerator": 1,
+          "denominator": 1,
+          "varbit": 36893,
+          "varp": -1,
+          "targets": [
+            0,
+            201,
+            202,
+            203,
+            204,
+            205,
+            206,
+            228,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            106,
+            -1
+          ]
+        }
+      }
+    },
+    "141": {
+      "910": {
+        "bytes": 11,
+        "sha256": "27b54e1a7d033a5aec4c61dc1e7ead3d87c5a49c84b7c8d15bf9bdf683cfc0e4",
+        "hex": "116a20ffff010008007100",
+        "decoded": {
+          "duration": 70,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "varbit": 27168,
+          "varp": -1,
+          "targets": [
+            8,
+            113,
+            -1
+          ]
+        }
+      },
+      "947": {
+        "bytes": 16,
+        "sha256": "8eb0bd1457e6bd59b4e9e240c4093718f6b21bd984369263daaa7c59aa35f382",
+        "hex": "09003c0c00116a20ffff010008007100",
+        "decoded": {
+          "duration": 60,
+          "replacement": 0,
+          "numerator": 1,
+          "denominator": 1,
+          "varbit": 27168,
+          "varp": -1,
+          "targets": [
+            8,
+            113,
+            -1
+          ]
+        }
+      },
+      "950": {
+        "bytes": 17,
+        "sha256": "45ba616673f177886828e82fc4cff629626546d5bdfffce72ac5bd4a3384da21",
+        "hex": "09003c0c0015006a20ffff010008007100",
+        "decoded": {
+          "duration": 60,
+          "replacement": 0,
+          "numerator": 1,
+          "denominator": 1,
+          "varbit": 27168,
+          "varp": -1,
+          "targets": [
+            8,
+            113,
+            -1
+          ]
+        }
+      }
+    },
+    "150": {
+      "910": {
+        "bytes": 71,
+        "sha256": "29de0065a85d31e726d0e6ca74c5797eccc5b6923c941a18abe187b4c4cb6910",
+        "hex": "119020ffff1f000e00df00e000e100e200e300cf00e5ffffffffffffffffffffffffffff00ba00740074007400740074007400740074007400740074007400740074007400ba00",
+        "decoded": {
+          "duration": 70,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "varbit": 36896,
+          "varp": -1,
+          "targets": [
+            14,
+            223,
+            224,
+            225,
+            226,
+            227,
+            207,
+            229,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            186,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            186,
+            -1
+          ]
+        }
+      },
+      "947": {
+        "bytes": 76,
+        "sha256": "1c2aea3da810978aaae4cc5b1b2e1d7d55607aa529feae21a9892dc746118227",
+        "hex": "09003c0c00119020ffff1f000e00df00e000e100e200e300cf00e5ffffffffffffffffffffffffffff00ba00740074007400740074007400740074007400740074007400740074007400ba00",
+        "decoded": {
+          "duration": 60,
+          "replacement": 0,
+          "numerator": 1,
+          "denominator": 1,
+          "varbit": 36896,
+          "varp": -1,
+          "targets": [
+            14,
+            223,
+            224,
+            225,
+            226,
+            227,
+            207,
+            229,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            186,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            186,
+            -1
+          ]
+        }
+      },
+      "950": {
+        "bytes": 77,
+        "sha256": "8adb82f9b57f12783a516cf7bc7b5b3bbc4a9250530afa9c063865a6b03180d4",
+        "hex": "09003c0c0015009020ffff1f000e00df00e000e100e200e300cf00e5ffffffffffffffffffffffffffff00ba00740074007400740074007400740074007400740074007400740074007400ba00",
+        "decoded": {
+          "duration": 60,
+          "replacement": 0,
+          "numerator": 1,
+          "denominator": 1,
+          "varbit": 36896,
+          "varp": -1,
+          "targets": [
+            14,
+            223,
+            224,
+            225,
+            226,
+            227,
+            207,
+            229,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            -1,
+            186,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            116,
+            186,
+            -1
+          ]
+        }
+      }
+    },
+    "158": {
+      "910": {
+        "bytes": 11,
+        "sha256": "df07610fc389e44b6c30eed5edd5225db11b9aa0d959667595291f4d80f3b051",
+        "hex": "116a20ffff010016007b00",
+        "decoded": {
+          "duration": 70,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "varbit": 27168,
+          "varp": -1,
+          "targets": [
+            22,
+            123,
+            -1
+          ]
+        }
+      },
+      "947": {
+        "bytes": 16,
+        "sha256": "c41cc8c01c5f5b33409840f430d3c15a8eb0b44f3622c5310e2824ad54b3a209",
+        "hex": "09003c0c00116a20ffff010016007b00",
+        "decoded": {
+          "duration": 60,
+          "replacement": 0,
+          "numerator": 1,
+          "denominator": 1,
+          "varbit": 27168,
+          "varp": -1,
+          "targets": [
+            22,
+            123,
+            -1
+          ]
+        }
+      },
+      "950": {
+        "bytes": 17,
+        "sha256": "58bc57f9e13a1c5f948ed54f30e6f74871ddd17043eef5b3891ee50b1d002b27",
+        "hex": "09003c0c0015006a20ffff010016007b00",
+        "decoded": {
+          "duration": 60,
+          "replacement": 0,
+          "numerator": 1,
+          "denominator": 1,
+          "varbit": 27168,
+          "varp": -1,
+          "targets": [
+            22,
+            123,
+            -1
+          ]
+        }
+      }
+    },
+    "186": {
+      "910": {
+        "bytes": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+        "hex": "00",
+        "decoded": {
+          "duration": 70,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1
+        }
+      },
+      "947": {
+        "bytes": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+        "hex": "00",
+        "decoded": {
+          "duration": 70,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1
+        }
+      },
+      "950": {
+        "bytes": 1,
+        "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+        "hex": "00",
+        "decoded": {
+          "duration": 70,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1
+        }
+      }
+    },
+    "201": {
+      "910": {
+        "bytes": 35,
+        "sha256": "2cb093ead3b6866ad89187910b3df1447d18d238b19775f1006ffe7aaf07e40b",
+        "hex": "035b4008002531000a000a015b68047b0f067b11057b1010000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23400,
+          "sprite2": 31503,
+          "sprite3": 31505,
+          "sprite1": 31504,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "f9592e921ec3e062b26cfcb7723e3dc3d5f443a5dc2ab447b032c7573950affe",
+        "hex": "035b4008002531000a000a01002b047b0f067b11057b1010000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 31503,
+          "sprite3": 31505,
+          "sprite1": 31504,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "f9592e921ec3e062b26cfcb7723e3dc3d5f443a5dc2ab447b032c7573950affe",
+        "hex": "035b4008002531000a000a01002b047b0f067b11057b1010000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 31503,
+          "sprite3": 31505,
+          "sprite1": 31504,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    },
+    "202": {
+      "910": {
+        "bytes": 35,
+        "sha256": "67ff119423078a24189635575bee20a0990c6d17a37619f8e7bbf3d0a16d5fd6",
+        "hex": "035b4008002531000a000a015b68047b12067b14057b1310000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23400,
+          "sprite2": 31506,
+          "sprite3": 31508,
+          "sprite1": 31507,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "0447fd69c8778d75b308fe7ea7044c22e43035c07eb57a337d6960f76c183f26",
+        "hex": "035b4008002531000a000a01002b047b12067b14057b1310000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 31506,
+          "sprite3": 31508,
+          "sprite1": 31507,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "0447fd69c8778d75b308fe7ea7044c22e43035c07eb57a337d6960f76c183f26",
+        "hex": "035b4008002531000a000a01002b047b12067b14057b1310000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 31506,
+          "sprite3": 31508,
+          "sprite1": 31507,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    },
+    "203": {
+      "910": {
+        "bytes": 35,
+        "sha256": "5ebf6e4c764c546ab51f6e108d99479f1c462841122e9406454a836eeb610914",
+        "hex": "035b4008002531000a000a015b68047b15067b17057b1610000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23400,
+          "sprite2": 31509,
+          "sprite3": 31511,
+          "sprite1": 31510,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "3565892a1778242a33dc816b0dd36148b868ea502774925ca9f4594575ddf421",
+        "hex": "035b4008002531000a000a01002b047b15067b17057b1610000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 31509,
+          "sprite3": 31511,
+          "sprite1": 31510,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "3565892a1778242a33dc816b0dd36148b868ea502774925ca9f4594575ddf421",
+        "hex": "035b4008002531000a000a01002b047b15067b17057b1610000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 31509,
+          "sprite3": 31511,
+          "sprite1": 31510,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    },
+    "204": {
+      "910": {
+        "bytes": 35,
+        "sha256": "90fc6242ad379141b417498c48803fd47947cf1837a17fac50a413008216f408",
+        "hex": "035b4008002531000a000a015b68047b18067b1a057b1910000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23400,
+          "sprite2": 31512,
+          "sprite3": 31514,
+          "sprite1": 31513,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "313124bf16b2fa7d9d8905f93d968716490216f745c1190f622f7dfe1eda84c0",
+        "hex": "035b4008002531000a000a01002b047b18067b1a057b1910000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 31512,
+          "sprite3": 31514,
+          "sprite1": 31513,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "313124bf16b2fa7d9d8905f93d968716490216f745c1190f622f7dfe1eda84c0",
+        "hex": "035b4008002531000a000a01002b047b18067b1a057b1910000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 31512,
+          "sprite3": 31514,
+          "sprite1": 31513,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    },
+    "205": {
+      "910": {
+        "bytes": 35,
+        "sha256": "15fda725d47235532fa38f2ef7e4d17b8f865d8f2ed0a2cf353ae18e7c399efc",
+        "hex": "035b4008002531000a000a015b68047b1b067b1d057b1c10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23400,
+          "sprite2": 31515,
+          "sprite3": 31517,
+          "sprite1": 31516,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "4887db6ae1b77a8d3d4697d90859fe0c75c8021beb9dbe744ceb229ac6d15f48",
+        "hex": "035b4008002531000a000a01002b047b1b067b1d057b1c10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 31515,
+          "sprite3": 31517,
+          "sprite1": 31516,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "4887db6ae1b77a8d3d4697d90859fe0c75c8021beb9dbe744ceb229ac6d15f48",
+        "hex": "035b4008002531000a000a01002b047b1b067b1d057b1c10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 31515,
+          "sprite3": 31517,
+          "sprite1": 31516,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    },
+    "206": {
+      "910": {
+        "bytes": 35,
+        "sha256": "80d92bffbe9467dfa141ded20a3d259980092603e6054c684c2372dce3a7fb89",
+        "hex": "03117308002531000a000a01013305117a04118106118210000000010e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 4467,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 307,
+          "sprite1": 4474,
+          "sprite2": 4481,
+          "sprite3": 4482,
+          "offsetPair": [
+            0,
+            1
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 30,
+        "sha256": "1ea1573b4d33301c4eb73cc6063690b9433972776e68a80a70840354cfebf1ff",
+        "hex": "03117308002531000a000a01000705117a0411810611820e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 4467,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 7,
+          "sprite1": 4474,
+          "sprite2": 4481,
+          "sprite3": 4482,
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 30,
+        "sha256": "1ea1573b4d33301c4eb73cc6063690b9433972776e68a80a70840354cfebf1ff",
+        "hex": "03117308002531000a000a01000705117a0411810611820e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 4467,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 7,
+          "sprite1": 4474,
+          "sprite2": 4481,
+          "sprite3": 4482,
+          "fade": 40
+        }
+      }
+    },
+    "207": {
+      "910": {
+        "bytes": 35,
+        "sha256": "5e04f5929109ffa2e647360861b451d770c20528c9d25b7e925800d79ec0d5db",
+        "hex": "03117308002531000a000a01013305118c04119306119410000000010e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 4467,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 307,
+          "sprite1": 4492,
+          "sprite2": 4499,
+          "sprite3": 4500,
+          "offsetPair": [
+            0,
+            1
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 30,
+        "sha256": "e31f4d929a7d7208cc5d63af93a2134d13947c654f109713432d02abe7fe2e5c",
+        "hex": "03117308002531000a000a01000705118c0411930611940e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 4467,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 7,
+          "sprite1": 4492,
+          "sprite2": 4499,
+          "sprite3": 4500,
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 30,
+        "sha256": "e31f4d929a7d7208cc5d63af93a2134d13947c654f109713432d02abe7fe2e5c",
+        "hex": "03117308002531000a000a01000705118c0411930611940e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 4467,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 7,
+          "sprite1": 4492,
+          "sprite2": 4499,
+          "sprite3": 4500,
+          "fade": 40
+        }
+      }
+    },
+    "223": {
+      "910": {
+        "bytes": 35,
+        "sha256": "395ff70f30ab2c57628bca7396c4d6ca0c51013810b78a18bf06eec3acb74817",
+        "hex": "035b4008002531000a000a015b68046dad066daf056dae10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23400,
+          "sprite2": 28077,
+          "sprite3": 28079,
+          "sprite1": 28078,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "75aafe23df5983eb24a0efc1da8f7365c90c37a5c4ff5f1da29b276e76046ef7",
+        "hex": "035b4008002531000a000a01002b046dad066daf056dae10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 28077,
+          "sprite3": 28079,
+          "sprite1": 28078,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "75aafe23df5983eb24a0efc1da8f7365c90c37a5c4ff5f1da29b276e76046ef7",
+        "hex": "035b4008002531000a000a01002b046dad066daf056dae10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 28077,
+          "sprite3": 28079,
+          "sprite1": 28078,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    },
+    "224": {
+      "910": {
+        "bytes": 35,
+        "sha256": "58159e57f7e3e03001d510e305852f3af69d4a7e88945cc6a1581289bde94243",
+        "hex": "035b4008002531000a000a015b68046df7066df9056df810000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23400,
+          "sprite2": 28151,
+          "sprite3": 28153,
+          "sprite1": 28152,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "d1bc10ed9730bb7e6535ff06623f11fa971f35f4a20e0a163be1b89be109ff34",
+        "hex": "035b4008002531000a000a01002b046df7066df9056df810000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 28151,
+          "sprite3": 28153,
+          "sprite1": 28152,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "d1bc10ed9730bb7e6535ff06623f11fa971f35f4a20e0a163be1b89be109ff34",
+        "hex": "035b4008002531000a000a01002b046df7066df9056df810000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 28151,
+          "sprite3": 28153,
+          "sprite1": 28152,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    },
+    "225": {
+      "910": {
+        "bytes": 35,
+        "sha256": "3ec7af57a803a2ee5e9340fc3e717b56e9afee18fcec5e324667ca3ba8c2e35d",
+        "hex": "035b4008002531000a000a015b68046dfa066e68056e6710000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23400,
+          "sprite2": 28154,
+          "sprite3": 28264,
+          "sprite1": 28263,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "ba5a9d02e3eaa09daf471054c783989a709dd0d4f44a3d100404c3f17b40e1b6",
+        "hex": "035b4008002531000a000a01002b046dfa066e68056e6710000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 28154,
+          "sprite3": 28264,
+          "sprite1": 28263,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "ba5a9d02e3eaa09daf471054c783989a709dd0d4f44a3d100404c3f17b40e1b6",
+        "hex": "035b4008002531000a000a01002b046dfa066e68056e6710000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 28154,
+          "sprite3": 28264,
+          "sprite1": 28263,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    },
+    "226": {
+      "910": {
+        "bytes": 35,
+        "sha256": "29a2c675ec9f9e47aa2b365c502d781a6c0053713ce56edc5f628beeb7c55976",
+        "hex": "035b4008002531000a000a015b68046e69066e7d056e6a10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23400,
+          "sprite2": 28265,
+          "sprite3": 28285,
+          "sprite1": 28266,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "767361e2afee64bbe28b9511f60480499ae5b677a19e5b14784243f44118035e",
+        "hex": "035b4008002531000a000a01002b046e69066e7d056e6a10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 28265,
+          "sprite3": 28285,
+          "sprite1": 28266,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "767361e2afee64bbe28b9511f60480499ae5b677a19e5b14784243f44118035e",
+        "hex": "035b4008002531000a000a01002b046e69066e7d056e6a10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 28265,
+          "sprite3": 28285,
+          "sprite1": 28266,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    },
+    "227": {
+      "910": {
+        "bytes": 35,
+        "sha256": "ebe58a07885087aee13594e866f22630f913e63b0b56fc7b5824ea3e6828a779",
+        "hex": "035b4008002531000a000a015b68046e7e066e80056e7f10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23400,
+          "sprite2": 28286,
+          "sprite3": 28288,
+          "sprite1": 28287,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "277a890313c2aed7d4746146ebdcf6853830168f7989cb5943a78791d367e7bc",
+        "hex": "035b4008002531000a000a01002b046e7e066e80056e7f10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 28286,
+          "sprite3": 28288,
+          "sprite1": 28287,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "277a890313c2aed7d4746146ebdcf6853830168f7989cb5943a78791d367e7bc",
+        "hex": "035b4008002531000a000a01002b046e7e066e80056e7f10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 28286,
+          "sprite3": 28288,
+          "sprite1": 28287,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    },
+    "228": {
+      "910": {
+        "bytes": 35,
+        "sha256": "dd9cdbaba42f5ef6fb2e7429d33d6d4b9a1f99a3558560465076435fd93af0e3",
+        "hex": "035b4008002531000a000a015b68046cad066dac056cae10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23400,
+          "sprite2": 27821,
+          "sprite3": 28076,
+          "sprite1": 27822,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "7ae955e874782d2407d0fdbde47be32151b1db22b3f352275724a91e9b4ebedb",
+        "hex": "035b4008002531000a000a01002b046cad066dac056cae10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 27821,
+          "sprite3": 28076,
+          "sprite1": 27822,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "7ae955e874782d2407d0fdbde47be32151b1db22b3f352275724a91e9b4ebedb",
+        "hex": "035b4008002531000a000a01002b046cad066dac056cae10000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 27821,
+          "sprite3": 28076,
+          "sprite1": 27822,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    },
+    "229": {
+      "910": {
+        "bytes": 35,
+        "sha256": "1c94f51e7474c49e629d624476e4d98704721898907d4773ffcd76b208697346",
+        "hex": "035b4008002531000a000a015b68046eaf066eb1056eb010000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 23400,
+          "sprite2": 28335,
+          "sprite3": 28337,
+          "sprite1": 28336,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "947": {
+        "bytes": 35,
+        "sha256": "eab143a00d8d5e513389c0e208d1e8a82f35f603845de392f7e668c68fd1eaf3",
+        "hex": "035b4008002531000a000a01002b046eaf066eb1056eb010000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 28335,
+          "sprite3": 28337,
+          "sprite1": 28336,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      },
+      "950": {
+        "bytes": 35,
+        "sha256": "eab143a00d8d5e513389c0e208d1e8a82f35f603845de392f7e668c68fd1eaf3",
+        "hex": "035b4008002531000a000a01002b046eaf066eb1056eb010000000030e002809003200",
+        "decoded": {
+          "duration": 50,
+          "replacement": -1,
+          "numerator": 1,
+          "denominator": 1,
+          "sprite0": 23360,
+          "text": "%1",
+          "offsetY": 10,
+          "font": 43,
+          "sprite2": 28335,
+          "sprite3": 28337,
+          "sprite1": 28336,
+          "offsetPair": [
+            0,
+            3
+          ],
+          "fade": 40
+        }
+      }
+    }
+  },
+  "nativeEvidence": {
+    "barConfigTypeGlobal": "0x140c70480 = 72",
+    "barSink": "0x14037c6f0",
+    "hitmarkConfigTypeGlobal": "0x140c70348 = 46",
+    "hitmarkSink": "0x14037c0d0",
+    "hitmarkDecoder": "0x14033da40",
+    "morphResolver": "0x14033e3e0",
+    "damageFormatter": "0x14033e1b0: wireDamage * field+b0 / field+b4"
+  }
+}

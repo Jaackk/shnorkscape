@@ -1,0 +1,98 @@
+{
+  "date": "2026-09-10",
+  "milestone": "Original910 pursuit, loot and combat experience in native950",
+  "status": "implemented, deployed and running; visual acceptance pending",
+  "unit": {
+    "tests": 868,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2,
+    "passed": 866,
+    "note": "The only source change after the full868-test pass corrected the acceptance probe BankUi fixture; final jar was rebuilt and its reward probe rerun."
+  },
+  "meleeAcceptance": {
+    "status": "passed",
+    "ownerThreadTicks": 449,
+    "encryptedFrames": 1531,
+    "log": "logs/rewards-melee-950.log",
+    "checks": [
+      "five NPC full fights with original-table owned drops",
+      "explicit walking preserves NPC pursuit/retaliation",
+      "auto-retaliation disabled respected",
+      "exact home return",
+      "combined level-up appearance and player health masks",
+      "collision, death/respawn and player recovery"
+    ]
+  },
+  "worldRegression": {
+    "status": "passed",
+    "log": "logs/rewards-world-regression-950.log"
+  },
+  "cachePreflight": {
+    "status": "passed",
+    "log": "logs/rewards-preflight-950.log"
+  },
+  "liveAcceptance": {
+    "status": "pending user login and visual test",
+    "serverEvidence": "User entered the world on the new build; live melee and movement continued and the character checkpoint updated. Visual chase/XP/drop/pickup confirmation remains pending."
+  },
+  "runtimeJarSha256": "0e1f7183b27bea5f587039742fff59c1ca479315a824f4369600051bb5c90f29",
+  "backup": "implementation-backup/2026-09-10-combat-rewards",
+  "rewardsAcceptance": {
+    "status": "passed from final packaged jar",
+    "encryptedFrames": 78,
+    "collisionPickupTicks": 5,
+    "log": "logs/rewards-acceptance-950.log",
+    "checks": [
+      "actual950 bones/raw chicken/feathers/coins/noted bones metadata",
+      "private/public/latejoin visibility",
+      "quantity delta and ordered scene rebuild",
+      "encrypted Take, original inventory commit and both-viewer removal",
+      "actual collision route to bones",
+      "cache-pinned native XP interface and four authoritative skill updates"
+    ]
+  },
+  "launcher": {
+    "kotlinBuild": "passed",
+    "checksPassed": 17,
+    "log": "logs/verify950-combat-rewards.log"
+  },
+  "runtime": {
+    "server": {
+      "ProcessId": 15240,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-10T22:45:29.5932930Z",
+      "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.1.8-hotspot\\bin\\java.exe",
+      "ClassPath": "C:\\Users\\developer\\Desktop\\950RevTest\\patches\\classes;C:\\Users\\developer\\Desktop\\950RevTest\\OpenNXT\\runtime\\lib\\*"
+    },
+    "client": {
+      "ProcessId": 25720,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-10T22:45:31.0606280Z",
+      "ExecutablePath": "C:\\Users\\developer\\Desktop\\950RevTest\\client\\rs2client-vulkan.exe"
+    },
+    "flags": [
+      "Ataraxia",
+      "Collision",
+      "Vulkan",
+      "LumbridgeNpcs",
+      "DevTools"
+    ]
+  },
+  "knownUnrelatedIssue": {
+    "action": "NPC Examine",
+    "location": "NPCHandler.handleExamine:2451",
+    "reason": "Optional PetPerkManager is not hydrated for native950. The router catches/rejects this action; the game session continues.",
+    "scope": "Existing NPC-handler compatibility gap, not yet part of combat-reward parity."
+  },
+  "user_acceptance_2026_09_10": {
+    "confirmed": [
+      "NPC pursuit after walking away",
+      "attacked NPCs drop loot",
+      "floating XP",
+      "skill icon progress circles",
+      "ground loot pickup into inventory"
+    ],
+    "source": "User reports these all work before requesting woodcutting and firemaking."
+  }
+}

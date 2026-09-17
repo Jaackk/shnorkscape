@@ -1,0 +1,72 @@
+{
+  "date": "2026-09-12",
+  "scope": "Single-stack bank withdrawals and six ordinary partyhat equipment",
+  "engineSha256": "5359c8e81edf265eaf602d6f1a9e405c07bab404a48f60de102a1cd67bb912c7",
+  "junit": {
+    "discovered": 1089,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 2,
+    "passed": 1087
+  },
+  "launcher": {
+    "log": "logs/bank-wear-verify950.log",
+    "passed": 18
+  },
+  "cacheAcceptance": [
+    {
+      "frames": 529,
+      "ticks": 35,
+      "actions": 30,
+      "name": "Bank",
+      "passed": true,
+      "log": "logs/bank-wear-bank.log"
+    },
+    {
+      "passed": true,
+      "log": "logs/bank-wear-partyhats.log",
+      "colours": 6,
+      "frames": 175,
+      "name": "Partyhat equipment from installed jar"
+    },
+    {
+      "passed": true,
+      "log": "logs/bank-wear-melee.log",
+      "ticks": 449,
+      "frames": 1531,
+      "name": "Existing melee"
+    },
+    {
+      "passed": true,
+      "log": "logs/bank-wear-inventory.log",
+      "ticks": 8,
+      "frames": 117,
+      "name": "Existing inventory Drop/pickup and XP"
+    },
+    {
+      "passed": true,
+      "log": "logs/bank-wear-preflight.log",
+      "name": "Cache preflight including partyhat models"
+    }
+  ],
+  "evidence": "protocol-analysis/bank-withdrawal-claims-950-evidence.json",
+  "fixtureCorrections": [
+    "Original BodyDefinitions initialization added to ephemeral bank fixture.",
+    "Bindings count updated from82 to86 for four newly pinned bank scripts.",
+    "Equipment acceptance parser corrected to read native950 unsigned24bit item IDs; passed against final installed jar."
+  ],
+  "runtime": {
+    "serverPid": 7512,
+    "processIdentitiesVerified": true,
+    "clientPid": 22584,
+    "flags": "-Ataraxia -Collision -Vulkan -LumbridgeNpcs -DevTools"
+  },
+  "backup": "implementation-backup/2026-09-12-bank-wear/before-deploy",
+  "priorLiveAcceptance": "User confirmed Use, Drop/pickup and tinderbox-on-logs.",
+  "liveAcceptance": "Pending user check of single-herb bank withdrawal and visible green partyhat Wear/Remove.",
+  "limits": [
+    "Cosmetic capability covers six original unnoted partyhats only; no general equipment/effect allowlist relaxation.",
+    "Bank notes/placeholders and other unimplemented bank modes remain outside the supported claim policy.",
+    "No user items, levels, bank contents or save records manually edited; acceptance characters/snapshots are ephemeral."
+  ]
+}

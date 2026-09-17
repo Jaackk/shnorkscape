@@ -1,0 +1,17 @@
+{
+  "sourceRows": 9091,
+  "currentRows": 9092,
+  "regions": 467,
+  "uniqueNpcIds": 2395,
+  "missingOriginalRows": 0,
+  "identitySafeRows": 7707,
+  "excludedRows": 1385,
+  "sampleSpawned": 188,
+  "sampleBlockedPlacementsRetained": 46,
+  "sampleFailures": 0,
+  "launchFlags": "-Ataraxia -Collision -Vulkan -AllNpcs -DevTools",
+  "backup": "implementation-backup/2026-09-12-world-spawns",
+  "engineChanged": false,
+  "serverPid": 28448,
+  "clientPid": 19844
+}

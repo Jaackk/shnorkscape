@@ -1,0 +1,2950 @@
+{
+  "revision": 950,
+  "rows": [
+    {
+      "slot": 0,
+      "category": "General",
+      "base": 1265,
+      "struct": 5522,
+      "default": true,
+      "removable": true,
+      "varbit": 18521,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 1265,
+          "name": "Bronze pickaxe",
+          "rank": 0,
+          "value": 0,
+          "addable": true,
+          "skill": 14,
+          "level": 1
+        },
+        {
+          "id": 20780,
+          "name": "Gilded bronze pickaxe",
+          "rank": 1,
+          "value": 1,
+          "addable": true,
+          "skill": 14,
+          "level": 1
+        },
+        {
+          "id": 1267,
+          "name": "Iron pickaxe",
+          "rank": 2,
+          "value": 2,
+          "addable": true,
+          "skill": 14,
+          "level": 10
+        },
+        {
+          "id": 20781,
+          "name": "Gilded iron pickaxe",
+          "rank": 3,
+          "value": 3,
+          "addable": true,
+          "skill": 14,
+          "level": 10
+        },
+        {
+          "id": 45952,
+          "name": "Iron pickaxe + 1",
+          "rank": 4,
+          "value": 4,
+          "addable": true,
+          "skill": 14,
+          "level": 10
+        },
+        {
+          "id": 45467,
+          "name": "Steel pickaxe",
+          "rank": 5,
+          "value": 5,
+          "addable": true,
+          "skill": 14,
+          "level": 20
+        },
+        {
+          "id": 20782,
+          "name": "Gilded steel pickaxe",
+          "rank": 6,
+          "value": 6,
+          "addable": true,
+          "skill": 14,
+          "level": 20
+        },
+        {
+          "id": 47063,
+          "name": "Steel pickaxe + 1",
+          "rank": 7,
+          "value": 7,
+          "addable": true,
+          "skill": 14,
+          "level": 20
+        },
+        {
+          "id": 45494,
+          "name": "Mithril pickaxe",
+          "rank": 8,
+          "value": 8,
+          "addable": true,
+          "skill": 14,
+          "level": 30
+        },
+        {
+          "id": 20784,
+          "name": "Gilded mithril pickaxe",
+          "rank": 9,
+          "value": 9,
+          "addable": true,
+          "skill": 14,
+          "level": 30
+        },
+        {
+          "id": 46288,
+          "name": "Mithril pickaxe + 1",
+          "rank": 10,
+          "value": 10,
+          "addable": true,
+          "skill": 14,
+          "level": 30
+        },
+        {
+          "id": 46291,
+          "name": "Mithril pickaxe + 2",
+          "rank": 11,
+          "value": 11,
+          "addable": true,
+          "skill": 14,
+          "level": 30
+        },
+        {
+          "id": 45521,
+          "name": "Adamant pickaxe",
+          "rank": 12,
+          "value": 12,
+          "addable": true,
+          "skill": 14,
+          "level": 40
+        },
+        {
+          "id": 20783,
+          "name": "Gilded adamant pickaxe",
+          "rank": 13,
+          "value": 13,
+          "addable": true,
+          "skill": 14,
+          "level": 40
+        },
+        {
+          "id": 45069,
+          "name": "Adamant pickaxe + 1",
+          "rank": 14,
+          "value": 14,
+          "addable": true,
+          "skill": 14,
+          "level": 40
+        },
+        {
+          "id": 45072,
+          "name": "Adamant pickaxe + 2",
+          "rank": 15,
+          "value": 15,
+          "addable": true,
+          "skill": 14,
+          "level": 40
+        },
+        {
+          "id": 45548,
+          "name": "Rune pickaxe",
+          "rank": 16,
+          "value": 16,
+          "addable": true,
+          "skill": 14,
+          "level": 50
+        },
+        {
+          "id": 20785,
+          "name": "Gilded rune pickaxe",
+          "rank": 17,
+          "value": 17,
+          "addable": true,
+          "skill": 14,
+          "level": 50
+        },
+        {
+          "id": 46942,
+          "name": "Rune pickaxe + 1",
+          "rank": 18,
+          "value": 18,
+          "addable": true,
+          "skill": 14,
+          "level": 50
+        },
+        {
+          "id": 46945,
+          "name": "Rune pickaxe + 2",
+          "rank": 19,
+          "value": 19,
+          "addable": true,
+          "skill": 14,
+          "level": 50
+        },
+        {
+          "id": 46948,
+          "name": "Rune pickaxe + 3",
+          "rank": 20,
+          "value": 20,
+          "addable": true,
+          "skill": 14,
+          "level": 50
+        },
+        {
+          "id": 29662,
+          "name": "Sacred clay pickaxe",
+          "rank": 21,
+          "value": 21,
+          "addable": true,
+          "skill": 14,
+          "level": 50
+        },
+        {
+          "id": 29654,
+          "name": "Volatile clay pickaxe",
+          "rank": 22,
+          "value": 22,
+          "addable": true,
+          "skill": 14,
+          "level": 50
+        },
+        {
+          "id": 15259,
+          "name": "Dragon pickaxe",
+          "rank": 23,
+          "value": 23,
+          "addable": true,
+          "skill": 14,
+          "level": 60
+        },
+        {
+          "id": 20786,
+          "name": "Gilded dragon pickaxe",
+          "rank": 24,
+          "value": 24,
+          "addable": true,
+          "skill": 14,
+          "level": 60
+        },
+        {
+          "id": 46578,
+          "name": "Orikalkum pickaxe",
+          "rank": 25,
+          "value": 25,
+          "addable": true,
+          "skill": 14,
+          "level": 60
+        },
+        {
+          "id": 46581,
+          "name": "Orikalkum pickaxe + 1",
+          "rank": 26,
+          "value": 26,
+          "addable": true,
+          "skill": 14,
+          "level": 60
+        },
+        {
+          "id": 46584,
+          "name": "Orikalkum pickaxe + 2",
+          "rank": 27,
+          "value": 27,
+          "addable": true,
+          "skill": 14,
+          "level": 60
+        },
+        {
+          "id": 46587,
+          "name": "Orikalkum pickaxe + 3",
+          "rank": 28,
+          "value": 28,
+          "addable": true,
+          "skill": 14,
+          "level": 60
+        },
+        {
+          "id": 32646,
+          "name": "Crystal pickaxe",
+          "rank": 29,
+          "value": 29,
+          "addable": true,
+          "skill": 14,
+          "level": 70
+        },
+        {
+          "id": 46372,
+          "name": "Necronium pickaxe",
+          "rank": 30,
+          "value": 30,
+          "addable": true,
+          "skill": 14,
+          "level": 70
+        },
+        {
+          "id": 46374,
+          "name": "Necronium pickaxe + 1",
+          "rank": 31,
+          "value": 31,
+          "addable": true,
+          "skill": 14,
+          "level": 70
+        },
+        {
+          "id": 46376,
+          "name": "Necronium pickaxe + 2",
+          "rank": 32,
+          "value": 32,
+          "addable": true,
+          "skill": 14,
+          "level": 70
+        },
+        {
+          "id": 46378,
+          "name": "Necronium pickaxe + 3",
+          "rank": 33,
+          "value": 33,
+          "addable": true,
+          "skill": 14,
+          "level": 70
+        },
+        {
+          "id": 46380,
+          "name": "Necronium pickaxe + 4",
+          "rank": 34,
+          "value": 34,
+          "addable": true,
+          "skill": 14,
+          "level": 70
+        },
+        {
+          "id": 45154,
+          "name": "Bane pickaxe",
+          "rank": 35,
+          "value": 35,
+          "addable": true,
+          "skill": 14,
+          "level": 80
+        },
+        {
+          "id": 45156,
+          "name": "Bane pickaxe + 1",
+          "rank": 36,
+          "value": 36,
+          "addable": true,
+          "skill": 14,
+          "level": 80
+        },
+        {
+          "id": 45158,
+          "name": "Bane pickaxe + 2",
+          "rank": 37,
+          "value": 37,
+          "addable": true,
+          "skill": 14,
+          "level": 80
+        },
+        {
+          "id": 45160,
+          "name": "Bane pickaxe + 3",
+          "rank": 38,
+          "value": 38,
+          "addable": true,
+          "skill": 14,
+          "level": 80
+        },
+        {
+          "id": 45162,
+          "name": "Bane pickaxe + 4",
+          "rank": 39,
+          "value": 39,
+          "addable": true,
+          "skill": 14,
+          "level": 80
+        },
+        {
+          "id": 29522,
+          "name": "Imcando pickaxe",
+          "rank": 40,
+          "value": 40,
+          "addable": true,
+          "skill": 14,
+          "level": 80
+        },
+        {
+          "id": 45642,
+          "name": "Elder rune pickaxe",
+          "rank": 41,
+          "value": 41,
+          "addable": true,
+          "skill": 14,
+          "level": 90
+        },
+        {
+          "id": 45644,
+          "name": "Elder rune pickaxe + 1",
+          "rank": 42,
+          "value": 42,
+          "addable": true,
+          "skill": 14,
+          "level": 90
+        },
+        {
+          "id": 45646,
+          "name": "Elder rune pickaxe + 2",
+          "rank": 43,
+          "value": 43,
+          "addable": true,
+          "skill": 14,
+          "level": 90
+        },
+        {
+          "id": 45648,
+          "name": "Elder rune pickaxe + 3",
+          "rank": 44,
+          "value": 44,
+          "addable": true,
+          "skill": 14,
+          "level": 90
+        },
+        {
+          "id": 45650,
+          "name": "Elder rune pickaxe + 4",
+          "rank": 45,
+          "value": 45,
+          "addable": true,
+          "skill": 14,
+          "level": 90
+        },
+        {
+          "id": 45652,
+          "name": "Elder rune pickaxe + 5",
+          "rank": 46,
+          "value": 46,
+          "addable": true,
+          "skill": 14,
+          "level": 90
+        },
+        {
+          "id": 44834,
+          "name": "Pickaxe of earth and song",
+          "rank": 47,
+          "value": 47,
+          "addable": true,
+          "skill": 14,
+          "level": 90
+        },
+        {
+          "id": 57391,
+          "name": "Primal pickaxe",
+          "rank": 48,
+          "value": 48,
+          "addable": true,
+          "skill": 14,
+          "level": 100
+        },
+        {
+          "id": 57393,
+          "name": "Primal pickaxe + 1",
+          "rank": 49,
+          "value": 49,
+          "addable": true,
+          "skill": 14,
+          "level": 100
+        },
+        {
+          "id": 57395,
+          "name": "Primal pickaxe + 2",
+          "rank": 50,
+          "value": 50,
+          "addable": true,
+          "skill": 14,
+          "level": 100
+        },
+        {
+          "id": 57397,
+          "name": "Primal pickaxe + 3",
+          "rank": 51,
+          "value": 51,
+          "addable": true,
+          "skill": 14,
+          "level": 100
+        },
+        {
+          "id": 57399,
+          "name": "Primal pickaxe + 4",
+          "rank": 52,
+          "value": 52,
+          "addable": true,
+          "skill": 14,
+          "level": 100
+        },
+        {
+          "id": 57401,
+          "name": "Primal pickaxe + 5",
+          "rank": 53,
+          "value": 53,
+          "addable": true,
+          "skill": 14,
+          "level": 100
+        },
+        {
+          "id": 57195,
+          "name": "Pickaxe of life and death",
+          "rank": 54,
+          "value": 54,
+          "addable": true,
+          "skill": 14,
+          "level": 100
+        }
+      ]
+    },
+    {
+      "slot": 1,
+      "category": "General",
+      "base": 1351,
+      "struct": 6181,
+      "default": true,
+      "removable": true,
+      "varbit": 18522,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 1351,
+          "name": "Bronze hatchet",
+          "rank": 0,
+          "value": 0,
+          "addable": true,
+          "skill": 8,
+          "level": 1
+        },
+        {
+          "id": 1349,
+          "name": "Iron hatchet",
+          "rank": 1,
+          "value": 1,
+          "addable": true,
+          "skill": 8,
+          "level": 10
+        },
+        {
+          "id": 1353,
+          "name": "Steel hatchet",
+          "rank": 2,
+          "value": 2,
+          "addable": true,
+          "skill": 8,
+          "level": 20
+        },
+        {
+          "id": 1361,
+          "name": "Black hatchet",
+          "rank": 3,
+          "value": 3,
+          "addable": true,
+          "skill": 8,
+          "level": 25
+        },
+        {
+          "id": 1355,
+          "name": "Mithril hatchet",
+          "rank": 4,
+          "value": 4,
+          "addable": true,
+          "skill": 8,
+          "level": 30
+        },
+        {
+          "id": 1357,
+          "name": "Adamant hatchet",
+          "rank": 5,
+          "value": 5,
+          "addable": true,
+          "skill": 8,
+          "level": 40
+        },
+        {
+          "id": 1359,
+          "name": "Rune hatchet",
+          "rank": 6,
+          "value": 6,
+          "addable": true,
+          "skill": 8,
+          "level": 50
+        },
+        {
+          "id": 6739,
+          "name": "Dragon hatchet",
+          "rank": 7,
+          "value": 7,
+          "addable": true,
+          "skill": 8,
+          "level": 60
+        },
+        {
+          "id": 58073,
+          "name": "Orikalkum hatchet",
+          "rank": 8,
+          "value": 8,
+          "addable": true,
+          "skill": 8,
+          "level": 60
+        },
+        {
+          "id": 58075,
+          "name": "Necronium hatchet",
+          "rank": 9,
+          "value": 9,
+          "addable": true,
+          "skill": 8,
+          "level": 70
+        },
+        {
+          "id": 32645,
+          "name": "Crystal hatchet",
+          "rank": 10,
+          "value": 10,
+          "addable": true,
+          "skill": 8,
+          "level": 70
+        },
+        {
+          "id": 58077,
+          "name": "Bane hatchet",
+          "rank": 11,
+          "value": 11,
+          "addable": true,
+          "skill": 8,
+          "level": 80
+        },
+        {
+          "id": 54890,
+          "name": "Imcando hatchet",
+          "rank": 12,
+          "value": 12,
+          "addable": true,
+          "skill": 8,
+          "level": 80
+        },
+        {
+          "id": 58079,
+          "name": "Elder rune hatchet",
+          "rank": 13,
+          "value": 13,
+          "addable": true,
+          "skill": 8,
+          "level": 90
+        },
+        {
+          "id": 58244,
+          "name": "Hatchet of ember and glade",
+          "rank": 14,
+          "value": 14,
+          "addable": true,
+          "skill": 8,
+          "level": 90
+        },
+        {
+          "id": 58081,
+          "name": "Primal hatchet",
+          "rank": 15,
+          "value": 15,
+          "addable": true,
+          "skill": 8,
+          "level": 100
+        },
+        {
+          "id": 58247,
+          "name": "Hatchet of bloom and blight",
+          "rank": 16,
+          "value": 16,
+          "addable": true,
+          "skill": 8,
+          "level": 100
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "category": "General",
+      "base": 2347,
+      "struct": 5793,
+      "default": true,
+      "removable": false,
+      "varbit": 2984,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 2347,
+          "name": "Hammer",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "category": "General",
+      "base": 1755,
+      "struct": 6086,
+      "default": true,
+      "removable": false,
+      "varbit": 2971,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 1755,
+          "name": "Chisel",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 4,
+      "category": "General",
+      "base": 946,
+      "struct": 6255,
+      "default": true,
+      "removable": false,
+      "varbit": 2968,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 946,
+          "name": "Knife",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 5,
+      "category": "General",
+      "base": 590,
+      "struct": 6318,
+      "default": true,
+      "removable": false,
+      "varbit": 2986,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 590,
+          "name": "Tinderbox",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 6,
+      "category": "General",
+      "base": 8794,
+      "struct": 6367,
+      "default": true,
+      "removable": false,
+      "varbit": 2988,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 8794,
+          "name": "Saw",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 7,
+      "category": "General",
+      "base": 233,
+      "struct": 6493,
+      "default": true,
+      "removable": false,
+      "varbit": 2999,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 233,
+          "name": "Pestle and mortar",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 8,
+      "category": "General",
+      "base": 975,
+      "struct": 6610,
+      "default": true,
+      "removable": false,
+      "varbit": 3002,
+      "upgradeVarbit": 4935,
+      "variants": [
+        {
+          "id": 975,
+          "name": "Machete",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        },
+        {
+          "id": 6313,
+          "name": "Opal machete",
+          "rank": 1,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        },
+        {
+          "id": 6315,
+          "name": "Jade machete",
+          "rank": 2,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        },
+        {
+          "id": 6317,
+          "name": "Red topaz machete",
+          "rank": 3,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 9,
+      "category": "General",
+      "base": 2575,
+      "struct": 6709,
+      "default": true,
+      "removable": false,
+      "varbit": 3004,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 2575,
+          "name": "Watch",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 10,
+      "category": "General",
+      "base": 2576,
+      "struct": 6716,
+      "default": true,
+      "removable": false,
+      "varbit": 3005,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 2576,
+          "name": "Chart",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 11,
+      "category": "General",
+      "base": 2574,
+      "struct": 9720,
+      "default": true,
+      "removable": false,
+      "varbit": 685,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 2574,
+          "name": "Sextant",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 12,
+      "category": "General",
+      "base": 1735,
+      "struct": 22711,
+      "default": true,
+      "removable": false,
+      "varbit": 2969,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 1735,
+          "name": "Shears",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 13,
+      "category": "General",
+      "base": 10150,
+      "struct": 34501,
+      "default": true,
+      "removable": false,
+      "varbit": 3007,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 10150,
+          "name": "Noose wand",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 14,
+      "category": "General",
+      "base": 20565,
+      "struct": 39729,
+      "default": false,
+      "removable": false,
+      "varbit": 28410,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 20565,
+          "name": "Tongs",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 15,
+      "category": "General",
+      "base": 42453,
+      "struct": 39731,
+      "default": false,
+      "removable": false,
+      "varbit": 40075,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 42453,
+          "name": "Enhanced grappling hook",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 16,
+      "category": "General",
+      "base": 42617,
+      "struct": 39930,
+      "default": false,
+      "removable": false,
+      "varbit": 40234,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 42617,
+          "name": "Master thief's lockpick",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 17,
+      "category": "General",
+      "base": 42618,
+      "struct": 39931,
+      "default": false,
+      "removable": false,
+      "varbit": 40235,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 42618,
+          "name": "Master thief's stethoscope",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 18,
+      "category": "General",
+      "base": 28,
+      "struct": 662,
+      "default": false,
+      "removable": false,
+      "varbit": 42126,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 28,
+          "name": "Insect repellent",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 19,
+      "category": "General",
+      "base": 4446,
+      "struct": 39730,
+      "default": false,
+      "removable": false,
+      "varbit": 40074,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 4446,
+          "name": "Steel key ring",
+          "rank": 0,
+          "value": 1,
+          "addable": false,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 20,
+      "category": "General",
+      "base": 47718,
+      "struct": 6937,
+      "default": true,
+      "removable": false,
+      "varbit": -1,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 47718,
+          "name": "Incense burner",
+          "rank": 0,
+          "value": 1,
+          "addable": false,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 21,
+      "category": "General",
+      "base": 53443,
+      "struct": 47096,
+      "default": false,
+      "removable": false,
+      "varbit": 52348,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 53443,
+          "name": "Infernal Puzzle Box",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 22,
+      "category": "Fishing",
+      "base": 307,
+      "struct": 39732,
+      "default": true,
+      "removable": false,
+      "varbit": 2978,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 307,
+          "name": "Fishing rod",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 23,
+      "category": "Fishing",
+      "base": 13431,
+      "struct": 39733,
+      "default": true,
+      "removable": false,
+      "varbit": 2977,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 13431,
+          "name": "Crayfish cage",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 24,
+      "category": "Fishing",
+      "base": 303,
+      "struct": 39734,
+      "default": true,
+      "removable": false,
+      "varbit": 2982,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 303,
+          "name": "Small fishing net",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 25,
+      "category": "Fishing",
+      "base": 305,
+      "struct": 39735,
+      "default": true,
+      "removable": false,
+      "varbit": 3001,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 305,
+          "name": "Big fishing net",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": 10,
+          "level": 16
+        }
+      ]
+    },
+    {
+      "slot": 26,
+      "category": "Fishing",
+      "base": 309,
+      "struct": 39736,
+      "default": true,
+      "removable": false,
+      "varbit": 2979,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 309,
+          "name": "Fly fishing rod",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": 10,
+          "level": 20
+        }
+      ]
+    },
+    {
+      "slot": 27,
+      "category": "Fishing",
+      "base": 311,
+      "struct": 39737,
+      "default": true,
+      "removable": false,
+      "varbit": 2980,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 311,
+          "name": "Harpoon",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": 10,
+          "level": 35
+        }
+      ]
+    },
+    {
+      "slot": 28,
+      "category": "Fishing",
+      "base": 301,
+      "struct": 39738,
+      "default": true,
+      "removable": false,
+      "varbit": 2981,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 301,
+          "name": "Lobster pot",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": 10,
+          "level": 40
+        }
+      ]
+    },
+    {
+      "slot": 29,
+      "category": "Fishing",
+      "base": 11323,
+      "struct": 39739,
+      "default": true,
+      "removable": false,
+      "varbit": 3003,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 11323,
+          "name": "Barbarian rod",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 30,
+      "category": "Crafting",
+      "base": 1733,
+      "struct": 39740,
+      "default": true,
+      "removable": false,
+      "varbit": 2974,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 1733,
+          "name": "Needle",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 31,
+      "category": "Crafting",
+      "base": 1785,
+      "struct": 39741,
+      "default": true,
+      "removable": false,
+      "varbit": 2992,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 1785,
+          "name": "Glassblowing pipe",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 32,
+      "category": "Crafting",
+      "base": 1595,
+      "struct": 39742,
+      "default": true,
+      "removable": false,
+      "varbit": 2970,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 1595,
+          "name": "Amulet mould",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 33,
+      "category": "Crafting",
+      "base": 11065,
+      "struct": 39743,
+      "default": true,
+      "removable": false,
+      "varbit": 2991,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 11065,
+          "name": "Bracelet mould",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 34,
+      "category": "Crafting",
+      "base": 1597,
+      "struct": 39744,
+      "default": true,
+      "removable": false,
+      "varbit": 2973,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 1597,
+          "name": "Necklace mould",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 35,
+      "category": "Crafting",
+      "base": 1592,
+      "struct": 39745,
+      "default": true,
+      "removable": false,
+      "varbit": 2975,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 1592,
+          "name": "Ring mould",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 36,
+      "category": "Crafting",
+      "base": 5523,
+      "struct": 39746,
+      "default": true,
+      "removable": false,
+      "varbit": 2976,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 5523,
+          "name": "Tiara mould",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 37,
+      "category": "Crafting",
+      "base": 4,
+      "struct": 39747,
+      "default": false,
+      "removable": false,
+      "varbit": 2989,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 4,
+          "name": "Ammo mould",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": 13,
+          "level": 35
+        }
+      ]
+    },
+    {
+      "slot": 38,
+      "category": "Crafting",
+      "base": 59903,
+      "struct": 52515,
+      "default": false,
+      "removable": false,
+      "varbit": 16445,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 59903,
+          "name": "Double ammo mould",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": 13,
+          "level": 35
+        }
+      ]
+    },
+    {
+      "slot": 39,
+      "category": "Crafting",
+      "base": 9434,
+      "struct": 39748,
+      "default": false,
+      "removable": false,
+      "varbit": 2990,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 9434,
+          "name": "Bolt mould",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 40,
+      "category": "Crafting",
+      "base": 1599,
+      "struct": 39749,
+      "default": false,
+      "removable": false,
+      "varbit": 2972,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 1599,
+          "name": "Holy mould",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 41,
+      "category": "Crafting",
+      "base": 1594,
+      "struct": 39750,
+      "default": false,
+      "removable": false,
+      "varbit": 2994,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 1594,
+          "name": "Unholy mould",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 42,
+      "category": "Crafting",
+      "base": 2976,
+      "struct": 39751,
+      "default": false,
+      "removable": false,
+      "varbit": 2993,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 2976,
+          "name": "Sickle mould",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 43,
+      "category": "Crafting",
+      "base": 13153,
+      "struct": 39752,
+      "default": false,
+      "removable": false,
+      "varbit": 3006,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 13153,
+          "name": "Chain link mould",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 44,
+      "category": "Crafting",
+      "base": 7649,
+      "struct": 39753,
+      "default": false,
+      "removable": false,
+      "varbit": 30998,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 7649,
+          "name": "Rod clay mould",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 45,
+      "category": "Farming",
+      "base": 5341,
+      "struct": 39754,
+      "default": true,
+      "removable": false,
+      "varbit": 2997,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 5341,
+          "name": "Rake",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 46,
+      "category": "Farming",
+      "base": 5343,
+      "struct": 39755,
+      "default": true,
+      "removable": false,
+      "varbit": 2995,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 5343,
+          "name": "Seed dibber",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 47,
+      "category": "Farming",
+      "base": 952,
+      "struct": 39756,
+      "default": true,
+      "removable": false,
+      "varbit": 3000,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 952,
+          "name": "Spade",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 48,
+      "category": "Farming",
+      "base": 5325,
+      "struct": 39757,
+      "default": true,
+      "removable": false,
+      "varbit": 2996,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 5325,
+          "name": "Gardening trowel",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 49,
+      "category": "Farming",
+      "base": 5329,
+      "struct": 39758,
+      "default": true,
+      "removable": false,
+      "varbit": 2998,
+      "upgradeVarbit": 27430,
+      "variants": [
+        {
+          "id": 5329,
+          "name": "Secateurs",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        },
+        {
+          "id": 7409,
+          "name": "Magic secateurs",
+          "rank": 1,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 50,
+      "category": "Farming",
+      "base": 18682,
+      "struct": 39759,
+      "default": false,
+      "removable": false,
+      "varbit": 27431,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 18682,
+          "name": "Magic watering can",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 51,
+      "category": "Slayer",
+      "base": 4162,
+      "struct": 39760,
+      "default": false,
+      "removable": false,
+      "varbit": 28219,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 4162,
+          "name": "Rock hammer",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 52,
+      "category": "Slayer",
+      "base": 34960,
+      "struct": 39761,
+      "default": false,
+      "removable": false,
+      "varbit": 28220,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 34960,
+          "name": "Salt shaker",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 53,
+      "category": "Slayer",
+      "base": 34961,
+      "struct": 39762,
+      "default": false,
+      "removable": false,
+      "varbit": 28221,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 34961,
+          "name": "Ice shaker",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": 18,
+          "level": 22
+        }
+      ]
+    },
+    {
+      "slot": 54,
+      "category": "Slayer",
+      "base": 34962,
+      "struct": 39763,
+      "default": false,
+      "removable": false,
+      "varbit": 28222,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 34962,
+          "name": "Fungicide shaker",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": 18,
+          "level": 57
+        }
+      ]
+    },
+    {
+      "slot": 55,
+      "category": "Slayer",
+      "base": 34963,
+      "struct": 39764,
+      "default": false,
+      "removable": false,
+      "varbit": 28225,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 34963,
+          "name": "Explosive shaker",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": 18,
+          "level": 32
+        },
+        {
+          "id": 34964,
+          "name": "Super explosive shaker",
+          "rank": 1,
+          "value": 2,
+          "addable": true,
+          "skill": 18,
+          "level": 32
+        }
+      ]
+    },
+    {
+      "slot": 56,
+      "category": "Slayer",
+      "base": 10952,
+      "struct": 39765,
+      "default": false,
+      "removable": false,
+      "varbit": 28223,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 10952,
+          "name": "Slayer bell",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": 18,
+          "level": 39
+        }
+      ]
+    },
+    {
+      "slot": 57,
+      "category": "Slayer",
+      "base": 32644,
+      "struct": 39766,
+      "default": false,
+      "removable": false,
+      "varbit": 28224,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 32644,
+          "name": "Crystal chime",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 58,
+      "category": "Slayer",
+      "base": 21451,
+      "struct": 39767,
+      "default": false,
+      "removable": false,
+      "varbit": 28230,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 21451,
+          "name": "Ouroboros pouch",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 59,
+      "category": "Slayer",
+      "base": 18337,
+      "struct": 39768,
+      "default": false,
+      "removable": false,
+      "varbit": 28226,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 18337,
+          "name": "Bonecrusher",
+          "rank": 0,
+          "value": 1,
+          "addable": false,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 60,
+      "category": "Slayer",
+      "base": 31188,
+      "struct": 39769,
+      "default": false,
+      "removable": false,
+      "varbit": 28227,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 31188,
+          "name": "Seedicide",
+          "rank": 0,
+          "value": 1,
+          "addable": false,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 61,
+      "category": "Slayer",
+      "base": 27996,
+      "struct": 39770,
+      "default": false,
+      "removable": false,
+      "varbit": 28228,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 27996,
+          "name": "Charming imp",
+          "rank": 0,
+          "value": 1,
+          "addable": false,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 62,
+      "category": "Slayer",
+      "base": 19675,
+      "struct": 39771,
+      "default": false,
+      "removable": false,
+      "varbit": 28229,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 19675,
+          "name": "Herbicide",
+          "rank": 0,
+          "value": 1,
+          "addable": false,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 63,
+      "category": "Slayer",
+      "base": 41375,
+      "struct": 39772,
+      "default": false,
+      "removable": false,
+      "varbit": 38660,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 41375,
+          "name": "Advanced gold accumulator",
+          "rank": 0,
+          "value": 1,
+          "addable": false,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 64,
+      "category": "Invention",
+      "base": 36367,
+      "struct": 39773,
+      "default": false,
+      "removable": false,
+      "varbit": 30224,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 36367,
+          "name": "Inventor's tools",
+          "rank": 0,
+          "value": 1,
+          "addable": false,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 65,
+      "category": "Invention",
+      "base": 36368,
+      "struct": 39774,
+      "default": false,
+      "removable": false,
+      "varbit": 30224,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 36368,
+          "name": "Bag of materials",
+          "rank": 0,
+          "value": 1,
+          "addable": false,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 66,
+      "category": "Invention",
+      "base": 36389,
+      "struct": 39775,
+      "default": false,
+      "removable": false,
+      "varbit": 30225,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 36389,
+          "name": "Charge pack",
+          "rank": 0,
+          "value": 1,
+          "addable": false,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 67,
+      "category": "Archaeology",
+      "base": 49533,
+      "struct": 29547,
+      "default": false,
+      "removable": false,
+      "varbit": 46463,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 49533,
+          "name": "Archaeologist's tools",
+          "rank": 0,
+          "value": 1,
+          "addable": false,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 68,
+      "category": "Archaeology",
+      "base": 49539,
+      "struct": 29548,
+      "default": false,
+      "removable": true,
+      "varbit": 45999,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 49539,
+          "name": "Bronze mattock",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": 27,
+          "level": 1
+        },
+        {
+          "id": 49542,
+          "name": "Iron mattock",
+          "rank": 1,
+          "value": 2,
+          "addable": true,
+          "skill": 27,
+          "level": 10
+        },
+        {
+          "id": 49545,
+          "name": "Steel mattock",
+          "rank": 2,
+          "value": 3,
+          "addable": true,
+          "skill": 27,
+          "level": 20
+        },
+        {
+          "id": 49548,
+          "name": "Mithril mattock",
+          "rank": 3,
+          "value": 4,
+          "addable": true,
+          "skill": 27,
+          "level": 30
+        },
+        {
+          "id": 49551,
+          "name": "Adamant mattock",
+          "rank": 4,
+          "value": 5,
+          "addable": true,
+          "skill": 27,
+          "level": 40
+        },
+        {
+          "id": 49554,
+          "name": "Rune mattock",
+          "rank": 5,
+          "value": 6,
+          "addable": true,
+          "skill": 27,
+          "level": 50
+        },
+        {
+          "id": 49557,
+          "name": "Orikalkum mattock",
+          "rank": 6,
+          "value": 7,
+          "addable": true,
+          "skill": 27,
+          "level": 60
+        },
+        {
+          "id": 49566,
+          "name": "Dragon mattock",
+          "rank": 7,
+          "value": 8,
+          "addable": true,
+          "skill": 27,
+          "level": 60
+        },
+        {
+          "id": 49560,
+          "name": "Necronium mattock",
+          "rank": 8,
+          "value": 9,
+          "addable": true,
+          "skill": 27,
+          "level": 70
+        },
+        {
+          "id": 49571,
+          "name": "Crystal mattock",
+          "rank": 9,
+          "value": 10,
+          "addable": true,
+          "skill": 27,
+          "level": 70
+        },
+        {
+          "id": 49562,
+          "name": "Bane mattock",
+          "rank": 10,
+          "value": 11,
+          "addable": true,
+          "skill": 27,
+          "level": 80
+        },
+        {
+          "id": 49574,
+          "name": "Imcando mattock",
+          "rank": 11,
+          "value": 12,
+          "addable": true,
+          "skill": 27,
+          "level": 80
+        },
+        {
+          "id": 49564,
+          "name": "Elder rune mattock",
+          "rank": 12,
+          "value": 13,
+          "addable": true,
+          "skill": 27,
+          "level": 90
+        },
+        {
+          "id": 49581,
+          "name": "Mattock of Time and Space",
+          "rank": 13,
+          "value": 14,
+          "addable": true,
+          "skill": 27,
+          "level": 99
+        }
+      ]
+    },
+    {
+      "slot": 69,
+      "category": "Archaeology",
+      "base": 49880,
+      "struct": 11744,
+      "default": false,
+      "removable": false,
+      "varbit": 47423,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 49880,
+          "name": "Legatus pendant",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 70,
+      "category": "Archaeology",
+      "base": 49902,
+      "struct": 11745,
+      "default": false,
+      "removable": false,
+      "varbit": 47424,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 49902,
+          "name": "Pontifex signet ring",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 71,
+      "category": "Archaeology",
+      "base": 49808,
+      "struct": 29549,
+      "default": false,
+      "removable": false,
+      "varbit": 46000,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 49808,
+          "name": "Chaos star",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 72,
+      "category": "Archaeology",
+      "base": 49657,
+      "struct": 29550,
+      "default": false,
+      "removable": false,
+      "varbit": 46001,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 49657,
+          "name": "Ikovian gerege",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 73,
+      "category": "Archaeology",
+      "base": 49659,
+      "struct": 29551,
+      "default": false,
+      "removable": false,
+      "varbit": 46002,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 49659,
+          "name": "Stormguard gerege",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 74,
+      "category": "Archaeology",
+      "base": 50118,
+      "struct": 29552,
+      "default": false,
+      "removable": false,
+      "varbit": 46003,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 50118,
+          "name": "Boots of Flight",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 75,
+      "category": "Archaeology",
+      "base": 50120,
+      "struct": 29553,
+      "default": false,
+      "removable": false,
+      "varbit": 46004,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 50120,
+          "name": "Wingsuit v1",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        },
+        {
+          "id": 50121,
+          "name": "Wingsuit v2",
+          "rank": 1,
+          "value": 2,
+          "addable": false,
+          "skill": -1,
+          "level": 1
+        },
+        {
+          "id": 50122,
+          "name": "Wingsuit v3",
+          "rank": 2,
+          "value": 3,
+          "addable": false,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    },
+    {
+      "slot": 76,
+      "category": "Archaeology",
+      "base": 56988,
+      "struct": 49905,
+      "default": false,
+      "removable": false,
+      "varbit": 55525,
+      "upgradeVarbit": -1,
+      "variants": [
+        {
+          "id": 56988,
+          "name": "'Friendship bracelet'",
+          "rank": 0,
+          "value": 1,
+          "addable": true,
+          "skill": -1,
+          "level": 1
+        }
+      ]
+    }
+  ],
+  "files": {
+    "17/53/162": "178b5e433d414e558cc441eaaca4bb5479cca980e4a2d1516d69c28ffd855dc6",
+    "22/122/11": "850da90dab5b8589f33a0733072ea124d2fa78d211f1b9e1968f4de9f7eb6f17",
+    "17/53/163": "cd5dd355e3db2b63a1ef52f7943c85f632054819523856936af57387dd177430",
+    "22/172/18": "1145ad054f998d4a56798d220d756ba906d93dde5eea7f75833daef8a44fdc6b",
+    "17/9/129": "4d4a8ccff11105f2d2c7ef23b6564da32cc9964dcc95a70043a4c8465b99181d",
+    "19/4/241": "fed1ed7464a40bdc01fb1960a58d9d0cafa6e4a959906cdc28b5887c31a08896",
+    "19/81/44": "0109aac0c68eb5b7ae7f6f4e2885c62b97fe8ecc1bb361c7204f7ebcd07e8036",
+    "19/4/243": "506137b1247106a9da5361cfe836d66b6aa788702f11dd2ba8e984627490774d",
+    "19/81/45": "6c441c60d033aa7c1ecd454456c7b59db8c94c7e646b072dd8153b0e5c741725",
+    "19/179/128": "6fb1175ad2b6980833e6354e9536a0881fb7b71fbd1ca50fad96eb17aae55001",
+    "19/177/155": "6c9bcd8c49f973efb952eaf9ed92214131f750a40a89f03e2133c8fa138fec1c",
+    "19/81/46": "a7bbcd326499d20e5f4492e738a79265906adf8d7e123f3448891047ef1adfb6",
+    "19/183/215": "7ed96e28a9747f34ca1b5d24b51769a9c68cf9f667a7b763670dd5dd603408d4",
+    "19/177/182": "00692e96004c55866a3643c52c8d4eecd1794d87e381699a35b60ad66d02e418",
+    "19/81/48": "d7b275ed296ae196af07f79f4765d6b9ff1474ef239b1626c6d9166bbe0fef11",
+    "19/180/208": "27ad4f0ed681b03f892093cfaf6acc9a14d3717599e6cde7e33f4c6547a5747e",
+    "19/180/211": "73bc825b9500c49a0ac0e0d37b14032946106eba36cfa8ffc5e8790bdc8899d2",
+    "19/177/209": "b900b03de5a08d1eb1201d1f9c1468a299f3cdce3a27222cf5cb2e6e54b97a9d",
+    "19/81/47": "f156aafd417b6aea6c0f710a3cbe621465735f55ede06ae96c9933f6a26d7957",
+    "19/176/13": "d8e77ba4c7169f3c63564d1cfb0a50e46613bdb7d84397dfee7ea72a58682923",
+    "19/176/16": "adb7f4199bfca90fc0e894066a38bf7b9b333fd2fa50163027227911098f574a",
+    "19/177/236": "2e63308405b017476704d49571baa71dbd2648c9c2da4b3aef38a933cdcaf635",
+    "19/81/49": "87a6747f3fc15d78cc8d726e62c2c662f9e3bece48ae392f737e2223e9f0c0ad",
+    "19/183/94": "82040bf3cd3770918801756ff2577917c70b11d2e53b0be5d6892b371a8c9154",
+    "19/183/97": "84581fa6e8510b763966fd35f2c4adf3d1b7e218f372ac195c038ab3add2ba71",
+    "19/183/100": "aafbdab95a8ad26d9a31c62fd61732c32ce556108dad6d4917ab4dc8bd083618",
+    "19/115/222": "5e10d1fac7199586ef0dcde59a35dee57b6241e5e1648447b92f2887fe41ff3c",
+    "19/115/214": "b3ab4b23fa296d76341fa22c66c668288b068d6b306b60ed4b04ba98180a763b",
+    "19/59/155": "7747bf99bdb278e07207e7a1b127b781c27a8551c612a30bfa6a2105b8431a9f",
+    "19/81/50": "1f38123776262c1be658d76ed4b5a8224295d096b3e6f7a849c472b23f3fc5d9",
+    "19/181/242": "643ae5c2a299cd5863b9057f37a4ae93d50761d31097a67e484797be85666a71",
+    "19/181/245": "fc8045e62cf41fa3c2ea5eb2bae68b10060b1bbbec11a118034e1bb2ba48314a",
+    "19/181/248": "3d11640eae209d6de4f9d6d8d06a865e7cbbd9fa29baefe25ae471bf7656ab51",
+    "19/181/251": "55428621ef4f95d03541b794e0b7c2c714a0469ec0206cece35e5a51408bdf2a",
+    "19/127/134": "e5b7638671ac7ebd494622c51b38e72ef3057131db696e18ff76127abf41f1de",
+    "19/181/36": "108d604e320c64a8e8a89807f9a2e1df34d5f9033ddb22e2ddd5a60676cf37c1",
+    "19/181/38": "0501642c2f23c9e4b161ebae16f69b8b3e0f3aa45940f4d76385cf397092cb11",
+    "19/181/40": "afe3b5b4981a3fe2cc5fdd2d6b3ff1cf3275515321dbbc4ff07bd7bdc825979d",
+    "19/181/42": "11ece7adbee63e567af8bd590f2d3a59efa6d562cc135a337b0a4e326c8fc476",
+    "19/181/44": "545afd8e6a343e2b1898f9bd98347633bbdb886da69da7abb85ee1f590b82a61",
+    "19/176/98": "83a384392c73a418031fd3a2accb3caf537f0e7fe5edd60c4ac56d4796a053ec",
+    "19/176/100": "4e3f33a7a2704746fbf4891b91e700fbeaedccf6b327357f0a9da06785002e66",
+    "19/176/102": "6e663b291f8b20245fda0bdf314d1073e7219291c553688cb326c48276a48d95",
+    "19/176/104": "bcdf62ee0217c05ef0ac87c9b277b18a58d87b0c1dd9ad8d3b0567182b1749f5",
+    "19/176/106": "e968f4dc4c4459ae3790f5468050db6726594286caf99a1ac5e39ea32b6ccfdf",
+    "19/115/82": "2cd37ca88f2bdcd6695160b5d876ecf6595b2378c2b2ddd3a4916532580c3642",
+    "19/178/74": "13aedd432edba3ba736e86d42a7241f9a94743eb7a52d75840d88baa258c1b64",
+    "19/178/76": "19a1ae67a13877ffc233f3988767310eae25da520927af5944e8c11622a760cf",
+    "19/178/78": "afd6435dd1baaca37f72c182da86a7028adbb1b62b2c5717e0eb5c944c92c47b",
+    "19/178/80": "fe1fa0cf65d364e023e41bc0188b67104b508d22ecf1fdfa992879fadef1495f",
+    "19/178/82": "f87276f56d77d4350de411b79471a6099236531944a768ed0889ac8b1bfcc719",
+    "19/178/84": "2a3ec001c96fd871af3c67be4bf4aa00d935663137164e94a4348c77875db995",
+    "19/175/34": "7743b1780200ed06ee05bf2e4c700b5a16178e94d0892e41052ca71f5b936240",
+    "19/224/47": "70626e865e1edb7f783ed81dca62f31ba8f771ffa454b45ee194c789f408241e",
+    "19/224/49": "096cfee9d6f9c1e1a9a8f4af9881446a57bda64b9a8017d7473da27a1fc6a259",
+    "19/224/51": "b4b9407cad0d207b2bbce2f2905c1ce117a74482a8aeb96a3bad32b46e4c0ac0",
+    "19/224/53": "25acd353e4edf093aad552ef41a47a91a17bb373444b33ff699deab64268f0f4",
+    "19/224/55": "4feb42b8682127bf25be3c788410a301bff423d139106b59af4326ea71f32d67",
+    "19/224/57": "d0ac2161377d73e3dab5caa240503e130a3211cf4f837b367b242886e3e03bdc",
+    "19/223/107": "f4f6762683ba52a7e1e0279dbb488194d4ae0974f56952004da424c7d99345f4",
+    "2/69/18521": "ffc2914c107bea2b0d6fc3fe65abaae9de7c892693327cdfcf93ad7c138ea755",
+    "22/193/5": "9c7103d9bcf1a0bbdbcacb51ee19b665790f1b0778cc72291ba38c1b2be40961",
+    "17/24/253": "a68afdf2ca9f7883b183528bba652b5548f27ff91a83086f214bcc8cc747f52c",
+    "19/5/71": "602d0c1f9d1aaf3c55e7e7149fb71e8f80335c3770c607499c82f6a4ab56d0df",
+    "19/5/69": "61d78264c491049eb7be6051c3995a949a6004792b5931bb1daa648e889f7e6d",
+    "19/5/73": "fbac67899bf2647a67b000fe254b959f1e2694d5f4f7165f59bbfc09112da9bc",
+    "19/5/81": "1b1f79e72d13a58b198554306fad41231d3c1e04cdc47c7f16b7ef0e1bb7cc5f",
+    "19/5/75": "6172c7dcbaa1c42db7482e6c41180bdd95399dccade2aad0faa2f64bc6fee91b",
+    "19/5/77": "d5c5b785716809f4d7d3e1c05ae5276a39726ae3578bf98f59e8ef4dbd539203",
+    "19/5/79": "22d397980401c319d192aac811aaf9c5af8e52dbff725bd2ec368e7da5173b12",
+    "19/26/83": "c83a191f455b5f8924bd41e058bc45d43ed60731ccc61f579d3856d7dd6dfea7",
+    "19/226/217": "7eee0a90a3e9d4c71a6b1502d6e5fc1e658bc9ea897f1895e5a518bd7c1f1148",
+    "19/226/219": "f5207fd9c986a0e067a01686521826d70370df948318ef0845d6c20742527309",
+    "19/127/133": "3af45e3a2e0f693fd0059cd3cb434d51389317fe46fe0a055640d105b27d2e19",
+    "19/226/221": "9214f98346df6a7dd9f572e4977764d2392a095c5a56c7ae6a579b79b8060450",
+    "19/214/106": "b74615660f34ebe59bb4f324fc386399f94179fa5a943936da24710a5b187b42",
+    "19/226/223": "5150735e466cedb763d0c250b992d2643995febb4f100079fa617f2a3915291e",
+    "19/227/132": "2850b6520750fe2b5b71306b7d24ecebab89f1a193ecb6b711bf4ef10e3a191f",
+    "19/226/225": "0adeda6e99af54e132ce2036e6d4ba372232a1c531a031e24ab210a04563ea0a",
+    "19/227/135": "9c7878383d57fb64bff14122bc22f7837a15c2330e2d4b8cadf1dbe86121a494",
+    "2/69/18522": "9564d740d85e54bd74ccb4402b213c67b909b694975e77eee8cf11b435ad0493",
+    "22/181/1": "fb206e4dafaedbb2aa20a86ac6a0c989b4bc5522af54f2da94c6adc5efcbacf9",
+    "19/9/43": "528afcb0d1f1b31fb4edaaf926c1ecfb96a9771803e78f8fe41701adf6e48d18",
+    "2/69/2984": "a12d3abab71040d1692964d0116f340f97ebdbc87ec99c2dec91afbebfc51e4a",
+    "22/190/6": "da5636cb31374313c8dfcd61cee5cd56c87eca58f36265b7522f30407e8cbde6",
+    "19/6/219": "347d6c05c5b5f1b9240fd877b38c7bdb451abc7cbe85c171cc938a311c3bf4ed",
+    "2/69/2971": "5ba56be8f0ae33ba6f272dc4dbc073c751745efc41c64e2a4a673ac951bfaf0e",
+    "22/195/15": "4343bd88dfa0bebe43bf4e3a72f047255fb4cea6affddbd84c58ab3f674f5a18",
+    "19/3/178": "8825ea32bfa85113ec8b9f0d9561151b48a32b5536782d4acf8411c6d2a1c554",
+    "2/69/2968": "e8fc399e56226d643da69120ca8b5c64f3d3c06d3372df5aab355d8547a1108c",
+    "22/197/14": "82f9d77df51c6be1d69a5b7a3a49c0dc0d11bcb0aba4c108a333d7f2ff167ab0",
+    "19/2/78": "2184d785b53877a11b2a293243793d67e58a40ac16bd6143e5d8d146e1a2b4e6",
+    "2/69/2986": "56b654617f6e4a6e6037d5cac65177ba2d58ebeca41c0a8f99cee1cd64cd69d5",
+    "22/198/31": "1355d4917b2e401e95e146b7f99af1cd26b9143d6d36cf61907a0b4adaaf6c14",
+    "19/34/90": "f18221b846b79b92f05eff03984d1196b131cff457dbda258b437995a89d85ca",
+    "2/69/2988": "852aa0772e55dd1afce450e9d7365f27c2a06e87d82aac8abf88329fabc0ef0a",
+    "22/202/29": "df3506f749fba136621a4258137fdd06d1ae3bc84c01c91c8656c10ab85b8956",
+    "19/0/233": "a30f56cc7e07c25a470234a430e8648e34c2361af8ac2dd6df1ef7c255bef619",
+    "2/69/2999": "2d7780d26005aafdac441cd9b825e16cf358c57b136c49629f10ba4da0af12a6",
+    "22/206/18": "c6955b044af1b2ddb487293fab2c9c89dfc0153c134e38d142f656793b317d4d",
+    "19/3/207": "cb7c8f4f30d9673104f21acb91c610048918d1825bd9f9c7e872786082fe76d7",
+    "19/24/169": "b725c7a004f461b3a45f5bb1abc49ee18d9455ed8a69fd992a5aeda6d5da4e3d",
+    "19/24/171": "0dd1db26afa420dcd80e8497e3a8059e4a422e976bc228de030ec916a885be85",
+    "19/24/173": "da56113743b8ad972811e5509588f4b0e3ac73a43dafcc7e3b589677bd18120c",
+    "2/69/3002": "36d368b1c056bb548bbedc8cdf0ed9913aa1f285d69fbaf2881eaeae3eb57d68",
+    "2/69/4935": "b603b0b27fd05006779e3d1e650ed6580fc140e22b429d2e3852f4247621c7d7",
+    "22/209/21": "8e3f197de35bf2066b7d67f870a268422cafab96e855f9caa43e72cdecc02b79",
+    "19/10/15": "159793ac707147bcf238a29716ea0a9ed52641586a27ba8b3a04697a8026928e",
+    "2/69/3004": "40cb6cded9bf015110417da99c5621b67acbd991a3962be5a7e2e7b41f1949f5",
+    "22/209/28": "bcbf4d2b2e05d906885a12aec7e1298a55e7c43288c53e8bc3df30e07b76a1b8",
+    "19/10/16": "2e74ea9e8b76eb0ba2e716227798c0867f0704c7061bd4e6c46ade1ae69557c4",
+    "2/69/3005": "15a5cb98bfc175bbca6a3fa611e9ef232986e6a3ee86b669347df6ea33ee9157",
+    "22/303/24": "4bc1c6a9273cd0935e90079b035ed1833759162feac3812d8ec2c1d9547ffd7a",
+    "19/10/14": "9e3617dbd4c5f8e6db5f070d1bc73717492df0ea79590f0fa1a8afefd42c2557",
+    "2/69/685": "89ee4d23d70d30211bfe4c2301d30b64fcbc009b3440e4fd0481c8d18581e612",
+    "22/709/23": "b6d940e6b1221397609c58bd5cb6a613905c47adf42b353e4c061f7e3e1cb47a",
+    "19/6/199": "79342494b113886423c60fb156b69e104c2129ccff28711febf08625e73d9e0d",
+    "2/69/2969": "7c71578fabf2ebb647064a7161e84c750f97e4ff857f857e7a9d5d729ce126e6",
+    "22/1078/5": "034395ff05efd98ed9523f52ad0aada942f1b562fed0928762061c4176938a22",
+    "19/39/166": "0a10aab8c9903967bb08ec1e245fa4af460a49e2278d5f592e73b081f01e0a74",
+    "2/69/3007": "cc02445a180ff3b94eb62faae15370e011d98c315beae38a2a3f348471f12754",
+    "22/1241/17": "2b4127fae0dd397425571799a35b15e6b52bb08884f11fc705f304924c74aab1",
+    "19/80/85": "a79159c4a1243b68bc5e106b94b2dd32d84cbad42cb8b0921e2c45a244a83e51",
+    "2/69/28410": "94d69cb82b40ac93fcbf8d05f874069f892dce1d31186e8870b72b040234c2fd",
+    "22/1241/19": "0dd726b990478d6dc709893e179dc1f896ecca6f9471655b7bdedca835543464",
+    "19/165/213": "ed1582b03893714ccc4c657490a47ff37ad0a677b02236354d5fbb5e55158e1a",
+    "2/69/40075": "5f6e2e628de56cd0c1b5a75bd94aaf8204f087cc669323418bca28cec2b0655d",
+    "22/1247/26": "86ccad4ad3361a0ac9d8a028eb4cffcef886f00719672c94576786e835b11e56",
+    "19/166/121": "f41398d63f57647a5d2c670264de9044d95b9a0ab51e4d5d8e20a074c97c7437",
+    "2/69/40234": "6f07f4e132fa1ce5cbe9d27ac9771e2489c6ae3110e237438629b2720e513fa7",
+    "22/1247/27": "189f421f71f33127e4434c3cddd03a5ab6cbe478c9c1c7c3943cf2e5aa697930",
+    "19/166/122": "6359eccf8863a596eaa3c2fb836f30c24ca17695950d9bbe3f927a085d439602",
+    "2/69/40235": "f68b8f156a56d5a964c2680c259647d8fe4a5843522d8a4c3670a5c5fe256bd1",
+    "22/20/22": "b71672aeede2b2d11d1669ae1a6cdc8633dd2dff1d8eeed3d148c766cc4e9e98",
+    "19/0/28": "ab7ea2c865de2b6aac6f6e8b9a3adb8444a795bee55a13e2b44ef52df2ce369b",
+    "2/69/42126": "db37f29d7f31b8377755440b6167ebeb26cb01ccae9ad2e1957c63eefdab5485",
+    "22/1241/18": "1a42f03b859d27087f441c1eef4ccd2cb8b7d2e3faf905ac7a51711a1c285fa1",
+    "19/17/94": "0073fb074d0a360198d311372a9531a27c528467c7d5f78703d6252022591b21",
+    "2/69/40074": "125526341990bb53b45f5013fc0862454db965178d39bf08e6ecb80ded665ab4",
+    "22/216/25": "ca8f8eb93660b74799d4dd74e32fb9a7cda4b811e77cdf911f22377fef2ddd36",
+    "19/186/102": "9b7c7a5869cd1d53f5bde7a68a4621dbc95c077f505903e607b1272ecaafffde",
+    "22/1471/24": "23785ba2bd8ad4304eb442975edd9e1b2ea3644d027b614ebd12ef97e39a55c1",
+    "19/208/195": "0a8a80eecb40c75ed13969bf67c2e9949d7db0c581fa49a543060afbe3b54c53",
+    "2/69/52348": "9fc1eee1c287b52e6205652adc6e774b8b9d62d0c82827e3e14c9837e6501afa",
+    "22/122/30": "030a50eed3381142df9b98d964f92bd6a1258401b915442b2554f699088b825d",
+    "17/53/164": "4d6c221e8db682a89ce7dcc50862d402407cc354406492e17cdbf2abd3d163d7",
+    "22/1241/20": "bf9737725d708a68018f0bf5250dfe5c76d30b3b06f5fe9d4e8dc2879898ef4b",
+    "19/1/51": "ac8237e3ea3d62def0dea363f5a89e11b41225d51fba25229d9ba2509bc84c2c",
+    "2/69/2978": "6b97b3b341744d65a86ad1c9517e7eda638ebd7bd1a8b17f70a8f24567f2b846",
+    "22/1241/21": "9e9d3385de60e3ee5e9ac02c3292f03f8295f9dc3e38f0258b8d41ab8b5898b7",
+    "19/52/119": "923e26e847daeab9ca66eae0007ea1ff559cd72b4f1d4eeef6700d8eda7c9316",
+    "2/69/2977": "f2b535377485891b89ca03c6fb9385b3313dad4a368ae3e3943848b7a7562dcf",
+    "22/1241/22": "81ab9b66eb0b9729b2b1f3ec090931d96f39cc18dbcec6eb084fa0596663820a",
+    "19/1/47": "73db97d6ff5900fd0143cd1a7ccf416aa62c452be10164aadb0bd826fef4ea55",
+    "2/69/2982": "092b09bfd56a4a55bf4b2e8394f2d7c6ce87baf3399cb7cf3cd54c0fa9dba568",
+    "22/1241/23": "86e09cd45fd2a283828a14b65ff34e3097f72184cd360e15f254c092e7a4b177",
+    "19/1/49": "41c4230fbc147d08458f4368d721f5493538460cbefff0ddaa985a39deba7f2c",
+    "2/69/3001": "cb6f623648043867eea90b811137216270d5ae87775ad8ca654c034431d9d22e",
+    "22/1241/24": "ac982b175f5662ba6f4673ee124a18a235c71037573d7f52d99ca1de7422fe64",
+    "19/1/53": "640222a7d649019f9a9c028b4d3b3120613c80e8b620e895f68e250d5c36fcf3",
+    "2/69/2979": "c99a4353d5ca609a2b97cabdbe2444e857afb16341073f98fd9b285205ca3130",
+    "22/1241/25": "04c98fb65c41fad7688584948467046d8b8d4c075537d23dc5dec43737c87a80",
+    "19/1/55": "ded868d44ee1b3bac7c8b687094b85e7a0e6d4525d640df819615522d295cff2",
+    "2/69/2980": "dc44380705b928d5486acd84c000f75de990a4385274975cd3410836d682d09e",
+    "22/1241/26": "15c8377b78607fd64dd91bc73c8235df5402d07adf122fde6dfbc5654751dbb8",
+    "19/1/45": "e06d925443c8f2f89d053e25a22f621e274f5f4103f8a29657fe013973aa9709",
+    "2/69/2981": "18ad19e4052614a5b48b8010ae9188a979ada0664f2757f763d548073c187d6c",
+    "22/1241/27": "a00144a9ab6da913ee6a2d4883038070c99e0bdf12c5153ee8aae0156c1d614f",
+    "19/44/59": "d98233075062c7ca97b7c5a9da5908f7e1cfb8dcb13d969ad361b420bca25e01",
+    "2/69/3003": "0ca2985297fe59e3d4a61542c3c30b48edb1402978e53ec7b018de17495db99c",
+    "22/1361/2": "fbe39cbe6cfa96023d605c5fca4913a3ee2e6e089bfe2208fec42d83810ae96f",
+    "17/53/165": "ced11f1734e0162335626ec280e69f90564cb214c797b340d663b43a4de2e67a",
+    "22/1241/28": "24529bb95f4b1b048dc96e949240068e41c1f18a12214c70c65725a9c6e402b2",
+    "19/6/197": "318c9e8ab1612c829b71aec1f84e9c967f2e925484c91fbd507ee56d311e57dd",
+    "2/69/2974": "6007e7d2562a5a86c06d516e01555794c90bec2afc3a4929ad9934009a7ba938",
+    "22/1241/29": "701dff0dd305839ede3a035d0f0ac9d2f44f1b3c6eb9d5dc600c78090e5fee13",
+    "19/6/249": "f6f532108915dbebf3a425ad3aa42156fa18eac25c4d10b405c4223f18020f78",
+    "2/69/2992": "6afe48f51a235863f46f913c6f29aac484055ef3478351a07bb1ef37f06f358a",
+    "22/1241/30": "afa6344a6a8cf11cf046c37940aa13a077f182ec07379a5d268ebc321cf6e415",
+    "19/6/59": "d7b6b73932c4d7f60e8c156fa5abdabe81c75a4381d028467f4fff79ac42dc16",
+    "2/69/2970": "23b50bd12b042bbb300722985b4b7dfa76ab09b065e0b227666309372dd814b6",
+    "22/1241/31": "fe66d682626c54d1ae36b17b955a3beb04ed1b345f06bf65e159bea3f406f8f7",
+    "19/43/57": "bad0754084315e9f8d6609e26f68e96c9a5919b0a19edaa51f87db169e2bfd1f",
+    "2/69/2991": "f4e310e7f78261edb6d6a2dbd81a13d562b155715a183d2fcda497ce0791068f",
+    "22/1242/0": "eb6559414cc4ef30685dadab0a793ea93324159c7a4f077ce0071d739ddc874c",
+    "19/6/61": "a6d77db4ca5433178a3e173f917a1148c0208040096e212eee6069b7225305c7",
+    "2/69/2973": "b7b90e37dfa9a703f45bb1fb9d74a557bddb450dc02e9538f72ee9e614ee2034",
+    "22/1242/1": "d023844dd945af9d2bda82905cfcb422f80caaab73e0fcdd145fead7245b00b5",
+    "19/6/56": "7579de8e6e427d6fd1d19862d743d468c7522ee1c772c26a14acaa001b753682",
+    "2/69/2975": "73bb61f28d47d5131e6ac91f2ae0ca2023b512776e41390af4ceb3e47df77655",
+    "22/1242/2": "4cc4b75fcf4a6c88831230e37327f8ef967db84ae9b01c535891259c8bbad0c7",
+    "19/21/147": "b57d05d44a098545867d1cd103108ce9f4c7e9b4994c8953ac2932069129d375",
+    "2/69/2976": "7d738e0065eccdfd8b9df836c861ff5b36a813283920c59d1290918d6160cad1",
+    "22/1242/3": "3de40d86224747f6f86f23ce06876ae1fd48e36fc2a3464fd5dd23fbd179cf42",
+    "19/0/4": "634c1e427bb909587d8fc9001702ec3ff4d081155ae8e1bb879bbfe5b0739449",
+    "2/69/2989": "c9fafd249f9a94b6baade8e32d0eb22410128c688e21f2f2453159ab7b316ca0",
+    "22/1641/3": "cc6a67fa657a20419fe9cdd1f3c4bc3520b54b166c2b8cea03fae7616fe7f5b6",
+    "19/233/255": "a2aa16aee96fce594f6b850f4d907473bfe253e99260925751cf969e57465464",
+    "2/69/16445": "22dd4b13cb74e93eb8710fdfd1c390f5d3575d5d9445fff586057b0138d174da",
+    "22/1242/4": "4b5b3c7a66850fdfe555161ee733d83346ed58a496a314f661956a830ec9bcef",
+    "19/36/218": "5907f7882e1302bdaebef1691792de33513b32c3bd91bb623031359c89f6c934",
+    "2/69/2990": "50f7b2cbcbea96687b92fa2b4f2b31663309a97ca46617d309bc67c2f6e7f9e3",
+    "22/1242/5": "fdb5d5d32d7ba980acb88e9c83a534733eaa4f4790121297e35757a8cb36b3e2",
+    "19/6/63": "73da08c322ce8c2179697e675b3af450871fec79e4df8c5e2e0d9749cfd21a1f",
+    "2/69/2972": "beb7779a351c73c2b94c581a359aa3981b57ee46a7b95e55ffc8f0f176e740d8",
+    "22/1242/6": "29d40d7afb9383300c8537ccde846a63cb7158be39af42154c6b00baebe091b6",
+    "19/6/58": "f5f8df88fcd9fa724deffaa65d2f7d5577fe016c626eb68b1784dfa98b643df7",
+    "2/69/2994": "b60727e04426854bd7e21adf453f41d5086cb5631700a9a30453531d0bbd83d5",
+    "22/1242/7": "8e05672753486e0f1681eab688aafb6ebefeefca42b4e1cb06004f343c75ac85",
+    "19/11/160": "a63ba2c33e12259895ffeaddc04b8a57ee4602557ce9d40373af5a68322a0bf5",
+    "2/69/2993": "9e61ff267200b3403aaceee5f48599eb82305a3712bb331cbe7ba51e0a2e5823",
+    "22/1242/8": "7e8bd1d86d970a8a2051ed556962e07ab999583939185fc801a765d38e18515a",
+    "19/51/97": "1024bf9efe2353f9a910081d96b84ed0eaa1b1c1d8a896ac1d8bb7ffc6da7b1f",
+    "2/69/3006": "d7cfe46d0b029b60375ea7b09632628b5b2c873a97d7883188930824af66549a",
+    "22/1242/9": "6399307887a1b0aad7f0af16e10ea59fd4d98a9722fc145087ac21ad73abdda0",
+    "19/29/225": "60cc7235da13a86fb1e930137658bf4d9b60b8dc142790800c326dd90fa631b5",
+    "2/69/30998": "621f53560f933ee195130bb70b60832501396833950e122a1c87b4190e76478d",
+    "22/143/0": "cf37aeb273b07aa80ac0f9beb8957917d4dbdf59856711980807578825c78df5",
+    "17/53/166": "b45aaf022f98bccc2f5d4da83b6bf2a0e0b26b2180287f7f8ffaa54f84427c84",
+    "22/1242/10": "bc2ea67a59c22db55cea5396978bb1f9b8e3f08ab9f35b2c5907096adc9fcd70",
+    "19/20/221": "266bca41559afae754bd3d850b103b76894df825655f421c8e7f46c2fdd79f21",
+    "2/69/2997": "6db47f2d7580e6a510d08654b10e8c81d6cb2c060c1d2a23c8ac2724ee451dcb",
+    "22/1242/11": "ce500f241d6503942bab801b9d72539e6911e50b8e83c3fc0d02e2778db4a808",
+    "19/20/223": "dc54fb77dbb13d389fd0eda42271015cfef83e00d81b3a67e19a9c20a254e371",
+    "2/69/2995": "1cb44bb0fe437e2e88949987b36ff85254a70c4f4016f3ef4cc8ab612632c3c9",
+    "22/1242/12": "cdc9e604ee6a9acb18392efe1f1016ad73648853c351e422e7348e55ae015034",
+    "19/3/184": "fa4fdfd0f94b133fa8a4a846a6a823002a398f55fa6212f50b86cdccdb93859b",
+    "2/69/3000": "342e116b4b9bb39c99589dcf362fdb02affdc613b4a8713272beee8d072a03bb",
+    "22/1242/13": "609b37f3d299cb7d2beb637092add8950d99c6327f0f5fc55c900a18f2428b5d",
+    "19/20/205": "9d24e2e527eb9c6f4df53bd7bba31f1c678051515df72a67ebfb1ae22d0310f9",
+    "2/69/2996": "f973d7af6816388115677eee6cfb604dfc2ab9443f4ae38d39713c609eb6ff14",
+    "22/1242/14": "dc3a088c8b62b85a03e8acfacc259f1400751890bfce0023657975e477ce13ea",
+    "19/20/209": "2da52ee75a06c51999ea68414aeaf823748c026de99438753156721f832353a2",
+    "19/28/241": "c5a9ea72eb66e6278cb829de7be368fcc1b0ff0bad84c922e00de10c507dd639",
+    "2/69/2998": "5ce50debf2f400a90ecd7c416a475cb3fd2ef78886fd71c2918ac7e229733c29",
+    "2/69/27430": "2e1dd91e722a0ef8eb391acce3f639726a7d30b29411a589eff82bd6769adccb",
+    "22/1242/15": "1f7e4ff35137bc2bf9ee7f44da8e322c0c15d799284098ea367617f6bd9e2163",
+    "19/72/250": "2dcea65e9e2ece3fdbc7a305fc4baa441ed3d27589609efdad077e33d45dd8f3",
+    "2/69/27431": "e7bf9144e866532bc08173cb5b2ba914e963327ac3737e06843e7536c58f0397",
+    "22/156/7": "c98f1a2f182ac4db9da68e219a8397a039ed7bc7a8044cf25d9c6459068fbe92",
+    "17/53/167": "d3cc6f6312a2b59e097a87aa99ac0b81a59120428e6e54b951ab34f5ab8a62f7",
+    "22/1242/16": "0d6e4a8b5eaf13a281c02b8f7ec5bba128879f534ba106b453223fad966ee534",
+    "19/16/66": "9b65d9a954c1367f6e1aac90c48b29869fa383a737e47a6ef77517165c25b1f4",
+    "2/69/28219": "eb980566e48ac1b9dacf56062e6acfbef1a2012d9f0f5b16bf74e27c42436661",
+    "22/1242/17": "51111b74d30ce54bc2b2133953f13b5051a05ec1311a5603c379009312eb7529",
+    "19/136/144": "a5716b6150de7e46c4ea43ee9a9840f356e16e5d7d0cce33ddc78e5dc52943b0",
+    "2/69/28220": "de085e785805d61291e1e2130c230c6c898f96ac706cca475cfd68c1dd90a946",
+    "22/1242/18": "23694f1699a24af1e82c922bb969785431b638ef6a729e0a8c3bb74d10286389",
+    "19/136/145": "45bc8b843730305318053953bdec598890a36adfe76a5e81a5036b4c5072dc7f",
+    "2/69/28221": "fd698ea3f6c36f7f22f52f1c1728a7a740a4bc719e206a85693d446fe3cc14b2",
+    "22/1242/19": "f1181d08697ba8c5d39329325e577e538ea1c2961715d6cdbccb82e20dc0978c",
+    "19/136/146": "892ca102704208eef273bc2f63346e201b7060692e9725d4b73d2e280f41782d",
+    "2/69/28222": "b223edb9f43e1d6f08720d3a5a0d0e4b7e494ad3852c6d2f251b3ca8f1ced24c",
+    "22/1242/20": "7adb8c070da31244af26636f9a2b3d1ad11a8f38666935ca8cfe360c80070c27",
+    "19/136/147": "bb1a6c5a97696f531818d3b4e630ad284626d0f3b6ca8d2373a956d2fa6d8819",
+    "19/136/148": "d5f1a6417e187bfa839e56d4715dca4561870e98db0b33687fd906c0efcef1a8",
+    "2/69/28225": "0101ea04cc02aee45bb4fc4b34ad338799f47b11dc651fb189713109e7ad4a68",
+    "22/1242/21": "1bf21793192ef2b12a24293cee554c6c16f49bb5c301fb8e629c534a772a43be",
+    "19/42/200": "5407c97facf80acf53e7bfaa045c9c9e4dda469d5b110db466c440297290476c",
+    "2/69/28223": "1eb48d4a5be8d7ca04ecadecec25a525c5e85c01e3a4c80ad70dbccde4b6d07d",
+    "22/1242/22": "a55cb9269e35834c70f703c66bc18264af12a8c3e3d1c1bc7a8f1757b2c462e6",
+    "19/127/132": "3b0bdafb55067dd3f7d8c0453445ca25a384f10a789c5843f2049ab58d1bfc44",
+    "2/69/28224": "04e93084c4ef9103f0d68dd64dbdcb7fd3381c04ed02c03e1a76b120a4432d75",
+    "22/1242/23": "af2846cafff720c567ea679a1339a70b52f4dd102c04bf53dcb9eb1fde76c613",
+    "19/83/203": "289eff7a202ccae03631356362f718f69cb06e80f61410bad2b8ce72ed6174ff",
+    "2/69/28230": "3c03293f6d6dc1ba5d351464ac6ed570850572da57365d5e224c78ab17d76678",
+    "22/1242/24": "37446d07093f529cc0da7060da9685a2576e53cd8832ee8225ceced530476183",
+    "19/71/161": "8485d469f4eb42921068a374d50b59affd5464211627a268f6f6246db0337d20",
+    "2/69/28226": "36998e4465dde0654bf6c8e802f8235b1eeaeef706125e0197a8ebbfb2eb0d24",
+    "22/1242/25": "7377e7cda7b4cd9bda400285cdebecc31930f9b63e040eac7411d8297dca505a",
+    "19/121/212": "8e772190a45ed5e35c21ed5a7b2141f8c05f3f2b3f7f432fb0201be8049d10f3",
+    "2/69/28227": "762855a7e39c84283f49c51a70d32cd5e22eae0dd84108a919e5134f0a26f710",
+    "22/1242/26": "40b53ebd433a0d5382316b2435a002436b218fca4294c59a838effa25b38eb03",
+    "19/109/92": "a83a2a3c694b79231aa89a7b3a363462875f632d03e3860433958b01103860c3",
+    "2/69/28228": "6fc5cbaad1c810b2d59145216d4330c920a185350bbeaa7fae6f58c373567b02",
+    "22/1242/27": "97e0c614a7f21f13eb129a8b39375ed944577a75407f16d4557bd987e8779a96",
+    "19/76/219": "68675b3d1cb59bf2a7c749a604147ca07134118fe99fa8b33701309f36999707",
+    "2/69/28229": "32a27bf4f27e2fdfc09bcf9458b0944796c639f4b1f8abd7f449c26dc93a7f15",
+    "22/1242/28": "09f94f78c2cd5db226b21d59a7a59c79bf470651332e261347a9bb5cccab4336",
+    "19/161/159": "11fea1f5556ca2b81bda867064d1e79a334907a3743fbd85398d85e51d5b418e",
+    "2/69/38660": "a140c888988901b8b8d65b606ea5fce156453260d661f2562035978154b90a1e",
+    "22/161/9": "211c0ea617d5ae3296d96b9b4d6e43b0c8ef6cccf423e8c85edb791d2b836c46",
+    "17/53/168": "351a2ff5ebbc92cffca8e23f3c5e383d055c1e7931cf7646d1d8c3aa18f3c785",
+    "22/1242/29": "d7302cbc7e4371e8a15a71cc6c939c7098e3ddb22b60779d063507d732718619",
+    "19/142/15": "eebb1803025fc3e3c78723817f6bbf47bc24a664a7dda66b4be1b25dd5e0e7cc",
+    "2/69/30224": "46c0427eec466154271430f3be7c69598bf9338a4c45e6a006f170348c786a25",
+    "22/1242/30": "2d04995cd88de9b6c0c59c256a61d0e16f0eaa0a8e44bee6e56c9ac77456fb22",
+    "19/142/16": "daed02ab9a79b04b48912fe76f2d6b77924dd24fd8acad14be6f6b6a3fd9eaf1",
+    "22/1242/31": "f6fcb8902475314bfd0d8e45203237c62eaa84f11828e2d86bba2ed4e2b68659",
+    "19/142/37": "d74d3faf7a89998adf3ef53d6f65f644c24bcbcb433e24dd2707d79245fe9b39",
+    "2/69/30225": "f586c38a28c2744b56f1d35194f72832d02a5d65103b505f2005cd51d3375360",
+    "22/923/10": "f1e0b1412987196bce272bffc504255d2cd57ad31ed5eea3ca1632ca6546ad8d",
+    "17/50/138": "d3bcf0837852b692360727a9f0b891a2ba1a32ea7b2fd330ca0f2ee3f19abe53",
+    "22/923/11": "906a57bd062b62265c14014129c83d8e39293db5658d8d4f7d3b1d4e7ab2d5f7",
+    "19/193/125": "dc5679c1cfd1824663d8e02a0cfff2bc0f9b146a3d1523e190cc4aafa3af6ef6",
+    "2/69/46463": "522cfc8153c70b3fdc4161cb9f9bacca7baf22a7810531c8e6007916cc7b3f3a",
+    "22/923/12": "2febbc6877319f8c2538d08a4afdb7d7e7b8b92dec7a077d51e34872f6d50415",
+    "17/50/136": "81f8d6ab30c8802daa10d764e305593ff41614330c9d6349ace9c5103d798c4b",
+    "19/193/131": "4071995416a6b0e75ab8b9effd6a45668976ec0ba61a69f04b850870943655bd",
+    "19/193/134": "dde1f2a1911ad2929281092bef8762e640283a801188c4202cf6deb455937aa4",
+    "19/193/137": "f38408d4cab6bed60f4551c81d4e116198ef2d50e35264f4a98f229585284dc6",
+    "19/193/140": "f88ae9f7f2a64ccb41fb50ccd1817fea519db033576e5da5d1188710a58a6741",
+    "19/193/143": "df282c0932ace6cd908ba52783ed1c62d42accdba851c475a432a44af9307e64",
+    "19/193/146": "ebda9863594eba26abcb413295a2a0489fdeaf5a2ac6bd77a45ade29faaa960c",
+    "19/193/149": "e490a2048c28835e12072772220c7973e8ba8b70f01f896bcdb65142b028e8e3",
+    "19/193/158": "f1dc7fd6c6250f068b4c6bb1af61f0271fe584a394bb4e7ef8700a18781e4558",
+    "19/193/152": "1ebf1342ba267916ae0fe51510b46cdfbfe972e41e0a584804f61082639c04a9",
+    "19/193/163": "2395d18160c96f1b74da7218bea23e89940465f6c49a9b5ddff7160ff4ec18ff",
+    "19/193/154": "5c6057b1e78f976d193c088a470a2baae9d9b17ebe52c8a8a24f401f64d3a961",
+    "19/193/166": "aa8137c50d977a76f26996ca4dd15dcb2274c1b4e14dffc7ef9aea3b2b424da0",
+    "19/193/156": "52632863cc6389ae13367c69989b1162b44d5c605b692f5d08fcf715a11a23e2",
+    "19/193/173": "601725d76266a0240f798a5603ef9d4876b5ee331a52b2dcd36dafad2d5990d4",
+    "2/69/45999": "1157c9e0f5c7689e5750cc32f6af517f1d85f070c744bab1b5e09ab957f55b5c",
+    "22/367/0": "b20eaa98abc851f996a9748dbfe13f4a331afbafd977cdfce6f63c3fcd0c2398",
+    "19/194/216": "20aba0a1548817b0f5b364e9e67d609ff1859ce26b44a4fbdfb3631e5801c111",
+    "2/69/47423": "76927aad70a046b9552b3249affc586237c23837f3456883c323fa37893f255c",
+    "22/367/1": "9bf9d63297a0baa1ef8acd730c9d247a64b47d20d1a8c38c9b2a7df2dacae6e2",
+    "19/194/238": "0100690ebbad5261554a7764ec968bf7adc7c81f5530f3298ed145e18d4dad04",
+    "2/69/47424": "f23405e1b46282a199fdc3e235cebee37448ee6cdb7b98e1917d7bec94372b1c",
+    "22/923/13": "36e6d70fe2d9909b540071d77c0eac54467428007707303a1a06c6a9c2a3c07c",
+    "19/194/144": "179bd9aaf120ba013f831b6311617d735b01e060e1a8fb74ecb103c3a708f90f",
+    "2/69/46000": "d0bd0ccad02e4315aca5c8bfd9ec22d0e8680304aa081a9213a46d3d77a4c6c4",
+    "22/923/14": "c4bbe5857c383cda7b1bd93d325e94d16a779ccbc88e2b729f0321aacdd680b3",
+    "19/193/249": "5772f455f8d6d4d528846f2462433eec3db4d67f3a13c11bb9d41125919b1507",
+    "2/69/46001": "922139f4af18327cfb64bcfdd3b8348324bf1f0a40d12a2a68a2f0e500f1c048",
+    "22/923/15": "b71f7d6ffa523fb719d158ef571dff56a8bdc17693199be2fc2e527da4625411",
+    "19/193/251": "3566062fe1fcc34bd964eeb8ffbdcfc00236050067022d56c49c6fad26b8cd9f",
+    "2/69/46002": "4c50ee8bda2a54b8b4f43273cda4af5de5e7f7450bc70be4b229023a369c7b33",
+    "22/923/16": "905496eab2d5a6b7a829bdb3f08fb3e81bc795b62492cf2b042670d6ec183687",
+    "19/195/198": "d05bc86707241d519c359c866f3b4a40e955516ed3585ff490713fe1f212c374",
+    "2/69/46003": "1c5db43308fc70d3e7e5c2c44ec7ebd9e3d94823e8a08e674428c32f75ada35e",
+    "22/923/17": "5cdf6aad01e33d8208de11c3ef29a9c47e74a3194b3e03609cf59a9d0d26c858",
+    "17/50/137": "ccb29e60e7b72bdce54000b977680dd38ad1be0649c7c2efd575f1cd470ef88f",
+    "19/195/200": "4963eb377f3f239ac3c47b125e9677971f7d9d40efb1c5667fc6e2da8d5fbe1b",
+    "19/195/201": "60061c80948b2a61625e4684e36b28734b029c7b5630b0c9043043f579ed61a4",
+    "19/195/202": "d8a97871709226ab16d807591db1734843e6cce117769a27192e52052331d7d0",
+    "2/69/46004": "beb9514849f1c9de239434e0015dd97ccb257258b62fc6fde9ff8ee297a1b436",
+    "22/1559/17": "d42011f35b744ad17615daa98669ae64fc19994941725839876322fa6f1e7f1e",
+    "19/222/156": "69c18bc8c60f7bf9f56070dac1918f029befecdefb97fb1a663421bf4d1a09a0",
+    "2/69/55525": "6c38ea5ba363c9482262dd15c5cb3c1e0bf8aa885f1b376ee2e159f9b709c9d1",
+    "3/1944/0": "7288d3b5d1b2de4e65241be2c19cc69afcadd86d87b2e5fe38ecdeb31ffe0df6",
+    "3/1944/1": "3f18253d05f65f96b7752f04b1440e4ad90258d2c2d080338234bc3ade51ce45",
+    "3/1944/2": "3f18253d05f65f96b7752f04b1440e4ad90258d2c2d080338234bc3ade51ce45",
+    "3/1944/3": "cac2e3728920cd0e95e4a24c38fe16fd8484d3dc547022c8da2413a50cc7ddd9",
+    "3/1944/4": "c8fe674f627d7a53e297048200caa0ecfa4dbcc9df983e731975c62e906d46b5",
+    "3/1944/5": "7487217d29a0179bc133f9268ade6b15966c65c2ecae32b2835ab1948205a573",
+    "3/1944/6": "fdb1976d079c2b74f04c30aab14306178708b70fe28072b6e567c894ae5e8d91",
+    "3/1944/7": "fdb1976d079c2b74f04c30aab14306178708b70fe28072b6e567c894ae5e8d91",
+    "3/1944/8": "9efe2cea0e1fc6df3ca28e245c3e4b686ccd0d0defc741feeb6d644b4b8a0e47",
+    "3/1944/9": "d809b7671378f51a9ae9387d59ce2823cb87ca44453d95e6e4e8507b4bab3891",
+    "3/1944/10": "7b89ba96140e0ed5b2d0cba007f5716a28846389aa1ee5e4e8700681c77be25c",
+    "3/1944/11": "365d22a2a87b73b2cfbf1e123627654c9855f48e9852902b5ec774a6df177cfe",
+    "3/1944/12": "74f4a0935cf74165febef1d43958d593ba52b996078fe1836688472e300e139f",
+    "3/1944/13": "7169c2a67429b947683acda51eff9551a97b7d47ab8cb15fa00189ad58e85be0",
+    "3/1944/14": "0f740cd9ccc9d66af241dfaede7a81482f7c67ce24d95935e16d02d6a003a470",
+    "3/1944/15": "aa4fa58c39ae81e0280c7b072b3fc6b0e73a0905c0225434da7f9e1bcf9e2d47",
+    "3/1944/16": "347c2d47c386c05ec2887b90bcc5c6cfe1bba5cd6df22fdaff6fb3825f933dee",
+    "3/1944/17": "2c7fab9ff4d456f5a0deb8da05e52203ac9a567c0617c06ebb5345d57d9a192e",
+    "3/1944/18": "318a037b37bafec6d14d9db950a9e6d0297ce7e7a732a4876921a90e061c55aa",
+    "3/1944/19": "b4dfa4f440b1875d710f961fe2a829d21093feed0d0e4226cae6af0d2a8ac668",
+    "3/1944/20": "577229db7a3a15a9cd68ff7fe55a11f095be73c073eef65417095f9b6c5e3198",
+    "3/1944/21": "2a00fd268d27bd523e933b83397705c08e506f471e786268fa87ef48436ed8ce",
+    "3/1944/22": "b1c14b7d2710ef781ba67beb0f57730e8e9444da9ec570ea3ea5b396e3d5d7b2",
+    "3/1944/23": "3b6f25fe483899dee2761b10f1c772f488fd688ce648591e30f5f8751afff06f",
+    "3/1944/24": "44668dde32f3b2e40d85aaa250ee2a4ef4a8282a867dc8e82101143434fc2c06",
+    "3/1944/25": "94026d5e854dfd918c98eb4d5ca2b59e5281534e457c8eb44d88e2cf241fa6ed",
+    "3/1944/26": "7d65d617bb46f38daba6bd9261d3a792abc11708133139bf497e55ac7d307620",
+    "3/1944/27": "6be4f3faac3dd7204d64cf1e7fe0742d66b07c1577f2e46f7ef785b8d831aaad",
+    "3/1944/28": "f2094a97c10482f99d9130fa3026f9661b9cf191245fe3bc660b87ad877a7b32",
+    "3/1944/29": "db376fe125f6cf5f402884a132011c918fbe62e1c3c73f257e6b872d407c9867",
+    "3/1944/30": "1b9522d7605fe32f8d14a5110db7b6799d12b7096afb80707e90ea32fa3e8192",
+    "3/1944/31": "0f0679b6f58a57a638c0c360dea2f5b4a971db83b549fc3b233655fd50b9a5e5",
+    "3/1944/32": "2d1a4befd6e0a4acffcad49d14a291d417405fb11dbae07b1e18be4464fc1e99",
+    "3/1944/33": "ae52961ea6540bcd09942fe17b26259d3a284ca643487b6612e734ce513adb4d",
+    "3/1944/34": "fceb5475ce5cdc2a82085d14be06ad6ca1a87697e094ef7086f32a9d2df5b3a9",
+    "3/1944/35": "4875b0fa61cc101fb7d8234d67b5c4894ffd9b8ab84079d8014d3fed8cb89a84",
+    "3/1944/36": "db762a5a13dac69d056ba5574b973b2ee780e1491f8b54b6e55d193c1950d2c0",
+    "3/1944/37": "db762a5a13dac69d056ba5574b973b2ee780e1491f8b54b6e55d193c1950d2c0",
+    "3/1944/38": "4f114b7cf71d50d4ab85c8728f7424496cb7f88fc29461ee93d44d2bce3f26c3",
+    "3/1944/39": "3a63804198ca387a5841f7e56a43430d6c8252972ffb3536e15830901e33c1fd",
+    "3/1944/40": "09de31edb5a7562bcbc2adbb8def0467f72afcd2dedb7005a14f3ce75fcda56e",
+    "3/1944/41": "039d20e085e8509f44f32570e4a3a7757bc6e677d02d1080927b8fd46314f221",
+    "3/1944/42": "ccfca4c79059e836ec47dc0494bfd15204356eaa7cfb55eeda83de4c5ce5d9e2",
+    "3/1944/43": "5a58f8f9e4563d650d4a19562f3c3c5a25c726f8375e906fc45c8987ec526f25",
+    "3/1944/44": "0beb99b65e9b43e4eb650703be97df60990abb116cddead085e40fd473f679a5",
+    "3/1944/45": "ae24bb0973f331984ab1835031c1e5827c52e9a408e1c2256de255883762df03",
+    "3/1944/46": "faf18591f9e72ce2abb4c8089c0a2fef569262bd5ff84f83d385e93c9acd901e",
+    "3/1944/47": "a0cdfc4ab39c68f75548513cd87d0b4c9aab7c22ac9a8a202777790cd8a7a1b9",
+    "3/1944/48": "8bea4044010c61f66a5252857795e49bc23044a496cc7223f20d1c7c84dc1556",
+    "3/1944/49": "606d3cc1a33486e366bd2ac88fb1aa6a79b5f8691e55c37179ec4d5aa23b3851",
+    "3/1944/50": "85a2b0298c84850ad4e4837f23b64bc338b4ebe67e37ea65708073ed45d6db4a",
+    "3/1944/51": "dc94fec660118db96d821ecbcb1f04d27383d6b8f97ed1a0544517fbfd165d9b",
+    "3/1944/52": "15b362edba97c4e3583ceac652f28872c612ae36e523b6dedba6cbbed78ee1fc",
+    "3/1944/53": "9e1d96117be5e95ca475316ae6ccb0cb467dbd8287334d79dc81e0a00f666cde",
+    "3/1944/54": "fdd7f6d5571bd3c94b2ff0bc90969e072fe775ebe473578f4cc07fe4f0ddc0d2",
+    "3/1944/55": "e80b2849389f0bba5059d04ef3b0228a1f2f1ebbede141a5242e17bcad860376",
+    "3/1944/56": "6d3cb4b36ed4466c9c85bfd012221892f3adad41eaf21cea39ca7431958e8a2d",
+    "3/1944/57": "9fdc908692c68300d377d0b8fe1694e6fb27fcee67555c9b7f172e93793dcd0c",
+    "3/1944/58": "4e8756bac00271932713e44ced70cde62681b91f088fb60bce78aba1325c25db",
+    "3/1944/59": "c83e1aad6f2134d4829001c5689ae95a0db8bb8f26aa447247e7b0df4e75bd74",
+    "3/1944/60": "b3bbb8a3948c5c5589f915d6d6144e530f422af5c3634a4d5fe02e8990aa4904",
+    "3/1944/61": "510da42d5dcd56738267ad0d51e155f7628e7815949e07319efe9b6e1dbab894",
+    "3/1944/62": "9ee3541b0227ec18d1991b224b71c105bb58f4f531a3cd683a638abefd12b5ed",
+    "3/1944/63": "94426442e0f2dd0e89706f648bc92cdf1eadfe28ef300f26797620171847eb0b",
+    "3/1944/64": "243c1200f71bd500e20271f42d640404d57f537737f57bfcf54bdde6f6115f15",
+    "3/1944/65": "79397d1cc81642fe4bbe90cfb6a7e5d148637742332d00f28fb23c6f3e68c6ba",
+    "3/1944/66": "c6d0040711daf7592576b79f4783fe53ffc689e93558de81d6e5abc0ae44fa2f",
+    "3/1944/67": "e7e9f94a000b5910609475a2542212e50e5c53097e36f1b79dbbc3db5f46cee0",
+    "3/1944/68": "415cf34b4383b9f3989672880f8ec37177240a0992754215780bd32f1e495396",
+    "3/1944/69": "b676797d7c24335034ca1f8890cf280a72695c159d9ebdb0b2cf49739ee53dc1",
+    "3/1944/70": "9a88d56a332f4b64624fc3df28fca579f3c5331f930acc712972b729dce7450f",
+    "3/1944/71": "f3bdfac37ac4bbc53278a1e7ed3391b272f3eb3112e7696899526b81737aef93",
+    "3/1944/72": "298e7dd5399e45570d191914db96e0682057d0a67da583506be381c1460700ea",
+    "3/1944/73": "1091f3b90361fccf509f460181366fac23ca3fcebe144e5d88bf1b5eb4df88fb",
+    "3/1944/74": "af528f498237b47d3b6c094de1f68a58dbdc3c1c632b4bf41e90979f87efc5a3",
+    "3/1944/75": "b5b9cb42bac0867f98c301fa9878b0fea30effa3129aba4ec53462b2a22b9f2e",
+    "3/1944/76": "a12fa3ff61e4dce5f7444a0a960e4644461aa9bb61557aa7c1010c46e1bffab5",
+    "3/1944/77": "1ed5a4443fd8a958aa5671ade5230a914774a1ef0468c0b448a0ca86b11cffd9",
+    "3/1944/78": "387b1595305f111f2fed66f74401183732047d4b7f4c5f83a45873fa88285e0e",
+    "3/1944/79": "07ec40fb8006a0efb51a506be2c3241a6882c922c30103c1ebd30188e06c0f5d",
+    "3/1944/80": "4cad49ffc6552727621340e1000284ecce19dd048b26ddbde8cb00b8451cb510",
+    "3/1944/81": "0d7960990aef74b5947443b7160bcc6e0fbcf4fbf3947ff19157eef41dc0466d",
+    "3/1944/82": "10133cd840191be254a0983259c8784d6173ebd5b77e892c04241254ae680042",
+    "3/1944/83": "20106f3605da3de3478660a9de12a469960e9d8be6ba7f8b11892f8c0a669dd2",
+    "3/1944/84": "577661286962642837c8828d82bd68f8277b8d29e668a0d3bfd69a6e5e3505f3",
+    "3/1944/85": "196b2d5274f5abae01b3a6d34eba2686725a4d24195d75d41be63f435a231b83",
+    "3/1944/86": "67a2b7c10a6272c3d25de9cfc6f6cc678a68cd7f702be2796c403b9239055e24",
+    "3/1944/87": "73fcb6b38fdac8a0cf88b1e6943e9043988be31b87f274f5664d624f8794bd27",
+    "3/1944/88": "9cb724c166b6f6067c80f90b3641735b5d3d49592a8408ba8b1fd57faa82571d",
+    "3/1944/89": "c04ebb2af54b79096fc8171329d3c7c9fdf40820fa70d871b387ffd14b6a8a49",
+    "3/1944/90": "7dc4f4ff56e7b2ce6e33e0420772421cb8e84b63d1047bff6b093cd2901e210f",
+    "3/1944/91": "e67b90ea4f58190bf92bfb5753d3043ad0490ffebf5caca107d2e1a774e826ee",
+    "3/1944/92": "3b2c6b87b274b8f91ebc847e1419b526bb475b88648e4915ce03a7a467a2e71d",
+    "3/1944/93": "1cb03b2b77d9d382e57358ea072582a92e7f3d6dcfdd92de08bc2b41e0e5f228",
+    "3/1944/94": "c8c85859383d04d184f66cda8c0a2d00a218a9bc58e307d3d50bf433b06382c1",
+    "3/1944/95": "07fefe071a5d2feb2aafe43ef7942afe3f8b74087a92271273b6825f7ae2e334",
+    "3/1944/96": "6257918e21a1a9ca3e647954e68da4d0105c3893fedcff575f6c5e6ffe3f5e9b",
+    "3/1944/97": "d951f13ff12cda808180eed6a43395394bc99c255da293269446a94ac1e26cd8",
+    "3/1944/98": "77d61157b4e58c93676dc345823c64dd303aee030a32069a4ddfbeb5f5dfa403",
+    "3/1944/99": "78c4be057eb7b161185fd3ac0ec5590b007a2dae83ce37b6ebf718d7323bae2b",
+    "3/1944/100": "dc418229031d6cf7def4abeaddfe95adde2be7eff41f1411a7849356b6017418",
+    "3/1944/101": "56cf93e7d94ebee10031fa55a9f91d4a0a157b5c7319dc5ecc7fb548b4883ccf",
+    "3/1944/102": "2afc363d01add638f18cc230d9ed87e05ca182fff4d2c02e1f654d7104f5bd69",
+    "3/1462/0": "076f92b58a47fa090e1bf24a24b1c92bbe18f31262ea2546374f4623280b53ef",
+    "3/1462/1": "91b8a84d28666e32632675e98ee4b4dd66d4243220036c9ae1fb164608b2d50a",
+    "3/1462/2": "bc136b832487d42aade3058375e008dbe25ea1f984e9ff82815c0ba9dc93b435",
+    "3/1462/3": "7bbe9121c015a14ae479de36c7aa0c84b7d67feb960a31a4d40c9e7225998c8e",
+    "3/1462/4": "e6b8429e87814ea3dee01c513d8995930200aa8655119c2490bbc4b17375ccd8",
+    "3/1462/5": "400c9f4d0d2180e1c4a48d6d90604573bb27049e3c7b1fe4b62c23b17783fb4f",
+    "3/1462/6": "2479818a5ac124688eef770bfb1b9974d75154f20989a6db0cda1f72a25e0d94",
+    "3/1462/7": "dc6235d8f1ed588c7783ab279a21349a3bc6199f99577ef92e9d8c95c4eaa295",
+    "3/1462/8": "22fb5673584954a1c1045b7500a701826e7f8450ec0f018204db21930ad80efb",
+    "3/1462/9": "2d2ae58df9bd3c1c2e17ff56ee82a81f944248fcff9f28b0c05a349ae3483ea7",
+    "3/1462/10": "6bbc5cfd80429e2fab7b902a37b085ca0349ad6075c9af8e901ca769e8f2bb2e",
+    "3/1462/11": "11c337ed6b9026bcbc19fe947e61557843afab77b5f99578b5f310462503929a",
+    "3/1462/12": "93636db905767ecb97f53e39f3af34814c6e758c71503d4c83e251ad4072cc70",
+    "3/1462/13": "404362364899a6f35cd0019cbea96a7fb6aa130b0081391749a720e6323b7731",
+    "3/1462/14": "e6b8429e87814ea3dee01c513d8995930200aa8655119c2490bbc4b17375ccd8",
+    "3/1462/15": "e6b8429e87814ea3dee01c513d8995930200aa8655119c2490bbc4b17375ccd8",
+    "3/1462/16": "466cad4eb16bc935fb8ffae297092dd11532464c30dfa647ac64b132390842b0",
+    "3/1462/17": "442f936011619af575f9e9b9770dd58faa30fc82bbd62af469efc48f0a138fed",
+    "3/1462/18": "3ddf8f12ed0e87b4a3137f038287e52fa15215082b3c37fca05e00070ff35b85",
+    "3/1462/19": "3ddf8f12ed0e87b4a3137f038287e52fa15215082b3c37fca05e00070ff35b85",
+    "3/1462/20": "3ddf8f12ed0e87b4a3137f038287e52fa15215082b3c37fca05e00070ff35b85",
+    "3/1462/21": "3ddf8f12ed0e87b4a3137f038287e52fa15215082b3c37fca05e00070ff35b85",
+    "3/1462/22": "3ddf8f12ed0e87b4a3137f038287e52fa15215082b3c37fca05e00070ff35b85",
+    "3/1462/23": "3ddf8f12ed0e87b4a3137f038287e52fa15215082b3c37fca05e00070ff35b85",
+    "3/1462/24": "3ddf8f12ed0e87b4a3137f038287e52fa15215082b3c37fca05e00070ff35b85",
+    "3/1462/25": "3ddf8f12ed0e87b4a3137f038287e52fa15215082b3c37fca05e00070ff35b85",
+    "3/1462/26": "3ddf8f12ed0e87b4a3137f038287e52fa15215082b3c37fca05e00070ff35b85",
+    "3/1462/27": "3ddf8f12ed0e87b4a3137f038287e52fa15215082b3c37fca05e00070ff35b85",
+    "3/1462/28": "3ddf8f12ed0e87b4a3137f038287e52fa15215082b3c37fca05e00070ff35b85",
+    "3/1462/29": "3ddf8f12ed0e87b4a3137f038287e52fa15215082b3c37fca05e00070ff35b85",
+    "3/1462/30": "3ddf8f12ed0e87b4a3137f038287e52fa15215082b3c37fca05e00070ff35b85",
+    "3/1462/31": "ea269f99f0943958a993a2cfc766f23cd0ea0d1b0a36a5dce2e49c16682966a2",
+    "3/1462/32": "442f936011619af575f9e9b9770dd58faa30fc82bbd62af469efc48f0a138fed",
+    "3/1462/33": "81654a7b87bd9437a895169c30cbf1df9c5cca8ad7c3cf53c037dd61c86e0ef0",
+    "3/1462/34": "53db6fb47d6c0c05f807c49e8813da4c44df1e9a61c43c82830d6ccf26ac3c9b",
+    "3/1462/35": "98295a33780c930a6e99a4a5218f265f9860475bba26ce19d666e6848aab14f0",
+    "3/1462/36": "b2cb6294b29b5cee1e2b338992db15df7225a4432c76c64d3c0acab874d8c532",
+    "3/1477/732": "5f3f29f418ca18c3ccc5dee67e7a38c667112d64f983541e6bca20b1f861a3ac",
+    "3/1477/733": "901ce66ac6141e6b5fe1a8da980cb958a8d33991faa6e0de5cfb79afd1cee08b",
+    "3/1477/734": "0cf12115dc38e73e65b63ffb82fdae1fed36b7396b297d9e56914816be082f59",
+    "3/1477/735": "7aabe17f121ec67146e2139a210ef413950360de2c9e673be8b03dbbdeb69674",
+    "3/1477/736": "901ce66ac6141e6b5fe1a8da980cb958a8d33991faa6e0de5cfb79afd1cee08b",
+    "12/8471/0": "a6b1f837eea30ef9877befb81f8888a2424598955f39a7961570c7feac829522",
+    "12/8472/0": "5925fd9b910ff6bfc0b3cf3589f13e4a774c76cd7f1493436e4b60c01870ae56",
+    "12/16559/0": "d44a7ea61c5fb445ba456eac4cdcf01b169d39a5928d3d42d847d7d22297c8e7",
+    "12/16555/0": "36ccc004eff98ba3e4d391369dba1c462d159bc2a6d00c2a5a88df33113b49ef",
+    "12/16557/0": "cfd1d73fa7d532e28193f87759d66bec4ebbb1bc9898a13118839bb2ae28d9af",
+    "12/16563/0": "8e97459ebb6a1c130712023011954b91c8d9320b29e5a2915f33f40e6c910fb2",
+    "12/7090/0": "6231676db963b1a976b4a35fd70a235dfe6fc9f7012d0247faf0f8e368fca8cd",
+    "12/14090/0": "437ff6b5c588cb9ab3e28fdccd67e0dfc2690d3ada406a4d27506667d4573ded",
+    "12/14097/0": "c8f7c3d8f7e313bc75a96a747b909437ad77a3e0a0bda6dfb209b774f19f4893",
+    "12/14098/0": "870cc87af8075a9011d284a04e48583b43d307713c700ef8646c9b3ba8ddc7f4",
+    "12/14099/0": "734726d77a8d94878a6af50351d3ff33ab0c5be6515e84bf1b486c76589665be",
+    "12/14100/0": "09066e048048460de2d74927948164fbfeeefc5da23d6860f064795c9b9dd65b",
+    "12/14101/0": "b50efe9b4a1656c501fbd30f82dd664b8221eaee0d1d6d9ea13fe3c7f037b423",
+    "12/14104/0": "365045aa3eeb5ef24b26c7a47d0e50b6f6182a7d32f44de49f67f2c048be077d",
+    "12/14105/0": "a44f9fb6f9b1c4fd2aceb81c653ab633a80e1ebf7d4f4465fe07a33b83b0b76c",
+    "12/14106/0": "507beaeb4dfdcf53938969d2b6dc41f9e9a23b5dff022a0ac3f0ec8d98df6657",
+    "12/14107/0": "ce9bde863a418c3751efc25311f5daa7b9e976da6e0b7bbe032e0c318920340e",
+    "12/14108/0": "1e6773c4ec22f18abfa686d4dbf1001012903a1296dff87fb7368af3c18c6c6b",
+    "12/14109/0": "eb468a7cee59ea37ee918ebcbbd29a31c5627f626571571cff2dfe126e376460",
+    "12/14110/0": "594d9b2231ae2216a2d3de1bf352ed442ff1147c84acc5716a1dc44703f02096",
+    "12/14111/0": "ca42dabae12f7ae48754bce539b50bd0cb3acaa3e63d4e1d4b811ce891cb94a0",
+    "12/14134/0": "be7799a182363fedcc0afe88c25190a6842c776e6cb1a9113ae2d5d78a5336bf",
+    "12/10410/0": "9a9ded25afbc20aa7c692ddcd1cee7a752eb901d70c1fccf71dc656565f9a26c",
+    "12/10899/0": "29cab65d977c85cb0de05204fa7efe9e2eda2a00232f86207f391cca14b099ef",
+    "12/8421/0": "538f76796f8ad460ef5dc918ed036c69fba0397def38049c87a96c43fb50bf3a",
+    "12/11145/0": "3785303ee6b2c09c260e718b853c8ef7773bc080d07d0dc3d4a6d150b0350575",
+    "12/8389/0": "909d549190d73619dbfb017a8d514239bd8784388f925af787cecd11bec3f6d9",
+    "12/1364/0": "fc33d9cd243a268438b22832706f89fc0b86e306e8eee1a85d41b859d8aac1f7",
+    "17/20/14": "ea244f5875a606c9e5f833b0cfe4436acd34e15e13822ba6fd174aaab5a73348",
+    "17/20/17": "2bd664da029b87e7edd3ca1c4ae18d47f28f087b80abf42a0d8b29a77a78dc0a",
+    "2/41/1200": "5c04ee752a33cd177dd606a91fe93d0c391533ed23354cb9c0f255b9b901bb13"
+  }
+}

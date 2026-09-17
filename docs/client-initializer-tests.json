@@ -1,0 +1,148 @@
+{
+    "passed":  true,
+    "check_count":  28,
+    "reference_root":  "C:\\Users\\developer\\Desktop\\950RevTest",
+    "work_directory":  "C:\\Users\\developer\\AppData\\Local\\Temp\\950bundle-client-tools\\v51b",
+    "checks":  [
+                   {
+                       "name":  "OpenGL reference length",
+                       "passed":  true,
+                       "detail":  "13839472 bytes"
+                   },
+                   {
+                       "name":  "OpenGL reference byte comparison",
+                       "passed":  true,
+                       "detail":  "Differing bytes: 0"
+                   },
+                   {
+                       "name":  "OpenGL reference SHA-256",
+                       "passed":  true,
+                       "detail":  "9ce771772b86d3bd1524a6c79bc7cdbecbe9d2c52b8be62a73d2d00255617696"
+                   },
+                   {
+                       "name":  "OpenGL audited known-good SHA-256",
+                       "passed":  true,
+                       "detail":  "9ce771772b86d3bd1524a6c79bc7cdbecbe9d2c52b8be62a73d2d00255617696"
+                   },
+                   {
+                       "name":  "Vulkan reference length",
+                       "passed":  true,
+                       "detail":  "15089416 bytes"
+                   },
+                   {
+                       "name":  "Vulkan reference byte comparison",
+                       "passed":  true,
+                       "detail":  "Differing bytes: 0"
+                   },
+                   {
+                       "name":  "Vulkan reference SHA-256",
+                       "passed":  true,
+                       "detail":  "a03942a9be4825ff499a834f159a285400b271c9a3cab5f51b8c4df7bd5322df"
+                   },
+                   {
+                       "name":  "Vulkan audited known-good SHA-256",
+                       "passed":  true,
+                       "detail":  "a03942a9be4825ff499a834f159a285400b271c9a3cab5f51b8c4df7bd5322df"
+                   },
+                   {
+                       "name":  "Idempotent logs\\client-isolation-vulkan.json",
+                       "passed":  true,
+                       "detail":  "Contents and last-write timestamp preserved."
+                   },
+                   {
+                       "name":  "Idempotent logs\\client-isolation.json",
+                       "passed":  true,
+                       "detail":  "Contents and last-write timestamp preserved."
+                   },
+                   {
+                       "name":  "Idempotent client\\rs2client.exe",
+                       "passed":  true,
+                       "detail":  "Contents and last-write timestamp preserved."
+                   },
+                   {
+                       "name":  "Idempotent client\\rs2client-vulkan.exe",
+                       "passed":  true,
+                       "detail":  "Contents and last-write timestamp preserved."
+                   },
+                   {
+                       "name":  "OpenGL moved report path",
+                       "passed":  true,
+                       "detail":  "C:\\Users\\developer\\AppData\\Local\\Temp\\950bundle-client-tools\\v51b\\move é\\client-state"
+                   },
+                   {
+                       "name":  "OpenGL moved binary hash",
+                       "passed":  true,
+                       "detail":  "47eca1433e43467aa5a78d69b19f2600b29bed468d82ce5aeb0e92db61aeb6ac"
+                   },
+                   {
+                       "name":  "OpenGL moved binary changed",
+                       "passed":  true,
+                       "detail":  "Embedded path changed after relocation; spaces and Unicode preserved."
+                   },
+                   {
+                       "name":  "OpenGL embedded UTF-16 path",
+                       "passed":  true,
+                       "detail":  "C:\\Users\\developer\\AppData\\Local\\Temp\\950bundle-client-tools\\v51b\\move é\\client-state"
+                   },
+                   {
+                       "name":  "Vulkan moved report path",
+                       "passed":  true,
+                       "detail":  "C:\\Users\\developer\\AppData\\Local\\Temp\\950bundle-client-tools\\v51b\\move é\\client-state"
+                   },
+                   {
+                       "name":  "Vulkan moved binary hash",
+                       "passed":  true,
+                       "detail":  "f4968f4ef2297c88d1494fa560e02966b657210652333fd32e43e5b2b5505e9b"
+                   },
+                   {
+                       "name":  "Vulkan moved binary changed",
+                       "passed":  true,
+                       "detail":  "Embedded path changed after relocation; spaces and Unicode preserved."
+                   },
+                   {
+                       "name":  "Vulkan embedded UTF-16 path",
+                       "passed":  true,
+                       "detail":  "C:\\Users\\developer\\AppData\\Local\\Temp\\950bundle-client-tools\\v51b\\move é\\client-state"
+                   },
+                   {
+                       "name":  "Oversized SHGetFolderPathW buffer rejected",
+                       "passed":  true,
+                       "detail":  "260 UTF-16 code units cannot fit with the NUL terminator."
+                   },
+                   {
+                       "name":  "Modified seed rejected",
+                       "passed":  true,
+                       "detail":  "SHA-256 mismatch rejected before writing any client output."
+                   },
+                   {
+                       "name":  "Invalid seed preserves logs\\client-isolation-vulkan.json",
+                       "passed":  true,
+                       "detail":  "Existing output unchanged."
+                   },
+                   {
+                       "name":  "Invalid seed preserves logs\\client-isolation.json",
+                       "passed":  true,
+                       "detail":  "Existing output unchanged."
+                   },
+                   {
+                       "name":  "Invalid seed preserves client\\rs2client.exe",
+                       "passed":  true,
+                       "detail":  "Existing output unchanged."
+                   },
+                   {
+                       "name":  "Invalid seed preserves client\\rs2client-vulkan.exe",
+                       "passed":  true,
+                       "detail":  "Existing output unchanged."
+                   },
+                   {
+                       "name":  "OpenGL section capacity guard",
+                       "passed":  true,
+                       "detail":  "259-character path rejected because readable section padding is insufficient."
+                   },
+                   {
+                       "name":  "Vulkan section capacity guard",
+                       "passed":  true,
+                       "detail":  "259-character path rejected because readable section padding is insufficient."
+                   }
+               ]
+}

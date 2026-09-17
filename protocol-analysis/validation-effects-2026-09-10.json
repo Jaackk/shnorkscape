@@ -1,0 +1,84 @@
+{
+  "date": "2026-09-10",
+  "project": "C:\\Users\\developer\\Desktop\\950RevTest",
+  "milestone": "player effects and scoped Lumbridge NPCs",
+  "tests": {
+    "discovered": 709,
+    "passed": 707,
+    "skipped": 2,
+    "failed": 0,
+    "errors": 0
+  },
+  "automated": {
+    "cache_preflight": "passed, verification enforced",
+    "ui_acceptance": {
+      "status": "passed",
+      "inputActions": 37,
+      "outboundFrames": 430
+    },
+    "world_acceptance": {
+      "status": "passed",
+      "rows": 199,
+      "spawned": 147,
+      "refused": 52,
+      "spawnFailures": 0,
+      "lumbridgeRows": 123,
+      "lumbridgeSpawned": 93,
+      "scopeExclusion": true,
+      "repopulation": true,
+      "effectsAndBars": true,
+      "forceArrival": "passed real scheduler -> movement -> EntityFrames -> encrypted transport, no duplicate endpoint movement",
+      "cookDestination": "passed actual cache landing3208,3215, Cook home3209,3215 and connecting cardinal edges",
+      "forcePublication": "passed exact queued-final WALK prefix and rebased force mask; authoritative server origin unchanged until scheduled arrival",
+      "log": "logs/world-acceptance-cook-completion.log",
+      "cookCompletion": "passed actual Cook full Yes dialogue, native presentation and encrypted output; safe ending and reopening; no progress, position or NPC mutation"
+    },
+    "chat_command_route": "passed literal and byte-fragmented ISAAC command frames through real transport, Huffman codec, Interactions and local handler; exact status reply verified",
+    "chat_and_text_framing": "passed public/private chat and string/name dialogue with single native transport length",
+    "force_viewport_regressions": "passed original/late viewers, queued final publication, waypoints, plane deltas, cancellation/replacement, subsequent walking, and NPC/player admission deferral",
+    "cook_regressions": "9 passed: complete decoded dialogue, No, progressed/completed paths, reopening, controller start/login refusal, preserved910/947 behavior",
+    "npc_ownership_regressions": "5 passed: actual AgrithNaNa constructor refusal, direct registry guard, no mutation, banker recreation and preserved legacy registration"
+  },
+  "live": {
+    "mapDragging": "user confirmed from previous milestone",
+    "cookDialogue": "passed: Cook greeting and NPC portrait, Yes/No choices, Yes player reply and portrait; reopened after world-map close with world still visible; walking cancels",
+    "bankerDialogue": "passed in real client: Talk-to portrait, Continue choices, Never mind, reopen, and walking cancellation",
+    "playerGraphics": "passed: effects command accepted and overlapping white/blue rings, sparkles and smoke rendered; four queued slot identities not visually distinguished individually; effects expired normally",
+    "healthBar": "passed: current full-health green overhead bar rendered; HP remained 1000/1000",
+    "forcedMovement": "user confirmed movement seems fine after fresh World 1 login on corrected build; server log corroborates repeated banker -> force moves3217,3258 to3219,3258, subsequent ordinary walking, bank reopening and item transfers; no separate observer rendering claim",
+    "worldEntry": "user authenticated on corrected Cook build; restored profile3208,3215,0 corroborated by server log",
+    "populationLoaded": "93 of 123 Lumbridge rows admitted in live server",
+    "commandInput": "passed actual ;;nxt banker teleport and effects/bar/force handlers without reconnect after chat framing correction",
+    "bankTransfers": "passed in real client: deposit five logs, Withdraw-X two, withdraw remaining three; original five logs restored",
+    "npcPresentation": "passed in Lumbridge: banker portrait and several visibly moving data-spawned NPCs; no full combat claim",
+    "cookShortcut": "user confirmed ;;nxt cook clear landing and Talk-to greeting with visible world",
+    "cookCompletion": "user confirmed complete Yes conversation ends without crashing; manual follow-up test requested walking and reopening, server log corroborates normal walking"
+  },
+  "limits": [
+    "No full NPC combat/AI lifecycle",
+    "Nonzero legacy colour tint and custom graphic flags remain refused",
+    "Typed-hit display scaling remains pending",
+    "Graphics config identity does not prove model rendering",
+    "New NPC additions are deferred during active forced movement; retained NPC updates/removals continue",
+    "A newly visible player is deferred on its original force-mask frame, then admitted at its authoritative tile",
+    "Cook combat miniquest/dynamic instance is not ported; dialogue now ends safely before entry and progress mutation",
+    "Native save schema3 does not persist controller or Cook quest flags; existing account position/inventory remained intact after the crash"
+  ],
+  "deployment": {
+    "engineJarSHA256": "32cb9aabc9b98bea9dcb8737590986db88c2c577a75fb6b14560d703ef11aa97",
+    "kotlinBuild": "passed",
+    "Verify950Kt": "passed; logs/verify950-cook-completion.log",
+    "serverPid": 12508,
+    "clientPid": 15780,
+    "features": [
+      "Ataraxia",
+      "Collision",
+      "Vulkan",
+      "LumbridgeNpcs",
+      "DevTools"
+    ],
+    "cacheVerification": "enforced",
+    "auth": "user-confirmed corrected Cook build in-game acceptance passed",
+    "backup": "implementation-backup/2026-09-10-cook-instance"
+  }
+}

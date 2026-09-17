@@ -1,0 +1,8 @@
+from pathlib import Path
+r=Path(__file__).resolve().parents[1]
+p=r/'tools/install_950_worldlist.py';s=p.read_text(encoding='utf-8-sig');s=s.replace("s+='129 = \"WORLDLIST_FETCH_REPLY\"\\n'", "s += '' if '129 = \"WORLDLIST_FETCH_REPLY\"' in s else '129 = \"WORLDLIST_FETCH_REPLY\"\\n'");p.write_text(s,encoding='utf-8')
+p=r/'950-LOBBY-IMPLEMENTATION.md';s=p.read_text(encoding='utf-8-sig');s=s.replace('Manual login with x/x is the next live check; rendered lobby and world entry are not yet claimed.','Manual x/x login succeeded and the user confirmed the lobby renders. Play Now initially did nothing; the captured client108 request was unhandled. WORLDLIST_FETCH client108 and WORLDLIST_FETCH_REPLY server129 are now installed, along with client keepalive104. The world-list sender uses a big-endian checksum at0x1401646d9 and the reply parser consumes a plain final-chunk byte at0x1401648af. The refreshed client is awaiting the next World1/Play Now check; world entry is not yet claimed.')
+s=s.replace('World/player updates,world-list response and other unverified payloads have not been activated.','World/player updates and other unverified payloads have not been activated. World-list response129 is enabled for the current live test.')
+p.write_text(s,encoding='utf-8')
+p=r/'OpenNXT/data/prot/950/README.md';s=p.read_text(encoding='utf-8-sig');s+='\nWorld-list support added: client108 WORLDLIST_FETCH (big-endian checksum), client104 NO_TIMEOUT, server129 WORLDLIST_FETCH_REPLY. Lobby rendering has been confirmed by the user; world entry remains under test.\n';p.write_text(s,encoding='utf-8')
+print('Saved confirmed lobby result and world-list implementation status.')

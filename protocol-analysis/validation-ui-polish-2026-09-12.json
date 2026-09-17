@@ -1,0 +1,51 @@
+{
+  "recordedUtc": "2026-09-12T10:26:18.331806+00:00",
+  "engineSha256": "17b4d68f45f2b56371d25701c02a89c61cc3c166760cc90a205fbe4eade2a038",
+  "tests": {
+    "tests": 1015,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2
+  },
+  "launcherChecksPassed": 17,
+  "processes": {
+    "server": {
+      "ProcessId": 18264,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-12T10:25:23.0085930Z",
+      "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.1.8-hotspot\\bin\\java.exe",
+      "ClassPath": "C:\\Users\\developer\\Desktop\\950RevTest\\patches\\classes;C:\\Users\\developer\\Desktop\\950RevTest\\OpenNXT\\runtime\\lib\\*"
+    },
+    "client": {
+      "ProcessId": 29644,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-12T10:25:24.5236190Z",
+      "ExecutablePath": "C:\\Users\\developer\\Desktop\\950RevTest\\client\\rs2client-vulkan.exe"
+    }
+  },
+  "backup": "implementation-backup/2026-09-12-ui-polish",
+  "actualCacheChecks": [
+    {
+      "log": "logs/skill-guide-ui-polish-packaged.log",
+      "result": "PASS",
+      "packets": 1406,
+      "skills": 29,
+      "coverage": "In-place Hero icon changes, external skill changes, close/reopen, game-scene preservation"
+    },
+    {
+      "log": "logs/lodestones-ui-polish-acceptance.log",
+      "result": "PASS",
+      "journeys": 31,
+      "encryptedActions": 108,
+      "ticks": 872,
+      "frames": 5415,
+      "coverage": "Bootstrap unlocks, container size before mount, close/settings/map handoffs, all29 destinations, freshUm return"
+    }
+  ],
+  "cacheBindings": 138,
+  "manual": {
+    "accepted": "User confirms skill-guide content works and lodestone destinations now load their map areas correctly; mining arrival and bars accepted earlier. On2026-09-12, after retesting the UI fixes, user confirmed: \"yeah everything is working well now.\" Guide refresh, first-open icons and panel clipping are accepted.",
+    "pending": null
+  },
+  "scope": "950RevTest only; no cache/client binary or910/947 reference edits."
+}

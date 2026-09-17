@@ -1,0 +1,5 @@
+package com.rs.game.player.client;
+import com.rs.cache.Cache;import com.rs.game.*;import java.nio.file.*;import java.util.concurrent.TimeUnit;
+public class Native950InventionPlacementAcceptance {
+ public static void main(String[] a)throws Exception{System.setProperty(Native950World.SPAWNS_PROPERTY,"false");System.setProperty(Native950World.LEGACY_SPAWNS_PROPERTY,"false");Cache.initFlatReadOnly(Paths.get(a[0]));Native950World.getInstance().execute(()->{World.getRegion(13365,true);World.getRegion(11829,true);Native950Archaeology.populateRegion(13365);Native950Invention.populateRegion(11829);int count=World.getRegion(13365).getSpawnedObjects().size()+World.getRegion(11829).getSpawnedObjects().size();Native950Archaeology.populateRegion(13365);Native950Invention.populateRegion(11829);if(count!=3||World.getRegion(13365).getSpawnedObjects().size()+World.getRegion(11829).getSpawnedObjects().size()!=count)throw new AssertionError("Population is not idempotent");System.out.println("PASS: three clear permanent training objects; repeated region load did not duplicate them");return null;}).get(120,TimeUnit.SECONDS);}
+}

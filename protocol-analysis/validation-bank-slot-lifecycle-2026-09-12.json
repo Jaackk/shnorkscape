@@ -1,0 +1,102 @@
+{
+  "date": "2026-09-12",
+  "scope": "Bank and backpack slot lifecycle; wrong modal mount caused immediate client actor compaction",
+  "tests": {
+    "tests": 1151,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2,
+    "passed": 1149
+  },
+  "engineSha256": "84970e322f673e889d6a4a2fa1fa5e52eeac7908c5fd1106ed7ea0eab49d3aac",
+  "server": {
+    "ProcessId": 18944,
+    "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+    "CreatedUtc": "2026-09-12T13:22:22.3875030Z",
+    "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.1.8-hotspot\\bin\\java.exe",
+    "ClassPath": "C:\\Users\\developer\\Desktop\\950RevTest\\patches\\classes;C:\\Users\\developer\\Desktop\\950RevTest\\OpenNXT\\runtime\\lib\\*"
+  },
+  "client": {
+    "ProcessId": 15024,
+    "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+    "CreatedUtc": "2026-09-12T13:22:23.9692140Z",
+    "ExecutablePath": "C:\\Users\\developer\\Desktop\\950RevTest\\client\\rs2client-vulkan.exe"
+  },
+  "launcherChecks": 19,
+  "cachePreflight": {
+    "status": "passed",
+    "scripts": 138,
+    "variables": 24,
+    "bankPins": 136
+  },
+  "acceptance": {
+    "bank": {
+      "actions": 80,
+      "ticks": 62,
+      "encryptedFrames": 1377
+    },
+    "ui": {
+      "actions": 37,
+      "encryptedFrames": 473
+    },
+    "equipmentFrames": 136,
+    "cacheBranchRegression": {
+      "status": "passed",
+      "tool": "tools/verify_950_bank_mount.py",
+      "evidence": "protocol-analysis/bank-mount-950-evidence.json",
+      "wrongMount": "1477:695",
+      "correctMount": "1477:693",
+      "reportedPairs": [
+        [
+          211,
+          215
+        ],
+        [
+          215,
+          24000
+        ],
+        [
+          20000,
+          62789
+        ]
+      ],
+      "scope": "Bounded execution of actual cache branch and actor compaction instructions; explicit retail-capacity/drawing fixtures."
+    }
+  },
+  "fixes": [
+    "One mount at cache-tested bank modal anchor3503; matched native manager queries/open/close and actual Kotlin recipe.",
+    "Bind8970 and publish-1 before occupied count8971 and fullcontainer95.",
+    "Preserve strict slot identity/predicted exhaustion rules and record claimed/current/next IDs, quantity, requested/movable amount, tick change flag, notes and mount when rejecting."
+  ],
+  "liveAcceptance": {
+    "status": "User accepted requested scenarios; persistent wrong-mount failures resolved; two stale-claim refusals remain documented.",
+    "requested": "Withdraw several different single-item stacks including a grimy herb, deposit again, and check Search typing.",
+    "userResponse": "it seems to work properly now",
+    "serverEvidence": "Fresh session records successful exhausted-row48447 withdrawals and partial original-ID withdrawal plus Deposit inventory39.",
+    "successfulTransfersObserved": 29,
+    "residualRefusals": [
+      {
+        "slot": 14,
+        "claimed": 436,
+        "current": 24000,
+        "changedThisTick": false,
+        "context": "After earlier row211 exhausted; retry with correct48447 transferred24000, then436 transferred from current slot13."
+      },
+      {
+        "slot": 15,
+        "claimed": 48447,
+        "current": 438,
+        "changedThisTick": true,
+        "context": "Immediately after earlier row215 exhausted in the same input tick; ambiguous shifted source was refused."
+      }
+    ]
+  },
+  "backup": "implementation-backup/2026-09-12-bank-slot-lifecycle/before-deploy",
+  "accountEdits": "None. Saved bank was inspected read-only; automated probes used disposable players. Normal disconnect/save completed before restart.",
+  "remaining": [
+    "Tabs, placeholders, presets and specialized storage remain separate work.",
+    "Retail capacity display700 versus enforced600 remains known.",
+    "Same-tick changed-slot protection is bounded input-batch protection, not client acknowledgement.",
+    "Rapid/queued clicks across a bank row shift can still be refused. Broader burst acceptance needs explicit view-version/history evidence; do not resolve ambiguous sentinels to the new row."
+  ]
+}

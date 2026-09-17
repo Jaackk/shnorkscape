@@ -1,0 +1,122 @@
+apply plugin: 'java'
+apply plugin: "application"
+
+group = 'com.ataraxia-ps'
+version = '1.0-UNTRACKED'
+
+description = """"""
+
+applicationDefaultJvmArgs = [
+        "-server",
+        "-XX:+UseG1GC",
+        "-XX:+UseStringDeduplication"
+]
+
+sourceCompatibility = 8
+targetCompatibility = 8
+
+sourceSets {
+    main {
+        resources {
+            srcDirs 'resources'
+        }
+        java {
+            srcDirs 'core'
+            srcDirs 'content'
+            srcDirs 'game'
+            srcDirs 'network'
+            srcDirs 'npc'
+            srcDirs 'api'
+        }
+    }
+    test {
+        java.srcDirs = ['tests']
+    }
+}
+
+repositories {
+    // Portable offline Maven layout has no previous developer-home cache indexes.
+    maven { url uri("../dependencies/maven") }
+    mavenCentral() // Moved to top for better reliability
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    compile group: 'io.netty', name: 'netty-all', version: '4.1.29.Final'
+    compile group: 'com.google.guava', name: 'guava', version: '26.0-jre'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+    compile group: 'org.simplejavamail', name: 'simple-java-mail', version: '5.0.3'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
+    // The Discord bot libraries were removed together with the Discord API package (P8).
+    compileOnly 'org.projectlombok:lombok:1.18.2'
+    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+    testCompile 'junit:junit:4.13.2'
+
+    compile files('data/libs/combinatorial_lib.jar')
+    compile files('data/libs/lzma-4.63-jio-0.94.jar')
+    compile files('data/libs/HikariCP-3.4.5.jar')
+    compile files('data/libs/annotations-13.0.jar')
+    compile files('data/libs/clojure-1.10.3.jar')
+
+    compile group: 'it.unimi.dsi', name: 'fastutil', version: '8.1.1'
+    compile group: 'io.github.lukehutch', name: 'fast-classpath-scanner', version: '3.0.3'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+    compile group: 'org.apache.commons', name: 'commons-compress', version: '1.28.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.12.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
+    compile group: 'com.lmax', name: 'disruptor', version: '3.4.2'
+    compile group: 'org.slf4j', name: 'slf4j-nop', version: '1.6.6'
+    compile group: 'org.tukaani', name: 'xz', version: '1.6'
+    compile group: 'com.github.jponge', name: 'lzma-java', version: '1.2'
+    compile 'com.displee:rs-cache-library:8.1.0'
+
+}
+
+tasks.withType(JavaCompile) {
+    // Changed from UTF-8 to ISO-8859-1 to support legacy special characters
+    options.encoding = 'ISO-8859-1'
+}
+
+mainClassName = 'com.rs.ServerLauncher'
+
+// The migration probes consume the compiled game without starting its legacy
+// launcher, which also starts production integrations.
+task resolveBuildDependencies {
+    description = 'Downloads pinned compile/test dependencies without compiling or running the server.'
+    doLast {
+        configurations.compileClasspath.files
+        configurations.annotationProcessor.files
+        configurations.testRuntimeClasspath.files
+    }
+}
+
+task writeRuntimeClasspath(dependsOn: classes) {
+    description = 'Writes the complete classpath for isolated migration probes.'
+    doLast {
+        file("$buildDir/runtime-classpath.txt").text = sourceSets.main.runtimeClasspath.asPath
+    }
+}
+
+tasks.withType(Test) {
+    def testTemp = file("$buildDir/tmp/tests")
+    systemProperty 'java.io.tmpdir', testTemp.absolutePath
+    doFirst { testTemp.mkdirs() }
+}
+
+task cacheMigrationProbe(type: JavaExec, dependsOn: classes) {
+    description = 'Validates modern cache reference tables and representative raw files without launching the game server.'
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.rs.tools.modern.CacheMigrationProbe'
+    doFirst {
+        if (!project.hasProperty('flatCachePath')) {
+            throw new GradleException('Pass -PflatCachePath=<path to the flat cache>.')
+        }
+        args project.property('flatCachePath')
+    }
+}
+
+run {
+    if (project.hasProperty("programArgs")) {
+        args Eval.me(programArgs)
+    }
+}

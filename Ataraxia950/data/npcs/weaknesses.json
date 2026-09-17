@@ -1,0 +1,9314 @@
+[
+  {
+    "npcId": 1,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 4,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 9,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 12299,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 13,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 15,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 16,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 20,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 21,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 23,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 24,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 25,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 26,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 27,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 32,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 34,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 35,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 38,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 39,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 41,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 46,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 47,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 48,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 49,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 51,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 52,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 53,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 54,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 55,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 58,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 59,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 61,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 62,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 63,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 64,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 66,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 12354,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 67,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 12356,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 72,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 73,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 74,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 75,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 76,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 77,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 78,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 79,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 12367,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 12368,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 82,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 83,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 84,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 86,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 87,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 88,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 89,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 90,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 92,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 93,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 94,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 8286,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 95,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8287,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 96,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8288,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 97,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8289,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8290,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 99,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8291,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8292,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8293,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8294,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 103,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 8295,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 104,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 105,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 106,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 107,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 108,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 109,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 110,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 111,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 112,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 113,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 114,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 115,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 116,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 117,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 118,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 119,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 120,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8312,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 121,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 124,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8316,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 125,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 126,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 127,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 128,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 8320,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 131,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 132,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 8324,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 133,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 134,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 138,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 140,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 141,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 142,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8334,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 143,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8335,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 144,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 8339,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8344,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 8348,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 8349,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 158,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 159,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 160,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 12448,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 161,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 163,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 164,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8358,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 168,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 169,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 170,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 172,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 173,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 174,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 175,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 12463,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 176,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 178,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 180,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 181,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 182,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 183,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 184,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8377,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 186,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8378,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 187,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8379,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 188,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 8380,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 189,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 8381,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 190,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 8382,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 191,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 8383,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 192,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 8384,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 193,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 8385,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 194,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 8386,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8387,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 196,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 8388,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8389,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8390,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 199,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 8391,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8392,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 201,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 205,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 206,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 222,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 224,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8422,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 237,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 238,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8435,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8436,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8437,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8438,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 247,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8439,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8440,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 255,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 256,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 270,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 271,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 274,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 275,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 277,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 281,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 282,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 283,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 296,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 297,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 16681,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 298,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 16682,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 299,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 16683,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 300,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 16684,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 16685,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 16686,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 16687,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 16688,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 16689,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 16690,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 16691,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 16692,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 16693,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 16694,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 16695,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 16696,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 16697,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 16700,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 16703,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 16704,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 16705,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 16706,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 20803,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 16714,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 16715,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 16716,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 16723,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 16726,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 351,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 352,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 353,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 354,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8549,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 360,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 361,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 362,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 363,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 365,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8557,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8559,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8561,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 8563,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 8565,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 374,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 8567,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 8599,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 8600,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 412,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 20898,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 20900,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 20901,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 8637,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 446,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 8638,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 447,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 448,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 20928,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 449,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 453,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8645,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 459,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 8658,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8660,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 475,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 476,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 477,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 478,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 479,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 489,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 20969,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 20970,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 20971,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 493,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 20979,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 502,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 503,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 504,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 505,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 507,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 508,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 509,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21024,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8776,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 8777,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 8779,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8781,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 8782,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 8783,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8784,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 12880,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 21072,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 12903,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 8813,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21105,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 12914,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 17011,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 17012,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 12922,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8832,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 21120,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 8833,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 8834,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 12932,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 645,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 12933,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 12934,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 12935,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 12936,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 12937,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 12938,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 21130,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 12939,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 12941,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 655,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21135,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 674,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 677,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8871,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 8872,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 8874,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 17066,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 17067,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17068,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 12973,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 12974,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 17070,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 12975,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 17071,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 688,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 12976,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 17072,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 689,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 12977,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 690,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 12978,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 17074,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 691,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 12979,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 17075,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 12980,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 17076,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 12981,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 12982,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 17078,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 17079,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17080,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 708,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 745,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 749,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 750,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 751,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 752,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 767,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 17158,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 792,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 8986,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 8987,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 8988,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8989,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 799,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8992,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 8993,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 803,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13095,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13097,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13098,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13099,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 827,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 830,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 837,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 839,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 840,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 852,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 856,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 21336,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 21337,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 858,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 859,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 862,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 21343,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 17252,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 17253,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 870,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 17254,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 17257,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 17258,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 17259,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 9068,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 877,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 9069,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 878,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 21358,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 21359,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 9072,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 21360,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 21361,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 21362,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 894,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 897,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 9089,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 898,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 899,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 900,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 9092,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 21389,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 9103,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 912,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 913,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 914,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 917,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 931,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 21413,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 936,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 937,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 938,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 941,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 21434,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 21435,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13247,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13248,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13249,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13250,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 21454,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 21455,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 21456,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 977,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 21457,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 978,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21459,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 9172,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 21460,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 21461,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 988,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 989,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 990,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 9184,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 9185,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 21474,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 997,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 998,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 999,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1000,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1002,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1004,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1007,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1009,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 17393,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 21494,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1017,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21497,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1018,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1019,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1020,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1021,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1022,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 21502,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 5137,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5144,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1053,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5170,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17463,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5176,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 17464,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17465,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 17466,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17467,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 17468,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 5181,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 17469,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 17470,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1087,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17471,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5184,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 17472,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5187,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1092,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1095,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1096,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1097,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1098,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1101,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1102,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1103,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1104,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1105,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1106,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1107,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1108,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1109,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1110,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1111,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1112,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1115,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1116,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1117,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1118,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1119,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1120,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1121,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1122,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1123,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1124,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1125,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1126,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1127,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1128,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1129,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1130,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1131,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1132,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1133,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 13421,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1134,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 13422,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1138,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1139,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 17524,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 17525,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 17528,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17529,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17530,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17531,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17532,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17533,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17534,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 21630,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21631,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 17536,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 21632,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 1153,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1154,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5250,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1155,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5251,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1156,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5252,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1157,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 13451,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 9356,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13452,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 9357,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13453,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 13454,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 17551,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13456,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13457,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 13458,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 13459,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1172,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1183,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1184,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17573,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17575,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1192,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17576,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17577,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1196,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 17580,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5293,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1198,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5294,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17582,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 17583,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1200,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5296,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17584,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 5297,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17585,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 5298,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17586,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 5299,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17587,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 5300,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5301,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5302,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17590,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5303,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17591,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 5304,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17592,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 5305,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17593,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 5306,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17594,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 5307,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17595,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 5308,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17596,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 5309,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5310,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5311,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5312,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5313,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1218,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5314,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1219,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5315,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1220,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5316,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5317,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5318,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5319,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5320,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17608,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5321,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17609,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17610,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1227,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5323,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17611,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1228,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5324,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17612,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1229,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5325,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17613,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1230,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5326,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17614,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1231,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5327,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 17615,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1232,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5328,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1233,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5329,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1234,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5330,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1235,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5331,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5332,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5333,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5334,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1239,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1240,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5336,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1241,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5337,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5338,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1243,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5339,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1244,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5340,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1245,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5341,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1246,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5342,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 1247,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1248,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5344,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 1249,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5345,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 1250,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5347,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 5348,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 1257,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5353,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1258,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5354,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5355,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5356,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1261,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5357,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1262,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5358,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1263,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 5359,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1264,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1265,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5361,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 5362,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 5363,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5364,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 9463,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 9465,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 9467,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1279,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5377,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5381,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5382,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5385,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 5386,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5387,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5388,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5389,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5391,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5392,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5393,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5395,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5396,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5397,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5398,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5399,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5401,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1306,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5402,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1307,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13595,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1308,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5405,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13597,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1310,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1311,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5407,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1312,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5408,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13601,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 5410,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13602,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 5411,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 13603,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 5412,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1317,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1318,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5414,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1319,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5417,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 5420,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 5421,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1326,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5422,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1328,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1329,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1330,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 21812,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1338,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 5452,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 5453,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5454,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5455,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13652,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1367,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1368,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13662,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5473,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5474,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1379,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5475,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1380,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5476,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1381,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1382,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13670,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 1383,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1386,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1387,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1388,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1390,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1391,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1392,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13686,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 21880,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1401,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21881,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21882,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1403,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21883,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21884,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21885,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21887,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21888,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21889,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21890,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21891,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 21892,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 9607,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 9608,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 9609,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 9611,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 9612,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 9613,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 9614,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 9615,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 9616,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 9617,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 13713,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 9618,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 9619,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 9620,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 9621,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 9622,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 9624,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5529,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 9626,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 9628,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1442,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1443,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1444,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1445,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1446,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1447,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13741,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1455,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 13743,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1456,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 13744,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13745,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13746,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1459,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 13747,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1460,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 13748,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 13749,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 1465,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5564,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1471,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1475,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1476,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1477,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1478,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 9678,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 9679,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 9680,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5593,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 5594,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 5595,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5596,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5597,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 21982,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5603,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 21994,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 21995,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 22001,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 22002,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 22003,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 22004,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 22007,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 5627,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5628,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13820,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 5629,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13821,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 13822,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 5631,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5633,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1538,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5634,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1539,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5635,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5637,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5638,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5639,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5640,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5641,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5642,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5643,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13835,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 5644,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13836,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 5645,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13837,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1550,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 5646,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5647,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5648,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5650,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5652,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1558,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5654,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1560,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5656,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1561,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1562,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5658,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13850,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1563,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5659,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13851,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1564,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 13852,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1565,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5661,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1566,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5663,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5665,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1575,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 13865,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 13866,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 13867,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1583,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1584,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1586,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1587,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1588,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1589,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 1590,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1591,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1592,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1593,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1600,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1604,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 1608,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1610,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1611,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1612,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1613,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1614,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1615,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1616,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1617,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1618,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1620,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1623,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1624,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1625,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1626,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1627,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 1628,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 18014,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1631,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18015,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1632,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1633,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 1634,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 1635,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 1636,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 1637,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1638,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1639,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1640,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1643,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1644,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1645,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1646,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1647,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1648,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1649,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1650,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1651,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1652,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1653,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1654,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5750,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1655,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5751,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1656,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1657,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 22146,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1676,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1677,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1678,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1681,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1691,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1692,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1693,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1698,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 5800,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5801,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1710,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1711,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1712,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1731,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 14023,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14029,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 5842,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5843,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5844,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5845,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5846,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5847,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1752,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5848,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5849,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 14041,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 5850,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5851,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 14044,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1757,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 14045,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1758,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1760,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5859,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 5860,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14052,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 14053,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 14054,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1795,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1796,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1802,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 5906,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 5908,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5909,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1814,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1815,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1816,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1817,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1818,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1822,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1823,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5919,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1824,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5920,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1825,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1826,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 5923,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1828,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 5924,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1829,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 5926,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1831,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 5927,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1832,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 5928,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 5929,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1850,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1853,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 14142,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1856,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14145,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 14148,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 14151,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 14154,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1874,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1880,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1885,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 18273,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18274,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18275,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18276,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 14181,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 18277,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18278,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 14183,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 18279,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18280,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 5994,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1904,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 18289,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1906,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6006,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6007,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6008,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1913,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6009,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1914,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6011,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6012,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6013,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6014,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1919,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6015,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6016,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6017,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6018,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6020,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6021,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1926,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6026,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6027,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6028,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6029,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6030,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6031,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1936,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6032,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 18320,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1937,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6033,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1938,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6034,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1939,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6035,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1940,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6036,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1941,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6037,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1942,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6038,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6039,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6040,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6041,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6042,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6043,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6044,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6045,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6046,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6050,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1958,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 22439,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1961,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 14249,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 1962,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 14250,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 1963,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1964,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1965,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10157,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1967,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 1969,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1973,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1974,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1975,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 1976,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10168,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 1977,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6078,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6079,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6080,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 6081,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 18373,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 22470,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 1991,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 22471,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6088,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10184,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 22472,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1993,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6089,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1994,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6090,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 22474,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 1995,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 22475,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 22476,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 1997,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6093,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 22477,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 1998,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 22478,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 1999,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2001,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10196,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6101,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6102,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2007,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6103,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 2008,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 6104,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 2009,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6105,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 14297,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 2010,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6106,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6107,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6108,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6109,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 14301,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2015,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2016,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 22498,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6115,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 22499,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 22500,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 2025,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 2026,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2027,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10219,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 2028,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10220,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 2029,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10221,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 2030,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10222,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 2031,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10223,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 2032,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10224,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 2033,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2034,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2035,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2036,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 2037,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 18424,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18425,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18426,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2044,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 2045,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 2046,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6142,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6144,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 2050,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 22531,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10246,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2055,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10247,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2056,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10248,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10249,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2058,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10250,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10251,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10252,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10253,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10254,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10255,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10256,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10257,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10258,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 22546,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10259,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 22547,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 22548,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 2069,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10261,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2070,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10262,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2071,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2072,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10264,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 2073,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10265,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2074,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10266,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10268,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10269,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6174,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10270,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10271,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10272,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10273,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10274,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10275,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18467,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10276,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10278,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10279,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10280,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10283,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 22571,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10284,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10285,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 22573,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10286,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10287,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10288,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10289,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10290,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10291,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10292,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10293,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10294,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10295,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10296,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10297,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10298,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 22586,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6203,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10299,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6204,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10300,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10301,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6206,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10302,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10303,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6208,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 10304,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18496,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10305,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18497,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10306,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10307,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6212,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10308,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6213,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6214,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6218,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6219,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6220,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6221,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6223,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10320,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6225,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 2130,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2131,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6227,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2132,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10324,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 2133,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6229,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2134,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6230,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 2135,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6231,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 6232,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 6234,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 6235,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 6236,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 10332,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6240,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 10336,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6241,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 10340,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6248,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10344,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6250,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 6252,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10348,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6254,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6255,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6256,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10352,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6257,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 6258,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6259,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10356,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6261,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6263,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10360,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6265,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 6268,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6269,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6270,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6271,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10367,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6272,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10368,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6273,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6274,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10370,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6275,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10371,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6276,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10372,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6277,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6278,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 10374,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6279,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10375,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6280,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6281,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6282,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6283,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6285,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6286,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6287,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6288,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6289,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6291,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6292,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6294,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6295,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6296,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 10397,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10400,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10401,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10402,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18594,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10403,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18595,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 22691,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10404,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10405,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18597,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10406,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18598,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 18599,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10408,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 18600,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10409,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18601,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10410,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18602,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10411,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10412,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10413,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10414,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10415,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10416,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10417,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10418,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10419,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10420,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10421,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10422,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10423,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10424,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10425,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10426,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10427,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2236,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10430,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10431,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10432,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 18624,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10433,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 22721,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10434,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10435,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10436,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 2246,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10438,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18630,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10439,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6344,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10440,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18632,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2249,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10441,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 18633,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6346,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10442,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 18634,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6347,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10443,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18635,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6348,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10444,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18636,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 6349,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10445,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 18637,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 6350,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10446,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 18638,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 6351,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10447,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18639,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6352,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10448,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18640,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6353,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10449,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 18641,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6354,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10450,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10451,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6356,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10452,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10453,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10454,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2263,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 10455,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18647,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2264,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10456,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 2265,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 18649,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10458,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6363,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10459,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18651,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6364,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10460,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 18652,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6365,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 18653,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6366,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 18654,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6367,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 18655,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 6368,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 18656,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 6369,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 18657,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 18658,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6371,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18659,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 18660,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6378,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6379,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6380,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2285,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6381,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6382,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 18673,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 18674,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 18675,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10492,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 2310,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 2314,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2315,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10507,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10508,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10509,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10510,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10511,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10512,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10513,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10514,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10515,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10516,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10517,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10518,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10519,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10520,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10521,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10522,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10523,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10524,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10526,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10527,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10528,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10529,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10530,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10531,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10532,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10533,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10534,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10535,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10536,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10537,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10538,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10539,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10540,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10541,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10543,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10544,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10545,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10547,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10548,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18742,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18744,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18746,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10560,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10562,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6468,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10564,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6469,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6470,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 10566,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6471,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 6472,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 10568,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6473,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 10570,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10572,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10574,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10576,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 18768,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10578,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10580,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10582,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10584,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10586,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10588,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10590,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10592,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14688,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 18784,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 14689,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10594,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14690,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 14691,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10596,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14692,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18788,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 14693,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 18789,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10598,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14694,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 18790,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14695,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 18791,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10600,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14696,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 14697,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10602,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14698,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 18794,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 14699,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 18795,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10604,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14700,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 18796,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10605,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14701,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 18797,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10606,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10607,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10608,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10609,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 22905,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 22906,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 22907,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10629,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10630,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10631,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10632,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10633,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10634,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10635,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10636,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10637,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10638,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10639,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10640,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10641,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10642,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2452,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10644,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 22932,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10645,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 22933,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2454,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10646,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10647,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 22935,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10648,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 2457,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10649,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10650,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10651,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10652,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10653,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10654,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10655,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10656,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10657,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10658,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2468,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10660,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10661,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10662,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10663,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10664,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10665,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10666,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10667,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10668,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10669,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10670,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 2489,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 2493,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 2494,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 2495,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 2497,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2499,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2501,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10698,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10700,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10701,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 10704,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10705,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10706,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10707,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10708,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10709,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10710,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10712,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10713,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10714,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10717,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10719,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10720,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10721,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10725,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 23018,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 23019,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2547,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14836,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10744,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 23040,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6657,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 14849,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 23041,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 6658,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6659,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10755,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10770,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10771,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10772,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10774,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10775,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 23063,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 10776,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 23064,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 23065,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 23066,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 23069,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10782,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 23070,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2591,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10783,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 23071,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2592,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10784,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 23072,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10785,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 23073,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2595,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 23075,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10791,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 2600,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2605,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10797,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2606,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10798,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2607,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10799,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2608,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10800,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2609,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 10801,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10802,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 2611,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6707,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10803,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10804,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10805,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2614,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10806,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2615,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10807,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2616,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10808,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10809,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10810,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10811,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10812,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10815,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10816,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10817,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10818,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 2627,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10819,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 10820,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 14920,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 14926,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 14927,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 14928,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10843,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10844,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10845,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10846,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10847,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10848,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10849,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10850,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10851,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10852,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 23140,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10853,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 23141,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10854,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 23142,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10855,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 23143,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10856,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 23144,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6761,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10857,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 6762,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10858,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6763,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10859,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10860,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10861,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10862,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10863,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10864,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10865,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2674,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6770,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 10866,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10867,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6772,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10868,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2677,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6773,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 10869,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6774,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10870,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10871,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6776,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 6777,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10873,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6778,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 2683,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10875,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2684,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6780,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 10876,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2685,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10877,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10878,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10879,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2688,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10880,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10881,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10882,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10883,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10884,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 14980,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2693,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10885,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 14981,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 2694,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10886,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 14982,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10887,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10888,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10889,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2698,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10890,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2699,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10891,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10892,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10893,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10894,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10895,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10897,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 10898,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 10899,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 10900,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 2709,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10901,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2710,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 14998,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2711,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10903,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 2712,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 10904,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 10905,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 19109,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 19115,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 19116,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 19117,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 2738,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2741,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2743,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 2746,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2780,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2782,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2783,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 2801,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2803,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 2804,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 2805,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 2807,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 2808,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 15101,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 15112,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 15113,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 15114,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 2837,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2838,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2839,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 15127,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2840,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2841,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 15129,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2842,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2843,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2844,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2845,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2846,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2847,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2848,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 2850,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 6972,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6973,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6974,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6975,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 2880,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 6976,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 2881,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 6977,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 2882,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6978,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 23362,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 2883,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6979,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 23363,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6980,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 15172,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 23364,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6981,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 15173,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 23365,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6982,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 15174,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 23366,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6983,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 15175,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 6984,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 15176,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 2889,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 6985,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6986,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 6987,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 2892,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 15184,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 19281,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 15186,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 19282,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 15188,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 11107,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 15203,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 11109,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 15205,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 15206,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 11111,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 15207,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 11113,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 15209,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 15210,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 11115,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11117,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 15213,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 15214,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 11119,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 19311,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 11121,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11123,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11125,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 23413,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 23414,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11127,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 23415,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 23416,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11129,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 23417,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11131,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 11133,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 11135,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 23424,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11137,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 11139,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 11141,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 11143,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 11145,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 11147,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11149,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11151,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11153,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11155,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11157,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11159,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11161,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11163,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11165,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11167,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11169,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 19361,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 11171,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11173,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7078,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7079,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 11175,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7080,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7081,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 11177,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7082,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 11179,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7084,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 7085,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 11181,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7086,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 11183,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11185,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11187,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11189,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11191,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11193,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11195,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11197,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11199,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7105,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 11201,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11203,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11205,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11207,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 11209,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 11211,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 11213,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 11215,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 11217,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 3026,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 3027,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 11219,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 3028,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 11221,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 11223,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 11225,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 3041,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 11233,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3042,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3043,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 11235,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7141,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 11237,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 11239,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 11241,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3057,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3058,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3059,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3061,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3062,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 7158,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3063,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7159,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 11255,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3064,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 7160,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3065,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 3066,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3067,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3068,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3069,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3070,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3071,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3072,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11264,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 11265,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11266,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 3090,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 19527,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 19528,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 19529,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 3153,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 11352,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 11353,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 19545,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 11354,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 19549,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11359,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 19551,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11360,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 11361,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 19553,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11362,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 15461,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 15462,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 15463,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 15464,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 3196,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3200,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 3201,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 15494,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 15495,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 23695,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3219,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3220,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3221,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3222,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 15510,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 3223,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3225,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3226,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3229,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3230,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3231,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3232,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3233,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 19620,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3237,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3238,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 19622,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3239,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3240,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3242,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 3243,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 3244,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 19628,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3245,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 3246,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3247,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3248,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3249,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3250,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3251,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3252,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3253,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3255,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3256,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3257,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3258,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3259,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3260,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3261,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3262,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3263,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3264,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3265,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3266,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3267,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3268,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3269,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3270,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3271,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3272,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3273,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3274,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3275,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3276,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3277,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3278,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3279,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 15570,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7379,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7381,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 3291,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 15587,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7398,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 7399,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3309,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 15600,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3313,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 3319,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 3320,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 23800,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 23802,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 23803,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 23804,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 23805,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 23806,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 7427,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3340,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 11533,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3346,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 7443,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 11562,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 11563,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 11564,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 11565,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 11566,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 11567,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3376,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 7481,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7482,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7483,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7484,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7485,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7486,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7487,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7488,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7492,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7493,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7494,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7495,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7496,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7497,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 11593,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 11595,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 7500,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7501,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3406,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7502,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3407,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 7503,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3408,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3419,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3421,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3422,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 19814,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 19816,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 19818,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 19820,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 11638,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 11639,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 3449,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3450,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3451,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3476,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3478,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3484,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 19875,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3493,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 19877,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3494,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3495,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 19879,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3496,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 3497,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 11696,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3518,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7615,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 7616,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 3521,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 7617,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 3526,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3527,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3531,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3532,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 7628,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 7629,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 3534,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 7640,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7641,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7642,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7643,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7644,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 7648,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7654,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 7658,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 3577,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3581,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3584,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3585,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 3588,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3590,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3591,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3593,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3594,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3599,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3601,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 7711,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3618,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3619,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7715,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 7727,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3645,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7741,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3646,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3647,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3648,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3649,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3650,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3655,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3663,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3672,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3673,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7770,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 3675,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7771,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 7772,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 7773,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 7774,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 24158,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 15974,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 15976,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 15977,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 7786,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 15978,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 24170,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 24171,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 24172,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 3697,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7793,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 7795,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 3700,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3701,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7797,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3702,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7798,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3703,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7799,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3704,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7800,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3707,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7805,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3711,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 7807,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 7808,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 20096,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 20097,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 20098,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 20099,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 24202,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3727,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7823,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 3732,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7828,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7829,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7837,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3742,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 7838,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 16034,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3747,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 16038,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 3752,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 16041,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 3762,
+    "weakness": "STAB"
+  },
+  {
+    "npcId": 7861,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3772,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7873,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7874,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7875,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7876,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7877,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7878,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3783,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7879,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7880,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7881,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7882,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7883,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7884,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3808,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3814,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 16102,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3815,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 16103,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 3816,
+    "weakness": "THROWN"
+  },
+  {
+    "npcId": 16104,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 7913,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 7914,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 3819,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 7915,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 7916,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 7917,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 7918,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 7919,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 7920,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7921,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 7922,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 7923,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 7924,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 7925,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 7926,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 7927,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 7928,
+    "weakness": "CRUSH"
+  },
+  {
+    "npcId": 3840,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 3843,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 16141,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 16154,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 16155,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 16156,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 16157,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 20265,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 20266,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 20267,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 7994,
+    "weakness": "EARTH"
+  },
+  {
+    "npcId": 3914,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 3915,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 16208,
+    "weakness": "ARROW"
+  },
+  {
+    "npcId": 3939,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 3940,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 3943,
+    "weakness": "SLASH"
+  },
+  {
+    "npcId": 20363,
+    "weakness": "FIRE"
+  },
+  {
+    "npcId": 16268,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 20367,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 20369,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 20370,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 20374,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 20375,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 20376,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 20377,
+    "weakness": "AIR"
+  },
+  {
+    "npcId": 8125,
+    "weakness": "BOLT"
+  },
+  {
+    "npcId": 8149,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8150,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8151,
+    "weakness": "WATER"
+  },
+  {
+    "npcId": 8152,
+    "weakness": "WATER"
+  }
+]

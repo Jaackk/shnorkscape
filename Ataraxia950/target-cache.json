@@ -1,0 +1,322 @@
+{
+  "purpose": "Pinned candidate cache snapshot used by the existing947 OpenNXT scene; gameplay definitions remain under migration",
+  "sourceReadOnly": true,
+  "totalGroups": 544044,
+  "indexes": [
+    {
+      "index": 1,
+      "version": 1773419389,
+      "crc32": "2277986418",
+      "groups": 5309,
+      "referenceSha256": "29288907568b1575c3f85641a7e885dec64d0929bd0d0287b5420efa1644e506"
+    },
+    {
+      "index": 2,
+      "version": 1776434970,
+      "crc32": "3683717729",
+      "groups": 39,
+      "referenceSha256": "b5d9b2d400d0e7f7eb59d23c7859848cf7f36fb99809727b5681fe305c2c78b3"
+    },
+    {
+      "index": 3,
+      "version": 1776263181,
+      "crc32": "2080937828",
+      "groups": 1869,
+      "referenceSha256": "018ac6413b33a547598c52387a0c963e030600facdf8cbbc6022912f132276d2"
+    },
+    {
+      "index": 5,
+      "version": 1776263181,
+      "crc32": "4075411619",
+      "groups": 8515,
+      "referenceSha256": "6f81a154f328e80e23c5f3ac2c1faeed67a372da53609921cef71e8c77cc9fc3"
+    },
+    {
+      "index": 8,
+      "version": 1776431779,
+      "crc32": "1931624376",
+      "groups": 35735,
+      "referenceSha256": "b904c4f51b37a426e3cd0cdc66faa574374378372cd0c22a5a5d70bb2421233f"
+    },
+    {
+      "index": 10,
+      "version": 5,
+      "crc32": "1500764092",
+      "groups": 1,
+      "referenceSha256": "f85c28877420f6e2ddf2e1ea90b95240b11cab1debe8f0a8577f4318a309d301"
+    },
+    {
+      "index": 12,
+      "version": 0,
+      "crc32": "1552179285",
+      "groups": 20577,
+      "referenceSha256": "f0db55a216ca09101fcc52a5e778660f754efc26ef9a1d6f6f195251d8618e39"
+    },
+    {
+      "index": 13,
+      "version": 1768232290,
+      "crc32": "2544563817",
+      "groups": 60,
+      "referenceSha256": "62ccd2e91dbfadde6439ab813fe6cb487d54c7d759479c024f04b0570d167252"
+    },
+    {
+      "index": 14,
+      "version": 1776178920,
+      "crc32": "1930820940",
+      "groups": 59712,
+      "referenceSha256": "5129ee663f182f17d088600ec48d8664d1e0afaf017220bbcf69d65db5715e93"
+    },
+    {
+      "index": 16,
+      "version": 1776263181,
+      "crc32": "1881625866",
+      "groups": 536,
+      "referenceSha256": "05928c84cfc79ace929b55d555361a1fe766baf8fc84e19eb068f7f1e38d524e"
+    },
+    {
+      "index": 17,
+      "version": 1776419480,
+      "crc32": "1320087965",
+      "groups": 69,
+      "referenceSha256": "21feee606184fbf171b25df08103598f75324ab22323cc9b9edf6726aa7c0322"
+    },
+    {
+      "index": 18,
+      "version": 1775571902,
+      "crc32": "2414372672",
+      "groups": 257,
+      "referenceSha256": "11882bf202518dde98c249cec5063cdbb906f937214cd374fcdbd9c8c7a84d3b"
+    },
+    {
+      "index": 19,
+      "version": 1775822731,
+      "crc32": "1906134764",
+      "groups": 238,
+      "referenceSha256": "3cc5541ec3b09492ffc9480448ab419872352a46165748ae7c2546c316a3a687"
+    },
+    {
+      "index": 20,
+      "version": 1776178906,
+      "crc32": "3548580835",
+      "groups": 296,
+      "referenceSha256": "7cf9b3de0054693d5f13354393c68595f63f63d4b99c1d3c9844d123838d4885"
+    },
+    {
+      "index": 21,
+      "version": 1776178906,
+      "crc32": "1783328924",
+      "groups": 36,
+      "referenceSha256": "73ce7614e0d2e2860af3fb2a3d553e561bf224c6e52f8eefa9380b2829d8bdb6"
+    },
+    {
+      "index": 22,
+      "version": 1776424857,
+      "crc32": "2655279400",
+      "groups": 1657,
+      "referenceSha256": "e80b7d8c075f129af8dea07124dab35bdefc4534f40c479136820010e7b450dc"
+    },
+    {
+      "index": 23,
+      "version": 1776263190,
+      "crc32": "3637720374",
+      "groups": 5,
+      "referenceSha256": "fdb7771bcca9a5492b242dd7d8cf6461031b2723f0c930dfdc1761526dae28b9"
+    },
+    {
+      "index": 24,
+      "version": 1775571935,
+      "crc32": "2161821196",
+      "groups": 2,
+      "referenceSha256": "d34467bc75df495708aabd6c363adc8822ecc5bbeb82f2d7ce3130030e9b742b"
+    },
+    {
+      "index": 26,
+      "version": 1775822730,
+      "crc32": "118224268",
+      "groups": 1,
+      "referenceSha256": "53ecb72f2e82cf3a4764d301faa7adb734a10cfb8d403411110299224f5a54db"
+    },
+    {
+      "index": 27,
+      "version": 1775571934,
+      "crc32": "105017107",
+      "groups": 2,
+      "referenceSha256": "abd355c5cd83527780ab3cc87de1473f61d5572cd4cf57fe319fc590c88abd1d"
+    },
+    {
+      "index": 28,
+      "version": 1773940632,
+      "crc32": "742669605",
+      "groups": 11,
+      "referenceSha256": "e1030d98cd1e1d1e3fb76ef3c5bf31d89734e1cd558572ef78ca72bdb034e390"
+    },
+    {
+      "index": 29,
+      "version": 1707141128,
+      "crc32": "827231818",
+      "groups": 1,
+      "referenceSha256": "2f0158fb482f291d49421447383474d6177f74dc8510fdd45a1ac288b4fadd7c"
+    },
+    {
+      "index": 32,
+      "version": 19,
+      "crc32": "625170950",
+      "groups": 11,
+      "referenceSha256": "b674c767989d50feb5229efc139c31f0ea6b2e11a8a6ed280d94513d83d21809"
+    },
+    {
+      "index": 33,
+      "version": 48,
+      "crc32": "1181028276",
+      "groups": 3,
+      "referenceSha256": "095f933e5b33ec15c3362fee3c5da4dc23786a962f6193dd8bb67c1c1272d46a"
+    },
+    {
+      "index": 34,
+      "version": 19,
+      "crc32": "3149747466",
+      "groups": 11,
+      "referenceSha256": "9de3430591ca353c8d85ec65534ffa066d4e9f5388724d8681f6cc294e93eafd"
+    },
+    {
+      "index": 35,
+      "version": 42,
+      "crc32": "2385286114",
+      "groups": 54,
+      "referenceSha256": "dcc01ac808b6e50f6057eb61e1a1076b27df77de419e3bb60b85c161341de00f"
+    },
+    {
+      "index": 40,
+      "version": 1773419387,
+      "crc32": "3133175702",
+      "groups": 85522,
+      "referenceSha256": "44335b5648d451c015a0eb93a1735e0717923c02ded94ffc57540f1acfddca9d"
+    },
+    {
+      "index": 41,
+      "version": 1776451855,
+      "crc32": "917377834",
+      "groups": 768,
+      "referenceSha256": "acf7851eb58ed4ec08483cc5a34f195ff51a3818448e2339a4a81ce128cdef7f"
+    },
+    {
+      "index": 42,
+      "version": 1776451855,
+      "crc32": "3341452318",
+      "groups": 140,
+      "referenceSha256": "fdc7da4d7c72c5254d506ba7bd08ab30434350a6ca7e25ee3a96957554d2991b"
+    },
+    {
+      "index": 47,
+      "version": 1776178915,
+      "crc32": "173048156",
+      "groups": 140131,
+      "referenceSha256": "1be22840c7a6dac8e29ceb8687a9bd4b9af562c0114cb779de229bea7b1a27d0"
+    },
+    {
+      "index": 48,
+      "version": 1775571897,
+      "crc32": "2455706249",
+      "groups": 33444,
+      "referenceSha256": "ec8eba2c26ba211236bfff411e33d6534278eb0e0c74d6ebb2eaf04839192439"
+    },
+    {
+      "index": 49,
+      "version": 1776434970,
+      "crc32": "4227084885",
+      "groups": 243,
+      "referenceSha256": "47077bbba554415d2647304b323ebd49903d4aedde19645f878a63681b6cd325"
+    },
+    {
+      "index": 52,
+      "version": 1775822744,
+      "crc32": "2851217353",
+      "groups": 36071,
+      "referenceSha256": "f7079a87a837ed08173aff429f943cd4a9f63a8dc9fac14bc5bb720866c6165f"
+    },
+    {
+      "index": 53,
+      "version": 1775822753,
+      "crc32": "691813229",
+      "groups": 36071,
+      "referenceSha256": "6799c90798bfea504bfe0feadaa06febfef4f7a1bfd875c32d9aa6d78ec005e0"
+    },
+    {
+      "index": 54,
+      "version": 1775822759,
+      "crc32": "2073144193",
+      "groups": 36020,
+      "referenceSha256": "67ef02fe281f23ce2eafc5c72f27eb4d3c55e5a181dc7374128c162c73bc5358"
+    },
+    {
+      "index": 55,
+      "version": 1775822749,
+      "crc32": "3175032825",
+      "groups": 36071,
+      "referenceSha256": "68018798286e312276612af07787e8bbd1b380ab6665e91ffa848ea5dfa2cfed"
+    },
+    {
+      "index": 56,
+      "version": 1775563655,
+      "crc32": "986645736",
+      "groups": 2829,
+      "referenceSha256": "10a135aa53eb133c8fcff90e8439ed64c225de8f16cc5574a10274356fb4b92c"
+    },
+    {
+      "index": 57,
+      "version": 1776178906,
+      "crc32": "1815407653",
+      "groups": 39,
+      "referenceSha256": "a9b2ef44fb07fc8ccd4bb3c729c8df41f1b79171980d65842f3e2dfdb84d7158"
+    },
+    {
+      "index": 58,
+      "version": 1768232291,
+      "crc32": "1133949075",
+      "groups": 225,
+      "referenceSha256": "58c0fe13a9a7ac52db08d48ab3b03cb0ad1b225ed29a396638f074a3afc0ff2a"
+    },
+    {
+      "index": 59,
+      "version": 1714406875,
+      "crc32": "3007418013",
+      "groups": 5,
+      "referenceSha256": "89443f493b2a6b1f2d6edd2e8d5487780444908ecaa2b2f015cd9efc629e182a"
+    },
+    {
+      "index": 60,
+      "version": 1774292828,
+      "crc32": "619396393",
+      "groups": 318,
+      "referenceSha256": "3897d9102dd24c292a2a957ee45315095cc9c65f1451da27142ec81ff47632ba"
+    },
+    {
+      "index": 61,
+      "version": 1776178920,
+      "crc32": "23803965",
+      "groups": 1122,
+      "referenceSha256": "5bf73e92ce1456b50336cf60d533b5d1ddcd22475c8766e7edcf663cac984f05"
+    },
+    {
+      "index": 62,
+      "version": 1669677068,
+      "crc32": "2585485192",
+      "groups": 7,
+      "referenceSha256": "485a48ffd4942f852f536f5ad50fbf4fbbc91262b3a8825304b711597b3ced3f"
+    },
+    {
+      "index": 65,
+      "version": 1692961170,
+      "crc32": "1528134624",
+      "groups": 2,
+      "referenceSha256": "c8c9f5af0f1ffc2753d761c50bf403638241e96b0a98161cc1e439cf7bbac254"
+    },
+    {
+      "index": 66,
+      "version": 1773662015,
+      "crc32": "392930070",
+      "groups": 9,
+      "referenceSha256": "f0779f327276265d3c7b26f2434af82f505560bbd4a4f4901abf520614a4bfb2"
+    }
+  ]
+}

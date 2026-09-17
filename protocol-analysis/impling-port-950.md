@@ -1,0 +1,15 @@
+# Native950 impling Hunter expansion
+
+All12 original FlyingEntities implings reuse the original level, ordinary-world catch XP, net bonus and success curve. Four already-ported butterflies remain available. Actual paired950 cache verifies Catch in NPC option1 and Loot in filled-jar inventory option3; slot assumptions were tested through native encrypted input.
+
+The adapter pins258 item definitions,12 NPC definitions and animation6606 (plus NPC name bindings). Original910-to950 names match except five equivalent renames: Yew shieldbow/longbow, Rune claw/claws, Belladonna/Cave nightshade seed, Dragon/Dragonstone bolt tips and Swamp lizard/Green salamander. Current cache metadata owns stack/note semantics. No unrelated item-ID admission rule was relaxed. Reward roster is in impling-assets-950.tsv; tools/Native950ImplingAssetDump.java regenerates reviewed evidence.
+
+Capture uses the original ActionManager and the existing stationary NPC approach, controller gate, net requirement and collision reach. Every delayed completion rechecks the live owned NPC and player state. A full backpack can exchange one empty jar for one full jar in place. Failed/cancelled catches preserve jars and XP. Captured implings retire from both native registries and respawn after100ticks; world-generation/cache changes cancel old respawns. Butterflies retain30ticks.
+
+Jar loot uses the original four tables with60/30/9.8/0.2 weights and bounded quantities. An absent rare table falls back to the next populated lower tier so clicking never becomes an unexplained no-op. Loot and returned jar are one atomic exchange; lack of space or controller refusal preserves the original filled jar. Exact source identity, ID, quantity and selected slot are checked across callbacks. Butterfly Release uses the same exact-slot exchange. Opening jars awards no additional catch XP.
+
+Original25% jar break chance remains; damage5..14 is capped to leave at least1HP, matching this port's nonlethal incidental-skill policy. Spirit implings can add one charm; this corrects the original callback's zero-quantity charm bug. No legacy dialogue side effects or arbitrary floor-drop fallback run during the transaction.
+
+Natural population reuses the original spawn rows and current collision checks. Some original positions, including the three Kingly rows, are blocked in950 and remain skipped. Missing original species can be tested with the opt-in ;;npc command. Puro-Puro controllers/maze rules, barehanded catches, traps and unrelated Hunter rewards remain outside this batch.
+
+Validation covers all12 captures,327 weighted loot-row paths, missing net/jar/level, failed catch, remote reach, full-bag replacement, loot rollback/resumption, stale source, controller veto, Spirit charm, broken-jar safety, and all12 encrypted Loot3 routes. Combined movement and save regression results are recorded in validation-more-skills-2026-09-12.json after final packaging. Live animation/menu/loot rendering remains a user playtest.

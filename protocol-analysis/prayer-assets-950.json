@@ -1,0 +1,56 @@
+{
+  "itemIds": [
+    526,
+    530,
+    2859,
+    532,
+    3125,
+    3127,
+    534,
+    6812,
+    536,
+    4834,
+    35008,
+    18830,
+    35010,
+    6729,
+    30209,
+    20264,
+    20266,
+    20268,
+    22312,
+    32945,
+    34159
+  ],
+  "excluded": {
+    "3325": "Vampyre dust; noScatteroption. OldEVIL_DUST custom case withheld."
+  },
+  "effectIdentity": [
+    {
+      "sequence": 827,
+      "same910": true,
+      "sha256": "98fd2a3e7283eda9d3c7099853b35c07f7b4496240ee212aba08b627de67e0d5"
+    },
+    {
+      "sequence": 445,
+      "same910": true,
+      "sha256": "9dee3a41ac0402d0c87398d36eaa6e0094c0bebbb784b7e9a5ccdfeb6b35358f"
+    },
+    {
+      "graphic": 40,
+      "same910": true,
+      "sha256": "60453d055dd4b02bcaf7e0d0e89ebad99620f1b2c64dafdc2dc3d790520ffa6b"
+    },
+    {
+      "graphic": 47,
+      "same910": true,
+      "sha256": "053e511459bb52136bbfda927648b4b9a4b37a73b874c5678d503b537b5b6561"
+    },
+    {
+      "graphic": 56,
+      "same910": true,
+      "sha256": "3e302151edc7baa0f567a44bac4f2895416f961fb890adb3386d416df956e698"
+    }
+  ],
+  "xpSource": "Original910 Burying.Bone.getExperience / AshScattering.AshesData.getExp; account rate applied by existingSkills.addXp"
+}

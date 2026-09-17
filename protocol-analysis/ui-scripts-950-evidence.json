@@ -1,0 +1,9662 @@
+{
+  "method": "Paired logical CS2 script operands and full metadata, bijective opcode normalization with per-op support counts and independent native checks for selected rare opcodes. Not proof of native handler/data/callee semantics.",
+  "coverage": {
+    "947total": 20577,
+    "950total": 21098,
+    "947decoded": 20477,
+    "950decoded": 20918,
+    "exactOperandSeedPairs": 19398,
+    "opcodeMappings": 1163
+  },
+  "opcodeMap947to950": {
+    "0x0": {
+      "opcode950": "0x81a",
+      "support": 27,
+      "total": 27
+    },
+    "0x2": {
+      "opcode950": "0x5a3",
+      "support": 15,
+      "total": 15
+    },
+    "0x3": {
+      "opcode950": "0x763",
+      "support": 8,
+      "total": 8
+    },
+    "0x5": {
+      "opcode950": "0x1b3",
+      "support": 1613,
+      "total": 1613
+    },
+    "0x6": {
+      "opcode950": "0x885",
+      "support": 23,
+      "total": 23
+    },
+    "0x7": {
+      "opcode950": "0x59",
+      "support": 14,
+      "total": 14
+    },
+    "0xa": {
+      "opcode950": "0x30c",
+      "support": 14,
+      "total": 14
+    },
+    "0xc": {
+      "opcode950": "0x504",
+      "support": 20,
+      "total": 20
+    },
+    "0xd": {
+      "opcode950": "0x6a8",
+      "support": 1,
+      "total": 1
+    },
+    "0xe": {
+      "opcode950": "0x25d",
+      "support": 12,
+      "total": 12
+    },
+    "0xf": {
+      "opcode950": "0x127",
+      "support": 395,
+      "total": 395
+    },
+    "0x10": {
+      "opcode950": "0x191",
+      "support": 1,
+      "total": 1
+    },
+    "0x14": {
+      "opcode950": "0x3db",
+      "support": 566,
+      "total": 566
+    },
+    "0x15": {
+      "opcode950": "0x8b2",
+      "support": 2,
+      "total": 2
+    },
+    "0x16": {
+      "opcode950": "0x554",
+      "support": 2,
+      "total": 2
+    },
+    "0x19": {
+      "opcode950": "0x2ac",
+      "support": 2,
+      "total": 2
+    },
+    "0x1a": {
+      "opcode950": "0x34f",
+      "support": 15,
+      "total": 15
+    },
+    "0x1d": {
+      "opcode950": "0x611",
+      "support": 17797,
+      "total": 17797
+    },
+    "0x20": {
+      "opcode950": "0x306",
+      "support": 3,
+      "total": 3
+    },
+    "0x27": {
+      "opcode950": "0x5a5",
+      "support": 1,
+      "total": 1
+    },
+    "0x29": {
+      "opcode950": "0x669",
+      "support": 249,
+      "total": 249
+    },
+    "0x2a": {
+      "opcode950": "0x75c",
+      "support": 5,
+      "total": 5
+    },
+    "0x2b": {
+      "opcode950": "0x44c",
+      "support": 1,
+      "total": 1
+    },
+    "0x30": {
+      "opcode950": "0x61c",
+      "support": 30213,
+      "total": 30213
+    },
+    "0x34": {
+      "opcode950": "0x2c9",
+      "support": 10,
+      "total": 10
+    },
+    "0x35": {
+      "opcode950": "0x55d",
+      "support": 1,
+      "total": 1
+    },
+    "0x37": {
+      "opcode950": "0x832",
+      "support": 37,
+      "total": 37
+    },
+    "0x38": {
+      "opcode950": "0x7d0",
+      "support": 1,
+      "total": 1
+    },
+    "0x39": {
+      "opcode950": "0x7e2",
+      "support": 3,
+      "total": 3
+    },
+    "0x3b": {
+      "opcode950": "0x337",
+      "support": 8,
+      "total": 8
+    },
+    "0x3c": {
+      "opcode950": "0x802",
+      "support": 10,
+      "total": 10
+    },
+    "0x3e": {
+      "opcode950": "0x473",
+      "support": 6,
+      "total": 6
+    },
+    "0x3f": {
+      "opcode950": "0x5e5",
+      "support": 682,
+      "total": 682
+    },
+    "0x40": {
+      "opcode950": "0x775",
+      "support": 4,
+      "total": 4
+    },
+    "0x41": {
+      "opcode950": "0x751",
+      "support": 3,
+      "total": 3
+    },
+    "0x43": {
+      "opcode950": "0x4ee",
+      "support": 3,
+      "total": 3
+    },
+    "0x45": {
+      "opcode950": "0xcb",
+      "support": 1,
+      "total": 1
+    },
+    "0x46": {
+      "opcode950": "0x56a",
+      "support": 157,
+      "total": 157
+    },
+    "0x47": {
+      "opcode950": "0x2a6",
+      "support": 1608,
+      "total": 1608
+    },
+    "0x4b": {
+      "opcode950": "0x1fd",
+      "support": 1,
+      "total": 1
+    },
+    "0x4c": {
+      "opcode950": "0x461",
+      "support": 20,
+      "total": 20
+    },
+    "0x4d": {
+      "opcode950": "0x162",
+      "support": 8,
+      "total": 8
+    },
+    "0x50": {
+      "opcode950": "0x4b4",
+      "support": 1,
+      "total": 1
+    },
+    "0x52": {
+      "opcode950": "0xa3",
+      "support": 8,
+      "total": 8
+    },
+    "0x53": {
+      "opcode950": "0x19c",
+      "support": 85,
+      "total": 85
+    },
+    "0x55": {
+      "opcode950": "0x89",
+      "support": 2004,
+      "total": 2004
+    },
+    "0x56": {
+      "opcode950": "0x7c7",
+      "support": 493,
+      "total": 493
+    },
+    "0x5d": {
+      "opcode950": "0x66f",
+      "support": 3,
+      "total": 3
+    },
+    "0x5e": {
+      "opcode950": "0x8a7",
+      "support": 4,
+      "total": 4
+    },
+    "0x5f": {
+      "opcode950": "0x375",
+      "support": 1,
+      "total": 1
+    },
+    "0x62": {
+      "opcode950": "0x7c",
+      "support": 256,
+      "total": 256
+    },
+    "0x63": {
+      "opcode950": "0x647",
+      "support": 8,
+      "total": 8
+    },
+    "0x64": {
+      "opcode950": "0x6d8",
+      "support": 345,
+      "total": 345
+    },
+    "0x66": {
+      "opcode950": "0x2ea",
+      "support": 1,
+      "total": 1
+    },
+    "0x68": {
+      "opcode950": "0x587",
+      "support": 23,
+      "total": 23
+    },
+    "0x69": {
+      "opcode950": "0x1b9",
+      "support": 3,
+      "total": 3
+    },
+    "0x6a": {
+      "opcode950": "0x83b",
+      "support": 412,
+      "total": 412
+    },
+    "0x6b": {
+      "opcode950": "0x1dc",
+      "support": 382,
+      "total": 382
+    },
+    "0x6c": {
+      "opcode950": "0x446",
+      "support": 3,
+      "total": 3
+    },
+    "0x6e": {
+      "opcode950": "0x5c0",
+      "support": 1,
+      "total": 1
+    },
+    "0x6f": {
+      "opcode950": "0x3c6",
+      "support": 1,
+      "total": 1
+    },
+    "0x71": {
+      "opcode950": "0x348",
+      "support": 153,
+      "total": 153
+    },
+    "0x73": {
+      "opcode950": "0x1f1",
+      "support": 5,
+      "total": 5
+    },
+    "0x77": {
+      "opcode950": "0x84c",
+      "support": 2,
+      "total": 2
+    },
+    "0x79": {
+      "opcode950": "0x65c",
+      "support": 1,
+      "total": 1
+    },
+    "0x7d": {
+      "opcode950": "0x5b8",
+      "support": 1,
+      "total": 1
+    },
+    "0x7e": {
+      "opcode950": "0x4c",
+      "support": 6,
+      "total": 6
+    },
+    "0x81": {
+      "opcode950": "0x7b3",
+      "support": 26,
+      "total": 26
+    },
+    "0x83": {
+      "opcode950": "0x16d",
+      "support": 1,
+      "total": 1
+    },
+    "0x85": {
+      "opcode950": "0x364",
+      "support": 4,
+      "total": 4
+    },
+    "0x86": {
+      "opcode950": "0x86a",
+      "support": 4,
+      "total": 4
+    },
+    "0x88": {
+      "opcode950": "0x713",
+      "support": 170,
+      "total": 170
+    },
+    "0x89": {
+      "opcode950": "0x58f",
+      "support": 2,
+      "total": 2
+    },
+    "0x8a": {
+      "opcode950": "0x576",
+      "support": 8,
+      "total": 8
+    },
+    "0x8b": {
+      "opcode950": "0xda",
+      "support": 27,
+      "total": 27
+    },
+    "0x8d": {
+      "opcode950": "0x17d",
+      "support": 4,
+      "total": 4
+    },
+    "0x8f": {
+      "opcode950": "0x4c1",
+      "support": 1495,
+      "total": 1495
+    },
+    "0x90": {
+      "opcode950": "0x7b6",
+      "support": 5,
+      "total": 5
+    },
+    "0x92": {
+      "opcode950": "0x68",
+      "support": 23,
+      "total": 23
+    },
+    "0x93": {
+      "opcode950": "0xcf",
+      "support": 135,
+      "total": 135
+    },
+    "0x94": {
+      "opcode950": "0x250",
+      "support": 32,
+      "total": 32
+    },
+    "0x95": {
+      "opcode950": "0x843",
+      "support": 54,
+      "total": 54
+    },
+    "0x96": {
+      "opcode950": "0x889",
+      "support": 626,
+      "total": 626
+    },
+    "0x98": {
+      "opcode950": "0x85a",
+      "support": 27,
+      "total": 27
+    },
+    "0x9d": {
+      "opcode950": "0xee",
+      "support": 2,
+      "total": 2
+    },
+    "0x9e": {
+      "opcode950": "0x88a",
+      "support": 10,
+      "total": 10
+    },
+    "0x9f": {
+      "opcode950": "0x5fd",
+      "support": 11,
+      "total": 11
+    },
+    "0xa0": {
+      "opcode950": "0x54d",
+      "support": 497,
+      "total": 497
+    },
+    "0xa2": {
+      "opcode950": "0x1a7",
+      "support": 7115,
+      "total": 7115
+    },
+    "0xa6": {
+      "opcode950": "0x11f",
+      "support": 1,
+      "total": 1
+    },
+    "0xa7": {
+      "opcode950": "0x10f",
+      "support": 12,
+      "total": 12
+    },
+    "0xa9": {
+      "opcode950": "0x816",
+      "support": 4,
+      "total": 4
+    },
+    "0xab": {
+      "opcode950": "0x76f",
+      "support": 5761,
+      "total": 5761
+    },
+    "0xac": {
+      "opcode950": "0x514",
+      "support": 6,
+      "total": 6
+    },
+    "0xad": {
+      "opcode950": "0x721",
+      "support": 26,
+      "total": 26
+    },
+    "0xaf": {
+      "opcode950": "0x820",
+      "support": 3,
+      "total": 3
+    },
+    "0xb0": {
+      "opcode950": "0x2a7",
+      "support": 8,
+      "total": 8
+    },
+    "0xb1": {
+      "opcode950": "0x803",
+      "support": 2,
+      "total": 2
+    },
+    "0xb2": {
+      "opcode950": "0x759",
+      "support": 2,
+      "total": 2
+    },
+    "0xb3": {
+      "opcode950": "0x22f",
+      "support": 2,
+      "total": 2
+    },
+    "0xb4": {
+      "opcode950": "0x5cc",
+      "support": 1,
+      "total": 1
+    },
+    "0xb5": {
+      "opcode950": "0x462",
+      "support": 1,
+      "total": 1
+    },
+    "0xb7": {
+      "opcode950": "0x45e",
+      "support": 2,
+      "total": 2
+    },
+    "0xb8": {
+      "opcode950": "0x270",
+      "support": 2,
+      "total": 2
+    },
+    "0xbd": {
+      "opcode950": "0x124",
+      "support": 6,
+      "total": 6
+    },
+    "0xbf": {
+      "opcode950": "0x47c",
+      "support": 7,
+      "total": 7
+    },
+    "0xc2": {
+      "opcode950": "0x5eb",
+      "support": 1132,
+      "total": 1132
+    },
+    "0xc7": {
+      "opcode950": "0xff",
+      "support": 86,
+      "total": 86
+    },
+    "0xc8": {
+      "opcode950": "0x739",
+      "support": 1,
+      "total": 1
+    },
+    "0xcb": {
+      "opcode950": "0x4ac",
+      "support": 1,
+      "total": 1
+    },
+    "0xcd": {
+      "opcode950": "0x82f",
+      "support": 4,
+      "total": 4
+    },
+    "0xce": {
+      "opcode950": "0x7fc",
+      "support": 6,
+      "total": 6
+    },
+    "0xcf": {
+      "opcode950": "0x8a2",
+      "support": 3,
+      "total": 3
+    },
+    "0xd0": {
+      "opcode950": "0x6cd",
+      "support": 441,
+      "total": 441
+    },
+    "0xd1": {
+      "opcode950": "0x484",
+      "support": 167,
+      "total": 167
+    },
+    "0xd3": {
+      "opcode950": "0x2",
+      "support": 5,
+      "total": 5
+    },
+    "0xd9": {
+      "opcode950": "0x7eb",
+      "support": 15,
+      "total": 15
+    },
+    "0xda": {
+      "opcode950": "0x2d",
+      "support": 30,
+      "total": 30
+    },
+    "0xdd": {
+      "opcode950": "0x83f",
+      "support": 2,
+      "total": 2
+    },
+    "0xe0": {
+      "opcode950": "0x5b4",
+      "support": 6,
+      "total": 6
+    },
+    "0xe1": {
+      "opcode950": "0x8ac",
+      "support": 7,
+      "total": 7
+    },
+    "0xe2": {
+      "opcode950": "0x82a",
+      "support": 3,
+      "total": 3
+    },
+    "0xe4": {
+      "opcode950": "0x366",
+      "support": 12177,
+      "total": 12177
+    },
+    "0xe6": {
+      "opcode950": "0x8cd",
+      "support": 66,
+      "total": 66
+    },
+    "0xe8": {
+      "opcode950": "0x610",
+      "support": 1,
+      "total": 1
+    },
+    "0xe9": {
+      "opcode950": "0x785",
+      "support": 2,
+      "total": 2
+    },
+    "0xeb": {
+      "opcode950": "0x32c",
+      "support": 8,
+      "total": 8
+    },
+    "0xec": {
+      "opcode950": "0x43b",
+      "support": 9,
+      "total": 9
+    },
+    "0xee": {
+      "opcode950": "0x8c",
+      "support": 1,
+      "total": 1
+    },
+    "0xf3": {
+      "opcode950": "0x203",
+      "support": 1,
+      "total": 1
+    },
+    "0xf4": {
+      "opcode950": "0x8ca",
+      "support": 4,
+      "total": 4
+    },
+    "0xf5": {
+      "opcode950": "0x736",
+      "support": 2,
+      "total": 2
+    },
+    "0xf7": {
+      "opcode950": "0x8a6",
+      "support": 4,
+      "total": 4
+    },
+    "0xf9": {
+      "opcode950": "0x578",
+      "support": 8,
+      "total": 8
+    },
+    "0xfc": {
+      "opcode950": "0x601",
+      "support": 666,
+      "total": 666
+    },
+    "0xfe": {
+      "opcode950": "0x4d2",
+      "support": 5,
+      "total": 5
+    },
+    "0x101": {
+      "opcode950": "0x7f6",
+      "support": 1,
+      "total": 1
+    },
+    "0x102": {
+      "opcode950": "0x60e",
+      "support": 1,
+      "total": 1
+    },
+    "0x104": {
+      "opcode950": "0x183",
+      "support": 27,
+      "total": 27
+    },
+    "0x105": {
+      "opcode950": "0x26b",
+      "support": 65,
+      "total": 65
+    },
+    "0x106": {
+      "opcode950": "0x748",
+      "support": 16,
+      "total": 16
+    },
+    "0x107": {
+      "opcode950": "0x551",
+      "support": 7,
+      "total": 7
+    },
+    "0x108": {
+      "opcode950": "0x116",
+      "support": 3,
+      "total": 3
+    },
+    "0x109": {
+      "opcode950": "0x60b",
+      "support": 2418,
+      "total": 2418
+    },
+    "0x10a": {
+      "opcode950": "0x709",
+      "support": 4,
+      "total": 4
+    },
+    "0x10b": {
+      "opcode950": "0x22e",
+      "support": 2,
+      "total": 2
+    },
+    "0x10c": {
+      "opcode950": "0x694",
+      "support": 2,
+      "total": 2
+    },
+    "0x10d": {
+      "opcode950": "0x7ab",
+      "support": 6,
+      "total": 6
+    },
+    "0x10e": {
+      "opcode950": "0x470",
+      "support": 1,
+      "total": 1
+    },
+    "0x112": {
+      "opcode950": "0x4f0",
+      "support": 89,
+      "total": 89
+    },
+    "0x113": {
+      "opcode950": "0x5e7",
+      "support": 377,
+      "total": 377
+    },
+    "0x114": {
+      "opcode950": "0x5ce",
+      "support": 76,
+      "total": 76
+    },
+    "0x116": {
+      "opcode950": "0x6b0",
+      "support": 18,
+      "total": 18
+    },
+    "0x117": {
+      "opcode950": "0x898",
+      "support": 14,
+      "total": 14
+    },
+    "0x11b": {
+      "opcode950": "0x93",
+      "support": 1,
+      "total": 1
+    },
+    "0x11f": {
+      "opcode950": "0x600",
+      "support": 1,
+      "total": 1
+    },
+    "0x120": {
+      "opcode950": "0x266",
+      "support": 462,
+      "total": 462
+    },
+    "0x121": {
+      "opcode950": "0x2cc",
+      "support": 2,
+      "total": 2
+    },
+    "0x122": {
+      "opcode950": "0x34",
+      "support": 1,
+      "total": 1
+    },
+    "0x123": {
+      "opcode950": "0x273",
+      "support": 49,
+      "total": 49
+    },
+    "0x125": {
+      "opcode950": "0x765",
+      "support": 1,
+      "total": 1
+    },
+    "0x128": {
+      "opcode950": "0x849",
+      "support": 163,
+      "total": 163
+    },
+    "0x129": {
+      "opcode950": "0x239",
+      "support": 1105,
+      "total": 1105
+    },
+    "0x12b": {
+      "opcode950": "0x307",
+      "support": 1,
+      "total": 1
+    },
+    "0x12e": {
+      "opcode950": "0x123",
+      "support": 1,
+      "total": 1
+    },
+    "0x131": {
+      "opcode950": "0x1a4",
+      "support": 2,
+      "total": 2
+    },
+    "0x134": {
+      "opcode950": "0x50e",
+      "support": 40,
+      "total": 40
+    },
+    "0x135": {
+      "opcode950": "0xf7",
+      "support": 1,
+      "total": 1
+    },
+    "0x136": {
+      "opcode950": "0x5e1",
+      "support": 1,
+      "total": 1
+    },
+    "0x139": {
+      "opcode950": "0x4b0",
+      "support": 2,
+      "total": 2
+    },
+    "0x13a": {
+      "opcode950": "0x47b",
+      "support": 76,
+      "total": 76
+    },
+    "0x13e": {
+      "opcode950": "0x3c0",
+      "support": 1,
+      "total": 1
+    },
+    "0x13f": {
+      "opcode950": "0x2e1",
+      "support": 12,
+      "total": 12
+    },
+    "0x142": {
+      "opcode950": "0x46f",
+      "support": 6,
+      "total": 6
+    },
+    "0x143": {
+      "opcode950": "0x1a1",
+      "support": 2,
+      "total": 2
+    },
+    "0x144": {
+      "opcode950": "0x661",
+      "support": 2,
+      "total": 2
+    },
+    "0x146": {
+      "opcode950": "0x387",
+      "support": 1,
+      "total": 1
+    },
+    "0x148": {
+      "opcode950": "0x142",
+      "support": 191,
+      "total": 191
+    },
+    "0x149": {
+      "opcode950": "0x732",
+      "support": 2,
+      "total": 2
+    },
+    "0x14b": {
+      "opcode950": "0x38e",
+      "support": 12,
+      "total": 12
+    },
+    "0x14c": {
+      "opcode950": "0x7f3",
+      "support": 3,
+      "total": 3
+    },
+    "0x14e": {
+      "opcode950": "0x808",
+      "support": 23,
+      "total": 23
+    },
+    "0x153": {
+      "opcode950": "0x795",
+      "support": 2,
+      "total": 2
+    },
+    "0x154": {
+      "opcode950": "0x758",
+      "support": 22,
+      "total": 22
+    },
+    "0x157": {
+      "opcode950": "0x129",
+      "support": 79,
+      "total": 79
+    },
+    "0x158": {
+      "opcode950": "0x860",
+      "support": 131,
+      "total": 131
+    },
+    "0x159": {
+      "opcode950": "0x6a6",
+      "support": 1,
+      "total": 1
+    },
+    "0x15a": {
+      "opcode950": "0x97",
+      "support": 445,
+      "total": 445
+    },
+    "0x15d": {
+      "opcode950": "0x532",
+      "support": 3,
+      "total": 3
+    },
+    "0x160": {
+      "opcode950": "0x4e4",
+      "support": 1,
+      "total": 1
+    },
+    "0x162": {
+      "opcode950": "0x84e",
+      "support": 2,
+      "total": 2
+    },
+    "0x164": {
+      "opcode950": "0x456",
+      "support": 1,
+      "total": 1
+    },
+    "0x166": {
+      "opcode950": "0x37f",
+      "support": 367,
+      "total": 367
+    },
+    "0x167": {
+      "opcode950": "0x6d3",
+      "support": 6,
+      "total": 6
+    },
+    "0x16a": {
+      "opcode950": "0xf0",
+      "support": 2,
+      "total": 2
+    },
+    "0x16e": {
+      "opcode950": "0x33e",
+      "support": 8,
+      "total": 8
+    },
+    "0x170": {
+      "opcode950": "0x38a",
+      "support": 3,
+      "total": 3
+    },
+    "0x171": {
+      "opcode950": "0x385",
+      "support": 1,
+      "total": 1
+    },
+    "0x173": {
+      "opcode950": "0x563",
+      "support": 7,
+      "total": 7
+    },
+    "0x174": {
+      "opcode950": "0x1e9",
+      "support": 1,
+      "total": 1
+    },
+    "0x175": {
+      "opcode950": "0x4f3",
+      "support": 1,
+      "total": 1
+    },
+    "0x177": {
+      "opcode950": "0x360",
+      "support": 20,
+      "total": 20
+    },
+    "0x179": {
+      "opcode950": "0x695",
+      "support": 1,
+      "total": 1
+    },
+    "0x17a": {
+      "opcode950": "0x7e7",
+      "support": 30,
+      "total": 30
+    },
+    "0x17b": {
+      "opcode950": "0x2c0",
+      "support": 17,
+      "total": 17
+    },
+    "0x17c": {
+      "opcode950": "0x198",
+      "support": 1,
+      "total": 1
+    },
+    "0x17e": {
+      "opcode950": "0x7d6",
+      "support": 13,
+      "total": 13
+    },
+    "0x183": {
+      "opcode950": "0x59d",
+      "support": 1,
+      "total": 1
+    },
+    "0x186": {
+      "opcode950": "0x341",
+      "support": 1,
+      "total": 1
+    },
+    "0x189": {
+      "opcode950": "0x5cf",
+      "support": 3,
+      "total": 3
+    },
+    "0x18a": {
+      "opcode950": "0x4c3",
+      "support": 2,
+      "total": 2
+    },
+    "0x18c": {
+      "opcode950": "0x89b",
+      "support": 1,
+      "total": 1
+    },
+    "0x18f": {
+      "opcode950": "0x452",
+      "support": 1,
+      "total": 1
+    },
+    "0x191": {
+      "opcode950": "0xe6",
+      "support": 1,
+      "total": 1
+    },
+    "0x193": {
+      "opcode950": "0xd8",
+      "support": 24,
+      "total": 24
+    },
+    "0x195": {
+      "opcode950": "0x3e5",
+      "support": 7162,
+      "total": 7162
+    },
+    "0x196": {
+      "opcode950": "0x762",
+      "support": 1,
+      "total": 1
+    },
+    "0x197": {
+      "opcode950": "0x783",
+      "support": 2,
+      "total": 2
+    },
+    "0x198": {
+      "opcode950": "0x46",
+      "support": 28,
+      "total": 28
+    },
+    "0x19d": {
+      "opcode950": "0x7fd",
+      "support": 10,
+      "total": 10
+    },
+    "0x1a0": {
+      "opcode950": "0x278",
+      "support": 95,
+      "total": 95
+    },
+    "0x1a2": {
+      "opcode950": "0x290",
+      "support": 338,
+      "total": 338
+    },
+    "0x1a3": {
+      "opcode950": "0x18a",
+      "support": 21,
+      "total": 21
+    },
+    "0x1a5": {
+      "opcode950": "0x516",
+      "support": 275,
+      "total": 275
+    },
+    "0x1a6": {
+      "opcode950": "0x5c9",
+      "support": 2,
+      "total": 2
+    },
+    "0x1a9": {
+      "opcode950": "0x550",
+      "support": 1,
+      "total": 1
+    },
+    "0x1aa": {
+      "opcode950": "0x723",
+      "support": 106,
+      "total": 106
+    },
+    "0x1ac": {
+      "opcode950": "0x26f",
+      "support": 4,
+      "total": 4
+    },
+    "0x1ae": {
+      "opcode950": "0x501",
+      "support": 4,
+      "total": 4
+    },
+    "0x1b1": {
+      "opcode950": "0x459",
+      "support": 11,
+      "total": 11
+    },
+    "0x1b2": {
+      "opcode950": "0x8d0",
+      "support": 3,
+      "total": 3
+    },
+    "0x1b7": {
+      "opcode950": "0x3ba",
+      "support": 3,
+      "total": 3
+    },
+    "0x1b8": {
+      "opcode950": "0x871",
+      "support": 1,
+      "total": 1
+    },
+    "0x1b9": {
+      "opcode950": "0x9c",
+      "support": 3,
+      "total": 3
+    },
+    "0x1ba": {
+      "opcode950": "0x18b",
+      "support": 2,
+      "total": 2
+    },
+    "0x1bb": {
+      "opcode950": "0x439",
+      "support": 1,
+      "total": 1
+    },
+    "0x1bc": {
+      "opcode950": "0x46b",
+      "support": 2,
+      "total": 2
+    },
+    "0x1c0": {
+      "opcode950": "0x46d",
+      "support": 3,
+      "total": 3
+    },
+    "0x1c2": {
+      "opcode950": "0x507",
+      "support": 8,
+      "total": 8
+    },
+    "0x1c8": {
+      "opcode950": "0x631",
+      "support": 1,
+      "total": 1
+    },
+    "0x1c9": {
+      "opcode950": "0x646",
+      "support": 7,
+      "total": 7
+    },
+    "0x1ca": {
+      "opcode950": "0x5d7",
+      "support": 16609,
+      "total": 16609
+    },
+    "0x1cc": {
+      "opcode950": "0x7a6",
+      "support": 2,
+      "total": 2
+    },
+    "0x1cf": {
+      "opcode950": "0x295",
+      "support": 3,
+      "total": 3
+    },
+    "0x1d0": {
+      "opcode950": "0x586",
+      "support": 3,
+      "total": 3
+    },
+    "0x1d1": {
+      "opcode950": "0x451",
+      "support": 13,
+      "total": 13
+    },
+    "0x1d2": {
+      "opcode950": "0x89e",
+      "support": 4,
+      "total": 4
+    },
+    "0x1d3": {
+      "opcode950": "0x575",
+      "support": 19,
+      "total": 19
+    },
+    "0x1d7": {
+      "opcode950": "0x450",
+      "support": 43,
+      "total": 43
+    },
+    "0x1d8": {
+      "opcode950": "0x57c",
+      "support": 1,
+      "total": 1
+    },
+    "0x1da": {
+      "opcode950": "0x50",
+      "support": 1,
+      "total": 1
+    },
+    "0x1dc": {
+      "opcode950": "0x7d8",
+      "support": 2,
+      "total": 2
+    },
+    "0x1dd": {
+      "opcode950": "0x744",
+      "support": 2,
+      "total": 2
+    },
+    "0x1e2": {
+      "opcode950": "0x34d",
+      "support": 431,
+      "total": 431
+    },
+    "0x1e3": {
+      "opcode950": "0x2d0",
+      "support": 213,
+      "total": 213
+    },
+    "0x1e4": {
+      "opcode950": "0x48e",
+      "support": 2,
+      "total": 2
+    },
+    "0x1e9": {
+      "opcode950": "0x3e8",
+      "support": 15,
+      "total": 15
+    },
+    "0x1ea": {
+      "opcode950": "0x24b",
+      "support": 1,
+      "total": 1
+    },
+    "0x1ec": {
+      "opcode950": "0x2e8",
+      "support": 2,
+      "total": 2
+    },
+    "0x1ed": {
+      "opcode950": "0x793",
+      "support": 19,
+      "total": 19
+    },
+    "0x1ef": {
+      "opcode950": "0x807",
+      "support": 2,
+      "total": 2
+    },
+    "0x1f0": {
+      "opcode950": "0x64d",
+      "support": 63,
+      "total": 63
+    },
+    "0x1f1": {
+      "opcode950": "0x7a0",
+      "support": 1551,
+      "total": 1551
+    },
+    "0x1f2": {
+      "opcode950": "0x57d",
+      "support": 4,
+      "total": 4
+    },
+    "0x1f3": {
+      "opcode950": "0x815",
+      "support": 2,
+      "total": 2
+    },
+    "0x1f7": {
+      "opcode950": "0x365",
+      "support": 1,
+      "total": 1
+    },
+    "0x1f8": {
+      "opcode950": "0x4fe",
+      "support": 191,
+      "total": 191
+    },
+    "0x1f9": {
+      "opcode950": "0x80a",
+      "support": 1495,
+      "total": 1495
+    },
+    "0x1fa": {
+      "opcode950": "0x264",
+      "support": 1,
+      "total": 1
+    },
+    "0x1fc": {
+      "opcode950": "0x570",
+      "support": 20,
+      "total": 20
+    },
+    "0x1fd": {
+      "opcode950": "0x5e3",
+      "support": 63,
+      "total": 63
+    },
+    "0x1fe": {
+      "opcode950": "0x649",
+      "support": 3,
+      "total": 3
+    },
+    "0x201": {
+      "opcode950": "0x88f",
+      "support": 12,
+      "total": 12
+    },
+    "0x206": {
+      "opcode950": "0x5d4",
+      "support": 1,
+      "total": 1
+    },
+    "0x207": {
+      "opcode950": "0x51d",
+      "support": 124,
+      "total": 124
+    },
+    "0x20b": {
+      "opcode950": "0x567",
+      "support": 1,
+      "total": 1
+    },
+    "0x20e": {
+      "opcode950": "0x45c",
+      "support": 52,
+      "total": 52
+    },
+    "0x20f": {
+      "opcode950": "0x29c",
+      "support": 175,
+      "total": 175
+    },
+    "0x210": {
+      "opcode950": "0x89f",
+      "support": 44,
+      "total": 44
+    },
+    "0x212": {
+      "opcode950": "0x317",
+      "support": 1,
+      "total": 1
+    },
+    "0x213": {
+      "opcode950": "0x37",
+      "support": 3,
+      "total": 3
+    },
+    "0x215": {
+      "opcode950": "0x242",
+      "support": 9,
+      "total": 9
+    },
+    "0x219": {
+      "opcode950": "0x1d2",
+      "support": 1,
+      "total": 1
+    },
+    "0x21a": {
+      "opcode950": "0x174",
+      "support": 4,
+      "total": 4
+    },
+    "0x21b": {
+      "opcode950": "0x1e2",
+      "support": 1,
+      "total": 1
+    },
+    "0x21f": {
+      "opcode950": "0x851",
+      "support": 25,
+      "total": 25
+    },
+    "0x221": {
+      "opcode950": "0x33a",
+      "support": 2,
+      "total": 2
+    },
+    "0x222": {
+      "opcode950": "0x412",
+      "support": 857,
+      "total": 857
+    },
+    "0x223": {
+      "opcode950": "0x6cc",
+      "support": 3,
+      "total": 3
+    },
+    "0x226": {
+      "opcode950": "0x490",
+      "support": 6,
+      "total": 6
+    },
+    "0x227": {
+      "opcode950": "0x774",
+      "support": 1,
+      "total": 1
+    },
+    "0x228": {
+      "opcode950": "0x8c2",
+      "support": 1,
+      "total": 1
+    },
+    "0x229": {
+      "opcode950": "0x2d4",
+      "support": 29,
+      "total": 29
+    },
+    "0x22b": {
+      "opcode950": "0x7ef",
+      "support": 172,
+      "total": 172
+    },
+    "0x22d": {
+      "opcode950": "0x333",
+      "support": 4,
+      "total": 4
+    },
+    "0x22f": {
+      "opcode950": "0x776",
+      "support": 4,
+      "total": 4
+    },
+    "0x230": {
+      "opcode950": "0x21a",
+      "support": 12,
+      "total": 12
+    },
+    "0x231": {
+      "opcode950": "0x797",
+      "support": 40,
+      "total": 40
+    },
+    "0x233": {
+      "opcode950": "0x63",
+      "support": 38,
+      "total": 38
+    },
+    "0x234": {
+      "opcode950": "0x5e8",
+      "support": 5,
+      "total": 5
+    },
+    "0x238": {
+      "opcode950": "0x69a",
+      "support": 24,
+      "total": 24
+    },
+    "0x23a": {
+      "opcode950": "0x64e",
+      "support": 143,
+      "total": 143
+    },
+    "0x23b": {
+      "opcode950": "0x8dd",
+      "support": 4,
+      "total": 4
+    },
+    "0x23c": {
+      "opcode950": "0x3a1",
+      "support": 22,
+      "total": 22
+    },
+    "0x23f": {
+      "opcode950": "0x18c",
+      "support": 2,
+      "total": 2
+    },
+    "0x240": {
+      "opcode950": "0x701",
+      "support": 1,
+      "total": 1
+    },
+    "0x241": {
+      "opcode950": "0x667",
+      "support": 3,
+      "total": 3
+    },
+    "0x242": {
+      "opcode950": "0x8b9",
+      "support": 12,
+      "total": 12
+    },
+    "0x245": {
+      "opcode950": "0x5a1",
+      "support": 3,
+      "total": 3
+    },
+    "0x246": {
+      "opcode950": "0x3fa",
+      "support": 9,
+      "total": 9
+    },
+    "0x247": {
+      "opcode950": "0x1c7",
+      "support": 13,
+      "total": 13
+    },
+    "0x24c": {
+      "opcode950": "0x6d7",
+      "support": 2,
+      "total": 2
+    },
+    "0x251": {
+      "opcode950": "0x1be",
+      "support": 4,
+      "total": 4
+    },
+    "0x253": {
+      "opcode950": "0x4ab",
+      "support": 2,
+      "total": 2
+    },
+    "0x254": {
+      "opcode950": "0xdc",
+      "support": 1,
+      "total": 1
+    },
+    "0x257": {
+      "opcode950": "0xb2",
+      "support": 2,
+      "total": 2
+    },
+    "0x25a": {
+      "opcode950": "0x6ba",
+      "support": 12293,
+      "total": 12293
+    },
+    "0x25d": {
+      "opcode950": "0x866",
+      "support": 14,
+      "total": 14
+    },
+    "0x25f": {
+      "opcode950": "0x54",
+      "support": 1027,
+      "total": 1027
+    },
+    "0x262": {
+      "opcode950": "0x545",
+      "support": 87,
+      "total": 87
+    },
+    "0x263": {
+      "opcode950": "0x766",
+      "support": 17,
+      "total": 17
+    },
+    "0x266": {
+      "opcode950": "0x2fc",
+      "support": 3,
+      "total": 3
+    },
+    "0x267": {
+      "opcode950": "0x1d8",
+      "support": 5754,
+      "total": 5754
+    },
+    "0x268": {
+      "opcode950": "0x3ad",
+      "support": 1,
+      "total": 1
+    },
+    "0x269": {
+      "opcode950": "0x389",
+      "support": 4,
+      "total": 4
+    },
+    "0x26d": {
+      "opcode950": "0x2a0",
+      "support": 129,
+      "total": 129
+    },
+    "0x26e": {
+      "opcode950": "0x65e",
+      "support": 3,
+      "total": 3
+    },
+    "0x26f": {
+      "opcode950": "0x21f",
+      "support": 2,
+      "total": 2
+    },
+    "0x274": {
+      "opcode950": "0x6c",
+      "support": 4,
+      "total": 4
+    },
+    "0x275": {
+      "opcode950": "0x118",
+      "support": 1,
+      "total": 1
+    },
+    "0x276": {
+      "opcode950": "0x431",
+      "support": 5,
+      "total": 5
+    },
+    "0x278": {
+      "opcode950": "0x30d",
+      "support": 240,
+      "total": 240
+    },
+    "0x279": {
+      "opcode950": "0x1ca",
+      "support": 2,
+      "total": 2
+    },
+    "0x27e": {
+      "opcode950": "0x543",
+      "support": 4,
+      "total": 4
+    },
+    "0x281": {
+      "opcode950": "0x3fe",
+      "support": 5,
+      "total": 5
+    },
+    "0x282": {
+      "opcode950": "0x6fd",
+      "support": 23,
+      "total": 23
+    },
+    "0x285": {
+      "opcode950": "0x687",
+      "support": 153,
+      "total": 153
+    },
+    "0x287": {
+      "opcode950": "0x3ae",
+      "support": 8,
+      "total": 8
+    },
+    "0x28a": {
+      "opcode950": "0x421",
+      "support": 7,
+      "total": 7
+    },
+    "0x28e": {
+      "opcode950": "0x7ca",
+      "support": 3,
+      "total": 3
+    },
+    "0x28f": {
+      "opcode950": "0x867",
+      "support": 3,
+      "total": 3
+    },
+    "0x291": {
+      "opcode950": "0x339",
+      "support": 140,
+      "total": 140
+    },
+    "0x293": {
+      "opcode950": "0x2ad",
+      "support": 3,
+      "total": 3
+    },
+    "0x296": {
+      "opcode950": "0x30",
+      "support": 1,
+      "total": 1
+    },
+    "0x298": {
+      "opcode950": "0x197",
+      "support": 7,
+      "total": 7
+    },
+    "0x299": {
+      "opcode950": "0x6ae",
+      "support": 64,
+      "total": 64
+    },
+    "0x29f": {
+      "opcode950": "0x549",
+      "support": 1,
+      "total": 1
+    },
+    "0x2a1": {
+      "opcode950": "0x7cc",
+      "support": 6,
+      "total": 6
+    },
+    "0x2a3": {
+      "opcode950": "0x57e",
+      "support": 38,
+      "total": 38
+    },
+    "0x2aa": {
+      "opcode950": "0x302",
+      "support": 263,
+      "total": 263
+    },
+    "0x2ab": {
+      "opcode950": "0x430",
+      "support": 1,
+      "total": 1
+    },
+    "0x2af": {
+      "opcode950": "0x7b1",
+      "support": 4,
+      "total": 4
+    },
+    "0x2b0": {
+      "opcode950": "0xa9",
+      "support": 106,
+      "total": 106
+    },
+    "0x2b1": {
+      "opcode950": "0x6dc",
+      "support": 1,
+      "total": 1
+    },
+    "0x2b3": {
+      "opcode950": "0x1fb",
+      "support": 31,
+      "total": 31
+    },
+    "0x2b5": {
+      "opcode950": "0x291",
+      "support": 4626,
+      "total": 4626
+    },
+    "0x2b7": {
+      "opcode950": "0x39c",
+      "support": 7,
+      "total": 7
+    },
+    "0x2b8": {
+      "opcode950": "0x7f",
+      "support": 1,
+      "total": 1
+    },
+    "0x2be": {
+      "opcode950": "0x209",
+      "support": 98,
+      "total": 98
+    },
+    "0x2c3": {
+      "opcode950": "0x7a9",
+      "support": 1,
+      "total": 1
+    },
+    "0x2c4": {
+      "opcode950": "0x8e8",
+      "support": 2,
+      "total": 2
+    },
+    "0x2c5": {
+      "opcode950": "0x79f",
+      "support": 2,
+      "total": 2
+    },
+    "0x2c8": {
+      "opcode950": "0x64",
+      "support": 1,
+      "total": 1
+    },
+    "0x2cb": {
+      "opcode950": "0xc5",
+      "support": 7,
+      "total": 7
+    },
+    "0x2cc": {
+      "opcode950": "0x120",
+      "support": 17,
+      "total": 17
+    },
+    "0x2cf": {
+      "opcode950": "0x3c1",
+      "support": 2,
+      "total": 2
+    },
+    "0x2d1": {
+      "opcode950": "0x1c",
+      "support": 3,
+      "total": 3
+    },
+    "0x2d2": {
+      "opcode950": "0x21e",
+      "support": 1,
+      "total": 1
+    },
+    "0x2d4": {
+      "opcode950": "0x274",
+      "support": 5,
+      "total": 5
+    },
+    "0x2d5": {
+      "opcode950": "0x13f",
+      "support": 149,
+      "total": 149
+    },
+    "0x2d6": {
+      "opcode950": "0x475",
+      "support": 5,
+      "total": 5
+    },
+    "0x2d7": {
+      "opcode950": "0x7a5",
+      "support": 1,
+      "total": 1
+    },
+    "0x2d9": {
+      "opcode950": "0x668",
+      "support": 1,
+      "total": 1
+    },
+    "0x2db": {
+      "opcode950": "0xc7",
+      "support": 8,
+      "total": 8
+    },
+    "0x2dc": {
+      "opcode950": "0x417",
+      "support": 203,
+      "total": 203
+    },
+    "0x2dd": {
+      "opcode950": "0x6ed",
+      "support": 152,
+      "total": 152
+    },
+    "0x2df": {
+      "opcode950": "0x72b",
+      "support": 3,
+      "total": 3
+    },
+    "0x2e1": {
+      "opcode950": "0x2d3",
+      "support": 4,
+      "total": 4
+    },
+    "0x2e2": {
+      "opcode950": "0x5dd",
+      "support": 57,
+      "total": 57
+    },
+    "0x2e5": {
+      "opcode950": "0x577",
+      "support": 1,
+      "total": 1
+    },
+    "0x2e6": {
+      "opcode950": "0x96",
+      "support": 2,
+      "total": 2
+    },
+    "0x2eb": {
+      "opcode950": "0x682",
+      "support": 12,
+      "total": 12
+    },
+    "0x2ec": {
+      "opcode950": "0x663",
+      "support": 3,
+      "total": 3
+    },
+    "0x2ed": {
+      "opcode950": "0x638",
+      "support": 1,
+      "total": 1
+    },
+    "0x2ef": {
+      "opcode950": "0x394",
+      "support": 49,
+      "total": 49
+    },
+    "0x2f0": {
+      "opcode950": "0xd9",
+      "support": 92,
+      "total": 92
+    },
+    "0x2f2": {
+      "opcode950": "0x55a",
+      "support": 5,
+      "total": 5
+    },
+    "0x2f4": {
+      "opcode950": "0x7f1",
+      "support": 1,
+      "total": 1
+    },
+    "0x2f5": {
+      "opcode950": "0x34a",
+      "support": 1,
+      "total": 1
+    },
+    "0x2f7": {
+      "opcode950": "0x633",
+      "support": 9,
+      "total": 9
+    },
+    "0x2f9": {
+      "opcode950": "0x211",
+      "support": 151,
+      "total": 151
+    },
+    "0x2fb": {
+      "opcode950": "0x489",
+      "support": 11,
+      "total": 11
+    },
+    "0x2fc": {
+      "opcode950": "0x1ce",
+      "support": 12,
+      "total": 12
+    },
+    "0x2fe": {
+      "opcode950": "0x5bc",
+      "support": 1,
+      "total": 1
+    },
+    "0x301": {
+      "opcode950": "0x114",
+      "support": 22,
+      "total": 22
+    },
+    "0x303": {
+      "opcode950": "0x4df",
+      "support": 2,
+      "total": 2
+    },
+    "0x308": {
+      "opcode950": "0x2b4",
+      "support": 590,
+      "total": 590
+    },
+    "0x30b": {
+      "opcode950": "0x836",
+      "support": 1,
+      "total": 1
+    },
+    "0x30c": {
+      "opcode950": "0x585",
+      "support": 1,
+      "total": 1
+    },
+    "0x30e": {
+      "opcode950": "0x369",
+      "support": 2,
+      "total": 2
+    },
+    "0x30f": {
+      "opcode950": "0x167",
+      "support": 2,
+      "total": 2
+    },
+    "0x312": {
+      "opcode950": "0x269",
+      "support": 76,
+      "total": 76
+    },
+    "0x313": {
+      "opcode950": "0x12b",
+      "support": 1,
+      "total": 1
+    },
+    "0x315": {
+      "opcode950": "0x4da",
+      "support": 2,
+      "total": 2
+    },
+    "0x31d": {
+      "opcode950": "0x144",
+      "support": 1,
+      "total": 1
+    },
+    "0x31e": {
+      "opcode950": "0x8e4",
+      "support": 1,
+      "total": 1
+    },
+    "0x31f": {
+      "opcode950": "0x542",
+      "support": 1,
+      "total": 1
+    },
+    "0x320": {
+      "opcode950": "0x1ef",
+      "support": 5,
+      "total": 5
+    },
+    "0x321": {
+      "opcode950": "0x8b0",
+      "support": 437,
+      "total": 437
+    },
+    "0x322": {
+      "opcode950": "0x1ae",
+      "support": 1,
+      "total": 1
+    },
+    "0x323": {
+      "opcode950": "0x149",
+      "support": 7,
+      "total": 7
+    },
+    "0x324": {
+      "opcode950": "0x16f",
+      "support": 53,
+      "total": 53
+    },
+    "0x325": {
+      "opcode950": "0x14f",
+      "support": 79,
+      "total": 79
+    },
+    "0x326": {
+      "opcode950": "0x4f4",
+      "support": 147,
+      "total": 147
+    },
+    "0x329": {
+      "opcode950": "0x552",
+      "support": 13,
+      "total": 13
+    },
+    "0x32b": {
+      "opcode950": "0x474",
+      "support": 2,
+      "total": 2
+    },
+    "0x32e": {
+      "opcode950": "0x4c0",
+      "support": 1,
+      "total": 1
+    },
+    "0x331": {
+      "opcode950": "0x7ae",
+      "support": 2,
+      "total": 2
+    },
+    "0x334": {
+      "opcode950": "0x4b7",
+      "support": 1,
+      "total": 1
+    },
+    "0x335": {
+      "opcode950": "0x1b2",
+      "support": 1,
+      "total": 1
+    },
+    "0x336": {
+      "opcode950": "0x468",
+      "support": 36,
+      "total": 36
+    },
+    "0x337": {
+      "opcode950": "0x50a",
+      "support": 220,
+      "total": 220
+    },
+    "0x338": {
+      "opcode950": "0x313",
+      "support": 9,
+      "total": 9
+    },
+    "0x339": {
+      "opcode950": "0x4e5",
+      "support": 1,
+      "total": 1
+    },
+    "0x33a": {
+      "opcode950": "0x5cb",
+      "support": 129,
+      "total": 129
+    },
+    "0x33b": {
+      "opcode950": "0x697",
+      "support": 4110,
+      "total": 4110
+    },
+    "0x33e": {
+      "opcode950": "0x589",
+      "support": 3,
+      "total": 3
+    },
+    "0x33f": {
+      "opcode950": "0x608",
+      "support": 2,
+      "total": 2
+    },
+    "0x342": {
+      "opcode950": "0x61d",
+      "support": 13,
+      "total": 13
+    },
+    "0x344": {
+      "opcode950": "0x3aa",
+      "support": 5,
+      "total": 5
+    },
+    "0x345": {
+      "opcode950": "0x57f",
+      "support": 1,
+      "total": 1
+    },
+    "0x346": {
+      "opcode950": "0x6f4",
+      "support": 3,
+      "total": 3
+    },
+    "0x347": {
+      "opcode950": "0x43e",
+      "support": 3,
+      "total": 3
+    },
+    "0x348": {
+      "opcode950": "0x547",
+      "support": 30,
+      "total": 30
+    },
+    "0x34a": {
+      "opcode950": "0x4a1",
+      "support": 4,
+      "total": 4
+    },
+    "0x34b": {
+      "opcode950": "0x37c",
+      "support": 70,
+      "total": 70
+    },
+    "0x34c": {
+      "opcode950": "0x61f",
+      "support": 3,
+      "total": 3
+    },
+    "0x34e": {
+      "opcode950": "0x604",
+      "support": 10,
+      "total": 10
+    },
+    "0x34f": {
+      "opcode950": "0x166",
+      "support": 229,
+      "total": 229
+    },
+    "0x352": {
+      "opcode950": "0x40d",
+      "support": 1,
+      "total": 1
+    },
+    "0x353": {
+      "opcode950": "0x49f",
+      "support": 56,
+      "total": 56
+    },
+    "0x354": {
+      "opcode950": "0xc8",
+      "support": 1628,
+      "total": 1628
+    },
+    "0x357": {
+      "opcode950": "0x767",
+      "support": 10,
+      "total": 10
+    },
+    "0x35b": {
+      "opcode950": "0x32b",
+      "support": 1,
+      "total": 1
+    },
+    "0x35c": {
+      "opcode950": "0x8aa",
+      "support": 1,
+      "total": 1
+    },
+    "0x35d": {
+      "opcode950": "0x205",
+      "support": 65,
+      "total": 65
+    },
+    "0x35e": {
+      "opcode950": "0x5c3",
+      "support": 172541,
+      "total": 172541
+    },
+    "0x360": {
+      "opcode950": "0x2f6",
+      "support": 4,
+      "total": 4
+    },
+    "0x361": {
+      "opcode950": "0x844",
+      "support": 5,
+      "total": 5
+    },
+    "0x365": {
+      "opcode950": "0x863",
+      "support": 1,
+      "total": 1
+    },
+    "0x366": {
+      "opcode950": "0x104",
+      "support": 1,
+      "total": 1
+    },
+    "0x368": {
+      "opcode950": "0x6b2",
+      "support": 1,
+      "total": 1
+    },
+    "0x36a": {
+      "opcode950": "0x1e1",
+      "support": 1,
+      "total": 1
+    },
+    "0x36c": {
+      "opcode950": "0x3d5",
+      "support": 3,
+      "total": 3
+    },
+    "0x36d": {
+      "opcode950": "0x4e9",
+      "support": 4,
+      "total": 4
+    },
+    "0x36f": {
+      "opcode950": "0x199",
+      "support": 129,
+      "total": 129
+    },
+    "0x370": {
+      "opcode950": "0x63a",
+      "support": 1,
+      "total": 1
+    },
+    "0x372": {
+      "opcode950": "0xb9",
+      "support": 8,
+      "total": 8
+    },
+    "0x375": {
+      "opcode950": "0x752",
+      "support": 74,
+      "total": 74
+    },
+    "0x376": {
+      "opcode950": "0x52b",
+      "support": 10,
+      "total": 10
+    },
+    "0x377": {
+      "opcode950": "0x257",
+      "support": 59,
+      "total": 59
+    },
+    "0x379": {
+      "opcode950": "0x53f",
+      "support": 1,
+      "total": 1
+    },
+    "0x37f": {
+      "opcode950": "0x4bf",
+      "support": 2,
+      "total": 2
+    },
+    "0x380": {
+      "opcode950": "0x1cb",
+      "support": 81,
+      "total": 81
+    },
+    "0x381": {
+      "opcode950": "0x305",
+      "support": 2,
+      "total": 2
+    },
+    "0x382": {
+      "opcode950": "0x6f9",
+      "support": 97,
+      "total": 97
+    },
+    "0x383": {
+      "opcode950": "0x61b",
+      "support": 307,
+      "total": 307
+    },
+    "0x386": {
+      "opcode950": "0x878",
+      "support": 4,
+      "total": 4
+    },
+    "0x387": {
+      "opcode950": "0x31f",
+      "support": 11,
+      "total": 11
+    },
+    "0x389": {
+      "opcode950": "0x8d3",
+      "support": 871,
+      "total": 871
+    },
+    "0x38a": {
+      "opcode950": "0x54e",
+      "support": 20,
+      "total": 20
+    },
+    "0x38c": {
+      "opcode950": "0x29b",
+      "support": 1,
+      "total": 1
+    },
+    "0x38e": {
+      "opcode950": "0x5e0",
+      "support": 1,
+      "total": 1
+    },
+    "0x38f": {
+      "opcode950": "0x56d",
+      "support": 4,
+      "total": 4
+    },
+    "0x391": {
+      "opcode950": "0x787",
+      "support": 24,
+      "total": 24
+    },
+    "0x393": {
+      "opcode950": "0x54c",
+      "support": 1,
+      "total": 1
+    },
+    "0x394": {
+      "opcode950": "0x262",
+      "support": 1,
+      "total": 1
+    },
+    "0x396": {
+      "opcode950": "0x1d4",
+      "support": 12,
+      "total": 12
+    },
+    "0x397": {
+      "opcode950": "0x265",
+      "support": 4,
+      "total": 4
+    },
+    "0x399": {
+      "opcode950": "0x1e0",
+      "support": 1,
+      "total": 1
+    },
+    "0x39a": {
+      "opcode950": "0x78a",
+      "support": 332,
+      "total": 332
+    },
+    "0x39d": {
+      "opcode950": "0x6d5",
+      "support": 1,
+      "total": 1
+    },
+    "0x3a1": {
+      "opcode950": "0x3f8",
+      "support": 20,
+      "total": 20
+    },
+    "0x3a4": {
+      "opcode950": "0x12c",
+      "support": 1,
+      "total": 1
+    },
+    "0x3a5": {
+      "opcode950": "0x7d7",
+      "support": 2,
+      "total": 2
+    },
+    "0x3a8": {
+      "opcode950": "0x23d",
+      "support": 2,
+      "total": 2
+    },
+    "0x3aa": {
+      "opcode950": "0x1c9",
+      "support": 2,
+      "total": 2
+    },
+    "0x3ae": {
+      "opcode950": "0x31d",
+      "support": 12,
+      "total": 12
+    },
+    "0x3af": {
+      "opcode950": "0x49a",
+      "support": 95,
+      "total": 95
+    },
+    "0x3b1": {
+      "opcode950": "0x165",
+      "support": 1,
+      "total": 1
+    },
+    "0x3b2": {
+      "opcode950": "0xa0",
+      "support": 15,
+      "total": 15
+    },
+    "0x3b3": {
+      "opcode950": "0x16a",
+      "support": 3,
+      "total": 3
+    },
+    "0x3b4": {
+      "opcode950": "0x343",
+      "support": 1,
+      "total": 1
+    },
+    "0x3b5": {
+      "opcode950": "0x789",
+      "support": 91,
+      "total": 91
+    },
+    "0x3b6": {
+      "opcode950": "0x107",
+      "support": 1,
+      "total": 1
+    },
+    "0x3ba": {
+      "opcode950": "0x7d3",
+      "support": 3,
+      "total": 3
+    },
+    "0x3bc": {
+      "opcode950": "0x36",
+      "support": 3,
+      "total": 3
+    },
+    "0x3bd": {
+      "opcode950": "0x40c",
+      "support": 1,
+      "total": 1
+    },
+    "0x3be": {
+      "opcode950": "0x764",
+      "support": 17,
+      "total": 17
+    },
+    "0x3c0": {
+      "opcode950": "0x2f",
+      "support": 179,
+      "total": 179
+    },
+    "0x3c2": {
+      "opcode950": "0x82d",
+      "support": 159,
+      "total": 159
+    },
+    "0x3c6": {
+      "opcode950": "0x644",
+      "support": 1125,
+      "total": 1125
+    },
+    "0x3c7": {
+      "opcode950": "0x3ed",
+      "support": 1,
+      "total": 1
+    },
+    "0x3c8": {
+      "opcode950": "0x253",
+      "support": 5190,
+      "total": 5190
+    },
+    "0x3ca": {
+      "opcode950": "0x7e0",
+      "support": 1,
+      "total": 1
+    },
+    "0x3cc": {
+      "opcode950": "0x897",
+      "support": 11,
+      "total": 11
+    },
+    "0x3ce": {
+      "opcode950": "0x157",
+      "support": 2,
+      "total": 2
+    },
+    "0x3d0": {
+      "opcode950": "0x497",
+      "support": 3,
+      "total": 3
+    },
+    "0x3d1": {
+      "opcode950": "0x731",
+      "support": 1,
+      "total": 1
+    },
+    "0x3d4": {
+      "opcode950": "0x707",
+      "support": 1,
+      "total": 1
+    },
+    "0x3d5": {
+      "opcode950": "0x27a",
+      "support": 2,
+      "total": 2
+    },
+    "0x3d8": {
+      "opcode950": "0x1e8",
+      "support": 60,
+      "total": 60
+    },
+    "0x3d9": {
+      "opcode950": "0x677",
+      "support": 1,
+      "total": 1
+    },
+    "0x3e0": {
+      "opcode950": "0x678",
+      "support": 21,
+      "total": 21
+    },
+    "0x3e1": {
+      "opcode950": "0x85c",
+      "support": 1,
+      "total": 1
+    },
+    "0x3e6": {
+      "opcode950": "0xc2",
+      "support": 1,
+      "total": 1
+    },
+    "0x3e7": {
+      "opcode950": "0x8f",
+      "support": 1,
+      "total": 1
+    },
+    "0x3e8": {
+      "opcode950": "0x3c",
+      "support": 17,
+      "total": 17
+    },
+    "0x3ea": {
+      "opcode950": "0x652",
+      "support": 13,
+      "total": 13
+    },
+    "0x3ed": {
+      "opcode950": "0x5fc",
+      "support": 31,
+      "total": 31
+    },
+    "0x3ef": {
+      "opcode950": "0x31e",
+      "support": 1,
+      "total": 1
+    },
+    "0x3f2": {
+      "opcode950": "0x379",
+      "support": 5319,
+      "total": 5319
+    },
+    "0x3f6": {
+      "opcode950": "0x3d0",
+      "support": 1,
+      "total": 1
+    },
+    "0x3f7": {
+      "opcode950": "0x38c",
+      "support": 2,
+      "total": 2
+    },
+    "0x3f8": {
+      "opcode950": "0x882",
+      "support": 2,
+      "total": 2
+    },
+    "0x3f9": {
+      "opcode950": "0x6cb",
+      "support": 2,
+      "total": 2
+    },
+    "0x3fb": {
+      "opcode950": "0x2fa",
+      "support": 1,
+      "total": 1
+    },
+    "0x402": {
+      "opcode950": "0x884",
+      "support": 3,
+      "total": 3
+    },
+    "0x403": {
+      "opcode950": "0x1a9",
+      "support": 20,
+      "total": 20
+    },
+    "0x404": {
+      "opcode950": "0x1c3",
+      "support": 2,
+      "total": 2
+    },
+    "0x405": {
+      "opcode950": "0x488",
+      "support": 6,
+      "total": 6
+    },
+    "0x407": {
+      "opcode950": "0x42f",
+      "support": 1,
+      "total": 1
+    },
+    "0x408": {
+      "opcode950": "0x4a5",
+      "support": 1,
+      "total": 1
+    },
+    "0x409": {
+      "opcode950": "0x231",
+      "support": 3,
+      "total": 3
+    },
+    "0x40a": {
+      "opcode950": "0x435",
+      "support": 2,
+      "total": 2
+    },
+    "0x40c": {
+      "opcode950": "0x171",
+      "support": 11,
+      "total": 11
+    },
+    "0x410": {
+      "opcode950": "0x2b2",
+      "support": 26,
+      "total": 26
+    },
+    "0x412": {
+      "opcode950": "0x11d",
+      "support": 6169,
+      "total": 6169
+    },
+    "0x413": {
+      "opcode950": "0x8c9",
+      "support": 15,
+      "total": 15
+    },
+    "0x414": {
+      "opcode950": "0xc3",
+      "support": 2,
+      "total": 2
+    },
+    "0x415": {
+      "opcode950": "0x212",
+      "support": 19,
+      "total": 19
+    },
+    "0x416": {
+      "opcode950": "0x573",
+      "support": 1,
+      "total": 1
+    },
+    "0x418": {
+      "opcode950": "0x4e6",
+      "support": 3,
+      "total": 3
+    },
+    "0x419": {
+      "opcode950": "0x2ca",
+      "support": 53,
+      "total": 53
+    },
+    "0x41a": {
+      "opcode950": "0x81b",
+      "support": 69,
+      "total": 69
+    },
+    "0x41b": {
+      "opcode950": "0x351",
+      "support": 3,
+      "total": 3
+    },
+    "0x41c": {
+      "opcode950": "0x292",
+      "support": 1,
+      "total": 1
+    },
+    "0x420": {
+      "opcode950": "0x69c",
+      "support": 3,
+      "total": 3
+    },
+    "0x423": {
+      "opcode950": "0x1a6",
+      "support": 71,
+      "total": 71
+    },
+    "0x424": {
+      "opcode950": "0x155",
+      "support": 1,
+      "total": 1
+    },
+    "0x426": {
+      "opcode950": "0x590",
+      "support": 72,
+      "total": 72
+    },
+    "0x42b": {
+      "opcode950": "0x4c9",
+      "support": 2,
+      "total": 2
+    },
+    "0x42c": {
+      "opcode950": "0x221",
+      "support": 1,
+      "total": 1
+    },
+    "0x430": {
+      "opcode950": "0x539",
+      "support": 292,
+      "total": 292
+    },
+    "0x433": {
+      "opcode950": "0x467",
+      "support": 12,
+      "total": 12
+    },
+    "0x435": {
+      "opcode950": "0x710",
+      "support": 2,
+      "total": 2
+    },
+    "0x438": {
+      "opcode950": "0x193",
+      "support": 1,
+      "total": 1
+    },
+    "0x439": {
+      "opcode950": "0x6f7",
+      "support": 12,
+      "total": 12
+    },
+    "0x43a": {
+      "opcode950": "0x624",
+      "support": 2,
+      "total": 2
+    },
+    "0x43b": {
+      "opcode950": "0x163",
+      "support": 2,
+      "total": 2
+    },
+    "0x43c": {
+      "opcode950": "0xfc",
+      "support": 2,
+      "total": 2
+    },
+    "0x43e": {
+      "opcode950": "0x676",
+      "support": 2,
+      "total": 2
+    },
+    "0x440": {
+      "opcode950": "0x1da",
+      "support": 1,
+      "total": 1
+    },
+    "0x441": {
+      "opcode950": "0x8b8",
+      "support": 1,
+      "total": 1
+    },
+    "0x442": {
+      "opcode950": "0x69b",
+      "support": 2,
+      "total": 2
+    },
+    "0x443": {
+      "opcode950": "0x43",
+      "support": 46,
+      "total": 46
+    },
+    "0x444": {
+      "opcode950": "0x572",
+      "support": 36,
+      "total": 36
+    },
+    "0x448": {
+      "opcode950": "0x1c2",
+      "support": 12,
+      "total": 12
+    },
+    "0x44c": {
+      "opcode950": "0x67b",
+      "support": 6,
+      "total": 6
+    },
+    "0x44d": {
+      "opcode950": "0x54a",
+      "support": 1,
+      "total": 1
+    },
+    "0x44e": {
+      "opcode950": "0x7d9",
+      "support": 5,
+      "total": 5
+    },
+    "0x44f": {
+      "opcode950": "0x66a",
+      "support": 6,
+      "total": 6
+    },
+    "0x454": {
+      "opcode950": "0x7e",
+      "support": 2619,
+      "total": 2619
+    },
+    "0x458": {
+      "opcode950": "0x722",
+      "support": 1,
+      "total": 1
+    },
+    "0x45b": {
+      "opcode950": "0x1d0",
+      "support": 49,
+      "total": 49
+    },
+    "0x45c": {
+      "opcode950": "0x486",
+      "support": 1,
+      "total": 1
+    },
+    "0x45e": {
+      "opcode950": "0x2d1",
+      "support": 195,
+      "total": 195
+    },
+    "0x45f": {
+      "opcode950": "0x47f",
+      "support": 47,
+      "total": 47
+    },
+    "0x461": {
+      "opcode950": "0x746",
+      "support": 363,
+      "total": 363
+    },
+    "0x464": {
+      "opcode950": "0x6db",
+      "support": 173,
+      "total": 173
+    },
+    "0x467": {
+      "opcode950": "0x60d",
+      "support": 3,
+      "total": 3
+    },
+    "0x46a": {
+      "opcode950": "0x150",
+      "support": 1,
+      "total": 1
+    },
+    "0x46b": {
+      "opcode950": "0x60a",
+      "support": 93,
+      "total": 93
+    },
+    "0x46e": {
+      "opcode950": "0x5fb",
+      "support": 8,
+      "total": 8
+    },
+    "0x470": {
+      "opcode950": "0x78e",
+      "support": 3,
+      "total": 3
+    },
+    "0x47d": {
+      "opcode950": "0x4fa",
+      "support": 1,
+      "total": 1
+    },
+    "0x47f": {
+      "opcode950": "0x599",
+      "support": 9,
+      "total": 9
+    },
+    "0x480": {
+      "opcode950": "0x43d",
+      "support": 1,
+      "total": 1
+    },
+    "0x483": {
+      "opcode950": "0x356",
+      "support": 4,
+      "total": 4
+    },
+    "0x484": {
+      "opcode950": "0x8bc",
+      "support": 50,
+      "total": 50
+    },
+    "0x485": {
+      "opcode950": "0xba",
+      "support": 98,
+      "total": 98
+    },
+    "0x487": {
+      "opcode950": "0x3b9",
+      "support": 4,
+      "total": 4
+    },
+    "0x489": {
+      "opcode950": "0x232",
+      "support": 1,
+      "total": 1
+    },
+    "0x48b": {
+      "opcode950": "0x6fb",
+      "support": 2,
+      "total": 2
+    },
+    "0x48d": {
+      "opcode950": "0x244",
+      "support": 17,
+      "total": 17
+    },
+    "0x48f": {
+      "opcode950": "0x2f1",
+      "support": 24,
+      "total": 24
+    },
+    "0x493": {
+      "opcode950": "0x852",
+      "support": 34,
+      "total": 34
+    },
+    "0x495": {
+      "opcode950": "0x3e4",
+      "support": 55964,
+      "total": 55964
+    },
+    "0x496": {
+      "opcode950": "0xf1",
+      "support": 19,
+      "total": 19
+    },
+    "0x497": {
+      "opcode950": "0x4c7",
+      "support": 37,
+      "total": 37
+    },
+    "0x498": {
+      "opcode950": "0xcc",
+      "support": 1,
+      "total": 1
+    },
+    "0x499": {
+      "opcode950": "0x596",
+      "support": 41,
+      "total": 41
+    },
+    "0x49a": {
+      "opcode950": "0x20c",
+      "support": 3,
+      "total": 3
+    },
+    "0x49b": {
+      "opcode950": "0x422",
+      "support": 16,
+      "total": 16
+    },
+    "0x49c": {
+      "opcode950": "0x479",
+      "support": 10,
+      "total": 10
+    },
+    "0x49d": {
+      "opcode950": "0x685",
+      "support": 3,
+      "total": 3
+    },
+    "0x4a0": {
+      "opcode950": "0x3a8",
+      "support": 5,
+      "total": 5
+    },
+    "0x4a2": {
+      "opcode950": "0x864",
+      "support": 3,
+      "total": 3
+    },
+    "0x4a3": {
+      "opcode950": "0x263",
+      "support": 1,
+      "total": 1
+    },
+    "0x4a9": {
+      "opcode950": "0x61e",
+      "support": 851,
+      "total": 851
+    },
+    "0x4ac": {
+      "opcode950": "0x3ec",
+      "support": 7,
+      "total": 7
+    },
+    "0x4ae": {
+      "opcode950": "0xb",
+      "support": 3,
+      "total": 3
+    },
+    "0x4af": {
+      "opcode950": "0x3f0",
+      "support": 2,
+      "total": 2
+    },
+    "0x4b1": {
+      "opcode950": "0x7f5",
+      "support": 8,
+      "total": 8
+    },
+    "0x4b3": {
+      "opcode950": "0x98",
+      "support": 1,
+      "total": 1
+    },
+    "0x4b7": {
+      "opcode950": "0x119",
+      "support": 93,
+      "total": 93
+    },
+    "0x4b8": {
+      "opcode950": "0x8c5",
+      "support": 1,
+      "total": 1
+    },
+    "0x4b9": {
+      "opcode950": "0x213",
+      "support": 1,
+      "total": 1
+    },
+    "0x4bc": {
+      "opcode950": "0x75d",
+      "support": 1,
+      "total": 1
+    },
+    "0x4be": {
+      "opcode950": "0x6ef",
+      "support": 10,
+      "total": 10
+    },
+    "0x4bf": {
+      "opcode950": "0x36b",
+      "support": 45,
+      "total": 45
+    },
+    "0x4c0": {
+      "opcode950": "0x8db",
+      "support": 22,
+      "total": 22
+    },
+    "0x4c1": {
+      "opcode950": "0x42d",
+      "support": 187,
+      "total": 187
+    },
+    "0x4c4": {
+      "opcode950": "0x102",
+      "support": 2,
+      "total": 2
+    },
+    "0x4c5": {
+      "opcode950": "0x2b5",
+      "support": 1,
+      "total": 1
+    },
+    "0x4c6": {
+      "opcode950": "0x3ca",
+      "support": 1,
+      "total": 1
+    },
+    "0x4c9": {
+      "opcode950": "0x139",
+      "support": 31,
+      "total": 31
+    },
+    "0x4ca": {
+      "opcode950": "0x50b",
+      "support": 98,
+      "total": 98
+    },
+    "0x4cb": {
+      "opcode950": "0x53c",
+      "support": 1,
+      "total": 1
+    },
+    "0x4cc": {
+      "opcode950": "0x4c5",
+      "support": 2,
+      "total": 2
+    },
+    "0x4cd": {
+      "opcode950": "0x893",
+      "support": 1,
+      "total": 1
+    },
+    "0x4ce": {
+      "opcode950": "0x7c1",
+      "support": 1,
+      "total": 1
+    },
+    "0x4d1": {
+      "opcode950": "0x7c2",
+      "support": 7,
+      "total": 7
+    },
+    "0x4d2": {
+      "opcode950": "0x308",
+      "support": 2,
+      "total": 2
+    },
+    "0x4d3": {
+      "opcode950": "0x374",
+      "support": 1012,
+      "total": 1012
+    },
+    "0x4d8": {
+      "opcode950": "0x715",
+      "support": 68,
+      "total": 68
+    },
+    "0x4db": {
+      "opcode950": "0x705",
+      "support": 1,
+      "total": 1
+    },
+    "0x4dc": {
+      "opcode950": "0x322",
+      "support": 2,
+      "total": 2
+    },
+    "0x4de": {
+      "opcode950": "0x546",
+      "support": 2,
+      "total": 2
+    },
+    "0x4e1": {
+      "opcode950": "0x1f7",
+      "support": 1,
+      "total": 1
+    },
+    "0x4e2": {
+      "opcode950": "0xf6",
+      "support": 3,
+      "total": 3
+    },
+    "0x4e3": {
+      "opcode950": "0x32",
+      "support": 23,
+      "total": 23
+    },
+    "0x4e6": {
+      "opcode950": "0x32d",
+      "support": 4,
+      "total": 4
+    },
+    "0x4e7": {
+      "opcode950": "0xf4",
+      "support": 1,
+      "total": 1
+    },
+    "0x4e8": {
+      "opcode950": "0x23",
+      "support": 9,
+      "total": 9
+    },
+    "0x4ea": {
+      "opcode950": "0x6fc",
+      "support": 3,
+      "total": 3
+    },
+    "0x4ed": {
+      "opcode950": "0x154",
+      "support": 32,
+      "total": 32
+    },
+    "0x4f0": {
+      "opcode950": "0x192",
+      "support": 3,
+      "total": 3
+    },
+    "0x4f1": {
+      "opcode950": "0x892",
+      "support": 2,
+      "total": 2
+    },
+    "0x4f2": {
+      "opcode950": "0x29a",
+      "support": 1124,
+      "total": 1124
+    },
+    "0x4f4": {
+      "opcode950": "0x321",
+      "support": 2,
+      "total": 2
+    },
+    "0x4f5": {
+      "opcode950": "0x85",
+      "support": 1,
+      "total": 1
+    },
+    "0x4fb": {
+      "opcode950": "0x598",
+      "support": 1,
+      "total": 1
+    },
+    "0x503": {
+      "opcode950": "0x316",
+      "support": 4,
+      "total": 4
+    },
+    "0x505": {
+      "opcode950": "0x2a1",
+      "support": 6,
+      "total": 6
+    },
+    "0x506": {
+      "opcode950": "0x702",
+      "support": 1,
+      "total": 1
+    },
+    "0x507": {
+      "opcode950": "0x564",
+      "support": 4,
+      "total": 4
+    },
+    "0x509": {
+      "opcode950": "0x77c",
+      "support": 3,
+      "total": 3
+    },
+    "0x50a": {
+      "opcode950": "0x643",
+      "support": 61,
+      "total": 61
+    },
+    "0x50d": {
+      "opcode950": "0x3df",
+      "support": 5,
+      "total": 5
+    },
+    "0x50e": {
+      "opcode950": "0x6b4",
+      "support": 2,
+      "total": 2
+    },
+    "0x50f": {
+      "opcode950": "0x22a",
+      "support": 3,
+      "total": 3
+    },
+    "0x510": {
+      "opcode950": "0x2e5",
+      "support": 1,
+      "total": 1
+    },
+    "0x511": {
+      "opcode950": "0x334",
+      "support": 396157,
+      "total": 396157
+    },
+    "0x512": {
+      "opcode950": "0x605",
+      "support": 9,
+      "total": 9
+    },
+    "0x514": {
+      "opcode950": "0x7ed",
+      "support": 19,
+      "total": 19
+    },
+    "0x515": {
+      "opcode950": "0x45d",
+      "support": 2,
+      "total": 2
+    },
+    "0x517": {
+      "opcode950": "0x7fe",
+      "support": 72,
+      "total": 72
+    },
+    "0x518": {
+      "opcode950": "0x159",
+      "support": 3,
+      "total": 3
+    },
+    "0x51a": {
+      "opcode950": "0x397",
+      "support": 5262,
+      "total": 5262
+    },
+    "0x51b": {
+      "opcode950": "0x653",
+      "support": 5,
+      "total": 5
+    },
+    "0x51c": {
+      "opcode950": "0x54b",
+      "support": 408,
+      "total": 408
+    },
+    "0x51d": {
+      "opcode950": "0x6e9",
+      "support": 8,
+      "total": 8
+    },
+    "0x51e": {
+      "opcode950": "0x6c2",
+      "support": 3788,
+      "total": 3788
+    },
+    "0x520": {
+      "opcode950": "0x50d",
+      "support": 7,
+      "total": 7
+    },
+    "0x522": {
+      "opcode950": "0x332",
+      "support": 26,
+      "total": 26
+    },
+    "0x523": {
+      "opcode950": "0x858",
+      "support": 1,
+      "total": 1
+    },
+    "0x524": {
+      "opcode950": "0x3d",
+      "support": 33,
+      "total": 33
+    },
+    "0x525": {
+      "opcode950": "0x1bc",
+      "support": 6,
+      "total": 6
+    },
+    "0x526": {
+      "opcode950": "0x7af",
+      "support": 28,
+      "total": 28
+    },
+    "0x527": {
+      "opcode950": "0x2f4",
+      "support": 13,
+      "total": 13
+    },
+    "0x52a": {
+      "opcode950": "0x2a4",
+      "support": 2,
+      "total": 2
+    },
+    "0x52d": {
+      "opcode950": "0x3f3",
+      "support": 28,
+      "total": 28
+    },
+    "0x52e": {
+      "opcode950": "0x48c",
+      "support": 3,
+      "total": 3
+    },
+    "0x535": {
+      "opcode950": "0x52a",
+      "support": 3,
+      "total": 3
+    },
+    "0x536": {
+      "opcode950": "0x283",
+      "support": 1,
+      "total": 1
+    },
+    "0x538": {
+      "opcode950": "0x441",
+      "support": 11,
+      "total": 11
+    },
+    "0x539": {
+      "opcode950": "0x7fb",
+      "support": 3,
+      "total": 3
+    },
+    "0x53b": {
+      "opcode950": "0x873",
+      "support": 3,
+      "total": 3
+    },
+    "0x53d": {
+      "opcode950": "0x8d5",
+      "support": 78,
+      "total": 78
+    },
+    "0x53e": {
+      "opcode950": "0x579",
+      "support": 2,
+      "total": 2
+    },
+    "0x540": {
+      "opcode950": "0xce",
+      "support": 7831,
+      "total": 7831
+    },
+    "0x541": {
+      "opcode950": "0x518",
+      "support": 15,
+      "total": 15
+    },
+    "0x542": {
+      "opcode950": "0x388",
+      "support": 5,
+      "total": 5
+    },
+    "0x547": {
+      "opcode950": "0x230",
+      "support": 454,
+      "total": 454
+    },
+    "0x549": {
+      "opcode950": "0x696",
+      "support": 46,
+      "total": 46
+    },
+    "0x54b": {
+      "opcode950": "0x380",
+      "support": 795,
+      "total": 795
+    },
+    "0x54e": {
+      "opcode950": "0x420",
+      "support": 1309,
+      "total": 1309
+    },
+    "0x54f": {
+      "opcode950": "0x6b6",
+      "support": 62,
+      "total": 62
+    },
+    "0x550": {
+      "opcode950": "0x756",
+      "support": 188,
+      "total": 188
+    },
+    "0x551": {
+      "opcode950": "0x811",
+      "support": 11,
+      "total": 11
+    },
+    "0x553": {
+      "opcode950": "0x442",
+      "support": 2,
+      "total": 2
+    },
+    "0x554": {
+      "opcode950": "0x63b",
+      "support": 1,
+      "total": 1
+    },
+    "0x555": {
+      "opcode950": "0x411",
+      "support": 2,
+      "total": 2
+    },
+    "0x556": {
+      "opcode950": "0x190",
+      "support": 3,
+      "total": 3
+    },
+    "0x558": {
+      "opcode950": "0x279",
+      "support": 1,
+      "total": 1
+    },
+    "0x55b": {
+      "opcode950": "0x24d",
+      "support": 3,
+      "total": 3
+    },
+    "0x55c": {
+      "opcode950": "0x4d0",
+      "support": 1,
+      "total": 1
+    },
+    "0x55f": {
+      "opcode950": "0x833",
+      "support": 3,
+      "total": 3
+    },
+    "0x560": {
+      "opcode950": "0x544",
+      "support": 1,
+      "total": 1
+    },
+    "0x564": {
+      "opcode950": "0x768",
+      "support": 3,
+      "total": 3
+    },
+    "0x565": {
+      "opcode950": "0x1f3",
+      "support": 2,
+      "total": 2
+    },
+    "0x566": {
+      "opcode950": "0x56f",
+      "support": 5,
+      "total": 5
+    },
+    "0x568": {
+      "opcode950": "0x1b8",
+      "support": 2,
+      "total": 2
+    },
+    "0x56b": {
+      "opcode950": "0x840",
+      "support": 1828,
+      "total": 1828
+    },
+    "0x56e": {
+      "opcode950": "0x794",
+      "support": 1,
+      "total": 1
+    },
+    "0x570": {
+      "opcode950": "0x395",
+      "support": 3,
+      "total": 3
+    },
+    "0x571": {
+      "opcode950": "0x877",
+      "support": 3,
+      "total": 3
+    },
+    "0x573": {
+      "opcode950": "0x10c",
+      "support": 3,
+      "total": 3
+    },
+    "0x576": {
+      "opcode950": "0x443",
+      "support": 0,
+      "total": 0
+    },
+    "0x577": {
+      "opcode950": "0x887",
+      "support": 54,
+      "total": 54
+    },
+    "0x578": {
+      "opcode950": "0xa7",
+      "support": 9,
+      "total": 9
+    },
+    "0x579": {
+      "opcode950": "0x57a",
+      "support": 5,
+      "total": 5
+    },
+    "0x57a": {
+      "opcode950": "0x2c",
+      "support": 3,
+      "total": 3
+    },
+    "0x57b": {
+      "opcode950": "0x1fe",
+      "support": 1,
+      "total": 1
+    },
+    "0x57c": {
+      "opcode950": "0x381",
+      "support": 1,
+      "total": 1
+    },
+    "0x57d": {
+      "opcode950": "0x37e",
+      "support": 17,
+      "total": 17
+    },
+    "0x57e": {
+      "opcode950": "0x383",
+      "support": 6,
+      "total": 6
+    },
+    "0x580": {
+      "opcode950": "0x477",
+      "support": 2,
+      "total": 2
+    },
+    "0x581": {
+      "opcode950": "0xef",
+      "support": 60,
+      "total": 60
+    },
+    "0x582": {
+      "opcode950": "0x6e2",
+      "support": 2,
+      "total": 2
+    },
+    "0x583": {
+      "opcode950": "0x25c",
+      "support": 1,
+      "total": 1
+    },
+    "0x584": {
+      "opcode950": "0x3ab",
+      "support": 1,
+      "total": 1
+    },
+    "0x585": {
+      "opcode950": "0x47e",
+      "support": 2735,
+      "total": 2735
+    },
+    "0x586": {
+      "opcode950": "0x562",
+      "support": 1,
+      "total": 1
+    },
+    "0x588": {
+      "opcode950": "0x160",
+      "support": 10,
+      "total": 10
+    },
+    "0x589": {
+      "opcode950": "0x81f",
+      "support": 1,
+      "total": 1
+    },
+    "0x58b": {
+      "opcode950": "0x23f",
+      "support": 1,
+      "total": 1
+    },
+    "0x591": {
+      "opcode950": "0x71b",
+      "support": 1,
+      "total": 1
+    },
+    "0x592": {
+      "opcode950": "0x5f0",
+      "support": 77980,
+      "total": 77980
+    },
+    "0x594": {
+      "opcode950": "0x152",
+      "support": 1,
+      "total": 1
+    },
+    "0x598": {
+      "opcode950": "0x812",
+      "support": 2,
+      "total": 2
+    },
+    "0x599": {
+      "opcode950": "0x4c2",
+      "support": 20,
+      "total": 20
+    },
+    "0x59b": {
+      "opcode950": "0x464",
+      "support": 1,
+      "total": 1
+    },
+    "0x59c": {
+      "opcode950": "0x391",
+      "support": 4,
+      "total": 4
+    },
+    "0x59d": {
+      "opcode950": "0x3bd",
+      "support": 1082,
+      "total": 1082
+    },
+    "0x59e": {
+      "opcode950": "0x6c3",
+      "support": 2,
+      "total": 2
+    },
+    "0x59f": {
+      "opcode950": "0x39a",
+      "support": 4,
+      "total": 4
+    },
+    "0x5a1": {
+      "opcode950": "0x799",
+      "support": 16,
+      "total": 16
+    },
+    "0x5a2": {
+      "opcode950": "0x84",
+      "support": 996,
+      "total": 996
+    },
+    "0x5a5": {
+      "opcode950": "0x6c7",
+      "support": 5,
+      "total": 5
+    },
+    "0x5a6": {
+      "opcode950": "0x4f",
+      "support": 40,
+      "total": 40
+    },
+    "0x5a7": {
+      "opcode950": "0x2f0",
+      "support": 7,
+      "total": 7
+    },
+    "0x5a9": {
+      "opcode950": "0x2ff",
+      "support": 1,
+      "total": 1
+    },
+    "0x5aa": {
+      "opcode950": "0x2e9",
+      "support": 1,
+      "total": 1
+    },
+    "0x5af": {
+      "opcode950": "0x80",
+      "support": 43,
+      "total": 43
+    },
+    "0x5b0": {
+      "opcode950": "0x481",
+      "support": 1,
+      "total": 1
+    },
+    "0x5b1": {
+      "opcode950": "0xd1",
+      "support": 14,
+      "total": 14
+    },
+    "0x5b4": {
+      "opcode950": "0x3fd",
+      "support": 1,
+      "total": 1
+    },
+    "0x5b5": {
+      "opcode950": "0x1ec",
+      "support": 30,
+      "total": 30
+    },
+    "0x5b7": {
+      "opcode950": "0x4d7",
+      "support": 2,
+      "total": 2
+    },
+    "0x5b8": {
+      "opcode950": "0x472",
+      "support": 2,
+      "total": 2
+    },
+    "0x5b9": {
+      "opcode950": "0x493",
+      "support": 2,
+      "total": 2
+    },
+    "0x5bd": {
+      "opcode950": "0x5a9",
+      "support": 1,
+      "total": 1
+    },
+    "0x5bf": {
+      "opcode950": "0x402",
+      "support": 102,
+      "total": 102
+    },
+    "0x5c1": {
+      "opcode950": "0x66b",
+      "support": 1,
+      "total": 1
+    },
+    "0x5c3": {
+      "opcode950": "0x177",
+      "support": 2,
+      "total": 2
+    },
+    "0x5c4": {
+      "opcode950": "0x693",
+      "support": 5,
+      "total": 5
+    },
+    "0x5c7": {
+      "opcode950": "0x839",
+      "support": 1,
+      "total": 1
+    },
+    "0x5c8": {
+      "opcode950": "0x4e3",
+      "support": 10,
+      "total": 10
+    },
+    "0x5c9": {
+      "opcode950": "0x1b0",
+      "support": 4,
+      "total": 4
+    },
+    "0x5cc": {
+      "opcode950": "0x2c6",
+      "support": 15,
+      "total": 15
+    },
+    "0x5d0": {
+      "opcode950": "0x640",
+      "support": 1,
+      "total": 1
+    },
+    "0x5d2": {
+      "opcode950": "0x89c",
+      "support": 1,
+      "total": 1
+    },
+    "0x5d3": {
+      "opcode950": "0x58a",
+      "support": 1,
+      "total": 1
+    },
+    "0x5d6": {
+      "opcode950": "0x94",
+      "support": 2,
+      "total": 2
+    },
+    "0x5d8": {
+      "opcode950": "0x48f",
+      "support": 9,
+      "total": 9
+    },
+    "0x5da": {
+      "opcode950": "0x15c",
+      "support": 48,
+      "total": 48
+    },
+    "0x5dc": {
+      "opcode950": "0x17a",
+      "support": 1,
+      "total": 1
+    },
+    "0x5e0": {
+      "opcode950": "0x39f",
+      "support": 18,
+      "total": 18
+    },
+    "0x5e4": {
+      "opcode950": "0x627",
+      "support": 1,
+      "total": 1
+    },
+    "0x5e5": {
+      "opcode950": "0x530",
+      "support": 2,
+      "total": 2
+    },
+    "0x5e6": {
+      "opcode950": "0xdb",
+      "support": 24,
+      "total": 24
+    },
+    "0x5e9": {
+      "opcode950": "0x224",
+      "support": 224,
+      "total": 224
+    },
+    "0x5ea": {
+      "opcode950": "0x735",
+      "support": 4,
+      "total": 4
+    },
+    "0x5eb": {
+      "opcode950": "0x41",
+      "support": 1,
+      "total": 1
+    },
+    "0x5ec": {
+      "opcode950": "0x733",
+      "support": 2,
+      "total": 2
+    },
+    "0x5ed": {
+      "opcode950": "0x59b",
+      "support": 2,
+      "total": 2
+    },
+    "0x5f1": {
+      "opcode950": "0x7e3",
+      "support": 12,
+      "total": 12
+    },
+    "0x5f2": {
+      "opcode950": "0x630",
+      "support": 9,
+      "total": 9
+    },
+    "0x5f3": {
+      "opcode950": "0x241",
+      "support": 4,
+      "total": 4
+    },
+    "0x5f6": {
+      "opcode950": "0x64b",
+      "support": 68,
+      "total": 68
+    },
+    "0x5f7": {
+      "opcode950": "0x29",
+      "support": 1,
+      "total": 1
+    },
+    "0x5fd": {
+      "opcode950": "0x326",
+      "support": 1,
+      "total": 1
+    },
+    "0x5ff": {
+      "opcode950": "0x642",
+      "support": 42,
+      "total": 42
+    },
+    "0x601": {
+      "opcode950": "0x22d",
+      "support": 135,
+      "total": 135
+    },
+    "0x602": {
+      "opcode950": "0x5d3",
+      "support": 12,
+      "total": 12
+    },
+    "0x603": {
+      "opcode950": "0x5f2",
+      "support": 1,
+      "total": 1
+    },
+    "0x605": {
+      "opcode950": "0x509",
+      "support": 614,
+      "total": 614
+    },
+    "0x609": {
+      "opcode950": "0x780",
+      "support": 2,
+      "total": 2
+    },
+    "0x60a": {
+      "opcode950": "0x21",
+      "support": 1,
+      "total": 1
+    },
+    "0x610": {
+      "opcode950": "0x201",
+      "support": 4,
+      "total": 4
+    },
+    "0x611": {
+      "opcode950": "0x8ce",
+      "support": 88,
+      "total": 88
+    },
+    "0x613": {
+      "opcode950": "0x8a9",
+      "support": 4,
+      "total": 4
+    },
+    "0x615": {
+      "opcode950": "0x8c1",
+      "support": 94,
+      "total": 94
+    },
+    "0x618": {
+      "opcode950": "0x2de",
+      "support": 1,
+      "total": 1
+    },
+    "0x619": {
+      "opcode950": "0x814",
+      "support": 5,
+      "total": 5
+    },
+    "0x61a": {
+      "opcode950": "0x664",
+      "support": 5,
+      "total": 5
+    },
+    "0x61b": {
+      "opcode950": "0x73b",
+      "support": 1,
+      "total": 1
+    },
+    "0x61d": {
+      "opcode950": "0x13c",
+      "support": 1,
+      "total": 1
+    },
+    "0x61e": {
+      "opcode950": "0x1f",
+      "support": 1,
+      "total": 1
+    },
+    "0x620": {
+      "opcode950": "0x39d",
+      "support": 42,
+      "total": 42
+    },
+    "0x622": {
+      "opcode950": "0x6a5",
+      "support": 1,
+      "total": 1
+    },
+    "0x623": {
+      "opcode950": "0x2da",
+      "support": 4,
+      "total": 4
+    },
+    "0x624": {
+      "opcode950": "0x86f",
+      "support": 1,
+      "total": 1
+    },
+    "0x628": {
+      "opcode950": "0x76b",
+      "support": 3,
+      "total": 3
+    },
+    "0x629": {
+      "opcode950": "0x612",
+      "support": 2,
+      "total": 2
+    },
+    "0x62c": {
+      "opcode950": "0x5c2",
+      "support": 476,
+      "total": 476
+    },
+    "0x62d": {
+      "opcode950": "0x87c",
+      "support": 19,
+      "total": 19
+    },
+    "0x62e": {
+      "opcode950": "0x5f6",
+      "support": 11,
+      "total": 11
+    },
+    "0x62f": {
+      "opcode950": "0x708",
+      "support": 11,
+      "total": 11
+    },
+    "0x630": {
+      "opcode950": "0x3e6",
+      "support": 5,
+      "total": 5
+    },
+    "0x631": {
+      "opcode950": "0x508",
+      "support": 5,
+      "total": 5
+    },
+    "0x636": {
+      "opcode950": "0x4d1",
+      "support": 1,
+      "total": 1
+    },
+    "0x637": {
+      "opcode950": "0x355",
+      "support": 99,
+      "total": 99
+    },
+    "0x638": {
+      "opcode950": "0x7f0",
+      "support": 1,
+      "total": 1
+    },
+    "0x639": {
+      "opcode950": "0x8",
+      "support": 148,
+      "total": 148
+    },
+    "0x63f": {
+      "opcode950": "0xae",
+      "support": 3,
+      "total": 3
+    },
+    "0x640": {
+      "opcode950": "0x592",
+      "support": 1,
+      "total": 1
+    },
+    "0x645": {
+      "opcode950": "0x277",
+      "support": 7,
+      "total": 7
+    },
+    "0x646": {
+      "opcode950": "0x117",
+      "support": 2,
+      "total": 2
+    },
+    "0x647": {
+      "opcode950": "0x195",
+      "support": 31624,
+      "total": 31624
+    },
+    "0x648": {
+      "opcode950": "0x565",
+      "support": 1,
+      "total": 1
+    },
+    "0x64a": {
+      "opcode950": "0x856",
+      "support": 8,
+      "total": 8
+    },
+    "0x64d": {
+      "opcode950": "0x3fc",
+      "support": 5,
+      "total": 5
+    },
+    "0x64f": {
+      "opcode950": "0x7db",
+      "support": 31,
+      "total": 31
+    },
+    "0x653": {
+      "opcode950": "0x761",
+      "support": 1,
+      "total": 1
+    },
+    "0x654": {
+      "opcode950": "0x853",
+      "support": 6,
+      "total": 6
+    },
+    "0x655": {
+      "opcode950": "0x1a3",
+      "support": 44,
+      "total": 44
+    },
+    "0x658": {
+      "opcode950": "0x2cd",
+      "support": 1,
+      "total": 1
+    },
+    "0x659": {
+      "opcode950": "0x569",
+      "support": 4,
+      "total": 4
+    },
+    "0x65b": {
+      "opcode950": "0x47d",
+      "support": 3,
+      "total": 3
+    },
+    "0x661": {
+      "opcode950": "0x3f1",
+      "support": 6,
+      "total": 6
+    },
+    "0x662": {
+      "opcode950": "0x14c",
+      "support": 1,
+      "total": 1
+    },
+    "0x665": {
+      "opcode950": "0x206",
+      "support": 8,
+      "total": 8
+    },
+    "0x666": {
+      "opcode950": "0x712",
+      "support": 2,
+      "total": 2
+    },
+    "0x669": {
+      "opcode950": "0x730",
+      "support": 2,
+      "total": 2
+    },
+    "0x66b": {
+      "opcode950": "0x865",
+      "support": 7,
+      "total": 7
+    },
+    "0x66c": {
+      "opcode950": "0x7e8",
+      "support": 1,
+      "total": 1
+    },
+    "0x66f": {
+      "opcode950": "0x28b",
+      "support": 1,
+      "total": 1
+    },
+    "0x670": {
+      "opcode950": "0x881",
+      "support": 148,
+      "total": 148
+    },
+    "0x672": {
+      "opcode950": "0x505",
+      "support": 5,
+      "total": 5
+    },
+    "0x675": {
+      "opcode950": "0x5be",
+      "support": 11,
+      "total": 11
+    },
+    "0x676": {
+      "opcode950": "0x5f4",
+      "support": 4,
+      "total": 4
+    },
+    "0x677": {
+      "opcode950": "0x6b7",
+      "support": 7,
+      "total": 7
+    },
+    "0x678": {
+      "opcode950": "0xfa",
+      "support": 25,
+      "total": 25
+    },
+    "0x67c": {
+      "opcode950": "0x36e",
+      "support": 4091,
+      "total": 4091
+    },
+    "0x67d": {
+      "opcode950": "0x108",
+      "support": 21,
+      "total": 21
+    },
+    "0x67f": {
+      "opcode950": "0xfe",
+      "support": 50,
+      "total": 50
+    },
+    "0x681": {
+      "opcode950": "0x65",
+      "support": 5,
+      "total": 5
+    },
+    "0x682": {
+      "opcode950": "0x34e",
+      "support": 138,
+      "total": 138
+    },
+    "0x683": {
+      "opcode950": "0xec",
+      "support": 2,
+      "total": 2
+    },
+    "0x685": {
+      "opcode950": "0x524",
+      "support": 2,
+      "total": 2
+    },
+    "0x686": {
+      "opcode950": "0xde",
+      "support": 978,
+      "total": 978
+    },
+    "0x687": {
+      "opcode950": "0x3b2",
+      "support": 12,
+      "total": 12
+    },
+    "0x688": {
+      "opcode950": "0x536",
+      "support": 5,
+      "total": 5
+    },
+    "0x68e": {
+      "opcode950": "0x7aa",
+      "support": 3,
+      "total": 3
+    },
+    "0x690": {
+      "opcode950": "0xc1",
+      "support": 76,
+      "total": 76
+    },
+    "0x691": {
+      "opcode950": "0x87b",
+      "support": 2735,
+      "total": 2735
+    },
+    "0x692": {
+      "opcode950": "0x798",
+      "support": 1,
+      "total": 1
+    },
+    "0x694": {
+      "opcode950": "0x5",
+      "support": 11,
+      "total": 11
+    },
+    "0x696": {
+      "opcode950": "0x492",
+      "support": 4,
+      "total": 4
+    },
+    "0x699": {
+      "opcode950": "0x2b",
+      "support": 50,
+      "total": 50
+    },
+    "0x69a": {
+      "opcode950": "0x37a",
+      "support": 2,
+      "total": 2
+    },
+    "0x69c": {
+      "opcode950": "0x686",
+      "support": 11,
+      "total": 11
+    },
+    "0x69e": {
+      "opcode950": "0x801",
+      "support": 2,
+      "total": 2
+    },
+    "0x6a1": {
+      "opcode950": "0x753",
+      "support": 2,
+      "total": 2
+    },
+    "0x6a3": {
+      "opcode950": "0x62",
+      "support": 3,
+      "total": 3
+    },
+    "0x6a4": {
+      "opcode950": "0x5ea",
+      "support": 822,
+      "total": 822
+    },
+    "0x6a7": {
+      "opcode950": "0x4af",
+      "support": 1,
+      "total": 1
+    },
+    "0x6a9": {
+      "opcode950": "0x153",
+      "support": 13,
+      "total": 13
+    },
+    "0x6aa": {
+      "opcode950": "0x83d",
+      "support": 2,
+      "total": 2
+    },
+    "0x6ae": {
+      "opcode950": "0x82b",
+      "support": 2,
+      "total": 2
+    },
+    "0x6af": {
+      "opcode950": "0x74e",
+      "support": 3,
+      "total": 3
+    },
+    "0x6b0": {
+      "opcode950": "0x55b",
+      "support": 9,
+      "total": 9
+    },
+    "0x6b2": {
+      "opcode950": "0x14a",
+      "support": 1,
+      "total": 1
+    },
+    "0x6b3": {
+      "opcode950": "0x6bd",
+      "support": 8,
+      "total": 8
+    },
+    "0x6b6": {
+      "opcode950": "0x82",
+      "support": 11,
+      "total": 11
+    },
+    "0x6b8": {
+      "opcode950": "0x286",
+      "support": 10,
+      "total": 10
+    },
+    "0x6b9": {
+      "opcode950": "0x591",
+      "support": 5,
+      "total": 5
+    },
+    "0x6ba": {
+      "opcode950": "0x79c",
+      "support": 10,
+      "total": 10
+    },
+    "0x6bf": {
+      "opcode950": "0x4d",
+      "support": 12,
+      "total": 12
+    },
+    "0x6c0": {
+      "opcode950": "0x18e",
+      "support": 2,
+      "total": 2
+    },
+    "0x6c1": {
+      "opcode950": "0x3ea",
+      "support": 8,
+      "total": 8
+    },
+    "0x6c2": {
+      "opcode950": "0x1dd",
+      "support": 378,
+      "total": 378
+    },
+    "0x6c3": {
+      "opcode950": "0x51b",
+      "support": 32,
+      "total": 32
+    },
+    "0x6c6": {
+      "opcode950": "0x8a8",
+      "support": 32,
+      "total": 32
+    },
+    "0x6c7": {
+      "opcode950": "0x706",
+      "support": 8,
+      "total": 8
+    },
+    "0x6c8": {
+      "opcode950": "0x4ba",
+      "support": 5,
+      "total": 5
+    },
+    "0x6cb": {
+      "opcode950": "0x37d",
+      "support": 4,
+      "total": 4
+    },
+    "0x6cc": {
+      "opcode950": "0xe",
+      "support": 5,
+      "total": 5
+    },
+    "0x6ce": {
+      "opcode950": "0x34c",
+      "support": 1,
+      "total": 1
+    },
+    "0x6cf": {
+      "opcode950": "0x1df",
+      "support": 1,
+      "total": 1
+    },
+    "0x6d1": {
+      "opcode950": "0x175",
+      "support": 2,
+      "total": 2
+    },
+    "0x6d2": {
+      "opcode950": "0x1e3",
+      "support": 3,
+      "total": 3
+    },
+    "0x6d5": {
+      "opcode950": "0x438",
+      "support": 9,
+      "total": 9
+    },
+    "0x6d9": {
+      "opcode950": "0x3f6",
+      "support": 1,
+      "total": 1
+    },
+    "0x6db": {
+      "opcode950": "0x17c",
+      "support": 20,
+      "total": 20
+    },
+    "0x6dc": {
+      "opcode950": "0x25f",
+      "support": 503,
+      "total": 503
+    },
+    "0x6de": {
+      "opcode950": "0x72f",
+      "support": 1,
+      "total": 1
+    },
+    "0x6e0": {
+      "opcode950": "0x88c",
+      "support": 3,
+      "total": 3
+    },
+    "0x6e2": {
+      "opcode950": "0x7ea",
+      "support": 106,
+      "total": 106
+    },
+    "0x6e3": {
+      "opcode950": "0x823",
+      "support": 170,
+      "total": 170
+    },
+    "0x6e4": {
+      "opcode950": "0x888",
+      "support": 13,
+      "total": 13
+    },
+    "0x6e6": {
+      "opcode950": "0x72e",
+      "support": 2,
+      "total": 2
+    },
+    "0x6ea": {
+      "opcode950": "0xbc",
+      "support": 3,
+      "total": 3
+    },
+    "0x6ef": {
+      "opcode950": "0x81",
+      "support": 4,
+      "total": 4
+    },
+    "0x6f0": {
+      "opcode950": "0x3a4",
+      "support": 2,
+      "total": 2
+    },
+    "0x6f2": {
+      "opcode950": "0x76a",
+      "support": 3,
+      "total": 3
+    },
+    "0x6f4": {
+      "opcode950": "0x71e",
+      "support": 44,
+      "total": 44
+    },
+    "0x6f6": {
+      "opcode950": "0x15b",
+      "support": 2,
+      "total": 2
+    },
+    "0x6fa": {
+      "opcode950": "0x31b",
+      "support": 1,
+      "total": 1
+    },
+    "0x6fb": {
+      "opcode950": "0x2ee",
+      "support": 9,
+      "total": 9
+    },
+    "0x6fd": {
+      "opcode950": "0x0",
+      "support": 1,
+      "total": 1
+    },
+    "0x6fe": {
+      "opcode950": "0x141",
+      "support": 70,
+      "total": 70
+    },
+    "0x6ff": {
+      "opcode950": "0x67c",
+      "support": 44,
+      "total": 44
+    },
+    "0x701": {
+      "opcode950": "0x3b4",
+      "support": 1,
+      "total": 1
+    },
+    "0x704": {
+      "opcode950": "0x4ec",
+      "support": 2,
+      "total": 2
+    },
+    "0x706": {
+      "opcode950": "0x349",
+      "support": 2,
+      "total": 2
+    },
+    "0x707": {
+      "opcode950": "0x386",
+      "support": 2,
+      "total": 2
+    },
+    "0x708": {
+      "opcode950": "0x498",
+      "support": 1,
+      "total": 1
+    },
+    "0x70a": {
+      "opcode950": "0x63c",
+      "support": 1,
+      "total": 1
+    },
+    "0x70c": {
+      "opcode950": "0x4cd",
+      "support": 1,
+      "total": 1
+    },
+    "0x712": {
+      "opcode950": "0x16e",
+      "support": 1,
+      "total": 1
+    },
+    "0x713": {
+      "opcode950": "0x4ed",
+      "support": 112266,
+      "total": 112266
+    },
+    "0x716": {
+      "opcode950": "0x131",
+      "support": 503,
+      "total": 503
+    },
+    "0x717": {
+      "opcode950": "0x3e",
+      "support": 13395,
+      "total": 13395
+    },
+    "0x718": {
+      "opcode950": "0x2f8",
+      "support": 4,
+      "total": 4
+    },
+    "0x71c": {
+      "opcode950": "0x41f",
+      "support": 1,
+      "total": 1
+    },
+    "0x71d": {
+      "opcode950": "0x566",
+      "support": 9,
+      "total": 9
+    },
+    "0x71e": {
+      "opcode950": "0x103",
+      "support": 3,
+      "total": 3
+    },
+    "0x71f": {
+      "opcode950": "0x629",
+      "support": 1015,
+      "total": 1015
+    },
+    "0x720": {
+      "opcode950": "0x2dd",
+      "support": 3,
+      "total": 3
+    },
+    "0x723": {
+      "opcode950": "0x151",
+      "support": 23,
+      "total": 23
+    },
+    "0x724": {
+      "opcode950": "0x7ac",
+      "support": 1,
+      "total": 1
+    },
+    "0x725": {
+      "opcode950": "0x868",
+      "support": 2,
+      "total": 2
+    },
+    "0x726": {
+      "opcode950": "0x8c0",
+      "support": 25,
+      "total": 25
+    },
+    "0x728": {
+      "opcode950": "0x132",
+      "support": 133,
+      "total": 133
+    },
+    "0x729": {
+      "opcode950": "0x4fd",
+      "support": 2,
+      "total": 2
+    },
+    "0x72a": {
+      "opcode950": "0x36a",
+      "support": 479,
+      "total": 479
+    },
+    "0x72d": {
+      "opcode950": "0x5af",
+      "support": 252,
+      "total": 252
+    },
+    "0x72e": {
+      "opcode950": "0x3f9",
+      "support": 1,
+      "total": 1
+    },
+    "0x730": {
+      "opcode950": "0x4b8",
+      "support": 7106,
+      "total": 7106
+    },
+    "0x731": {
+      "opcode950": "0x896",
+      "support": 11,
+      "total": 11
+    },
+    "0x732": {
+      "opcode950": "0x895",
+      "support": 39,
+      "total": 39
+    },
+    "0x734": {
+      "opcode950": "0x29e",
+      "support": 2,
+      "total": 2
+    },
+    "0x736": {
+      "opcode950": "0x69f",
+      "support": 40,
+      "total": 40
+    },
+    "0x737": {
+      "opcode950": "0x52c",
+      "support": 3,
+      "total": 3
+    },
+    "0x738": {
+      "opcode950": "0x358",
+      "support": 35,
+      "total": 35
+    },
+    "0x73a": {
+      "opcode950": "0x346",
+      "support": 7,
+      "total": 7
+    },
+    "0x73b": {
+      "opcode950": "0x792",
+      "support": 19,
+      "total": 19
+    },
+    "0x73d": {
+      "opcode950": "0x755",
+      "support": 1432,
+      "total": 1432
+    },
+    "0x73e": {
+      "opcode950": "0x4d8",
+      "support": 2,
+      "total": 2
+    },
+    "0x73f": {
+      "opcode950": "0x61a",
+      "support": 21,
+      "total": 21
+    },
+    "0x742": {
+      "opcode950": "0x43c",
+      "support": 771,
+      "total": 771
+    },
+    "0x744": {
+      "opcode950": "0x3a3",
+      "support": 3,
+      "total": 3
+    },
+    "0x745": {
+      "opcode950": "0x511",
+      "support": 15,
+      "total": 15
+    },
+    "0x746": {
+      "opcode950": "0x58d",
+      "support": 19,
+      "total": 19
+    },
+    "0x748": {
+      "opcode950": "0x11b",
+      "support": 10,
+      "total": 10
+    },
+    "0x749": {
+      "opcode950": "0x62c",
+      "support": 1,
+      "total": 1
+    },
+    "0x74a": {
+      "opcode950": "0x494",
+      "support": 3,
+      "total": 3
+    },
+    "0x74f": {
+      "opcode950": "0x215",
+      "support": 9,
+      "total": 9
+    },
+    "0x756": {
+      "opcode950": "0x72",
+      "support": 6,
+      "total": 6
+    },
+    "0x75b": {
+      "opcode950": "0x2a2",
+      "support": 2,
+      "total": 2
+    },
+    "0x75f": {
+      "opcode950": "0x6ce",
+      "support": 11,
+      "total": 11
+    },
+    "0x761": {
+      "opcode950": "0x78",
+      "support": 770,
+      "total": 770
+    },
+    "0x762": {
+      "opcode950": "0x8d9",
+      "support": 3,
+      "total": 3
+    },
+    "0x763": {
+      "opcode950": "0x7a2",
+      "support": 13,
+      "total": 13
+    },
+    "0x764": {
+      "opcode950": "0x46e",
+      "support": 2,
+      "total": 2
+    },
+    "0x769": {
+      "opcode950": "0x2be",
+      "support": 1,
+      "total": 1
+    },
+    "0x76a": {
+      "opcode950": "0x7da",
+      "support": 37,
+      "total": 37
+    },
+    "0x76b": {
+      "opcode950": "0xe9",
+      "support": 5,
+      "total": 5
+    },
+    "0x76c": {
+      "opcode950": "0x593",
+      "support": 1,
+      "total": 1
+    },
+    "0x772": {
+      "opcode950": "0x555",
+      "support": 1,
+      "total": 1
+    },
+    "0x776": {
+      "opcode950": "0x27d",
+      "support": 14,
+      "total": 14
+    },
+    "0x777": {
+      "opcode950": "0x568",
+      "support": 2,
+      "total": 2
+    },
+    "0x77b": {
+      "opcode950": "0x5a6",
+      "support": 8,
+      "total": 8
+    },
+    "0x77c": {
+      "opcode950": "0x33b",
+      "support": 4,
+      "total": 4
+    },
+    "0x77d": {
+      "opcode950": "0x3a5",
+      "support": 30,
+      "total": 30
+    },
+    "0x77e": {
+      "opcode950": "0x173",
+      "support": 114,
+      "total": 114
+    },
+    "0x783": {
+      "opcode950": "0xac",
+      "support": 1,
+      "total": 1
+    },
+    "0x784": {
+      "opcode950": "0x400",
+      "support": 14,
+      "total": 14
+    },
+    "0x785": {
+      "opcode950": "0x561",
+      "support": 109,
+      "total": 109
+    },
+    "0x787": {
+      "opcode950": "0x625",
+      "support": 2,
+      "total": 2
+    },
+    "0x788": {
+      "opcode950": "0x6bf",
+      "support": 1,
+      "total": 1
+    },
+    "0x789": {
+      "opcode950": "0x8ab",
+      "support": 19,
+      "total": 19
+    },
+    "0x78a": {
+      "opcode950": "0x135",
+      "support": 33,
+      "total": 33
+    },
+    "0x78b": {
+      "opcode950": "0x45a",
+      "support": 6,
+      "total": 6
+    },
+    "0x78c": {
+      "opcode950": "0x12f",
+      "support": 2,
+      "total": 2
+    },
+    "0x78d": {
+      "opcode950": "0x5a2",
+      "support": 1,
+      "total": 1
+    },
+    "0x78f": {
+      "opcode950": "0x597",
+      "support": 2,
+      "total": 2
+    },
+    "0x793": {
+      "opcode950": "0x76e",
+      "support": 76,
+      "total": 76
+    },
+    "0x795": {
+      "opcode950": "0x79e",
+      "support": 9,
+      "total": 9
+    },
+    "0x796": {
+      "opcode950": "0x65d",
+      "support": 4,
+      "total": 4
+    },
+    "0x797": {
+      "opcode950": "0x5d9",
+      "support": 1,
+      "total": 1
+    },
+    "0x798": {
+      "opcode950": "0x519",
+      "support": 2,
+      "total": 2
+    },
+    "0x79a": {
+      "opcode950": "0x1c5",
+      "support": 85,
+      "total": 85
+    },
+    "0x79b": {
+      "opcode950": "0x299",
+      "support": 5,
+      "total": 5
+    },
+    "0x79c": {
+      "opcode950": "0x3af",
+      "support": 1,
+      "total": 1
+    },
+    "0x79d": {
+      "opcode950": "0x54f",
+      "support": 1,
+      "total": 1
+    },
+    "0x79e": {
+      "opcode950": "0x6ff",
+      "support": 4,
+      "total": 4
+    },
+    "0x7a1": {
+      "opcode950": "0x390",
+      "support": 2,
+      "total": 2
+    },
+    "0x7a3": {
+      "opcode950": "0x77b",
+      "support": 2145,
+      "total": 2145
+    },
+    "0x7a4": {
+      "opcode950": "0x68f",
+      "support": 1,
+      "total": 1
+    },
+    "0x7ad": {
+      "opcode950": "0x85b",
+      "support": 5,
+      "total": 5
+    },
+    "0x7b0": {
+      "opcode950": "0x628",
+      "support": 34,
+      "total": 34
+    },
+    "0x7b1": {
+      "opcode950": "0x7b7",
+      "support": 1,
+      "total": 1
+    },
+    "0x7b2": {
+      "opcode950": "0x60f",
+      "support": 1254,
+      "total": 1254
+    },
+    "0x7b4": {
+      "opcode950": "0x1d6",
+      "support": 30,
+      "total": 30
+    },
+    "0x7b8": {
+      "opcode950": "0x471",
+      "support": 1,
+      "total": 1
+    },
+    "0x7b9": {
+      "opcode950": "0x829",
+      "support": 11,
+      "total": 11
+    },
+    "0x7ba": {
+      "opcode950": "0x293",
+      "support": 134,
+      "total": 134
+    },
+    "0x7be": {
+      "opcode950": "0x623",
+      "support": 718,
+      "total": 718
+    },
+    "0x7c0": {
+      "opcode950": "0x743",
+      "support": 3,
+      "total": 3
+    },
+    "0x7c3": {
+      "opcode950": "0x419",
+      "support": 8,
+      "total": 8
+    },
+    "0x7c5": {
+      "opcode950": "0x5b9",
+      "support": 1972,
+      "total": 1972
+    },
+    "0x7c7": {
+      "opcode950": "0x91",
+      "support": 2,
+      "total": 2
+    },
+    "0x7c9": {
+      "opcode950": "0x4f6",
+      "support": 4,
+      "total": 4
+    },
+    "0x7ca": {
+      "opcode950": "0x1d3",
+      "support": 516,
+      "total": 516
+    },
+    "0x7cb": {
+      "opcode950": "0x42a",
+      "support": 2,
+      "total": 2
+    },
+    "0x7cc": {
+      "opcode950": "0x6c1",
+      "support": 107,
+      "total": 107
+    },
+    "0x7cd": {
+      "opcode950": "0x692",
+      "support": 14,
+      "total": 14
+    },
+    "0x7cf": {
+      "opcode950": "0xd3",
+      "support": 1,
+      "total": 1
+    },
+    "0x7d0": {
+      "opcode950": "0x323",
+      "support": 83,
+      "total": 83
+    },
+    "0x7d1": {
+      "opcode950": "0x6dd",
+      "support": 4,
+      "total": 4
+    },
+    "0x7d2": {
+      "opcode950": "0x179",
+      "support": 2,
+      "total": 2
+    },
+    "0x7d3": {
+      "opcode950": "0x4b3",
+      "support": 1,
+      "total": 1
+    },
+    "0x7d5": {
+      "opcode950": "0x6f0",
+      "support": 3,
+      "total": 3
+    },
+    "0x7d7": {
+      "opcode950": "0x320",
+      "support": 1,
+      "total": 1
+    },
+    "0x7d8": {
+      "opcode950": "0xa1",
+      "support": 8,
+      "total": 8
+    },
+    "0x7d9": {
+      "opcode950": "0x7c4",
+      "support": 4,
+      "total": 4
+    },
+    "0x7da": {
+      "opcode950": "0x837",
+      "support": 5,
+      "total": 5
+    },
+    "0x7dd": {
+      "opcode950": "0x8b4",
+      "support": 16,
+      "total": 16
+    },
+    "0x7e0": {
+      "opcode950": "0x429",
+      "support": 90,
+      "total": 90
+    },
+    "0x7e2": {
+      "opcode950": "0x6ac",
+      "support": 1,
+      "total": 1
+    },
+    "0x7e3": {
+      "opcode950": "0x7b8",
+      "support": 1,
+      "total": 1
+    },
+    "0x7e7": {
+      "opcode950": "0x684",
+      "support": 10,
+      "total": 10
+    },
+    "0x7e9": {
+      "opcode950": "0x5c8",
+      "support": 5,
+      "total": 5
+    },
+    "0x7ec": {
+      "opcode950": "0x3c5",
+      "support": 124,
+      "total": 124
+    },
+    "0x7ed": {
+      "opcode950": "0x7e6",
+      "support": 2,
+      "total": 2
+    },
+    "0x7ee": {
+      "opcode950": "0x45f",
+      "support": 1,
+      "total": 1
+    },
+    "0x7f1": {
+      "opcode950": "0x75f",
+      "support": 6,
+      "total": 6
+    },
+    "0x7f2": {
+      "opcode950": "0x272",
+      "support": 317,
+      "total": 317
+    },
+    "0x7f3": {
+      "opcode950": "0x463",
+      "support": 2,
+      "total": 2
+    },
+    "0x7f7": {
+      "opcode950": "0x2f2",
+      "support": 1,
+      "total": 1
+    },
+    "0x7f9": {
+      "opcode950": "0x3ef",
+      "support": 16,
+      "total": 16
+    },
+    "0x7fb": {
+      "opcode950": "0x74d",
+      "support": 6,
+      "total": 6
+    },
+    "0x7fd": {
+      "opcode950": "0x6e6",
+      "support": 1,
+      "total": 1
+    },
+    "0x801": {
+      "opcode950": "0x392",
+      "support": 131,
+      "total": 131
+    },
+    "0x804": {
+      "opcode950": "0x33c",
+      "support": 15,
+      "total": 15
+    },
+    "0x808": {
+      "opcode950": "0x496",
+      "support": 5,
+      "total": 5
+    },
+    "0x809": {
+      "opcode950": "0x7a3",
+      "support": 2,
+      "total": 2
+    },
+    "0x80a": {
+      "opcode950": "0x6d0",
+      "support": 10,
+      "total": 10
+    },
+    "0x80b": {
+      "opcode950": "0x25e",
+      "support": 1,
+      "total": 1
+    },
+    "0x80c": {
+      "opcode950": "0x1bb",
+      "support": 4,
+      "total": 4
+    },
+    "0x80e": {
+      "opcode950": "0x716",
+      "support": 5,
+      "total": 5
+    },
+    "0x810": {
+      "opcode950": "0x510",
+      "support": 1,
+      "total": 1
+    },
+    "0x811": {
+      "opcode950": "0x6d2",
+      "support": 3,
+      "total": 3
+    },
+    "0x814": {
+      "opcode950": "0x1af",
+      "support": 4,
+      "total": 4
+    },
+    "0x815": {
+      "opcode950": "0x607",
+      "support": 16,
+      "total": 16
+    },
+    "0x816": {
+      "opcode950": "0x883",
+      "support": 1,
+      "total": 1
+    },
+    "0x818": {
+      "opcode950": "0x363",
+      "support": 1,
+      "total": 1
+    },
+    "0x821": {
+      "opcode950": "0x68e",
+      "support": 2,
+      "total": 2
+    },
+    "0x822": {
+      "opcode950": "0x548",
+      "support": 1,
+      "total": 1
+    },
+    "0x823": {
+      "opcode950": "0x639",
+      "support": 74,
+      "total": 74
+    },
+    "0x827": {
+      "opcode950": "0x4c8",
+      "support": 6,
+      "total": 6
+    },
+    "0x828": {
+      "opcode950": "0x44f",
+      "support": 3230,
+      "total": 3230
+    },
+    "0x82b": {
+      "opcode950": "0x487",
+      "support": 1,
+      "total": 1
+    },
+    "0x82c": {
+      "opcode950": "0x2a5",
+      "support": 1,
+      "total": 1
+    },
+    "0x82f": {
+      "opcode950": "0x635",
+      "support": 9,
+      "total": 9
+    },
+    "0x830": {
+      "opcode950": "0x737",
+      "support": 13,
+      "total": 13
+    },
+    "0x832": {
+      "opcode950": "0x347",
+      "support": 2,
+      "total": 2
+    },
+    "0x833": {
+      "opcode950": "0x20a",
+      "support": 2,
+      "total": 2
+    },
+    "0x834": {
+      "opcode950": "0x39e",
+      "support": 2097,
+      "total": 2097
+    },
+    "0x836": {
+      "opcode950": "0xd5",
+      "support": 19,
+      "total": 19
+    },
+    "0x83b": {
+      "opcode950": "0x5e",
+      "support": 1,
+      "total": 1
+    },
+    "0x83c": {
+      "opcode950": "0x819",
+      "support": 1213,
+      "total": 1213
+    },
+    "0x83e": {
+      "opcode950": "0x21c",
+      "support": 3,
+      "total": 3
+    },
+    "0x840": {
+      "opcode950": "0x4ca",
+      "support": 57,
+      "total": 57
+    },
+    "0x841": {
+      "opcode950": "0x78f",
+      "support": 6,
+      "total": 6
+    },
+    "0x844": {
+      "opcode950": "0x79d",
+      "support": 4,
+      "total": 4
+    },
+    "0x845": {
+      "opcode950": "0x828",
+      "support": 1,
+      "total": 1
+    },
+    "0x847": {
+      "opcode950": "0x45b",
+      "support": 23,
+      "total": 23
+    },
+    "0x848": {
+      "opcode950": "0x657",
+      "support": 2,
+      "total": 2
+    },
+    "0x84a": {
+      "opcode950": "0x227",
+      "support": 2,
+      "total": 2
+    },
+    "0x84d": {
+      "opcode950": "0x36c",
+      "support": 1,
+      "total": 1
+    },
+    "0x84e": {
+      "opcode950": "0x88b",
+      "support": 1,
+      "total": 1
+    },
+    "0x84f": {
+      "opcode950": "0x2eb",
+      "support": 1,
+      "total": 1
+    },
+    "0x851": {
+      "opcode950": "0x21d",
+      "support": 1,
+      "total": 1
+    },
+    "0x853": {
+      "opcode950": "0x3a2",
+      "support": 1,
+      "total": 1
+    },
+    "0x855": {
+      "opcode950": "0x6f6",
+      "support": 3,
+      "total": 3
+    },
+    "0x856": {
+      "opcode950": "0x875",
+      "support": 3,
+      "total": 3
+    },
+    "0x858": {
+      "opcode950": "0x691",
+      "support": 4,
+      "total": 4
+    },
+    "0x85b": {
+      "opcode950": "0x41c",
+      "support": 2,
+      "total": 2
+    },
+    "0x85c": {
+      "opcode950": "0x256",
+      "support": 7,
+      "total": 7
+    },
+    "0x85d": {
+      "opcode950": "0x2d8",
+      "support": 6,
+      "total": 6
+    },
+    "0x85e": {
+      "opcode950": "0x2d2",
+      "support": 1,
+      "total": 1
+    },
+    "0x85f": {
+      "opcode950": "0x47a",
+      "support": 19,
+      "total": 19
+    },
+    "0x862": {
+      "opcode950": "0x85e",
+      "support": 83,
+      "total": 83
+    },
+    "0x863": {
+      "opcode950": "0x4ea",
+      "support": 4,
+      "total": 4
+    },
+    "0x866": {
+      "opcode950": "0x407",
+      "support": 1,
+      "total": 1
+    },
+    "0x869": {
+      "opcode950": "0x8de",
+      "support": 36,
+      "total": 36
+    },
+    "0x86a": {
+      "opcode950": "0x51a",
+      "support": 539,
+      "total": 539
+    },
+    "0x86b": {
+      "opcode950": "0x300",
+      "support": 619,
+      "total": 619
+    },
+    "0x86d": {
+      "opcode950": "0xe3",
+      "support": 10,
+      "total": 10
+    },
+    "0x86f": {
+      "opcode950": "0x7d2",
+      "support": 1,
+      "total": 1
+    },
+    "0x871": {
+      "opcode950": "0x7e9",
+      "support": 3,
+      "total": 3
+    },
+    "0x873": {
+      "opcode950": "0x4d4",
+      "support": 1,
+      "total": 1
+    },
+    "0x875": {
+      "opcode950": "0x3d3",
+      "support": 1,
+      "total": 1
+    },
+    "0x878": {
+      "opcode950": "0x3bc",
+      "support": 3,
+      "total": 3
+    },
+    "0x879": {
+      "opcode950": "0x2e4",
+      "support": 1,
+      "total": 1
+    },
+    "0x87a": {
+      "opcode950": "0x4b1",
+      "support": 1691,
+      "total": 1691
+    },
+    "0x87b": {
+      "opcode950": "0x23c",
+      "support": 4,
+      "total": 4
+    },
+    "0x87c": {
+      "opcode950": "0x2dc",
+      "support": 4,
+      "total": 4
+    },
+    "0x880": {
+      "opcode950": "0x84d",
+      "support": 10,
+      "total": 10
+    },
+    "0x882": {
+      "opcode950": "0x637",
+      "support": 2,
+      "total": 2
+    },
+    "0x883": {
+      "opcode950": "0x68b",
+      "support": 368,
+      "total": 368
+    },
+    "0x886": {
+      "opcode950": "0x805",
+      "support": 19,
+      "total": 19
+    },
+    "0x888": {
+      "opcode950": "0x2b1",
+      "support": 2,
+      "total": 2
+    },
+    "0x88b": {
+      "opcode950": "0x727",
+      "support": 2,
+      "total": 2
+    },
+    "0x88c": {
+      "opcode950": "0x51e",
+      "support": 4,
+      "total": 4
+    },
+    "0x88d": {
+      "opcode950": "0x75e",
+      "support": 3,
+      "total": 3
+    },
+    "0x88f": {
+      "opcode950": "0x8df",
+      "support": 1,
+      "total": 1
+    },
+    "0x890": {
+      "opcode950": "0x245",
+      "support": 4,
+      "total": 4
+    },
+    "0x891": {
+      "opcode950": "0x5b3",
+      "support": 35,
+      "total": 35
+    },
+    "0x893": {
+      "opcode950": "0x384",
+      "support": 1,
+      "total": 1
+    },
+    "0x894": {
+      "opcode950": "0x237",
+      "support": 3,
+      "total": 3
+    },
+    "0x895": {
+      "opcode950": "0x87a",
+      "support": 41704,
+      "total": 41704
+    },
+    "0x898": {
+      "opcode950": "0x1b1",
+      "support": 2,
+      "total": 2
+    },
+    "0x899": {
+      "opcode950": "0x393",
+      "support": 1,
+      "total": 1
+    },
+    "0x89b": {
+      "opcode950": "0x126",
+      "support": 12,
+      "total": 12
+    },
+    "0x89c": {
+      "opcode950": "0x1b",
+      "support": 66,
+      "total": 66
+    },
+    "0x89d": {
+      "opcode950": "0x48a",
+      "support": 5,
+      "total": 5
+    },
+    "0x89f": {
+      "opcode950": "0x5d5",
+      "support": 8,
+      "total": 8
+    },
+    "0x8a2": {
+      "opcode950": "0x7f7",
+      "support": 135,
+      "total": 135
+    },
+    "0x8a5": {
+      "opcode950": "0xaf",
+      "support": 2,
+      "total": 2
+    },
+    "0x8a7": {
+      "opcode950": "0x615",
+      "support": 2,
+      "total": 2
+    },
+    "0x8a8": {
+      "opcode950": "0x70d",
+      "support": 4,
+      "total": 4
+    },
+    "0x8a9": {
+      "opcode950": "0x7b0",
+      "support": 2,
+      "total": 2
+    },
+    "0x8aa": {
+      "opcode950": "0x284",
+      "support": 2,
+      "total": 2
+    },
+    "0x8ac": {
+      "opcode950": "0x74c",
+      "support": 627,
+      "total": 627
+    },
+    "0x8af": {
+      "opcode950": "0x40a",
+      "support": 9,
+      "total": 9
+    },
+    "0x8b0": {
+      "opcode950": "0x3b5",
+      "support": 3,
+      "total": 3
+    },
+    "0x8b1": {
+      "opcode950": "0x8e9",
+      "support": 337,
+      "total": 337
+    },
+    "0x8b3": {
+      "opcode950": "0x8b7",
+      "support": 1,
+      "total": 1
+    },
+    "0x8b5": {
+      "opcode950": "0x835",
+      "support": 3,
+      "total": 3
+    },
+    "0x8b7": {
+      "opcode950": "0x6e3",
+      "support": 27,
+      "total": 27
+    },
+    "0x8b9": {
+      "opcode950": "0x1",
+      "support": 205,
+      "total": 205
+    },
+    "0x8bb": {
+      "opcode950": "0x3f4",
+      "support": 1,
+      "total": 1
+    },
+    "0x8be": {
+      "opcode950": "0x1cc",
+      "support": 33,
+      "total": 33
+    },
+    "0x8c0": {
+      "opcode950": "0x7",
+      "support": 1,
+      "total": 1
+    },
+    "0x8c2": {
+      "opcode950": "0x8bd",
+      "support": 86,
+      "total": 86
+    },
+    "0x8c3": {
+      "opcode950": "0x2bc",
+      "support": 2953,
+      "total": 2953
+    }
+  },
+  "nativeOpcodeEvidence": {
+    "0x576->0x443": {
+      "947handler": "0x1401df4a0",
+      "947callback": "0x1401cea10",
+      "950handler": "0x1401e69e0",
+      "950callback": "0x1401d5f30",
+      "meaning": "cc_if_input_setemptytext: string + two ints; copy placeholder and OR/store colour; widget type11->12"
+    },
+    "0x339->0x4e5": {
+      "947handler": "0x14017f0a0",
+      "950handler": "0x140184370",
+      "meaning": "same map coordinate unpack and region bounds operations"
+    },
+    "0x1f7->0x365": {
+      "947handler": "0x14017e710",
+      "950handler": "0x1401839e0",
+      "meaning": "map state reset with constant1"
+    }
+  },
+  "ambiguousOpcodes": {},
+  "categories": {
+    "Settings": [
+      441,
+      445,
+      1159,
+      1191,
+      2386,
+      2393,
+      2395,
+      2396,
+      2514,
+      2594,
+      2595,
+      2755,
+      2798,
+      2923,
+      2929,
+      2930,
+      2957,
+      5523,
+      5633,
+      5639,
+      8043,
+      8179,
+      8180,
+      8181,
+      8184,
+      8186,
+      8190,
+      8191,
+      8192,
+      8193,
+      8203,
+      8206,
+      8208,
+      8209,
+      8212,
+      8282,
+      8283,
+      8284,
+      8285,
+      8286,
+      8288,
+      8290,
+      8292,
+      8784,
+      8817,
+      8822,
+      8823,
+      8826,
+      8844,
+      9287,
+      10002,
+      10020,
+      10068,
+      10416,
+      10419,
+      10422,
+      12343,
+      13816,
+      13818,
+      13819,
+      13820,
+      13821,
+      13837,
+      13838,
+      13839,
+      13848,
+      13849,
+      13860,
+      13861,
+      13862,
+      14457,
+      14458,
+      15087,
+      16021,
+      20382,
+      20387
+    ],
+    "WorldMap": [
+      343,
+      1369,
+      1898,
+      8105,
+      10420
+    ]
+  },
+  "scripts": {
+    "8192": {
+      "sha947": "733fbd950d186d09e0c1dc2ba6e04e3b71ccf0ade9dbe4bf48e0ab6775d5a323",
+      "sha950": "14d87898eca9c7d5e5145cc1555d362fbc7ac5e2fcfa5944b34ae6e7599c72fe",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 5,
+      "instructions950": 5,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        189,
+        441
+      ],
+      "calls950": [
+        189,
+        441
+      ]
+    },
+    "8193": {
+      "sha947": "e4b339bc154700301638a51d1b415be39e685dfdd25038a5559ae0401e6230b6",
+      "sha950": "9b858e1346354d255818898aa4941900645c18d4695a0bdaf3841a83f5157a07",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 16,
+      "instructions950": 16,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [],
+      "calls950": []
+    },
+    "5633": {
+      "sha947": "face7e346f9263b976e97edb4b70ddfc2ebb64b4fd433debe6f85a12334673ed",
+      "sha950": "34ba27d67e46be4b784cca60e3ff1155a404e7ee52fe7c98b8fee1602b37dd7f",
+      "arguments947": [
+        1,
+        0,
+        0
+      ],
+      "arguments950": [
+        1,
+        0,
+        0
+      ],
+      "locals947": [
+        1,
+        0,
+        0
+      ],
+      "locals950": [
+        1,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 49,
+      "instructions950": 49,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        12478,
+        13749
+      ],
+      "calls950": [
+        12478,
+        13749
+      ]
+    },
+    "1159": {
+      "sha947": "186f31ad64be633c7c14f7a146f56c4b7794beb38d35c68242c2a67d2f8e5a51",
+      "sha950": "ee347e0223b8c1a4bdc7a89364565f0c97b68cf36f0050b581c11b3af930561d",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        3,
+        0,
+        0
+      ],
+      "locals950": [
+        3,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 45,
+      "instructions950": 45,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2386,
+        13862
+      ],
+      "calls950": [
+        2386,
+        13862
+      ]
+    },
+    "13816": {
+      "sha947": "370f3634d6e7efce46406af287fea84a501232523dfa24d32c90eda503231868",
+      "sha950": "020b99a4cbc9ebb7dcc293dd10277223412a23ff1182cc492002dd9b8e98d438",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 38,
+      "instructions950": 38,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        5633,
+        13749,
+        15087
+      ],
+      "calls950": [
+        5633,
+        13749,
+        15087
+      ]
+    },
+    "5639": {
+      "sha947": "cacce98356fc4c6781472d132bae5e09871309d98b356169abd47ed8703308f5",
+      "sha950": "0bc9309ac40897cd3576856b6af38c430f481a28b4087985801c4967dfd85a50",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 51,
+      "instructions950": 51,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        12478,
+        13749
+      ],
+      "calls950": [
+        12478,
+        13749
+      ]
+    },
+    "8203": {
+      "sha947": "8f761667758c28b2557069594a6851f8b840652dd011637a94292637c13c4d9b",
+      "sha950": "c35a26c44fa62c09162ee76cb8964e01d7f0cf813155d04c8851325bba842cf2",
+      "arguments947": [
+        4,
+        0,
+        0
+      ],
+      "arguments950": [
+        4,
+        0,
+        0
+      ],
+      "locals947": [
+        5,
+        2,
+        0
+      ],
+      "locals950": [
+        5,
+        2,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 89,
+      "instructions950": 89,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        8204,
+        8206,
+        8215,
+        10495
+      ],
+      "calls950": [
+        8204,
+        8206,
+        8215,
+        10495
+      ]
+    },
+    "8844": {
+      "sha947": "ea851b4bd719b94829f5b2b6e4351e878f4a5835cc0637eddf278fd18b58e2cf",
+      "sha950": "05882a24def6f4008980c46787b5d4e32176ea84e31a2fc160e4f74dd3f60a05",
+      "arguments947": [
+        5,
+        0,
+        0
+      ],
+      "arguments950": [
+        5,
+        0,
+        0
+      ],
+      "locals947": [
+        5,
+        0,
+        0
+      ],
+      "locals950": [
+        5,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 29,
+      "instructions950": 29,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [],
+      "calls950": []
+    },
+    "2957": {
+      "sha947": "894d6e9a4bf171fd771518bceccce7711f1ecfdf0afa879729039ad4a2672457",
+      "sha950": "72715e916881eb82364e5753547b0cada9a6855a038a2141fba6286dbc8f0503",
+      "arguments947": [
+        3,
+        0,
+        0
+      ],
+      "arguments950": [
+        3,
+        0,
+        0
+      ],
+      "locals947": [
+        20,
+        2,
+        0
+      ],
+      "locals950": [
+        20,
+        2,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 287,
+      "instructions950": 287,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2510,
+        2970,
+        2971,
+        2972,
+        2995,
+        5713,
+        7791,
+        9394,
+        20382,
+        20478
+      ],
+      "calls950": [
+        2510,
+        2970,
+        2971,
+        2972,
+        2995,
+        5713,
+        7791,
+        9394,
+        20382,
+        20478
+      ]
+    },
+    "8206": {
+      "sha947": "0099c61a399d7db7c045338cf947894a40421658eac0a39e57344d49c93546f0",
+      "sha950": "2b49e05566cadb512a411033a85fb532ba12ee21b7765f5623e66e1739c71f60",
+      "arguments947": [
+        3,
+        0,
+        0
+      ],
+      "arguments950": [
+        3,
+        0,
+        0
+      ],
+      "locals947": [
+        8,
+        2,
+        0
+      ],
+      "locals950": [
+        8,
+        2,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 228,
+      "instructions950": 228,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        7796,
+        8207,
+        8213,
+        8215,
+        8825
+      ],
+      "calls950": [
+        7796,
+        8207,
+        8213,
+        8215,
+        8825
+      ]
+    },
+    "13837": {
+      "sha947": "755ce69b77bbaf64819943b8f7ced56ffdfa2be8a2794377f0e8283893a131f9",
+      "sha950": "11d6462edc866caf40dddb4b780f793987dba5917629589647df921a34132e1a",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 10,
+      "instructions950": 10,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        13843,
+        13847
+      ],
+      "calls950": [
+        13843,
+        13847
+      ]
+    },
+    "8208": {
+      "sha947": "f1581530abe5d9ef8a3a5c071e06af898b8a625a98516b727dc2f2451fabbd23",
+      "sha950": "f90cf91efde5652bbe82bf7a279b38a3c3dda72a8d9b9d247a09fe0031347506",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 4,
+      "instructions950": 4,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        8209
+      ],
+      "calls950": [
+        8209
+      ]
+    },
+    "8209": {
+      "sha947": "1a849018fcec25c26ea288ed584b95f663a7a601fc0df5cced09f3e68391bf23",
+      "sha950": "8b5ed43bb2566a21f5f71ea5343a57252baf6865820c1d1a34604da3a1a880de",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        4,
+        0,
+        0
+      ],
+      "locals950": [
+        4,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 34,
+      "instructions950": 34,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2254,
+        8206,
+        8808,
+        8817
+      ],
+      "calls950": [
+        2254,
+        8206,
+        8808,
+        8817
+      ]
+    },
+    "13838": {
+      "sha947": "6d47cc19e527034950a873e12057e9a3c2ff9e998a1a9b92e0ef5f26509078df",
+      "sha950": "f76dac43e5a5915569e2b5cc4bb632027e83b261637b16006c168662884814d5",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 10,
+      "instructions950": 10,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        13843,
+        13847
+      ],
+      "calls950": [
+        13843,
+        13847
+      ]
+    },
+    "13839": {
+      "sha947": "88c2651f7251cc0c83a184d8827b4a8718ef67350d615d1f39c859bfc6ab22c6",
+      "sha950": "b37e3c44ec878e5311b5fbf5449d8981b3caee3ba400b4419f7ed97aa24e6e4a",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 7,
+      "instructions950": 7,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        13843,
+        13848
+      ],
+      "calls950": [
+        13843,
+        13848
+      ]
+    },
+    "8212": {
+      "sha947": "292618f3e6978637bcdb28c7c9c84140bc69c7fd2316afb68ca2d8d2875d11a2",
+      "sha950": "e1f04f5ac9354bfdbda03483ce40ef601d4b0a16468bdde837cafc3f00426c86",
+      "arguments947": [
+        4,
+        0,
+        0
+      ],
+      "arguments950": [
+        4,
+        0,
+        0
+      ],
+      "locals947": [
+        4,
+        0,
+        0
+      ],
+      "locals950": [
+        4,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 34,
+      "instructions950": 34,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        8204,
+        8206,
+        8210,
+        8808
+      ],
+      "calls950": [
+        8204,
+        8206,
+        8210,
+        8808
+      ]
+    },
+    "16021": {
+      "sha947": "14a2c5191a93a4f1bbbe393085f1f8f5c2760b04339a6127c750205aedfbe70e",
+      "sha950": "4683dfbddfdcedd7d43de2b21cb761c26e1985b6ae9542020760a945902fa280",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 93,
+      "instructions950": 93,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [],
+      "calls950": []
+    },
+    "13818": {
+      "sha947": "2d7600a2ce823aa0f59b1eb9158c441515335df84a2eab59e26cd320e40fc6d0",
+      "sha950": "8c5b4afbeac0b2f832fad148b0ad79ffb68da2db1505827bb5d44d934baa6249",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 60,
+      "instructions950": 60,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        1191,
+        5633,
+        6431,
+        15726,
+        16925
+      ],
+      "calls950": [
+        1191,
+        5633,
+        6431,
+        15726,
+        16925
+      ]
+    },
+    "5523": {
+      "sha947": "7238acf3a903d0856b7b3cb559e46eefc96357c52aeb1dfa13b671cf0f310c18",
+      "sha950": "b2c9ff15b10d5647d1681b2e97429ecf0c8c4a2f565ec107e66faf5c615fc87c",
+      "arguments947": [
+        1,
+        0,
+        0
+      ],
+      "arguments950": [
+        1,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 9,
+      "instructions950": 9,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        5633,
+        5639
+      ],
+      "calls950": [
+        5633,
+        5639
+      ]
+    },
+    "13848": {
+      "sha947": "2afb5fd5957042803f9b13e8daed6eb8c0b982606261b1c3826014f0abc04b33",
+      "sha950": "caf8992a78af2184e1b5d0d9e35b03f5d2b96d48f7154ebc6be362b8d4938916",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        8,
+        0,
+        0
+      ],
+      "locals950": [
+        8,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 123,
+      "instructions950": 123,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2384,
+        2393,
+        13846,
+        13849,
+        19633
+      ],
+      "calls950": [
+        2384,
+        2393,
+        13846,
+        13849,
+        19633
+      ]
+    },
+    "13849": {
+      "sha947": "7e598f21940f8fc5b460ad19ae839c547735edb39bca970a2dacbf4d25e0366a",
+      "sha950": "d1f46b29f347e5f7f051a20637f97203f30fc37093062d35b17d02d5cf0b9f88",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        3,
+        0,
+        0
+      ],
+      "locals950": [
+        3,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 117,
+      "instructions950": 117,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        6431,
+        10416,
+        13850
+      ],
+      "calls950": [
+        6431,
+        10416,
+        13850
+      ]
+    },
+    "10002": {
+      "sha947": "bfd6d918ed809686a5a86731837a1658a8268fb3649e144dcb30c9533f6d4d23",
+      "sha950": "e79c182392a669222b5ccf2aeeca07ef723322db5e55700d7764d638d430fef1",
+      "arguments947": [
+        4,
+        0,
+        0
+      ],
+      "arguments950": [
+        4,
+        0,
+        0
+      ],
+      "locals947": [
+        4,
+        0,
+        0
+      ],
+      "locals950": [
+        4,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 10,
+      "instructions950": 10,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        10020
+      ],
+      "calls950": [
+        10020
+      ]
+    },
+    "20382": {
+      "sha947": "71144ca58a5f94e3a429c166026edd008976df6c0b3594858fa2089af1ec4d1d",
+      "sha950": "aa70b5f3b5b7c2bdecfdcb607b24206b5e164ab8b4e74d9d80039155b18898d3",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        1,
+        0,
+        0
+      ],
+      "locals950": [
+        1,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 14,
+      "instructions950": 14,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        8292
+      ],
+      "calls950": [
+        8292
+      ]
+    },
+    "2594": {
+      "sha947": "17985c6c8e8c2ed8470371de54301974d49ce37db77298c41b6d9285e0ccef16",
+      "sha950": "aac66b3dfbd9287d7d053665dc59ef20270d56e60aad348533b1220545f8e491",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 3,
+      "instructions950": 3,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2595
+      ],
+      "calls950": [
+        2595
+      ]
+    },
+    "20387": {
+      "sha947": "1f1125b18ee610109868b0ca4d933bf0392a5998ab1bb77a91d5d923a5f05f18",
+      "sha950": "3214cf53c9ee77450142dec1bedb0c842b66f62f6d2ea3c49fdf34ca019cfa9e",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 24,
+      "instructions950": 24,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2513,
+        8292
+      ],
+      "calls950": [
+        2513,
+        8292
+      ]
+    },
+    "13860": {
+      "sha947": "2fd1f1537ea8c951e05b44eb2d135b42cd1a039e815eb3f01f144fefb67c8f4e",
+      "sha950": "cd8d412686fa04991043f7325b594af7174febaa101c10791fd964d784d0b459",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        3,
+        0,
+        0
+      ],
+      "locals950": [
+        3,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 48,
+      "instructions950": 48,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2384,
+        2386,
+        2390,
+        6431,
+        8314,
+        8323,
+        13842,
+        13862
+      ],
+      "calls950": [
+        2384,
+        2386,
+        2390,
+        6431,
+        8314,
+        8323,
+        13842,
+        13862
+      ]
+    },
+    "13861": {
+      "sha947": "0341db12a10abfc95c549582c20cf3b41de38c6a1eca9d281f4fb7a2264150f5",
+      "sha950": "08d8485b7449726ab148ca2aabffac3b0c9199692d445cb374a2b0230fb613a1",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 2,
+      "instructions950": 2,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        1159
+      ],
+      "calls950": [
+        1159
+      ]
+    },
+    "14458": {
+      "sha947": "e77ebdffb896e7c12d7fea4ca100a36db3be8a579069db43d218e2dcbc0186e4",
+      "sha950": "42ebdfde639f2849e2ff9732800f72674c7f3d0c0cadef4f0a4a46b8b5536bf7",
+      "arguments947": [
+        8,
+        2,
+        0
+      ],
+      "arguments950": [
+        8,
+        2,
+        0
+      ],
+      "locals947": [
+        8,
+        2,
+        0
+      ],
+      "locals950": [
+        8,
+        2,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 27,
+      "instructions950": 27,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [],
+      "calls950": []
+    },
+    "13862": {
+      "sha947": "0bc3db1abd8e5bd1ba8ac92b18a1559442c25bdf507f7587b8961ff97d40919c",
+      "sha950": "cd8f053146c5b50aa58ad98942ae3e3016d3433784a364e73733fedd32901fed",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 11,
+      "instructions950": 11,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        8144,
+        13847,
+        13848
+      ],
+      "calls950": [
+        8144,
+        13847,
+        13848
+      ]
+    },
+    "2595": {
+      "sha947": "db454cb99d74d4927f6350160538a74c93a4644f27ed293e3f5b84888b924a48",
+      "sha950": "17959ca81ef94d6f27e6f6436eb9b203647f044b09d30e49f0d1c2e51c324a63",
+      "arguments947": [
+        1,
+        0,
+        0
+      ],
+      "arguments950": [
+        1,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "changed_program",
+      "instructions947": 184,
+      "instructions950": 184,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        4041,
+        8421,
+        9525,
+        10410,
+        10495,
+        13749,
+        15590
+      ],
+      "calls950": [
+        4041,
+        8421,
+        9525,
+        10410,
+        10495,
+        13749,
+        15590
+      ],
+      "diff": [
+        "--- 947",
+        "+++ 950",
+        "@@ -79,7 +79,7 @@",
+        " 0511 push         (0, 1)",
+        " 035e iload        0",
+        " 0511 push         (2, 'ii')",
+        "-0511 push         (0, 48758975)",
+        "+0511 push         (0, 48758980)",
+        " 0377              0",
+        " 0511 push         (0, 57802761)",
+        " 0511 push         (0, 57802763)"
+      ]
+    },
+    "1191": {
+      "sha947": "b534e3d4ca58b6e850d1b8a6403c16dd2c1d9a1d9de3dc35a3c70af4a3622d4a",
+      "sha950": "9ca89426398a6cd3aa09d63bbad14304ae6cb1e3c6af8942f1e8ecd411b1d8a6",
+      "arguments947": [
+        3,
+        0,
+        0
+      ],
+      "arguments950": [
+        3,
+        0,
+        0
+      ],
+      "locals947": [
+        3,
+        0,
+        0
+      ],
+      "locals950": [
+        3,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 6,
+      "instructions950": 6,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        10002
+      ],
+      "calls950": [
+        10002
+      ]
+    },
+    "10020": {
+      "sha947": "90d18ff9f586b0e01c5d2821034c37723600061ceb6400bdb61fbb4a4d0f4d42",
+      "sha950": "ce40f01d95a24572b5ad6f3c91cacb7896b5ad28608211c074f76e49c2874b6c",
+      "arguments947": [
+        3,
+        0,
+        0
+      ],
+      "arguments950": [
+        3,
+        0,
+        0
+      ],
+      "locals947": [
+        3,
+        0,
+        0
+      ],
+      "locals950": [
+        3,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 6,
+      "instructions950": 6,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2798
+      ],
+      "calls950": [
+        2798
+      ]
+    },
+    "10416": {
+      "sha947": "1b40759bf198b71880ad619fc9f4b2f09e04659de48b2b87dfac2ca41faf2bd0",
+      "sha950": "2a76e0eccc926740397aa88f2268d3b836bf8ada89132fdca19762d8428ac2ad",
+      "arguments947": [
+        3,
+        3,
+        0
+      ],
+      "arguments950": [
+        3,
+        3,
+        0
+      ],
+      "locals947": [
+        3,
+        3,
+        0
+      ],
+      "locals950": [
+        3,
+        3,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 23,
+      "instructions950": 23,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        10419
+      ],
+      "calls950": [
+        10419
+      ]
+    },
+    "10419": {
+      "sha947": "6e4e66080c5e7cb2f03bd05b539b39a063f60337678bf6cd335cd4ff0a1e2838",
+      "sha950": "f43c5b948aea56169ea7c3f26023b9cdf4e20e8b215fcc68257976d25211933d",
+      "arguments947": [
+        10,
+        4,
+        0
+      ],
+      "arguments950": [
+        10,
+        4,
+        0
+      ],
+      "locals947": [
+        19,
+        5,
+        0
+      ],
+      "locals950": [
+        19,
+        5,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 373,
+      "instructions950": 373,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        7593,
+        9984,
+        10495,
+        14457,
+        14458
+      ],
+      "calls950": [
+        7593,
+        9984,
+        10495,
+        14457,
+        14458
+      ]
+    },
+    "10422": {
+      "sha947": "92aba86d7757f959b1860ede1396389dadadbc4b6112dab99ab6ae7377afe166",
+      "sha950": "c76616b5e2eb6cca5427aa4586724d16d1a0df85216bfe7aafe1240c07790e39",
+      "arguments947": [
+        6,
+        2,
+        0
+      ],
+      "arguments950": [
+        6,
+        2,
+        0
+      ],
+      "locals947": [
+        11,
+        2,
+        0
+      ],
+      "locals950": [
+        11,
+        2,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 185,
+      "instructions950": 185,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2684,
+        2736,
+        2755,
+        2789,
+        7818,
+        9984,
+        12342,
+        13625,
+        13739,
+        15369
+      ],
+      "calls950": [
+        2684,
+        2736,
+        2755,
+        2789,
+        7818,
+        9984,
+        12342,
+        13625,
+        13739,
+        15369
+      ]
+    },
+    "12343": {
+      "sha947": "afed1c6e2ad67a0dc783b11ab6816245594d7d718e98d4e7c526a62816380231",
+      "sha950": "d7d2ff738e0d536a63b902b5dc3e810bfb4bc32840375d1127c359afe879e5d3",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        7,
+        0,
+        0
+      ],
+      "locals950": [
+        7,
+        0,
+        0
+      ],
+      "status": "changed_program",
+      "instructions947": 159,
+      "instructions950": 139,
+      "metadataEqual": false,
+      "lowSupportOpcodes": [],
+      "calls947": [],
+      "calls950": [],
+      "diff": [
+        "--- 947",
+        "+++ 950",
+        "@@ -118,20 +118,6 @@",
+        " 0030 getvarbit    9943552",
+        " 0511 push         (0, 0)",
+        " 0647 branch_eq    1",
+        "-0713 branch       26",
+        "-035e iload        5",
+        "-0511 push         (0, 404)",
+        "-0647 branch_eq    1",
+        "-0713 branch       3",
+        "-0511 push         (0, 450)",
+        "-0592 istore       5",
+        "-0713 branch       13",
+        "-035e iload        5",
+        "-0511 push         (0, 202)",
+        "-0647 branch_eq    1",
+        "-0713 branch       3",
+        "-0511 push         (0, 225)",
+        "-0592 istore       5",
+        " 0713 branch       6",
+        " 035e iload        5",
+        " 0511 push         (0, 394)",
+        "@@ -139,12 +125,6 @@",
+        " 0713 branch       2",
+        " 0511 push         (0, 440)",
+        " 0592 istore       5",
+        "-035e iload        3",
+        "-0511 push         (0, 202)",
+        "-0647 branch_eq    1",
+        "-0713 branch       2",
+        "-0511 push         (0, 225)",
+        "-0592 istore       3",
+        " 035e iload        6",
+        " 035e iload        2",
+        " 035e iload        3"
+      ]
+    },
+    "441": {
+      "sha947": "e885308edeee1406b25ad9330ef344ebd59ed4f556d14377411ddea9cf3ae89d",
+      "sha950": "14de94d23b844205197a9639efe8348a9e9d55f3ae984644298568b430cdfd5e",
+      "arguments947": [
+        1,
+        0,
+        0
+      ],
+      "arguments950": [
+        1,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 54,
+      "instructions950": 54,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [],
+      "calls950": []
+    },
+    "445": {
+      "sha947": "904052632382f09d2bfa8acebbc59d29de3b3dd8f1002ca34894b82614a26518",
+      "sha950": "5b6b61135a9a62f52f54c0f38ef1054e8f6ac3dbd93e1653263c48cac47af6b0",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 45,
+      "instructions950": 45,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [],
+      "calls950": []
+    },
+    "2755": {
+      "sha947": "658b33aeef326d4ee207b14a81bb7d4cca8c8d6e329d6aeb82213a9475ab5ec9",
+      "sha950": "6bb83530169cf83a78ca40e1a8836c59f3ce84eaf0cc0180aaa412020185fe1e",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 28,
+      "instructions950": 28,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        8144,
+        12724,
+        15532
+      ],
+      "calls950": [
+        8144,
+        12724,
+        15532
+      ]
+    },
+    "8180": {
+      "sha947": "ab016c02ae5f518a233c3ea23796f591d1a6d1ce8345559f2eee6505c3c3a570",
+      "sha950": "1146e4c31c6251a2246d6a3aa9cf20af860f58dd1bbf39ebec294a22f746e0ae",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 17,
+      "instructions950": 17,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        8844
+      ],
+      "calls950": [
+        8844
+      ]
+    },
+    "9287": {
+      "sha947": "77673448af89258ba81e38ec67daece4ae8e15ab6f1fe2ecab687ecffd1e57c5",
+      "sha950": "c89a0925434dd5df73e152bf0cb7e33a441365f0acab2b788e412e724ab67c02",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 4,
+      "instructions950": 4,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        5523,
+        13818
+      ],
+      "calls950": [
+        5523,
+        13818
+      ]
+    },
+    "8784": {
+      "sha947": "0dc6fe05691c98a56831a39bc9ca8f37282b3d16d5b962202f204785e557f467",
+      "sha950": "ff19bed8f57e5de821ea8ff76a76e3c875ccb0077085f7a0df63a038facf8221",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        7,
+        0,
+        0
+      ],
+      "locals950": [
+        7,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 170,
+      "instructions950": 170,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        1364,
+        1558,
+        3379,
+        7698,
+        8000,
+        8137,
+        8290,
+        8314,
+        8354,
+        8524,
+        8702,
+        8718,
+        8785,
+        10405,
+        12612
+      ],
+      "calls950": [
+        1364,
+        1558,
+        3379,
+        7698,
+        8000,
+        8137,
+        8290,
+        8314,
+        8354,
+        8524,
+        8702,
+        8718,
+        8785,
+        10405,
+        12612
+      ]
+    },
+    "2514": {
+      "sha947": "8f9a2bf6c3a3648d946a712d6345b1bf16ddfad9b6f8e971a2d5ab23eb282626",
+      "sha950": "873891f0e7305844a82f8f7acfec0f6810aab0df96f29e0627ebc2831e156c42",
+      "arguments947": [
+        1,
+        0,
+        0
+      ],
+      "arguments950": [
+        1,
+        0,
+        0
+      ],
+      "locals947": [
+        7,
+        0,
+        0
+      ],
+      "locals950": [
+        7,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 116,
+      "instructions950": 116,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2513,
+        2522,
+        6431,
+        19316,
+        20383,
+        20384,
+        20385
+      ],
+      "calls950": [
+        2513,
+        2522,
+        6431,
+        19316,
+        20383,
+        20384,
+        20385
+      ]
+    },
+    "2386": {
+      "sha947": "7064e7d9e44e22171bed6c8447b4e8a06bb88725386492e39ffbe1f963754706",
+      "sha950": "c1ce536c230289798e04629fc669d4733e02eac45f1af5d6abe071057a96d7f3",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 6,
+      "instructions950": 6,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        16021
+      ],
+      "calls950": [
+        16021
+      ]
+    },
+    "10068": {
+      "sha947": "c68bb6d70ecee3abde41704237496786edb69293624ee16fd0ea921fee633e33",
+      "sha950": "40c21b166a82aec9fa411bad082685442e56cf8cf6b385395145698691460ff5",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        3,
+        0,
+        0
+      ],
+      "locals950": [
+        3,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 91,
+      "instructions950": 91,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        445,
+        8186,
+        8192,
+        8193,
+        8284
+      ],
+      "calls950": [
+        445,
+        8186,
+        8192,
+        8193,
+        8284
+      ]
+    },
+    "2393": {
+      "sha947": "5220fe26b27fe7a8703a9734129a7a3a86b67d277b2b2761d5049f940abc91d5",
+      "sha950": "0d69206dd1054c076eba9646ddf80b2abd3233e19a0de8896f40f93f7a39916a",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        10,
+        0,
+        0
+      ],
+      "locals950": [
+        10,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 185,
+      "instructions950": 185,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2384,
+        2385,
+        2386,
+        2390,
+        6431,
+        8314,
+        8323,
+        13842
+      ],
+      "calls950": [
+        2384,
+        2385,
+        2386,
+        2390,
+        6431,
+        8314,
+        8323,
+        13842
+      ]
+    },
+    "8282": {
+      "sha947": "e46fd33c2e979c229e040c725b042f00ccc44b65c553730e713a0f40edb9cddf",
+      "sha950": "40c82f6a365f2725e2a36f935cb02a3222d06a713778b9c011a68115e85b3e39",
+      "arguments947": [
+        1,
+        0,
+        0
+      ],
+      "arguments950": [
+        1,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 15,
+      "instructions950": 15,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        8283
+      ],
+      "calls950": [
+        8283
+      ]
+    },
+    "2395": {
+      "sha947": "a6d58f2730bbce6944524258ab0bc07e4699cb475951c606dcd239ec061c0594",
+      "sha950": "7b070179aa40c7004b4262e5f09feb2b793b012dabd63c358e539f9294157f85",
+      "arguments947": [
+        4,
+        0,
+        0
+      ],
+      "arguments950": [
+        4,
+        0,
+        0
+      ],
+      "locals947": [
+        8,
+        0,
+        0
+      ],
+      "locals950": [
+        8,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 137,
+      "instructions950": 137,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        426,
+        2385,
+        2387,
+        2390,
+        2393,
+        6431,
+        8403,
+        8404,
+        13862,
+        13863
+      ],
+      "calls950": [
+        426,
+        2385,
+        2387,
+        2390,
+        2393,
+        6431,
+        8403,
+        8404,
+        13862,
+        13863
+      ]
+    },
+    "2396": {
+      "sha947": "3a9bb6be08a8498de2a6dbe139478a9ed32fa3f214ad0fcff7b6ded0953f4fba",
+      "sha950": "f0c6f53a8e29598315bef0ab4e5335594e25e592add8cedad1d762853022b654",
+      "arguments947": [
+        3,
+        0,
+        0
+      ],
+      "arguments950": [
+        3,
+        0,
+        0
+      ],
+      "locals947": [
+        5,
+        0,
+        0
+      ],
+      "locals950": [
+        5,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 63,
+      "instructions950": 63,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        426,
+        2385,
+        2387,
+        2393,
+        6431,
+        13862,
+        13863
+      ],
+      "calls950": [
+        426,
+        2385,
+        2387,
+        2393,
+        6431,
+        13862,
+        13863
+      ]
+    },
+    "8283": {
+      "sha947": "309257c746cca01ac5222e9e4f9eb2fcd1436efea007399f6c16f1a25b3d8209",
+      "sha950": "f66af3100f2777485313489b2c09d2c666557ce817f3e01d9fd669ba082f8f1d",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        8,
+        0,
+        0
+      ],
+      "locals950": [
+        8,
+        0,
+        0
+      ],
+      "status": "changed_program",
+      "instructions947": 68,
+      "instructions950": 68,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        12343,
+        14441
+      ],
+      "calls950": [
+        12343,
+        14441
+      ],
+      "diff": [
+        "--- 947",
+        "+++ 950",
+        "@@ -44,7 +44,7 @@",
+        " 0592 istore       3",
+        " 0511 push         (0, 742)",
+        " 0592 istore       4",
+        "-0511 push         (0, 404)",
+        "+0511 push         (0, 450)",
+        " 0592 istore       5",
+        " 0713 branch       6",
+        " 0511 push         (0, 0)"
+      ]
+    },
+    "8286": {
+      "sha947": "ab756046519c486b02eb146e5ad6abe74d432898b3c59df5f9ead9eae29b169f",
+      "sha950": "5bd6296bb761633d83eb47a86757815ee88d0369ab844439a11f13792f24d5f7",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 20,
+      "instructions950": 20,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        8288,
+        8290
+      ],
+      "calls950": [
+        8288,
+        8290
+      ]
+    },
+    "8284": {
+      "sha947": "e44ccefad9f349bbb11ddadcfb3ba94be2667e75b50ebaeaa268bbd187bbaa5a",
+      "sha950": "15b23d7948bc40231aed6d4020460c93b8063017085cabc6e5aad1db99a9646d",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        8,
+        0,
+        0
+      ],
+      "locals950": [
+        8,
+        0,
+        0
+      ],
+      "status": "changed_program",
+      "instructions947": 709,
+      "instructions950": 722,
+      "metadataEqual": false,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        3825,
+        3910,
+        12240,
+        13415,
+        13416,
+        13417,
+        13749,
+        14441,
+        16861,
+        19332,
+        20137,
+        20138,
+        20139
+      ],
+      "calls950": [
+        3825,
+        3910,
+        12240,
+        13415,
+        13416,
+        13417,
+        13749,
+        14441,
+        16861,
+        19332,
+        20137,
+        20138,
+        20139
+      ],
+      "diff": [
+        "--- 947",
+        "+++ 950",
+        "@@ -25,7 +25,7 @@",
+        " 0592 istore       7",
+        " 035e iload        0",
+        " 051a switch       0",
+        "-0713 branch       677",
+        "+0713 branch       690",
+        " 035e iload        3",
+        " 0511 push         (0, 1)",
+        " 001d add          0",
+        "@@ -68,7 +68,7 @@",
+        " 0511 push         (0, 1)",
+        " 0495 return       0",
+        " 0713 branch       -42",
+        "-0713 branch       634",
+        "+0713 branch       647",
+        " 035e iload        3",
+        " 0511 push         (0, 1)",
+        " 001d add          0",
+        "@@ -144,7 +144,7 @@",
+        " 0511 push         (0, 1)",
+        " 0495 return       0",
+        " 0713 branch       -75",
+        "-0713 branch       558",
+        "+0713 branch       571",
+        " 035e iload        3",
+        " 0511 push         (0, 1)",
+        " 001d add          0",
+        "@@ -190,7 +190,7 @@",
+        " 0511 push         (0, 1)",
+        " 0495 return       0",
+        " 0713 branch       -45",
+        "-0713 branch       512",
+        "+0713 branch       525",
+        " 035e iload        3",
+        " 0511 push         (0, 1)",
+        " 001d add          0",
+        "@@ -243,7 +243,7 @@",
+        " 0511 push         (0, 1)",
+        " 0495 return       0",
+        " 0713 branch       -52",
+        "-0713 branch       459",
+        "+0713 branch       472",
+        " 035e iload        3",
+        " 0511 push         (0, 1)",
+        " 001d add          0",
+        "@@ -321,7 +321,7 @@",
+        " 0511 push         (0, 1)",
+        " 0495 return       0",
+        " 0713 branch       -77",
+        "-0713 branch       381",
+        "+0713 branch       394",
+        " 035e iload        3",
+        " 0511 push         (0, 1)",
+        " 001d add          0",
+        "@@ -387,15 +387,15 @@",
+        " 0511 push         (0, 1)",
+        " 0495 return       0",
+        " 0713 branch       -65",
+        "-0713 branch       315",
+        "-035e iload        3",
+        "-0511 push         (0, 1)",
+        "-001d add          0",
+        "-0592 istore       3",
+        "-035e iload        3",
+        "-035e iload        4",
+        "-073d              1",
+        "-0713 branch       38",
+        "+0713 branch       328",
+        "+035e iload        3",
+        "+0511 push         (0, 1)",
+        "+001d add          0",
+        "+0592 istore       3",
+        "+035e iload        3",
+        "+035e iload        4",
+        "+073d              1",
+        "+0713 branch       48",
+        " 035e iload        3",
+        " 051a switch       8",
+        " 0713 branch       19",
+        "@@ -420,21 +420,31 @@",
+        " 0713 branch       2",
+        " 0511 push         (0, 1)",
+        " 0592 istore       2",
+        "-035e iload        2",
+        "-0511 push         (0, 0)",
+        "-0647 branch_eq    1",
+        "-0713 branch       9",
+        "-035e iload        1",
+        "-0511 push         (0, -1)",
+        "-0647 branch_eq    1",
+        "-0713 branch       3",
+        "-035e iload        3",
+        "-0495 return       0",
+        "-0713 branch       2",
+        "-0511 push         (0, 1)",
+        "-0495 return       0",
+        "-0713 branch       -46",
+        "-0713 branch       268",
+        "+035e iload        3",
+        "+0511 push         (0, 1)",
+        "+0412 branch_ne    1",
+        "+0713 branch       6",
+        "+0895 gosub        3825",
+        "+0511 push         (0, 1)",
+        "+0647 branch_eq    1",
+        "+0713 branch       2",
+        "+0511 push         (0, 1)",
+        "+0592 istore       2",
+        "+035e iload        2",
+        "+0511 push         (0, 0)",
+        "+0647 branch_eq    1",
+        "+0713 branch       9",
+        "+035e iload        1",
+        "+0511 push         (0, -1)",
+        "+0647 branch_eq    1",
+        "+0713 branch       3",
+        "+035e iload        3",
+        "+0495 return       0",
+        "+0713 branch       2",
+        "+0511 push         (0, 1)",
+        "+0495 return       0",
+        "+0713 branch       -56",
+        "+0713 branch       271",
+        " 035e iload        3",
+        " 0511 push         (0, 1)",
+        " 001d add          0",
+        "@@ -471,7 +481,7 @@",
+        " 0511 push         (0, 1)",
+        " 0495 return       0",
+        " 0713 branch       -36",
+        "-0713 branch       231",
+        "+0713 branch       234",
+        " 035e iload        3",
+        " 0511 push         (0, 1)",
+        " 001d add          0",
+        "@@ -517,7 +527,7 @@",
+        " 0511 push         (0, 1)",
+        " 0495 return       0",
+        " 0713 branch       -45",
+        "-0713 branch       185",
+        "+0713 branch       188",
+        " 035e iload        0",
+        " 0895 gosub        13415",
+        " 0592 istore       5",
+        "@@ -587,7 +597,7 @@",
+        " 0511 push         (0, 1)",
+        " 0495 return       0",
+        " 0713 branch       -59",
+        "-0713 branch       115",
+        "+0713 branch       118",
+        " 035e iload        0",
+        " 0895 gosub        13415",
+        " 0592 istore       5",
+        "@@ -657,32 +667,35 @@",
+        " 0511 push         (0, 1)",
+        " 0495 return       0",
+        " 0713 branch       -59",
+        "+0713 branch       48",
+        "+0511 push         (0, 1)",
+        "+0495 return       0",
+        " 0713 branch       45",
+        "-0511 push         (0, 1)",
+        "-0495 return       0",
+        "-0713 branch       42",
+        "-035e iload        3",
+        "-0511 push         (0, 1)",
+        "-001d add          0",
+        "-0592 istore       3",
+        "-035e iload        3",
+        "-035e iload        4",
+        "-073d              1",
+        "-0713 branch       34",
+        "+035e iload        3",
+        "+0511 push         (0, 1)",
+        "+001d add          0",
+        "+0592 istore       3",
+        "+035e iload        3",
+        "+035e iload        4",
+        "+073d              1",
+        "+0713 branch       37",
+        " 035e iload        3",
+        " 051a switch       13",
+        "-0713 branch       15",
+        "+0713 branch       18",
+        " 0895 gosub        20139",
+        " 0592 istore       2",
+        "+0713 branch       17",
+        "+0030 getvarbit    14942464",
+        "+0592 istore       2",
+        " 0713 branch       14",
+        "-0030 getvarbit    14942464",
+        "-0592 istore       2",
+        "-0713 branch       11",
+        " 0895 gosub        20137",
+        " 0592 istore       2",
+        "-0713 branch       8",
+        "+0713 branch       11",
+        " 0030 getvarbit    14942976",
+        " 0592 istore       2",
+        "+0713 branch       8",
+        "+0030 getvarbit    15739648",
+        "+0592 istore       2",
+        " 0713 branch       5",
+        " 0895 gosub        20138",
+        " 0592 istore       2",
+        "@@ -702,8 +715,8 @@",
+        " 0713 branch       2",
+        " 0511 push         (0, 1)",
+        " 0495 return       0",
+        "-0713 branch       -42",
+        "-0511 push         (0, 0)",
+        "-0495 return       0",
+        "-0511 push         (0, 0)",
+        "-0495 return       0",
+        "+0713 branch       -45",
+        "+0511 push         (0, 0)",
+        "+0495 return       0",
+        "+0511 push         (0, 0)",
+        "+0495 return       0"
+      ]
+    },
+    "8288": {
+      "sha947": "c606c1256160661bb30eefa54113885b992a7fe6c0100579d29188699fd6d328",
+      "sha950": "bd7585328d7c15e6597038b0b19df5239fb44abd343253a17ec52355e42b0f59",
+      "arguments947": [
+        1,
+        0,
+        0
+      ],
+      "arguments950": [
+        1,
+        0,
+        0
+      ],
+      "locals947": [
+        22,
+        0,
+        0
+      ],
+      "locals950": [
+        22,
+        0,
+        0
+      ],
+      "status": "changed_program",
+      "instructions947": 538,
+      "instructions950": 538,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        189,
+        441,
+        6739,
+        8184,
+        8186,
+        8289,
+        8292,
+        8293,
+        8311,
+        8418,
+        10396,
+        13415,
+        14441,
+        20393
+      ],
+      "calls950": [
+        189,
+        441,
+        6739,
+        8184,
+        8186,
+        8289,
+        8292,
+        8293,
+        8311,
+        8418,
+        10396,
+        13415,
+        14441,
+        20393
+      ],
+      "diff": [
+        "--- 947",
+        "+++ 950",
+        "@@ -160,7 +160,7 @@",
+        " 035e iload        20",
+        " 0895 gosub        10396",
+        " 0511 push         (0, 742)",
+        "-0511 push         (0, 404)",
+        "+0511 push         (0, 450)",
+        " 0511 push         (0, 0)",
+        " 0511 push         (0, 0)",
+        " 035e iload        9"
+      ]
+    },
+    "8285": {
+      "sha947": "281904753648c2edf66a3e36c1b559ee4dd396436ed07c4671591faf3430adad",
+      "sha950": "60211f3f3b230a69bfb5cd87ba811714647f9d57e2d7b9fbaa1ade34c2789011",
+      "arguments947": [
+        1,
+        0,
+        0
+      ],
+      "arguments950": [
+        1,
+        0,
+        0
+      ],
+      "locals947": [
+        1,
+        0,
+        0
+      ],
+      "locals950": [
+        1,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 13,
+      "instructions950": 13,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        8284
+      ],
+      "calls950": [
+        8284
+      ]
+    },
+    "8290": {
+      "sha947": "8f2f12b567f24f3eac14f3e7465f8e6f3282d35b834ab1381f441755a4e592dc",
+      "sha950": "2e4f3cac7fbbb9799bfa079ba47898f797c9d20e36517bb0787040f04520a2b8",
+      "arguments947": [
+        1,
+        0,
+        0
+      ],
+      "arguments950": [
+        1,
+        0,
+        0
+      ],
+      "locals947": [
+        1,
+        0,
+        0
+      ],
+      "locals950": [
+        1,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 23,
+      "instructions950": 23,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        3374,
+        6739,
+        8192,
+        8808,
+        20393
+      ],
+      "calls950": [
+        3374,
+        6739,
+        8192,
+        8808,
+        20393
+      ]
+    },
+    "8186": {
+      "sha947": "ad82252db7ba8062be24761810d5e8b2471435a8ee04c8a0ae3b4728f5b120d3",
+      "sha950": "d2fcafc03a569cec8ae43f46144405f592243c6f601e364f1d179566790cf889",
+      "arguments947": [
+        1,
+        0,
+        0
+      ],
+      "arguments950": [
+        1,
+        0,
+        0
+      ],
+      "locals947": [
+        39,
+        2,
+        0
+      ],
+      "locals950": [
+        39,
+        2,
+        0
+      ],
+      "status": "changed_program",
+      "instructions947": 558,
+      "instructions950": 558,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        441,
+        8187,
+        8190,
+        8282,
+        8284,
+        8418,
+        10495,
+        12423,
+        13415,
+        17046
+      ],
+      "calls950": [
+        441,
+        8187,
+        8190,
+        8282,
+        8284,
+        8418,
+        10495,
+        12423,
+        13415,
+        17046
+      ],
+      "diff": [
+        "--- 947",
+        "+++ 950",
+        "@@ -246,7 +246,7 @@",
+        " 0511 push         (0, 3613)",
+        " 0540              0",
+        " 0592 istore       27",
+        "-0511 push         (0, 25)",
+        "+0511 push         (0, 28)",
+        " 0895 gosub        10495",
+        " 0592 istore       19",
+        " 0511 push         (0, 20)",
+        "@@ -273,7 +273,7 @@",
+        " 0511 push         (0, 6118)",
+        " 0540              0",
+        " 0592 istore       27",
+        "-0511 push         (0, 26)",
+        "+0511 push         (0, 29)",
+        " 0895 gosub        10495",
+        " 0592 istore       19",
+        " 0511 push         (0, 36)"
+      ]
+    },
+    "8292": {
+      "sha947": "a11b062f2389083cfd92692afc084a98020aa1a26103061fce7233919699096d",
+      "sha950": "57782e6088f1c134ecc34da3203377d4c23da622af9068ed0d4a72035c34059c",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        4,
+        0,
+        0
+      ],
+      "locals950": [
+        4,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 40,
+      "instructions950": 40,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        441
+      ],
+      "calls950": [
+        441
+      ]
+    },
+    "2923": {
+      "sha947": "2dca32e50ecd6ef0f3552499f16c394571d32624c8cbdccb4a6be5e2b542290d",
+      "sha950": "d2e0f5f4e99f33f8cd000f7b227388baf7bb89e18c5b04254c15c93437f84d6e",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "changed_program",
+      "instructions947": 74,
+      "instructions950": 74,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [
+        "0x576"
+      ],
+      "calls947": [
+        2957,
+        6431,
+        19316,
+        20385,
+        20386
+      ],
+      "calls950": [
+        2957,
+        6431,
+        19316,
+        20385,
+        20386
+      ],
+      "diff": [
+        "--- 947",
+        "+++ 950",
+        "@@ -20,8 +20,8 @@",
+        " 0511 push         (0, 23920642)",
+        " 03c8              0",
+        " 0511 push         (2, 'Search...')",
+        "-0511 push         (0, 10132122)",
+        "-0511 push         (0, 0)",
+        "+0511 push         (0, -1701144064)",
+        "+0511 push         (0, 255)",
+        " 0511 push         (0, 23920642)",
+        " 0576              0",
+        " 0895 gosub        6431"
+      ]
+    },
+    "8043": {
+      "sha947": "2185dabcd0bac9ef1ab38c46ab10c3c6f9aa1756f5c242b3ab6e06b32989e3c3",
+      "sha950": "245137705de7dc1331c07e3d391074f46134375b890729fff4c698caa1241c0b",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 32,
+      "instructions950": 32,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        13818,
+        13821
+      ],
+      "calls950": [
+        13818,
+        13821
+      ]
+    },
+    "2798": {
+      "sha947": "899814cfd1746f1babce85261575ac7dc031934196eb1d191fdd73fb6af5ac9d",
+      "sha950": "e245c5568a5ab695a1fcdd85f16e4529504073941397955dbc2d504a0068acc0",
+      "arguments947": [
+        4,
+        0,
+        0
+      ],
+      "arguments950": [
+        4,
+        0,
+        0
+      ],
+      "locals947": [
+        9,
+        0,
+        0
+      ],
+      "locals950": [
+        9,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 96,
+      "instructions950": 96,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        9984
+      ],
+      "calls950": [
+        9984
+      ]
+    },
+    "15087": {
+      "sha947": "c844b5912111f06be2701b395a42566ce02492b000bb2bd0f615a140a6f4b43e",
+      "sha950": "8f50c183a1bf0d2ec1c1ea006ecaef5f1bac6a15aa1f631c6a85cb9df6702958",
+      "arguments947": [
+        3,
+        0,
+        0
+      ],
+      "arguments950": [
+        3,
+        0,
+        0
+      ],
+      "locals947": [
+        3,
+        0,
+        0
+      ],
+      "locals950": [
+        3,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 10,
+      "instructions950": 10,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [],
+      "calls950": []
+    },
+    "2929": {
+      "sha947": "06b1b2728a159886aa21f8a9bb9c71b376fcc8177b9957ec1166922e30fe0387",
+      "sha950": "93fc7a634dc6b7cd7a34cb99176f4b3f30210573455f6cd10610d5f3ed685154",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 5,
+      "instructions950": 5,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2957,
+        20385,
+        20386
+      ],
+      "calls950": [
+        2957,
+        20385,
+        20386
+      ]
+    },
+    "2930": {
+      "sha947": "9d683cb8f41e94275d84eb7aa0c5219596fde3451a320a29704200dbe6d9b897",
+      "sha950": "db4ef79cbd32c575798641b304340aa7f813741c87a498d6aa2863e7275aa2d1",
+      "arguments947": [
+        1,
+        0,
+        0
+      ],
+      "arguments950": [
+        1,
+        0,
+        0
+      ],
+      "locals947": [
+        3,
+        0,
+        0
+      ],
+      "locals950": [
+        3,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 41,
+      "instructions950": 41,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2514,
+        2957,
+        8292,
+        20385,
+        20386
+      ],
+      "calls950": [
+        2514,
+        2957,
+        8292,
+        20385,
+        20386
+      ]
+    },
+    "8817": {
+      "sha947": "af74a51935f80c0eaf776c1eb1a9bd0c6e6dbd4dc8e9ce125d8992f0d50f11cd",
+      "sha950": "29bb5ac066f28852b70d004ce43101799a3c0437f811a0b85ec89077d12766b0",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 28,
+      "instructions950": 28,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        8841,
+        9953
+      ],
+      "calls950": [
+        8841,
+        9953
+      ]
+    },
+    "8179": {
+      "sha947": "43e6e0e715731456158918ab42217785eab045b1c17dbe62e322f27e1575cef3",
+      "sha950": "6129f1fc028f9ba3fb259cc22ebe23d5b01c31feaa22a7a0e7b82ec880a3c888",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 18,
+      "instructions950": 18,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2254,
+        6431,
+        6739,
+        8841,
+        14987,
+        15063
+      ],
+      "calls950": [
+        2254,
+        6431,
+        6739,
+        8841,
+        14987,
+        15063
+      ]
+    },
+    "8181": {
+      "sha947": "d0ff5c383e62f10f192f86276951bce07b9ecc83ed3d57d42471ba34c04d9e34",
+      "sha950": "e852b15a50764ee4550b3d16ffcdb3d9fa6ed483fdae866b908619c7e611d7ae",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "changed_program",
+      "instructions947": 203,
+      "instructions950": 219,
+      "metadataEqual": false,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        675,
+        2256,
+        4143,
+        4550,
+        6358,
+        6431,
+        8081,
+        8182,
+        8290,
+        8292,
+        8854,
+        9571,
+        9666,
+        14726,
+        14728,
+        15532,
+        18123
+      ],
+      "calls950": [
+        675,
+        2256,
+        4143,
+        4550,
+        6358,
+        6431,
+        8081,
+        8182,
+        8290,
+        8292,
+        8847,
+        9571,
+        9666,
+        14726,
+        14728,
+        15532,
+        16266,
+        18123
+      ],
+      "diff": [
+        "--- 947",
+        "+++ 950",
+        "@@ -1,19 +1,25 @@",
+        " 035e iload        1",
+        " 051a switch       0",
+        "-0713 branch       199",
+        "+0713 branch       215",
+        " 0895 gosub        9666",
+        " 0511 push         (0, 1)",
+        " 0647 branch_eq    1",
+        " 0713 branch       2",
+        " 0495 return       0",
+        "-0713 branch       193",
+        "+0713 branch       209",
+        "+0895 gosub        16266",
+        "+0511 push         (0, 1)",
+        "+0647 branch_eq    1",
+        "+0713 branch       2",
+        "+0495 return       0",
+        "+0713 branch       203",
+        " 0511 push         (0, 96797416)",
+        " 06f4              0",
+        " 0511 push         (0, 1)",
+        " 0647 branch_eq    1",
+        " 0713 branch       2",
+        " 0895 gosub        18123",
+        "-0713 branch       186",
+        "+0713 branch       196",
+        " 0511 push         (0, 1316)",
+        " 0895 gosub        4550",
+        " 0511 push         (0, 1)",
+        "@@ -29,7 +35,15 @@",
+        " 0713 branch       3",
+        " 0895 gosub        14728",
+        " 0495 return       0",
+        "-0713 branch       170",
+        "+0713 branch       180",
+        "+0511 push         (0, 13)",
+        "+0895 gosub        14726",
+        "+0511 push         (0, 1)",
+        "+0647 branch_eq    1",
+        "+0713 branch       3",
+        "+0895 gosub        14728",
+        "+0495 return       0",
+        "+0713 branch       172",
+        " 0511 push         (0, -1)",
+        " 0511 push         (0, -1)",
+        " 0895 gosub        8292",
+        "@@ -111,27 +125,20 @@",
+        " 0511 push         (0, 1)",
+        " 0511 push         (0, 1)",
+        " 02d5              0",
+        "-0713 branch       88",
+        "-0511 push         (0, 13)",
+        "-0895 gosub        14726",
+        "-0511 push         (0, 1)",
+        "-0647 branch_eq    1",
+        "-0713 branch       3",
+        "-0895 gosub        14728",
+        "-0495 return       0",
+        "-0713 branch       80",
+        "-0895 gosub        8854",
+        "+0713 branch       90",
+        " 0511 push         (0, 18)",
+        "-0647 branch_eq    1",
+        "+0895 gosub        8847",
+        "+0511 push         (0, -1)",
+        "+0412 branch_ne    1",
+        " 0713 branch       2",
+        " 0895 gosub        675",
+        "-0713 branch       74",
+        "+0713 branch       83",
+        " 0895 gosub        6358",
+        " 0511 push         (0, 1)",
+        " 0647 branch_eq    1",
+        " 0713 branch       2",
+        " 0495 return       0",
+        "-0713 branch       68",
+        "+0713 branch       77",
+        " 0511 push         (0, 1028)",
+        " 0511 push         (0, 1622)",
+        " 0895 gosub        8081",
+        "@@ -151,7 +158,7 @@",
+        " 0412 branch_ne    1",
+        " 0713 branch       2",
+        " 0495 return       0",
+        "-0713 branch       48",
+        "+0713 branch       57",
+        " 0511 push         (0, 1045)",
+        " 0511 push         (0, 743)",
+        " 0895 gosub        8081",
+        "@@ -163,14 +170,14 @@",
+        " 0647 branch_eq    1",
+        " 0713 branch       2",
+        " 0495 return       0",
+        "-0713 branch       36",
+        "+0713 branch       45",
+        " 0511 push         (0, 96797365)",
+        " 06f4              0",
+        " 0511 push         (0, 1)",
+        " 0647 branch_eq    1",
+        " 0713 branch       2",
+        " 0895 gosub        675",
+        "-0713 branch       29",
+        "+0713 branch       38",
+        " 0511 push         (0, 96797459)",
+        " 0308              0",
+        " 0511 push         (0, 0)",
+        "@@ -178,13 +185,13 @@",
+        " 0713 branch       3",
+        " 0511 push         (0, 96797459)",
+        " 0895 gosub        2256",
+        "-0713 branch       21",
+        "+0713 branch       30",
+        " 035e iload        0",
+        " 0511 push         (0, 93913160)",
+        " 0647 branch_eq    1",
+        " 0713 branch       2",
+        " 0895 gosub        4143",
+        "-0713 branch       15",
+        "+0713 branch       24",
+        " 0895 gosub        6431",
+        " 0511 push         (0, 1)",
+        " 0647 branch_eq    1",
+        "@@ -195,6 +202,15 @@",
+        " 0647 branch_eq    1",
+        " 0713 branch       5",
+        " 0511 push         (0, 18284548)",
+        "+0511 push         (0, -1)",
+        "+0511 push         (0, 1)",
+        "+02d5              0",
+        "+0713 branch       10",
+        "+01ca getvar       3305984",
+        "+0511 push         (0, 1)",
+        "+0647 branch_eq    1",
+        "+0713 branch       5",
+        "+0511 push         (0, 109117468)",
+        " 0511 push         (0, -1)",
+        " 0511 push         (0, 1)",
+        " 02d5              0"
+      ]
+    },
+    "8822": {
+      "sha947": "4596f6597d080dafa4d6ad29d57010d2e41786473ac64435fa73d1edba8a2d8f",
+      "sha950": "e3fc7cb2b7b55046b3f71d96f0e7507141d646702058413e54691afd46202599",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 19,
+      "instructions950": 19,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        8206,
+        8823,
+        9953
+      ],
+      "calls950": [
+        8206,
+        8823,
+        9953
+      ]
+    },
+    "8823": {
+      "sha947": "f7dfa092b60827f424ac9b041e4e7b6a3995047361d39b5af0801cb360bb1f8c",
+      "sha950": "833af5cfbe6847fb93d163224007f5bf72257d80e2c1611e3d100f0b68f7dab1",
+      "arguments947": [
+        4,
+        0,
+        0
+      ],
+      "arguments950": [
+        4,
+        0,
+        0
+      ],
+      "locals947": [
+        6,
+        1,
+        0
+      ],
+      "locals950": [
+        6,
+        1,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 1000,
+      "instructions950": 1000,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        6995,
+        8829
+      ],
+      "calls950": [
+        6995,
+        8829
+      ]
+    },
+    "8184": {
+      "sha947": "4351e94d361ca4c21ff78a57c6a088c99ecdfc5135bc710d2d11369fd2cc2512",
+      "sha950": "9b5d7c71076d76b1f8be3d6cd234f7f63d829d2f63debf1e5e071d4d0c7ec676",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        11,
+        0,
+        0
+      ],
+      "locals950": [
+        11,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 380,
+      "instructions950": 380,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        8418,
+        14933,
+        14934
+      ],
+      "calls950": [
+        8418,
+        14933,
+        14934
+      ]
+    },
+    "14457": {
+      "sha947": "aefb5c3ef728693621124db7527f69b3b6488ebdddc2405411d55f612b38a54f",
+      "sha950": "bb99ca871cb0f8a6faf9a3959ae07f5c2b52eadde8976be9408c3b1fd67925bf",
+      "arguments947": [
+        9,
+        2,
+        0
+      ],
+      "arguments950": [
+        9,
+        2,
+        0
+      ],
+      "locals947": [
+        9,
+        2,
+        0
+      ],
+      "locals950": [
+        9,
+        2,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 21,
+      "instructions950": 21,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        14458
+      ],
+      "calls950": [
+        14458
+      ]
+    },
+    "8826": {
+      "sha947": "e3e61f9f054c4746bd75f54774ffa54bf260b3d02276a58717e3c8abccadb880",
+      "sha950": "fa440c0cdb370359f6a070fee8b5e3191d83bbe4da0994a7d2ae16efd8062fc4",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 10,
+      "instructions950": 10,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        2018,
+        8212,
+        8820
+      ],
+      "calls950": [
+        2018,
+        8212,
+        8820
+      ]
+    },
+    "13819": {
+      "sha947": "c69b27ec7d995f9824652e14af7a707b4153831fe95baa392e2da44c62f055c0",
+      "sha950": "c5e8a25fc3f7f4764083f3e65c4cfbd88f4b1a81386ad556dbd14c64cfdf519b",
+      "arguments947": [
+        6,
+        0,
+        0
+      ],
+      "arguments950": [
+        6,
+        0,
+        0
+      ],
+      "locals947": [
+        8,
+        0,
+        0
+      ],
+      "locals950": [
+        8,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 86,
+      "instructions950": 86,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        13816
+      ],
+      "calls950": [
+        13816
+      ]
+    },
+    "13820": {
+      "sha947": "4a389937d3bf7973a32f96d9df3c73c7aff3da80c0ba042cd06c75035c2bda0a",
+      "sha950": "cd22be93f7f6fba8a347da8de196128fbd73356ce267644ddca64fe22c9d04f0",
+      "arguments947": [
+        4,
+        0,
+        0
+      ],
+      "arguments950": [
+        4,
+        0,
+        0
+      ],
+      "locals947": [
+        4,
+        0,
+        0
+      ],
+      "locals950": [
+        4,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 7,
+      "instructions950": 7,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        13821
+      ],
+      "calls950": [
+        13821
+      ]
+    },
+    "13821": {
+      "sha947": "6f882804f8231a9b335c87cd255978ce2097faaf7ad8885645ff0e2db7c79116",
+      "sha950": "78af5e37748f37e71b0d23ed7358908146103556a4a1cc730c40c53d93d9c0c0",
+      "arguments947": [
+        5,
+        0,
+        0
+      ],
+      "arguments950": [
+        5,
+        0,
+        0
+      ],
+      "locals947": [
+        7,
+        0,
+        0
+      ],
+      "locals950": [
+        7,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 52,
+      "instructions950": 52,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        13816
+      ],
+      "calls950": [
+        13816
+      ]
+    },
+    "8190": {
+      "sha947": "86fd272c938201fd52844795c0d1f10810375a95d44a737c1ffd7fe239dab148",
+      "sha950": "80760f2c61f21dcb47c768a312a1fc5a62ae28fa42b5444f166df72d52bcc046",
+      "arguments947": [
+        1,
+        0,
+        0
+      ],
+      "arguments950": [
+        1,
+        0,
+        0
+      ],
+      "locals947": [
+        7,
+        0,
+        0
+      ],
+      "locals950": [
+        7,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 106,
+      "instructions950": 106,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [],
+      "calls950": []
+    },
+    "8191": {
+      "sha947": "cf8b8ec1ca132bf079433617f8d0c7465488f75ff29b1f2cf11015296f5c4baa",
+      "sha950": "f5afed8d1d318160c6d8ffa8c24655e0d571039f084bf66039da07fbeb0f4174",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        3,
+        0,
+        0
+      ],
+      "locals950": [
+        3,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 8,
+      "instructions950": 8,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        10068
+      ],
+      "calls950": [
+        10068
+      ]
+    },
+    "8105": {
+      "sha947": "a3697694411cdbdaef9d0095f7870ee19088b754739dc4e8c2e5152301a8c9d8",
+      "sha950": "f1cf5757548ce7a7c19baeda48088f28f3b5fcd3d1eae3933f9acfa00de8fd0b",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 2,
+      "instructions950": 2,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        1898
+      ],
+      "calls950": [
+        1898
+      ]
+    },
+    "1898": {
+      "sha947": "77707a9af056731943e2588fe00a69a8eb29e60e1b4d07dda39c1b343112ffd1",
+      "sha950": "34ee0c94d21c345357d6c6db9a1d2ee571a07bc50089ab3988dab35e502713aa",
+      "arguments947": [
+        0,
+        0,
+        0
+      ],
+      "arguments950": [
+        0,
+        0,
+        0
+      ],
+      "locals947": [
+        0,
+        0,
+        0
+      ],
+      "locals950": [
+        0,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 21,
+      "instructions950": 21,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [
+        "0x1f7"
+      ],
+      "calls947": [
+        675,
+        1306,
+        7998,
+        8808,
+        14182
+      ],
+      "calls950": [
+        675,
+        1306,
+        7998,
+        8808,
+        14182
+      ]
+    },
+    "10420": {
+      "sha947": "210f1db8c1a43ec57f49e7cfce577b31b8a0eae55aff0683d85afe579a53bafa",
+      "sha950": "11bf251ddafddb3ffa2eca9f8cf339d6462d76a3e2a22d68f0dfe41d7d5ece3b",
+      "arguments947": [
+        2,
+        0,
+        0
+      ],
+      "arguments950": [
+        2,
+        0,
+        0
+      ],
+      "locals947": [
+        2,
+        0,
+        0
+      ],
+      "locals950": [
+        2,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 11,
+      "instructions950": 11,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        14185
+      ],
+      "calls950": [
+        14185
+      ]
+    },
+    "343": {
+      "sha947": "f485a2358de0f3ed6797392ffd994c5413fcbd3da8e9caa0a6ddb98068fb3923",
+      "sha950": "0721f17e4a3befcf6a466c6012f8be56362c6bc638feb464d767076e70f003ce",
+      "arguments947": [
+        11,
+        0,
+        0
+      ],
+      "arguments950": [
+        11,
+        0,
+        0
+      ],
+      "locals947": [
+        15,
+        1,
+        0
+      ],
+      "locals950": [
+        15,
+        1,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 254,
+      "instructions950": 254,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [
+        "0x30f",
+        "0x339",
+        "0x69a"
+      ],
+      "calls947": [
+        285,
+        291,
+        341,
+        686,
+        1372,
+        1374,
+        1376,
+        1839,
+        2785,
+        8101,
+        8841,
+        9639,
+        10420
+      ],
+      "calls950": [
+        285,
+        291,
+        341,
+        686,
+        1372,
+        1374,
+        1376,
+        1839,
+        2785,
+        8101,
+        8841,
+        9639,
+        10420
+      ]
+    },
+    "1369": {
+      "sha947": "343c78a0040f7480e90af9e8ff4c0618e14901ee3b5c618b42da50830ca76a8f",
+      "sha950": "e455b63442c739606d9d301e2f6713785e74ffa073de864a586c54049236af94",
+      "arguments947": [
+        11,
+        0,
+        0
+      ],
+      "arguments950": [
+        11,
+        0,
+        0
+      ],
+      "locals947": [
+        11,
+        0,
+        0
+      ],
+      "locals950": [
+        11,
+        0,
+        0
+      ],
+      "status": "recompiled_identical_program",
+      "instructions947": 35,
+      "instructions950": 35,
+      "metadataEqual": true,
+      "lowSupportOpcodes": [],
+      "calls947": [
+        343,
+        1306,
+        7997,
+        13893
+      ],
+      "calls950": [
+        343,
+        1306,
+        7997,
+        13893
+      ]
+    }
+  }
+}

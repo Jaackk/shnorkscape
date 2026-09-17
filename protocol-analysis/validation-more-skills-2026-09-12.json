@@ -1,0 +1,136 @@
+{
+  "date": "2026-09-12",
+  "milestone": "Smithing, Slayer, impling Hunter and two additional Agility courses",
+  "unit": {
+    "tests": 1187,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2,
+    "passed": 1185
+  },
+  "launcherChecks": 19,
+  "engineSha256": "522add6a1cb8c2327818faf2de5d4aef3d69736888940ab80694f74d8d11d38e",
+  "server": {
+    "ProcessId": 29192,
+    "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+    "CreatedUtc": "2026-09-12T13:51:51.4022830Z",
+    "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.1.8-hotspot\\bin\\java.exe",
+    "ClassPath": "C:\\Users\\developer\\Desktop\\950RevTest\\patches\\classes;C:\\Users\\developer\\Desktop\\950RevTest\\OpenNXT\\runtime\\lib\\*"
+  },
+  "client": {
+    "ProcessId": 28256,
+    "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+    "CreatedUtc": "2026-09-12T13:51:53.4835470Z",
+    "ExecutablePath": "C:\\Users\\developer\\Desktop\\950RevTest\\client\\rs2client-vulkan.exe"
+  },
+  "processIdentityVerified": true,
+  "cachePreflight": "logs/cache-preflight.log",
+  "bindings": {
+    "scripts": 138,
+    "variables": 24
+  },
+  "probes": {
+    "Native950SmithingAcceptance": {
+      "log": "logs\\Native950SmithingAcceptance-final-skills.log",
+      "passed": true,
+      "evidence": [
+        "PASS: every admitted current-cache recipe exchanges its exact bars/base products for exact output, preserves hammer and awards Smithing XP",
+        "PASS: real anvil collision/options, original action cadence and heat/work, movement/removal/cancellation/level/tool guards",
+        "PASS:702 paired950 anvil recipes, all atomic material/output/XP exchanges, ten metal-family action loops plus upgrades; 2496 engine ticks, 3212 encrypted native frames, 714 stat updates, 1694 gauge updates/removals. No save/listener/authentication."
+      ]
+    },
+    "Native950SlayerAcceptance": {
+      "log": "logs\\Native950SlayerAcceptance-final-skills.log",
+      "passed": true,
+      "evidence": [
+        "PASS: actual950 Slayer master, assignment, credited kill/respawn/completion and isolated save restore; 73 combat ticks, 38 encrypted native frames, 2 Slayer stat updates"
+      ]
+    },
+    "Native950ImplingsAcceptance": {
+      "log": "logs\\Native950ImplingsAcceptance-final-skills.log",
+      "passed": true,
+      "evidence": [
+        "PASS: 12 impling captures, 327 original weighted loot row paths; requirements, miss, reach, full inventory replacement, atomic loot rollback/resume, controller/stale guards, Spirit charm and nonlethal broken jar"
+      ]
+    },
+    "Native950NpcSkillsAcceptance": {
+      "log": "logs\\Native950NpcSkillsAcceptance-final-skills.log",
+      "passed": true,
+      "evidence": [
+        "PASS: encrypted NPC1028 option1 running=true -> 2 approach ticks -> final-frame cancellation -> stationary original action -> callback1 -> inventory/XP frames; NPC_INFO=126",
+        "PASS: level1 encrypted Harvest with energy/memory and full backpack -> one specific unfiltered refusal, no reward; free one slot -> items/XP -> last-slot stop; higher-tier level refusal stays specific",
+        "PASS: clearing last-world NPC population cancels pending butterfly respawn",
+        "PASS: six NPC menu paths walking/running, client visibility, stationary arrival, controller mapping/veto, final-arrival cancellation, original actions/rewards, butterfly roster/viewport respawn and generation clear; 636 ticks, 2631 encrypted950 frames; no socket or save writes"
+      ]
+    },
+    "Native950CraftingRoutingAcceptance": {
+      "log": "logs\\Native950CraftingRoutingAcceptance-final-skills.log",
+      "passed": true,
+      "evidence": [
+        "PASS: encrypted item-use and Craft option, wheel option2, shared furnace pages, obelisk pouch/scroll menus, quantity limits, retained tools, native inventory/XP output and stale-response rejection",
+        "PASS: encrypted selected-item opcode90 foreign/stale/arrival revalidation, walking before cooking, raw fish->fire->Eat, logs->Bonfire, essence->altar and controller veto",
+        "PASS: encrypted distant anvil -> approach -> recipe pages -> Make5 -> bars/tool/output/XP; all12 current Loot operation3 routes and zero repeated catch XP",
+        "PASS: 264 pinned additional recipes, 728 original engine ticks, 1044 decoded encrypted950 frames; no account file, listener or authentication"
+      ]
+    },
+    "Native950AgilityAcceptance": {
+      "log": "logs\\Native950AgilityAcceptance-final-skills.log",
+      "passed": true,
+      "evidence": [
+        "PASS: basic Barbarian and Wilderness complete collision-routed laps, entrance/exit gates, platform descent, current950 pipe endpoints and level/cancel gates",
+        "PASS: seven actual950 Gnome obstacles, collision approach, balance/crawl BAS, stair planes, ordered Gnome/Barbarian/Wilderness lap XP, all19 expanded directions, cancellation and unlock/run restoration"
+      ]
+    },
+    "Native950BankAcceptance": {
+      "log": "logs\\Native950BankAcceptance-final-skills.log",
+      "passed": true,
+      "evidence": [
+        "PASS: Deposit-X, unnoting, deposit inventory, custom37, saved-X, stale mode cancellation and local search",
+        "PASS: encrypted CLOSE_MODAL5 followed by Close317 and duplicate317 is silent, idempotent and conserves every container",
+        "PASS: Close/reopen preserves preferences, equipment deposit uses shared gear/bank, close retires custom input",
+        "PASS: 80 encrypted950 bank/object/amount actions, 62 original movement/entity ticks, 1377 parsed encrypted frames; no login, listener or account save"
+      ]
+    },
+    "Native950UiAcceptance": {
+      "log": "logs\\Native950UiAcceptance-final-skills.log",
+      "passed": true,
+      "evidence": [
+        "PASS: gear, root Options/Escape, modal close, map handoff and scene packet ordering",
+        "PASS: compass 1919 is mounted at 1465:12 as permanent HUD type 1; no Settings/map/modal-close route removes it",
+        "PASS: 1465:15 traverses native decoder/router and toggles engine Run twice with varp acknowledgment",
+        "PASS: 37 encrypted local actions, 473 parsed outbound frames; channel remains active"
+      ]
+    },
+    "Native950MeleeAcceptance": {
+      "log": "logs\\Native950MeleeAcceptance-final-skills.log",
+      "passed": true,
+      "evidence": [
+        "PASS: actual950 route from 3258,3240 approached goblin 3258,3235 in 4 ticks; movement preceded the first collision-valid adjacent swing",
+        "PASS: explicit player walk preserved NPC intelligent pursuit and retaliation; disabled auto-retaliate respected; exact-home return",
+        "PASS: actual950 blocked edge 3201,3239 -> 3202,3239 prevents melee damage",
+        "PASS: 449 deterministic owner-thread melee ticks; 1531 parsed encrypted950 frames; no disconnected transport"
+      ]
+    }
+  },
+  "backup": "implementation-backup/2026-09-12-more-skills/before-deploy",
+  "exactSlotBackup": "implementation-backup/2026-09-12-exact-slot-jars",
+  "naturalSkillPopulation": {
+    "sourceRows": 193,
+    "regions": 40,
+    "spawned": 180,
+    "blockedSkipped": 13,
+    "species": 28
+  },
+  "liveStatus": "User confirmed Turael Get task issued an assignment after ;;nxt slayer. Existing profile restored normally. Smithing gauges/animations, Hunter visuals and added Agility courses still await manual playtesting.",
+  "limits": [
+    "Smithing uses backpack materials and existing production choices; metal-bank, rich anvil UI, reheating and persistent unfinished projects remain later work.",
+    "Slayer special encounters/unlocks, reward shop, blocking/skipping and wider combat population remain later work.",
+    "Hunter traps, barehanded/Puro-Puro rules and complete natural species population remain later work.",
+    "Advanced/other Agility courses and incidental achievement/contract/perk rewards remain later work."
+  ],
+  "accountChanges": "No manual user-save/item/level edits; disposable fixtures only. Runtime saved normally after client disconnect. Original947/910 references read-only.",
+  "liveAcceptance": {
+    "slayerAssignment": "User: yes i got the assignment",
+    "otherNewSkills": "pending manual playtest"
+  }
+}

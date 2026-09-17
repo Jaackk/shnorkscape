@@ -1,0 +1,73 @@
+{
+  "date": "2026-09-12",
+  "scope": "950 inventory menus, Drop, ordinary Eat and existing Use workflows",
+  "engineSha256": "482a87f49d03511c94022b353a9651b03b9b142f43c0e934bf5b65750e94726d",
+  "junit": {
+    "discovered": 1085,
+    "errors": 0,
+    "passed": 1083,
+    "results": "Ataraxia950/build/test-results/test",
+    "failed": 0,
+    "skipped": 2
+  },
+  "launcher": {
+    "actualBootstrapMask": 6633470,
+    "log": "logs/inventory-verify950.log",
+    "passed": 18
+  },
+  "acceptance": [
+    {
+      "name": "Rewards and inventory Drop",
+      "frames": 117,
+      "log": "logs/inventory-Native950RewardsAcceptance.log",
+      "movementTicks": 8,
+      "passed": true
+    },
+    {
+      "recipes": 264,
+      "frames": 475,
+      "passed": true,
+      "name": "Crafting menus and selected object Use",
+      "ticks": 272,
+      "log": "logs/inventory-Native950CraftingRoutingAcceptance.log"
+    },
+    {
+      "name": "NPC skills and inventory/equipment regressions",
+      "frames": 1858,
+      "ticks": 410,
+      "log": "logs/inventory-Native950NpcSkillsAcceptance.log",
+      "passed": true
+    },
+    {
+      "name": "Settings, map, compass and run",
+      "frames": 473,
+      "actions": 37,
+      "log": "logs/inventory-Native950UiAcceptance.log",
+      "passed": true
+    },
+    {
+      "name": "Cache preflight",
+      "log": "logs/inventory-cache-preflight.log",
+      "passed": true
+    }
+  ],
+  "evidence": "protocol-analysis/inventory-menus-950-evidence.json",
+  "testCorrections": [
+    "Updated old assertion that selected-NPC opcode19 was unsupported after deriving its typed input.",
+    "Case-insensitive comparison of native fallback drop caption.",
+    "Published fixture item grants before sending selected-item clicks; production stale-slot guard retained."
+  ],
+  "runtime": {
+    "serverPid": 21104,
+    "flags": "-Ataraxia -Collision -Vulkan -LumbridgeNpcs -DevTools",
+    "clientPid": 27784,
+    "processIdentityVerified": true
+  },
+  "backup": "implementation-backup/2026-09-12-inventory-actions/before-deploy",
+  "liveAcceptance": "User confirmed Use, Drop/pickup and tinderbox-on-logs on September12; bank/partyhat follow-up is recorded separately.",
+  "limits": [
+    "Specialized item menus and arbitrary special item effects require their own verified ports.",
+    "NPC item use provides an explicit unsupported message; ground-item and player selection are disabled.",
+    "No player save, inventory or level was manually edited; test players are ephemeral."
+  ]
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "sequence": 762,
+    "sameFramesAndDurations": true,
+    "duration": 48,
+    "sha256": "38ece789bf4d428e976f183b30693a9ab747a8bce6870d88273e007089030bc6"
+  },
+  {
+    "sequence": 763,
+    "sameFramesAndDurations": true,
+    "duration": 48,
+    "sha256": "9b9f280d54831e21fc3bc86aab5a4b11ebab8945a3098a108cd35b0c70d2a0ae"
+  },
+  {
+    "sequence": 844,
+    "sameFramesAndDurations": true,
+    "duration": 40,
+    "sha256": "fbbaa484ea88aaea67477f8774ef314286aa826049a461df9e8b100978a8481d"
+  },
+  {
+    "sequence": 2338,
+    "sameFramesAndDurations": true,
+    "duration": 52,
+    "sha256": "11970c40e197f3db92559bc0ff56937946c5f92b2fb817c0452c7f0327a1ebc1"
+  },
+  {
+    "sequence": 828,
+    "sameFramesAndDurations": true,
+    "duration": 70,
+    "sha256": "27cdfbcc22fdfdc5d0aedc38290a5f9f682c833f9b5f4b0ddb0b5212132a3929"
+  },
+  {
+    "sequence": 751,
+    "sameFramesAndDurations": true,
+    "duration": 135,
+    "sha256": "e2149d728d5eb4fe93e52a3af597c99c09a97b84370f1d5c5fe9794a6616dc5f"
+  },
+  {
+    "sequence": 497,
+    "sameFramesAndDurations": true,
+    "duration": 144,
+    "sha256": "448b4a940ffb3afa481f31fc3578cc021f489b2ff8d1d8d147adb0404233b770"
+  },
+  {
+    "sequence": 753,
+    "sameFramesAndDurations": true,
+    "duration": 54,
+    "sha256": "454750c7b59ed68ddb41a1f93c0a0acc4d6cb23c6435739390e861c4fb42a544"
+  },
+  {
+    "sequence": 759,
+    "sameFramesAndDurations": true,
+    "duration": 54,
+    "sha256": "7cb88b1988fa9f788e1581fcae936fb8a32ddf324f84984adb064e4f17c85a96"
+  },
+  {
+    "sequence": 4853,
+    "sameFramesAndDurations": true,
+    "duration": 77,
+    "sha256": "5eabdd9d928cbb9f58ce7c5bf9ab141a50a641b96e19df23ad62e3096105688e"
+  },
+  {
+    "sequence": 10580,
+    "sameFramesAndDurations": true,
+    "duration": 90,
+    "sha256": "9829fa2e6d72b08db017aae6d2758c9dc43cbe6cc49417fe4456e3451c29ff80"
+  },
+  {
+    "sequence": 741,
+    "sameFramesAndDurations": true,
+    "duration": 35,
+    "sha256": "cb3d835a7dd72d356f1257fb5a064e2371d04fb535b11532f9012cfceb2d14a5"
+  },
+  {
+    "sequence": 3378,
+    "sameFramesAndDurations": true,
+    "duration": 120,
+    "sha256": "abc2ad28e5a795c7ceb105e516744607ee71e18b95c51d72f3cde02444d0ee7a"
+  }
+]

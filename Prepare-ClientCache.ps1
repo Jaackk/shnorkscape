@@ -1,0 +1,39 @@
+﻿[CmdletBinding()]
+param([switch]$Force)
+$ErrorActionPreference='Stop'
+$root=[IO.Path]::GetFullPath($PSScriptRoot)
+. (Join-Path $root 'Client-LaunchLock.ps1')
+$mutex=Enter-950ClientLock $root
+try {
+ $clients=@(Get-CimInstance Win32_Process -Filter "Name='rs2client.exe' OR Name='rs2client-vulkan.exe'" | Where-Object {$_.ExecutablePath -and $_.ExecutablePath.StartsWith((Join-Path $root 'client')+'\',[StringComparison]::OrdinalIgnoreCase)})
+ if($clients.Count){throw 'Close this copy of the game client before preparing its cache. Existing cache and settings have been left intact.'}
+ $reference=Join-Path $root 'cache\255\12.dat'
+ $expected='8A45E12B3D5B3BF35CDB02CDEC9DDEDBD46200B4FEF086ADC0679FB0D020EF8C'
+ if(!(Test-Path -LiteralPath $reference) -or (Get-FileHash -LiteralPath $reference -Algorithm SHA256).Hash -ne $expected){throw 'Install the matching OpenRS2 cache 2691 before preparing the client. See README.md.'}
+ $destination=Join-Path $root 'client-state\Jagex\RuneScape'
+ $markerPath=Join-Path $root 'client-state\prepared-cache.json'
+ if(!$Force -and (Test-Path -LiteralPath $markerPath)){
+  try {$marker=Get-Content -LiteralPath $markerPath -Raw|ConvertFrom-Json}catch{$marker=$null}
+  if($marker -and $marker.format -eq 1 -and $marker.reference -eq $expected -and @($marker.databases).Count -eq 45){
+   $present=$true
+   foreach($name in $marker.databases){if($name -notmatch '^js5-\d+\.jcache$' -or !(Test-Path -LiteralPath (Join-Path $destination $name))){$present=$false;break}}
+   if($present){Write-Host 'Client startup assets are ready.';return}
+  }
+ }
+ foreach($path in @($destination,(Join-Path $root 'temp'),(Join-Path $root 'logs'))){New-Item -ItemType Directory -Path $path -Force|Out-Null}
+ $mode='startup'
+ Write-Host 'Preparing startup assets directly from your local cache...'
+ $cp=(Join-Path $root 'OpenNXT\runtime\lib\*')
+ $saved=$ErrorActionPreference;$ErrorActionPreference='Continue'
+ try {
+  & (Join-Path $root 'runtime\java25\bin\java.exe') --enable-native-access=ALL-UNNAMED -Xmx2g ("-Djava.io.tmpdir="+(Join-Path $root 'temp')) -cp $cp com.opennxt.tools.bundle.PrepareClientCache (Join-Path $root 'cache') $destination $mode 2>&1 | Tee-Object -FilePath (Join-Path $root 'logs\prepare-client-cache.log') | ForEach-Object {Write-Host $_}
+  $exitCode=$LASTEXITCODE
+ }finally{$ErrorActionPreference=$saved}
+ if($exitCode -ne 0){throw 'Client cache preparation did not finish. See logs/prepare-client-cache.log. Run Play.cmd again to resume.'}
+ $names=@(Get-ChildItem -LiteralPath (Join-Path $root 'cache\255') -Filter '*.dat'|ForEach-Object {'js5-'+$_.BaseName+'.jcache'})
+ if($names.Count -ne 45 -or @($names|Where-Object {!(Test-Path -LiteralPath (Join-Path $destination $_))}).Count){throw 'Client cache preparation is missing reference databases.'}
+ $marker=[ordered]@{format=1;reference=$expected;mode=$mode;databases=$names;completedUtc=[datetime]::UtcNow.ToString('o')}
+ $temporary=$markerPath+'.tmp'
+ [IO.File]::WriteAllText($temporary,($marker|ConvertTo-Json -Depth 3),(New-Object Text.UTF8Encoding($false)))
+ if(Test-Path -LiteralPath $markerPath){[IO.File]::Replace($temporary,$markerPath,[NullString]::Value)}else{[IO.File]::Move($temporary,$markerPath)}
+}finally{$mutex.ReleaseMutex();$mutex.Dispose()}

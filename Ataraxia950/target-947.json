@@ -1,0 +1,30 @@
+{
+  "revision": 947,
+  "update": 3,
+  "platform": "WIN64",
+  "recordedUtc": "2026-09-06T16:47:26.7123833Z",
+  "status": "migration foundation; native client remains served by existing OpenNXT",
+  "configurationProvenance": "Provisional local template derived from 949 configuration; see original/PROVENANCE.txt. Not an archived original947 configuration.",
+  "artifacts": {
+    "originalClient": {
+      "workspacePath": "OpenNXT/data/clients/947/win64/original/rs2client.exe",
+      "sha256": "c8128a6566749afc629453235c4373845a5a17920eebfb01f5705d6e007ce4b9"
+    },
+    "patchedClient": {
+      "workspacePath": "OpenNXT/data/clients/947/win64/patched/rs2client.exe",
+      "sha256": "60453ce30ac4c1ea3e475e29972759f86555fef3093b86df9f9de7d716b2cec2"
+    },
+    "startupTemplate": {
+      "workspacePath": "OpenNXT/data/clients/947/win64/patched/jav_config.ws",
+      "sha256": "fddef0a5f4368b580cef59b2cbcd06d769cb52023f14cbbf2b945269acd5f9f4"
+    },
+    "extractedClientSizes": {
+      "workspacePath": "OpenNXT/data/prot/947/generated/native947-3/clientProtSizes.generated.toml",
+      "sha256": "e98b6b63b54a960b7852578217334bec478b2f8f229ee00ef79a32c615aed097"
+    },
+    "verifiedServerNames": {
+      "workspacePath": "OpenNXT/data/prot/947/serverProtNames.toml",
+      "sha256": "348361ee811963e0b7b64212677ff1e1080dc00a44da272ed4c496038c8a3373"
+    }
+  }
+}

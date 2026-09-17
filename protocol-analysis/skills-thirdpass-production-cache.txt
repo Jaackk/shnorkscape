@@ -1,0 +1,134 @@
+[12 Sep 2026, 12:09:03 PM] [INFO] Modern read-only cache initiated from C:\Users\developer\Desktop\950RevTest\cache
+1393 Fire battlestaff [null, Wield, null, null, drop] 2640=11 2645=62 2655=1391 2656=569 2665=1 2666=1 2696=11 2697=1250 
+1395 Water battlestaff [null, Wield, null, null, drop] 2640=11 2645=54 2655=1391 2656=571 2665=1 2666=1 2696=11 2697=1000 
+1397 Air battlestaff [null, Wield, null, null, drop] 2640=11 2645=66 2655=1391 2656=573 2665=1 2666=1 2696=11 2697=1375 
+1399 Earth battlestaff [null, Wield, null, null, drop] 2640=11 2645=58 2655=1391 2656=575 2665=1 2666=1 2696=11 2697=1125 
+48960 Powerburst vial [Make, null, null, null, drop] 2640=11 2645=54 2650=1785 2655=1775 2665=1 2696=11 2697=550 
+48961 Bomb vial [Make, null, null, null, drop] 2640=11 2645=54 2650=1785 2655=1775 2665=1 2696=11 2697=550 
+10142 Guam tar [null, Wield, null, null, drop] 2640=9 2645=19 2653=15 2655=1939 2656=249 2665=15 2666=1 2696=9 2697=300 
+10143 Marrentill tar [null, Wield, null, null, drop] 2640=9 2645=31 2653=15 2655=1939 2656=251 2665=15 2666=1 2696=9 2697=425 
+10144 Tarromin tar [null, Wield, null, null, drop] 2640=9 2645=39 2653=15 2655=1939 2656=253 2665=15 2666=1 2696=9 2697=550 
+10145 Harralander tar [null, Wield, null, null, drop] 2640=9 2645=44 2653=15 2655=1939 2656=255 2665=15 2666=1 2696=9 2697=725 
+45 Opal bolt tips [Tip, null, null, null, drop] 2640=19 2645=11 2650=1755 2653=12 2655=1609 2665=1 2696=19 2697=15 
+9187 Jade bolt tips [Tip, null, null, null, drop] 2640=19 2645=26 2650=1755 2653=12 2655=1611 2665=1 2696=19 2697=24 
+46 Pearl bolt tips [Tip, null, null, null, drop] 2640=19 2645=41 2650=1755 2653=6 2655=411 2665=1 2696=19 2697=32 
+9188 Topaz bolt tips [Tip, null, null, null, drop] 2640=19 2645=48 2650=1755 2653=12 2655=1613 2665=1 2696=19 2697=39 
+9189 Sapphire bolt tips [Tip, null, null, null, drop] 2640=19 2645=56 2650=1755 2653=12 2655=1607 2665=1 2696=19 2697=47 
+9190 Emerald bolt tips [Tip, null, null, null, drop] 2640=19 2645=58 2650=1755 2653=12 2655=1605 2665=1 2696=19 2697=55 
+9191 Ruby bolt tips [Tip, null, null, null, drop] 2640=19 2645=63 2650=1755 2653=12 2655=1603 2665=1 2696=19 2697=63 
+9192 Diamond bolt tips [Tip, null, null, null, drop] 2640=19 2645=65 2650=1755 2653=12 2655=1601 2665=1 2696=19 2697=70 
+9193 Dragonstone bolt tips [Tip, null, null, null, drop] 2640=19 2645=71 2650=1755 2653=12 2655=1615 2665=1 2696=19 2697=82 
+9194 Onyx bolt tips [Tip, null, null, null, drop] 2640=19 2645=73 2650=1755 2653=24 2655=6573 2665=1 2696=19 2697=94 
+31867 Hydrix bolt tips [Tip, null, null, null, drop] 2640=19 2645=80 2650=1755 2653=36 2655=31855 2665=1 2696=19 2697=106 
+2307 Bread dough [null, null, null, null, drop] 2640=16 2645=1 2655=1933 2665=1 2666=1 2676=14969 2696=16 2697=10 
+1953 Pastry dough [null, null, null, null, drop] 2640=16 2645=10 2655=1933 2665=1 2666=1 2676=14969 2696=16 2697=10 
+2283 Pizza base [null, null, null, null, drop] 2640=16 2645=35 2655=1933 2665=1 2666=1 2676=14969 2696=16 2697=10 
+2315 Pie shell [null, null, null, null, drop] 2640=16 2645=1 2655=2313 2656=1953 2665=1 2666=1 2696=16 2697=10 
+2321 Uncooked berry pie [null, null, null, null, drop] 2640=16 2645=10 2655=2315 2656=1951 2665=1 2666=1 2696=16 2697=10 
+2317 Uncooked apple pie [null, null, null, null, drop] 2640=16 2645=30 2655=2315 2656=1955 2665=1 2666=1 2696=16 2697=10 
+2319 Uncooked meat pie [null, null, null, null, drop] 2640=16 2645=20 2655=2315 2665=1 2666=1 2676=14972 2696=16 2697=10 
+2285 Incomplete pizza [null, null, null, null, drop] 2640=16 2645=35 2655=2283 2656=1982 2665=1 2666=1 2696=16 2697=10 
+2287 Uncooked pizza [null, null, null, null, drop] 2640=16 2645=35 2655=2285 2656=1985 2665=1 2666=1 2696=16 2697=10 
+1889 Uncooked cake [null, null, null, null, drop] 2640=16 2645=40 2655=1887 2656=1933 2657=1944 2658=1927 2665=1 2666=1 2667=1 2668=1 2696=16 2697=10 
+2309 Bread [Eat, Slice, null, null, drop] 2640=16 2645=1 2655=2307 2665=1 2696=16 2697=400 
+2289 Plain pizza [Eat, null, null, null, drop] 2640=16 2645=35 2655=2287 2665=1 2696=16 2697=1430 
+1891 Cake [Eat, null, null, null, drop] 2640=16 2645=40 2655=1889 2665=1 2696=16 2697=1800 
+item 45 Opal bolt tips
+item 46 Pearl bolt tips
+item 233 Pestle and mortar
+item 249 Clean guam
+item 251 Clean marrentill
+item 253 Clean tarromin
+item 255 Clean harralander
+item 411 Oyster pearl
+item 413 Oyster pearls
+item 569 Fire orb
+item 571 Water orb
+item 573 Air orb
+item 575 Earth orb
+item 1391 Battlestaff
+item 1393 Fire battlestaff
+item 1395 Water battlestaff
+item 1397 Air battlestaff
+item 1399 Earth battlestaff
+item 1601 Diamond
+item 1603 Ruby
+item 1605 Emerald
+item 1607 Sapphire
+item 1609 Opal
+item 1611 Jade
+item 1613 Red topaz
+item 1615 Dragonstone
+item 1755 Chisel
+item 1775 Molten glass
+item 1785 Glassblowing pipe
+item 1887 Cake tin
+item 1889 Uncooked cake
+item 1891 Cake
+item 1903 Burnt cake
+item 1921 Bowl of water
+item 1923 Bowl
+item 1925 Bucket
+item 1927 Bucket of milk
+item 1929 Bucket of water
+item 1931 Empty pot
+item 1933 Pot of flour
+item 1935 Jug
+item 1937 Jug of water
+item 1939 Swamp tar
+item 1944 Egg
+item 1951 Redberries
+item 1953 Pastry dough
+item 1955 Cooking apple
+item 1982 Tomato
+item 1985 Cheese
+item 2140 Cooked chicken
+item 2142 Cooked meat
+item 2283 Pizza base
+item 2285 Incomplete pizza
+item 2287 Uncooked pizza
+item 2289 Plain pizza
+item 2305 Burnt pizza
+item 2307 Bread dough
+item 2309 Bread
+item 2311 Burnt bread
+item 2313 Pie dish
+item 2315 Pie shell
+item 2317 Uncooked apple pie
+item 2319 Uncooked meat pie
+item 2321 Uncooked berry pie
+item 4819 Bronze nails
+item 4820 Iron nails
+item 4821 Black nails
+item 4822 Mithril nails
+item 4823 Adamant nails
+item 4824 Rune nails
+item 6573 Onyx
+item 9187 Jade bolt tips
+item 9188 Topaz bolt tips
+item 9189 Sapphire bolt tips
+item 9190 Emerald bolt tips
+item 9191 Ruby bolt tips
+item 9192 Diamond bolt tips
+item 9193 Dragonstone bolt tips
+item 9194 Onyx bolt tips
+item 10142 Guam tar
+item 10143 Marrentill tar
+item 10144 Tarromin tar
+item 10145 Harralander tar
+item 31855 Hydrix
+item 31867 Hydrix bolt tips
+item 48960 Powerburst vial
+item 48961 Bomb vial
+BAR 2349 Bronze bar type=14 level=1 xp=10
+BAR 2351 Iron bar type=14 level=10 xp=20
+BAR 2353 Steel bar type=14 level=20 xp=30
+BAR 2355 Silver bar type=14 level=20 xp=30
+BAR 2357 Gold bar type=14 level=40 xp=70
+BAR 2359 Mithril bar type=14 level=30 xp=50
+BAR 2361 Adamant bar type=14 level=40 xp=70
+BAR 2363 Rune bar type=14 level=50 xp=100
+BAR 44838 Orikalkum bar type=14 level=60 xp=130
+BAR 44840 Necronium bar type=14 level=70 xp=170
+BAR 44842 Bane bar type=14 level=80 xp=210
+BAR 44844 Elder rune bar type=14 level=90 xp=260

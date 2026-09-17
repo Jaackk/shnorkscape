@@ -1,0 +1,86 @@
+{
+  "date": "2026-09-12",
+  "status": "installed; manual client playtest pending",
+  "unitTests": {
+    "tests": 1262,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2,
+    "passed": 1260
+  },
+  "acceptance": [
+    {
+      "probe": "Native950InventionRoutingAcceptance",
+      "exitCode": 0,
+      "log": "C:\\Users\\developer\\Desktop\\950RevTest\\logs\\thirdpass-final-Native950InventionRoutingAcceptance.log"
+    },
+    {
+      "probe": "Native950InventionArchaeologyAcceptance",
+      "exitCode": 0,
+      "log": "C:\\Users\\developer\\Desktop\\950RevTest\\logs\\thirdpass-final-Native950InventionArchaeologyAcceptance.log"
+    },
+    {
+      "probe": "Native950FishingCookingAcceptance",
+      "exitCode": 0,
+      "log": "C:\\Users\\developer\\Desktop\\950RevTest\\logs\\thirdpass-final-Native950FishingCookingAcceptance.log"
+    },
+    {
+      "probe": "Native950ProductionThirdPassAcceptance",
+      "exitCode": 0,
+      "log": "C:\\Users\\developer\\Desktop\\950RevTest\\logs\\thirdpass-final-Native950ProductionThirdPassAcceptance.log"
+    },
+    {
+      "probe": "Native950CraftingSummoningAcceptance",
+      "exitCode": 0,
+      "log": "C:\\Users\\developer\\Desktop\\950RevTest\\logs\\thirdpass-final-Native950CraftingSummoningAcceptance.log"
+    },
+    {
+      "probe": "Native950RunecraftingDivinationAcceptance",
+      "exitCode": 0,
+      "log": "C:\\Users\\developer\\Desktop\\950RevTest\\logs\\thirdpass-final-Native950RunecraftingDivinationAcceptance.log"
+    },
+    {
+      "probe": "Native950FamiliarAcceptance",
+      "exitCode": 0,
+      "log": "C:\\Users\\developer\\Desktop\\950RevTest\\logs\\thirdpass-final-Native950FamiliarAcceptance.log"
+    },
+    {
+      "probe": "Native950CombatStylesAcceptance",
+      "exitCode": 0,
+      "log": "C:\\Users\\developer\\Desktop\\950RevTest\\logs\\thirdpass-final-Native950CombatStylesAcceptance.log"
+    },
+    {
+      "probe": "Native950MeleeAcceptance",
+      "exitCode": 0,
+      "log": "C:\\Users\\developer\\Desktop\\950RevTest\\logs\\thirdpass-final-Native950MeleeAcceptance.log"
+    },
+    {
+      "probe": "Native950BankAcceptance",
+      "exitCode": 0,
+      "log": "C:\\Users\\developer\\Desktop\\950RevTest\\logs\\thirdpass-final-Native950BankAcceptance.log"
+    }
+  ],
+  "bridgeChecks": 19,
+  "bridgeLog": "logs/verify-950-thirdpass.log",
+  "lobbyRegression": "logs/verify-lobby-thirdpass.log",
+  "cachePreflight": "logs/cache-preflight.log",
+  "saveMigration": "logs/thirdpass-final-save-migration.log",
+  "saveMigrationOriginalUnchanged": true,
+  "saveChangeExplicitlyApproved": true,
+  "engineSha256": "e78f5a172c93ba4b871ea6baf6b44c11b089ffc2213c9de98481969005cddda5",
+  "backup": "C:\\Users\\developer\\Desktop\\950RevTest\\implementation-backup\\skills-thirdpass\\before-deploy-20260912-121821",
+  "server": {
+    "ProcessId": 24172,
+    "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+    "CreatedUtc": "2026-09-12T17:18:57.1829650Z",
+    "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.1.8-hotspot\\bin\\java.exe",
+    "ClassPath": "C:\\Users\\developer\\Desktop\\950RevTest\\patches\\classes;C:\\Users\\developer\\Desktop\\950RevTest\\OpenNXT\\runtime\\lib\\*"
+  },
+  "client": {
+    "ProcessId": 14368,
+    "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+    "CreatedUtc": "2026-09-12T17:19:15.0967880Z",
+    "ExecutablePath": "C:\\Users\\developer\\Desktop\\950RevTest\\client\\rs2client-vulkan.exe"
+  },
+  "limits": "No automatic authentication or rendered gameplay acceptance; see skill reports for implementation limits."
+}

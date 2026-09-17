@@ -1,0 +1,13 @@
+# Basic Prayer port (2026-09-12)
+
+Native950Prayer admits the15 existing Burying.Bone entries and six ordinary AshScattering.AshesData entries. The original enums remain the single XP table; existing Skills.addXp applies account rates, progression, XP drops, native skill updates and save capture. This intentionally preserves the910 server's XP balance (ordinary bones base5), rather than silently replacing it with a different game's balance.
+
+Every admitted950 definition strictly decodes, matches a pinned actual-cache file, has no note/lent/bound/shard template and carries the expected Bury or Scatter at inventory option1. Only that operation is exposed by the item catalogue. Ordinary campfire Ashes592 and noted bones527 do not grant Prayer XP. The old custom EVIL_DUST3325 entry is refused:950 calls it Vampyre dust and has no Scatter operation.
+
+Input must claim the current slot and item. The helper refuses inactive/dead/locked players, queued teleport/forced movement, unsupported metadata, attributed/charged items, or a controller deletion veto. It consumes exactly one offering with the common Native950Skilling.exchange(consumed, emptyOutput) before awarding XP or effects. It stops the old action/route, uses the original one-tick interaction lock, and emits the native animation and message. Bury's resource and XP now commit together rather than deleting before a delayed callback, preventing item loss on logout between the two. There is no second XP owner or background skill loop.
+
+Sequence827 (bury) and445 (scatter) are byte-identical between the old910 and actual950 cache; their950 hashes are checked on admission. Ash effects40/47/56 are likewise identical and already pass Native950PlayerEffects' identity gate. Exact config identity does not establish pixel-identical rendering of every dependent model; in-client appearance remains a manual check.
+
+The old random-event NPCs, donor/aura/necklace multipliers and prayer-restoration perks are not invoked on minimally hydrated native players. Those need their own verified equipment/content ports. Prayer training does not enable combat prayer toggles or altars.
+
+Validation: seven state/unit tests cover consumption+XP, repeat-click locking, ash animation/effect selection, stale claims, dead/logout/teleport refusal, missing container ownership, controller deletion veto, and rejected custom dust/notes/fire ashes. The read-only Native950PrayerAcceptance probe checks all21 actual-cache offerings, exact consumed resources and XP, repeat refusal, animation/effect fields and a healthy950 framed channel including Prayer level-ups. No account save or server listener is created by that probe.

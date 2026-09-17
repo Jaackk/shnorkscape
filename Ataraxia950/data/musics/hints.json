@@ -1,0 +1,3178 @@
+[
+  {
+    "regionId": 1,
+    "hint": "at Iban's lair in the Underground Pass."
+  },
+  {
+    "regionId": 2,
+    "hint": "at Lumbridge farm."
+  },
+  {
+    "regionId": 3,
+    "hint": "at Draynor Market."
+  },
+  {
+    "regionId": 4,
+    "hint": "during the Troll Romance quest."
+  },
+  {
+    "regionId": 5,
+    "hint": "at West Ardougne."
+  },
+  {
+    "regionId": 6,
+    "hint": "at the north dock of Brimhaven."
+  },
+  {
+    "regionId": 7,
+    "hint": "at Seers' Village."
+  },
+  {
+    "regionId": 8,
+    "hint": "to the west of Stealing Creation in the Wilderness."
+  },
+  {
+    "regionId": 9,
+    "hint": "on the way to Death Plateau."
+  },
+  {
+    "regionId": 10,
+    "hint": "at the entrance to the Underground Pass."
+  },
+  {
+    "regionId": 11,
+    "hint": "at the entrance to the Haunted Mine."
+  },
+  {
+    "regionId": 12,
+    "hint": "at Rimmington."
+  },
+  {
+    "regionId": 13,
+    "hint": "at the Mage Arena."
+  },
+  {
+    "regionId": 14,
+    "hint": "on the east side of the Wilderness."
+  },
+  {
+    "regionId": 15,
+    "hint": "at the Mining Guild in Falador."
+  },
+  {
+    "regionId": 16,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 17,
+    "hint": "at the perfect gold mine under Ardougne."
+  },
+  {
+    "regionId": 18,
+    "hint": "in Taverley."
+  },
+  {
+    "regionId": 19,
+    "hint": "at the hellhounds in Taverley Dungeon."
+  },
+  {
+    "regionId": 20,
+    "hint": "at the area south-west of Rellekka."
+  },
+  {
+    "regionId": 21,
+    "hint": "at the Sinclair Mansion."
+  },
+  {
+    "regionId": 22,
+    "hint": "at the Tree Gnome Stronghold."
+  },
+  {
+    "regionId": 23,
+    "hint": "during Grim Tales."
+  },
+  {
+    "regionId": 24,
+    "hint": "at the Battlefield north of Tree Gnome Village."
+  },
+  {
+    "regionId": 25,
+    "hint": "at Elvarg's lair or during Grand Tree Quest."
+  },
+  {
+    "regionId": 26,
+    "hint": "to the north of the Lava Maze."
+  },
+  {
+    "regionId": 27,
+    "hint": "at the Fight Arena."
+  },
+  {
+    "regionId": 28,
+    "hint": "at the King Black Dragon."
+  },
+  {
+    "regionId": 29,
+    "hint": "at Gu'Tanoth Ogre Enclave."
+  },
+  {
+    "regionId": 30,
+    "hint": "at the cave under the Kharazi Jungle."
+  },
+  {
+    "regionId": 32,
+    "hint": "at the top of Baxtorian Falls."
+  },
+  {
+    "regionId": 33,
+    "hint": "at the Tree Gnome Stronghold's Agility Training Area."
+  },
+  {
+    "regionId": 34,
+    "hint": "to the north-west of the Black Knights' Fortress."
+  },
+  {
+    "regionId": 35,
+    "hint": "at Port Sarim."
+  },
+  {
+    "regionId": 36,
+    "hint": "in the Kharidian Desert."
+  },
+  {
+    "regionId": 37,
+    "hint": "in the north-west of the Wilderness."
+  },
+  {
+    "regionId": 38,
+    "hint": "during Fishing Trawler."
+  },
+  {
+    "regionId": 41,
+    "hint": "at the unholy altar north of the Observatory."
+  },
+  {
+    "regionId": 42,
+    "hint": "to the south of the Lava Maze in the Wilderness."
+  },
+  {
+    "regionId": 43,
+    "hint": "at the Forgotten Cemetery in the Wilderness."
+  },
+  {
+    "regionId": 44,
+    "hint": "during Forgettable Tale..."
+  },
+  {
+    "regionId": 45,
+    "hint": "during Dig Site."
+  },
+  {
+    "regionId": 46,
+    "hint": "in Lumbridge Castle's basement."
+  },
+  {
+    "regionId": 47,
+    "hint": "at the Duel Arena."
+  },
+  {
+    "regionId": 48,
+    "hint": "to the east of Paterdomus."
+  },
+  {
+    "regionId": 49,
+    "hint": "at the farm area south of Falador."
+  },
+  {
+    "regionId": 50,
+    "hint": "at Al Kharid."
+  },
+  {
+    "regionId": 51,
+    "hint": "during Fishing Trawler."
+  },
+  {
+    "regionId": 52,
+    "hint": "at the Air Altar."
+  },
+  {
+    "regionId": 53,
+    "hint": "at the Black Knight base in Taverley Dungeon."
+  },
+  {
+    "regionId": 54,
+    "hint": "to the north of Falador."
+  },
+  {
+    "regionId": 55,
+    "hint": "at Brimhaven."
+  },
+  {
+    "regionId": 56,
+    "hint": "to the north of the Grand Exchange."
+  },
+  {
+    "regionId": 57,
+    "hint": "at the rune essence mine."
+  },
+  {
+    "regionId": 58,
+    "hint": "to the east of the Bedabin Camp."
+  },
+  {
+    "regionId": 59,
+    "hint": "during Underground Pass."
+  },
+  {
+    "regionId": 60,
+    "hint": "at Hemenster."
+  },
+  {
+    "regionId": 61,
+    "hint": "at Canifis in Morytania."
+  },
+  {
+    "regionId": 62,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 63,
+    "hint": "during Temple of Ikov."
+  },
+  {
+    "regionId": 64,
+    "hint": "at Lumbridge Swamp."
+  },
+  {
+    "regionId": 65,
+    "hint": "at the Mind Altar."
+  },
+  {
+    "regionId": 66,
+    "hint": "at the Barbarian Outpost."
+  },
+  {
+    "regionId": 67,
+    "hint": "to the west of the Dark Warriors' Fortress in the Wilderness."
+  },
+  {
+    "regionId": 68,
+    "hint": "at Yanille Agility Dungeon."
+  },
+  {
+    "regionId": 69,
+    "hint": "at Shantay Pass."
+  },
+  {
+    "regionId": 70,
+    "hint": "at the tower of the Necromancer."
+  },
+  {
+    "regionId": 71,
+    "hint": "at the chompy hunt area near Rantz the ogre."
+  },
+  {
+    "regionId": 72,
+    "hint": "at Falador Castle."
+  },
+  {
+    "regionId": 73,
+    "hint": "at the fairy resistance hideout in Fairy Tale Part II."
+  },
+  {
+    "regionId": 74,
+    "hint": "at Keep Le Faye."
+  },
+  {
+    "regionId": 75,
+    "hint": "at the Dig Site."
+  },
+  {
+    "regionId": 76,
+    "hint": "at Lumbridge Castle."
+  },
+  {
+    "regionId": 77,
+    "hint": "at the Heroes' Guild."
+  },
+  {
+    "regionId": 78,
+    "hint": "to the south-east of the Kharazi Jungle."
+  },
+  {
+    "regionId": 79,
+    "hint": "to the west of the Kharidian Desert."
+  },
+  {
+    "regionId": 80,
+    "hint": "at the Feldip Hills glider area."
+  },
+  {
+    "regionId": 81,
+    "hint": "near the Legends' Guild."
+  },
+  {
+    "regionId": 82,
+    "hint": "at Baxtorian Falls."
+  },
+  {
+    "regionId": 83,
+    "hint": "to the west of Yanille."
+  },
+  {
+    "regionId": 84,
+    "hint": "to the north of the Mort Myre area."
+  },
+  {
+    "regionId": 85,
+    "hint": "at the Wizards' Tower."
+  },
+  {
+    "regionId": 86,
+    "hint": "on the gorak plane in Fairy Tale Part II."
+  },
+  {
+    "regionId": 87,
+    "hint": "at White Wolf Mountain."
+  },
+  {
+    "regionId": 88,
+    "hint": "during Elemental Workshop."
+  },
+  {
+    "regionId": 89,
+    "hint": "to the east of Karamja Jungle."
+  },
+  {
+    "regionId": 90,
+    "hint": "at Shilo Village."
+  },
+  {
+    "regionId": 91,
+    "hint": "to the west of Tyras Camp."
+  },
+  {
+    "regionId": 92,
+    "hint": "at Karamja port."
+  },
+  {
+    "regionId": 93,
+    "hint": "at the Jolly Boar Inn."
+  },
+  {
+    "regionId": 94,
+    "hint": "at the gnome glider on Karamja."
+  },
+  {
+    "regionId": 95,
+    "hint": "in the Underground Pass caverns."
+  },
+  {
+    "regionId": 96,
+    "hint": "at the area north of the Black Knights' Fortress."
+  },
+  {
+    "regionId": 97,
+    "hint": "at the hermit's cave north-west of Burthorpe."
+  },
+  {
+    "regionId": 98,
+    "hint": "at Edgeville."
+  },
+  {
+    "regionId": 99,
+    "hint": "in Ardougne."
+  },
+  {
+    "regionId": 100,
+    "hint": "in the Dwarven tunnel under Wolf Mountain."
+  },
+  {
+    "regionId": 101,
+    "hint": "to the south-west of the Tree Gnome Stronghold."
+  },
+  {
+    "regionId": 102,
+    "hint": "at the Ice Mountain and Monastery north of Falador."
+  },
+  {
+    "regionId": 103,
+    "hint": "in the Waterfall Dungeon, East of Shilo Village."
+  },
+  {
+    "regionId": 104,
+    "hint": "at Camelot Castle."
+  },
+  {
+    "regionId": 105,
+    "hint": "at the coastline south of Port Sarim."
+  },
+  {
+    "regionId": 106,
+    "hint": "at the stone circle in Varrock."
+  },
+  {
+    "regionId": 107,
+    "hint": "at the Crafting Guild."
+  },
+  {
+    "regionId": 108,
+    "hint": "at the Asgarnian Ice Dungeon north of Mudskipper Point."
+  },
+  {
+    "regionId": 109,
+    "hint": "at the Coal Trucks."
+  },
+  {
+    "regionId": 110,
+    "hint": "at the Observatory."
+  },
+  {
+    "regionId": 111,
+    "hint": "at the Mining area south-east of Varrock."
+  },
+  {
+    "regionId": 112,
+    "hint": "at the Gnome Ball Field."
+  },
+  {
+    "regionId": 113,
+    "hint": "to the north of Edgeville."
+  },
+  {
+    "regionId": 114,
+    "hint": "at Cairn Isle."
+  },
+  {
+    "regionId": 115,
+    "hint": "to the north-west of Brimhaven."
+  },
+  {
+    "regionId": 116,
+    "hint": "at the Champions' Guild."
+  },
+  {
+    "regionId": 117,
+    "hint": "at Tai Bwo Wannai Village."
+  },
+  {
+    "regionId": 118,
+    "hint": "at Zanaris."
+  },
+  {
+    "regionId": 119,
+    "hint": "at Catherby beach."
+  },
+  {
+    "regionId": 120,
+    "hint": "in the Wilderness north of the Graveyard."
+  },
+  {
+    "regionId": 121,
+    "hint": "to the north of the Lumber Yard."
+  },
+  {
+    "regionId": 122,
+    "hint": "at the Duel Arena hospital."
+  },
+  {
+    "regionId": 123,
+    "hint": "at Al Kharid mine."
+  },
+  {
+    "regionId": 124,
+    "hint": "at the desert entrance to the Kalphite Lair."
+  },
+  {
+    "regionId": 125,
+    "hint": "at Varrock city centre."
+  },
+  {
+    "regionId": 126,
+    "hint": "on the cosmic entity plane during Fairy Tale Part II."
+  },
+  {
+    "regionId": 127,
+    "hint": "at the north of Rimmington."
+  },
+  {
+    "regionId": 128,
+    "hint": "at the swamp toad pond in the Feldip Hills."
+  },
+  {
+    "regionId": 129,
+    "hint": "to the south-west of Karamja."
+  },
+  {
+    "regionId": 130,
+    "hint": "to the west of the Tree Gnome Stronghold."
+  },
+  {
+    "regionId": 131,
+    "hint": "at the Nature Altar."
+  },
+  {
+    "regionId": 132,
+    "hint": "at Isafdar near the Underground Pass."
+  },
+  {
+    "regionId": 133,
+    "hint": "to the north-west of Ardougne."
+  },
+  {
+    "regionId": 134,
+    "hint": "at the Death Altar."
+  },
+  {
+    "regionId": 138,
+    "hint": "in Melzar's Maze."
+  },
+  {
+    "regionId": 140,
+    "hint": "at McGrubor's Wood."
+  },
+  {
+    "regionId": 141,
+    "hint": "at Barbarian Village."
+  },
+  {
+    "regionId": 142,
+    "hint": "at the Chaos Altar."
+  },
+  {
+    "regionId": 143,
+    "hint": "at the Earth Altar."
+  },
+  {
+    "regionId": 144,
+    "hint": "in Varrock Sewers."
+  },
+  {
+    "regionId": 145,
+    "hint": "to the east of Lumbridge Swamp."
+  },
+  {
+    "regionId": 146,
+    "hint": "at the Water Altar."
+  },
+  {
+    "regionId": 148,
+    "hint": "in the Tree Gnome Village maze."
+  },
+  {
+    "regionId": 149,
+    "hint": "at Burthorpe's training ground."
+  },
+  {
+    "regionId": 150,
+    "hint": "during Grim Tales."
+  },
+  {
+    "regionId": 151,
+    "hint": "at Draynor Village."
+  },
+  {
+    "regionId": 152,
+    "hint": "at the Monastery."
+  },
+  {
+    "regionId": 153,
+    "hint": "in the caverns below the Observatory."
+  },
+  {
+    "regionId": 154,
+    "hint": "to the west of Mort'ton."
+  },
+  {
+    "regionId": 155,
+    "hint": "to the south of Tree Gnome Village."
+  },
+  {
+    "regionId": 156,
+    "hint": "under Paterdomus."
+  },
+  {
+    "regionId": 157,
+    "hint": "to the west of the Dig Site."
+  },
+  {
+    "regionId": 158,
+    "hint": "at the Fire Altar."
+  },
+  {
+    "regionId": 159,
+    "hint": "at Gu'Tanoth."
+  },
+  {
+    "regionId": 160,
+    "hint": "at the Dark Warrior's Fortress."
+  },
+  {
+    "regionId": 161,
+    "hint": "at Hazelmere's island East of Yanille "
+  },
+  {
+    "regionId": 162,
+    "hint": "in the south-east Kharazi Jungle."
+  },
+  {
+    "regionId": 163,
+    "hint": "at the Lumbridge windmill area."
+  },
+  {
+    "regionId": 164,
+    "hint": "to the west of Brimhaven."
+  },
+  {
+    "regionId": 165,
+    "hint": "to the east of Tai Bwo Wannai Village."
+  },
+  {
+    "regionId": 166,
+    "hint": "at the Shipyard on Karamja."
+  },
+  {
+    "regionId": 167,
+    "hint": "at Port Khazard."
+  },
+  {
+    "regionId": 168,
+    "hint": "at the Desert Mining Camp."
+  },
+  {
+    "regionId": 169,
+    "hint": "at the Wilderness, north of Varrock."
+  },
+  {
+    "regionId": 170,
+    "hint": "on Crandor."
+  },
+  {
+    "regionId": 172,
+    "hint": "on Karamja."
+  },
+  {
+    "regionId": 173,
+    "hint": "in Taverley Dungeon."
+  },
+  {
+    "regionId": 174,
+    "hint": "around the Desert Mining Camp."
+  },
+  {
+    "regionId": 175,
+    "hint": "at the Cooks' Guild."
+  },
+  {
+    "regionId": 176,
+    "hint": "in the Wilderness south-west of Daemonheim."
+  },
+  {
+    "regionId": 177,
+    "hint": "at Varrock Palace."
+  },
+  {
+    "regionId": 178,
+    "hint": "at Taverley Dungeon."
+  },
+  {
+    "regionId": 179,
+    "hint": "at the dramen tree in Entrana Dungeon."
+  },
+  {
+    "regionId": 180,
+    "hint": "at the coastline below Rimmington."
+  },
+  {
+    "regionId": 181,
+    "hint": "at Zanaris market."
+  },
+  {
+    "regionId": 182,
+    "hint": "to the north of Edgeville."
+  },
+  {
+    "regionId": 183,
+    "hint": "to the west of the Bandit Camp in the Wilderness."
+  },
+  {
+    "regionId": 184,
+    "hint": "at the Sorcerer's Tower."
+  },
+  {
+    "regionId": 185,
+    "hint": "in the east of Yanille."
+  },
+  {
+    "regionId": 186,
+    "hint": "at the gem trader in Falador."
+  },
+  {
+    "regionId": 187,
+    "hint": "during Death Plateau."
+  },
+  {
+    "regionId": 188,
+    "hint": "at the ogre island, west of Yanille."
+  },
+  {
+    "regionId": 189,
+    "hint": "in a Christmas holiday event (2007 onwards)."
+  },
+  {
+    "regionId": 190,
+    "hint": "at the Body Altar."
+  },
+  {
+    "regionId": 191,
+    "hint": "at Ardougne Castle."
+  },
+  {
+    "regionId": 192,
+    "hint": "at the Legends' Guild."
+  },
+  {
+    "regionId": 193,
+    "hint": "at the Fishing Guild."
+  },
+  {
+    "regionId": 194,
+    "hint": "at Brimstail's cave."
+  },
+  {
+    "regionId": 197,
+    "hint": "during the Darkness of Hallowvale."
+  },
+  {
+    "regionId": 198,
+    "hint": "in Waterbirth Island Dungeon."
+  },
+  {
+    "regionId": 200,
+    "hint": "during Slug Menace."
+  },
+  {
+    "regionId": 201,
+    "hint": "during the Slug Menace Quest."
+  },
+  {
+    "regionId": 202,
+    "hint": "during Elemental Workshop II."
+  },
+  {
+    "regionId": 203,
+    "hint": "during My Arm's Big Adventure."
+  },
+  {
+    "regionId": 204,
+    "hint": "during My Arm's Big Adventure."
+  },
+  {
+    "regionId": 205,
+    "hint": "in a Halloween holiday event (2006 onwards)."
+  },
+  {
+    "regionId": 206,
+    "hint": "during An Enlightened Journey."
+  },
+  {
+    "regionId": 207,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 208,
+    "hint": "in a Christmas holiday event (2006 onwards)."
+  },
+  {
+    "regionId": 209,
+    "hint": "in a Christmas holiday event (2006 onwards)."
+  },
+  {
+    "regionId": 210,
+    "hint": "in a Christmas holiday event (2006 onwards)."
+  },
+  {
+    "regionId": 211,
+    "hint": "during Barbarian Assault."
+  },
+  {
+    "regionId": 213,
+    "hint": "during Contact!"
+  },
+  {
+    "regionId": 214,
+    "hint": "in Tarn's Lair."
+  },
+  {
+    "regionId": 216,
+    "hint": "during Cold War."
+  },
+  {
+    "regionId": 217,
+    "hint": "during Cold War."
+  },
+  {
+    "regionId": 220,
+    "hint": "during Fremennik Isles."
+  },
+  {
+    "regionId": 221,
+    "hint": "during Fremennik Isles."
+  },
+  {
+    "regionId": 222,
+    "hint": "during Fremennik Isles."
+  },
+  {
+    "regionId": 223,
+    "hint": "during Fremennik Isles."
+  },
+  {
+    "regionId": 224,
+    "hint": "during Fremennik Isles."
+  },
+  {
+    "regionId": 225,
+    "hint": "during Fremennik Isles."
+  },
+  {
+    "regionId": 228,
+    "hint": "during Sorceress's Garden."
+  },
+  {
+    "regionId": 229,
+    "hint": "during Sorceress's Garden."
+  },
+  {
+    "regionId": 230,
+    "hint": "during Sorceress's Garden."
+  },
+  {
+    "regionId": 231,
+    "hint": "during Sorceress's Garden."
+  },
+  {
+    "regionId": 234,
+    "hint": "during Tower of Life."
+  },
+  {
+    "regionId": 235,
+    "hint": "during Tower of Life."
+  },
+  {
+    "regionId": 236,
+    "hint": "during Tower of Life."
+  },
+  {
+    "regionId": 237,
+    "hint": "during Tower of Life."
+  },
+  {
+    "regionId": 238,
+    "hint": "during The Great Brain Robbery."
+  },
+  {
+    "regionId": 239,
+    "hint": "on completion of The Great Brain Robbery."
+  },
+  {
+    "regionId": 240,
+    "hint": "at Dorgesh-Kaan."
+  },
+  {
+    "regionId": 241,
+    "hint": "at the Hollows in the Mort Myre Swamp."
+  },
+  {
+    "regionId": 242,
+    "hint": "during the Maze random event."
+  },
+  {
+    "regionId": 243,
+    "hint": "at the Cosmic Altar."
+  },
+  {
+    "regionId": 244,
+    "hint": "to the south of Canifis."
+  },
+  {
+    "regionId": 245,
+    "hint": "at the nature spirit's island in Mort Myre Swamp."
+  },
+  {
+    "regionId": 246,
+    "hint": "at the nature spirit's grotto in Mort Myre Swamp."
+  },
+  {
+    "regionId": 247,
+    "hint": "during the Mime random event."
+  },
+  {
+    "regionId": 248,
+    "hint": "at the Brimhaven Agility Arena."
+  },
+  {
+    "regionId": 249,
+    "hint": "at the Dorgesh-Kaan caves."
+  },
+  {
+    "regionId": 250,
+    "hint": "on completion of What Lies Below."
+  },
+  {
+    "regionId": 251,
+    "hint": "to the south-east of Isafdar."
+  },
+  {
+    "regionId": 252,
+    "hint": "at the exit of the Underground Pass."
+  },
+  {
+    "regionId": 253,
+    "hint": "at the Poison Waste in south Isafdar."
+  },
+  {
+    "regionId": 254,
+    "hint": "at the area around Tyras Camp in Isafdar."
+  },
+  {
+    "regionId": 255,
+    "hint": "at the Elf Camp in Tirannwn."
+  },
+  {
+    "regionId": 256,
+    "hint": "at Arandar, east of Tirannwn."
+  },
+  {
+    "regionId": 257,
+    "hint": "at the troll champion arena."
+  },
+  {
+    "regionId": 258,
+    "hint": "in Trollheim."
+  },
+  {
+    "regionId": 259,
+    "hint": "to the south-east of Prifddinas."
+  },
+  {
+    "regionId": 260,
+    "hint": "at the Kalphite Queen."
+  },
+  {
+    "regionId": 261,
+    "hint": "at the Trollheim cave."
+  },
+  {
+    "regionId": 262,
+    "hint": "at the Law Altar."
+  },
+  {
+    "regionId": 263,
+    "hint": "at the Bandit Camp in the Kharidian Desert."
+  },
+  {
+    "regionId": 264,
+    "hint": "at Eadgar's cave atop Trollheim."
+  },
+  {
+    "regionId": 265,
+    "hint": "at the cave below the Kharazi Jungle."
+  },
+  {
+    "regionId": 266,
+    "hint": "in the smoky well near Pollnivneach."
+  },
+  {
+    "regionId": 267,
+    "hint": "in the desert north of Jaldraocht Pyramid."
+  },
+  {
+    "regionId": 268,
+    "hint": "to the south-west of Prifddinas."
+  },
+  {
+    "regionId": 269,
+    "hint": "at Burthorpe Games Room."
+  },
+  {
+    "regionId": 270,
+    "hint": "to the south of Tyras Camp in Isafdar."
+  },
+  {
+    "regionId": 271,
+    "hint": "in the passage between Iban's Temple and Isafdar."
+  },
+  {
+    "regionId": 272,
+    "hint": "during What Lies Below."
+  },
+  {
+    "regionId": 273,
+    "hint": "in an Easter holiday event (2007 onwards)."
+  },
+  {
+    "regionId": 274,
+    "hint": "during Olaf's Quest."
+  },
+  {
+    "regionId": 275,
+    "hint": "during Another Slice of H.A.M.."
+  },
+  {
+    "regionId": 276,
+    "hint": "during Another Slice of H.A.M.."
+  },
+  {
+    "regionId": 277,
+    "hint": "at the boss area of the Haunted Mine."
+  },
+  {
+    "regionId": 278,
+    "hint": "on the bottom floor of the Haunted Mine."
+  },
+  {
+    "regionId": 279,
+    "hint": "during Another Slice of H.A.M.."
+  },
+  {
+    "regionId": 281,
+    "hint": "during Another Slice of H.A.M.."
+  },
+  {
+    "regionId": 282,
+    "hint": "on the middle floor of the Haunted Mine."
+  },
+  {
+    "regionId": 283,
+    "hint": "during Dream Mentor."
+  },
+  {
+    "regionId": 284,
+    "hint": "on Miscellania."
+  },
+  {
+    "regionId": 285,
+    "hint": "on Etceteria."
+  },
+  {
+    "regionId": 286,
+    "hint": "to the east of Mort'ton."
+  },
+  {
+    "regionId": 287,
+    "hint": "at the shade catacombs below Mort'ton."
+  },
+  {
+    "regionId": 288,
+    "hint": "at the Haunted Woods of Morytania."
+  },
+  {
+    "regionId": 289,
+    "hint": "at Rellekka."
+  },
+  {
+    "regionId": 290,
+    "hint": "to the south of Rellekka."
+  },
+  {
+    "regionId": 291,
+    "hint": "to the east of Rellekka."
+  },
+  {
+    "regionId": 292,
+    "hint": "at the gate to the Ice Path, north of Trollheim."
+  },
+  {
+    "regionId": 293,
+    "hint": "to the south-east of Rellekka."
+  },
+  {
+    "regionId": 294,
+    "hint": "at the Ice Path north of Trollheim."
+  },
+  {
+    "regionId": 295,
+    "hint": "during Fremennik Trials."
+  },
+  {
+    "regionId": 296,
+    "hint": "at the gnome glider hangar."
+  },
+  {
+    "regionId": 298,
+    "hint": "during Dream Mentor."
+  },
+  {
+    "regionId": 299,
+    "hint": "during Dream Mentor."
+  },
+  {
+    "regionId": 300,
+    "hint": "during Dream Mentor."
+  },
+  {
+    "regionId": 301,
+    "hint": "during Dream Mentor."
+  },
+  {
+    "regionId": 302,
+    "hint": "during Dream Mentor."
+  },
+  {
+    "regionId": 303,
+    "hint": "on Ape Atoll."
+  },
+  {
+    "regionId": 304,
+    "hint": "on Crash Island during Monkey Madness."
+  },
+  {
+    "regionId": 305,
+    "hint": "at Marim's main gate."
+  },
+  {
+    "regionId": 306,
+    "hint": "at the southern part of Ape Atoll."
+  },
+  {
+    "regionId": 307,
+    "hint": "on Ape Atoll."
+  },
+  {
+    "regionId": 308,
+    "hint": "during Monkey Madness."
+  },
+  {
+    "regionId": 309,
+    "hint": "at Varrock Museum."
+  },
+  {
+    "regionId": 310,
+    "hint": "at the Dwarven Mine."
+  },
+  {
+    "regionId": 311,
+    "hint": "during the boss fight in Monkey Madness."
+  },
+  {
+    "regionId": 312,
+    "hint": "at the gnome tunnel in Monkey Madness."
+  },
+  {
+    "regionId": 313,
+    "hint": "at Goblin Village."
+  },
+  {
+    "regionId": 314,
+    "hint": "during Castle Wars, fighting for Saradomin."
+  },
+  {
+    "regionId": 316,
+    "hint": "during Fremennik Trials."
+  },
+  {
+    "regionId": 317,
+    "hint": "during Castle Wars."
+  },
+  {
+    "regionId": 318,
+    "hint": "during Castle Wars."
+  },
+  {
+    "regionId": 319,
+    "hint": "at the Myreque area under Mort Myre."
+  },
+  {
+    "regionId": 320,
+    "hint": "at the Lighthouse."
+  },
+  {
+    "regionId": 321,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 322,
+    "hint": "at the dagannoth cave under the Lighthouse."
+  },
+  {
+    "regionId": 323,
+    "hint": "during Underground Pass."
+  },
+  {
+    "regionId": 324,
+    "hint": "on Entrana."
+  },
+  {
+    "regionId": 325,
+    "hint": "at the Dwarven Mine or the Gamers' Grotto."
+  },
+  {
+    "regionId": 326,
+    "hint": "in the south-east of the Wilderness."
+  },
+  {
+    "regionId": 327,
+    "hint": "on the path between Lumbridge and Draynor."
+  },
+  {
+    "regionId": 328,
+    "hint": "at King Lathas's Combat Training Camp."
+  },
+  {
+    "regionId": 329,
+    "hint": "at the Rogues' Castle."
+  },
+  {
+    "regionId": 330,
+    "hint": "at the bank vault west of Varrock."
+  },
+  {
+    "regionId": 331,
+    "hint": "at the Demonic Ruins in the Wilderness."
+  },
+  {
+    "regionId": 332,
+    "hint": "in the Wilderness."
+  },
+  {
+    "regionId": 333,
+    "hint": "at Draynor Manor."
+  },
+  {
+    "regionId": 334,
+    "hint": "at the Pirates' Hideout in the Wilderness."
+  },
+  {
+    "regionId": 335,
+    "hint": "during the Troll Romance quest."
+  },
+  {
+    "regionId": 336,
+    "hint": "at the caves below Crandor."
+  },
+  {
+    "regionId": 337,
+    "hint": "at the Chaos Temple in the Wilderness."
+  },
+  {
+    "regionId": 338,
+    "hint": "at Draynor Manor's cellar."
+  },
+  {
+    "regionId": 339,
+    "hint": "at the Slayer Tower."
+  },
+  {
+    "regionId": 340,
+    "hint": "on the west side of the Fremennik Slayer Dungeon."
+  },
+  {
+    "regionId": 341,
+    "hint": "on the east side of the Fremennik Slayer Dungeon."
+  },
+  {
+    "regionId": 342,
+    "hint": "at the dungeon south-east of Fenkenstrain's Castle."
+  },
+  {
+    "regionId": 343,
+    "hint": "at the H.A.M. cave."
+  },
+  {
+    "regionId": 344,
+    "hint": "at Fenkenstrain's Castle."
+  },
+  {
+    "regionId": 345,
+    "hint": "at the Werewolf Agility Course."
+  },
+  {
+    "regionId": 346,
+    "hint": "at the goblin cave near the Fishing Guild."
+  },
+  {
+    "regionId": 347,
+    "hint": "at the Fishing Platform."
+  },
+  {
+    "regionId": 348,
+    "hint": "beneath the Grand Tree."
+  },
+  {
+    "regionId": 349,
+    "hint": "during Impetuous Impulses."
+  },
+  {
+    "regionId": 351,
+    "hint": "at the town of Pollnivneach."
+  },
+  {
+    "regionId": 352,
+    "hint": "at Jaldraocht, the pyramid visited in Desert Treasure."
+  },
+  {
+    "regionId": 353,
+    "hint": "at the shipwreck on the north coast of Morytania."
+  },
+  {
+    "regionId": 354,
+    "hint": "at the pool of ectoplasm underneath the Ectofuntus."
+  },
+  {
+    "regionId": 355,
+    "hint": "at Port Phasmatys."
+  },
+  {
+    "regionId": 356,
+    "hint": "at the Mountain Camp."
+  },
+  {
+    "regionId": 357,
+    "hint": "during Mountain Daughter."
+  },
+  {
+    "regionId": 358,
+    "hint": "on Dragontooth Island."
+  },
+  {
+    "regionId": 359,
+    "hint": "inside Jaldraocht, the pyramid visited in Desert Treasure."
+  },
+  {
+    "regionId": 361,
+    "hint": "at the dungeon below Draynor Village."
+  },
+  {
+    "regionId": 362,
+    "hint": "at the dragon area of Brimhaven Dungeon."
+  },
+  {
+    "regionId": 363,
+    "hint": "at Brimhaven Dungeon."
+  },
+  {
+    "regionId": 364,
+    "hint": "at Brimhaven Dungeon's entrance."
+  },
+  {
+    "regionId": 365,
+    "hint": "during Dragon Slayer."
+  },
+  {
+    "regionId": 366,
+    "hint": "during Eagles' Peak."
+  },
+  {
+    "regionId": 367,
+    "hint": "while learning barbarian skills."
+  },
+  {
+    "regionId": 369,
+    "hint": "during Between a Rock..."
+  },
+  {
+    "regionId": 370,
+    "hint": "during Between a Rock..."
+  },
+  {
+    "regionId": 371,
+    "hint": "during the Pattern Recognition random event."
+  },
+  {
+    "regionId": 372,
+    "hint": "at Lletya."
+  },
+  {
+    "regionId": 373,
+    "hint": "during Between a Rock..."
+  },
+  {
+    "regionId": 374,
+    "hint": "at the Black Knights' Fortress."
+  },
+  {
+    "regionId": 375,
+    "hint": "at the slave mine under West Ardougne."
+  },
+  {
+    "regionId": 376,
+    "hint": "during Mourning's Ends Part II."
+  },
+  {
+    "regionId": 377,
+    "hint": "at the Ruins of Uzer."
+  },
+  {
+    "regionId": 378,
+    "hint": "during the Golem."
+  },
+  {
+    "regionId": 379,
+    "hint": "during Shadow of the Storm."
+  },
+  {
+    "regionId": 380,
+    "hint": "at the Barrows."
+  },
+  {
+    "regionId": 381,
+    "hint": "beneath the Barrows."
+  },
+  {
+    "regionId": 382,
+    "hint": "during King's Ransom."
+  },
+  {
+    "regionId": 383,
+    "hint": "to the north of (and at) Menaphos."
+  },
+  {
+    "regionId": 384,
+    "hint": "during Icthlarin's Little Helper."
+  },
+  {
+    "regionId": 386,
+    "hint": "in the God Wars Dungeon."
+  },
+  {
+    "regionId": 387,
+    "hint": "to the north of Sophanem."
+  },
+  {
+    "regionId": 388,
+    "hint": "during Icthlarin's Little Helper."
+  },
+  {
+    "regionId": 389,
+    "hint": "at the caves beneath Lumbridge Swamp."
+  },
+  {
+    "regionId": 390,
+    "hint": "at the ogre area south of Castle Wars."
+  },
+  {
+    "regionId": 391,
+    "hint": "in the God Wars Dungeon."
+  },
+  {
+    "regionId": 392,
+    "hint": "at the zogre area."
+  },
+  {
+    "regionId": 393,
+    "hint": "in Damis's Shadow Dungeon."
+  },
+  {
+    "regionId": 394,
+    "hint": "at the zogre Dungeon."
+  },
+  {
+    "regionId": 395,
+    "hint": "on the east side of Keldagrim."
+  },
+  {
+    "regionId": 396,
+    "hint": "on the west side of Keldagrim."
+  },
+  {
+    "regionId": 397,
+    "hint": "during Tears of Guthix."
+  },
+  {
+    "regionId": 398,
+    "hint": "during the Tears of Guthix quest."
+  },
+  {
+    "regionId": 399,
+    "hint": "in the God Wars Dungeon."
+  },
+  {
+    "regionId": 400,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 401,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 402,
+    "hint": "at the Rogues' Den."
+  },
+  {
+    "regionId": 403,
+    "hint": "at the Rogues' Den training area."
+  },
+  {
+    "regionId": 404,
+    "hint": "in the God Wars Dungeon."
+  },
+  {
+    "regionId": 407,
+    "hint": "at the Dorgesh-Kaan mine."
+  },
+  {
+    "regionId": 408,
+    "hint": "in the God Wars Dungeon."
+  },
+  {
+    "regionId": 409,
+    "hint": "during the Frog random event."
+  },
+  {
+    "regionId": 411,
+    "hint": "during the Evil Bob random event."
+  },
+  {
+    "regionId": 412,
+    "hint": "in abyssal space."
+  },
+  {
+    "regionId": 413,
+    "hint": "during the Quiz Master random event."
+  },
+  {
+    "regionId": 414,
+    "hint": "during Path of Glouphrie."
+  },
+  {
+    "regionId": 416,
+    "hint": "during Path of Glouphrie."
+  },
+  {
+    "regionId": 417,
+    "hint": "during Path of Glouphrie."
+  },
+  {
+    "regionId": 418,
+    "hint": "during the Drill Demon random event."
+  },
+  {
+    "regionId": 419,
+    "hint": "during the Freaky Forester random event."
+  },
+  {
+    "regionId": 420,
+    "hint": "at the goblin mines under Lumbridge."
+  },
+  {
+    "regionId": 421,
+    "hint": "during Path of Glouphrie."
+  },
+  {
+    "regionId": 425,
+    "hint": "during Recruitment Drive."
+  },
+  {
+    "regionId": 426,
+    "hint": "during Path of Glouphrie."
+  },
+  {
+    "regionId": 427,
+    "hint": "during Path of Glouphrie."
+  },
+  {
+    "regionId": 428,
+    "hint": "at Ourania Altar."
+  },
+  {
+    "regionId": 429,
+    "hint": "during Back to my Roots."
+  },
+  {
+    "regionId": 432,
+    "hint": "in a Halloween holiday event (2007 onwards)."
+  },
+  {
+    "regionId": 433,
+    "hint": "during Land of the Goblins."
+  },
+  {
+    "regionId": 434,
+    "hint": "during Blast Furnace."
+  },
+  {
+    "regionId": 435,
+    "hint": "in the Wilderness."
+  },
+  {
+    "regionId": 436,
+    "hint": "during Forgettable Tale..."
+  },
+  {
+    "regionId": 437,
+    "hint": "during Land of the Goblins."
+  },
+  {
+    "regionId": 439,
+    "hint": "during Land of the Goblins."
+  },
+  {
+    "regionId": 440,
+    "hint": "during Land of the Goblins."
+  },
+  {
+    "regionId": 441,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 442,
+    "hint": "during Clan Wars."
+  },
+  {
+    "regionId": 443,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 444,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 445,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 447,
+    "hint": "at Nardah."
+  },
+  {
+    "regionId": 448,
+    "hint": "in Waterbirth Island Dungeon."
+  },
+  {
+    "regionId": 449,
+    "hint": "to the south of Red Dragon Isle in the Wilderness."
+  },
+  {
+    "regionId": 450,
+    "hint": "at the Scorpion Pit in the Wilderness."
+  },
+  {
+    "regionId": 451,
+    "hint": "during Dealing with Scabaras."
+  },
+  {
+    "regionId": 452,
+    "hint": "during Dealing with Scabaras."
+  },
+  {
+    "regionId": 453,
+    "hint": "at the Feldip Hunter area."
+  },
+  {
+    "regionId": 454,
+    "hint": "at your player-owned house."
+  },
+  {
+    "regionId": 455,
+    "hint": "during Dealing with Scabaras."
+  },
+  {
+    "regionId": 456,
+    "hint": "during Wolf Whistle."
+  },
+  {
+    "regionId": 457,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 459,
+    "hint": "in the Chaos Tunnels."
+  },
+  {
+    "regionId": 460,
+    "hint": "at the Feldip Hunter area cave."
+  },
+  {
+    "regionId": 461,
+    "hint": "on Waterbirth Island."
+  },
+  {
+    "regionId": 462,
+    "hint": "during the Spirits of Elid."
+  },
+  {
+    "regionId": 463,
+    "hint": "in the TzHaar Fight Pits."
+  },
+  {
+    "regionId": 464,
+    "hint": "at the genie's cave west of Nardah."
+  },
+  {
+    "regionId": 465,
+    "hint": "in the desert north of Nardah."
+  },
+  {
+    "regionId": 466,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 467,
+    "hint": "in the Chaos Tunnels."
+  },
+  {
+    "regionId": 468,
+    "hint": "during As a First Resort..."
+  },
+  {
+    "regionId": 469,
+    "hint": "in TzHaar."
+  },
+  {
+    "regionId": 470,
+    "hint": "during A Tail of Two Cats."
+  },
+  {
+    "regionId": 471,
+    "hint": "at Port Phasmatys brewery."
+  },
+  {
+    "regionId": 472,
+    "hint": "during As a First Resort..."
+  },
+  {
+    "regionId": 473,
+    "hint": "in the TzHaar Fight Caves."
+  },
+  {
+    "regionId": 474,
+    "hint": "during As a First Resort..."
+  },
+  {
+    "regionId": 475,
+    "hint": "to the north of the Lava Maze in the Wilderness."
+  },
+  {
+    "regionId": 476,
+    "hint": "in the Graveyard of Shadows in the Wilderness."
+  },
+  {
+    "regionId": 477,
+    "hint": "during As a First Resort..."
+  },
+  {
+    "regionId": 478,
+    "hint": "during the Hazeel Cult."
+  },
+  {
+    "regionId": 479,
+    "hint": "in the jungle of north-east Karamja."
+  },
+  {
+    "regionId": 481,
+    "hint": "at the Ardougne Rat Pits."
+  },
+  {
+    "regionId": 482,
+    "hint": "at the Varrock Rat Pits."
+  },
+  {
+    "regionId": 483,
+    "hint": "to the north of Tai Bwo Wannai Village."
+  },
+  {
+    "regionId": 485,
+    "hint": "during Rat Catchers."
+  },
+  {
+    "regionId": 487,
+    "hint": "during Vinesweeper."
+  },
+  {
+    "regionId": 488,
+    "hint": "in the Chaos Tunnels."
+  },
+  {
+    "regionId": 489,
+    "hint": "at the Keldagrim Rat Pits."
+  },
+  {
+    "regionId": 490,
+    "hint": "at Port Sarim Rat Pits."
+  },
+  {
+    "regionId": 491,
+    "hint": "during Rat Catchers."
+  },
+  {
+    "regionId": 492,
+    "hint": "at the Stronghold of Player Safety."
+  },
+  {
+    "regionId": 493,
+    "hint": "at the Stronghold of Player Safety."
+  },
+  {
+    "regionId": 494,
+    "hint": "at the Stronghold of Player Safety."
+  },
+  {
+    "regionId": 496,
+    "hint": "at the Grand Exchange."
+  },
+  {
+    "regionId": 497,
+    "hint": "on Braindeath Island."
+  },
+  {
+    "regionId": 498,
+    "hint": "on Braindeath Island's mountain."
+  },
+  {
+    "regionId": 499,
+    "hint": "during Kennith's Concerns."
+  },
+  {
+    "regionId": 500,
+    "hint": "during Kennith's Concerns."
+  },
+  {
+    "regionId": 501,
+    "hint": "at Burgh de Rott."
+  },
+  {
+    "regionId": 502,
+    "hint": "in an Easter holiday event (2008 onwards)."
+  },
+  {
+    "regionId": 503,
+    "hint": "in the Fist of Guthix waiting room."
+  },
+  {
+    "regionId": 504,
+    "hint": "during In Aid of the Myreque."
+  },
+  {
+    "regionId": 505,
+    "hint": "at the Agility Pyramid."
+  },
+  {
+    "regionId": 506,
+    "hint": "during Royal Trouble."
+  },
+  {
+    "regionId": 507,
+    "hint": "during Fist of Guthix."
+  },
+  {
+    "regionId": 508,
+    "hint": "during Royal Trouble."
+  },
+  {
+    "regionId": 509,
+    "hint": "during Royal Trouble."
+  },
+  {
+    "regionId": 510,
+    "hint": "at the sea snake cave in Royal Trouble."
+  },
+  {
+    "regionId": 511,
+    "hint": "during the Prison Pete random event."
+  },
+  {
+    "regionId": 512,
+    "hint": "at the Blood Altar."
+  },
+  {
+    "regionId": 513,
+    "hint": "during Legacy of Seergaze."
+  },
+  {
+    "regionId": 514,
+    "hint": "during Legacy of Seergaze."
+  },
+  {
+    "regionId": 515,
+    "hint": "at Mudskipper Point."
+  },
+  {
+    "regionId": 516,
+    "hint": "during Legacy of Seergaze."
+  },
+  {
+    "regionId": 517,
+    "hint": "in Waterbirth Island Dungeon."
+  },
+  {
+    "regionId": 518,
+    "hint": "during Legacy of Seergaze."
+  },
+  {
+    "regionId": 519,
+    "hint": "during Shadow of the Storm."
+  },
+  {
+    "regionId": 520,
+    "hint": "during Shadow of the Storm."
+  },
+  {
+    "regionId": 521,
+    "hint": "during Legacy of Seergaze."
+  },
+  {
+    "regionId": 522,
+    "hint": "during the Perils of Ice Mountain."
+  },
+  {
+    "regionId": 523,
+    "hint": "during the Perils of Ice Mountain."
+  },
+  {
+    "regionId": 524,
+    "hint": "in Waterbirth Island Dungeon."
+  },
+  {
+    "regionId": 525,
+    "hint": "at the Champion's Challenge underground area."
+  },
+  {
+    "regionId": 526,
+    "hint": "during TokTz-Ket-Dill."
+  },
+  {
+    "regionId": 527,
+    "hint": "during TokTz-Ket-Dill."
+  },
+  {
+    "regionId": 528,
+    "hint": "at the Champion's Challenge arena."
+  },
+  {
+    "regionId": 529,
+    "hint": "at the Asgarnian Ice Dungeon's wyvern area."
+  },
+  {
+    "regionId": 530,
+    "hint": "at The Other Inn on Mos Le'Harmless."
+  },
+  {
+    "regionId": 531,
+    "hint": "during TokTz-Ket-Dill."
+  },
+  {
+    "regionId": 532,
+    "hint": "at Diango's Christmas workshop."
+  },
+  {
+    "regionId": 533,
+    "hint": "at the Mage Training Arena's Creature Graveyard."
+  },
+  {
+    "regionId": 534,
+    "hint": "at the Mage Training Arena's Telekinetic Theatre."
+  },
+  {
+    "regionId": 535,
+    "hint": "at the Mage Training Arena's Alchemists' Playground."
+  },
+  {
+    "regionId": 536,
+    "hint": "during Smoking Kills."
+  },
+  {
+    "regionId": 537,
+    "hint": "at the Vault of War in the Stronghold of Security."
+  },
+  {
+    "regionId": 539,
+    "hint": "during Smoking Kills."
+  },
+  {
+    "regionId": 540,
+    "hint": "during Smoking Kills."
+  },
+  {
+    "regionId": 541,
+    "hint": "at the Mage Training Arena's Enchanting Chamber."
+  },
+  {
+    "regionId": 542,
+    "hint": "during Enakhra's Lament."
+  },
+  {
+    "regionId": 543,
+    "hint": "during Smoking Kills."
+  },
+  {
+    "regionId": 544,
+    "hint": "during Swan Song."
+  },
+  {
+    "regionId": 545,
+    "hint": "during Cabin Fever."
+  },
+  {
+    "regionId": 546,
+    "hint": "during Swan Song."
+  },
+  {
+    "regionId": 547,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 548,
+    "hint": "at the Trollweiss and Rellekka Hunter area."
+  },
+  {
+    "regionId": 549,
+    "hint": "during Rocking Out."
+  },
+  {
+    "regionId": 550,
+    "hint": "during Rocking Out."
+  },
+  {
+    "regionId": 551,
+    "hint": "during Rocking Out."
+  },
+  {
+    "regionId": 552,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 553,
+    "hint": "during Spirit of Summer."
+  },
+  {
+    "regionId": 554,
+    "hint": "during Spirit of Summer."
+  },
+  {
+    "regionId": 555,
+    "hint": "during Meeting History."
+  },
+  {
+    "regionId": 558,
+    "hint": "at the Catacomb of Famine in the Stronghold of Security."
+  },
+  {
+    "regionId": 559,
+    "hint": "at the Pit of Pestilence in the Stronghold of Security."
+  },
+  {
+    "regionId": 560,
+    "hint": "at the Sepulchre of Death in the Stronghold of Security."
+  },
+  {
+    "regionId": 561,
+    "hint": "at the Runecrafting Guild."
+  },
+  {
+    "regionId": 562,
+    "hint": "during the Circus."
+  },
+  {
+    "regionId": 563,
+    "hint": "during Summer's End."
+  },
+  {
+    "regionId": 564,
+    "hint": "during Summer's End."
+  },
+  {
+    "regionId": 565,
+    "hint": "at the anger room of Tolna's rift."
+  },
+  {
+    "regionId": 566,
+    "hint": "during Defender of Varrock."
+  },
+  {
+    "regionId": 567,
+    "hint": "during Defender of Varrock."
+  },
+  {
+    "regionId": 568,
+    "hint": "at the killerwatt plane."
+  },
+  {
+    "regionId": 569,
+    "hint": "during Defender of Varrock."
+  },
+  {
+    "regionId": 570,
+    "hint": "during Defender of Varrock."
+  },
+  {
+    "regionId": 571,
+    "hint": "in a Halloween holiday event (2008 onwards)."
+  },
+  {
+    "regionId": 572,
+    "hint": "during the Swept Away Quest."
+  },
+  {
+    "regionId": 573,
+    "hint": "at Falador Mole Lair."
+  },
+  {
+    "regionId": 575,
+    "hint": "at the Evil Chicken's lair."
+  },
+  {
+    "regionId": 576,
+    "hint": "during Recipe for Disaster."
+  },
+  {
+    "regionId": 577,
+    "hint": "during Recipe for Disaster."
+  },
+  {
+    "regionId": 578,
+    "hint": "during Stealing Creation."
+  },
+  {
+    "regionId": 579,
+    "hint": "during the While Guthix Sleeps Quest."
+  },
+  {
+    "regionId": 581,
+    "hint": "during the While Guthix Sleeps Quest."
+  },
+  {
+    "regionId": 582,
+    "hint": "in the Artisan Workshop in Falador."
+  },
+  {
+    "regionId": 583,
+    "hint": "during Recipe for Disaster."
+  },
+  {
+    "regionId": 584,
+    "hint": "during the While Guthix Sleeps Quest."
+  },
+  {
+    "regionId": 585,
+    "hint": "during the While Guthix Sleeps Quest."
+  },
+  {
+    "regionId": 586,
+    "hint": "in the north-east corner of the Wilderness."
+  },
+  {
+    "regionId": 587,
+    "hint": "at the Pest Control landing area."
+  },
+  {
+    "regionId": 588,
+    "hint": "during Pest Control."
+  },
+  {
+    "regionId": 589,
+    "hint": "during the While Guthix Sleeps Quest."
+  },
+  {
+    "regionId": 591,
+    "hint": "during Pyramid Plunder."
+  },
+  {
+    "regionId": 592,
+    "hint": "during Myths of the White Lands."
+  },
+  {
+    "regionId": 593,
+    "hint": "in a Christmas holiday event (2008 onwards)."
+  },
+  {
+    "regionId": 594,
+    "hint": "at the hopelessness room of Tolna's rift area."
+  },
+  {
+    "regionId": 595,
+    "hint": "during Myths of the White Lands."
+  },
+  {
+    "regionId": 596,
+    "hint": "during the In Pyre Need quest."
+  },
+  {
+    "regionId": 597,
+    "hint": "during Soul Wars."
+  },
+  {
+    "regionId": 598,
+    "hint": "during Soul Wars."
+  },
+  {
+    "regionId": 599,
+    "hint": "during the Sandwich Lady Random Event."
+  },
+  {
+    "regionId": 600,
+    "hint": "at the confusion room of Tolna's rift area."
+  },
+  {
+    "regionId": 601,
+    "hint": "during Evil Tree."
+  },
+  {
+    "regionId": 602,
+    "hint": "at the fear room of Tolna's rift area."
+  },
+  {
+    "regionId": 603,
+    "hint": "in an Easter holiday event (2006 onwards)."
+  },
+  {
+    "regionId": 604,
+    "hint": "during Barbarian Assault."
+  },
+  {
+    "regionId": 605,
+    "hint": "during The Chosen Commander."
+  },
+  {
+    "regionId": 606,
+    "hint": "during Contact!"
+  },
+  {
+    "regionId": 608,
+    "hint": "during The Chosen Commander."
+  },
+  {
+    "regionId": 609,
+    "hint": "during The Chosen Commander."
+  },
+  {
+    "regionId": 610,
+    "hint": "at Trouble Brewing's distillery."
+  },
+  {
+    "regionId": 611,
+    "hint": "during Trouble Brewing."
+  },
+  {
+    "regionId": 612,
+    "hint": "during the Evil Twin random event."
+  },
+  {
+    "regionId": 613,
+    "hint": "during The Chosen Commander."
+  },
+  {
+    "regionId": 614,
+    "hint": "during the Pinball random event."
+  },
+  {
+    "regionId": 615,
+    "hint": "during Contact!"
+  },
+  {
+    "regionId": 616,
+    "hint": "during Contact!"
+  },
+  {
+    "regionId": 617,
+    "hint": "during The Chosen Commander."
+  },
+  {
+    "regionId": 618,
+    "hint": "during The Chosen Commander."
+  },
+  {
+    "regionId": 620,
+    "hint": "during Eagles' Peak."
+  },
+  {
+    "regionId": 621,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 622,
+    "hint": "during your dream in Lunar Diplomacy."
+  },
+  {
+    "regionId": 623,
+    "hint": "during your dream in Lunar Diplomacy."
+  },
+  {
+    "regionId": 624,
+    "hint": "during The Chosen Commander."
+  },
+  {
+    "regionId": 625,
+    "hint": "at Lunar Isle."
+  },
+  {
+    "regionId": 626,
+    "hint": "in the dungeon beneath Lunar Isle."
+  },
+  {
+    "regionId": 627,
+    "hint": "on the east coast of Lunar Isle."
+  },
+  {
+    "regionId": 630,
+    "hint": "during Lunar Diplomacy."
+  },
+  {
+    "regionId": 631,
+    "hint": "at the coastal area of Mos Le'Harmless."
+  },
+  {
+    "regionId": 632,
+    "hint": "in the cave horror dungeon beneath Mos Le'Harmless."
+  },
+  {
+    "regionId": 633,
+    "hint": "at the Falconer Area, north-east of Eagles' Peak."
+  },
+  {
+    "regionId": 634,
+    "hint": "at the Warriors' Guild."
+  },
+  {
+    "regionId": 638,
+    "hint": "during Death to the Dorgeshuun."
+  },
+  {
+    "regionId": 639,
+    "hint": "during Glorious Memories."
+  },
+  {
+    "regionId": 640,
+    "hint": "during Death to the Dorgeshuun."
+  },
+  {
+    "regionId": 641,
+    "hint": "during Glorious Memories."
+  },
+  {
+    "regionId": 642,
+    "hint": "in an Easter holiday event (2009 onwards)."
+  },
+  {
+    "regionId": 643,
+    "hint": "during the Darkness of Hallowvale."
+  },
+  {
+    "regionId": 644,
+    "hint": "in an Easter holiday event (2009 onwards)."
+  },
+  {
+    "regionId": 645,
+    "hint": "during The Tale of the Muspah."
+  },
+  {
+    "regionId": 646,
+    "hint": "during the Darkness of Hallowvale."
+  },
+  {
+    "regionId": 647,
+    "hint": "during The Tale of the Muspah."
+  },
+  {
+    "regionId": 648,
+    "hint": "during Missing My Mummy."
+  },
+  {
+    "regionId": 649,
+    "hint": "during Missing My Mummy."
+  },
+  {
+    "regionId": 650,
+    "hint": "at the Iceberg Hunter area."
+  },
+  {
+    "regionId": 651,
+    "hint": "during Hunt for Red Raktuber."
+  },
+  {
+    "regionId": 652,
+    "hint": "during Hunt for Red Raktuber."
+  },
+  {
+    "regionId": 655,
+    "hint": "during Hunt for Red Raktuber."
+  },
+  {
+    "regionId": 666,
+    "hint": "at the pyramid south of the Ruins of Uzer."
+  },
+  {
+    "regionId": 667,
+    "hint": "at the Wilderness volcano."
+  },
+  {
+    "regionId": 668,
+    "hint": "during Mobilising Armies."
+  },
+  {
+    "regionId": 669,
+    "hint": "at the Command Centre of Mobilising Armies."
+  },
+  {
+    "regionId": 670,
+    "hint": "during Mobilising Armies."
+  },
+  {
+    "regionId": 672,
+    "hint": "during The Curse of Arrav."
+  },
+  {
+    "regionId": 673,
+    "hint": "during The Curse of Arrav."
+  },
+  {
+    "regionId": 674,
+    "hint": "when confronting the Odd Old Man's 'Exhibit'."
+  },
+  {
+    "regionId": 677,
+    "hint": "during Forgiveness of a Chaos Dwarf."
+  },
+  {
+    "regionId": 678,
+    "hint": "in the Living Rock Caverns."
+  },
+  {
+    "regionId": 679,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 680,
+    "hint": "during Within the Light."
+  },
+  {
+    "regionId": 681,
+    "hint": "in a Halloween holiday event (2009 onwards)."
+  },
+  {
+    "regionId": 682,
+    "hint": "in a Halloween holiday event (2009 onwards)."
+  },
+  {
+    "regionId": 683,
+    "hint": "in a Halloween holiday event (2009 onwards)."
+  },
+  {
+    "regionId": 684,
+    "hint": "on the upper floors of Lumbridge Castle."
+  },
+  {
+    "regionId": 693,
+    "hint": "during The Temple at Senntisten Quest."
+  },
+  {
+    "regionId": 699,
+    "hint": "during The Temple at Senntisten Quest."
+  },
+  {
+    "regionId": 710,
+    "hint": "in Kuradal's Slayer Dungeon."
+  },
+  {
+    "regionId": 713,
+    "hint": "during Blood Runs Deep."
+  },
+  {
+    "regionId": 714,
+    "hint": "during Blood Runs Deep."
+  },
+  {
+    "regionId": 715,
+    "hint": "during Blood Runs Deep."
+  },
+  {
+    "regionId": 716,
+    "hint": "in The Blue Moon Inn, Varrock."
+  },
+  {
+    "regionId": 717,
+    "hint": "during Vampyre Slayer."
+  },
+  {
+    "regionId": 718,
+    "hint": "in The Rising Sun Inn, Falador."
+  },
+  {
+    "regionId": 719,
+    "hint": "in The Rusty Anchor Inn, Port Sarim."
+  },
+  {
+    "regionId": 720,
+    "hint": "in The Boar's Head Tavern, northeast of Varrock."
+  },
+  {
+    "regionId": 721,
+    "hint": "in The Dancing Donkey Inn, Varrock."
+  },
+  {
+    "regionId": 722,
+    "hint": "during a Christmas holiday event (2009 onwards)."
+  },
+  {
+    "regionId": 724,
+    "hint": "during a Christmas holiday event (2009 onwards)."
+  },
+  {
+    "regionId": 725,
+    "hint": "during a Christmas holiday event (2009 onwards)."
+  },
+  {
+    "regionId": 727,
+    "hint": "during Nomad's Requiem."
+  },
+  {
+    "regionId": 728,
+    "hint": "during Nomad's Requiem."
+  },
+  {
+    "regionId": 729,
+    "hint": "in the basement of the Mage Training Arena."
+  },
+  {
+    "regionId": 730,
+    "hint": "during the Familiarisation event."
+  },
+  {
+    "regionId": 731,
+    "hint": "in the Lumbridge Catacombs."
+  },
+  {
+    "regionId": 732,
+    "hint": "during The Blood Pact."
+  },
+  {
+    "regionId": 734,
+    "hint": "during a Fish Flingers competition."
+  },
+  {
+    "regionId": 735,
+    "hint": "during a Fish Flingers competition."
+  },
+  {
+    "regionId": 736,
+    "hint": "during a Fish Flingers competition."
+  },
+  {
+    "regionId": 737,
+    "hint": "in an Easter holiday event (2010 onwards)."
+  },
+  {
+    "regionId": 738,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 739,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 741,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 742,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 743,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 746,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 747,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 748,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 753,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 756,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 757,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 759,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 761,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 767,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 768,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 769,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 771,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 775,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 779,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 780,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 781,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 782,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 783,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 784,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 785,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 786,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 787,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 790,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 794,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 799,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 801,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 802,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 803,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 808,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 810,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 811,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 815,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 816,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 817,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 818,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 819,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 820,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 824,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 827,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 831,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 832,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 833,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 834,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 837,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 838,
+    "hint": "in the Thieves' Guild."
+  },
+  {
+    "regionId": 839,
+    "hint": "in the Thieves' Guild."
+  },
+  {
+    "regionId": 840,
+    "hint": "in the Thieves' Guild."
+  },
+  {
+    "regionId": 842,
+    "hint": "in the Thieves' Guild."
+  },
+  {
+    "regionId": 843,
+    "hint": "during Fairy Tale Part III."
+  },
+  {
+    "regionId": 844,
+    "hint": "during Elemental Workshop III"
+  },
+  {
+    "regionId": 845,
+    "hint": "during Castle Wars, fighting for Zamorak."
+  },
+  {
+    "regionId": 846,
+    "hint": "during a court case."
+  },
+  {
+    "regionId": 847,
+    "hint": "during Quiet Before the Swarm."
+  },
+  {
+    "regionId": 848,
+    "hint": "during Quiet Before the Swarm."
+  },
+  {
+    "regionId": 849,
+    "hint": "during Quiet Before the Swarm."
+  },
+  {
+    "regionId": 851,
+    "hint": "during Love Story."
+  },
+  {
+    "regionId": 854,
+    "hint": "during Love Story."
+  },
+  {
+    "regionId": 855,
+    "hint": "during Love Story."
+  },
+  {
+    "regionId": 856,
+    "hint": "during A Void Dance."
+  },
+  {
+    "regionId": 857,
+    "hint": "during A Void Dance."
+  },
+  {
+    "regionId": 858,
+    "hint": "during A Void Dance."
+  },
+  {
+    "regionId": 859,
+    "hint": "automatically."
+  },
+  {
+    "regionId": 860,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 864,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 865,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 870,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 872,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 873,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 876,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 877,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 880,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 882,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 885,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 886,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 889,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 891,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 892,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 893,
+    "hint": "during a Conquest battle."
+  },
+  {
+    "regionId": 895,
+    "hint": "in the Conquest lobby."
+  },
+  {
+    "regionId": 896,
+    "hint": "during Gunnar's Ground."
+  },
+  {
+    "regionId": 899,
+    "hint": "during The Void Stares Back."
+  },
+  {
+    "regionId": 900,
+    "hint": "during The Void Stares Back."
+  },
+  {
+    "regionId": 902,
+    "hint": "during The Void Stares Back."
+  },
+  {
+    "regionId": 903,
+    "hint": "in a Halloween holiday event (2010 onwards)."
+  },
+  {
+    "regionId": 904,
+    "hint": "during The Void Stares Back."
+  },
+  {
+    "regionId": 905,
+    "hint": "during The Void Stares Back."
+  },
+  {
+    "regionId": 906,
+    "hint": "during The Void Stares Back."
+  },
+  {
+    "regionId": 907,
+    "hint": "in a Halloween holiday event (2010 onwards)."
+  },
+  {
+    "regionId": 911,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 913,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 914,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 916,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 917,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 920,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 922,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 924,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 925,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 927,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 930,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 936,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 937,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 938,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 939,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 940,
+    "hint": "during Dungeoneering."
+  },
+  {
+    "regionId": 941,
+    "hint": "by completing 350 Tasks."
+  },
+  {
+    "regionId": 944,
+    "hint": "during Do No Evil."
+  },
+  {
+    "regionId": 951,
+    "hint": "in a Christmas holiday event (2010 onwards)."
+  },
+  {
+    "regionId": 953,
+    "hint": "in a Christmas holiday event (2010 onwards)."
+  },
+  {
+    "regionId": 954,
+    "hint": "during King of the Dwarves."
+  },
+  {
+    "regionId": 955,
+    "hint": "during King of the Dwarves."
+  },
+  {
+    "regionId": 956,
+    "hint": "during King of the Dwarves."
+  },
+  {
+    "regionId": 957,
+    "hint": "during King of the Dwarves."
+  },
+  {
+    "regionId": 958,
+    "hint": "during King of the Dwarves."
+  },
+  {
+    "regionId": 959,
+    "hint": "during King of the Dwarves."
+  },
+  {
+    "regionId": 960,
+    "hint": "in the God Wars Dungeon."
+  },
+  {
+    "regionId": 961,
+    "hint": "during Prisoner of Glouphrie."
+  },
+  {
+    "regionId": 962,
+    "hint": "during Prisoner of Glouphrie."
+  },
+  {
+    "regionId": 963,
+    "hint": "during Elemental Workshop 4"
+  },
+  {
+    "regionId": 964,
+    "hint": "during Recipe for Disaster."
+  },
+  {
+    "regionId": 965,
+    "hint": "during A Clockwork Syringe."
+  },
+  {
+    "regionId": 966,
+    "hint": "during an Easter holiday event (2011 onwards)."
+  },
+  {
+    "regionId": 967,
+    "hint": "during an Easter holiday event (2011 onwards)."
+  },
+  {
+    "regionId": 968,
+    "hint": "during Deadliest Catch."
+  },
+  {
+    "regionId": 969,
+    "hint": "during Deadliest Catch."
+  },
+  {
+    "regionId": 971,
+    "hint": "during a Troll Invasion."
+  },
+  {
+    "regionId": 972,
+    "hint": "on entering Kethsi."
+  },
+  {
+    "regionId": 973,
+    "hint": "during Salt in the Wound."
+  },
+  {
+    "regionId": 975,
+    "hint": "in the Jadinko Lair."
+  },
+  {
+    "regionId": 976,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 978,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 979,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 982,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 983,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 984,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 985,
+    "hint": "on entering a Clan Citadel."
+  },
+  {
+    "regionId": 987,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 988,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 989,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 990,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 992,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 993,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 994,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 995,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 996,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 997,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 998,
+    "hint": "in a Clan Citadel."
+  },
+  {
+    "regionId": 1000,
+    "hint": "during Branches of Darkmeyer."
+  },
+  {
+    "regionId": 1001,
+    "hint": "during Branches of Darkmeyer."
+  },
+  {
+    "regionId": 1003,
+    "hint": "during Branches of Darkmeyer."
+  },
+  {
+    "regionId": 1004,
+    "hint": "during Branches of Darkmeyer."
+  },
+  {
+    "regionId": 1008,
+    "hint": "during Ritual of the Mahjarrat."
+  }
+]

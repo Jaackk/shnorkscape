@@ -1,0 +1,71 @@
+{
+  "date": "2026-09-12",
+  "project": "C:\\Users\\developer\\Desktop\\950RevTest",
+  "unit": {
+    "discovered": 1266,
+    "passed": 1264,
+    "skipped": 2,
+    "failures": 0,
+    "errors": 0
+  },
+  "cacheAcceptances": {
+    "equipment": {
+      "frames": 227
+    },
+    "toolbelt": {
+      "checks": 58
+    },
+    "makeX": {
+      "ticks": 102,
+      "frames": 597
+    },
+    "forge": {
+      "smithingPaths": 702,
+      "smeltingPaths": 12,
+      "frames": 952
+    },
+    "bank": {
+      "actions": 80,
+      "ticks": 62,
+      "frames": 1448
+    },
+    "melee": {
+      "ticks": 449,
+      "frames": 1531
+    },
+    "productionThirdPass": {
+      "ticks": 613,
+      "frames": 1285,
+      "isolated": false
+    },
+    "invention": {
+      "ticks": 407,
+      "frames": 769,
+      "isolated": false
+    }
+  },
+  "bridgeChecks": 19,
+  "cachePreflight": "passed",
+  "saveMigration": "original x bytes unchanged; disposable-copy migration, all sections preserved",
+  "backup": "implementation-backup/toolbelt-production-ui/before-deploy-20260912-125009",
+  "clientVisual": "Prior native rendering confirmed; post-final-deployment user testing pending",
+  "limitations": [
+    "Metal-bank storage not implemented; station actions consume backpack materials",
+    "Unmapped and mixed recipe contexts retain semantic dialogue fallback",
+    "Special toolbelt unlock consumers and unported tool action profiles remain unavailable"
+  ],
+  "engineSha256": "a66001ae285d7a51197cfabd834ee1980286e3e758200cf897daf1f5ad200e82",
+  "serverPid": 14032,
+  "clientPid": 22684,
+  "liveChecks": {
+    "toolbelt": "Native footer4353, tool grid, stored pickaxe description and close visually confirmed",
+    "fletching": "Native grid/requirements/quantity visually confirmed. Make initially failed due overwritten pause bit; corrected source pending deployment/recheck.",
+    "smelting": "Actual Lumbridge furnace113261 opens native37; bronze selection and missing-material Begin Project response confirmed",
+    "smithing": "Actual anvil113258 opens native37; product selection confirmed. Initial refresh and station-varp fixes pending deployment.",
+    "testMutations": "No test items granted, no recipes completed. Character walked from banker to Lumbridge anvil."
+  },
+  "deploymentStatus": "Final live-found corrections deployed and full-content server/client relaunched; user testing pending",
+  "latestSourceBuild": "test,jar,writeRuntimeClasspath passed; same engine hash deployed",
+  "relaunchBackup": "implementation-backup/toolbelt-production-ui/before-relaunch-20260912-133138",
+  "clarification": "User reported ChatGPT application crash, not RuneScape game crash."
+}

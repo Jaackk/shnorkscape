@@ -1,0 +1,108 @@
+{
+  "date": "2026-09-10",
+  "milestone": "NPC-independent basic950 melee",
+  "runtimeJarSha256": "7f008a0ca7d52e1a56ed23d241ecea086bc3c605babb279b9b56785d37499632",
+  "unit": {
+    "tests": 791,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2,
+    "passed": 789
+  },
+  "coverage": {
+    "authoredRows": 2644,
+    "accepted": 1500,
+    "refused": 1144,
+    "acceptedCoverage": {
+      "cacheAttackSpeed": 1481,
+      "authoredAttackSpeed": 19,
+      "cacheAttackBonus": 1340,
+      "neutralAttackBonus": 160,
+      "cacheDefenceBonus": 1470,
+      "neutralDefenceBonus": 30,
+      "multiTile": 489,
+      "omittedAttackAnimation": 990,
+      "omittedBlockAnimation": 1008,
+      "omittedDeathAnimation": 985
+    },
+    "refusalReasons": {
+      "invalid authored combat stats": 121,
+      "invalid cache combat parameter": 7,
+      "missing authored stat row": 85,
+      "no Attack option": 191,
+      "non-melee attack style is not ported": 633,
+      "unverified attack animation binding": 2,
+      "unverified legacy NPC identity": 105
+    }
+  },
+  "coverageReport": "protocol-analysis/generic-npc-combat-coverage-950.json",
+  "meleeAcceptance": {
+    "status": "passed",
+    "ownerThreadTicks": 436,
+    "encryptedFrames": 1368,
+    "log": "logs/generic-melee-acceptance-950.log",
+    "checks": [
+      "chicken, goblin, man, cow and giant-rat full fights/retaliation/death/respawn",
+      "real2x2 creature footprint and contact tiles",
+      "player safe death with retained gear",
+      "approach and actual blockedwall damage refusal"
+    ]
+  },
+  "worldRegression": {
+    "status": "passed",
+    "log": "logs/generic-npc-world-regression-950.log"
+  },
+  "cachePreflight": {
+    "status": "passed",
+    "log": "logs/generic-npc-preflight-950.log"
+  },
+  "launcher": {
+    "kotlinBuild": "passed",
+    "checksPassed": 17,
+    "log": "logs/verify950-generic-npc.log"
+  },
+  "animationSurvey": {
+    "verifiedSequences": 870,
+    "authoredSequences": 882,
+    "omittedSequences": 12,
+    "pythonRegressionTestsPassed": 7,
+    "report": "protocol-analysis/npc-combat-animation-survey-950.json"
+  },
+  "live": {
+    "status": "awaiting generic Man/spider check",
+    "previousBasicCombat": "user confirmed automatic combat, good animations, red sword damage, blue zeros, health bars, safe player recovery and goblin respawn afterabout40seconds",
+    "serverEvidence": "Fresh authenticated client targeted NPC58/id7875 (Man); server log records repeated damage/retaliation, player defeat/recovery, Man death and respawn after70ticks without a melee failure. Client animation/visual confirmation remains pending.",
+    "serverLog": "logs/server.out.log"
+  },
+  "backup": "implementation-backup/2026-09-10-generic-npc-combat",
+  "runtime": {
+    "server": {
+      "ProcessId": 18304,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-10T22:13:46.2504290Z",
+      "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.1.8-hotspot\\bin\\java.exe",
+      "ClassPath": "C:\\Users\\developer\\Desktop\\950RevTest\\patches\\classes;C:\\Users\\developer\\Desktop\\950RevTest\\OpenNXT\\runtime\\lib\\*"
+    },
+    "client": {
+      "ProcessId": 26644,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-10T22:13:47.7703990Z",
+      "ExecutablePath": "C:\\Users\\developer\\Desktop\\950RevTest\\client\\rs2client-vulkan.exe"
+    },
+    "launchFlags": "-Ataraxia -Collision -Vulkan -LumbridgeNpcs -DevTools"
+  },
+  "limits": [
+    "This is generic melee eligibility, not everyNPC or full910 parity",
+    "HP, skilllevels, exactmaxhit and respawn are authored serverdata, not decodedcachefields",
+    "990 eligible profiles explicitly lack attackanimations and fight without NPCswinganimation",
+    "Positive changed attackbindings remain refused; optional missingblock/deathbindings are omitted",
+    "Ranged/magic/custombossmechanics, autoaggression, XP, drops andpickup remain unported",
+    "Spawn scope staysLumbridge12850; profilecoverage doesnotspawn1500NPCs",
+    "Cache/packetchecks do not prove remodeledNPC visualanimation compatibility"
+  ],
+  "userFollowup": {
+    "status": "user reported combat otherwise works; walking clears NPC retaliation",
+    "quote": "if i walk away mid combat there is no aggro. besides that everything seems fine.",
+    "specificManSpiderVisualTest": "not individually identified by user; do not infer further detail"
+  }
+}

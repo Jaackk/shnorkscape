@@ -1,0 +1,43 @@
+{
+  "command": ";;item <id> [quantity]",
+  "quantity_default": 1,
+  "alias": "::item",
+  "scope": "opt-in local950 development commands",
+  "engine_sha256": "0ea101acd8dceb259815a665564ceb243b825f52ecc1e51dd73a78f0351d9079",
+  "tests": {
+    "tests": 934,
+    "skipped": 2,
+    "failures": 0,
+    "errors": 0,
+    "passed": 932
+  },
+  "real_cache_check": "logs/item-command-cache-950.log",
+  "verified_items": {
+    "995": 1000,
+    "1511": 10,
+    "590": 1,
+    "4151": 1,
+    "527": 2
+  },
+  "save_restore": "All five real-cache examples restore through a fresh catalog with correct quantities and noted stackability.",
+  "inventory_policy": "Existing current950 ordinary items within1..65534; unported item actions/equipment remain disabled. Original910 loot identity gate remains unchanged.",
+  "backup": "implementation-backup/2026-09-10-item-command",
+  "launch": {
+    "server": {
+      "ProcessId": 6316,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-10T23:24:19.6717880Z",
+      "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.1.8-hotspot\\bin\\java.exe",
+      "ClassPath": "C:\\Users\\developer\\Desktop\\950RevTest\\patches\\classes;C:\\Users\\developer\\Desktop\\950RevTest\\OpenNXT\\runtime\\lib\\*"
+    },
+    "client": {
+      "ProcessId": 21388,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-10T23:24:21.2085390Z",
+      "ExecutablePath": "C:\\Users\\developer\\Desktop\\950RevTest\\client\\rs2client-vulkan.exe"
+    },
+    "lobby_build": "passed",
+    "launcher_checks": 17,
+    "launcher_log": "logs/verify950-item-command.log"
+  }
+}

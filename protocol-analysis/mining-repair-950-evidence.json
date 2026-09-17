@@ -1,0 +1,42 @@
+{
+  "date": "2026-09-12",
+  "barRoleSelection": "server-owned mining display; exact actual950 art visually inspected; not a claim of retail semantic IDs",
+  "bars": {
+    "7": {
+      "sha256": "2d9003f47e6ae1f8634b8f5db46cc95bc546309c2ccded5ab0c628202e1e4485",
+      "bytes": "02c803c805012c073b96083b95093b960a3b950c3b960d3b950b011800"
+    },
+    "49": {
+      "sha256": "972816b7e85c90fa3cdf7d5057282951ef433e9873353be02b73f6bb7028a7a7",
+      "bytes": "02fa03fa08800085ae07800085af09800085ae0a800085af0c800085ae0d800085af05012c0b012200"
+    }
+  },
+  "sprites": {
+    "15253": "86de025817b8f28f5fc9f6cc01b429f2e1238ba756b5df8bf925b020cbfcb8a3",
+    "15254": "f448ae2084769b58fa37705b50131682ff49e39448b8fa445abbfd984e4aa420",
+    "34222": "db493c1ef3f25080ebba0f7d335608237be2d6a3680332e786edba982ce9b151",
+    "34223": "e18ada43cda68abff39c5c25255a44026d3a676ce03255785ad2b0751d7ebfe6"
+  },
+  "replacedPickaxes": {
+    "1269": 45467,
+    "1273": 45494,
+    "1271": 45521,
+    "1275": 45548
+  },
+  "validation": "PASS: isolated repaired classes, actual950 read-onlycache, 191 original engine ticks, 476 parsed encrypted950 frames; nineteen focused mining/HP/bar tests passed. Fresh full combined build remains root responsibility.",
+  "currentPickaxeSequenceMapping": {
+    "44834": 32618,
+    "45642": 32610,
+    "45154": 32606,
+    "32646": 32614,
+    "46372": 32602,
+    "15259": 32588,
+    "13661": 10222,
+    "45548": 32566,
+    "45521": 32562,
+    "45494": 32558,
+    "45467": 32552,
+    "1267": 32548,
+    "1265": 32540
+  }
+}

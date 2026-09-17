@@ -1,0 +1,268 @@
+{
+  "recordedUtc": "2026-09-12T11:02:28.176746+00:00",
+  "engineSha256": "2545a534ba7327c12e42470a793ea03bfcd6bc405006a4afa45b08b576ed2b8a",
+  "tests": {
+    "tests": 1045,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2
+  },
+  "launcherChecksPassed": 17,
+  "processes": {
+    "server": {
+      "ProcessId": 18644,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-12T11:01:17.0542730Z",
+      "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.1.8-hotspot\\bin\\java.exe",
+      "ClassPath": "C:\\Users\\developer\\Desktop\\950RevTest\\patches\\classes;C:\\Users\\developer\\Desktop\\950RevTest\\OpenNXT\\runtime\\lib\\*"
+    },
+    "client": {
+      "ProcessId": 21352,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-12T11:01:18.5682510Z",
+      "ExecutablePath": "C:\\Users\\developer\\Desktop\\950RevTest\\client\\rs2client-vulkan.exe"
+    }
+  },
+  "backup": "implementation-backup/2026-09-12-skills-batch",
+  "savedCharactersBackedUp": true,
+  "liveStatus": "Saved character x restored into running950 world; new skill visuals await user playtest.",
+  "skillCoverage": {
+    "craftingRecipesAdded": 103,
+    "summoningPouches": 82,
+    "summoningScrollConversions": 79,
+    "runecraftingAltars": 13,
+    "basicAltarGateways": 6,
+    "divinationTiers": 12,
+    "divinationConversionModes": 3,
+    "pickpocketNpcIds": 69,
+    "stallIds": 35,
+    "butterflySpecies": 4,
+    "gnomeCourseObstacles": 7,
+    "naturalGatheringSpawns": 162,
+    "blockedSourceSpawnRowsSkipped": 4
+  },
+  "actualCacheChecks": [
+    {
+      "log": "logs/batch-Native950AgilityAcceptance.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: seven actual950 Gnome obstacles, collision approach, balance/crawl BAS, stair planes, ordered lap XP, cancellation and unlock/run restoration"
+      ]
+    },
+    {
+      "log": "logs/batch-Native950CachePreflight.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS 950 cache preflight: 950 identity table, UI table, settings (including pending controls), dialogue, quantity input, world map, lodestone network and teleport effects, ordinary HP bars, melee hitmarks, animations, starter equipment, Runecrafting, Divination, Thieving, Hunter, Crafting, Summoning and Gnome Agility"
+      ]
+    },
+    {
+      "log": "logs/batch-Native950CraftingRoutingAcceptance.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: encrypted item-use and Craft option, wheel option2, shared furnace pages, obelisk pouch/scroll menus, quantity limits, retained tools, native inventory/XP output and stale-response rejection",
+        "PASS: 264 pinned additional recipes, 144 original engine ticks, 305 decoded encrypted950 frames; no account file, listener or authentication"
+      ]
+    },
+    {
+      "log": "logs/batch-Native950CraftingSummoningAcceptance.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: current950 prerequisites/ingredients override stale910 enum rows; true unstrung symbols and empty light orbs",
+        "PASS: every admitted recipe runs its actual material exchange once, retains tools, awards original Skills XP, and stops at the selected amount",
+        "PASS: no rewards after cancellation, removed station, movement away, missing shards, or insufficient skill; real object-option contracts",
+        "PASS: 103 Crafting and 161 Summoning recipes; 2876 original engine ticks, 3304 decoded native frames, 264 stat updates. No account save, listener, or authentication."
+      ]
+    },
+    {
+      "log": "logs/batch-Native950FishingCookingAcceptance.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: 16 fishing methods, 45 cooking recipes admitted by actual950 assets",
+        "PASS: paired950 Fishing/Cooking assets, originalActionManager catches/consumption/XP, no-tool/bait/level/full-bag checks, cooking full-bag exchange and scene cancellation"
+      ]
+    },
+    {
+      "log": "logs/batch-Native950LodestonesAcceptance.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: all29 cache-pinned950 network destinations have loaded clear arrivals and a walkable exit",
+        "PASS: encrypted1465:34 Home ->1092; close66; Settings/map handoffs and CLOSE_MODAL retain/restore scene1482",
+        "PASS: real950 ground walk and Settings cancel original HomeTeleport before commit, with no delayed teleport",
+        "PASS:1092:8 Bandit Camp -> 3214,2954,0; area 474, original25 ticks, 1 scene rebuild, teleport(-4,-304,0), collision walk-off",
+        "PASS:1092:9 Lunar Isle -> 2088,3911,0; area 474, original25 ticks, 1 scene rebuild, teleport(-1127,957,0), collision walk-off",
+        "PASS:1092:10 Al Kharid -> 3297,3184,0; area 474, original25 ticks, 1 scene rebuild, teleport(1208,-727,0), collision walk-off",
+        "PASS:1092:11 Ardougne -> 2634,3348,0; area 474, original25 ticks, 1 scene rebuild, teleport(-664,164,0), collision walk-off",
+        "PASS:1092:12 Burthorpe -> 2899,3544,0; area 474, original25 ticks, 1 scene rebuild, teleport(264,196,0), collision walk-off",
+        "PASS:1092:13 Catherby -> 2811,3449,0; area 474, original25 ticks, 1 scene rebuild, teleport(-89,-95,0), collision walk-off",
+        "PASS:1092:14 Draynor Village -> 3105,3298,0; area 474, original25 ticks, 1 scene rebuild, teleport(293,-151,0), collision walk-off",
+        "PASS:1092:15 Edgeville -> 3067,3505,0; area 474, original25 ticks, 1 scene rebuild, teleport(-39,207,0), collision walk-off",
+        "PASS:1092:16 Falador -> 2967,3403,0; area 474, original25 ticks, 1 scene rebuild, teleport(-101,-102,0), collision walk-off",
+        "PASS:1092:17 Lumbridge -> 3233,3221,0; area 474, original25 ticks, 1 scene rebuild, teleport(265,-182,0), collision walk-off",
+        "PASS:1092:18 Port Sarim -> 3011,3215,0; area 474, original25 ticks, 1 scene rebuild, teleport(-223,-6,0), collision walk-off",
+        "PASS:1092:19 Seers' Village -> 2689,3482,0; area 474, original25 ticks, 1 scene rebuild, teleport(-323,267,0), collision walk-off",
+        "PASS:1092:20 Taverley -> 2878,3442,0; area 474, original25 ticks, 1 scene rebuild, teleport(188,-40,0), collision walk-off",
+        "PASS:1092:21 Varrock -> 3214,3376,0; area 474, original25 ticks, 1 scene rebuild, teleport(335,-66,0), collision walk-off",
+        "PASS:1092:22 Fort Forinthry -> 3298,3525,0; area 474, original25 ticks, 1 scene rebuild, teleport(83,149,0), collision walk-off",
+        "PASS:1092:23 Menaphos -> 3216,2716,0; area 474, original25 ticks, 1 scene rebuild, teleport(-83,-809,0), collision walk-off",
+        "PASS:1092:24 Anachronia -> 5431,2338,0; area 762, original25 ticks, 1 scene rebuild, teleport(2214,-378,0), collision walk-off",
+        "PASS:1092:25 Yanille -> 2529,3094,0; area 474, original25 ticks, 1 scene rebuild, teleport(-2903,756,0), collision walk-off",
+        "PASS:1092:26 Canifis -> 3517,3515,0; area 474, original25 ticks, 1 scene rebuild, teleport(987,421,0), collision walk-off",
+        "PASS:1092:27 Eagles' Peak -> 2366,3479,0; area 474, original25 ticks, 1 scene rebuild, teleport(-1152,-36,0), collision walk-off",
+        "PASS:1092:28 Fremennik Province -> 2712,3677,0; area 474, original25 ticks, 1 scene rebuild, teleport(345,198,0), collision walk-off",
+        "PASS:1092:29 Karamja -> 2761,3147,0; area 674, original25 ticks, 1 scene rebuild, teleport(48,-530,0), collision walk-off",
+        "PASS:1092:30 Oo'glog -> 2532,2871,0; area 474, original25 ticks, 1 scene rebuild, teleport(-230,-276,0), collision walk-off",
+        "PASS:1092:31 Tirannwn -> 2254,3149,0; area 474, original25 ticks, 1 scene rebuild, teleport(-279,278,0), collision walk-off",
+        "PASS:1092:32 Wilderness Crater -> 3143,3635,0; area 474, original25 ticks, 1 scene rebuild, teleport(888,486,0), collision walk-off",
+        "PASS:1092:33 Ashdale -> 2474,2708,2; area 4, original25 ticks, 1 scene rebuild, teleport(-670,-927,2), collision walk-off",
+        "PASS:1092:34 Prifddinas -> 2208,3360,1; area 474, original25 ticks, 1 scene rebuild, teleport(-267,652,3), collision walk-off",
+        "PASS:1092:35 City of Um -> 1084,1768,1; area 814, original25 ticks, 1 scene rebuild, teleport(-1125,-1592,0), collision walk-off",
+        "PASS:1092:41 Wendlewick -> 3461,1519,0; area 857, original25 ticks, 1 scene rebuild, teleport(2376,-249,3), collision walk-off",
+        "PASS:1092:17 Lumbridge -> 3233,3221,0; area 474, original25 ticks, 1 scene rebuild, teleport(-229,1702,0), collision walk-off",
+        "PASS:1092:17 Lumbridge -> 3233,3221,0; area 474, original25 ticks, 1 scene rebuild, teleport(2149,1453,3), collision walk-off",
+        "PASS: fresh City of Um session returns to mainland area474",
+        "PASS: 31 complete original HomeTeleport journeys including City of Um, Fort Forinthry, Wendlewick and return to Lumbridge",
+        "PASS: 108 encrypted950 actions, 872 original session ticks, 5415 parsed outbound frames; no listener, authentication, account load or save"
+      ]
+    },
+    {
+      "log": "logs/batch-Native950MiningAcceptance.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: rock 113146, running=false, 10 approach ticks -> final movement without action/gauges -> stationary mining -> adjacent restart",
+        "PASS: rock 113148, running=false, 10 approach ticks -> final movement without action/gauges -> stationary mining -> adjacent restart",
+        "PASS: cancellation after final arrival frame, running=false",
+        "PASS: rock 113146, running=true, 5 approach ticks -> final movement without action/gauges -> stationary mining -> adjacent restart",
+        "PASS: rock 113148, running=true, 5 approach ticks -> final movement without action/gauges -> stationary mining -> adjacent restart",
+        "PASS: cancellation after final arrival frame, running=true",
+        "PASS: all 13 current pickaxes, held-tool sequence identities, paired gauge/sprite bindings",
+        "PASS: encrypted Mine -> collision approach -> tool refusal -> Wield -> original action -> two gauges -> cancellation -> copper and XP; core rock remains",
+        "PASS: full-bag and distant-start animation gates",
+        "PASS: full-bag and level gates, distant-start animation refusal, clay yield -> paired empty rock -> timer regrowth -> save capture",
+        "PASS: 273 original engine skill ticks, 1036 parsed encrypted950 frames; no account save, listener or authentication"
+      ]
+    },
+    {
+      "log": "logs/batch-Native950NpcSkillsAcceptance.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: original skill population 166 source rows in 22 regions; 162 clear950 spawns, 4 blocked skips,16 species; unrelated NPCs remain excluded",
+        "PASS: encrypted NPC1 option3 running=false -> 4 approach ticks -> final-frame cancellation -> stationary original action -> callback2 -> inventory/XP frames; NPC_INFO=24",
+        "PASS: encrypted NPC327 option1 running=false -> 4 approach ticks -> final-frame cancellation -> stationary original action -> callback1 -> inventory/XP frames; NPC_INFO=26",
+        "PASS: encrypted NPC327 option3 running=false -> 4 approach ticks -> final-frame cancellation -> stationary original action -> callback2 -> inventory/XP frames; NPC_INFO=26",
+        "PASS: encrypted NPC18150 option1 running=false -> 4 approach ticks -> final-frame cancellation -> stationary original action -> callback1 -> inventory/XP frames; NPC_INFO=23",
+        "PASS: encrypted NPC5085 option1 running=false -> 4 approach ticks -> final-frame cancellation -> stationary original action -> callback1 -> inventory/XP frames; NPC_INFO=58",
+        "PASS: encrypted NPC1 option3 running=true -> 2 approach ticks -> final-frame cancellation -> stationary original action -> callback2 -> inventory/XP frames; NPC_INFO=22",
+        "PASS: encrypted NPC327 option1 running=true -> 2 approach ticks -> final-frame cancellation -> stationary original action -> callback1 -> inventory/XP frames; NPC_INFO=24",
+        "PASS: encrypted NPC327 option3 running=true -> 2 approach ticks -> final-frame cancellation -> stationary original action -> callback2 -> inventory/XP frames; NPC_INFO=24",
+        "PASS: encrypted NPC18150 option1 running=true -> 2 approach ticks -> final-frame cancellation -> stationary original action -> callback1 -> inventory/XP frames; NPC_INFO=21",
+        "PASS: encrypted NPC5085 option1 running=true -> 2 approach ticks -> final-frame cancellation -> stationary original action -> callback1 -> inventory/XP frames; NPC_INFO=56",
+        "PASS: clearing last-world NPC population cancels pending butterfly respawn",
+        "PASS: five NPC menu paths walking/running, client visibility, stationary arrival, controller mapping/veto, final-arrival cancellation, original actions/rewards, butterfly roster/viewport respawn and generation clear; 311 ticks, 1505 encrypted950 frames; no socket or save writes"
+      ]
+    },
+    {
+      "log": "logs/batch-Native950RewardsAcceptance.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: actual950 loot metadata 526 Bones stackable=false",
+        "PASS: actual950 loot metadata 2138 Raw chicken stackable=false",
+        "PASS: actual950 loot metadata 314 Feather stackable=true",
+        "PASS: actual950 loot metadata 995 Coins stackable=true",
+        "PASS: actual950 noted bones527 maps reciprocally to bones526 and stays stackable",
+        "PASS: real Region/FloorItem private/public/latejoin -> quantity -> ordered rebuild -> encrypted Take -> inventory -> both-viewer removal",
+        "PASS: actual950 path to bones at3221,3258 completed authoritative ground pickup",
+        "PASS: cache-pinned1213 XP renderer attaches to1477:668; original CombatDefinitions/Skills award emits four authoritative encrypted UPDATE_STAT frames",
+        "PASS: 78 parsed encrypted950 reward frames; 5 actual collision/path pickup ticks; no disconnected transport"
+      ]
+    },
+    {
+      "log": "logs/batch-Native950RunecraftingDivinationAcceptance-harvest-pause.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: natural wandering wisp stays stationary through native movement ticks for two harvesters; failed starts do not pause; movement cancellation releases only its owner; final stop restores wander; removed NPC leases retire"
+      ]
+    },
+    {
+      "log": "logs/batch-Native950RunecraftingDivinationAcceptance.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: 13 ordinary rune altars; six actual-map altar entrances/exits; 12 Divination tiers; all3 conversion modes; original action/XP; fullbag, overflow, controller, approach, stale target and movement cancellation checks"
+      ]
+    },
+    {
+      "log": "logs/batch-Native950SkillingAcceptance.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: ten actual950 hatchets, ordinary wood/fire logs, tinderbox, ashes, fire and animation cache bindings",
+        "PASS: encryptedbronzehatchet Wield -> originalequipment -> actual950appearance -> encryptedRemove -> backpack",
+        "PASS: encryptedChop -> actual collision approach -> no-tool refusal -> walk cancellation -> original ActionManager logs+XP -> native stump -> original respawn",
+        "PASS: encrypted item-on-item69 ignites logs in both source/target orders without inventory dragging",
+        "PASS: full-bag refusal -> encryptedLight -> one owned log -> step aside -> native fire+XP -> encryptedfireUse -> repeated bonfire logs+XP -> original expiry -> native ashes Take -> save snapshot",
+        "PASS: 412 original engine skill ticks, 952 parsed encrypted950 frames; no account save, listener or authentication"
+      ]
+    },
+    {
+      "log": "logs/batch-Native950SmeltingAcceptance.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: all twelve recipe identities, exact current ore quantities and post-rework ingredients",
+        "PASS: actual furnace collision approach, original ActionManager, cancellation, level/material gates, all12 ore->bar exchanges and XP, replacement cancels work",
+        "PASS: 89 original engine skill ticks, 271 parsed encrypted950 frames; no account save, listener or authentication"
+      ]
+    },
+    {
+      "log": "logs/batch-Native950ThievingHunterAcceptance.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: 69 NPC pickpocket IDs; 35 stall IDs; 4 butterflies; actual menu slots and asset pins",
+        "PASS: original pickpocket Action, ordinary tables and exact950 assets; loot/XP, failure/stun, cancellation, full bag/overflow, stall depletion/restore, butterfly net/jar/level/catch/respawn/release and controller veto"
+      ]
+    },
+    {
+      "log": "logs/batch-Native950WorldAcceptance.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS: Cook command landing3208,3215 and unchanged home3209,3215 have clear950 collision and cardinal approach",
+        "PASS: scoped 950 NPC roster, actual validity verdicts/definitions/region indexes; spawns[regions=25,rows=365,spawned=309,refused=56{missing=19, renamed=6, repurposed=26, unavailableSkillSpawn=4, unverifiable=1},undecodable=0,blockedTiles=53,failures=0]",
+        "PASS: actual regional NPC viewport + player/NPC frames through950 ISAAC transport",
+        "PASS: live-cache effect94 and HP bars share950 mask ordering; queued finalXY publication rebases force exactly once while server remains at its origin",
+        "PASS: native world scheduler -> actual movement -> entity frames ->950 transport commits force endpoint without duplicate movement to its recipient",
+        "PASS: actual-cache full Cook Yes dialogue through native presentation and950 transport closes safely, reopens, preserves progress/location and spawns no legacy instance",
+        "PASS: scoped teardown/re-announcement repopulates once; only verified16-type gathering whitelist outside scope",
+        "PASS: native world scheduler remained healthy; no accounts or network listeners were created"
+      ]
+    },
+    {
+      "log": "logs/batch-Verify950.log",
+      "result": "PASS",
+      "passLines": [
+        "PASS IF_OPENTOP (19 bytes)",
+        "PASS IF_OPENSUB (23 bytes)",
+        "PASS IF_SETHIDE (5 bytes)",
+        "PASS RUNCLIENTSCRIPT mixed arguments (16 bytes)",
+        "PASS RUNCLIENTSCRIPT lobby init (5 bytes)",
+        "PASS REBUILD_NORMAL 950 header (18 bytes)",
+        "PASS REBUILD_NORMAL raw header matches the codec",
+        "PASS PLAYER_INFO 950 appearance mask, length and body bias",
+        "PASS wearpos slot LEB128 vectors",
+        "PASS PLAYER_INFO walk step vectors",
+        "PASS walk request decode vectors",
+        "PASS IF_SETEVENTS backpack (12 bytes)",
+        "PASS IF_SETEVENTS run orb 1465:15 (12 bytes)",
+        "PASS IF_SETEVENTS 950 wire vectors",
+        "PASS interface button decode against live captures",
+        "PASS varbit and varc payload vectors",
+        "PASS collision group key and fail-closed behaviour"
+      ]
+    }
+  ],
+  "remainingScope": [
+    "Summoning familiar spawn/control/combat/storage",
+    "Hunter traps and other methods",
+    "Other Agility courses/advancedcourse",
+    "AdvancedRunecrafting and Divination systems; wisp transformations/depletion",
+    "Thieving guardaggression/specialtargets; stun remainsnonlethal",
+    "Fullforging/metalbank, Farming, Construction, Slayer, Dungeoneering, Invention, Archaeology, Necromancy and remaining specialized skill content"
+  ]
+}

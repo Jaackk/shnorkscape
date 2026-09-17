@@ -1,0 +1,39 @@
+{
+  "recordedUtc": "2026-09-12T11:14:44.4381742Z",
+  "engineSha256": "dc2f7f7b1e13d637240072e9723bdb0a969713b87193b23f0ee00a2acf71e5cd",
+  "tests": {
+    "discovered": 1045,
+    "failures": 0,
+    "skipped": 2,
+    "passed": 1043,
+    "errors": 0
+  },
+  "launcherChecks": 17,
+  "processes": {
+    "client": {
+      "ProcessId": 21472,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-12T11:14:05.784262Z",
+      "ExecutablePath": "C:\\Users\\developer\\Desktop\\950RevTest\\client\\rs2client-vulkan.exe"
+    },
+    "server": {
+      "ProcessId": 17468,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-12T11:14:04.274069Z",
+      "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.1.8-hotspot\\bin\\java.exe",
+      "ClassPath": "C:\\Users\\developer\\Desktop\\950RevTest\\patches\\classes;C:\\Users\\developer\\Desktop\\950RevTest\\OpenNXT\\runtime\\lib\\*"
+    }
+  },
+  "backup": "implementation-backup/2026-09-12-wisp-compass",
+  "compassOriginals": "implementation-backup/2026-09-12-compass-modal-fix",
+  "regressionBefore": "logs/wisp-feedback-before.log (expected duplicate-feedback failure)",
+  "passingLogs": [
+    "logs/wisp-feedback-after.log",
+    "logs/wisp-divination-regression.log",
+    "logs/compass-ui-acceptance.log",
+    "logs/wisp-compass-cache-preflight.log",
+    "logs/wisp-compass-launcher-checks.log"
+  ],
+  "manualStatus": "Awaiting user confirmation of compass retention and improved full-backpack feedback",
+  "playerSaveEdits": false
+}

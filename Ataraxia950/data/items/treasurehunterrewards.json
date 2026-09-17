@@ -1,0 +1,4938 @@
+[
+  {
+    "itemId": 27153,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Extras",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 27154,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Extras",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 27155,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Extras",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 995,
+    "minAmount": 200000000,
+    "maxAmount": 500000000,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 200000000
+  },
+  {
+    "itemId": 27148,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27149,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27150,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27152,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27151,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27626,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27628,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27627,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27629,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27630,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27631,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27633,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27632,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27634,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27635,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 35361,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 35358,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 35360,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 35357,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 35359,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 35366,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 35363,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 35365,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 35362,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 35364,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 37850,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 37847,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 37849,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 37846,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 37848,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 37845,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 37842,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 37844,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 37841,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 37843,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 28145,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cosmetic items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37134,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 37129,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40519,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 37131,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 37130,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 37132,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Agility",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30533,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Agility",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Attack",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30524,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Attack",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Constitution",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30532,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Constitution",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Construction",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30531,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Construction",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Cooking",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30543,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Cooking",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Crafting",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30536,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Crafting",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Defence",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30526,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Defence",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Divination",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30548,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Divination",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Dungeoneering",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30549,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Dungeoneering",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Farming",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30546,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Farming",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Firemaking",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30544,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Firemaking",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Fishing",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30542,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Fishing",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Fletching",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30537,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Fletching",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Herblore",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30534,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Herblore",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Hunter",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30539,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Hunter",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Invention",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 39396,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Invention",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Magic",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30529,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Magic",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Mining",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30540,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Mining",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Prayer",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30528,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Prayer",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Prismatic",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Ranged",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30527,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Ranged",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Runecrafting",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30530,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Runecrafting",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Slayer",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30538,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Slayer",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Smithing",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30541,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Smithing",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Strength",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30525,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Strength",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Summoning",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30547,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Summoning",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Thieving",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30535,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Thieving",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30550,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Woodcutting",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30545,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Woodcutting",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 30506,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Agility",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Agility",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30497,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Attack",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Attack",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30505,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Constitution",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Constitution",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30504,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Construction",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Construction",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30516,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Cooking",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Cooking",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30509,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Crafting",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Crafting",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30499,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Defence",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Defence",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30521,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Divination",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Divination",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30522,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Dungeoneering",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Dungeoneering",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30519,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Farming",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Farming",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30517,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Firemaking",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Firemaking",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30515,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Fishing",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Fishing",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30510,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Fletching",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Fletching",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30507,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Herblore",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Herblore",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30512,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Hunter",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Hunter",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39395,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Invention",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Invention",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30502,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Magic",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Magic",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30513,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Mining",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Mining",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30501,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Prayer",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Prayer",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Prismatic",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30500,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Ranged",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Ranged",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30503,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Runecrafting",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Runecrafting",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30511,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Slayer",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Slayer",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30514,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Smithing",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Smithing",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30498,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Strength",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Strength",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30520,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Summoning",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Summoning",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30508,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Thieving",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Thieving",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30518,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Woodcutting",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Woodcutting",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 29923,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Prismatic",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29906,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Agility",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29897,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Attack",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29905,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Constitution",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29904,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Construction",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29916,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Cooking",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29909,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Crafting",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29899,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Defence",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29921,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Divination",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29922,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Dungeoneering",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29919,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Farming",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29917,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Firemaking",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29915,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Fishing",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29910,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Fletching",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29907,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Herblore",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29912,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Hunter",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 39394,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Invention",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29902,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Magic",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29913,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Mining",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29901,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Prayer",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29900,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Ranged",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29903,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Runecrafting",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29911,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Slayer",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29914,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Smithing",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29898,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Strength",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29920,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Summoning",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29908,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Thieving",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29918,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Woodcutting",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29923,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Prismatic",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29879,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Agility",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29870,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Attack",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29878,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Constitution",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29877,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Construction",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29889,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cooking",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29882,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Crafting",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29872,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Defence",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29894,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Divination",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29895,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Dungeoneering",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29892,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Farming",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29890,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Firemaking",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29888,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Fishing",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29883,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Fletching",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29880,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Herblore",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29885,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Hunter",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 39393,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Invention",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29875,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Magic",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29886,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Mining",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29874,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Prayer",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29873,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Ranged",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29876,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Runecrafting",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29884,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Slayer",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29887,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Smithing",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29871,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Strength",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29893,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Summoning",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29881,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Thieving",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29891,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Woodcutting",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29896,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "prismatic",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 28904,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Prismatic",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23757,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Agility",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23717,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Attack",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23753,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Constitution",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23745,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Construction",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23798,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Cooking",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23769,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Crafting",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23725,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Defence",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 29545,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Divination",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23749,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Dungeoneering",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23810,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Farming",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23802,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Firemaking",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23794,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Fishing",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23774,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Fletching",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23761,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Herblore",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23782,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Hunter",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 39424,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Invention",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23733,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Magic",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23786,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Mining",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23737,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Prayer",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23729,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Ranged",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23741,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Runecrafting",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23778,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Slayer",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23790,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Smithing",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23721,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Strength",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23814,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Summoning",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23765,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Thieving",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 23806,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Woodcutting",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 28905,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Prismatic",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23758,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Agility",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23718,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Attack",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23754,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Constitution",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23746,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Construction",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23799,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Cooking",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23770,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Crafting",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23726,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Defence",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 29546,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Divination",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23750,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Dungeoneering",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23811,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Farming",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23803,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Firemaking",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23795,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Fishing",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23775,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Fletching",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23762,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Herblore",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23783,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Hunter",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39425,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Invention",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23734,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Magic",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23787,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Mining",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23738,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Prayer",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23730,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Ranged",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23742,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Runecrafting",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23779,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Slayer",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23791,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Smithing",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23722,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Strength",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23815,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Summoning",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23766,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Thieving",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 23807,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Woodcutting",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 28906,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Prismatic",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23759,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Agility",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23719,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Attack",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23755,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Constitution",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23747,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Construction",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23800,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Cooking",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23771,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Crafting",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23727,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Defence",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29547,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Divination",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23751,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Dungeoneering",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23812,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Farming",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23804,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Firemaking",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23796,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Fishing",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23776,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Fletching",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23763,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Herblore",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23784,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Hunter",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 39426,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Invention",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23735,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Magic",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23788,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Mining",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23739,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Prayer",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23731,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Ranged",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23743,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Runecrafting",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23780,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Slayer",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23792,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Smithing",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23723,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Strength",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23816,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Summoning",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23767,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Thieving",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 23808,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Woodcutting",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 28907,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Prismatic",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23760,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Agility",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23720,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Attack",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23756,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Constitution",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23748,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Construction",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23801,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Cooking",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23773,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Crafting",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23728,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Defence",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 29548,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Divination",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23752,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Dungeoneering",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23813,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Farming",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23805,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Firemaking",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23797,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Fishing",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23777,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Fletching",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23764,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Herblore",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23785,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Hunter",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 39427,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Invention",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23736,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Magic",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23789,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Mining",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23740,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Prayer",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23732,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Ranged",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23744,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Runecrafting",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23781,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Slayer",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23793,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Smithing",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23724,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Strength",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23817,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Summoning",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23768,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Thieving",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 23809,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Woodcutting",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 31589,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31588,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31585,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31587,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31586,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31579,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31578,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31575,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31577,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31576,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 30372,
+    "minAmount": 120,
+    "maxAmount": 120,
+    "rarity": 0,
+    "category": "Extras",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 30372,
+    "minAmount": 250,
+    "maxAmount": 250,
+    "rarity": 1,
+    "category": "Extras",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 30372,
+    "minAmount": 500,
+    "maxAmount": 500,
+    "rarity": 2,
+    "category": "Extras",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 30920,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 50000
+  },
+  {
+    "itemId": 40527,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40536,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40533,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 23684,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 23685,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 23686,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 30814,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 250000
+  },
+  {
+    "itemId": 23687,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 23688,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34091,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 40539,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40545,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40548,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 34093,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34095,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 30815,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 100000
+  },
+  {
+    "itemId": 30816,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 30817,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 40560,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40551,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40557,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40563,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40572,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40569,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40575,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40581,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40584,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40593,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40587,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40596,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 28483,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 28488,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 28493,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 1000
+  },
+  {
+    "itemId": 28498,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 500
+  },
+  {
+    "itemId": 28503,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 500
+  },
+  {
+    "itemId": 28690,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 31099,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 27624,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 25000
+  },
+  {
+    "itemId": 35283,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 10000
+  },
+  {
+    "itemId": 40518,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 40530,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 23679,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 30818,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 23680,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34077,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34087,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34073,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34081,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34069,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34083,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34085,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 40542,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40554,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 40566,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34079,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34089,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34075,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34071,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 40578,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 23681,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 23690,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 40590,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 23682,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 23683,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 34859,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 28508,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 40517,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 37123,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 37119,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 40519,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 40520,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 40523,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 40521,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 500000
+  },
+  {
+    "itemId": 37125,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 30915,
+    "minAmount": 60,
+    "maxAmount": 60,
+    "rarity": 1,
+    "category": "Agility",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 30915,
+    "minAmount": 500,
+    "maxAmount": 1000,
+    "rarity": 2,
+    "category": "Lucky",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 15272,
+    "minAmount": 25,
+    "maxAmount": 25,
+    "rarity": 0,
+    "category": "Constitution",
+    "convertAmount": 2500
+  },
+  {
+    "itemId": 15272,
+    "minAmount": 50,
+    "maxAmount": 50,
+    "rarity": 1,
+    "category": "Constitution",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 15272,
+    "minAmount": 15,
+    "maxAmount": 15,
+    "rarity": 0,
+    "category": "Constitution",
+    "convertAmount": 1500
+  },
+  {
+    "itemId": 15272,
+    "minAmount": 20,
+    "maxAmount": 20,
+    "rarity": 0,
+    "category": "Constitution",
+    "convertAmount": 2000
+  },
+  {
+    "itemId": 15272,
+    "minAmount": 30,
+    "maxAmount": 30,
+    "rarity": 1,
+    "category": "Constitution",
+    "convertAmount": 3000
+  },
+  {
+    "itemId": 8782,
+    "minAmount": 30,
+    "maxAmount": 30,
+    "rarity": 0,
+    "category": "Construction",
+    "convertAmount": 4500
+  },
+  {
+    "itemId": 8782,
+    "minAmount": 55,
+    "maxAmount": 55,
+    "rarity": 1,
+    "category": "Construction",
+    "convertAmount": 8250
+  },
+  {
+    "itemId": 30037,
+    "minAmount": 50,
+    "maxAmount": 50,
+    "rarity": 0,
+    "category": "Construction",
+    "convertAmount": 2000
+  },
+  {
+    "itemId": 30037,
+    "minAmount": 150,
+    "maxAmount": 150,
+    "rarity": 1,
+    "category": "Construction",
+    "convertAmount": 6000
+  },
+  {
+    "itemId": 30037,
+    "minAmount": 1000,
+    "maxAmount": 1000,
+    "rarity": 3,
+    "category": "Lucky",
+    "convertAmount": 40000
+  },
+  {
+    "itemId": 8782,
+    "minAmount": 20,
+    "maxAmount": 20,
+    "rarity": 0,
+    "category": "Construction",
+    "convertAmount": 3000
+  },
+  {
+    "itemId": 8782,
+    "minAmount": 40,
+    "maxAmount": 40,
+    "rarity": 1,
+    "category": "Construction",
+    "convertAmount": 6000
+  },
+  {
+    "itemId": 15270,
+    "minAmount": 28,
+    "maxAmount": 28,
+    "rarity": 0,
+    "category": "Cooking",
+    "convertAmount": 2800
+  },
+  {
+    "itemId": 1747,
+    "minAmount": 27,
+    "maxAmount": 27,
+    "rarity": 0,
+    "category": "Crafting",
+    "convertAmount": 2700
+  },
+  {
+    "itemId": 33740,
+    "minAmount": 50,
+    "maxAmount": 50,
+    "rarity": 0,
+    "category": "Crafting",
+    "convertAmount": 2000
+  },
+  {
+    "itemId": 33740,
+    "minAmount": 150,
+    "maxAmount": 150,
+    "rarity": 1,
+    "category": "Crafting",
+    "convertAmount": 6000
+  },
+  {
+    "itemId": 24372,
+    "minAmount": 27,
+    "maxAmount": 27,
+    "rarity": 1,
+    "category": "Crafting",
+    "convertAmount": 3375
+  },
+  {
+    "itemId": 33740,
+    "minAmount": 1000,
+    "maxAmount": 1000,
+    "rarity": 3,
+    "category": "Lucky",
+    "convertAmount": 40000
+  },
+  {
+    "itemId": 1751,
+    "minAmount": 27,
+    "maxAmount": 27,
+    "rarity": 0,
+    "category": "Crafting",
+    "convertAmount": 1350
+  },
+  {
+    "itemId": 2357,
+    "minAmount": 30,
+    "maxAmount": 30,
+    "rarity": 0,
+    "category": "Crafting",
+    "convertAmount": 5400
+  },
+  {
+    "itemId": 29324,
+    "minAmount": 350,
+    "maxAmount": 350,
+    "rarity": 0,
+    "category": "Divination",
+    "convertAmount": 10800
+  },
+  {
+    "itemId": 29315,
+    "minAmount": 80,
+    "maxAmount": 80,
+    "rarity": 0,
+    "category": "Divination",
+    "convertAmount": 500
+  },
+  {
+    "itemId": 29323,
+    "minAmount": 250,
+    "maxAmount": 250,
+    "rarity": 0,
+    "category": "Divination",
+    "convertAmount": 8000
+  },
+  {
+    "itemId": 29320,
+    "minAmount": 150,
+    "maxAmount": 150,
+    "rarity": 0,
+    "category": "Divination",
+    "convertAmount": 3300
+  },
+  {
+    "itemId": 29313,
+    "minAmount": 60,
+    "maxAmount": 60,
+    "rarity": 0,
+    "category": "Divination",
+    "convertAmount": 500
+  },
+  {
+    "itemId": 36091,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Dungeoneering",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 36092,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 1,
+    "category": "Dungeoneering",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 36093,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Dungeoneering",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 5323,
+    "minAmount": 5,
+    "maxAmount": 5,
+    "rarity": 0,
+    "category": "Farming",
+    "convertAmount": 500
+  },
+  {
+    "itemId": 1513,
+    "minAmount": 28,
+    "maxAmount": 28,
+    "rarity": 0,
+    "category": "Firemaking",
+    "convertAmount": 2800
+  },
+  {
+    "itemId": 34528,
+    "minAmount": 50,
+    "maxAmount": 50,
+    "rarity": 0,
+    "category": "Firemaking",
+    "convertAmount": 2000
+  },
+  {
+    "itemId": 1513,
+    "minAmount": 56,
+    "maxAmount": 56,
+    "rarity": 1,
+    "category": "Firemaking",
+    "convertAmount": 5600
+  },
+  {
+    "itemId": 34528,
+    "minAmount": 150,
+    "maxAmount": 150,
+    "rarity": 1,
+    "category": "Firemaking",
+    "convertAmount": 6000
+  },
+  {
+    "itemId": 34528,
+    "minAmount": 1000,
+    "maxAmount": 1000,
+    "rarity": 3,
+    "category": "Lucky",
+    "convertAmount": 40000
+  },
+  {
+    "itemId": 1511,
+    "minAmount": 14,
+    "maxAmount": 14,
+    "rarity": 0,
+    "category": "Firemaking",
+    "convertAmount": 500
+  },
+  {
+    "itemId": 1511,
+    "minAmount": 28,
+    "maxAmount": 28,
+    "rarity": 1,
+    "category": "Firemaking",
+    "convertAmount": 500
+  },
+  {
+    "itemId": 31088,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Fishing",
+    "convertAmount": 20000
+  },
+  {
+    "itemId": 31088,
+    "minAmount": 2,
+    "maxAmount": 2,
+    "rarity": 1,
+    "category": "Fishing",
+    "convertAmount": 40000
+  },
+  {
+    "itemId": 1513,
+    "minAmount": 28,
+    "maxAmount": 28,
+    "rarity": 0,
+    "category": "Fletching",
+    "convertAmount": 5600
+  },
+  {
+    "itemId": 34528,
+    "minAmount": 50,
+    "maxAmount": 50,
+    "rarity": 0,
+    "category": "Fletching",
+    "convertAmount": 2000
+  },
+  {
+    "itemId": 1777,
+    "minAmount": 150,
+    "maxAmount": 150,
+    "rarity": 1,
+    "category": "Fletching",
+    "convertAmount": 9000
+  },
+  {
+    "itemId": 1513,
+    "minAmount": 84,
+    "maxAmount": 84,
+    "rarity": 1,
+    "category": "Fletching",
+    "convertAmount": 8400
+  },
+  {
+    "itemId": 34528,
+    "minAmount": 150,
+    "maxAmount": 150,
+    "rarity": 1,
+    "category": "Fletching",
+    "convertAmount": 6000
+  },
+  {
+    "itemId": 1777,
+    "minAmount": 250,
+    "maxAmount": 250,
+    "rarity": 2,
+    "category": "Fletching",
+    "convertAmount": 15000
+  },
+  {
+    "itemId": 34528,
+    "minAmount": 1000,
+    "maxAmount": 1000,
+    "rarity": 3,
+    "category": "Lucky",
+    "convertAmount": 40000
+  },
+  {
+    "itemId": 1511,
+    "minAmount": 28,
+    "maxAmount": 28,
+    "rarity": 0,
+    "category": "Fletching",
+    "convertAmount": 500
+  },
+  {
+    "itemId": 9381,
+    "minAmount": 100,
+    "maxAmount": 100,
+    "rarity": 0,
+    "category": "Fletching",
+    "convertAmount": 500
+  },
+  {
+    "itemId": 1511,
+    "minAmount": 56,
+    "maxAmount": 56,
+    "rarity": 1,
+    "category": "Fletching",
+    "convertAmount": 500
+  },
+  {
+    "itemId": 6693,
+    "minAmount": 14,
+    "maxAmount": 14,
+    "rarity": 0,
+    "category": "Herblore",
+    "convertAmount": 500
+  },
+  {
+    "itemId": 6693,
+    "minAmount": 28,
+    "maxAmount": 28,
+    "rarity": 1,
+    "category": "Herblore",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 221,
+    "minAmount": 100,
+    "maxAmount": 100,
+    "rarity": 0,
+    "category": "Herblore",
+    "convertAmount": 500
+  },
+  {
+    "itemId": 29303,
+    "minAmount": 2,
+    "maxAmount": 2,
+    "rarity": 0,
+    "category": "Hunter",
+    "convertAmount": 20000
+  },
+  {
+    "itemId": 32337,
+    "minAmount": 50,
+    "maxAmount": 50,
+    "rarity": 0,
+    "category": "Hunter",
+    "convertAmount": 2000
+  },
+  {
+    "itemId": 32337,
+    "minAmount": 150,
+    "maxAmount": 150,
+    "rarity": 1,
+    "category": "Hunter",
+    "convertAmount": 6000
+  },
+  {
+    "itemId": 32337,
+    "minAmount": 1000,
+    "maxAmount": 1000,
+    "rarity": 3,
+    "category": "Lucky",
+    "convertAmount": 40000
+  },
+  {
+    "itemId": 29301,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Hunter",
+    "convertAmount": 3000
+  },
+  {
+    "itemId": 29302,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Hunter",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 29298,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Mining",
+    "convertAmount": 20000
+  },
+  {
+    "itemId": 29298,
+    "minAmount": 2,
+    "maxAmount": 2,
+    "rarity": 1,
+    "category": "Mining",
+    "convertAmount": 40000
+  },
+  {
+    "itemId": 29294,
+    "minAmount": 1,
+    "maxAmount": 3,
+    "rarity": 0,
+    "category": "Mining",
+    "convertAmount": 7500
+  },
+  {
+    "itemId": 29296,
+    "minAmount": 3,
+    "maxAmount": 3,
+    "rarity": 0,
+    "category": "Mining",
+    "convertAmount": 22500
+  },
+  {
+    "itemId": 29297,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Mining",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 29294,
+    "minAmount": 2,
+    "maxAmount": 2,
+    "rarity": 1,
+    "category": "Mining",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 29296,
+    "minAmount": 5,
+    "maxAmount": 5,
+    "rarity": 1,
+    "category": "Mining",
+    "convertAmount": 37500
+  },
+  {
+    "itemId": 536,
+    "minAmount": 20,
+    "maxAmount": 20,
+    "rarity": 0,
+    "category": "Prayer",
+    "convertAmount": 4000
+  },
+  {
+    "itemId": 536,
+    "minAmount": 30,
+    "maxAmount": 30,
+    "rarity": 1,
+    "category": "Prayer",
+    "convertAmount": 6000
+  },
+  {
+    "itemId": 536,
+    "minAmount": 6,
+    "maxAmount": 6,
+    "rarity": 0,
+    "category": "Prayer",
+    "convertAmount": 1200
+  },
+  {
+    "itemId": 29617,
+    "minAmount": 400,
+    "maxAmount": 400,
+    "rarity": 0,
+    "category": "Ranged",
+    "convertAmount": 2400
+  },
+  {
+    "itemId": 29617,
+    "minAmount": 200,
+    "maxAmount": 200,
+    "rarity": 0,
+    "category": "Ranged",
+    "convertAmount": 1200
+  },
+  {
+    "itemId": 31350,
+    "minAmount": 50,
+    "maxAmount": 50,
+    "rarity": 0,
+    "category": "Smithing",
+    "convertAmount": 2000
+  },
+  {
+    "itemId": 2363,
+    "minAmount": 5,
+    "maxAmount": 5,
+    "rarity": 0,
+    "category": "Smithing",
+    "convertAmount": 15000
+  },
+  {
+    "itemId": 453,
+    "minAmount": 150,
+    "maxAmount": 150,
+    "rarity": 1,
+    "category": "Smithing",
+    "convertAmount": 4050
+  },
+  {
+    "itemId": 31350,
+    "minAmount": 150,
+    "maxAmount": 150,
+    "rarity": 1,
+    "category": "Smithing",
+    "convertAmount": 6000
+  },
+  {
+    "itemId": 2363,
+    "minAmount": 10,
+    "maxAmount": 10,
+    "rarity": 1,
+    "category": "Smithing",
+    "convertAmount": 30000
+  },
+  {
+    "itemId": 453,
+    "minAmount": 250,
+    "maxAmount": 250,
+    "rarity": 2,
+    "category": "Smithing",
+    "convertAmount": 6750
+  },
+  {
+    "itemId": 31350,
+    "minAmount": 1000,
+    "maxAmount": 1000,
+    "rarity": 3,
+    "category": "Lucky",
+    "convertAmount": 40000
+  },
+  {
+    "itemId": 453,
+    "minAmount": 50,
+    "maxAmount": 50,
+    "rarity": 0,
+    "category": "Smithing",
+    "convertAmount": 1350
+  },
+  {
+    "itemId": 34025,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 20000
+  },
+  {
+    "itemId": 34026,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 20000
+  },
+  {
+    "itemId": 29309,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Woodcutting",
+    "convertAmount": 20000
+  },
+  {
+    "itemId": 29309,
+    "minAmount": 2,
+    "maxAmount": 2,
+    "rarity": 1,
+    "category": "Woodcutting",
+    "convertAmount": 40000
+  },
+  {
+    "itemId": 29304,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Woodcutting",
+    "convertAmount": 1500
+  },
+  {
+    "itemId": 29308,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 0,
+    "category": "Woodcutting",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 26567,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 26568,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 26569,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 34785,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 34786,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 39558,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 39557,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 32150,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 962,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 4,
+    "category": "Super Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 41451,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Woodcutting",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 41452,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Crafting",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 41453,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Smithing",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 41454,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Smithing",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 41455,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 2,
+    "category": "Cooking",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 22992,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 22993,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 22994,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Rare",
+    "convertAmount": 0
+  }, 
+  {
+    "itemId": 22995,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Rare",
+    "convertAmount": 0
+  },
+  {
+    "itemId": 37353,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37354,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37355,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37356,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37357,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37343,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37344,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37345,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37346,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37347,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37358,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37359,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37360,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37361,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37362,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37348,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37349,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37350,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37351,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37352,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 37350,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35968,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35969,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35970,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35971,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35972,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35963,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35964,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35965,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35966,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35967,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35973,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35974,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35975,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35976,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 35977,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31580,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31581,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31582,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31583,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 31584,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39740,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39741,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39742,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39743,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39744,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39730,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39731,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39732,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39733,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39734,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39735,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39736,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39737,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39738,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 39739,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32347,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32348,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32349,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32350,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32351,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32352,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32353,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32354,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32355,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32356,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32342,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32343,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32344,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32345,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 32346,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34210,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34211,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34212,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34213,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34214,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34200,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34201,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34202,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34203,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34204,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34205,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34206,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34207,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34208,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 34209,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41018,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41019,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41020,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41021,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41022,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41008,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41009,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41010,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41011,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41012,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41013,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41014,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41015,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41016,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  },
+  {
+    "itemId": 41017,
+    "minAmount": 1,
+    "maxAmount": 1,
+    "rarity": 3,
+    "category": "Useful items",
+    "convertAmount": 5000
+  }
+]

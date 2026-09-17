@@ -1,0 +1,7 @@
+package com.rs.game.player.client;
+import org.junit.Test;import static org.junit.Assert.*;
+public final class Native950SkillNpcPopulationTest {
+ @Test public void lumbridgeKeepsExistingRegionPopulation(){Native950SpawnScope s=Native950SpawnScope.parse("12850");assertTrue(Native950SkillNpcPopulation.allows(s,12850,1));assertTrue(Native950SkillNpcPopulation.allows(s,12850,12353));}
+ @Test public void outsideScopeAdmitsOnlyPortedGatheringAndMasterTypes(){Native950SpawnScope s=Native950SpawnScope.parse("12850");int count=0;for(int id=0;id<65535;id++)if(Native950SkillNpcPopulation.allows(s,12338,id))count++;assertEquals(29+com.rs.game.player.actions.slayer.SlayerMasterData.values().length,count);assertTrue(Native950SkillNpcPopulation.allows(s,12338,18150));assertTrue(Native950SkillNpcPopulation.allows(s,9271,5085));assertFalse(Native950SkillNpcPopulation.allows(s,12338,1));assertTrue(Native950SkillNpcPopulation.allows(s,9271,1028));assertTrue(Native950SkillNpcPopulation.allows(s,12850,8461));assertTrue(Native950SkillNpcPopulation.allows(s,12338,9712));assertFalse(Native950SkillNpcPopulation.allows(s,9271,50));}
+ @Test public void explicitAllRegionsModeAndInvalidRegionsKeepTheirMeaning(){Native950SpawnScope s=Native950SpawnScope.parse("");assertTrue(Native950SkillNpcPopulation.allows(s,12338,1));assertFalse(Native950SkillNpcPopulation.allows(s,-1,5085));assertFalse(Native950SkillNpcPopulation.allows(s,65536,18150));}
+}

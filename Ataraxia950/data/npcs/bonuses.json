@@ -1,0 +1,7019 @@
+[
+  {
+    "npcId": 1,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 750,
+      "rangeAttack": 0,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 300,
+      "rangeDefence": 700
+    }
+  },
+
+
+
+  {
+    "npcId": 26438,
+    "bonuses": {
+      "stabAttack": 1000,
+      "slashAttack": 1000,
+      "crushAttack": 1000,
+      "magicAttack": 1000,
+      "rangeAttack": 1000,
+      "stabDefence": 1000,
+      "slashDefence": 1000,
+      "crushDefence": 1000,
+      "magicDefence": 1000,
+      "rangeDefence": 1000,
+      "summoningDefence": 1000,
+      "strengthBonus": 1000,
+      "prayerBonus": 1000
+    }
+  },
+
+
+
+
+
+
+  {
+	    "npcId": 7914,
+	    "bonuses": {
+	      "stabAttack": 100,
+	      "slashAttack": 100,
+	      "crushAttack": 100,
+	      "magicAttack": 0,
+	      "rangeAttack": 0,
+	      "stabDefence": 1000,
+	      "slashDefence": 1000,
+	      "crushDefence": 1000,
+	      "magicDefence": 0,
+	      "rangeDefence": 1000
+	    }
+	  },
+  {
+    "npcId": 2,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 750,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 350,
+      "rangeDefence": 700
+    }
+  },
+  {
+    "npcId": 3,
+    "bonuses": {
+      "stabAttack": 750,
+      "slashAttack": 750,
+      "crushAttack": 750,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 250,
+      "rangeDefence": 1000
+    }
+  },
+  {
+    "npcId": 19460,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 300,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+    {
+    "npcId": 20458,
+    "bonuses": {
+      "stabAttack": 400,
+      "slashAttack": 400,
+      "crushAttack": 400,
+      "magicAttack": 400,
+      "rangeAttack": 400,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 0,
+      "rangeDefence": 0
+    }
+  },
+    {
+    "npcId": 20459,
+    "bonuses": {
+      "stabAttack": 400,
+      "slashAttack": 400,
+      "crushAttack": 400,
+      "magicAttack": 400,
+      "rangeAttack": 400,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 0,
+      "rangeDefence": 0
+    }
+  },
+    {
+    "npcId": 20460,
+    "bonuses": {
+      "stabAttack": 400,
+      "slashAttack": 400,
+      "crushAttack": 400,
+      "magicAttack": 400,
+      "rangeAttack": 400,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 0,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10246,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 0,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 19463,
+    "bonuses": {
+      "stabAttack": 900,
+      "slashAttack": 700,
+      "crushAttack": 700,
+      "magicAttack": 400,
+      "rangeAttack": 900,
+      "stabDefence": 300,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 1,
+      "rangeDefence": 300
+    }
+  },
+   {
+    "npcId": 19467,
+    "bonuses": {
+      "stabAttack": 900,
+      "slashAttack": 700,
+      "crushAttack": 700,
+      "magicAttack": 400,
+      "rangeAttack": 900,
+      "stabDefence": 300,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 1,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 22891,
+    "bonuses": {
+      "stabAttack": 80,
+      "slashAttack": 80,
+      "crushAttack": 80,
+      "magicAttack": 75,
+      "rangeAttack": 75,
+      "stabDefence": 0,
+      "slashDefence": 0,
+      "crushDefence": 0,
+      "magicDefence": 0,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 22892,
+    "bonuses": {
+      "stabAttack": 1000,
+      "slashAttack": 1000,
+      "crushAttack": 1000,
+      "magicAttack": 900,
+      "rangeAttack": 900,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 200,
+      "rangeDefence": 500
+    }
+  },
+  {
+	    "npcId": 22908,
+	    "bonuses": {
+	      "stabAttack": 1000,
+	      "slashAttack": 1000,
+	      "crushAttack": 1000,
+	      "magicAttack": 900,
+	      "rangeAttack": 900,
+	      "stabDefence": 100,
+	      "slashDefence": 100,
+	      "crushDefence": 100,
+	      "magicDefence": 100,
+	      "rangeDefence": 100
+	    }
+	  },
+  {
+    "npcId": 19462,
+    "bonuses": {
+      "stabAttack": 900,
+      "slashAttack": 700,
+      "crushAttack": 700,
+      "magicAttack": 400,
+      "rangeAttack": 900,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 300
+    }
+  },
+    {
+    "npcId": 19466,
+    "bonuses": {
+      "stabAttack": 900,
+      "slashAttack": 700,
+      "crushAttack": 700,
+      "magicAttack": 400,
+      "rangeAttack": 900,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 19457,
+    "bonuses": {
+      "stabAttack": 900,
+      "slashAttack": 700,
+      "crushAttack": 700,
+      "magicAttack": 400,
+      "rangeAttack": 900,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 19465,
+    "bonuses": {
+      "stabAttack": 900,
+      "slashAttack": 700,
+      "crushAttack": 700,
+      "magicAttack": 400,
+      "rangeAttack": 900,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 24004,
+    "bonuses": {
+      "stabAttack": 700,
+      "slashAttack": 600,
+      "crushAttack": 500,
+      "magicAttack": 350,
+      "rangeAttack": 500,
+      "stabDefence": 150,
+      "slashDefence": 150,
+      "crushDefence": 150,
+      "magicDefence": 100,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 19464,
+    "bonuses": {
+      "stabAttack": 1000,
+      "slashAttack": 700,
+      "crushAttack": 700,
+      "magicAttack": 400,
+      "rangeAttack": 1000,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 50,
+    "bonuses": {
+      "stabAttack": 300,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 200,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 350,
+      "crushDefence": 400,
+      "magicDefence": 350,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 51,
+    "bonuses": {
+      "stabAttack": 280,
+      "slashAttack": 221,
+      "crushAttack": 221,
+      "magicAttack": 210,
+      "rangeAttack": 210,
+      "stabDefence": 278,
+      "slashDefence": 280,
+      "crushDefence": 280,
+      "magicDefence": 75,
+      "rangeDefence": 360
+    }
+  },
+  {
+    "npcId": 6203,
+    "bonuses": {
+      "stabAttack": 300,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 300,
+      "rangeAttack": 300,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 100,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 6204,
+    "bonuses": {
+      "stabAttack": 350,
+      "slashAttack": 350,
+      "crushAttack": 350,
+      "magicAttack": 350,
+      "rangeAttack": 350,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 275,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 6206,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 300,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 275,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 64,
+    "bonuses": {
+      "stabAttack": 50,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 50,
+      "slashDefence": 50,
+      "crushDefence": 50,
+      "magicDefence": 0,
+      "rangeDefence": 50
+    }
+  },
+  {
+    "npcId": 6208,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 275,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 78,
+    "bonuses": {
+      "stabAttack": 40,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 10,
+      "slashDefence": 20,
+      "crushDefence": 20,
+      "magicDefence": 20,
+      "rangeDefence": 20
+    }
+  },
+  {
+    "npcId": 6222,
+    "bonuses": {
+      "stabAttack": 275,
+      "slashAttack": 275,
+      "crushAttack": 275,
+      "magicAttack": 275,
+      "rangeAttack": 275,
+      "stabDefence": 150,
+      "slashDefence": 0,
+      "crushDefence": 0,
+      "magicDefence": 200,
+      "rangeDefence": 350
+    }
+  },
+  {
+    "npcId": 6223,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 300,
+      "magicDefence": 200,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 6225,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 450,
+      "crushAttack": 450,
+      "magicAttack": 450,
+      "rangeAttack": 300,
+      "stabDefence": 300,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 6227,
+    "bonuses": {
+      "stabAttack": 300,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 300,
+      "rangeAttack": 300,
+      "stabDefence": 400,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 200,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 88,
+    "bonuses": {
+      "stabAttack": 10,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 5,
+      "slashDefence": 5,
+      "crushDefence": 5,
+      "magicDefence": 5,
+      "rangeDefence": 5
+    }
+  },
+  {
+    "npcId": 15454,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 75,
+      "slashDefence": 75,
+      "crushDefence": 75,
+      "magicDefence": 75,
+      "rangeDefence": 75
+    }
+  },
+  {
+    "npcId": 14436,
+    "bonuses": {
+      "stabAttack": 80,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 50,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 6247,
+    "bonuses": {
+      "stabAttack": 250,
+      "slashAttack": 250,
+      "crushAttack": 250,
+      "magicAttack": 250,
+      "rangeAttack": 300,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 150,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 15464,
+    "bonuses": {
+      "stabAttack": 157,
+      "slashAttack": 100,
+      "crushAttack": 100,
+      "magicAttack": 88,
+      "rangeAttack": 4,
+      "stabDefence": 107,
+      "slashDefence": 198,
+      "crushDefence": 124,
+      "magicDefence": 178,
+      "rangeDefence": 157
+    }
+  },
+  {
+    "npcId": 6248,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 175,
+      "rangeDefence": 350
+    }
+  },
+  {
+    "npcId": 18538,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 750,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 200,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 10346,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 110,
+      "crushAttack": 125,
+      "magicAttack": 350,
+      "rangeAttack": 5,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 6250,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 200,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 18539,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 750,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 200,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 18540,
+    "bonuses": {
+      "stabAttack": 750,
+      "slashAttack": 750,
+      "crushAttack": 750,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 200,
+      "rangeDefence": 800
+    }
+  },
+  {
+    "npcId": 6252,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 250,
+      "crushDefence": 200,
+      "magicDefence": 250,
+      "rangeDefence": 350
+    }
+  },
+  {
+    "npcId": 18541,
+    "bonuses": {
+      "stabAttack": 750,
+      "slashAttack": 750,
+      "crushAttack": 750,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 200,
+      "rangeDefence": 800
+    }
+  },
+  {
+    "npcId": 18542,
+    "bonuses": {
+      "stabAttack": 750,
+      "slashAttack": 750,
+      "crushAttack": 750,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 200,
+      "rangeDefence": 800
+    }
+  },
+  {
+    "npcId": 18543,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 750,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 250,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 18544,
+    "bonuses": {
+      "stabAttack": 750,
+      "slashAttack": 750,
+      "crushAttack": 750,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 200,
+      "rangeDefence": 800
+    }
+  },
+  {
+    "npcId": 18545,
+    "bonuses": {
+      "stabAttack": 750,
+      "slashAttack": 750,
+      "crushAttack": 750,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 200,
+      "rangeDefence": 800
+    }
+  },
+  {
+    "npcId": 6260,
+    "bonuses": {
+      "stabAttack": 250,
+      "slashAttack": 250,
+      "crushAttack": 250,
+      "magicAttack": 250,
+      "rangeAttack": 100,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 500,
+      "rangeDefence": 350
+    }
+  },
+  {
+    "npcId": 117,
+    "bonuses": {
+      "stabAttack": 45,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 70,
+      "slashDefence": 70,
+      "crushDefence": 58,
+      "magicDefence": 67,
+      "rangeDefence": 67
+    }
+  },
+  {
+    "npcId": 6261,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 250,
+      "stabDefence": 150,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 200,
+      "rangeDefence": 350
+    }
+  },
+  {
+    "npcId": 119,
+    "bonuses": {
+      "stabAttack": 80,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 70,
+      "slashDefence": 70,
+      "crushDefence": 70,
+      "magicDefence": 65,
+      "rangeDefence": 70
+    }
+  },
+  {
+    "npcId": 6263,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 250,
+      "slashDefence": 300,
+      "crushDefence": 250,
+      "magicDefence": 200,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 6265,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 275,
+      "slashDefence": 250,
+      "crushDefence": 300,
+      "magicDefence": 250,
+      "rangeDefence": 350
+    }
+  },
+  {
+    "npcId": 127,
+    "bonuses": {
+      "stabAttack": 75,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 50,
+      "slashDefence": 50,
+      "crushDefence": 50,
+      "magicDefence": 50,
+      "rangeDefence": 50
+    }
+  },
+  {
+    "npcId": 3200,
+    "bonuses": {
+      "stabAttack": 400,
+      "slashAttack": 400,
+      "crushAttack": 400,
+      "magicAttack": 900,
+      "rangeAttack": 700,
+      "stabDefence": 300,
+      "slashDefence": 350,
+      "crushDefence": 300,
+      "magicDefence": 500,
+      "rangeDefence": 500
+    }
+  },
+  {
+    "npcId": 20611,
+    "bonuses": {
+      "stabAttack": 175,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 275,
+      "slashDefence": 275,
+      "crushDefence": 275,
+      "magicDefence": 275,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 20612,
+    "bonuses": {
+      "stabAttack": 175,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 275,
+      "slashDefence": 275,
+      "crushDefence": 275,
+      "magicDefence": 275,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 20613,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 175,
+      "stabDefence": 275,
+      "slashDefence": 275,
+      "crushDefence": 275,
+      "magicDefence": 275,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 1158,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 450,
+      "slashDefence": 450,
+      "crushDefence": 400,
+      "magicDefence": 400,
+      "rangeDefence": 700
+    }
+  },
+  {
+    "npcId": 20614,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 175,
+      "stabDefence": 275,
+      "slashDefence": 275,
+      "crushDefence": 275,
+      "magicDefence": 275,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 20615,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 175,
+      "rangeAttack": 0,
+      "stabDefence": 275,
+      "slashDefence": 275,
+      "crushDefence": 275,
+      "magicDefence": 275,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 13447,
+    "bonuses": {
+      "stabAttack": 600,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 600,
+      "rangeAttack": 600,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 600,
+      "rangeDefence": 500
+    }
+  },
+  {
+    "npcId": 1160,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 200,
+      "rangeDefence": 550
+    }
+  },
+  {
+    "npcId": 20616,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 175,
+      "rangeAttack": 0,
+      "stabDefence": 275,
+      "slashDefence": 275,
+      "crushDefence": 275,
+      "magicDefence": 275,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 13448,
+    "bonuses": {
+      "stabAttack": 600,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 600,
+      "rangeAttack": 600,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 600,
+      "rangeDefence": 500
+    }
+  },
+  {
+    "npcId": 13449,
+    "bonuses": {
+      "stabAttack": 600,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 600,
+      "rangeAttack": 600,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 600,
+      "rangeDefence": 500
+    }
+  },
+  {
+    "npcId": 13450,
+    "bonuses": {
+      "stabAttack": 600,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 600,
+      "rangeAttack": 600,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 600,
+      "rangeDefence": 500
+    }
+  },
+  {
+    "npcId": 13451,
+    "bonuses": {
+      "stabAttack": 10,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 10,
+      "rangeAttack": 10,
+      "stabDefence": 10,
+      "slashDefence": 10,
+      "crushDefence": 10,
+      "magicDefence": 10,
+      "rangeDefence": 10
+    }
+  },
+  {
+    "npcId": 13452,
+    "bonuses": {
+      "stabAttack": 10,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 10,
+      "rangeAttack": 10,
+      "stabDefence": 10,
+      "slashDefence": 10,
+      "crushDefence": 10,
+      "magicDefence": 10,
+      "rangeDefence": 10
+    }
+  },
+  {
+    "npcId": 13453,
+    "bonuses": {
+      "stabAttack": 10,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 10,
+      "rangeAttack": 10,
+      "stabDefence": 10,
+      "slashDefence": 10,
+      "crushDefence": 10,
+      "magicDefence": 10,
+      "rangeDefence": 10
+    }
+  },
+  {
+    "npcId": 13454,
+    "bonuses": {
+      "stabAttack": 10,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 10,
+      "rangeAttack": 10,
+      "stabDefence": 10,
+      "slashDefence": 10,
+      "crushDefence": 10,
+      "magicDefence": 10,
+      "rangeDefence": 10
+    }
+  },
+  {
+    "npcId": 8335,
+    "bonuses": {
+      "stabAttack": 2000,
+      "slashAttack": 2000,
+      "crushAttack": 2000,
+      "magicAttack": 2000,
+      "rangeAttack": 2000,
+      "stabDefence": 1000,
+      "slashDefence": 1000,
+      "crushDefence": 1000,
+      "magicDefence": 1000,
+      "rangeDefence": 1000
+    }
+  },
+  {
+    "npcId": 13456,
+    "bonuses": {
+      "stabAttack": 176,
+      "slashAttack": 350,
+      "crushAttack": 330,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 50,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 13457,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 350,
+      "rangeAttack": 200,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 50,
+      "magicDefence": 250,
+      "rangeDefence": 150
+    }
+  },
+  {
+    "npcId": 15506,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 10,
+      "slashDefence": 10,
+      "crushDefence": 10,
+      "magicDefence": 200,
+      "rangeDefence": 10
+    }
+  },
+  {
+    "npcId": 13458,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 15507,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 10,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 14483,
+    "bonuses": {
+      "stabAttack": 80,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 150,
+      "slashDefence": 150,
+      "crushDefence": 150,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 13459,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 350,
+      "rangeAttack": 0,
+      "stabDefence": 100,
+      "slashDefence": 50,
+      "crushDefence": 50,
+      "magicDefence": 250,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 20629,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 450,
+      "crushAttack": 450,
+      "magicAttack": 500,
+      "rangeAttack": 500,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 500,
+      "rangeDefence": 450
+    }
+  },
+  {
+    "npcId": 15510,
+    "bonuses": {
+      "stabAttack": 112,
+      "slashAttack": 100,
+      "crushAttack": 100,
+      "magicAttack": 178,
+      "rangeAttack": 4,
+      "stabDefence": 175,
+      "slashDefence": 142,
+      "crushDefence": 285,
+      "magicDefence": 235,
+      "rangeDefence": 195
+    }
+  },
+  {
+    "npcId": 20630,
+    "bonuses": {
+      "stabAttack": 300,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 270,
+      "slashDefence": 270,
+      "crushDefence": 270,
+      "magicDefence": 400,
+      "rangeDefence": 270
+    }
+  },
+  {
+    "npcId": 13465,
+    "bonuses": {
+      "stabAttack": 10,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 8,
+      "rangeAttack": 12,
+      "stabDefence": 7,
+      "slashDefence": 7,
+      "crushDefence": 7,
+      "magicDefence": 5,
+      "rangeDefence": 8
+    }
+  },
+  {
+    "npcId": 13466,
+    "bonuses": {
+      "stabAttack": 12,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 10,
+      "rangeAttack": 15,
+      "stabDefence": 8,
+      "slashDefence": 8,
+      "crushDefence": 8,
+      "magicDefence": 6,
+      "rangeDefence": 10
+    }
+  },
+  {
+    "npcId": 13467,
+    "bonuses": {
+      "stabAttack": 15,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 12,
+      "rangeAttack": 18,
+      "stabDefence": 10,
+      "slashDefence": 10,
+      "crushDefence": 10,
+      "magicDefence": 7,
+      "rangeDefence": 12
+    }
+  },
+  {
+    "npcId": 13468,
+    "bonuses": {
+      "stabAttack": 18,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 15,
+      "rangeAttack": 22,
+      "stabDefence": 12,
+      "slashDefence": 12,
+      "crushDefence": 12,
+      "magicDefence": 8,
+      "rangeDefence": 15
+    }
+  },
+  {
+    "npcId": 13469,
+    "bonuses": {
+      "stabAttack": 22,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 18,
+      "rangeAttack": 27,
+      "stabDefence": 15,
+      "slashDefence": 15,
+      "crushDefence": 15,
+      "magicDefence": 10,
+      "rangeDefence": 18
+    }
+  },
+  {
+    "npcId": 8349,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 13470,
+    "bonuses": {
+      "stabAttack": 27,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 22,
+      "rangeAttack": 33,
+      "stabDefence": 18,
+      "slashDefence": 18,
+      "crushDefence": 18,
+      "magicDefence": 12,
+      "rangeDefence": 22
+    }
+  },
+  {
+    "npcId": 8350,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 13471,
+    "bonuses": {
+      "stabAttack": 33,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 27,
+      "rangeAttack": 41,
+      "stabDefence": 22,
+      "slashDefence": 22,
+      "crushDefence": 22,
+      "magicDefence": 15,
+      "rangeDefence": 27
+    }
+  },
+  {
+    "npcId": 8351,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 13472,
+    "bonuses": {
+      "stabAttack": 41,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 33,
+      "rangeAttack": 51,
+      "stabDefence": 27,
+      "slashDefence": 27,
+      "crushDefence": 27,
+      "magicDefence": 18,
+      "rangeDefence": 33
+    }
+  },
+  {
+    "npcId": 8352,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 13473,
+    "bonuses": {
+      "stabAttack": 51,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 41,
+      "rangeAttack": 63,
+      "stabDefence": 33,
+      "slashDefence": 33,
+      "crushDefence": 33,
+      "magicDefence": 22,
+      "rangeDefence": 41
+    }
+  },
+  {
+    "npcId": 8353,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 7329,
+    "bonuses": {
+      "stabAttack": 190,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 250,
+      "rangeAttack": 225,
+      "stabDefence": 295,
+      "slashDefence": 295,
+      "crushDefence": 295,
+      "magicDefence": 370,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 13474,
+    "bonuses": {
+      "stabAttack": 63,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 51,
+      "rangeAttack": 78,
+      "stabDefence": 41,
+      "slashDefence": 41,
+      "crushDefence": 41,
+      "magicDefence": 27,
+      "rangeDefence": 51
+    }
+  },
+  {
+    "npcId": 8354,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 7330,
+    "bonuses": {
+      "stabAttack": 190,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 250,
+      "rangeAttack": 225,
+      "stabDefence": 295,
+      "slashDefence": 295,
+      "crushDefence": 295,
+      "magicDefence": 370,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 13475,
+    "bonuses": {
+      "stabAttack": 78,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 63,
+      "rangeAttack": 97,
+      "stabDefence": 51,
+      "slashDefence": 51,
+      "crushDefence": 51,
+      "magicDefence": 33,
+      "rangeDefence": 63
+    }
+  },
+  {
+    "npcId": 8355,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 13476,
+    "bonuses": {
+      "stabAttack": 97,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 78,
+      "rangeAttack": 121,
+      "stabDefence": 63,
+      "slashDefence": 63,
+      "crushDefence": 63,
+      "magicDefence": 41,
+      "rangeDefence": 78
+    }
+  },
+  {
+    "npcId": 8356,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 13477,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 97,
+      "rangeAttack": 151,
+      "stabDefence": 78,
+      "slashDefence": 78,
+      "crushDefence": 78,
+      "magicDefence": 51,
+      "rangeDefence": 97
+    }
+  },
+  {
+    "npcId": 8357,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 9382,
+    "bonuses": {
+      "stabAttack": 20,
+      "slashAttack": 20,
+      "crushAttack": 20,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 10,
+      "slashDefence": 10,
+      "crushDefence": 10,
+      "magicDefence": 10,
+      "rangeDefence": 10
+    }
+  },
+  {
+    "npcId": 13478,
+    "bonuses": {
+      "stabAttack": 151,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 121,
+      "rangeAttack": 188,
+      "stabDefence": 97,
+      "slashDefence": 97,
+      "crushDefence": 97,
+      "magicDefence": 63,
+      "rangeDefence": 121
+    }
+  },
+  {
+    "npcId": 8358,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 13479,
+    "bonuses": {
+      "stabAttack": 188,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 151,
+      "rangeAttack": 235,
+      "stabDefence": 121,
+      "slashDefence": 121,
+      "crushDefence": 121,
+      "magicDefence": 78,
+      "rangeDefence": 151
+    }
+  },
+  {
+    "npcId": 8359,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 13480,
+    "bonuses": {
+      "stabAttack": 235,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 188,
+      "rangeAttack": 293,
+      "stabDefence": 151,
+      "slashDefence": 151,
+      "crushDefence": 151,
+      "magicDefence": 97,
+      "rangeDefence": 188
+    }
+  },
+  {
+    "npcId": 8360,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 13481,
+    "bonuses": {
+      "stabAttack": 293,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 235,
+      "rangeAttack": 366,
+      "stabDefence": 188,
+      "slashDefence": 188,
+      "crushDefence": 188,
+      "magicDefence": 121,
+      "rangeDefence": 235
+    }
+  },
+  {
+    "npcId": 8361,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 8362,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 8363,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 7339,
+    "bonuses": {
+      "stabAttack": 190,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 190,
+      "rangeAttack": 190,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 325,
+      "rangeDefence": 325
+    }
+  },
+  {
+    "npcId": 8364,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 7340,
+    "bonuses": {
+      "stabAttack": 190,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 190,
+      "rangeAttack": 190,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 325,
+      "rangeDefence": 325
+    }
+  },
+  {
+    "npcId": 8365,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 7341,
+    "bonuses": {
+      "stabAttack": 180,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 370
+    }
+  },
+  {
+    "npcId": 8366,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 450,
+      "rangeAttack": 450,
+      "stabDefence": 200,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 7342,
+    "bonuses": {
+      "stabAttack": 180,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 370
+    }
+  },
+  {
+    "npcId": 7343,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 230,
+      "rangeAttack": 250,
+      "stabDefence": 350,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 300,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 7344,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 230,
+      "rangeAttack": 250,
+      "stabDefence": 350,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 300,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 7349,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 250,
+      "slashDefence": 300,
+      "crushDefence": 250,
+      "magicDefence": 200,
+      "rangeDefence": 255
+    }
+  },
+  {
+    "npcId": 182,
+    "bonuses": {
+      "stabAttack": 50,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 45,
+      "slashDefence": 40,
+      "crushDefence": 50,
+      "magicDefence": 45,
+      "rangeDefence": 45
+    }
+  },
+  {
+    "npcId": 7350,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 250,
+      "slashDefence": 300,
+      "crushDefence": 250,
+      "magicDefence": 200,
+      "rangeDefence": 255
+    }
+  },
+  {
+    "npcId": 183,
+    "bonuses": {
+      "stabAttack": 50,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 45,
+      "slashDefence": 40,
+      "crushDefence": 50,
+      "magicDefence": 45,
+      "rangeDefence": 45
+    }
+  },
+  {
+    "npcId": 7356,
+    "bonuses": {
+      "stabAttack": 185,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 370
+    }
+  },
+  {
+    "npcId": 18621,
+    "bonuses": {
+      "stabAttack": 350,
+      "slashAttack": 350,
+      "crushAttack": 350,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 265,
+      "rangeDefence": 245
+    }
+  },
+  {
+    "npcId": 7357,
+    "bonuses": {
+      "stabAttack": 185,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 370
+    }
+  },
+  {
+    "npcId": 18622,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 350,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 265,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 7358,
+    "bonuses": {
+      "stabAttack": 185,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 370
+    }
+  },
+  {
+    "npcId": 7359,
+    "bonuses": {
+      "stabAttack": 185,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 370
+    }
+  },
+  {
+    "npcId": 7360,
+    "bonuses": {
+      "stabAttack": 185,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 370
+    }
+  },
+  {
+    "npcId": 22721,
+    "bonuses": {
+      "stabAttack": 250,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 450,
+      "crushDefence": 400,
+      "magicDefence": 90,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 7375,
+    "bonuses": {
+      "stabAttack": 195,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 250,
+      "stabDefence": 350,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 280,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 7376,
+    "bonuses": {
+      "stabAttack": 195,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 250,
+      "stabDefence": 350,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 280,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 14548,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 170,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 215,
+      "crushDefence": 254,
+      "magicDefence": 201,
+      "rangeDefence": 320
+    }
+  },
+  {
+    "npcId": 10465,
+    "bonuses": {
+      "stabAttack": 175,
+      "slashAttack": 175,
+      "crushAttack": 175,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 175,
+      "slashDefence": 175,
+      "crushDefence": 175,
+      "magicDefence": 100,
+      "rangeDefence": 105
+    }
+  },
+  {
+    "npcId": 1265,
+    "bonuses": {
+      "stabAttack": 1,
+      "slashAttack": 1,
+      "crushAttack": 1,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 20,
+      "slashDefence": 5,
+      "crushDefence": 5,
+      "magicDefence": 5,
+      "rangeDefence": 5
+    }
+  },
+  {
+    "npcId": 5361,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 200,
+      "rangeAttack": 350,
+      "stabDefence": 450,
+      "slashDefence": 450,
+      "crushDefence": 40,
+      "magicDefence": 450,
+      "rangeDefence": 450
+    }
+  },
+  {
+    "npcId": 14578,
+    "bonuses": {
+      "stabAttack": 20,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 30,
+      "slashDefence": 30,
+      "crushDefence": 30,
+      "magicDefence": 30,
+      "rangeDefence": 30
+    }
+  },
+  {
+    "npcId": 5363,
+    "bonuses": {
+      "stabAttack": 381,
+      "slashAttack": 25,
+      "crushAttack": 25,
+      "magicAttack": 284,
+      "rangeAttack": 280,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 271,
+      "rangeDefence": 340
+    }
+  },
+  {
+    "npcId": 9463,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 360,
+      "magicDefence": 200,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 3334,
+    "bonuses": {
+      "stabAttack": 450,
+      "slashAttack": 450,
+      "crushAttack": 450,
+      "magicAttack": 500,
+      "rangeAttack": 500,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 500,
+      "rangeDefence": 450
+    }
+  },
+  {
+    "npcId": 3340,
+    "bonuses": {
+      "stabAttack": 80,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 250,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 10541,
+    "bonuses": {
+      "stabAttack": 300,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 0,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 3375,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 200,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 300,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 4400,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 65,
+      "slashDefence": 65,
+      "crushDefence": 60,
+      "magicDefence": 65,
+      "rangeDefence": 65
+    }
+  },
+  {
+    "npcId": 10545,
+    "bonuses": {
+      "stabAttack": 350,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 350,
+      "rangeAttack": 350,
+      "stabDefence": 450,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 100,
+      "rangeDefence": 450
+    }
+  },
+  {
+    "npcId": 2355,
+    "bonuses": {
+      "stabAttack": 180,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 370
+    }
+  },
+  {
+    "npcId": 16697,
+    "bonuses": {
+      "stabAttack": 650,
+      "slashAttack": 650,
+      "crushAttack": 650,
+      "magicAttack": 750,
+      "rangeAttack": 750,
+      "stabDefence": 600,
+      "slashDefence": 800,
+      "crushDefence": 800,
+      "magicDefence": 0,
+      "rangeDefence": 1000
+    }
+  },
+    {
+    "npcId": 18932,
+    "bonuses": {
+      "stabAttack": 255,
+      "slashAttack": 255,
+      "crushAttack": 255,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 400,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 16698,
+    "bonuses": {
+      "stabAttack": 650,
+      "slashAttack": 650,
+      "crushAttack": 650,
+      "magicAttack": 750,
+      "rangeAttack": 750,
+      "stabDefence": 800,
+      "slashDefence": 1000,
+      "crushDefence": 1000,
+      "magicDefence": 0,
+      "rangeDefence": 500
+    }
+  },
+  {
+    "npcId": 16699,
+    "bonuses": {
+      "stabAttack": 650,
+      "slashAttack": 650,
+      "crushAttack": 650,
+      "magicAttack": 750,
+      "rangeAttack": 750,
+      "stabDefence": 500,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 500,
+      "rangeDefence": 800
+    }
+  },
+  {
+    "npcId": 16706,
+    "bonuses": {
+      "stabAttack": 120,
+      "slashAttack": 120,
+      "crushAttack": 120,
+      "magicAttack": 300,
+      "rangeAttack": 200,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 8528,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 250,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 8529,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 250,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 16726,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 100,
+      "rangeAttack": 0,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 60,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 16728,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 0,
+      "stabDefence": 150,
+      "slashDefence": 150,
+      "crushDefence": 150,
+      "magicDefence": 120,
+      "rangeDefence": 150
+    }
+  },
+  {
+    "npcId": 16730,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 200,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 170,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 16731,
+    "bonuses": {
+      "stabAttack": 400,
+      "slashAttack": 400,
+      "crushAttack": 400,
+      "magicAttack": 400,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 16732,
+    "bonuses": {
+      "stabAttack": 400,
+      "slashAttack": 400,
+      "crushAttack": 400,
+      "magicAttack": 400,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 10597,
+    "bonuses": {
+      "stabAttack": 10,
+      "slashAttack": 11,
+      "crushAttack": 12,
+      "magicAttack": 300,
+      "rangeAttack": 300,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 300,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 10604,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 124,
+      "rangeAttack": 0,
+      "stabDefence": 180,
+      "slashDefence": 180,
+      "crushDefence": 180,
+      "magicDefence": 180,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 10605,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 124,
+      "rangeAttack": 0,
+      "stabDefence": 180,
+      "slashDefence": 180,
+      "crushDefence": 180,
+      "magicDefence": 180,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 10606,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 124,
+      "rangeAttack": 0,
+      "stabDefence": 180,
+      "slashDefence": 180,
+      "crushDefence": 180,
+      "magicDefence": 180,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 10607,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 124,
+      "rangeAttack": 0,
+      "stabDefence": 180,
+      "slashDefence": 180,
+      "crushDefence": 180,
+      "magicDefence": 180,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 10608,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 124,
+      "rangeAttack": 0,
+      "stabDefence": 180,
+      "slashDefence": 180,
+      "crushDefence": 180,
+      "magicDefence": 180,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 10609,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 124,
+      "rangeAttack": 0,
+      "stabDefence": 180,
+      "slashDefence": 180,
+      "crushDefence": 180,
+      "magicDefence": 180,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 11736,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 225,
+      "slashDefence": 225,
+      "crushDefence": 225,
+      "magicDefence": 100,
+      "rangeDefence": 340
+    }
+  },
+  {
+    "npcId": 13820,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 100,
+      "rangeAttack": 100,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 13821,
+    "bonuses": {
+      "stabAttack": 250,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 13822,
+    "bonuses": {
+      "stabAttack": 250,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 3590,
+    "bonuses": {
+      "stabAttack": 361,
+      "slashAttack": 20,
+      "crushAttack": 20,
+      "magicAttack": 264,
+      "rangeAttack": 260,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 250,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 16905,
+    "bonuses": {
+      "stabAttack": 350,
+      "slashAttack": 350,
+      "crushAttack": 350,
+      "magicAttack": 300,
+      "rangeAttack": 350,
+      "stabDefence": 350,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 350,
+      "rangeDefence": 350
+    }
+  },
+  {
+    "npcId": 16906,
+    "bonuses": {
+      "stabAttack": 350,
+      "slashAttack": 350,
+      "crushAttack": 350,
+      "magicAttack": 400,
+      "rangeAttack": 400,
+      "stabDefence": 350,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 350,
+      "rangeDefence": 350
+    }
+  },
+  {
+    "npcId": 16907,
+    "bonuses": {
+      "stabAttack": 400,
+      "slashAttack": 400,
+      "crushAttack": 400,
+      "magicAttack": 600,
+      "rangeAttack": 350,
+      "stabDefence": 350,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 350,
+      "rangeDefence": 350
+    }
+  },
+  {
+    "npcId": 10776,
+    "bonuses": {
+      "stabAttack": 341,
+      "slashAttack": 18,
+      "crushAttack": 18,
+      "magicAttack": 244,
+      "rangeAttack": 240,
+      "stabDefence": 230,
+      "slashDefence": 230,
+      "crushDefence": 230,
+      "magicDefence": 220,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 10777,
+    "bonuses": {
+      "stabAttack": 341,
+      "slashAttack": 18,
+      "crushAttack": 18,
+      "magicAttack": 244,
+      "rangeAttack": 240,
+      "stabDefence": 230,
+      "slashDefence": 230,
+      "crushDefence": 230,
+      "magicDefence": 220,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 10778,
+    "bonuses": {
+      "stabAttack": 341,
+      "slashAttack": 18,
+      "crushAttack": 18,
+      "magicAttack": 244,
+      "rangeAttack": 240,
+      "stabDefence": 230,
+      "slashDefence": 230,
+      "crushDefence": 230,
+      "magicDefence": 220,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 10779,
+    "bonuses": {
+      "stabAttack": 341,
+      "slashAttack": 18,
+      "crushAttack": 18,
+      "magicAttack": 244,
+      "rangeAttack": 240,
+      "stabDefence": 230,
+      "slashDefence": 230,
+      "crushDefence": 230,
+      "magicDefence": 220,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 10780,
+    "bonuses": {
+      "stabAttack": 341,
+      "slashAttack": 18,
+      "crushAttack": 18,
+      "magicAttack": 244,
+      "rangeAttack": 240,
+      "stabDefence": 230,
+      "slashDefence": 230,
+      "crushDefence": 230,
+      "magicDefence": 220,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 10781,
+    "bonuses": {
+      "stabAttack": 341,
+      "slashAttack": 18,
+      "crushAttack": 18,
+      "magicAttack": 244,
+      "rangeAttack": 240,
+      "stabDefence": 230,
+      "slashDefence": 230,
+      "crushDefence": 230,
+      "magicDefence": 220,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 7716,
+    "bonuses": {
+      "stabAttack": 12,
+      "slashAttack": 12,
+      "crushAttack": 12,
+      "magicAttack": 12,
+      "rangeAttack": 12,
+      "stabDefence": 12,
+      "slashDefence": 12,
+      "crushDefence": 12,
+      "magicDefence": 12,
+      "rangeDefence": 12
+    }
+  },
+  {
+    "npcId": 1590,
+    "bonuses": {
+      "stabAttack": 260,
+      "slashAttack": 201,
+      "crushAttack": 201,
+      "magicAttack": 190,
+      "rangeAttack": 190,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 1591,
+    "bonuses": {
+      "stabAttack": 341,
+      "slashAttack": 18,
+      "crushAttack": 18,
+      "magicAttack": 244,
+      "rangeAttack": 240,
+      "stabDefence": 230,
+      "slashDefence": 230,
+      "crushDefence": 230,
+      "magicDefence": 220,
+      "rangeDefence": 275
+    }
+  },
+  {
+    "npcId": 1592,
+    "bonuses": {
+      "stabAttack": 361,
+      "slashAttack": 20,
+      "crushAttack": 20,
+      "magicAttack": 264,
+      "rangeAttack": 260,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 250,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 14912,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 4677,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 124,
+      "rangeAttack": 0,
+      "stabDefence": 180,
+      "slashDefence": 180,
+      "crushDefence": 180,
+      "magicDefence": 180,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 4678,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 124,
+      "rangeAttack": 0,
+      "stabDefence": 180,
+      "slashDefence": 180,
+      "crushDefence": 180,
+      "magicDefence": 180,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 4679,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 124,
+      "rangeAttack": 0,
+      "stabDefence": 180,
+      "slashDefence": 180,
+      "crushDefence": 180,
+      "magicDefence": 180,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 4680,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 124,
+      "rangeAttack": 0,
+      "stabDefence": 180,
+      "slashDefence": 180,
+      "crushDefence": 180,
+      "magicDefence": 180,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 10827,
+    "bonuses": {
+      "stabAttack": 75,
+      "slashAttack": 75,
+      "crushAttack": 75,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 80,
+      "slashDefence": 80,
+      "crushDefence": 80,
+      "magicDefence": 80,
+      "rangeDefence": 80
+    }
+  },
+  {
+    "npcId": 15975,
+    "bonuses": {
+      "stabAttack": 300,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 300,
+      "rangeAttack": 300,
+      "stabDefence": 50,
+      "slashDefence": 50,
+      "crushDefence": 50,
+      "magicDefence": 50,
+      "rangeDefence": 50
+    }
+  },
+  {
+    "npcId": 14953,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 200,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 300,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 24170,
+    "bonuses": {
+      "stabAttack": 300,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 300,
+      "rangeAttack": 300,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 200,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 24171,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 500,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 250,
+      "rangeDefence": 500
+    }
+  },
+  {
+    "npcId": 24172,
+    "bonuses": {
+      "stabAttack": 600,
+      "slashAttack": 600,
+      "crushAttack": 600,
+      "magicAttack": 600,
+      "rangeAttack": 600,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 300,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 14957,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 300,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 14961,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 200,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 300,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 14965,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 200,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 300,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 6794,
+    "bonuses": {
+      "stabAttack": 130,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 100,
+      "rangeAttack": 170,
+      "stabDefence": 240,
+      "slashDefence": 240,
+      "crushDefence": 240,
+      "magicDefence": 220,
+      "rangeDefence": 260
+    }
+  },
+  {
+    "npcId": 6795,
+    "bonuses": {
+      "stabAttack": 130,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 100,
+      "rangeAttack": 170,
+      "stabDefence": 240,
+      "slashDefence": 240,
+      "crushDefence": 240,
+      "magicDefence": 220,
+      "rangeDefence": 260
+    }
+  },
+  {
+    "npcId": 21135,
+    "bonuses": {
+      "stabAttack": 451,
+      "slashAttack": 35,
+      "crushAttack": 35,
+      "magicAttack": 354,
+      "rangeAttack": 350,
+      "stabDefence": 350,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 300,
+      "rangeDefence": 390
+    }
+  },
+  {
+    "npcId": 21136,
+    "bonuses": {
+      "stabAttack": 551,
+      "slashAttack": 65,
+      "crushAttack": 65,
+      "magicAttack": 454,
+      "rangeAttack": 450,
+      "stabDefence": 420,
+      "slashDefence": 420,
+      "crushDefence": 420,
+      "magicDefence": 400,
+      "rangeDefence": 458
+    }
+  },
+  {
+    "npcId": 21137,
+    "bonuses": {
+      "stabAttack": 551,
+      "slashAttack": 65,
+      "crushAttack": 65,
+      "magicAttack": 454,
+      "rangeAttack": 450,
+      "stabDefence": 420,
+      "slashDefence": 420,
+      "crushDefence": 420,
+      "magicDefence": 400,
+      "rangeDefence": 458
+    }
+  },
+  {
+    "npcId": 21140,
+    "bonuses": {
+      "stabAttack": 551,
+      "slashAttack": 65,
+      "crushAttack": 65,
+      "magicAttack": 454,
+      "rangeAttack": 450,
+      "stabDefence": 420,
+      "slashDefence": 420,
+      "crushDefence": 420,
+      "magicDefence": 400,
+      "rangeDefence": 458
+    }
+  },
+  {
+    "npcId": 6813,
+    "bonuses": {
+      "stabAttack": 130,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 100,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 6814,
+    "bonuses": {
+      "stabAttack": 130,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 100,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 19109,
+    "bonuses": {
+      "stabAttack": 350,
+      "slashAttack": 350,
+      "crushAttack": 350,
+      "magicAttack": 600,
+      "rangeAttack": 350,
+      "stabDefence": 350,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 350,
+      "rangeDefence": 350
+    }
+  },
+  {
+    "npcId": 6822,
+    "bonuses": {
+      "stabAttack": 125,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 6823,
+    "bonuses": {
+      "stabAttack": 125,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 2734,
+    "bonuses": {
+      "stabAttack": 20,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 20,
+      "slashDefence": 20,
+      "crushDefence": 20,
+      "magicDefence": 50,
+      "rangeDefence": 20
+    }
+  },
+  {
+    "npcId": 2737,
+    "bonuses": {
+      "stabAttack": 40,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 45,
+      "slashDefence": 47,
+      "crushDefence": 50,
+      "magicDefence": 70,
+      "rangeDefence": 70
+    }
+  },
+  {
+    "npcId": 2738,
+    "bonuses": {
+      "stabAttack": 20,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 23,
+      "slashDefence": 24,
+      "crushDefence": 25,
+      "magicDefence": 35,
+      "rangeDefence": 35
+    }
+  },
+  {
+    "npcId": 2739,
+    "bonuses": {
+      "stabAttack": 80,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 80,
+      "stabDefence": 135,
+      "slashDefence": 135,
+      "crushDefence": 150,
+      "magicDefence": 150,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 2741,
+    "bonuses": {
+      "stabAttack": 160,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 190,
+      "slashDefence": 185,
+      "crushDefence": 185,
+      "magicDefence": 180,
+      "rangeDefence": 125
+    }
+  },
+  {
+    "npcId": 2743,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 320,
+      "rangeAttack": 250,
+      "stabDefence": 350,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 300,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 2745,
+    "bonuses": {
+      "stabAttack": 2000,
+      "slashAttack": 2000,
+      "crushAttack": 2000,
+      "magicAttack": 2000,
+      "rangeAttack": 2000,
+      "stabDefence": 400,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 500,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 3782,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 400,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 3784,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 400,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 3785,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 400,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 11984,
+    "bonuses": {
+      "stabAttack": 350,
+      "slashAttack": 350,
+      "crushAttack": 350,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 450,
+      "crushDefence": 450,
+      "magicDefence": 2000,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 6873,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 100,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 6874,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 100,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 9948,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 70,
+      "crushAttack": 70,
+      "magicAttack": 70,
+      "rangeAttack": 70,
+      "stabDefence": 80,
+      "slashDefence": 100,
+      "crushDefence": 80,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 9949,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 70,
+      "crushAttack": 70,
+      "magicAttack": 70,
+      "rangeAttack": 70,
+      "stabDefence": 80,
+      "slashDefence": 100,
+      "crushDefence": 80,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 9950,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 70,
+      "crushAttack": 70,
+      "magicAttack": 70,
+      "rangeAttack": 70,
+      "stabDefence": 80,
+      "slashDefence": 100,
+      "crushDefence": 80,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 2783,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 100,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 9951,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 70,
+      "crushAttack": 70,
+      "magicAttack": 70,
+      "rangeAttack": 70,
+      "stabDefence": 80,
+      "slashDefence": 100,
+      "crushDefence": 80,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 9952,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 70,
+      "crushAttack": 70,
+      "magicAttack": 70,
+      "rangeAttack": 70,
+      "stabDefence": 80,
+      "slashDefence": 100,
+      "crushDefence": 80,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 9953,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 70,
+      "crushAttack": 70,
+      "magicAttack": 70,
+      "rangeAttack": 70,
+      "stabDefence": 80,
+      "slashDefence": 100,
+      "crushDefence": 80,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 9954,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 150,
+      "slashDefence": 200,
+      "crushDefence": 150,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 9955,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 100,
+      "slashDefence": 125,
+      "crushDefence": 100,
+      "magicDefence": 125,
+      "rangeDefence": 125
+    }
+  },
+  {
+    "npcId": 9956,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 250,
+      "crushDefence": 200,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 9957,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 250,
+      "crushDefence": 200,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 742,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 170,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 215,
+      "crushDefence": 254,
+      "magicDefence": 201,
+      "rangeDefence": 320
+    }
+  },
+  {
+    "npcId": 9958,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 250,
+      "crushDefence": 200,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 9959,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 250,
+      "crushDefence": 200,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 9960,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 250,
+      "crushDefence": 200,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 9961,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 250,
+      "crushDefence": 200,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 9962,
+    "bonuses": {
+      "stabAttack": 300,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 300,
+      "rangeAttack": 300,
+      "stabDefence": 300,
+      "slashDefence": 400,
+      "crushDefence": 300,
+      "magicDefence": 400,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 9963,
+    "bonuses": {
+      "stabAttack": 400,
+      "slashAttack": 400,
+      "crushAttack": 400,
+      "magicAttack": 400,
+      "rangeAttack": 400,
+      "stabDefence": 350,
+      "slashDefence": 480,
+      "crushDefence": 350,
+      "magicDefence": 480,
+      "rangeDefence": 480
+    }
+  },
+  {
+    "npcId": 9964,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 500,
+      "stabDefence": 400,
+      "slashDefence": 500,
+      "crushDefence": 400,
+      "magicDefence": 500,
+      "rangeDefence": 500
+    }
+  },
+  {
+    "npcId": 9965,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9966,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9967,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9968,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9969,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 6898,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 300,
+      "rangeAttack": 0,
+      "stabDefence": 70,
+      "slashDefence": 70,
+      "crushDefence": 70,
+      "magicDefence": 70,
+      "rangeDefence": 70
+    }
+  },
+  {
+    "npcId": 9970,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9971,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9972,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9973,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9974,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9975,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17144,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 300,
+      "rangeAttack": 0,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 200,
+      "rangeDefence": 50
+    }
+  },
+  {
+    "npcId": 9976,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17145,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 400,
+      "rangeAttack": 0,
+      "stabDefence": 150,
+      "slashDefence": 150,
+      "crushDefence": 150,
+      "magicDefence": 250,
+      "rangeDefence": 75
+    }
+  },
+  {
+    "npcId": 9977,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17146,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 500,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 300,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 9978,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17147,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 600,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 500,
+      "rangeDefence": 150
+    }
+  },
+  {
+    "npcId": 17148,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 600,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 500,
+      "rangeDefence": 150
+    }
+  },
+  {
+    "npcId": 9979,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9980,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17149,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 250,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 300,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 9981,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17150,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 275,
+      "rangeAttack": 0,
+      "stabDefence": 320,
+      "slashDefence": 320,
+      "crushDefence": 320,
+      "magicDefence": 320,
+      "rangeDefence": 110
+    }
+  },
+  {
+    "npcId": 9982,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17151,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 300,
+      "rangeAttack": 0,
+      "stabDefence": 340,
+      "slashDefence": 340,
+      "crushDefence": 340,
+      "magicDefence": 340,
+      "rangeDefence": 120
+    }
+  },
+  {
+    "npcId": 9983,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17152,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 325,
+      "rangeAttack": 0,
+      "stabDefence": 360,
+      "slashDefence": 360,
+      "crushDefence": 360,
+      "magicDefence": 360,
+      "rangeDefence": 130
+    }
+  },
+  {
+    "npcId": 9984,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17153,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 350,
+      "rangeAttack": 0,
+      "stabDefence": 380,
+      "slashDefence": 380,
+      "crushDefence": 380,
+      "magicDefence": 380,
+      "rangeDefence": 140
+    }
+  },
+  {
+    "npcId": 9985,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17154,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 375,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 400,
+      "rangeDefence": 150
+    }
+  },
+  {
+    "npcId": 9986,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9987,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9988,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9989,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17158,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 100,
+      "crushAttack": 100,
+      "magicAttack": 100,
+      "rangeAttack": 100,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 9990,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17159,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 100,
+      "crushAttack": 100,
+      "magicAttack": 100,
+      "rangeAttack": 100,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 9991,
+    "bonuses": {
+      "stabAttack": 70,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 120,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 150,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17160,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 100,
+      "crushAttack": 100,
+      "magicAttack": 100,
+      "rangeAttack": 100,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 9992,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 200,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9993,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 200,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9994,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 150,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 200,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9995,
+    "bonuses": {
+      "stabAttack": 140,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 200,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 250,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9996,
+    "bonuses": {
+      "stabAttack": 140,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 200,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 250,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9997,
+    "bonuses": {
+      "stabAttack": 140,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 200,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 250,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9998,
+    "bonuses": {
+      "stabAttack": 140,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 200,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 250,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 9999,
+    "bonuses": {
+      "stabAttack": 140,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 200,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 250,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10000,
+    "bonuses": {
+      "stabAttack": 140,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 200,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 250,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10001,
+    "bonuses": {
+      "stabAttack": 140,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 200,
+      "rangeAttack": 0,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 250,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10002,
+    "bonuses": {
+      "stabAttack": 160,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 240,
+      "rangeAttack": 0,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10003,
+    "bonuses": {
+      "stabAttack": 160,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 240,
+      "rangeAttack": 0,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10004,
+    "bonuses": {
+      "stabAttack": 160,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 240,
+      "rangeAttack": 0,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10005,
+    "bonuses": {
+      "stabAttack": 160,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 240,
+      "rangeAttack": 0,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10006,
+    "bonuses": {
+      "stabAttack": 160,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 240,
+      "rangeAttack": 0,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10007,
+    "bonuses": {
+      "stabAttack": 160,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 240,
+      "rangeAttack": 0,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10008,
+    "bonuses": {
+      "stabAttack": 160,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 240,
+      "rangeAttack": 0,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10009,
+    "bonuses": {
+      "stabAttack": 160,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 240,
+      "rangeAttack": 0,
+      "stabDefence": 325,
+      "slashDefence": 325,
+      "crushDefence": 325,
+      "magicDefence": 275,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10010,
+    "bonuses": {
+      "stabAttack": 180,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 260,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 350,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10011,
+    "bonuses": {
+      "stabAttack": 180,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 260,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 350,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10012,
+    "bonuses": {
+      "stabAttack": 180,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 260,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 350,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10013,
+    "bonuses": {
+      "stabAttack": 180,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 260,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 350,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17182,
+    "bonuses": {
+      "stabAttack": 1500,
+      "slashAttack": 1500,
+      "crushAttack": 1500,
+      "magicAttack": 1500,
+      "rangeAttack": 1500,
+      "stabDefence": 750,
+      "slashDefence": 1250,
+      "crushDefence": 900,
+      "magicDefence": 300,
+      "rangeDefence": 1750
+    }
+  },
+  {
+    "npcId": 10014,
+    "bonuses": {
+      "stabAttack": 180,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 260,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 350,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17183,
+    "bonuses": {
+      "stabAttack": 1000,
+      "slashAttack": 1000,
+      "crushAttack": 1000,
+      "magicAttack": 1000,
+      "rangeAttack": 1000,
+      "stabDefence": 750,
+      "slashDefence": 1250,
+      "crushDefence": 900,
+      "magicDefence": 300,
+      "rangeDefence": 1750
+    }
+  },
+  {
+    "npcId": 10015,
+    "bonuses": {
+      "stabAttack": 180,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 260,
+      "rangeAttack": 0,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 350,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17184,
+    "bonuses": {
+      "stabAttack": 1000,
+      "slashAttack": 1000,
+      "crushAttack": 1000,
+      "magicAttack": 1000,
+      "rangeAttack": 1000,
+      "stabDefence": 750,
+      "slashDefence": 1250,
+      "crushDefence": 900,
+      "magicDefence": 300,
+      "rangeDefence": 1750
+    }
+  },
+  {
+    "npcId": 10016,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 300,
+      "rangeAttack": 0,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 425,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 17185,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 500,
+      "stabDefence": 750,
+      "slashDefence": 850,
+      "crushDefence": 600,
+      "magicDefence": 500,
+      "rangeDefence": 1750
+    }
+  },
+  {
+    "npcId": 10017,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 300,
+      "rangeAttack": 0,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 425,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10018,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 300,
+      "rangeAttack": 0,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 425,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10019,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 300,
+      "rangeAttack": 0,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 425,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10020,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 300,
+      "rangeAttack": 0,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 425,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 10021,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 300,
+      "rangeAttack": 0,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 425,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 2881,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 400,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 600,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 20290,
+    "bonuses": {
+      "stabAttack": 300,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 500,
+      "rangeAttack": 0,
+      "stabDefence": 50,
+      "slashDefence": 50,
+      "crushDefence": 50,
+      "magicDefence": 50,
+      "rangeDefence": 500
+    }
+  },
+  {
+    "npcId": 2882,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 400,
+      "rangeAttack": 0,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 600,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 2883,
+    "bonuses": {
+      "stabAttack": 400,
+      "slashAttack": 400,
+      "crushAttack": 400,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 100,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 15201,
+    "bonuses": {
+      "stabAttack": 80,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 45,
+      "slashDefence": 47,
+      "crushDefence": 50,
+      "magicDefence": 30,
+      "rangeDefence": 70
+    }
+  },
+  {
+    "npcId": 11106,
+    "bonuses": {
+      "stabAttack": 25,
+      "slashAttack": 25,
+      "crushAttack": 25,
+      "magicAttack": 25,
+      "rangeAttack": 25,
+      "stabDefence": 25,
+      "slashDefence": 25,
+      "crushDefence": 25,
+      "magicDefence": 25,
+      "rangeDefence": 25
+    }
+  },
+  {
+    "npcId": 15202,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 140,
+      "stabDefence": 150,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 15203,
+    "bonuses": {
+      "stabAttack": 160,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 80,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 11108,
+    "bonuses": {
+      "stabAttack": 50,
+      "slashAttack": 50,
+      "crushAttack": 50,
+      "magicAttack": 50,
+      "rangeAttack": 50,
+      "stabDefence": 50,
+      "slashDefence": 50,
+      "crushDefence": 50,
+      "magicDefence": 50,
+      "rangeDefence": 50
+    }
+  },
+  {
+    "npcId": 15204,
+    "bonuses": {
+      "stabAttack": 320,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 150,
+      "slashDefence": 185,
+      "crushDefence": 185,
+      "magicDefence": 80,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 15205,
+    "bonuses": {
+      "stabAttack": 160,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 160,
+      "stabDefence": 135,
+      "slashDefence": 150,
+      "crushDefence": 150,
+      "magicDefence": 80,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 11110,
+    "bonuses": {
+      "stabAttack": 75,
+      "slashAttack": 75,
+      "crushAttack": 75,
+      "magicAttack": 75,
+      "rangeAttack": 75,
+      "stabDefence": 75,
+      "slashDefence": 75,
+      "crushDefence": 75,
+      "magicDefence": 75,
+      "rangeDefence": 75
+    }
+  },
+  {
+    "npcId": 15206,
+    "bonuses": {
+      "stabAttack": 320,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 190,
+      "slashDefence": 185,
+      "crushDefence": 185,
+      "magicDefence": 80,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 15207,
+    "bonuses": {
+      "stabAttack": 400,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 320,
+      "rangeAttack": 250,
+      "stabDefence": 350,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 300,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 11112,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 100,
+      "crushAttack": 100,
+      "magicAttack": 100,
+      "rangeAttack": 100,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 15208,
+    "bonuses": {
+      "stabAttack": 2000,
+      "slashAttack": 2000,
+      "crushAttack": 2000,
+      "magicAttack": 2000,
+      "rangeAttack": 2000,
+      "stabDefence": 1000,
+      "slashDefence": 1000,
+      "crushDefence": 1000,
+      "magicDefence": 150,
+      "rangeDefence": 1000
+    }
+  },
+  {
+    "npcId": 15209,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 250,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 500,
+      "magicDefence": 400,
+      "rangeDefence": 550
+    }
+  },
+  {
+    "npcId": 11114,
+    "bonuses": {
+      "stabAttack": 125,
+      "slashAttack": 125,
+      "crushAttack": 125,
+      "magicAttack": 125,
+      "rangeAttack": 125,
+      "stabDefence": 125,
+      "slashDefence": 125,
+      "crushDefence": 125,
+      "magicDefence": 125,
+      "rangeDefence": 125
+    }
+  },
+  {
+    "npcId": 15210,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 190,
+      "rangeAttack": 0,
+      "stabDefence": 500,
+      "slashDefence": 500,
+      "crushDefence": 500,
+      "magicDefence": 400,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 15211,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 1000,
+      "slashDefence": 1000,
+      "crushDefence": 1000,
+      "magicDefence": 150,
+      "rangeDefence": 1000
+    }
+  },
+  {
+    "npcId": 11116,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 150,
+      "slashDefence": 150,
+      "crushDefence": 150,
+      "magicDefence": 150,
+      "rangeDefence": 150
+    }
+  },
+  {
+    "npcId": 15213,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 80,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 11118,
+    "bonuses": {
+      "stabAttack": 175,
+      "slashAttack": 175,
+      "crushAttack": 175,
+      "magicAttack": 175,
+      "rangeAttack": 175,
+      "stabDefence": 175,
+      "slashDefence": 175,
+      "crushDefence": 175,
+      "magicDefence": 175,
+      "rangeDefence": 175
+    }
+  },
+  {
+    "npcId": 15214,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 80,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 879,
+    "bonuses": {
+      "stabAttack": 20,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 30,
+      "slashDefence": 30,
+      "crushDefence": 30,
+      "magicDefence": 30,
+      "rangeDefence": 30
+    }
+  },
+  {
+    "npcId": 11120,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 11122,
+    "bonuses": {
+      "stabAttack": 225,
+      "slashAttack": 225,
+      "crushAttack": 225,
+      "magicAttack": 225,
+      "rangeAttack": 225,
+      "stabDefence": 225,
+      "slashDefence": 225,
+      "crushDefence": 225,
+      "magicDefence": 225,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 11124,
+    "bonuses": {
+      "stabAttack": 250,
+      "slashAttack": 250,
+      "crushAttack": 250,
+      "magicAttack": 250,
+      "rangeAttack": 250,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 11126,
+    "bonuses": {
+      "stabAttack": 25,
+      "slashAttack": 25,
+      "crushAttack": 25,
+      "magicAttack": 25,
+      "rangeAttack": 25,
+      "stabDefence": 25,
+      "slashDefence": 25,
+      "crushDefence": 25,
+      "magicDefence": 25,
+      "rangeDefence": 25
+    }
+  },
+  {
+    "npcId": 11128,
+    "bonuses": {
+      "stabAttack": 50,
+      "slashAttack": 50,
+      "crushAttack": 50,
+      "magicAttack": 50,
+      "rangeAttack": 50,
+      "stabDefence": 50,
+      "slashDefence": 50,
+      "crushDefence": 50,
+      "magicDefence": 50,
+      "rangeDefence": 50
+    }
+  },
+  {
+    "npcId": 11130,
+    "bonuses": {
+      "stabAttack": 75,
+      "slashAttack": 75,
+      "crushAttack": 75,
+      "magicAttack": 75,
+      "rangeAttack": 75,
+      "stabDefence": 75,
+      "slashDefence": 75,
+      "crushDefence": 75,
+      "magicDefence": 75,
+      "rangeDefence": 75
+    }
+  },
+  {
+    "npcId": 11132,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 100,
+      "crushAttack": 100,
+      "magicAttack": 100,
+      "rangeAttack": 100,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 11134,
+    "bonuses": {
+      "stabAttack": 125,
+      "slashAttack": 125,
+      "crushAttack": 125,
+      "magicAttack": 125,
+      "rangeAttack": 125,
+      "stabDefence": 125,
+      "slashDefence": 125,
+      "crushDefence": 125,
+      "magicDefence": 125,
+      "rangeDefence": 125
+    }
+  },
+  {
+    "npcId": 11136,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 150,
+      "slashDefence": 150,
+      "crushDefence": 150,
+      "magicDefence": 150,
+      "rangeDefence": 150
+    }
+  },
+  {
+    "npcId": 11138,
+    "bonuses": {
+      "stabAttack": 175,
+      "slashAttack": 175,
+      "crushAttack": 175,
+      "magicAttack": 175,
+      "rangeAttack": 175,
+      "stabDefence": 175,
+      "slashDefence": 175,
+      "crushDefence": 175,
+      "magicDefence": 175,
+      "rangeDefence": 175
+    }
+  },
+  {
+    "npcId": 11140,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 11142,
+    "bonuses": {
+      "stabAttack": 225,
+      "slashAttack": 225,
+      "crushAttack": 225,
+      "magicAttack": 225,
+      "rangeAttack": 225,
+      "stabDefence": 225,
+      "slashDefence": 225,
+      "crushDefence": 225,
+      "magicDefence": 225,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 11144,
+    "bonuses": {
+      "stabAttack": 250,
+      "slashAttack": 250,
+      "crushAttack": 250,
+      "magicAttack": 250,
+      "rangeAttack": 250,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 11146,
+    "bonuses": {
+      "stabAttack": 25,
+      "slashAttack": 25,
+      "crushAttack": 25,
+      "magicAttack": 25,
+      "rangeAttack": 25,
+      "stabDefence": 25,
+      "slashDefence": 25,
+      "crushDefence": 25,
+      "magicDefence": 25,
+      "rangeDefence": 25
+    }
+  },
+  {
+    "npcId": 11148,
+    "bonuses": {
+      "stabAttack": 50,
+      "slashAttack": 50,
+      "crushAttack": 50,
+      "magicAttack": 50,
+      "rangeAttack": 50,
+      "stabDefence": 50,
+      "slashDefence": 50,
+      "crushDefence": 50,
+      "magicDefence": 50,
+      "rangeDefence": 50
+    }
+  },
+  {
+    "npcId": 11150,
+    "bonuses": {
+      "stabAttack": 75,
+      "slashAttack": 75,
+      "crushAttack": 75,
+      "magicAttack": 75,
+      "rangeAttack": 75,
+      "stabDefence": 75,
+      "slashDefence": 75,
+      "crushDefence": 75,
+      "magicDefence": 75,
+      "rangeDefence": 75
+    }
+  },
+  {
+    "npcId": 11152,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 100,
+      "crushAttack": 100,
+      "magicAttack": 100,
+      "rangeAttack": 100,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 912,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 85,
+      "rangeAttack": 0,
+      "stabDefence": 75,
+      "slashDefence": 75,
+      "crushDefence": 75,
+      "magicDefence": 75,
+      "rangeDefence": 75
+    }
+  },
+  {
+    "npcId": 913,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 85,
+      "rangeAttack": 0,
+      "stabDefence": 75,
+      "slashDefence": 75,
+      "crushDefence": 75,
+      "magicDefence": 75,
+      "rangeDefence": 75
+    }
+  },
+  {
+    "npcId": 11154,
+    "bonuses": {
+      "stabAttack": 125,
+      "slashAttack": 125,
+      "crushAttack": 125,
+      "magicAttack": 125,
+      "rangeAttack": 125,
+      "stabDefence": 125,
+      "slashDefence": 125,
+      "crushDefence": 125,
+      "magicDefence": 125,
+      "rangeDefence": 125
+    }
+  },
+  {
+    "npcId": 914,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 85,
+      "rangeAttack": 0,
+      "stabDefence": 75,
+      "slashDefence": 75,
+      "crushDefence": 75,
+      "magicDefence": 75,
+      "rangeDefence": 75
+    }
+  },
+  {
+    "npcId": 11156,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 150,
+      "slashDefence": 150,
+      "crushDefence": 150,
+      "magicDefence": 150,
+      "rangeDefence": 150
+    }
+  },
+  {
+    "npcId": 11158,
+    "bonuses": {
+      "stabAttack": 175,
+      "slashAttack": 175,
+      "crushAttack": 175,
+      "magicAttack": 175,
+      "rangeAttack": 175,
+      "stabDefence": 175,
+      "slashDefence": 175,
+      "crushDefence": 175,
+      "magicDefence": 175,
+      "rangeDefence": 175
+    }
+  },
+  {
+    "npcId": 11160,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 11162,
+    "bonuses": {
+      "stabAttack": 225,
+      "slashAttack": 225,
+      "crushAttack": 225,
+      "magicAttack": 225,
+      "rangeAttack": 225,
+      "stabDefence": 225,
+      "slashDefence": 225,
+      "crushDefence": 225,
+      "magicDefence": 225,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 11164,
+    "bonuses": {
+      "stabAttack": 250,
+      "slashAttack": 250,
+      "crushAttack": 250,
+      "magicAttack": 250,
+      "rangeAttack": 250,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 11166,
+    "bonuses": {
+      "stabAttack": 25,
+      "slashAttack": 25,
+      "crushAttack": 25,
+      "magicAttack": 25,
+      "rangeAttack": 25,
+      "stabDefence": 25,
+      "slashDefence": 25,
+      "crushDefence": 25,
+      "magicDefence": 25,
+      "rangeDefence": 25
+    }
+  },
+  {
+    "npcId": 11168,
+    "bonuses": {
+      "stabAttack": 50,
+      "slashAttack": 50,
+      "crushAttack": 50,
+      "magicAttack": 50,
+      "rangeAttack": 50,
+      "stabDefence": 50,
+      "slashDefence": 50,
+      "crushDefence": 50,
+      "magicDefence": 50,
+      "rangeDefence": 50
+    }
+  },
+  {
+    "npcId": 11170,
+    "bonuses": {
+      "stabAttack": 75,
+      "slashAttack": 75,
+      "crushAttack": 75,
+      "magicAttack": 75,
+      "rangeAttack": 75,
+      "stabDefence": 75,
+      "slashDefence": 75,
+      "crushDefence": 75,
+      "magicDefence": 75,
+      "rangeDefence": 75
+    }
+  },
+  {
+    "npcId": 11172,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 100,
+      "crushAttack": 100,
+      "magicAttack": 100,
+      "rangeAttack": 100,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 22438,
+    "bonuses": {
+      "stabAttack": 750,
+      "slashAttack": 750,
+      "crushAttack": 750,
+      "magicAttack": 750,
+      "rangeAttack": 750,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 250,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 11174,
+    "bonuses": {
+      "stabAttack": 125,
+      "slashAttack": 125,
+      "crushAttack": 125,
+      "magicAttack": 125,
+      "rangeAttack": 125,
+      "stabDefence": 125,
+      "slashDefence": 125,
+      "crushDefence": 125,
+      "magicDefence": 125,
+      "rangeDefence": 125
+    }
+  },
+  {
+    "npcId": 22439,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 500,
+      "stabDefence": 300,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 100,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 22440,
+    "bonuses": {
+      "stabAttack": 950,
+      "slashAttack": 950,
+      "crushAttack": 950,
+      "magicAttack": 950,
+      "rangeAttack": 950,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 250,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 11176,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 150,
+      "slashDefence": 150,
+      "crushDefence": 150,
+      "magicDefence": 150,
+      "rangeDefence": 150
+    }
+  },
+  {
+    "npcId": 22441,
+    "bonuses": {
+      "stabAttack": 700,
+      "slashAttack": 700,
+      "crushAttack": 700,
+      "magicAttack": 700,
+      "rangeAttack": 700,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 400,
+      "magicDefence": 200,
+      "rangeDefence": 400
+    }
+  },
+  {
+    "npcId": 22442,
+    "bonuses": {
+      "stabAttack": 750,
+      "slashAttack": 750,
+      "crushAttack": 750,
+      "magicAttack": 750,
+      "rangeAttack": 750,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 600,
+      "magicDefence": 400,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 11178,
+    "bonuses": {
+      "stabAttack": 175,
+      "slashAttack": 175,
+      "crushAttack": 175,
+      "magicAttack": 175,
+      "rangeAttack": 175,
+      "stabDefence": 175,
+      "slashDefence": 175,
+      "crushDefence": 175,
+      "magicDefence": 175,
+      "rangeDefence": 175
+    }
+  },
+  {
+    "npcId": 22443,
+    "bonuses": {
+      "stabAttack": 950,
+      "slashAttack": 950,
+      "crushAttack": 950,
+      "magicAttack": 950,
+      "rangeAttack": 950,
+      "stabDefence": 400,
+      "slashDefence": 400,
+      "crushDefence": 600,
+      "magicDefence": 400,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 22444,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 500,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 11180,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 941,
+    "bonuses": {
+      "stabAttack": 121,
+      "slashAttack": 10,
+      "crushAttack": 10,
+      "magicAttack": 124,
+      "rangeAttack": 0,
+      "stabDefence": 180,
+      "slashDefence": 180,
+      "crushDefence": 180,
+      "magicDefence": 180,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 11182,
+    "bonuses": {
+      "stabAttack": 225,
+      "slashAttack": 225,
+      "crushAttack": 225,
+      "magicAttack": 225,
+      "rangeAttack": 225,
+      "stabDefence": 225,
+      "slashDefence": 225,
+      "crushDefence": 225,
+      "magicDefence": 225,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 22447,
+    "bonuses": {
+      "stabAttack": 300,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 300,
+      "rangeAttack": 300,
+      "stabDefence": 0,
+      "slashDefence": 0,
+      "crushDefence": 0,
+      "magicDefence": 0,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 22448,
+    "bonuses": {
+      "stabAttack": 300,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 300,
+      "rangeAttack": 300,
+      "stabDefence": 0,
+      "slashDefence": 0,
+      "crushDefence": 0,
+      "magicDefence": 0,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 11184,
+    "bonuses": {
+      "stabAttack": 250,
+      "slashAttack": 250,
+      "crushAttack": 250,
+      "magicAttack": 250,
+      "rangeAttack": 250,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 14256,
+    "bonuses": {
+      "stabAttack": 1000,
+      "slashAttack": 1000,
+      "crushAttack": 1000,
+      "magicAttack": 1000,
+      "rangeAttack": 1000,
+      "stabDefence": 1000,
+      "slashDefence": 1000,
+      "crushDefence": 1000,
+      "magicDefence": 1000,
+      "rangeDefence": 1000
+    }
+  },
+  {
+    "npcId": 22449,
+    "bonuses": {
+      "stabAttack": 300,
+      "slashAttack": 300,
+      "crushAttack": 300,
+      "magicAttack": 300,
+      "rangeAttack": 300,
+      "stabDefence": 0,
+      "slashDefence": 0,
+      "crushDefence": 0,
+      "magicDefence": 0,
+      "rangeDefence": 0
+    }
+  },
+  {
+    "npcId": 11186,
+    "bonuses": {
+      "stabAttack": 25,
+      "slashAttack": 25,
+      "crushAttack": 25,
+      "magicAttack": 25,
+      "rangeAttack": 25,
+      "stabDefence": 25,
+      "slashDefence": 25,
+      "crushDefence": 25,
+      "magicDefence": 25,
+      "rangeDefence": 25
+    }
+  },
+  {
+    "npcId": 11188,
+    "bonuses": {
+      "stabAttack": 50,
+      "slashAttack": 50,
+      "crushAttack": 50,
+      "magicAttack": 50,
+      "rangeAttack": 50,
+      "stabDefence": 50,
+      "slashDefence": 50,
+      "crushDefence": 50,
+      "magicDefence": 50,
+      "rangeDefence": 50
+    }
+  },
+  {
+    "npcId": 22453,
+    "bonuses": {
+      "stabAttack": 750,
+      "slashAttack": 750,
+      "crushAttack": 750,
+      "magicAttack": 750,
+      "rangeAttack": 750,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 300,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 22454,
+    "bonuses": {
+      "stabAttack": 750,
+      "slashAttack": 750,
+      "crushAttack": 750,
+      "magicAttack": 750,
+      "rangeAttack": 750,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 300,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 11190,
+    "bonuses": {
+      "stabAttack": 75,
+      "slashAttack": 75,
+      "crushAttack": 75,
+      "magicAttack": 75,
+      "rangeAttack": 75,
+      "stabDefence": 75,
+      "slashDefence": 75,
+      "crushDefence": 75,
+      "magicDefence": 75,
+      "rangeDefence": 75
+    }
+  },
+  {
+    "npcId": 22455,
+    "bonuses": {
+      "stabAttack": 950,
+      "slashAttack": 950,
+      "crushAttack": 950,
+      "magicAttack": 950,
+      "rangeAttack": 950,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 400,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 22456,
+    "bonuses": {
+      "stabAttack": 950,
+      "slashAttack": 950,
+      "crushAttack": 950,
+      "magicAttack": 950,
+      "rangeAttack": 950,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 400,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 11192,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 100,
+      "crushAttack": 100,
+      "magicAttack": 100,
+      "rangeAttack": 100,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 11194,
+    "bonuses": {
+      "stabAttack": 125,
+      "slashAttack": 125,
+      "crushAttack": 125,
+      "magicAttack": 125,
+      "rangeAttack": 125,
+      "stabDefence": 125,
+      "slashDefence": 125,
+      "crushDefence": 125,
+      "magicDefence": 125,
+      "rangeDefence": 125
+    }
+  },
+  {
+    "npcId": 22459,
+    "bonuses": {
+      "stabAttack": 750,
+      "slashAttack": 750,
+      "crushAttack": 750,
+      "magicAttack": 750,
+      "rangeAttack": 750,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 1,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 22460,
+    "bonuses": {
+      "stabAttack": 750,
+      "slashAttack": 750,
+      "crushAttack": 750,
+      "magicAttack": 750,
+      "rangeAttack": 750,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 1,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 11196,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 150,
+      "slashDefence": 150,
+      "crushDefence": 150,
+      "magicDefence": 150,
+      "rangeDefence": 150
+    }
+  },
+  {
+    "npcId": 22461,
+    "bonuses": {
+      "stabAttack": 950,
+      "slashAttack": 950,
+      "crushAttack": 950,
+      "magicAttack": 950,
+      "rangeAttack": 950,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 1,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 22462,
+    "bonuses": {
+      "stabAttack": 950,
+      "slashAttack": 950,
+      "crushAttack": 950,
+      "magicAttack": 950,
+      "rangeAttack": 950,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 1,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 11198,
+    "bonuses": {
+      "stabAttack": 175,
+      "slashAttack": 175,
+      "crushAttack": 175,
+      "magicAttack": 175,
+      "rangeAttack": 175,
+      "stabDefence": 175,
+      "slashDefence": 175,
+      "crushDefence": 175,
+      "magicDefence": 175,
+      "rangeDefence": 175
+    }
+  },
+  {
+    "npcId": 22463,
+    "bonuses": {
+      "stabAttack": 950,
+      "slashAttack": 950,
+      "crushAttack": 950,
+      "magicAttack": 950,
+      "rangeAttack": 950,
+      "stabDefence": 600,
+      "slashDefence": 600,
+      "crushDefence": 600,
+      "magicDefence": 1,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 11200,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 11202,
+    "bonuses": {
+      "stabAttack": 225,
+      "slashAttack": 225,
+      "crushAttack": 225,
+      "magicAttack": 225,
+      "rangeAttack": 225,
+      "stabDefence": 225,
+      "slashDefence": 225,
+      "crushDefence": 225,
+      "magicDefence": 225,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 11204,
+    "bonuses": {
+      "stabAttack": 250,
+      "slashAttack": 250,
+      "crushAttack": 250,
+      "magicAttack": 250,
+      "rangeAttack": 250,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 8133,
+    "bonuses": {
+      "stabAttack": 700,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 250,
+      "rangeAttack": 250,
+      "stabDefence": 500,
+      "slashDefence": 700,
+      "crushDefence": 900,
+      "magicDefence": 1000,
+      "rangeDefence": 800
+    }
+  },
+  {
+    "npcId": 11206,
+    "bonuses": {
+      "stabAttack": 25,
+      "slashAttack": 25,
+      "crushAttack": 25,
+      "magicAttack": 25,
+      "rangeAttack": 25,
+      "stabDefence": 25,
+      "slashDefence": 25,
+      "crushDefence": 25,
+      "magicDefence": 25,
+      "rangeDefence": 25
+    }
+  },
+  {
+    "npcId": 11208,
+    "bonuses": {
+      "stabAttack": 50,
+      "slashAttack": 50,
+      "crushAttack": 50,
+      "magicAttack": 50,
+      "rangeAttack": 50,
+      "stabDefence": 50,
+      "slashDefence": 50,
+      "crushDefence": 50,
+      "magicDefence": 50,
+      "rangeDefence": 50
+    }
+  },
+  {
+    "npcId": 11210,
+    "bonuses": {
+      "stabAttack": 75,
+      "slashAttack": 75,
+      "crushAttack": 75,
+      "magicAttack": 75,
+      "rangeAttack": 75,
+      "stabDefence": 75,
+      "slashDefence": 75,
+      "crushDefence": 75,
+      "magicDefence": 75,
+      "rangeDefence": 75
+    }
+  },
+  {
+    "npcId": 10186,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 100,
+      "crushAttack": 100,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 75,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 11212,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 100,
+      "crushAttack": 100,
+      "magicAttack": 100,
+      "rangeAttack": 100,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 15309,
+    "bonuses": {
+      "stabAttack": 30,
+      "slashAttack": 30,
+      "crushAttack": 30,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 20,
+      "slashDefence": 20,
+      "crushDefence": 20,
+      "magicDefence": 20,
+      "rangeDefence": 20
+    }
+  },
+  {
+    "npcId": 11214,
+    "bonuses": {
+      "stabAttack": 125,
+      "slashAttack": 125,
+      "crushAttack": 125,
+      "magicAttack": 125,
+      "rangeAttack": 125,
+      "stabDefence": 125,
+      "slashDefence": 125,
+      "crushDefence": 125,
+      "magicDefence": 125,
+      "rangeDefence": 125
+    }
+  },
+  {
+    "npcId": 11216,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 150,
+      "rangeAttack": 150,
+      "stabDefence": 150,
+      "slashDefence": 150,
+      "crushDefence": 150,
+      "magicDefence": 150,
+      "rangeDefence": 150
+    }
+  },
+  {
+    "npcId": 11218,
+    "bonuses": {
+      "stabAttack": 175,
+      "slashAttack": 175,
+      "crushAttack": 175,
+      "magicAttack": 175,
+      "rangeAttack": 175,
+      "stabDefence": 175,
+      "slashDefence": 175,
+      "crushDefence": 175,
+      "magicDefence": 175,
+      "rangeDefence": 175
+    }
+  },
+  {
+    "npcId": 11220,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 200,
+      "rangeAttack": 200,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 11222,
+    "bonuses": {
+      "stabAttack": 225,
+      "slashAttack": 225,
+      "crushAttack": 225,
+      "magicAttack": 225,
+      "rangeAttack": 225,
+      "stabDefence": 225,
+      "slashDefence": 225,
+      "crushDefence": 225,
+      "magicDefence": 225,
+      "rangeDefence": 225
+    }
+  },
+  {
+    "npcId": 11224,
+    "bonuses": {
+      "stabAttack": 250,
+      "slashAttack": 250,
+      "crushAttack": 250,
+      "magicAttack": 250,
+      "rangeAttack": 250,
+      "stabDefence": 250,
+      "slashDefence": 250,
+      "crushDefence": 250,
+      "magicDefence": 250,
+      "rangeDefence": 250
+    }
+  },
+  {
+    "npcId": 14297,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 140,
+      "crushAttack": 100,
+      "magicAttack": 300,
+      "rangeAttack": 300,
+      "stabDefence": 350,
+      "slashDefence": 350,
+      "crushDefence": 350,
+      "magicDefence": 400,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 14301,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 150,
+      "crushAttack": 200,
+      "magicAttack": 800,
+      "rangeAttack": 250,
+      "stabDefence": 10000,
+      "slashDefence": 1000,
+      "crushDefence": 1000,
+      "magicDefence": 100,
+      "rangeDefence": 800
+    }
+  },
+  {
+    "npcId": 7133,
+    "bonuses": {
+      "stabAttack": 400,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 400,
+      "rangeAttack": 400,
+      "stabDefence": 150,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 165,
+      "rangeDefence": 175
+    }
+  },
+  {
+    "npcId": 7134,
+    "bonuses": {
+      "stabAttack": 400,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 400,
+      "rangeAttack": 400,
+      "stabDefence": 150,
+      "slashDefence": 300,
+      "crushDefence": 300,
+      "magicDefence": 165,
+      "rangeDefence": 175
+    }
+  },
+  {
+    "npcId": 7135,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 52,
+      "crushAttack": 52,
+      "magicAttack": 100,
+      "rangeAttack": 100,
+      "stabDefence": 70,
+      "slashDefence": 75,
+      "crushDefence": 75,
+      "magicDefence": 80,
+      "rangeDefence": 82
+    }
+  },
+  {
+    "npcId": 8164,
+    "bonuses": {
+      "stabAttack": 50,
+      "slashAttack": 50,
+      "crushAttack": 50,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 40,
+      "slashDefence": 40,
+      "crushDefence": 40,
+      "magicDefence": 40,
+      "rangeDefence": 40
+    }
+  },
+  {
+    "npcId": 10217,
+    "bonuses": {
+      "stabAttack": 125,
+      "slashAttack": 125,
+      "crushAttack": 125,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 120,
+      "slashDefence": 120,
+      "crushDefence": 120,
+      "magicDefence": 120,
+      "rangeDefence": 80
+    }
+  },
+  {
+    "npcId": 2025,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 172,
+      "rangeAttack": 0,
+      "stabDefence": 202,
+      "slashDefence": 184,
+      "crushDefence": 216,
+      "magicDefence": 172,
+      "rangeDefence": 99
+    }
+  },
+  {
+    "npcId": 2026,
+    "bonuses": {
+      "stabAttack": 202,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 351,
+      "slashDefence": 349,
+      "crushDefence": 333,
+      "magicDefence": -50,
+      "rangeDefence": 374
+    }
+  },
+  {
+    "npcId": 2027,
+    "bonuses": {
+      "stabAttack": 174,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 358,
+      "slashDefence": 356,
+      "crushDefence": 340,
+      "magicDefence": -50,
+      "rangeDefence": 375
+    }
+  },
+  {
+    "npcId": 2028,
+    "bonuses": {
+      "stabAttack": 0,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 233,
+      "stabDefence": 178,
+      "slashDefence": 170,
+      "crushDefence": 189,
+      "magicDefence": 205,
+      "rangeDefence": 199
+    }
+  },
+  {
+    "npcId": 2029,
+    "bonuses": {
+      "stabAttack": 184,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 361,
+      "slashDefence": 359,
+      "crushDefence": 343,
+      "magicDefence": -50,
+      "rangeDefence": 385
+    }
+  },
+  {
+    "npcId": 2030,
+    "bonuses": {
+      "stabAttack": 253,
+      "slashAttack": 0,
+      "crushAttack": 0,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 320,
+      "slashDefence": 331,
+      "crushDefence": 321,
+      "magicDefence": -40,
+      "rangeDefence": 321
+    }
+  },
+  {
+    "npcId": 10235,
+    "bonuses": {
+      "stabAttack": 150,
+      "slashAttack": 150,
+      "crushAttack": 150,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 150,
+      "slashDefence": 150,
+      "crushDefence": 150,
+      "magicDefence": 90,
+      "rangeDefence": 150
+    }
+  },
+  {
+    "npcId": 83,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 278,
+      "slashDefence": 280,
+      "crushDefence": 280,
+      "magicDefence": 75,
+      "rangeDefence": 280
+    }
+  },
+  {
+    "npcId": 4698,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 278,
+      "slashDefence": 280,
+      "crushDefence": 280,
+      "magicDefence": 75,
+      "rangeDefence": 280
+    }
+  },
+  {
+    "npcId": 4699,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 278,
+      "slashDefence": 280,
+      "crushDefence": 280,
+      "magicDefence": 75,
+      "rangeDefence": 280
+    }
+  },
+  {
+    "npcId": 4700,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 278,
+      "slashDefence": 280,
+      "crushDefence": 280,
+      "magicDefence": 75,
+      "rangeDefence": 280
+    }
+  },
+  {
+    "npcId": 4701,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 278,
+      "slashDefence": 280,
+      "crushDefence": 280,
+      "magicDefence": 75,
+      "rangeDefence": 280
+    }
+  },
+  {
+    "npcId": 6677,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 278,
+      "slashDefence": 280,
+      "crushDefence": 280,
+      "magicDefence": 75,
+      "rangeDefence": 280
+    }
+  },
+  {
+    "npcId": 10718,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 278,
+      "slashDefence": 280,
+      "crushDefence": 280,
+      "magicDefence": 75,
+      "rangeDefence": 280
+    }
+  },
+  {
+    "npcId": 10719,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 278,
+      "slashDefence": 280,
+      "crushDefence": 280,
+      "magicDefence": 75,
+      "rangeDefence": 280
+    }
+  },
+  {
+    "npcId": 10720,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 278,
+      "slashDefence": 280,
+      "crushDefence": 280,
+      "magicDefence": 75,
+      "rangeDefence": 280
+    }
+  },
+  {
+    "npcId": 10721,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 278,
+      "slashDefence": 280,
+      "crushDefence": 280,
+      "magicDefence": 75,
+      "rangeDefence": 280
+    }
+  },
+  {
+    "npcId": 21496,
+    "bonuses": {
+      "stabAttack": 200,
+      "slashAttack": 200,
+      "crushAttack": 200,
+      "magicAttack": 0,
+      "rangeAttack": 0,
+      "stabDefence": 278,
+      "slashDefence": 280,
+      "crushDefence": 280,
+      "magicDefence": 75,
+      "rangeDefence": 280
+    }
+  },
+  {
+    "npcId": 14973,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 14974,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 14975,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 14976,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 14977,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 0,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 600
+    }
+  },
+  {
+    "npcId": 1610,
+    "bonuses": {
+      "stabAttack": 100,
+      "slashAttack": 100,
+      "crushAttack": 100,
+      "magicAttack": 100,
+      "rangeAttack": 100,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 300
+    }
+  },
+  {
+    "npcId": 24765,
+    "bonuses": {
+      "stabAttack": 1000,
+      "slashAttack": 1000,
+      "crushAttack": 1000,
+      "magicAttack": 400,
+      "rangeAttack": 1000,
+      "stabDefence": 200,
+      "slashDefence": 200,
+      "crushDefence": 200,
+      "magicDefence": 200,
+      "rangeDefence": 200
+    }
+  },
+  {
+    "npcId": 24766,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 500,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 50,
+      "rangeDefence": 100
+    }
+  },
+  {
+    "npcId": 24767,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 500,
+      "stabDefence": 100,
+      "slashDefence": 100,
+      "crushDefence": 100,
+      "magicDefence": 100,
+      "rangeDefence": 50
+    }
+  },
+  {
+    "npcId": 24768,
+    "bonuses": {
+      "stabAttack": 500,
+      "slashAttack": 500,
+      "crushAttack": 500,
+      "magicAttack": 500,
+      "rangeAttack": 500,
+      "stabDefence": 50,
+      "slashDefence": 50,
+      "crushDefence": 50,
+      "magicDefence": 100,
+      "rangeDefence": 100
+    }
+  }
+]

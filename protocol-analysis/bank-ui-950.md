@@ -1,0 +1,51 @@
+# Native 950 bank controls
+
+2026-09-12. This milestone connects the ordinary bank controls to current-cache transfers and native character persistence. It does not enable the original 910 bank handler wholesale.
+
+## Implemented behavior
+
+- Quantity controls select **1, 5, 10, All or X**. Default item operation 1 uses the selected mode; operation 5 uses saved Last-X. Explicit quantity operations retain their fixed amounts. Change-X (component 114), Withdraw-X and Deposit-X use the native quantity prompt and reject stale or invalid replies before a transfer.
+- Note withdrawals resolve the paired 950 cache definition, including reciprocal note links and stackability. Capacity and predicted source identity use the actual output item: a note stack can fit where multiple unnoted items cannot. Depositing notes normalizes them through current-cache links.
+- Deposit-equipment stages the eligible worn slots and commits the accepted subset together. Unsupported stored item state, bank restrictions, removal restrictions and controller refusals leave those slots worn. Identity, quantity and capacity checks prevent stale callbacks or overflow from partially applying the plan.
+- Search uses the bank's native client scripts. Matching entries retain their authoritative container indices; server controls do not rebuild or renumber the filtered list and do not steal keyboard focus from search.
+- Note mode, Last-X and the **raw** selected quantity mode persist through the existing schema-3 SETTINGS section. Raw mode 11 means X; it is not replaced by the current X count. Missing or malformed bank values default to false/1/1. Existing unrelated settings remain bound. Restoration is packet-free; opening the bank sends the verified native preference variables.
+- Native `getNumberOf` and `containsItem` queries now inspect the same active bank as deposits, withdrawals and saves. The original multi-bank list is empty for native profiles; searching it incorrectly reported no owned items to other910 content.
+- Native bank presentation has one mount at1477:693; its authoritative refresh binds and resets varp8970=-1 for a compact bank. Open/close paths avoid the duplicate legacy/native UI writes. Known controls without a complete backend produce explicit feedback; unsupported modes are reset instead of being allowed to mutate legacy bank data. Escape is included in final acceptance coverage.
+
+The implementation is concentrated in `Native950BankUi`, `Native950Interactions`, `Native950ActionRouter`, `Native950Banking`, `Native950Containers`, the native branches of `Bank`, and the Player settings binding. UI/control metadata is verified against the paired cache before enabling the bank controls.
+
+## Evidence and validation
+
+The [950 cache audit](bank-ui-cache-950.md) and its [machine-readable evidence](bank-ui-cache-950-evidence.json) identify authored components, operation mappings, variable values and local search behavior. The [withdrawal actor audit](bank-withdrawal-claims-950.md) explains source identity after client prediction. The [backend audit](bank-ui-backend-audit-950.md) records transfer constraints.
+
+Focused tests cover dynamic quantity routing on both item grids, explicit amount operations, saved raw-X semantics, temporary-profile round trips, old-profile defaults, packet-free restoration, malformed preferences, note-output capacity, overflow, stale identities and equipment deposit planning. The preference round trip verifies that only SETTINGS becomes dirty and existing stored item arrays remain unchanged.
+
+Installed validation: **1,149 passed, 2 existing skips (1,151 discovered), zero failures/errors**, plus **19 launcher checks**. The packaged engine passed **80 encrypted bank actions, 62 ticks and 1,377 frames**, general UI **37 actions and 473 frames**, and equipment **136 frames**. Startup verification passed **138 scripts, 24 variables and 136 bank bindings**. Tests use ephemeral players; no manual account items, levels or bank contents were changed.
+
+Earlier whole-cache banking verification passed **51,419 round trips and 9,871 current-cache note links**, and appearance verification passed **54 bodies**. Those are retained earlier results, not reruns for the final slot-lifecycle deployment.
+
+Engine SHA256 `84970e322f673e889d6a4a2fa1fa5e52eeac7908c5fd1106ed7ea0eab49d3aac` is installed. At deployment, server PID **18944**, client PID **15024**. Recovery copy: `implementation-backup/2026-09-12-bank-slot-lifecycle/before-deploy`. [Final validation record](validation-bank-slot-lifecycle-2026-09-12.json).
+
+The corrected bank mounts and closes exactly once at **1477:693**, matching cache script10906's parameter3503 predicate. Parameter3505 resolves695 but is not this bank's valid standalone mount. The [actual-cache branch reproduction](bank-mount-950-evidence.json) shows that a sole695 bank immediately compacts the clicked actor into the next row and skips9316 redraw, reproducing the three reported item claims; sole693 preserves actor48447 and redraw. Native ownership queries and the packet recipe now agree on693. Authoritative refresh also binds and resets earliest-empty varp8970 to **-1**, the compact occupied-span no-hole sentinel, alongside occupied count8971 and container95. [Detailed slot lifecycle](bank-slot-lifecycle-950.md).
+
+## Deliberately incomplete bank features
+
+Tabs, tab names/icons/reordering, placeholders, presets, withdraw-directly-to-equipment, familiar containers, coin-pouch deposit, Diango, costume storage, extra-storage interfaces and bank PIN workflows are not complete native features. Their legacy methods cannot safely be enabled just because the client already renders their controls. Item charges, attributes and invention data also remain outside ordinary native ID/quantity storage.
+
+The [persistence audit](bank-persistence-feature-audit-950.md) explains the structural constraints. Its original finding that scalar bank preferences were not yet bound is addressed by this milestone; its tab/placeholder/preset constraints still apply. Native saves currently hold one compact positive-quantity bank with unique IDs. Legacy tabs violate that shape; legacy placeholders use zero-quantity Item values, which native validation rejects; legacy preset loads mutate containers in sequence and bypass the native equipment transaction.
+
+The capacity counter is also a known presentation gap: the client computes retail entitlement capacity independently of the server's600-slot storage limit. Actual item admission and slot events enforce600; occupied count and source indexing remain correct. The cache audit documents why a one-time capacity-variable override would not survive client recalculation. Correct this with the bank view/state work rather than granting fictional retail entitlements.
+
+## Next implementation phase
+
+Introduce a bounded **BankState** model with authoritative holdings, ordered tab/layout metadata and explicit placeholder records. Preserve exactly one owned quantity for each holding; a placeholder or preset template must never count as an extra item. Use a schema extension with exact schema-1/2/3 readers, safe default layout for old saves, bounded new sections, dirty detection, a recoverable pre-upgrade profile and the existing checksum/atomic-replacement protections.
+
+Render views through a versioned mapping from displayed entries to authoritative holdings, then implement preset loading as a staged plan spanning bank, backpack and equipment. Validate current-cache identities, quantities, wear slots, conflicts, base requirements, capacity and controller restrictions before committing once. Missing items must have a specified outcome that preserves total quantities. Familiar presets and attributed item variants need their own supported state model first.
+
+## Live checks and final confirmation
+
+Earlier live checks beside the development banker confirmed quantity5 note withdrawal/deposit, Change-X and Escape, and depositing/re-equipping partyhat1040 and Masterwork staff58486. Those checks preceded the final slot-lifecycle correction.
+
+The user confirmed doubled Search keystrokes when two bank trees were mounted at693 and695. Removing the duplicate fixed typing, and the user confirmed that interim result. The interim sole695 mount then produced repeated slot-changed withdrawal refusals: the client's bank-open predicate requires517 at693. The installed build keeps exactly one bank at **693**, preserving the input fix while repairing withdrawal prediction and inventory-transmit redraw. Search scripts were not replaced. [Keyboard and mount evidence](bank-ui-cache-950.md#duplicate-search-characters-bank-mounted-twice), [slot failure explanation](bank-slot-lifecycle-950.md).
+
+Close remains idempotent when CLOSE_MODAL is followed by button317; duplicate close notifications do not report an error or change item containers. The final server and client were restarted. The user manually retested single-item withdrawals, redepositing those items and normal Search typing, and reported: "it seems to work properly now". Fresh live logs show successful exhausted-row withdrawals for205,438 and63001 with actor48447, a partial436 withdrawal retaining its current ID, and Deposit inventory control39. The final log audit counted **29 successful transfers and 2 residual stale-claim refusals**. One request claimed item436 at slot14 when the authoritative item was24000 after an earlier211 exhaustion; its changedThisTick flag was false, so the stale claim crossed a refresh boundary. Retrying with the correct actor48447 succeeded. The other request claimed48447 at slot15 immediately after215 at slot14 was exhausted; changedThisTick was true, and the ambiguous shifted-row request was correctly refused. The persistent wrong-mount failure is fixed, but rapid or queued clicks can still reach these protective guards. Eliminating such refusals requires further study of client refresh acknowledgement and stable container views, while preserving item-identity checks. Short-window layout remains unchecked. The observed700-capacity display versus the server's600-slot limit remains the documented presentation limitation.

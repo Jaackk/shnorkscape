@@ -1,0 +1,11 @@
+{
+  "server_descriptor_count": 223,
+  "client_descriptor_count": 129,
+  "server_handlers_recovered": 221,
+  "server_order_candidates": 208,
+  "server_shape_strong_candidates": 73,
+  "server_independent_agreements": 71,
+  "client_unique_sender_shape_candidates": 5,
+  "payload_layouts_verified": 0,
+  "active_protocol_files_changed": false
+}

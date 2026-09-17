@@ -1,0 +1,60 @@
+hostname = "127.0.0.2"
+gameHostname = "127.0.0.2"
+build = 950
+configUrl = "http://127.0.0.2:8950/jav_config.ws?binaryType=2"
+
+[networking]
+bindAddress = "127.0.0.2"
+
+[networking.ports]
+game = 43650
+gameBackend = 43650
+http = 8950
+httpAliases = [80]
+https = 8951
+
+[lobby.loginResponse]
+rights = 0
+ip = 0
+defaultWorldPort2 = 43650
+
+[lobby.bootstrap]
+sendWorldInitState = true
+sendInitialStats = false
+sendDefaultVarps = true
+useForcedFallbackCandidateDefaultVarps = true
+defaultVarpMinId = 0
+defaultVarpMaxId = 2147483647
+rebuildNormalAreaType = 474
+rebuildNormalHash1 = -2147483648
+rebuildNormalHash2 = 2147483647
+sendInterfaceBootstrapScripts = true
+sendInterfaceBootstrapAnnouncementScripts = true
+sendInterfaceBootstrapPanelScripts = true
+sendInterfaceBootstrapCompletionScripts = true
+sendInterfaceBootstrapWidgetStateScripts = true
+sendImmediateFollowupWorldSync = true
+sendExperimentalActivePlayerOpensub = true
+worldInterfaceSelfModelComponent = 1
+worldInterfaceSelfHeadComponent = -1
+sendServerTickEnd = false
+compatServerpermAckOpcode = -1
+compatWorldlistFetchReplyOpcode = -1
+openRootInterface = true
+openSupplementalChildInterfaces = true
+trimWorldInterfaceTail = false
+sendDeferredCompletionScripts = true
+sendDeferredCompletionLiteScripts = false
+sendDeferredCompletion10623Batch = false
+sendDeferredCompletionCoreScripts = false
+sendDeferredCompletionEventDelta = false
+sendLateRootInterfaceEvents = true
+openPrimaryChild814 = true
+openAlternateChild1322 = false
+sendPrimaryVarcLarge2771 = true
+sendPrimaryVarcSmall3496 = true
+sendPrimaryVarcString2508 = true
+sendPrimaryClientScript10936 = true
+sendSecondaryLobbyVarcs = false
+sendLobbyNewsScripts = false
+sendSocialInitPackets = true

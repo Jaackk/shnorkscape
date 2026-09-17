@@ -1,0 +1,351 @@
+{
+  "method": "index23/group3 64-chunk labels joined with opcode2 in index2/group83",
+  "bindings": [
+    {
+      "index": 2,
+      "group": 83,
+      "files": 869,
+      "sha256": "97f791c6ee43e10a99da96bf1f98dca1836d8c41bdeb4c42c0f93467ea9b568e"
+    },
+    {
+      "index": 23,
+      "group": 3,
+      "files": 5197,
+      "sha256": "5fd02493496e0672859884c56ed1bb3e50ecdd1256aec5ef3c851c36e50d9d20"
+    }
+  ],
+  "areaDefinitions": 869,
+  "mapSquares": 5197,
+  "mixedSquares": 307,
+  "unassignedLabelZeroSquares": [
+    3092,
+    15041
+  ],
+  "lodestones": [
+    {
+      "name": "Bandit Camp",
+      "arrival": {
+        "x": 3214,
+        "y": 2954,
+        "plane": 0
+      },
+      "mapFile": 5938,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Lunar Isle",
+      "arrival": {
+        "x": 2088,
+        "y": 3911,
+        "plane": 0
+      },
+      "mapFile": 7840,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Al Kharid",
+      "arrival": {
+        "x": 3297,
+        "y": 3184,
+        "plane": 0
+      },
+      "mapFile": 6323,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Ardougne",
+      "arrival": {
+        "x": 2634,
+        "y": 3348,
+        "plane": 0
+      },
+      "mapFile": 6697,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Burthorpe",
+      "arrival": {
+        "x": 2899,
+        "y": 3544,
+        "plane": 0
+      },
+      "mapFile": 7085,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Catherby",
+      "arrival": {
+        "x": 2811,
+        "y": 3449,
+        "plane": 0
+      },
+      "mapFile": 6827,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Draynor Village",
+      "arrival": {
+        "x": 3105,
+        "y": 3298,
+        "plane": 0
+      },
+      "mapFile": 6576,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Edgeville",
+      "arrival": {
+        "x": 3067,
+        "y": 3505,
+        "plane": 0
+      },
+      "mapFile": 6959,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Falador",
+      "arrival": {
+        "x": 2967,
+        "y": 3403,
+        "plane": 0
+      },
+      "mapFile": 6830,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Lumbridge",
+      "arrival": {
+        "x": 3233,
+        "y": 3221,
+        "plane": 0
+      },
+      "mapFile": 6450,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Port Sarim",
+      "arrival": {
+        "x": 3011,
+        "y": 3215,
+        "plane": 0
+      },
+      "mapFile": 6447,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Seers' Village",
+      "arrival": {
+        "x": 2689,
+        "y": 3482,
+        "plane": 0
+      },
+      "mapFile": 6954,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Taverley",
+      "arrival": {
+        "x": 2878,
+        "y": 3442,
+        "plane": 0
+      },
+      "mapFile": 6828,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Varrock",
+      "arrival": {
+        "x": 3214,
+        "y": 3376,
+        "plane": 0
+      },
+      "mapFile": 6706,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Fort Forinthry",
+      "arrival": {
+        "x": 3298,
+        "y": 3525,
+        "plane": 0
+      },
+      "mapFile": 7091,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Menaphos",
+      "arrival": {
+        "x": 3216,
+        "y": 2716,
+        "plane": 0
+      },
+      "mapFile": 5426,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Anachronia",
+      "arrival": {
+        "x": 5431,
+        "y": 2338,
+        "plane": 0
+      },
+      "mapFile": 4692,
+      "label": "19b6cc",
+      "areaType": 762
+    },
+    {
+      "name": "Yanille",
+      "arrival": {
+        "x": 2529,
+        "y": 3094,
+        "plane": 0
+      },
+      "mapFile": 6183,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Canifis",
+      "arrival": {
+        "x": 3517,
+        "y": 3515,
+        "plane": 0
+      },
+      "mapFile": 6966,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Eagles' Peak",
+      "arrival": {
+        "x": 2366,
+        "y": 3479,
+        "plane": 0
+      },
+      "mapFile": 6948,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Fremennik Province",
+      "arrival": {
+        "x": 2712,
+        "y": 3677,
+        "plane": 0
+      },
+      "mapFile": 7338,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Karamja",
+      "arrival": {
+        "x": 2761,
+        "y": 3147,
+        "plane": 0
+      },
+      "mapFile": 6315,
+      "label": "ff6075",
+      "areaType": 674
+    },
+    {
+      "name": "Oo'glog",
+      "arrival": {
+        "x": 2532,
+        "y": 2871,
+        "plane": 0
+      },
+      "mapFile": 5671,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Tirannwn",
+      "arrival": {
+        "x": 2254,
+        "y": 3149,
+        "plane": 0
+      },
+      "mapFile": 6307,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Wilderness Crater",
+      "arrival": {
+        "x": 3143,
+        "y": 3635,
+        "plane": 0
+      },
+      "mapFile": 7217,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "Ashdale",
+      "arrival": {
+        "x": 2474,
+        "y": 2708,
+        "plane": 2
+      },
+      "mapFile": 5414,
+      "label": "fffb11",
+      "areaType": 4
+    },
+    {
+      "name": "Prifddinas",
+      "arrival": {
+        "x": 2208,
+        "y": 3360,
+        "plane": 1
+      },
+      "mapFile": 6690,
+      "label": "638fe6",
+      "areaType": 474
+    },
+    {
+      "name": "City of Um",
+      "arrival": {
+        "x": 1084,
+        "y": 1768,
+        "plane": 1
+      },
+      "mapFile": 3472,
+      "label": "37f44a",
+      "areaType": 814
+    },
+    {
+      "name": "Wendlewick",
+      "arrival": {
+        "x": 3461,
+        "y": 1519,
+        "plane": 0
+      },
+      "mapFile": 2998,
+      "label": "11d114",
+      "areaType": 857
+    }
+  ],
+  "binaryEvidence": {
+    "archiveDescriptor": "0x1402af9bd: index23",
+    "mapKeyAndRequest": "0x14032e6b6 / 0x14032e7dd: group3, file=(y<<7)|x",
+    "labelRle": "0x14032e900..0x14032ea1d",
+    "chunkOrderAndLabelComparison": "0x1403162d1..0x1403162e1; outerX increments8 at0x140316436"
+  }
+}

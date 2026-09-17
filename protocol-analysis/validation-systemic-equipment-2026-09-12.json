@@ -1,0 +1,51 @@
+{
+  "timestampUtc": "2026-09-12T12:22:22.381923+00:00",
+  "scope": "Generic current950 equipment, requirements, appearance, menu routing and ordinary bank transfers",
+  "unitTests": {
+    "discovered": 1126,
+    "passed": 1124,
+    "skippedExisting": 2,
+    "failures": 0,
+    "errors": 0
+  },
+  "launcherChecks": 18,
+  "startupPreflight": "passed: 94 script bindings, 17 variables and existing content checks",
+  "equipmentMetadata": {
+    "records": 63414,
+    "unresolvedTemplates": 0,
+    "validNamedWearableDefinitions": 16596,
+    "internalUnnamedWearableRowsExcluded": 59
+  },
+  "bankSweep": {
+    "namedItems": 57830,
+    "roundTrips": 51419,
+    "authoredRestrictions": 6411,
+    "notes": 8567,
+    "lent": 805,
+    "bound": 2803,
+    "shards": 90
+  },
+  "acceptance": {
+    "equipmentEncryptedFrames": 136,
+    "appearanceBodies": 54,
+    "bankActions": 30,
+    "bankTicks": 35,
+    "bankEncryptedFrames": 479,
+    "meleeTicks": 449,
+    "meleeEncryptedFrames": 1531,
+    "rewardsEncryptedFrames": 117,
+    "partyhatEncryptedFrames": 136
+  },
+  "engineSha256": "de3f96c1e7b1772fe74da6c29cf81cfb29f1e1c2fd494b759acb38c56daebcfd",
+  "serverPid": 28976,
+  "clientPid": 12640,
+  "backup": "implementation-backup/2026-09-12-systemic-equipment/before-deploy",
+  "liveStatus": "User confirmed Masterwork staff wielding, movement, appearance and removal: yes it works.",
+  "limits": [
+    "Ability/magic combat and special item effects are separate ports.",
+    "Per-instance saved charges/attributes/Invention state is explicitly refused until its persistence is supported.",
+    "Native bank note-withdraw/presets/extra tabs/BoB/withdraw-and-wear controls remain separate.",
+    "Cache-authored non-bankable and special removal restrictions remain respected."
+  ],
+  "notes": "No manual edits to user items, XP, bank, save files or reference947/910 projects. Explicit ;;nxt level now accepts all current skills within their normal caps for user-invoked diagnostics."
+}

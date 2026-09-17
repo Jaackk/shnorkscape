@@ -1,0 +1,10 @@
+{
+  "details": "https://archive.openrs2.org/caches/runescape/2691",
+  "timestampUtc": "2026-09-07T16:45:24Z",
+  "referenceSha256": "8a45e12b3d5b3bf35cdb02cdec9ddedbd46200b4fef086adc0679fb0d020ef8c",
+  "download": "https://archive.openrs2.org/caches/runescape/2691/flat-file.tar.gz",
+  "openrs2Id": 2691,
+  "format": "OpenRS2 flat-file cache/<index>/<group>.dat",
+  "referenceFile": "cache/255/12.dat",
+  "revision": "950.1"
+}

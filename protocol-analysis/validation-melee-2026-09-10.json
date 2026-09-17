@@ -1,0 +1,70 @@
+{
+  "date": "2026-09-10",
+  "milestone": "Basic RS2-style native 950 melee",
+  "runtimeJarSha256": "5a0a2e49ea547f773344de87dad1565c75464ac10f98796766683157dd9c68c4",
+  "unit": {
+    "tests": 761,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2,
+    "passed": 759
+  },
+  "cachePreflight": "passed after blue-zero correction: logs/cache-preflight-melee-bluezero-950.log",
+  "worldRegression": "passed on core melee build 57ca1cf85492b9d5666a32d9d42bae6f5371e602129b9255770a45465b3e2b9b: scoped NPCs, player effects/HP bars, force arrival, complete Cook dialogue, teardown/repopulation; unchanged world behavior in display-only correction",
+  "meleeAcceptance": {
+    "status": "passed",
+    "ownerThreadTicks": 168,
+    "encryptedFrames": 536,
+    "checks": [
+      "six NPC profiles",
+      "bronze sword and exact banker armour kit",
+      "bronze scimitar and longsword",
+      "damage and viewer-aware life-point display",
+      "visible NPC corpse, removal and full-HP respawn/readdition",
+      "safe player death and recovery with retained gear",
+      "actual approach from five tiles away",
+      "actual blocked wall edge refuses damage"
+    ],
+    "log": "logs/melee-acceptance-bluezero-950.log"
+  },
+  "live": {
+    "status": "basic melee including corrected blue zeros and visible respawn confirmed by user",
+    "visualAttacks": "user confirmed automatic combat and good animations with no animation issues",
+    "damageAndHealthBars": "user confirmed 100 damage with red sword icon and health bars changing appropriately",
+    "zeroDamage": "user confirmed blue zeros on the corrected build",
+    "npcDeathAndRespawn": "user confirmed goblin respawned after about40seconds; server log corroborates death and respawn",
+    "walkCancellation": "automated acceptance only; no explicit live confirmation",
+    "playerDeathRecovery": "user confirmed death resets character to the banker",
+    "source": "submitted user feedback in this task; implementation-backup/2026-09-10-melee-blue-zero/server.out.log for prior live combat/respawn",
+    "confirmedBuildSha256": "57ca1cf85492b9d5666a32d9d42bae6f5371e602129b9255770a45465b3e2b9b",
+    "correctedBuildSession": "user confirmed blue numeric zeros and visible goblin respawn after about40seconds on engine5a0a2e49ea547f773344de87dad1565c75464ac10f98796766683157dd9c68c4"
+  },
+  "backup": "implementation-backup/2026-09-10-basic-melee",
+  "limits": [
+    "No abilities, XP, drops/pickup, PvP or ranged/magic",
+    "Only admitted chickens/goblins and basic verified melee weapons",
+    "Accelerated acceptance does not establish client rendering or real-time cadence"
+  ],
+  "launcherChecks": {
+    "passed": 17,
+    "kotlinBuild": "passed",
+    "log": "logs/verify950-melee-bluezero.log"
+  },
+  "runtime": {
+    "server": {
+      "ProcessId": 24440,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-10T21:54:45.7386760Z",
+      "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.1.8-hotspot\\bin\\java.exe",
+      "ClassPath": "C:\\Users\\developer\\Desktop\\950RevTest\\patches\\classes;C:\\Users\\developer\\Desktop\\950RevTest\\OpenNXT\\runtime\\lib\\*"
+    },
+    "client": {
+      "ProcessId": 16144,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-10T21:54:47.2182660Z",
+      "ExecutablePath": "C:\\Users\\developer\\Desktop\\950RevTest\\client\\rs2client-vulkan.exe"
+    },
+    "launchFlags": "-Ataraxia -Collision -Vulkan -LumbridgeNpcs -DevTools"
+  },
+  "backupBeforeBlueZero": "implementation-backup/2026-09-10-melee-blue-zero"
+}

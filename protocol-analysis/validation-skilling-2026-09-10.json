@@ -1,0 +1,84 @@
+{
+  "date": "2026-09-10",
+  "scope": "950RevTest only; original910 and947 references read-only",
+  "tests": {
+    "tests": 926,
+    "passed": 924,
+    "skipped": 2,
+    "failures": 0,
+    "errors": 0
+  },
+  "cache_acceptance": {
+    "log": "logs/skilling-acceptance-950.log",
+    "engine_ticks": 377,
+    "encrypted_frames": 841,
+    "checks": [
+      "real950 tree38787 at3228,3267; encryptedChop and originalcollisionroute",
+      "missinghatchet refusal; walk cancellation; fullinventory refusal",
+      "originalWoodcutting ActionManager logandXP; stumpandoriginalregrowthtimer",
+      "Light consumesoneownedlog; stepaside; fireandXP",
+      "fireUse repeatsBonfire action untilusablelogs consumed",
+      "originalfireexpiry; nativeashes publication and encryptedTake",
+      "encrypteditem-on-item69 tinderbox/log works bothdirections",
+      "originalNative950PlayerBinder captures exactwood/fireXP anditems",
+      "Encrypted bronze hatchet Wield, actual 950 appearance and Remove through original equipment handlers"
+    ]
+  },
+  "regressions": {
+    "world": "logs/skilling-world-regression-950.log",
+    "rewards": "logs/skilling-rewards-regression-950.log",
+    "cache_preflight": "logs/skilling-preflight-950.log"
+  },
+  "rendering": "Pending user test after deployment; no native desktop control used.",
+  "prior_combat_user_acceptance": [
+    "aggro",
+    "NPCloot",
+    "floatingXP",
+    "skilliconprogresscircles",
+    "groundpickuptoinventory"
+  ],
+  "backup": "implementation-backup/2026-09-10-woodcutting-firemaking",
+  "deployment": {
+    "engine_sha256": "10f9f998126535720efd597db87d0f00da8adb10f8968321b5d6ab4e418d3d0c",
+    "server": {
+      "ProcessId": 10744,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-10T23:15:27.7175370Z",
+      "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.1.8-hotspot\\bin\\java.exe",
+      "ClassPath": "C:\\Users\\developer\\Desktop\\950RevTest\\patches\\classes;C:\\Users\\developer\\Desktop\\950RevTest\\OpenNXT\\runtime\\lib\\*"
+    },
+    "client": {
+      "ProcessId": 22552,
+      "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+      "CreatedUtc": "2026-09-10T23:15:29.2406790Z",
+      "ExecutablePath": "C:\\Users\\developer\\Desktop\\950RevTest\\client\\rs2client-vulkan.exe"
+    },
+    "flags": [
+      "Ataraxia",
+      "Collision",
+      "Vulkan",
+      "LumbridgeNpcs",
+      "DevTools"
+    ],
+    "lobby_build": "passed",
+    "launcher_checks": 17,
+    "launcher_log": "logs/verify950-skilling.log",
+    "startup": "server bound locally; client accepted JS5 handshake build950.1"
+  },
+  "limitations": [
+    "Ordinaryskills only; quest/minigame/customtrees,proteanlogs,portablefires,pets,invention,contracts andbonfireHPboosts remain separate ports.",
+    "Chopping uses verified950 Lumberjack animation role; originalstandard910sequenceIDs were repurposed.",
+    "Toolbelt defaultchain remainsunverified;hatchet/tinderbox useinventory."
+  ],
+  "live_observations": {
+    "server_log": "logs/server.out.log",
+    "observed": [
+      "user entered the game on the new build",
+      "bronzehatchet1351 Wield completed through original handlers",
+      "tree38787 clicks routed and player approached",
+      "log1511 Light option2 received; player moved afterward"
+    ],
+    "visual_confirmation": "pending user response",
+    "existing_unported_path": "Default logCraft enters legacy Fletching UI, whose unbound UI writes are rejected. Right-click Light or tinderbox use is the implemented firemaking entrypoint."
+  }
+}

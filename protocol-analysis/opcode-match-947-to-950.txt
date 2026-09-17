@@ -1,0 +1,67 @@
+packet                     947 opcode  950 opcode  score   runners-up
+UPDATE_STAT                66          92          0.636   NONE   0.34:12  0.25:59
+VARP_SMALL                 10          79          0.691   NONE   0.51:165  0.47:4
+VARP_LARGE                 111         4           0.654   NONE   0.52:79  0.35:165
+VARBIT_SMALL               50          28          0.658   NONE   0.53:82  0.39:48
+VARBIT_LARGE               71          82          0.517   NONE   0.50:28  0.46:87
+CLIENT_SETVARC_SMALL       1           126         0.771   weak   0.67:119  0.50:200
+CLIENT_SETVARC_LARGE       112         119         0.683   NONE   0.68:126  0.47:200
+CLIENT_SETVARCBIT_SMALL    115         48          0.614   NONE   0.57:28  0.52:87
+CLIENT_SETVARCBIT_LARGE    55          87          0.784   weak   0.47:48  0.39:74
+CLIENT_SETVARCSTR_SMALL    67          81          0.949   strong 0.68:30  0.56:142
+CLIENT_SETVARCSTR_LARGE    15          30          1.000   EXACT  0.69:81  0.62:142
+RESET_CLIENT_VARCACHE      48          23          1.000   EXACT  0.41:1  0.34:138
+UPDATE_RUNENERGY           116         21          1.000   EXACT  0.72:7  0.60:221
+UPDATE_RUNWEIGHT           108         7           1.000   EXACT  0.72:21  0.55:31
+UPDATE_REBOOT_TIMER        52          31          1.000   EXACT  0.55:7  0.47:139
+IF_SETEVENTS               35          24          0.369   NONE   0.22:71  0.22:155
+MUSIC                      87          107         0.605   NONE   0.27:161  0.26:46
+
+How to read this
+----------------
+Produced by tools/match950.py, which walks each 947 packet parser (addresses from the 947
+project's verified/verifiedNames.toml evidence comments), normalizes it to a shape-only token
+stream with absolute addresses and rip displacements abstracted away, and scores it against every
+950 handler parserTarget in protocol-analysis/950-native.json. Assignment is greedy over all
+scores so no 950 opcode is claimed twice.
+
+EXACT (>= 0.98) means the parser is shape-identical across revisions and the opcode mapping is
+strong evidence. Anything below "strong" is a lead, not a result: the var family
+(VARP / VARBIT / CLIENT_SETVARC / CLIENT_SETVARCBIT) parsers are near-identical to one another,
+differing only in id width and value transform, so shape matching cannot separate them and they
+need direct disassembly.
+
+Independent cross-check against the descriptor lengths in 950-server-sizes.toml:
+
+  RESET_CLIENT_VARCACHE  947:48  -> 950:23  size 0 both   AGREES
+  UPDATE_RUNENERGY       947:116 -> 950:21  size 1 both   AGREES
+  UPDATE_RUNWEIGHT       947:108 -> 950:7   size 2 both   AGREES
+  UPDATE_REBOOT_TIMER    947:52  -> 950:31  size 2 both   AGREES
+
+  CLIENT_SETVARCSTR_*    the two string variants CONFLICT with their 947 names.
+    947 SMALL=67 is var-byte (-1) and writes string-then-id.
+    947 LARGE=15 is var-short (-2) and writes id-then-string.
+    In 950 the shape match pairs 947-LARGE's parser with opcode 30, which is var-BYTE (-1),
+    and 947-SMALL's parser with opcode 81, which is var-SHORT (-2).
+    So 950 pairs the opposite field order with each frame width. Do not port the names; port
+    (opcode, layout) pairs and choose by encoded string length. Confirm by disassembling both
+    950 parsers before sending either.
+
+IF_SETEVENTS scores 0.369 and was unresolved by shape matching. The 947 parser 0x140109450 is
+documented in INVENTORY_INTERFACES.md as opcode 35 size 12; 950 opcode 35 is RUNCLIENTSCRIPT, so
+it definitely moved.
+
+RESOLVED 2026-09-10 by direct identification: 950 opcode 24, size 12, parser 0x140107970. Read out
+of the parser field by field rather than inferred from the shape score:
+
+  b0..b3   0x140107994..0x1401079be assembles (b2<<24)|(b3<<16)|(b0<<8)|b1   -> intv1        mask
+  b4..b5   0x1401079cf movzx word + rol ax,8                                 -> plain BE u16  toSlot
+  b6..b7   0x1401079eb add eax,-0x80 on b7, then (b6<<8)|(b7-128)            -> ushort128     fromSlot
+  b8..b11  0x140107a0e..0x140107a3c assembles (b11<<24)|(b10<<16)|(b9<<8)|b8 -> intle         parent
+
+0x140107a42 and 0x140107a4d additionally fold BOTH u16 fields from 0xFFFF to -1, so the -1 slot
+sentinel round-trips through the ushort128 encoding. All four addresses are 950.
+
+That the shape matcher scored this 0.369 while the answer was exact is worth remembering: a low
+score means the two revisions' code diverged, not that the assignment is doubtful. Every field in
+this packet moved, which is precisely why the shapes did not match.

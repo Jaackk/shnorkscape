@@ -1,0 +1,885 @@
+SCRIPT 10431 ARGS [13, 1, 0]
+0 035e iload        0
+1 035e iload        1
+2 035e iload        2
+3 035e iload        3
+4 035e iload        4
+5 035e iload        5
+6 035e iload        6
+7 035e iload        7
+8 035e iload        8
+9 025a sload        0
+10 035e iload        9
+11 035e iload        10
+12 035e iload        11
+13 0511 push         (2, '')
+14 035e iload        12
+15 0895 gosub        3376
+16 0495 return       0
+17 0511 push         (0, 0)
+18 0511 push         (0, 0)
+19 0495 return       0
+SCRIPT 14986 ARGS [0, 0, 0]
+0 0511 push         (0, 79823112)
+1 0030 getvarbit    10596864
+2 0511 push         (0, 0)
+3 0895 gosub        1191
+4 0495 return       0
+SCRIPT 10432 ARGS [1, 0, 0]
+0 0511 push         (0, 26)
+1 0592 istore       1
+2 0511 push         (0, 28619)
+3 0511 push         (0, 6)
+4 0895 gosub        9984
+5 0592 istore       2
+6 035e iload        2
+7 0511 push         (0, -1)
+8 0647 branch_eq    1
+9 0713 branch       4
+10 035e iload        1
+11 0511 push         (0, 3)
+12 0895 gosub        10495
+13 0495 return       0
+14 035e iload        2
+15 0511 push         (0, 3811)
+16 0540              0
+17 0592 istore       3
+18 035e iload        2
+19 0511 push         (0, 3810)
+20 0540              0
+21 0592 istore       1
+22 035e iload        0
+23 0511 push         (0, 1)
+24 0647 branch_eq    1
+25 0713 branch       4
+26 035e iload        2
+27 0511 push         (0, 4523)
+28 0540              0
+29 0592 istore       3
+30 035e iload        3
+31 0511 push         (0, -1)
+32 0647 branch_eq    1
+33 0713 branch       3
+34 0511 push         (0, 3)
+35 0895 gosub        10495
+36 0592 istore       3
+37 035e iload        1
+38 0511 push         (0, -1)
+39 0647 branch_eq    1
+40 0713 branch       2
+41 0511 push         (0, 26)
+42 0592 istore       1
+43 035e iload        1
+44 035e iload        3
+45 0495 return       0
+46 0511 push         (0, -1)
+47 0511 push         (0, 0)
+48 0495 return       0
+SCRIPT 10433 ARGS [1, 0, 0]
+0 0511 push         (0, 26)
+1 0592 istore       1
+2 0511 push         (0, 28619)
+3 0511 push         (0, 6)
+4 0895 gosub        9984
+5 0592 istore       2
+6 035e iload        2
+7 0511 push         (0, -1)
+8 0647 branch_eq    1
+9 0713 branch       4
+10 035e iload        1
+11 0511 push         (0, 3)
+12 0895 gosub        10495
+13 0495 return       0
+14 035e iload        2
+15 0511 push         (0, 3811)
+16 0540              0
+17 0592 istore       3
+18 035e iload        2
+19 0511 push         (0, 3810)
+20 0540              0
+21 0592 istore       1
+22 035e iload        0
+23 0511 push         (0, 1)
+24 0647 branch_eq    1
+25 0713 branch       4
+26 035e iload        2
+27 0511 push         (0, 4523)
+28 0540              0
+29 0592 istore       3
+30 035e iload        3
+31 0511 push         (0, -1)
+32 0647 branch_eq    1
+33 0713 branch       3
+34 0511 push         (0, 3)
+35 0895 gosub        10495
+36 0592 istore       3
+37 035e iload        1
+38 0511 push         (0, -1)
+39 0647 branch_eq    1
+40 0713 branch       2
+41 0511 push         (0, 26)
+42 0592 istore       1
+43 035e iload        3
+44 0511 push         (0, -1)
+45 0647 branch_eq    1
+46 0713 branch       3
+47 0511 push         (0, 3)
+48 0895 gosub        10495
+49 0592 istore       3
+50 035e iload        1
+51 035e iload        3
+52 0495 return       0
+53 0511 push         (0, -1)
+54 0511 push         (0, 0)
+55 0495 return       0
+SCRIPT 10434 ARGS [10, 0, 0]
+0 035e iload        0
+1 035e iload        1
+2 035e iload        2
+3 035e iload        3
+4 035e iload        4
+5 035e iload        5
+6 035e iload        6
+7 035e iload        7
+8 035e iload        8
+9 035e iload        9
+10 0895 gosub        10435
+11 0495 return       0
+SCRIPT 10435 ARGS [10, 0, 0]
+0 0511 push         (0, 96797563)
+1 0592 istore       10
+2 0511 push         (0, 96797568)
+3 0592 istore       11
+4 0511 push         (0, 96797569)
+5 0592 istore       12
+6 0511 push         (0, 96797567)
+7 0592 istore       13
+8 0511 push         (0, 96797565)
+9 0592 istore       14
+10 0511 push         (0, 96797564)
+11 0592 istore       15
+12 0511 push         (0, 96797574)
+13 0592 istore       16
+14 0511 push         (0, 96797566)
+15 0592 istore       17
+16 0511 push         (0, 36961)
+17 0511 push         (0, 1)
+18 0511 push         (0, 0)
+19 0511 push         (0, 120)
+20 0547              0
+21 0006              0
+22 051a switch       0
+23 0511 push         (0, 96797563)
+24 0592 istore       10
+25 0511 push         (0, 96797568)
+26 0592 istore       11
+27 0511 push         (0, 96797569)
+28 0592 istore       12
+29 0511 push         (0, 96797567)
+30 0592 istore       13
+31 0511 push         (0, 96797565)
+32 0592 istore       14
+33 0511 push         (0, 96797564)
+34 0592 istore       15
+35 0511 push         (0, 96797574)
+36 0592 istore       16
+37 0511 push         (0, 96797566)
+38 0592 istore       17
+39 0713 branch       33
+40 0511 push         (0, 59375775)
+41 0592 istore       10
+42 0511 push         (0, 59375780)
+43 0592 istore       11
+44 0511 push         (0, 59375781)
+45 0592 istore       12
+46 0511 push         (0, 59375779)
+47 0592 istore       13
+48 0511 push         (0, 59375777)
+49 0592 istore       14
+50 0511 push         (0, 59375776)
+51 0592 istore       15
+52 0511 push         (0, 59375782)
+53 0592 istore       16
+54 0511 push         (0, 59375778)
+55 0592 istore       17
+56 0713 branch       16
+57 0511 push         (0, 48759145)
+58 0592 istore       10
+59 0511 push         (0, 48759150)
+60 0592 istore       11
+61 0511 push         (0, 48759151)
+62 0592 istore       12
+63 0511 push         (0, 48759149)
+64 0592 istore       13
+65 0511 push         (0, 48759147)
+66 0592 istore       14
+67 0511 push         (0, 48759146)
+68 0592 istore       15
+69 0511 push         (0, 48759152)
+70 0592 istore       16
+71 0511 push         (0, 48759148)
+72 0592 istore       17
+73 035e iload        10
+74 05a2              0
+75 0511 push         (0, 1)
+76 0647 branch_eq    1
+77 0713 branch       22
+78 0511 push         (0, 4515)
+79 071f              0
+80 0511 push         (0, 1)
+81 0647 branch_eq    1
+82 0713 branch       17
+83 0511 push         (0, 4516)
+84 071f              0
+85 0511 push         (0, -1)
+86 0412 branch_ne    1
+87 0713 branch       12
+88 0511 push         (0, 4516)
+89 071f              0
+90 035e iload        0
+91 0647 branch_eq    1
+92 0713 branch       7
+93 0511 push         (0, 4518)
+94 071f              0
+95 035e iload        1
+96 0647 branch_eq    1
+97 0713 branch       2
+98 0895 gosub        10444
+99 0495 return       0
+100 035e iload        11
+101 0005              0
+102 035e iload        12
+103 0005              0
+104 035e iload        13
+105 0005              0
+106 035e iload        4
+107 0195 setvar       1211904
+108 035e iload        0
+109 0195 setvar       1212160
+110 035e iload        1
+111 0195 setvar       1212416
+112 0511 push         (0, 0)
+113 0592 istore       18
+114 0511 push         (0, 0)
+115 0592 istore       19
+116 0511 push         (0, 0)
+117 0592 istore       20
+118 0511 push         (0, 1)
+119 0592 istore       21
+120 0511 push         (0, 1)
+121 0592 istore       22
+122 0511 push         (0, 0)
+123 0592 istore       23
+124 0511 push         (0, 0)
+125 0592 istore       24
+126 0511 push         (0, 26)
+127 0592 istore       25
+128 0511 push         (0, 26)
+129 0592 istore       26
+130 0511 push         (0, 300)
+131 0592 istore       27
+132 0511 push         (2, '')
+133 0717 sstore       0
+134 0511 push         (2, '')
+135 0717 sstore       1
+136 0511 push         (2, '')
+137 0717 sstore       2
+138 0511 push         (2, '')
+139 0717 sstore       3
+140 0511 push         (0, -1)
+141 0592 istore       28
+142 0511 push         (0, -1)
+143 0592 istore       29
+144 0511 push         (0, -1)
+145 0592 istore       30
+146 0511 push         (0, -1)
+147 0592 istore       31
+148 0511 push         (0, -1)
+149 0592 istore       32
+150 0895 gosub        10082
+151 0592 istore       33
+152 0511 push         (0, -1)
+153 0592 istore       34
+154 0511 push         (0, 0)
+155 0895 gosub        10433
+156 0592 istore       23
+157 0592 istore       25
+158 0511 push         (0, 1)
+159 0895 gosub        10433
+160 0592 istore       24
+161 0592 istore       26
+162 035e iload        19
+163 035e iload        6
+164 073d              1
+165 0713 branch       474
+166 0511 push         (0, 5)
+167 0592 istore       32
+168 035e iload        0
+169 035e iload        4
+170 035e iload        19
+171 035e iload        1
+172 0895 gosub        13129
+173 0592 istore       31
+174 0592 istore       30
+175 0592 istore       29
+176 0592 istore       34
+177 0717 sstore       2
+178 0717 sstore       1
+179 0717 sstore       0
+180 0592 istore       22
+181 035e iload        11
+182 0511 push         (0, 4)
+183 035e iload        11
+184 07b2              0
+185 0691              0
+186 0511 push         (0, 4519)
+187 035e iload        22
+188 03c6              0
+189 035e iload        22
+190 0511 push         (0, 1)
+191 0647 branch_eq    1
+192 0713 branch       437
+193 035e iload        0
+194 035e iload        4
+195 035e iload        19
+196 0895 gosub        10454
+197 0592 istore       21
+198 035e iload        5
+199 0511 push         (0, -1)
+200 0412 branch_ne    1
+201 0713 branch       64
+202 035e iload        21
+203 0511 push         (0, 0)
+204 0647 branch_eq    1
+205 0713 branch       60
+206 0511 push         (0, 0)
+207 0511 push         (0, 36)
+208 035e iload        5
+209 035e iload        19
+210 067c              0
+211 0717 sstore       3
+212 025a sload        3
+213 025f              0
+214 0511 push         (0, 0)
+215 00ab              1
+216 0713 branch       49
+217 025a sload        0
+218 025a sload        2
+219 003f              0
+220 0511 push         (0, 0)
+221 0647 branch_eq    1
+222 0713 branch       23
+223 025a sload        3
+224 0511 push         (0, 0)
+225 0511 push         (0, 1)
+226 0128              0
+227 0511 push         (2, '*')
+228 003f              0
+229 0511 push         (0, 0)
+230 0647 branch_eq    1
+231 0713 branch       9
+232 025a sload        0
+233 025a sload        3
+234 0511 push         (0, 1)
+235 025a sload        3
+236 025f              0
+237 0128              0
+238 0267              2
+239 0717 sstore       0
+240 0713 branch       2
+241 025a sload        3
+242 0717 sstore       0
+243 025a sload        0
+244 0717 sstore       2
+245 0713 branch       20
+246 025a sload        3
+247 0511 push         (0, 0)
+248 0511 push         (0, 1)
+249 0128              0
+250 0511 push         (2, '*')
+251 003f              0
+252 0511 push         (0, 0)
+253 0647 branch_eq    1
+254 0713 branch       9
+255 025a sload        0
+256 025a sload        3
+257 0511 push         (0, 1)
+258 025a sload        3
+259 025f              0
+260 0128              0
+261 0267              2
+262 0717 sstore       0
+263 0713 branch       2
+264 025a sload        3
+265 0717 sstore       0
+266 035e iload        9
+267 0511 push         (0, 1)
+268 0647 branch_eq    1
+269 0713 branch       19
+270 0511 push         (0, 5441)
+271 025a sload        0
+272 0611              0
+273 0497              0
+274 025a sload        0
+275 025a sload        2
+276 003f              0
+277 0511 push         (0, 0)
+278 0647 branch_eq    1
+279 0713 branch       6
+280 025a sload        0
+281 0895 gosub        12292
+282 0717 sstore       0
+283 025a sload        0
+284 0717 sstore       2
+285 0713 branch       3
+286 025a sload        0
+287 0895 gosub        12292
+288 0717 sstore       0
+289 025a sload        0
+290 01f1              0
+291 0511 push         (0, 1)
+292 0383              0
+293 0511 push         (0, 0)
+294 0511 push         (0, 1)
+295 0511 push         (0, 0)
+296 0761              0
+297 0511 push         (0, 7128)
+298 035e iload        21
+299 03c6              0
+300 0511 push         (0, 1)
+301 05f6              0
+302 035e iload        12
+303 0511 push         (0, 5)
+304 035e iload        12
+305 07b2              0
+306 0691              1
+307 0511 push         (0, 6308)
+308 0883              0
+309 03c6              1
+310 035e iload        32
+311 035e iload        20
+312 0511 push         (0, 0)
+313 0511 push         (0, 0)
+314 0828              1
+315 035e iload        32
+316 035e iload        33
+317 0511 push         (0, 1)
+318 0511 push         (0, 0)
+319 08c3              1
+320 0511 push         (0, 10436)
+321 035e iload        11
+322 0883              0
+323 0511 push         (2, 'ii')
+324 0430              1
+325 0511 push         (0, 10449)
+326 035e iload        0
+327 035e iload        1
+328 025a sload        2
+329 0511 push         (2, 'iis')
+330 0321              1
+331 035e iload        30
+332 0511 push         (0, -1)
+333 0412 branch_ne    1
+334 0713 branch       46
+335 035e iload        12
+336 0511 push         (0, 5)
+337 035e iload        12
+338 07b2              0
+339 0691              1
+340 0511 push         (0, 6308)
+341 0883              0
+342 03c6              1
+343 035e iload        30
+344 0511 push         (0, 1)
+345 0647 branch_eq    1
+346 0713 branch       3
+347 0511 push         (0, 29732)
+348 0834              1
+349 0713 branch       2
+350 0511 push         (0, 29727)
+351 0834              1
+352 035e iload        32
+353 035e iload        29
+354 0511 push         (0, 17)
+355 051e multiply     0
+356 001d add          0
+357 035e iload        20
+358 035e iload        33
+359 0511 push         (0, 15)
+360 0730              0
+361 0511 push         (0, 2)
+362 0585 divide       0
+363 001d add          0
+364 0511 push         (0, 0)
+365 0511 push         (0, 0)
+366 0828              1
+367 0511 push         (0, 15)
+368 0511 push         (0, 15)
+369 0511 push         (0, 0)
+370 0511 push         (0, 0)
+371 08c3              1
+372 0511 push         (0, 1)
+373 0511 push         (2, 'Expand/Collapse')
+374 083c              1
+375 0511 push         (0, 13127)
+376 035e iload        11
+377 0883              0
+378 035e iload        4
+379 0511 push         (2, 'iii')
+380 006a              1
+381 035e iload        32
+382 035e iload        29
+383 0511 push         (0, 1)
+384 001d add          0
+385 0511 push         (0, 17)
+386 051e multiply     0
+387 001d add          0
+388 0592 istore       32
+389 035e iload        21
+390 0511 push         (0, 1)
+391 0647 branch_eq    1
+392 0713 branch       40
+393 035e iload        25
+394 0742              0
+395 035e iload        23
+396 008f              0
+397 0511 push         (0, 10438)
+398 0511 push         (0, -2147483645)
+399 0511 push         (0, -2147483643)
+400 035e iload        4
+401 035e iload        0
+402 035e iload        2
+403 035e iload        3
+404 0511 push         (2, 'iiiiii')
+405 006a              0
+406 035e iload        12
+407 0511 push         (0, 5)
+408 035e iload        12
+409 07b2              0
+410 0691              1
+411 0511 push         (0, 6308)
+412 0883              0
+413 03c6              1
+414 035e iload        32
+415 035e iload        20
+416 0511 push         (0, 0)
+417 0511 push         (0, 0)
+418 0828              1
+419 035e iload        32
+420 035e iload        33
+421 0511 push         (0, 1)
+422 0511 push         (0, 0)
+423 08c3              1
+424 0511 push         (0, 1)
+425 0511 push         (2, 'Select')
+426 083c              1
+427 0511 push         (0, 13126)
+428 035e iload        11
+429 0883              0
+430 0511 push         (2, 'ii')
+431 006a              1
+432 0713 branch       4
+433 035e iload        26
+434 0742              0
+435 035e iload        24
+436 008f              0
+437 035e iload        31
+438 0511 push         (0, -1)
+439 0412 branch_ne    1
+440 0713 branch       46
+441 035e iload        12
+442 0511 push         (0, 5)
+443 035e iload        12
+444 07b2              0
+445 0691              1
+446 0511 push         (0, 6308)
+447 0883              0
+448 03c6              1
+449 035e iload        31
+450 0511 push         (0, 1)
+451 0647 branch_eq    1
+452 0713 branch       3
+453 0511 push         (0, 20326)
+454 0834              1
+455 0713 branch       9
+456 035e iload        31
+457 0511 push         (0, 0)
+458 0647 branch_eq    1
+459 0713 branch       3
+460 0511 push         (0, 20268)
+461 0834              1
+462 0713 branch       2
+463 0511 push         (0, 20328)
+464 0834              1
+465 035e iload        32
+466 035e iload        20
+467 035e iload        33
+468 0511 push         (0, 14)
+469 0730              0
+470 0511 push         (0, 2)
+471 0585 divide       0
+472 001d add          0
+473 0511 push         (0, 0)
+474 0511 push         (0, 0)
+475 0828              1
+476 0511 push         (0, 14)
+477 0511 push         (0, 14)
+478 0511 push         (0, 0)
+479 0511 push         (0, 0)
+480 08c3              1
+481 035e iload        32
+482 0511 push         (0, 14)
+483 0511 push         (0, 2)
+484 001d add          0
+485 001d add          0
+486 0592 istore       32
+487 035e iload        34
+488 0511 push         (0, -1)
+489 0412 branch_ne    1
+490 0713 branch       32
+491 035e iload        12
+492 0511 push         (0, 5)
+493 035e iload        12
+494 07b2              0
+495 0691              1
+496 0511 push         (0, 6308)
+497 0883              0
+498 03c6              1
+499 035e iload        34
+500 0834              1
+501 035e iload        32
+502 035e iload        20
+503 035e iload        33
+504 0511 push         (0, 14)
+505 0730              0
+506 0511 push         (0, 2)
+507 0585 divide       0
+508 001d add          0
+509 0511 push         (0, 0)
+510 0511 push         (0, 0)
+511 0828              1
+512 0511 push         (0, 14)
+513 0511 push         (0, 14)
+514 0511 push         (0, 0)
+515 0511 push         (0, 0)
+516 08c3              1
+517 035e iload        32
+518 0511 push         (0, 14)
+519 0511 push         (0, 2)
+520 001d add          0
+521 001d add          0
+522 0592 istore       32
+523 035e iload        32
+524 035e iload        20
+525 0511 push         (0, 0)
+526 0511 push         (0, 0)
+527 0828              0
+528 035e iload        32
+529 035e iload        33
+530 0511 push         (0, 1)
+531 0511 push         (0, 0)
+532 08c3              0
+533 035e iload        2
+534 0511 push         (0, -1)
+535 0647 branch_eq    1
+536 0713 branch       9
+537 035e iload        28
+538 035e iload        32
+539 045e              0
+540 0511 push         (0, 1000)
+541 0046              0
+542 0071              0
+543 001d add          0
+544 01f9 max          0
+545 0592 istore       28
+546 025a sload        1
+547 0511 push         (2, '')
+548 003f              0
+549 0511 push         (0, 0)
+550 0412 branch_ne    1
+551 0713 branch       62
+552 035e iload        12
+553 0511 push         (0, 4)
+554 035e iload        12
+555 07b2              0
+556 0691              1
+557 0511 push         (0, 6308)
+558 0883              0
+559 03c6              1
+560 025a sload        1
+561 01f1              1
+562 0511 push         (0, 0)
+563 035e iload        20
+564 0511 push         (0, 2)
+565 0511 push         (0, 0)
+566 0828              1
+567 0511 push         (0, 1)
+568 0383              1
+569 0511 push         (0, 2)
+570 0511 push         (0, 1)
+571 0511 push         (0, 0)
+572 0761              1
+573 0511 push         (0, 5928)
+574 0511 push         (0, 2)
+575 03c6              1
+576 035e iload        21
+577 0511 push         (0, 1)
+578 0647 branch_eq    1
+579 0713 branch       5
+580 035e iload        25
+581 0742              1
+582 035e iload        23
+583 008f              1
+584 0713 branch       4
+585 035e iload        26
+586 0742              1
+587 035e iload        24
+588 008f              1
+589 025a sload        1
+590 0046              1
+591 023a              0
+592 035e iload        33
+593 0511 push         (0, 0)
+594 0511 push         (0, 0)
+595 08c3              1
+596 035e iload        2
+597 0511 push         (0, -1)
+598 0647 branch_eq    1
+599 0713 branch       14
+600 035e iload        28
+601 035e iload        32
+602 045e              0
+603 0511 push         (0, 1000)
+604 0046              0
+605 0071              0
+606 001d add          0
+607 045e              1
+608 0511 push         (0, 1000)
+609 0046              1
+610 0071              0
+611 001d add          0
+612 01f9 max          0
+613 0592 istore       28
+614 035e iload        20
+615 035e iload        33
+616 001d add          0
+617 0592 istore       20
+618 035e iload        19
+619 035e iload        7
+620 0647 branch_eq    1
+621 0713 branch       7
+622 0895 gosub        6431
+623 0511 push         (0, 0)
+624 0647 branch_eq    1
+625 0713 branch       3
+626 035e iload        11
+627 035e iload        19
+628 0895 gosub        10437
+629 0713 branch       5
+630 0511 push         (0, 1)
+631 04a9              0
+632 0511 push         (0, 7128)
+633 0511 push         (0, 0)
+634 03c6              0
+635 035e iload        19
+636 0511 push         (0, 1)
+637 001d add          0
+638 0592 istore       19
+639 0713 branch       -478
+640 035e iload        20
+641 0511 push         (0, 8)
+642 001d add          0
+643 035e iload        27
+644 04d3 min          0
+645 0592 istore       27
+646 035e iload        28
+647 0511 push         (0, -1)
+648 0412 branch_ne    1
+649 0713 branch       8
+650 035e iload        28
+651 0511 push         (0, 16)
+652 001d add          0
+653 0511 push         (0, 2)
+654 0511 push         (0, 5)
+655 051e multiply     0
+656 001d add          0
+657 0592 istore       28
+658 035e iload        0
+659 035e iload        1
+660 035e iload        27
+661 035e iload        28
+662 035e iload        8
+663 035e iload        4
+664 0511 push         (0, 0)
+665 0895 gosub        10440
+666 0592 istore       18
+667 035e iload        18
+668 0511 push         (0, -1)
+669 0647 branch_eq    1
+670 0713 branch       9
+671 035e iload        11
+672 0005              0
+673 0511 push         (0, -1)
+674 0511 push         (0, -1)
+675 0511 push         (0, -1)
+676 0195 setvar       1212416
+677 0195 setvar       1212160
+678 0195 setvar       1211904
+679 0495 return       0
+680 035e iload        14
+681 0511 push         (0, 21336)
+682 0895 gosub        4762
+683 035e iload        15
+684 0511 push         (0, 21336)
+685 0895 gosub        10409
+686 035e iload        9
+687 0511 push         (0, 1)
+688 0647 branch_eq    1
+689 0713 branch       4
+690 035e iload        4
+691 035e iload        6
+692 035e iload        7
+693 0895 gosub        10441
+694 0511 push         (0, 0)
+695 0511 push         (0, 4)
+696 0511 push         (0, 0)
+697 0511 push         (0, 0)
+698 035e iload        17
+699 07c5              0
+700 035e iload        20
+701 035e iload        18
+702 00ab              1
+703 0713 branch       20
+704 0511 push         (0, 16)
+705 0511 push         (0, 8)
+706 0511 push         (0, 1)
+707 0511 push         (0, 1)
+708 035e iload        17
+709 0055              0
+710 0511 push         (0, 0)
+711 035e iload        20
+712 035e iload        17
+713 00a0              0
+714 035e iload        16
+715 035e iload        17
+716 0511 push         (0, 792)
+717 0511 push         (0, 789)
+718 0511 push         (0, 790)
+719 0511 push         (0, 791)
+720 0511 push         (0, 773)
+721 0511 push         (0, 788)
+722 0895 gosub        31
+723 0713 branch       12
+724 0511 push         (0, 4)
+725 0511 push         (0, 8)
+726 0511 push         (0, 1)
+727 0511 push         (0, 1)
+728 035e iload        17
+729 0055              0
+730 0511 push         (0, 0)
+731 0511 push         (0, 0)
+732 035e iload        17
+733 00a0              0
+734 035e iload        16
+735 0005              0
+736 0495 return       0

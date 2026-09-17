@@ -1,0 +1,16 @@
+/cache/*
+!/cache/PUT-CACHE-HERE.txt
+/client-state/
+/players/
+/server-home/
+/logs/
+/temp/
+/build/
+/Ataraxia950/build/
+/Ataraxia950/.gradle/
+/OpenNXT/build/
+*.pid.json
+
+/.gradle-ataraxia/caches/
+/.gradle-ataraxia/native/
+/.gradle-ataraxia/notifications/

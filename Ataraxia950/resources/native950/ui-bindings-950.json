@@ -1,0 +1,1939 @@
+{
+  "_note": "Native 950 UI table inherited from the 947 adapter. All hashes pin the paired 950 cache; hash agreement alone is not a behavior test. Slots still resolve through enum 7716 and struct params 3505/3503. The 950 minimap controls and hitpoints transport were independently re-derived (see their notes). Settings and world-map scripts now have paired normalized-bytecode evidence in protocol-analysis/ui-scripts-950-evidence.json, with changed native-owned layout and option logic documented separately. Remaining bindings retain their individual provenance; do not infer complete 910/947 gameplay parity from this table.",
+  "revision": 950,
+  "rootInterface": "root",
+  "slotEnum": 7716,
+  "attachParam": 3505,
+  "wrapperParam": 3503,
+  "slots": {
+    "xp_popups": {
+      "enumKey": 1026,
+      "verifiedAttach": "1477:668",
+      "verifiedWrapper": "1477:666",
+      "_note": "950 paired-cache XP popup stat renderer; protocol-analysis/xp-popups-950-evidence.json"
+    },
+    "game_view": {
+      "enumKey": 1000,
+      "verifiedAttach": "1477:30",
+      "_note": "Ataraxia947Handoff.kt interfaceBootstrap; scene-interface-cache.json slot 1000 -> struct 21275"
+    },
+    "minimap": {
+      "enumKey": 1004,
+      "verifiedAttach": "1477:94",
+      "verifiedWrapper": "1477:92",
+      "_note": "Ataraxia947Handoff.kt interfaceBootstrap; scene-interface-cache.json slot 1004 -> struct 21278. M3: ui/UI-EVIDENCE-SUMMARY.md s4.1 adds the wrapper 1477:92 (struct 21278 param 3503) the table omitted"
+    },
+    "skills": {
+      "enumKey": 0,
+      "verifiedAttach": "1477:300",
+      "verifiedWrapper": "1477:298",
+      "_note": "M3: ui/UI-EVIDENCE-SUMMARY.md s1 + s4.1; enum 7716 key 0 -> struct 21293 (Skills), param 3505 = 96796972 = 1477:300, param 3503 = 96796970 = 1477:298"
+    },
+    "action_bar": {
+      "enumKey": 1003,
+      "verifiedAttach": "1477:70",
+      "verifiedWrapper": "1477:67",
+      "_note": "M3: ui/UI-EVIDENCE-SUMMARY.md s2 + s4.1; enum 7716 key 1003 -> struct 21277 (Main Action Bar), 3505 = 96796742 = 1477:70, 3503 = 96796739 = 1477:67; 1430:0 onLoad 8109(1003)"
+    },
+    "backpack": {
+      "enumKey": 2,
+      "verifiedAttach": "1477:103",
+      "verifiedWrapper": "1477:101",
+      "_note": "inventory-cache-bindings.md: slot 2 -> struct 21285"
+    },
+    "worn_equipment": {
+      "enumKey": 3,
+      "verifiedAttach": "1477:114",
+      "verifiedWrapper": "1477:112",
+      "_note": "EQUIPMENT_CONTENT.md: slot 3 -> struct 29115; Native947CacheContent.equipmentUi checks both hashes"
+    },
+    "all_chat": {
+      "enumKey": 18,
+      "verifiedAttach": "1477:420",
+      "verifiedWrapper": "1477:418",
+      "_note": "inventory-cache-bindings.md Chat feedback"
+    },
+    "bank": {
+      "enumKey": 1017,
+      "verifiedAttach": "1477:695",
+      "verifiedWrapper": "1477:693",
+      "_note": "inventory-cache-bindings.md: slot 1017 -> struct 21308"
+    }
+  },
+  "interfaces": {
+    "xp_popups": {
+      "id": 1213,
+      "minComponents": 97,
+      "sha256": "d2229e72f2f044f8416c5309869cf83cd3bfb92cf8076403a9540b0b0a9910e2",
+      "components": {
+        "root": 0,
+        "stat_listener": 67
+      },
+      "componentHashes": {
+        "67": "5db3593698ca0c673d0e158c0976f25cf6481451926e8647d9d28e45b8cd248c"
+      },
+      "_note": "onLoad5658 records XP baseline; 1213:67 stat hook5661 invokes5662 to render actual UPDATE_STAT deltas. All97 components pinned by Native950XpDrops."
+    },
+    "root": {
+      "id": 1477,
+      "sha256": "7a44687c17d8c0f0c74d8df31ceae15c85c3d55d24c1cabb261ade01699db548",
+      "minComponents": 923,
+      "components": {
+        "root_layer": 0,
+        "hud_layer": 27,
+        "panel_layer": 60,
+        "xp_text_layer": 636,
+        "xp_text_children": 637
+      },
+      "_note": "sha256 and 923-component count from verified/scene-interface-cache.json; components 0/27/60 are the ancestors the handoff keeps visible (EQUIPMENT_CONTENT.md: wrappers 101/112 sit under component 60)"
+    },
+    "game_view": {
+      "id": 1482,
+      "sha256": "e715c8accf50cade0a004ae203dbd29217680093c39720cc2c50a1d403a913c3",
+      "minComponents": 2,
+      "components": {
+        "viewport": 0
+      },
+      "_note": "scene-interface-cache.json: 2 components, viewport content type 1337"
+    },
+    "minimap": {
+      "id": 1465,
+      "sha256": "97c0ac3ea13e0d9696fe94ce2d7f6116dd19580521ef263335cdece7eef1d1bd",
+      "minComponents": 44,
+      "components": {
+        "viewport": 0,
+        "run_orb": 15,
+        "run_orb_ring": 16,
+        "energy_bar": 18,
+        "run_orb_icon": 19,
+        "energy_text": 20,
+        "world_map": 11,
+        "compass_mount": 12
+      },
+      "componentHashes": {
+        "15": "041aad3239ded0d8591080ddeb53eb98f7fd8292321a7efc4baa408e1a70b6d7",
+        "16": "4f0416aacd92ed5b749e65c4e58b60b5db0200b4285bf82b21074f232620b9af",
+        "18": "269fc20b90b50c89a3131178be4da4130cebc8b8b366e121acb918adddcba5da",
+        "19": "73d433b32ec724e9a08a5ebe6bd8a338c58ece59c4c5a874ca5ecadfcc6d14fb",
+        "20": "30e36f5a8832108948f5c01ef5e8a1c6cc6a44c05d5b3fbbf288fd493beb8642",
+        "11": "7c8b227a1ebffc100be5728550972ce77a1add8401f97c63e43b13fa4eb3c45b",
+        "12": "39ed6dd160730987796755a64ca8dad4a878aba07f8c0b18814fb5ca4125d717"
+      },
+      "_note": "Re-derived from 950 cache 2026-09-10: 44 components; World Map ops on11, Toggle Run/Rest ops on15. Former10/14 are decorations. Run ring16, energy bar18, icon19, percentage20. Icon19 onLoad2304 explicitly targets1465:15,18,20. See protocol-analysis/minimap-controls-950.json."
+    },
+    "skills": {
+      "id": 1466,
+      "sha256": "6933909c87c4008b08f0e09118316d6b76b8e80a875dfe4eec95f515f0d0a5fa",
+      "minComponents": 15,
+      "components": {
+        "root": 0,
+        "current_level": 4,
+        "base_level": 5,
+        "cells": 7,
+        "bottom_bar": 9,
+        "total_level": 11,
+        "combat_level": 12
+      },
+      "componentHashes": {
+        "0": "6933909c87c4008b08f0e09118316d6b76b8e80a875dfe4eec95f515f0d0a5fa",
+        "4": "f66a5fe23f006765892a7e497b3301a873be6c27fa16bebc1708ebe02c47dbb9",
+        "9": "86cd697aa92baa581db8518e9cb3d9b99d70139f618e4b01a9aa8e4384ab90cf",
+        "11": "cc277f0d9905b7c38cc158e5892b19332031670b42d1669f204da9e2d2032c04",
+        "12": "db19c6b11181bdc6d1d440cad250656bfd42756d83d3628275611e30c7fea3d0"
+      },
+      "_note": "M3: ui/UI-EVIDENCE-SUMMARY.md s1 + s4.2; 15 components, 1466:0 onVarTransmit = onStatTransmit = 8488 over 13 of them, bound to slot key 0 by script 2141 case 0. The client derives base level, total level and combat level from the UPDATE_STAT experience itself, so the server writes none of these components - they are declared so a 910 emitter that addresses them is a translation the router can see rather than a silent drop. Components 4, 5 and 7 are byte-identical files, so only 4 is pinned. 1466-versus-320 is CANDIDATE (needs a live test) and 320 is deliberately absent"
+    },
+    "action_bar": {
+      "id": 1430,
+      "sha256": "6f453eb7d5e0f39d09e3637f2d4ff45df1ce82fd2e88aed80a220ec77ed346cf",
+      "minComponents": 269,
+      "components": {
+        "root": 0,
+        "hp_bar": 7,
+        "prayer_bar": 14,
+        "summoning_bar": 20,
+        "auto_retaliate_icon": 54,
+        "adrenaline_bar": 55,
+        "auto_retaliate_button": 57
+      },
+      "componentHashes": {
+        "7": "beed8d642f8209c08a1002715ba48be7568321863cc1e737482107176ac97709",
+        "14": "57e1218d2c92d26dfd03964608c5b80fe06d6e3bc9201e909085ecc2d8c68888",
+        "20": "9407ebee2f06972437a22f91efda9e83e23c40477da56873dfeab2f6a7b60ad6",
+        "54": "4a2026d87530d8c9277413aebbec2d613ebbc095c25e2e9c091e015bdbf55c89",
+        "55": "b530381b063a8fb13d402d3d5a09d9b4ace357b2a22da53f82b199a86f08b99b",
+        "57": "5c6c760ab8dab25b949317551d0b74b0804a906cc0dd597a520f2a1c10297d25"
+      },
+      "_note": "M3: ui/UI-EVIDENCE-SUMMARY.md s2 + s4.2; 1430:0 onLoad 8109(1003) and 8110 wires 8122(1430:7), 8123(1430:14), 8124(1430:20), 8125(1430:55). The four bars read vars, never packet-written text, so the server drives them through hitpoints/prayer_points/summoning_points/adrenaline below. 1430:57 Toggle flips varp 462 client-side and repaints 1430:54"
+    },
+    "backpack": {
+      "id": 1473,
+      "sha256": "4a6a3bfb42122da83492c2fad4f2f70cb4c6a4eb196b927a73667d4fb5164d5b",
+      "minComponents": 23,
+      "components": {
+        "root": 0,
+        "backgrounds": 4,
+        "items": 5
+      },
+      "_note": "Native947CacheContent.verifyInterfaceBindings pin; inventory-cache-bindings.md: item actors under 1473:5 (910 used 1473:7), backgrounds 1473:4, 28 slots"
+    },
+    "worn_equipment": {
+      "id": 1462,
+      "sha256": "076f92b58a47fa090e1bf24a24b1c92bbe18f31262ea2546374f4623280b53ef",
+      "minComponents": 37,
+      "components": {
+        "root": 3,
+        "items": 31
+      },
+      "componentHashes": {
+        "3": "7bbe9121c015a14ae479de36c7aa0c84b7d67feb960a31a4d40c9e7225998c8e",
+        "31": "ea269f99f0943958a993a2cfc766f23cd0ea0d1b0a36a5dce2e49c16682966a2"
+      },
+      "_note": "Native947CacheContent.verifyEquipmentBindings pins; EQUIPMENT_CONTENT.md: content root 1462:3, actor layer 1462:31, actor index = equipment slot"
+    },
+    "bank": {
+      "id": 517,
+      "sha256": "0693acb772e6db8cd24787c393e3831316d21614b7cae484b1e8aea0c0547ecd",
+      "minComponents": 341,
+      "components": {
+        "items": 201,
+        "inventory": 15,
+        "close": 317,
+        "deposit_all": 39,
+        "quantity_menu": 91,
+        "equipment_mode": 58,
+        "familiar_mode": 62,
+        "placeholder_mode": 122,
+        "note_mode": 126,
+        "worn_items": 35,
+        "deposit_equipment": 42,
+        "deposit_familiar": 45,
+        "deposit_pouch": 48,
+        "auto_tab_switch": 51,
+        "destination_backpack": 56,
+        "destination_worn": 60,
+        "destination_familiar": 64,
+        "shortcut_root": 67,
+        "shortcut_options": 68,
+        "shortcut_last": 69,
+        "quantity_one": 93,
+        "quantity_five": 96,
+        "quantity_ten": 99,
+        "quantity_all": 103,
+        "quantity_x": 106,
+        "change_x": 114,
+        "placeholder_toggle": 123,
+        "notes_toggle": 127,
+        "bank_pin": 134,
+        "costume_room": 140,
+        "diango": 143,
+        "metal_bank": 146,
+        "more_storage": 149,
+        "transfer_view": 152,
+        "preset_view": 153,
+        "all_items": 165,
+        "search": 237,
+        "cancel_search_overlay": 238,
+        "cancel_search": 239
+      },
+      "options": {
+        "deposit": {
+          "1": 1,
+          "2": 1,
+          "3": 5,
+          "4": 10,
+          "7": "all"
+        },
+        "withdraw": {
+          "1": 1,
+          "2": 1,
+          "3": 5,
+          "4": 10,
+          "7": "all"
+        }
+      },
+      "_note": "Paired950 bank controls: protocol-analysis/bank-ui-cache-950.md and reproducible evidence. Native950BankUi owns event masks and presentation. Base amount tables remain fixed-quantity fallbacks; Native950Interactions resolves selected/saved quantities from authoritative preferences and scopes X requests.",
+      "componentHashes": {
+        "134": "166727f2c842d5f8265ef987e974c9f16420b8fdf7a502671c5e88ff5d18caab",
+        "140": "343f5d33f3b27bed57c448f4262c22725823578302f638afea287a5310be5ca6",
+        "15": "e94123de28eab816b860b39e301e6c72544307ea091906df84f2c4bd186ac74a",
+        "143": "d8cf9b0e5a3f6d3fee00c979ea692cfe6ffd7d5e3c068adf8d8569429ea1e208",
+        "146": "473d961deafabd835becd150c11670491c88142ac724bfb10b7dffff43b6cf2c",
+        "149": "46ed7ea9f93da223022724b86cf42029dcad3133ef1e7e76079ca814497c6dd7",
+        "152": "361ba8e1c2709a3e7f6d132389212de11144305c4a1f30ddfbf7adaea69fca2c",
+        "153": "bf3fcd9f0b75ad551c91e640481b6686dc346c5d58446a32c66950e186870167",
+        "35": "9a3cd2d48240d73f5287f234d70281819f300787e10a425a500fae4270b339c2",
+        "165": "9bbb4bc47407a79289ada2c7127e857b6874e22cfb90791c72eebea5dceb0a69",
+        "39": "8a9cb296c463bc6244b24bf5e2a629be21fa20f3461050a54ad5e05f522a6298",
+        "42": "a0ba3f01edc01c6e25c09279a330be3003774997cf05cfe5f159956288f200df",
+        "45": "af341ea28a40334208eb9934c174c02b09242f771bfb9dea7780ce6f7cc948b2",
+        "48": "3d1954e86809df0508c1236ef97624e062bd8697a888b9ce0f43c2e094416436",
+        "51": "077c2d6fc05668baacc8bb9a107841f0537120d4deb24273549a7d044515fea6",
+        "56": "96ca3c0cbf9c1318984b6c3aad14ae033c58450451ebc0fc385e8c9841904b88",
+        "58": "00519063be38036db5f0abdf0c237fa010019c865dfe95d385203256a6648d87",
+        "60": "037bea5a12673e7ec5a72bef78398db08da22a2e533f19843c8afce2fb204e5b",
+        "317": "90b49359c33bf6346799392f1dcb3a247176929b0e76cf2ce02f267307dacadf",
+        "62": "829ece14283507708620db8d3a5d9bbb7a6406cab9e6128f59ba630f41d788ad",
+        "64": "0999c14bed0e174e7689c98548b8c9ecd6ba4d2d4749120e0a4fc8dfa4962bf9",
+        "67": "3bf506c81ee12c03c542f6efa0f7445704fb66c446b533f555f532b8434b6d3a",
+        "68": "6a314d4de875c7d2e5fb212fc69bcdb0892cee25e627fd3b2dc8530c3047e062",
+        "69": "41ac155f66424d0d814d70cac6cac8d9e09e0a1d567eff06f72d9b307d4ff2ae",
+        "201": "c957e61c78d15d71cc8f38a111c088289717fad63951b8da176f17b430569541",
+        "91": "0874f53c53c8cd7b8648cf696ffb4e2cc4f93b2d93c0161277ae9a220f0a4d65",
+        "93": "9c0f7dbe42534d0a5eefbe0eca201a252ff4ce9b293814207177a8759846a42d",
+        "96": "687d1c9b20e7babe58fc07c0f8bc113c678d30afdb02d9d0fd3f51e21340cfc0",
+        "99": "a3896b6d28c4663b7a1b49971a90adf3828151a0005840f70e4c3af428027999",
+        "103": "15d0662ff50c950dae3a200873fb33cf990ccc762e781ecd44095a38eafbf53a",
+        "106": "56d412393023d39162eedbd7dbb510141e9ea4df52a78f3658324ead35d4b5ad",
+        "237": "09438344bb058fdba2c24a87679a5d509114cf59702addf1aa181fce16a6a5a7",
+        "238": "0ec2759735bcd2fa776468094733c58ecc04d6d19fb1ecf519c460b48bb5e189",
+        "239": "3bee4e08f573ac6ea86d1648970b18ecdc7080ef16a6e6ad6f9890a77b638f2a",
+        "114": "0c9a9f947ab2d55775dae0cd41ba4e6b23aeb27f9075eb8417f05001874ac455",
+        "122": "cc97ba06621813972355cf30ebe17c62df4ad0fa12bf30f30ed1a1805c37534d",
+        "123": "4ab36a6706ad8d557254829a5dd369d3578aa9ddd7614c525761bd6bd74d1cbf",
+        "126": "0281f558a809a2b805d4bd7489ff022559168b3845e1198f03d8ad90d200e739",
+        "127": "dcf4905b97e7ed2da6cca52c575e78efa6e3785e61dc61e767cb0d47529792c2"
+      }
+    },
+    "all_chat": {
+      "id": 137,
+      "minComponents": 263,
+      "components": {
+        "history": 86
+      },
+      "_note": "No SHA pin exists in the Kotlin sources; 137:86 is the history layer resolved by script 8552 for slot 18 (INVENTORY_INTERFACES.md). Component count from the interface-layer map index-3 reference table scan"
+    },
+    "compass": {
+      "id": 1919,
+      "minComponents": 3,
+      "components": {
+        "root": 0,
+        "ring": 1,
+        "needle": 2
+      },
+      "mountedAt": "1465:12",
+      "_note": "The compass. Component 2 carries contentType 1339; only 9 of the cache's 104,285 components carry a contentType, and 1337 is the 3D scene (1482:0) and 1338 the minimap viewport (1465:0), so 1339 is the client-rotated needle. Not a root panel slot (none of the 101 is named Compass) and no enum maps it; the scripts naming 1919 are unusable because 1919 is also an item id (a jug, enum 6977's glassblowing products). Mount found by experiment on 2026-09-11: 1465:21 renders it over the lodestone button bottom-left, 1465:12 (the 41x41 layer) puts it in the top-left quadrant and it tracks the camera. Opened by Native950Interactions.bootstrap(). The mount uses permanent HUD type 1 (walkable), not modal type 0; otherwise the client generic modal-close pass removes the compass. The mount component 1465:12 is hash-pinned too (12 Sep).",
+      "componentHashes": {
+        "0": "ffbc2b780011a0a512100c821c35afd245ef4148e9d0ee531c944a1eea96bd9d",
+        "1": "583891447771acc1b68b8a6c46a15db46dce643c39bbc53ac9e9b15d6c779203",
+        "2": "bfe1e9650756e30824b428d680460ebbcc79b4cd68dc523b1877a6bb5b38c355"
+      }
+    }
+  },
+  "absentInterfaces": [
+    1578,
+    1607,
+    1628,
+    1680,
+    1929
+  ],
+  "_absentNote": "Ids the 910 engine addresses that have no group in index 3 of the 950 cache; the loader proves each one really is absent and both resolvers reject it. 1530 was on this list for 947 and is not any more -- see reassignedInterfaces.",
+  "reassignedInterfaces": {
+    "_note": "Ids the 910 engine addresses that DO exist in the 950 cache but hold different content there. They cannot be listed as absent -- that would be a false statement about the cache and the loader rejects it -- so they are declared here instead: the loader proves the group is present and pins it, and both resolvers still reject the id, which is the same outcome as the absent list with a true premise underneath it.",
+    "invention_910": {
+      "id": 1530,
+      "files": 7,
+      "sha256": "e60d0263599cb980aba2c2c2c9af1828a22816b01e64518a9e3b654115c0b259",
+      "_note": "RE-DERIVED FOR 950, NOT RE-PINNED. The 910 engine means the Invention interface by 1530 (InventionManager opens it as setInterface(false, 1708, 71, 1530) and ButtonHandler/PacketRepository branch on it). 947 had no group 3/1530 at all, so the 947 table listed it absent. The 950 cache DOES have 3/1530, but it is not that interface: it holds 7 components whose text is 'WWWWWWWWWWWW has invited you to join the neighbourhood:' with Accept (file 3) and Decline (file 6) buttons -- a neighbourhood invite popup, one of 14 index-3 groups new in 950 (292, 486, 518, 908, 1143, 1499, 1511, 1512, 1514, 1516, 1518, 1530, 1534, 1538; none were dropped). So the absent flag is not merely stale: the id is now occupied by unrelated content, which is exactly the case the flag existed to prevent, and a 910 Invention emitter reaching it would open an invite popup. Blocked in both resolvers."
+    }
+  },
+  "containers": {
+    "backpack": {
+      "id": 93,
+      "_note": "inventory-cache-bindings.md: script 8680 reads container 93"
+    },
+    "equipment": {
+      "id": 94,
+      "sha256": "e011f566d047121caf5f8b608cf65b7be022289d3519dcc10b1eaf876582a96e",
+      "_note": "2/5/94 = 02 0013 00, capacity 19; pinned by verifyEquipmentBindings"
+    },
+    "bank": {
+      "id": 95,
+      "_note": "inventory-cache-bindings.md: script 13353 binds bank actors to container 95"
+    }
+  },
+  "_varsNote": "Every varbit declares the base varp and bit range the 950 cache decodes for it (2/69), so a re-dumped cache that moves a varbit onto a different varp rejects the table instead of silently rewriting the wrong bits. That check earned its keep on the 947->950 port: it caught hitpoints. All eleven varbits below were re-decoded from 950RevTest/cache 2/69 on 2026-09-10 and, beyond the decode, cross-checked by scanning index 12 of both caches for the scripts that read each id and comparing the two sets. Scan coverage, stated plainly because it is not total: the 950 opcode numbers were derived by aligning the 19,883 script pairs that recompiled instruction-for-instruction out of the 20,551 groups the two caches share, and with that map 20,988 of the 950 cache's 21,098 groups and 20,477 of the 947 cache's 20,577 decode; the ~0.5 percent that do not were not searched. Ten varbits decode to the identical base varp and bit range on both caches AND have the same reader scripts (interface_mode 27169 and legacy_combat_mode 27168 picked up 3 and 2 additional readers, which is content growth, not a move). The eleventh, hitpoints, moved and is now a varp -- see its note. The varps below are only proved to EXIST by the loader (2/60 has no width or meaning to check), so each was additionally cross-checked the same way: varp 462, 463, 679 and 8971 have byte-identical reader-script sets on the 947 and 950 caches.",
+  "vars": {
+    "invention_pouch_state": {
+      "kind": "varp", "id": 5987, "maxValue": 128,
+      "_note": "Native VarsManager emits whole parent varps for30224. Only the verified pouch unlock bit7 is driven; declare this parent so the packet resolver can deliver it."
+    },
+    "invention_pouch_unlocked": {
+      "kind": "varbit", "id": 30224, "varp": 5987, "bits": "7..7", "maxValue": 1,
+      "_note": "950 DBrow1012 visibility via16564; native pouch requires this bit. Current2/69/30224 and script/DB identities are pinned by Native950InventionUi. Derived from base80 Crafting/Smithing/Divination; tutorial is deferred."
+    },
+    "xp_popups_hidden": {
+      "kind": "varbit",
+      "id": 228,
+      "varp": 94,
+      "bits": "15..15",
+      "maxValue": 1,
+      "_note": "9505662 reads228; 0 enables the native XP drop renderer."
+    },
+    "interface_mode": {
+      "kind": "varbit",
+      "id": 27169,
+      "varp": 3680,
+      "bits": "21..21",
+      "maxValue": 1,
+      "_note": "UI-DECISIONS.md: server asserts modern interface mode = 0 before attaching panels; raw 2/69/27169 independently checked 2026-09-08"
+    },
+    "legacy_combat_mode": {
+      "kind": "varbit",
+      "id": 27168,
+      "varp": 3680,
+      "bits": "20..20",
+      "maxValue": 1,
+      "_note": "Keep 0 while modern life-points bars use the x100 scale"
+    },
+    "interface_skin": {
+      "kind": "varbit",
+      "id": 22875,
+      "varp": 3814,
+      "bits": "5..11",
+      "maxValue": 127,
+      "_note": "Modern skin = 0. Cache definition is seven bits, not a boolean"
+    },
+    "bank_quantity": {
+      "kind": "varbit",
+      "id": 45189,
+      "varp": 8958,
+      "bits": "0..3",
+      "maxValue": 7,
+      "_note": "CS6962/13687:2=1,3=5,4=10,5=custom,7=All; actual preference is synchronized from server state afteropen."
+    },
+    "bank_tab_all_items": {
+      "kind": "varbit",
+      "id": 45141,
+      "varp": 110,
+      "bits": "27..30",
+      "maxValue": 1,
+      "_note": "script 9324 selects All Items when 1"
+    },
+    "bank_coins_to_backpack": {
+      "kind": "varbit",
+      "id": 45158,
+      "varp": 7755,
+      "bits": "4..4",
+      "maxValue": 1,
+      "_note": "script 14288/6794: 1 routes withdrawn coins through backpack prediction"
+    },
+    "chat_all_filter": {
+      "kind": "varbit",
+      "id": 18797,
+      "varp": 1772,
+      "bits": "0..0",
+      "maxValue": 1,
+      "_note": "script 8546 All Chat filter; must be 1 for type-0 message rows"
+    },
+    "bank_occupied_count": {
+      "kind": "varp",
+      "id": 8971,
+      "maxValue": 2147483647,
+      "_note": "script 14337; sent full-width through VARP_LARGE before each bank refresh"
+    },
+    "hitpoints": {
+      "kind": "varp",
+      "id": 13537,
+      "maxValue": 2147483647,
+      "_note": "950 uses varp 13537, not recycled varbit 1668. Script 8122 and the eleven matching life-point readers establish the new binding. Script 16856 computes current Constitution level x 100; 2915 adds bonuses and scales by 21120 / 1000 (native SCALE uses signed 64-bit intermediate). Engine life points are level x 10, so Player.refreshHitPoints sends engineHP x 10 through VARP_LARGE, clamped to a nonnegative int. See protocol-analysis/hitpoints-950.md. maxValue is the sender limit, not a cache-declared varp width."
+    },
+    "prayer_points": {
+      "kind": "varbit",
+      "id": 16736,
+      "varp": 3274,
+      "bits": "0..14",
+      "maxValue": 32767,
+      "_note": "M3: ORBS_AND_VARS.md s4; prayer points x 10 (script 5256 divides by 10 for 1430:14). Maximum is script 7081 = current level of skill 5 x 10. One reader, no cs2 writer, so the server owns it. Needs VARBIT_LARGE above 25.5 points"
+    },
+    "summoning_points": {
+      "kind": "varbit",
+      "id": 41524,
+      "varp": 8040,
+      "bits": "0..14",
+      "maxValue": 32767,
+      "_note": "M3: ORBS_AND_VARS.md s4; summoning points x 10 (script 873 divides by 10 for 1430:20), maximum script 874. The client also writes it (875-878), so a server write must not race a client prediction"
+    },
+    "virtual_levels": {
+      "kind": "varbit",
+      "id": 19007,
+      "varp": 458,
+      "bits": "30..30",
+      "maxValue": 1,
+      "_note": "M3: SKILLS_TAB.md s6; read by 547, 1522, 11868, 12294 and eight more, no cs2 writer, so the server must send it for the skills tab to show virtual levels"
+    },
+    "adrenaline": {
+      "kind": "varp",
+      "id": 679,
+      "maxValue": 1000,
+      "_note": "M3: ORBS_AND_VARS.md s4; script 8125 reads it for 1430:55 against a literal maximum of 1000. 11 readers, no cs2 writer"
+    },
+    "run_toggle": {
+      "kind": "varp",
+      "id": 463,
+      "maxValue": 4,
+      "_note": "0 walk, 1 run, 3 rest, 4. Scripts 1315/1316 mirror varp 463 into varc 119; 950 component 1465:15 owns Toggle Run/Rest, 19 is the icon, 18 the energy bar and 20 the percentage. See protocol-analysis/minimap-controls-950.json."
+    },
+    "auto_retaliate": {
+      "kind": "varp",
+      "id": 462,
+      "maxValue": 1,
+      "_note": "M3: ORBS_AND_VARS.md s6; 1 means auto-retaliate OFF (script 8131 picks the disabled text). The client flips it locally in 8129/9876, so the server value is the authority only at login and after a server-side change"
+    },
+    "excalibur_prioritize_wield": {
+      "kind": "varbit",
+      "id": 54934,
+      "varp": 2180,
+      "bits": "4..4",
+      "maxValue": 1,
+      "_note": "950 backpack12090 passes-1 to2833/18401; only value1 swaps Excalibur cache captions1 and2. Raw2/69/54934 hash d69de0566daef31e14043cbc9b57fb482d906d785339d21c2f7b49672812a385 is verified by Kotlin equipment bindings."
+    },
+    "bank_destination": {
+      "kind": "varbit",
+      "id": 45139,
+      "varp": 110,
+      "bits": "20..22",
+      "maxValue": 2,
+      "_note": "Exact950 bank script state; unsupported modes are reset to0 by Native950BankUi."
+    },
+    "bank_placeholders": {
+      "kind": "varbit",
+      "id": 45190,
+      "varp": 8958,
+      "bits": "4..4",
+      "maxValue": 1,
+      "_note": "Exact950 bank script state; unsupported modes are reset to0 by Native950BankUi."
+    },
+    "bank_transfer_preset": {
+      "kind": "varbit",
+      "id": 45191,
+      "varp": 8958,
+      "bits": "5..7",
+      "maxValue": 1,
+      "_note": "Exact950 bank script state; unsupported modes are reset to0 by Native950BankUi."
+    },
+    "bank_auto_tab_switch": {
+      "kind": "varbit",
+      "id": 45911,
+      "varp": 10243,
+      "bits": "0..0",
+      "maxValue": 1,
+      "_note": "Exact950 bank script state; unsupported modes are reset to0 by Native950BankUi."
+    },
+    "bank_custom_quantity": {
+      "kind": "varp",
+      "id": 111,
+      "maxValue": 2147483647,
+      "_note": "Exact950 scripts13687/2259 custom quantity or8866 item/note toggle; synchronized from authoritative bank preferences."
+    },
+    "bank_notes": {
+      "kind": "varp",
+      "id": 160,
+      "maxValue": 1,
+      "_note": "Exact950 scripts13687/2259 custom quantity or8866 item/note toggle; synchronized from authoritative bank preferences."
+    },
+    "bank_first_empty_slot": {
+      "kind": "varp",
+      "id": 8970,
+      "maxValue": 2147483647,
+      "_note": "CS6961/14354 pending earliest empty slot within occupied bank span. Authoritative compact refresh sends -1 before8971/container95; this is not the next unused padded slot."
+    },
+    "farming_patch_8550": {
+      "kind": "varbit",
+      "id": 52,
+      "varp": 12,
+      "bits": "0..7",
+      "maxValue": 255,
+      "_note": "Paired950 object8550 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8551": {
+      "kind": "varbit",
+      "id": 53,
+      "varp": 12,
+      "bits": "8..15",
+      "maxValue": 255,
+      "_note": "Paired950 object8551 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8552": {
+      "kind": "varbit",
+      "id": 54,
+      "varp": 12,
+      "bits": "16..23",
+      "maxValue": 255,
+      "_note": "Paired950 object8552 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8553": {
+      "kind": "varbit",
+      "id": 55,
+      "varp": 12,
+      "bits": "24..31",
+      "maxValue": 255,
+      "_note": "Paired950 object8553 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8554": {
+      "kind": "varbit",
+      "id": 56,
+      "varp": 13,
+      "bits": "0..7",
+      "maxValue": 255,
+      "_note": "Paired950 object8554 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8555": {
+      "kind": "varbit",
+      "id": 57,
+      "varp": 13,
+      "bits": "8..15",
+      "maxValue": 255,
+      "_note": "Paired950 object8555 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8556": {
+      "kind": "varbit",
+      "id": 58,
+      "varp": 13,
+      "bits": "16..23",
+      "maxValue": 255,
+      "_note": "Paired950 object8556 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8557": {
+      "kind": "varbit",
+      "id": 59,
+      "varp": 13,
+      "bits": "24..31",
+      "maxValue": 255,
+      "_note": "Paired950 object8557 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8173": {
+      "kind": "varbit",
+      "id": 60,
+      "varp": 14,
+      "bits": "0..7",
+      "maxValue": 255,
+      "_note": "Paired950 object8173 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8174": {
+      "kind": "varbit",
+      "id": 61,
+      "varp": 14,
+      "bits": "8..15",
+      "maxValue": 255,
+      "_note": "Paired950 object8174 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8175": {
+      "kind": "varbit",
+      "id": 62,
+      "varp": 14,
+      "bits": "16..23",
+      "maxValue": 255,
+      "_note": "Paired950 object8175 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8176": {
+      "kind": "varbit",
+      "id": 63,
+      "varp": 14,
+      "bits": "24..31",
+      "maxValue": 255,
+      "_note": "Paired950 object8176 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_7847": {
+      "kind": "varbit",
+      "id": 72,
+      "varp": 16,
+      "bits": "0..7",
+      "maxValue": 255,
+      "_note": "Paired950 object7847 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_7848": {
+      "kind": "varbit",
+      "id": 73,
+      "varp": 16,
+      "bits": "8..15",
+      "maxValue": 255,
+      "_note": "Paired950 object7848 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_7849": {
+      "kind": "varbit",
+      "id": 74,
+      "varp": 16,
+      "bits": "16..23",
+      "maxValue": 255,
+      "_note": "Paired950 object7849 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_7850": {
+      "kind": "varbit",
+      "id": 75,
+      "varp": 16,
+      "bits": "24..31",
+      "maxValue": 255,
+      "_note": "Paired950 object7850 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8150": {
+      "kind": "varbit",
+      "id": 124,
+      "varp": 23,
+      "bits": "0..7",
+      "maxValue": 255,
+      "_note": "Paired950 object8150 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8151": {
+      "kind": "varbit",
+      "id": 125,
+      "varp": 23,
+      "bits": "8..15",
+      "maxValue": 255,
+      "_note": "Paired950 object8151 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_patch_8152": {
+      "kind": "varbit",
+      "id": 126,
+      "varp": 23,
+      "bits": "16..23",
+      "maxValue": 255,
+      "_note": "Paired950 object8152 opcode207/208 selects the private crop model through this varbit. Object/varbit/parent records pinned in farming-construction-assets-950.properties; actual VARP_SMALL/LARGE output covered by Native950FarmingRoutingAcceptance."
+    },
+    "farming_state_12": {
+      "kind": "varp",
+      "id": 12,
+      "maxValue": 2147483647,
+      "_note": "Reviewed parent of the Farming patch varbits declared above. VarsManager combines private crop slices and preserves unrelated bits before the native varp update. Parent record is pinned in farming-construction-assets-950.properties."
+    },
+    "farming_state_13": {
+      "kind": "varp",
+      "id": 13,
+      "maxValue": 2147483647,
+      "_note": "Reviewed parent of the Farming patch varbits declared above. VarsManager combines private crop slices and preserves unrelated bits before the native varp update. Parent record is pinned in farming-construction-assets-950.properties."
+    },
+    "farming_state_14": {
+      "kind": "varp",
+      "id": 14,
+      "maxValue": 2147483647,
+      "_note": "Reviewed parent of the Farming patch varbits declared above. VarsManager combines private crop slices and preserves unrelated bits before the native varp update. Parent record is pinned in farming-construction-assets-950.properties."
+    },
+    "farming_state_16": {
+      "kind": "varp",
+      "id": 16,
+      "maxValue": 2147483647,
+      "_note": "Reviewed parent of the Farming patch varbits declared above. VarsManager combines private crop slices and preserves unrelated bits before the native varp update. Parent record is pinned in farming-construction-assets-950.properties."
+    },
+    "farming_state_23": {
+      "kind": "varp",
+      "id": 23,
+      "maxValue": 2147483647,
+      "_note": "Reviewed parent of the Farming patch varbits declared above. VarsManager combines private crop slices and preserves unrelated bits before the native varp update. Parent record is pinned in farming-construction-assets-950.properties."
+    }
+  },
+  "scripts": {
+    "chat_history_build": {
+      "id": 84,
+      "sha256": "09e5d656bf988df1e9895ac513c7816c162f9c03491d58531f18b2363130fa31",
+      "_note": "Builds the dynamic All Chat history rows; type-0 rows need visibility 1 from chat_all_filter (INVENTORY_INTERFACES.md)"
+    },
+    "chat_pinned_655": {
+      "id": 655,
+      "sha256": "fb91b21750e20467e8b6c94314813cd8d078847da3b196cbd9a2d77e7d5996e1",
+      "_note": "Pinned by Ataraxia947Handoff.verifyChatInitialization; role not documented"
+    },
+    "chat_init": {
+      "id": 1362,
+      "sha256": "8c1dd80480365074a78744de4ca397bb7d809936b0b87811dab26b9398705ac1",
+      "_note": "Initializes chat input/listeners for one slot; 1362(18) binds slot 18 to 137:86"
+    },
+    "chat_input_init": {
+      "id": 1558,
+      "sha256": "bb571b57ba93fd37e27f20b418d93279457682472ca71b73458c211e96aaf74c",
+      "_note": "Chat input initializer called by chat_init"
+    },
+    "actor_highlight_onop": {
+      "id": 1620,
+      "sha256": "e695aad1827f75c2a7f4a0a1c634cd1812bebff8b30aedd83b84a554059235e2",
+      "_note": "Highlight-only onOp for backpack and equipment item actors"
+    },
+    "actor_highlight_timer": {
+      "id": 1621,
+      "sha256": "bca3cf0dacab40508f43037b8cf68cad20f1f487ac8960e099187b77260a3534",
+      "_note": "Timer callback paired with actor_highlight_onop"
+    },
+    "layout_parent_resolve": {
+      "id": 1886,
+      "sha256": "4108aed062c1581e7a8f571f83cba1e051c9423e16f52e6196acb9e17cdba52f",
+      "_note": "Resolves a layout slot's parent for layout_save_preset"
+    },
+    "bank_deposit_chain_2293": {
+      "id": 2293,
+      "sha256": "561c1e1e37090d55495a402e531fa1d521d6b248992baf63cfeba60fa448832d",
+      "_note": "Bank deposit prediction chain 8911 -> 2293 -> 2295 -> 2347"
+    },
+    "bank_deposit_chain_2295": {
+      "id": 2295,
+      "sha256": "dec8435a7c66d23191d018d21ca7aa20178ed4f124c422a774dd16a67004cca1",
+      "_note": "Bank deposit prediction chain step"
+    },
+    "component_show": {
+      "id": 2330,
+      "sha256": "29dd977d6dc6d576c6bad1af429e48201462a0d06fcdb070ae9d08edf61f4197",
+      "_note": "Pushes false and the component argument then executes hide (0x00e4); shows a wrapper"
+    },
+    "bank_deposit_chain_2347": {
+      "id": 2347,
+      "sha256": "646b4b32ad6054af02ac5e13b7a392f727ec0dd3fd0b9807c115b57c326eca27",
+      "_note": "Bank deposit prediction chain step"
+    },
+    "item_option_map": {
+      "id": 2410,
+      "sha256": "7da996882e2804da8b357bf812a52916cdd15af966664058710fa7995f75adc3",
+      "_note": "Maps item options 4 and 5 to interface operations 7 and 8"
+    },
+    "item_menu_setup": {
+      "id": 2833,
+      "sha256": "3277400face2411e85602eececb21520fd33a3003969678356d8cc20eeed36f8",
+      "_note": "Retrieves the five item options for an actor and calls item_option_map"
+    },
+    "bank_onop_switch": {
+      "id": 5823,
+      "sha256": "3b62c3587a3ff3dc3fa4cded6b988eb2e63dd79f0fac4532a863b13983472a06",
+      "_note": "Maps 517:15 and 517:35 to onOp 8911"
+    },
+    "bank_withdraw": {
+      "id": 6794,
+      "sha256": "f940a8d5dd744eadbb6e5e1fc4fe710c38a6e8d9eb08d0f460fa23fe4af2cc17",
+      "_note": "Withdrawal script; reads bank_coins_to_backpack through 14288"
+    },
+    "bank_quantity_local": {
+      "id": 6962,
+      "sha256": "b21de7c4ef11b16da34ab8289ba768df6ad001c894846a4419366b5107aa3769",
+      "_note": "Changes bank_quantity locally when a quantity button is pressed"
+    },
+    "equipment_root_onload": {
+      "id": 8468,
+      "sha256": "477d3f228191c1b8e0d4f18f57c5b0240eb46d766079c8092396af12eab68455",
+      "_note": "1462:3 onLoad; installs container 94 callback 8470 and var listener 7440"
+    },
+    "equipment_actor_create": {
+      "id": 8469,
+      "sha256": "afd52026e32aca40c5475f07b0dca772b8a7c6e0a7cbbe656d63a4b171077c03",
+      "_note": "Creates the equipment item actors under 1462:31"
+    },
+    "equipment_layout": {
+      "id": 8471,
+      "sha256": "a6b1f837eea30ef9877befb81f8888a2424598955f39a7961570c7feac829522",
+      "_note": "Lays out equipment actors for (1462:3, container 94) and sets Remove/Examine"
+    },
+    "equipment_root_map": {
+      "id": 8472,
+      "sha256": "5925fd9b910ff6bfc0b3cf3589f13e4a774c76cd7f1493436e4b60c01870ae56",
+      "_note": "Maps equipment root 1462:3 to the item actor layer 1462:31"
+    },
+    "chat_rebuild": {
+      "id": 8491,
+      "sha256": "eeee0e42b2c151112acdcfd2ef3cbbfc20b556a2de1a0dd0a31a2bdd1d7892ac",
+      "_note": "Calls chat_layout_init and chat_history_build for a slot"
+    },
+    "chat_layout_init": {
+      "id": 8492,
+      "sha256": "8da41c6be77653e91faa8dc250e6a4d600d6e88a2086fa4da442ca030ac58277",
+      "_note": "Chat layout initializer"
+    },
+    "chat_secondary_filter": {
+      "id": 8508,
+      "sha256": "db41244ffb47e865b03534c2fae07e00fd197bdc915ac1c63905069064bad145",
+      "_note": "Secondary chat filter; default path returns 1"
+    },
+    "chat_filter": {
+      "id": 8546,
+      "sha256": "b8c65bb68f50cec1533e6b21d161301addae175295ea60a9da976618dea2ec07",
+      "_note": "All Chat branch returns chat_all_filter as its first filter value"
+    },
+    "backpack_actor_create": {
+      "id": 8678,
+      "sha256": "727bc18626541d39da8dd739fe87dbb292ca37766782e83e85c7e6ef9b9e384f",
+      "_note": "Creates the backpack item actor children under 1473:5"
+    },
+    "backpack_container_read": {
+      "id": 8680,
+      "sha256": "0b52ef101d691c4e3f2c5e04c454af6e3ceca2bc705c1a3b8760c37b248008d7",
+      "_note": "Reads container 93 and updates backpack actors through 12090"
+    },
+    "backpack_layer_map": {
+      "id": 8682,
+      "sha256": "875561f065b16f74615745963e589278ab007fb94fe1bce4b2e535427b3d0254",
+      "_note": "Maps 1473:0 to layers 2, 1, 4, 5, 6, 7"
+    },
+    "equipment_pinned_8701": {
+      "id": 8701,
+      "sha256": "bbb7de2a77b39b189b6701d34451304f1bf1f0c9bb9ed4376e25cfdde761bea2",
+      "_note": "Pinned by Native947CacheContent.verifyEquipmentBindings; role not documented"
+    },
+    "layout_save_working": {
+      "id": 8707,
+      "sha256": "c40ff90931165d958d9995914b4c55627f7b9a6d2cd11c21eeb0e20a47e17cd6",
+      "_note": "Saves a slot's geometry and visibility into working layout 9"
+    },
+    "layout_save_preset": {
+      "id": 8708,
+      "sha256": "f2cdca500c552a91ba4ff11ea5b22cbd9b91c6602c3ba1be4d4264f9efa30039",
+      "_note": "Copies one slot from working layout 9 into a preset through layout_writer"
+    },
+    "layout_writer": {
+      "id": 8709,
+      "sha256": "7765d05d5196ccb39c515f00ba81ab4e0fb2ad240a51533f39ea244624544677",
+      "_note": "Layout preset writer used by layout_save_working and layout_save_preset"
+    },
+    "layout_normalize_position": {
+      "id": 8710,
+      "sha256": "89630526da0623c02fa3306a08390209e13567851ac1933b2c81b740840adf6d",
+      "_note": "Normalizes a saved slot position"
+    },
+    "layout_normalize_size": {
+      "id": 8712,
+      "sha256": "34013a19f6cfa7866a5432bddfb466e221dfe34a3b8cef8b682ee5c4cee679e7",
+      "_note": "Normalizes a saved slot size"
+    },
+    "bank_deposit_onop": {
+      "id": 8911,
+      "sha256": "ff4953f27071c48d2ef8c4e0b7b26e77f202feff73fafb975fae73e66b77fcf8",
+      "_note": "Bank inventory onOp; subtracts from the clicked actor before the click is sent"
+    },
+    "bank_inventory_menu": {
+      "id": 9239,
+      "sha256": "d3edd2f2b22ea6cfbcd01ec4c57eea1832f65d3404156bae6d91d126ed521274",
+      "_note": "Configures bank inventory menu labels through 12092"
+    },
+    "bank_deposit_chain_9240": {
+      "id": 9240,
+      "sha256": "91517674cb243888ab4ee000fcc3958d9b7124193d2e8d3c7655b0c3d3ed39af",
+      "_note": "Bank deposit prediction chain step"
+    },
+    "bank_tab_select": {
+      "id": 9324,
+      "sha256": "f038d900938eec0a32efe437e25aa1a4ec96d234c2a279c5d176e7c4b8ae7898",
+      "_note": "Selects the All Items tab when bank_tab_all_items = 1"
+    },
+    "component_size": {
+      "id": 11145,
+      "sha256": "3785303ee6b2c09c260e718b853c8ef7773bc080d07d0dc3d4a6d150b0350575",
+      "_note": "Executes size (0x0055) with five integer arguments"
+    },
+    "backpack_actor_update": {
+      "id": 12090,
+      "sha256": "aae4aa14c3992f92c4dfcc3741171daa5236458f4ca07049ae3db2ba87241d54",
+      "_note": "Gives backpack actors click handler 18403, drag handler 1616 and menu setup 2833"
+    },
+    "item_menu_labels": {
+      "id": 12092,
+      "sha256": "94536134db1feae61e94cbfda273d220fca8a126fcf6f039bbfa502f79b73f2d",
+      "_note": "Menu label configuration shared by bank and backpack chains"
+    },
+    "equipment_actor_builder": {
+      "id": 12112,
+      "sha256": "7908fe06d86d9a353e81bab661120c2c9bf0f376c46107bd2b2fa9edef89be84",
+      "_note": "Builds equipment actors with the highlight-only onOp 1620"
+    },
+    "component_position": {
+      "id": 13268,
+      "sha256": "f1f865db2310bb0fb19337a693f97d60b89b5949c1d9b1f94fcbb3308295f18a",
+      "_note": "Executes position (0x07c5) with five integer arguments"
+    },
+    "bank_items_load": {
+      "id": 13353,
+      "sha256": "7a6fbf2e3cf3dc6fcbfffea3714aa42b68944a600259fffb3ccd879b94ba7f78",
+      "_note": "517:201 onLoad; creates bank item actors on container 95 and configures 517:15"
+    },
+    "bank_quantity_read": {
+      "id": 13687,
+      "sha256": "0879ef07407b1ae2429a56cef2448021661f09b60902843ecca372e374f63839",
+      "_note": "Reads bank_quantity: 3 -> 5, 4 -> 10, 5 -> custom, 7 -> All, else 1"
+    },
+    "bank_withdraw_chain_13796": {
+      "id": 13796,
+      "sha256": "668fa3ad8504f85a6102d020f12598fc094e2e462c6f8dbc7eceec6f7d37cf5d",
+      "_note": "Bank withdrawal prediction chain step"
+    },
+    "bank_item_options": {
+      "id": 13798,
+      "sha256": "6c82ce1618e069e0e2a5e3946e867b7fee8f454119badcd275abed001aae60ed",
+      "_note": "Sets bank item option numbers (2 Withdraw-1 ... 7 Withdraw-All, 10 Examine)"
+    },
+    "bank_coins_setting": {
+      "id": 14288,
+      "sha256": "237431cb4468d962b6298092a6b256f5e453cba5e3db22d5ddc5d14cdd290e10",
+      "_note": "Returns bank_coins_to_backpack"
+    },
+    "bank_occupied_count": {
+      "id": 14337,
+      "sha256": "38b3b6e78d2306d3f99d3f4a9c4a46e6df7d086cce25aaf10ea1f4567fa29d2b",
+      "_note": "Returns varp bank_occupied_count"
+    },
+    "bank_withdraw_chain_14362": {
+      "id": 14362,
+      "sha256": "696a77a7fe316cd65f6b32a43c5a83461852c6306a967f1abb240681be76668e",
+      "_note": "Bank withdrawal prediction chain step"
+    },
+    "bank_deposit_chain_14363": {
+      "id": 14363,
+      "sha256": "a4c90529a9d2860c6e65289d2c858c6a92dbac6649ad2734c917582d81e32fe2",
+      "_note": "Bank deposit prediction chain step"
+    },
+    "bank_deposit_chain_14367": {
+      "id": 14367,
+      "sha256": "81d03c038b588510b52469a691047bb2647bc6a76169a24e6301a5e8f4aae80e",
+      "_note": "Supplies item -1 only when the remaining actor quantity reaches zero"
+    },
+    "bank_deposit_helper": {
+      "id": 14419,
+      "sha256": "98af497f34ca6ce5e661b6b06e413e3687e4409176eed0c5d9cd735343b6be27",
+      "_note": "Calls bank_quantity_read for the default Deposit quantity; option 7 is Deposit-All"
+    },
+    "equipment_pinned_15999": {
+      "id": 15999,
+      "sha256": "7e364d2f7d4c5dcaf06311530566ffd1a1a9b3b1d3fd9219c825e5426c1b3cee",
+      "_note": "Pinned by Native947CacheContent.verifyEquipmentBindings; role not documented"
+    },
+    "_m3Note": "M3 skills tab, action bar and run orb readers (ui/UI-EVIDENCE-SUMMARY.md s4.4). None of them is invoked by the server: the skills tab and the four bars redraw from their own var/stat transmit hooks. They are pinned so a cache whose reader chain changed rejects the table before the M3 vars are driven at it, and so notes/M3-bindings.md can name a concrete file for every semantic claim.",
+    "run_orb_init": {
+      "id": 1315,
+      "sha256": "b955e492eecc7da593b4090563810860c91856a92b1de79492823c9b4a740ce8",
+      "_note": "1465:14 onLoad; copies varp 463 into varc 119 and installs 1316 (var hook), 1534 (op hook) and 1741"
+    },
+    "run_orb_var_hook": {
+      "id": 1316,
+      "sha256": "38a0001c515e6e728f0ffe4454fdff5d704cb59e109627f28becc812d93cc411",
+      "_note": "varp 463 transmit hook: varc 119 = varp 463, then 1741. This is why the server never writes varc 119"
+    },
+    "skills_combat_level": {
+      "id": 1432,
+      "sha256": "6dc9f39a7dda66dae495a28115897aa9193d94bbc697485c3c81b0164cb8b076",
+      "_note": "Combat level for 1466:12; computed client-side from the UPDATE_STAT levels"
+    },
+    "skills_bottom_bar": {
+      "id": 1522,
+      "sha256": "7e214695e2af38c051e530615e5cf5af9f0c399fefde35eadd19e92e882a5a14",
+      "_note": "1466:9 bottom bar: total level (2761 -> 4708), combat level (1432), quest points; reads virtual_levels"
+    },
+    "run_orb_op_hook": {
+      "id": 1534,
+      "sha256": "2a5987f81a6dcc991430c230aa7e0f3eec7fbcc63ade8f7fc5c6b071f5b192eb",
+      "_note": "1465:14 onOp: predicts the run toggle locally, but only when varc 1413 is non-zero. varc 1413 has no writer in 20,477 scripts and stays CANDIDATE, so the prediction is not relied on"
+    },
+    "run_orb_varc_hook": {
+      "id": 1740,
+      "sha256": "5caf69a43dc9bb20c1cb842aa4e780aec779fb3c80580d785a171ce256f05edc",
+      "_note": "onVarcTransmit for [119] -> 1741"
+    },
+    "run_orb_redraw": {
+      "id": 1741,
+      "sha256": "470bacbaeb3a2b62250fe6fc8cdf637c9f1ffccae8e7d49924472f48efe15e52",
+      "_note": "Repaints 1465:18 and 1465:15 from varc 119 (0 walk, 1 run, 3 rest, 4)"
+    },
+    "skills_slot_table": {
+      "id": 2141,
+      "sha256": "38b3bf1c1a2933d9e8dc19a013649cb17cdb0d85dced74a66594ae8f997f4db7",
+      "_note": "Slot-key switch; case 0 pushes the 1466 components and calls 8489 then 1522. This is the cache's own binding of slot key 0 to interface 1466"
+    },
+    "run_energy_bar": {
+      "id": 2306,
+      "sha256": "88bf2af1416e05c579a5ea32de959e624bdd1a000e41deaa5635c988d43de2a6",
+      "_note": "950 energy bar is 1465:18 and percent text 1465:20; the client reads UPDATE_RUNENERGY. Component 19 onLoad 2304 binds the 15/18/20 controls."
+    },
+    "skills_total_level": {
+      "id": 2761,
+      "sha256": "ad27ae8ab589804f74a803861a66d4046a55a99e6dda3b074d826bb25da19b32",
+      "_note": "Total level for 1466:11 through 4708; summed client-side over every skill in enum 680, including 27 and 28"
+    },
+    "orb_hp_max": {
+      "id": 2915,
+      "sha256": "6ffb198991d34345b437589d23e44126416f02e36f8e9f6c3aa4641fd0e769f2",
+      "_note": "950 script 16856 computes Constitution level x 100, then 2915 adds 21118 bonuses and applies 21120 / 1000. Native SCALE handler confirmed; see protocol-analysis/hitpoints-950.md."
+    },
+    "skills_total_level_sum": {
+      "id": 4708,
+      "sha256": "9daffcba8aa698a04395531ad8e3bb3314849d618022ead29c766eb5f2276da2",
+      "_note": "The per-skill total-level sum 2761 calls"
+    },
+    "orb_prayer_read": {
+      "id": 5256,
+      "sha256": "38c62a6c87770df34a674f737c442d2ea6554ce3172e3d189add8fc028752484",
+      "_note": "Reads varbit 16736 and divides by 10; the only reader of that varbit"
+    },
+    "orb_prayer_max": {
+      "id": 7081,
+      "sha256": "2568fcc93ed332956ab9819d821464079366c5e552cf939bf606d962b9609ee2",
+      "_note": "Maximum prayer points = current level of skill 5 x 10 plus 16843(1)"
+    },
+    "orb_action_bar_init": {
+      "id": 8109,
+      "sha256": "adaac616fd0bfd1efb83080704d45cf50a84cf9aea36746fead4eb752a8bab07",
+      "_note": "1430:0 onLoad with the slot key 1003"
+    },
+    "orb_action_bar_wire": {
+      "id": 8110,
+      "sha256": "15850229ab30ea11127d0b68bb896691acb98ca29e2576d10d24bc4ea389b354",
+      "_note": "Wires 8122(1430:7), 8123(1430:14), 8124(1430:20), 8125(1430:55)"
+    },
+    "orb_hp_update": {
+      "id": 8122,
+      "sha256": "4c57ad2abbbab019f07a51d09aefdcce1d759c8549e42571b1817dcd6d8e166f",
+      "_note": "950 reads varp 13537 and maximum 2915 for 1430:7; varbit 1668 is unrelated in this revision."
+    },
+    "orb_prayer_update": {
+      "id": 8123,
+      "sha256": "c166ad1a0f7144d1845ebdfcaf6de8577870de67a298c5b0512b6a23b894d5ce",
+      "_note": "Reads varbit 16736 through 5256 and maximum 7081 for 1430:14"
+    },
+    "orb_summoning_update": {
+      "id": 8124,
+      "sha256": "bbb6ecb735ce0438fe7586526e5051ec563e58ff8d732dad82566ca604160171",
+      "_note": "Reads varbit 41524 through 873 and maximum 874 for 1430:20"
+    },
+    "orb_adrenaline_update": {
+      "id": 8125,
+      "sha256": "d19159fb7a8071b25cb62031c8e2ef2b3d5aab7d667e7fc11891d0d848bd371b",
+      "_note": "Reads varp 679 against the literal maximum 1000 for 1430:55"
+    },
+    "auto_retaliate_toggle": {
+      "id": 8129,
+      "sha256": "752bbe7c981564e5ddde065fdeaa92c7445a6272f863234351b88924b5605170",
+      "_note": "1430:57 onOp; flips varp 462 client-side and refreshes 1430:54 through 8131/9877"
+    },
+    "auto_retaliate_icon": {
+      "id": 8130,
+      "sha256": "48d039fd1e99f21c075a1830993a75763772d7b0645f98a0d4fcc179f897a253",
+      "_note": "1430:54 onVarpTransmit for [462]"
+    },
+    "auto_retaliate_text": {
+      "id": 8131,
+      "sha256": "6967fce3753e0abfbcda9b97fc66d4d061b68ca0bd2b542a82356077b3cb0101",
+      "_note": "Picks the disabled text when varp 462 == 1; the proof that 1 means OFF"
+    },
+    "skills_slot_install": {
+      "id": 8391,
+      "sha256": "6999f80047152c63db33d8127a2bb68c871d918967f0d7bfed6cfe2b38a46800",
+      "_note": "Installs 2141 with signature iiiii on the struct param 3505 component"
+    },
+    "skills_tab_build": {
+      "id": 8488,
+      "sha256": "04f4420e65b6af8c823ac443874c62ca8524f9002daf3081841cee7612e7f2f9",
+      "_note": "13-component skills tab redraw; installed as onVarTransmit AND onStatTransmit of 1466:0, so one UPDATE_STAT redraws the tab with no server script call"
+    },
+    "skills_cell_build": {
+      "id": 8489,
+      "sha256": "41c00e7d264f9cc12853ad99b97454266d73d4e653c38d1ad83a0119631f170d",
+      "_note": "Builds one cell from enum 7674 -> struct param 3440; reads op 0x517 experience, 0x4D8 current level and 0x14 definition-capped base, and colours from 0x4D8 vs 0x14. This is why UPDATE_STAT carries the boosted current level and never the base"
+    },
+    "skills_level_from_xp": {
+      "id": 11849,
+      "sha256": "746cdbb8db868e49f30e82c28b0e96d8a043c5b653c909c4638efafdf26a6f97",
+      "_note": "Level from experience over enum 10866 (default table 716, Invention 10699); the client derives the base level itself"
+    },
+    "skills_virtual_level": {
+      "id": 11868,
+      "sha256": "4a19f61883173c5959237306ff5c3c6995ddcd40312cea9d4a716b0362774924",
+      "_note": "One of the varbit 19007 readers on the skills tab"
+    },
+    "skills_virtual_total": {
+      "id": 12294,
+      "sha256": "17c75d09cd7faa61d96148f77cb6c9bd6b9a219db878514125c65639b932c833",
+      "_note": "Second varbit 19007 reader; virtual levels change the displayed total"
+    },
+    "bank_withdraw_onop": {
+      "id": 14073,
+      "sha256": "852442b1b62d14524454bd0943422e016f8034646a8d4ae9e756fa09b55141e0",
+      "_note": "Native950 bank actor/capacity evidence: protocol-analysis/bank-withdrawal-claims-950.md"
+    },
+    "bank_withdraw_dispatch": {
+      "id": 6793,
+      "sha256": "e27c0ddee4502d816c836a1c47ac5aa5806cdd0a882958f84daf3baa0eeb4f6a",
+      "_note": "Native950 bank actor/capacity evidence: protocol-analysis/bank-withdrawal-claims-950.md"
+    },
+    "bank_withdraw_capacity": {
+      "id": 14351,
+      "sha256": "9ef8dfbfecaacc85069f476c880b310d97ed07fb1f716d5921f347d90397eb06",
+      "_note": "Native950 bank actor/capacity evidence: protocol-analysis/bank-withdrawal-claims-950.md"
+    },
+    "bank_withdraw_placeholder_gate": {
+      "id": 5175,
+      "sha256": "2ddae4c65ab0573e92a48d4a063915694447daaa3be2ae5cf6ab930a7dfb918f",
+      "_note": "Native950 bank actor/capacity evidence: protocol-analysis/bank-withdrawal-claims-950.md"
+    },
+    "equipment_backpack_menu_6468": {
+      "id": 6468,
+      "sha256": "0dbc3243e4e9489ef614964ae147cb5c3e25c278f8c061b111c93224d13ab0ce",
+      "_note": "950 equipment-only Wear/Wield/Equip caption mapping; see protocol-analysis/systemic-equipment-950.md. Other menu actions remain independently guarded."
+    },
+    "equipment_backpack_menu_18401": {
+      "id": 18401,
+      "sha256": "38fd18dc137a7e6f002fce3183eb6fdc9ca1452fa0d4b0546b47c48f8efbc4cb",
+      "_note": "950 equipment-only Wear/Wield/Equip caption mapping; see protocol-analysis/systemic-equipment-950.md. Other menu actions remain independently guarded."
+    },
+    "equipment_backpack_menu_7031": {
+      "id": 7031,
+      "sha256": "4f0ad753f0173d5548408618c600bb43eda125e74ecd94c73221725dd14d1000",
+      "_note": "950 equipment-only Wear/Wield/Equip caption mapping; see protocol-analysis/systemic-equipment-950.md. Other menu actions remain independently guarded."
+    },
+    "equipment_backpack_menu_2383": {
+      "id": 2383,
+      "sha256": "a55d33a800b3bc79f3b2b8bc27476923a081ed3551240516b9855130c05449f5",
+      "_note": "950 equipment-only Wear/Wield/Equip caption mapping; see protocol-analysis/systemic-equipment-950.md. Other menu actions remain independently guarded."
+    },
+    "equipment_backpack_menu_1520": {
+      "id": 1520,
+      "sha256": "787753d4ed547e5b3afefeb8860d39fff8bc423eac9fee1abbc95feaea07c05b",
+      "_note": "950 equipment-only Wear/Wield/Equip caption mapping; see protocol-analysis/systemic-equipment-950.md. Other menu actions remain independently guarded."
+    },
+    "equipment_backpack_menu_12405": {
+      "id": 12405,
+      "sha256": "2a25cf015df73d3363d125bec82ab79e7a8902fe374edcb735f8425ceb66b434",
+      "_note": "950 equipment-only Wear/Wield/Equip caption mapping; see protocol-analysis/systemic-equipment-950.md. Other menu actions remain independently guarded."
+    },
+    "equipment_backpack_menu_13505": {
+      "id": 13505,
+      "sha256": "88e27e08b0fa5a86a4b74ea85fdf09f69abaf40be05e6f4855ac398b37dc7f46",
+      "_note": "950 equipment-only Wear/Wield/Equip caption mapping; see protocol-analysis/systemic-equipment-950.md. Other menu actions remain independently guarded."
+    },
+    "equipment_backpack_menu_16473": {
+      "id": 16473,
+      "sha256": "eba13e5e5deaa58b2a729809204688d7d22ccee0561d16e7646697ddbe10d645",
+      "_note": "950 equipment-only Wear/Wield/Equip caption mapping; see protocol-analysis/systemic-equipment-950.md. Other menu actions remain independently guarded."
+    },
+    "bank_ui_8903": {
+      "id": 8903,
+      "sha256": "697f3a7e1e89b0734f2732c62ad5661b6848ffe5f8a8afaff8b507075cf46dbb",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_8904": {
+      "id": 8904,
+      "sha256": "f89b0eedc36c752c665f98b1ceabbb5784a7324403d2bd002c40137f0d9970d3",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_8866": {
+      "id": 8866,
+      "sha256": "092fa7b63514e7a4d981ee0c765a34e261cf8f4f6ac0bf1e4f2873ccc1be7772",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_1486": {
+      "id": 1486,
+      "sha256": "d80fae19299d97c6fcf746219e749da5d3af01a2fb7980402f8e5988327b3d04",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_1487": {
+      "id": 1487,
+      "sha256": "e6e09747d6754469a2dbcb59383e742f79a8b9c1a451dc98746d96c6ca3ffd20",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_8886": {
+      "id": 8886,
+      "sha256": "d97e4a0b7fca99f8d0948abdd4da482c2c764864bac4700fc203a0107633d77e",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_8887": {
+      "id": 8887,
+      "sha256": "59ab21e74afeec59ed2dc68aa9573be6f683ea4b82d2a7ca4d2c0b63e0d1afa8",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_8901": {
+      "id": 8901,
+      "sha256": "e63a96066bad3bb01ff603c254c7552a435aaf987f55425afbb648249b9f77e0",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_13745": {
+      "id": 13745,
+      "sha256": "278f14f03692f20f4299065451bfbcdb3ec4a1ebb714a0e7b3583f7b99542f99",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_13746": {
+      "id": 13746,
+      "sha256": "53ef81c547dcf2a4542bdb69174636fb4165c591ce7885b9c4938e3d3db1b690",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_8912": {
+      "id": 8912,
+      "sha256": "aba1a943d2a5e816e74a5db68d057ff141a6fb796dedd0f04f146f720ba86346",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_8913": {
+      "id": 8913,
+      "sha256": "5bc6000a642ea41b80a85c40cc1be9a1563d53a096d9db6d75145944246fccd7",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_8914": {
+      "id": 8914,
+      "sha256": "2f1df1bf620b2a7c84c53083f5a768ec4791afcebd18bcfd785d3883cd0206c0",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_8915": {
+      "id": 8915,
+      "sha256": "14b054ad6633ee74300ed2512c5510e6cc71d01c2a452c34ed0deb0bb360578f",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_8916": {
+      "id": 8916,
+      "sha256": "ed427a44ba04e6c1792af39668bcd314439c0f4ab27c01f31abaadfc84202ba6",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_9325": {
+      "id": 9325,
+      "sha256": "5aad8ace3929286bc1210297813ceb81d7119e07d5bceb3da340d9a56e35fd07",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_9329": {
+      "id": 9329,
+      "sha256": "2839baa88afc7dd618bc8a572b69d71dbb7b2350c65bdc6b598b2f859f76f04f",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_9330": {
+      "id": 9330,
+      "sha256": "a69d6147bf09496c602b2fa99e367d7cdd67801415107e41ce62d5ace9047889",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_13890": {
+      "id": 13890,
+      "sha256": "acce47692d9cfd31a7d47b938fdb6c8dee3b1f21d09dfa62dec1592eb9e53762",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_13903": {
+      "id": 13903,
+      "sha256": "d17858fdc41ffafa1c9ed7fa04565713915a4325e92940c12b82ba5d6c7e2017",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_13905": {
+      "id": 13905,
+      "sha256": "890dbeddba0b7ad43221560be537e561e88048b502f0fee278bd0c13e0211ab3",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_13909": {
+      "id": 13909,
+      "sha256": "136e45d7567266cd7305cd4cff41ab62c486fffb0ad72a1cc14411fc511b0720",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_7202": {
+      "id": 7202,
+      "sha256": "3b973a00deda86794be2f082f3d788f61885ab1ed120ce9e4a01ec5791ded601",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_7203": {
+      "id": 7203,
+      "sha256": "af830dd1696e412a8dc10400f5aaeb7564cb2f5686160bf8e13b793bbccf068d",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_7205": {
+      "id": 7205,
+      "sha256": "c4e40879429719899f854c50885ff121010f47d214b59f50c5fa720b2077375a",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_7206": {
+      "id": 7206,
+      "sha256": "4667a8759ec1b78627dac00f082e8035ed33d10b843be1e09e144c13f7c9cdd9",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_7207": {
+      "id": 7207,
+      "sha256": "7a164ecbcb3b2b75aee3a4d26baeba89b258572a0862eb117f4bda002a51d9ef",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_7208": {
+      "id": 7208,
+      "sha256": "dcba1aa7f7ef421539d1f8769efabfb1fc57b463ed6ab797e28c899dfb7851e0",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_7211": {
+      "id": 7211,
+      "sha256": "bc6775badb0f613ea36baaa4a24ab2be4780a548ec31b98a17d9dac524b923f8",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_13121": {
+      "id": 13121,
+      "sha256": "c86e2c10f6631847e1311d5527f3febcc8dcd3821c630d46972082ee817716c1",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_10519": {
+      "id": 10519,
+      "sha256": "f83647559361e7d7cd16da73f61ec7eed97699b89b72f5da324b4d629f67ee95",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_9833": {
+      "id": 9833,
+      "sha256": "dea4f0426ce578c76bacdc32d185d27f08da8d86a78caf45e67073f9cf67594d",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_2259": {
+      "id": 2259,
+      "sha256": "cc3251a91aa769357c9aa5f1fd7d90dd36db5be80986a5ca5ef340e4432faef3",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_16587": {
+      "id": 16587,
+      "sha256": "f76e50fdb77e46bf3058762cb1478594c31a15b0f3b2641b6269fa5ac1fdec00",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_8905": {
+      "id": 8905,
+      "sha256": "84262591c5451be92a7348328d51026d383cd6197a761527f6766b35625c5325",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_6298": {
+      "id": 6298,
+      "sha256": "b009f1c6bf9f1df56449899bd6dd57e2b004ea6bff6bfdd11eb02f22220468a5",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_6520": {
+      "id": 6520,
+      "sha256": "139de9a93d1332c7ffc27f3a3b5d88728f78df2b2c1bdf87336c512ca52a59bf",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_8420": {
+      "id": 8420,
+      "sha256": "b6b5759dd69e7e227041f1505cdfe4c3defb8ebb401355abd72951c3519a2d8d",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_8409": {
+      "id": 8409,
+      "sha256": "c4c93f1867172de23647fa76bb3d35cea2af486468b0157fe4d355d4c316f016",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_13964": {
+      "id": 13964,
+      "sha256": "fa9b4f77c212a2e6757a13cec60af29b51bed9075990059918d4a0b6a9399f23",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_9313": {
+      "id": 9313,
+      "sha256": "1952a588b3932cae23d12f9d4f70b41c3c48d2651e1b9de998d018fd7ecf2fd0",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_13748": {
+      "id": 13748,
+      "sha256": "30e1521e8dc0f8a437577d4d0885ad4facaca7da1c2e7a8512b6df9bee3ffe1a",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_9236": {
+      "id": 9236,
+      "sha256": "e009d741dd860abe79ab731b25d02bce14bb80be1d2f9703dbcea0bda70cfb0b",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "bank_ui_14234": {
+      "id": 14234,
+      "sha256": "f3aa003b8b4ce311ffe7c78ca6024f86ed150e812a6fc9d843ff486258fb05bd",
+      "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    }
+  },
+  "ops": {
+    "bootstrap.root": {
+      "_note": "Ataraxia947Handoff.interfaceBootstrap first packet",
+      "packets_required": [
+        "IF_OPENTOP"
+      ],
+      "steps": [
+        {
+          "packet": "IF_OPENTOP",
+          "interface": "root"
+        }
+      ]
+    },
+    "bootstrap.slots": {
+      "_note": "Ataraxia947Handoff.interfaceBootstrap: attach the five retained slots, show the three panel wrappers, hide every other 1477 wrapper except components 0/27/60, then enable backpack item events (script 8682 maps the actor layer to 1473:5)",
+      "packets_required": [
+        "IF_OPENSUB",
+        "IF_SETHIDE",
+        "IF_SETEVENTS"
+      ],
+      "steps": [
+        {
+          "packet": "IF_OPENSUB",
+          "parent": "slot:game_view.attach",
+          "interface": "game_view",
+          "walkable": true
+        },
+        {
+          "packet": "IF_OPENSUB",
+          "parent": "slot:minimap.attach",
+          "interface": "minimap",
+          "walkable": true
+        },
+        {
+          "packet": "IF_OPENSUB",
+          "parent": "slot:backpack.attach",
+          "interface": "backpack",
+          "walkable": true
+        },
+        {
+          "packet": "IF_SETHIDE",
+          "component": "slot:backpack.wrapper",
+          "hidden": false
+        },
+        {
+          "packet": "IF_OPENSUB",
+          "parent": "slot:worn_equipment.attach",
+          "interface": "worn_equipment",
+          "walkable": true
+        },
+        {
+          "packet": "IF_SETHIDE",
+          "component": "slot:worn_equipment.wrapper",
+          "hidden": false
+        },
+        {
+          "packet": "IF_OPENSUB",
+          "parent": "slot:all_chat.attach",
+          "interface": "all_chat",
+          "walkable": true
+        },
+        {
+          "packet": "IF_SETHIDE",
+          "component": "slot:all_chat.wrapper",
+          "hidden": false
+        },
+        {
+          "packet": "IF_SETHIDE",
+          "special": "unbound_root_wrappers",
+          "hidden": true,
+          "retain": [
+            "root.root_layer",
+            "root.hud_layer",
+            "root.panel_layer"
+          ],
+          "retainSlots": [
+            "game_view",
+            "minimap",
+            "backpack",
+            "worn_equipment",
+            "all_chat"
+          ]
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "backpack.items",
+          "from": 0,
+          "to": 27,
+          "settings": 7157758
+        }
+      ]
+    },
+    "bootstrap.chat": {
+      "_note": "Ataraxia947Handoff.interfaceBootstrap chat initialization; slot argument 18 is the enum 7716 key of all_chat",
+      "packets_required": [
+        "VARBIT_SMALL",
+        "RUNCLIENTSCRIPT"
+      ],
+      "steps": [
+        {
+          "packet": "VARBIT_SMALL",
+          "var": "chat_all_filter",
+          "value": 1
+        },
+        {
+          "packet": "RUNCLIENTSCRIPT",
+          "script": "chat_init",
+          "args": [
+            "slotkey:all_chat"
+          ]
+        },
+        {
+          "packet": "RUNCLIENTSCRIPT",
+          "script": "chat_rebuild",
+          "args": [
+            "slotkey:all_chat"
+          ]
+        }
+      ]
+    },
+    "bank.open": {
+      "_note": "Single bank517 mount at modal anchor3503=1477:693, required by CS10906/9316/6961. The nested3505 host is not the bank-open predicate. Native InterfaceManager only tracks ownership.",
+      "packets_required": [
+        "VARBIT_SMALL",
+        "IF_OPENSUB",
+        "IF_SETHIDE",
+        "IF_SETEVENTS"
+      ],
+      "steps": [
+        {
+          "packet": "VARBIT_SMALL",
+          "var": "bank_quantity",
+          "value": 2
+        },
+        {
+          "packet": "VARBIT_SMALL",
+          "var": "bank_tab_all_items",
+          "value": 1
+        },
+        {
+          "packet": "VARBIT_SMALL",
+          "var": "bank_coins_to_backpack",
+          "value": 1
+        },
+        {
+          "packet": "IF_OPENSUB",
+          "parent": "slot:bank.wrapper",
+          "interface": "bank",
+          "walkable": false
+        },
+        {
+          "packet": "IF_SETHIDE",
+          "component": "slot:bank.wrapper",
+          "hidden": false
+        },
+        {
+          "packet": "VARBIT_SMALL",
+          "var": "bank_destination",
+          "value": 0
+        },
+        {
+          "packet": "VARBIT_SMALL",
+          "var": "bank_transfer_preset",
+          "value": 0
+        },
+        {
+          "packet": "VARBIT_SMALL",
+          "var": "bank_placeholders",
+          "value": 0
+        },
+        {
+          "packet": "VARBIT_SMALL",
+          "var": "bank_auto_tab_switch",
+          "value": 0
+        },
+        {
+          "packet": "IF_SETHIDE",
+          "component": "bank.quantity_menu",
+          "hidden": false
+        },
+        {
+          "packet": "IF_SETHIDE",
+          "component": "bank.note_mode",
+          "hidden": false
+        },
+        {
+          "packet": "IF_SETHIDE",
+          "component": "bank.placeholder_mode",
+          "hidden": true
+        },
+        {
+          "packet": "IF_SETHIDE",
+          "component": "bank.familiar_mode",
+          "hidden": true
+        },
+        {
+          "packet": "IF_SETHIDE",
+          "component": "bank.equipment_mode",
+          "hidden": true
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.items",
+          "from": 0,
+          "to": 599,
+          "settings": 1278
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.inventory",
+          "from": 0,
+          "to": 27,
+          "settings": 1278
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.worn_items",
+          "from": 0,
+          "to": 18,
+          "settings": 0
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.deposit_all",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.deposit_equipment",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.quantity_one",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.quantity_five",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.quantity_ten",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.quantity_all",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.quantity_x",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.change_x",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.notes_toggle",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.search",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.close",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.deposit_familiar",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.deposit_pouch",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.auto_tab_switch",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.destination_backpack",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.destination_worn",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.destination_familiar",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.bank_pin",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.costume_room",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.diango",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.metal_bank",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.more_storage",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.transfer_view",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.preset_view",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.all_items",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.placeholder_toggle",
+          "from": -1,
+          "to": -1,
+          "settings": 6
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.shortcut_options",
+          "from": -1,
+          "to": -1,
+          "settings": 2046
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "bank.shortcut_last",
+          "from": -1,
+          "to": -1,
+          "settings": 2
+        }
+      ]
+    },
+    "bank.close": {
+      "_note": "Single bank517 mount at modal anchor3503=1477:693, required by CS10906/9316/6961. The nested3505 host is not the bank-open predicate. Native InterfaceManager only tracks ownership.",
+      "packets_required": [
+        "IF_CLOSESUB",
+        "IF_SETHIDE"
+      ],
+      "steps": [
+        {
+          "packet": "IF_CLOSESUB",
+          "parent": "slot:bank.wrapper"
+        },
+        {
+          "packet": "IF_SETHIDE",
+          "component": "slot:bank.wrapper",
+          "hidden": true
+        }
+      ]
+    },
+    "equipment.bootstrap": {
+      "_note": "Native947CacheContent.equipmentUi bootstrap; EQUIPMENT_CONTENT.md geometry 224x360 at 0,0 mode 2,2 then layout 8471(1462:3, 94), save slot 3 into working layout and preset 8; events 1026 = 2|1024 for actor indices 0..18",
+      "packets_required": [
+        "RUNCLIENTSCRIPT",
+        "IF_SETEVENTS"
+      ],
+      "steps": [
+        {
+          "packet": "RUNCLIENTSCRIPT",
+          "script": "component_size",
+          "args": [
+            224,
+            360,
+            0,
+            0,
+            "slot:worn_equipment.wrapper"
+          ]
+        },
+        {
+          "packet": "RUNCLIENTSCRIPT",
+          "script": "component_position",
+          "args": [
+            232,
+            80,
+            2,
+            2,
+            "slot:worn_equipment.wrapper"
+          ]
+        },
+        {
+          "packet": "RUNCLIENTSCRIPT",
+          "script": "component_show",
+          "args": [
+            "slot:worn_equipment.wrapper"
+          ]
+        },
+        {
+          "packet": "RUNCLIENTSCRIPT",
+          "script": "equipment_layout",
+          "args": [
+            "worn_equipment.root",
+            "container:equipment"
+          ]
+        },
+        {
+          "packet": "RUNCLIENTSCRIPT",
+          "script": "layout_save_working",
+          "args": [
+            "slotkey:worn_equipment"
+          ]
+        },
+        {
+          "packet": "RUNCLIENTSCRIPT",
+          "script": "layout_save_preset",
+          "args": [
+            "slotkey:worn_equipment",
+            8
+          ]
+        },
+        {
+          "packet": "IF_SETEVENTS",
+          "component": "worn_equipment.items",
+          "from": 0,
+          "to": 18,
+          "settings": 1026
+        }
+      ]
+    },
+    "equipment.refresh": {
+      "_note": "Native947CacheContent.equipmentUi refresh list; rerun after each container 94 update",
+      "packets_required": [
+        "RUNCLIENTSCRIPT"
+      ],
+      "steps": [
+        {
+          "packet": "RUNCLIENTSCRIPT",
+          "script": "equipment_layout",
+          "args": [
+            "worn_equipment.root",
+            "container:equipment"
+          ]
+        }
+      ]
+    }
+  }
+}

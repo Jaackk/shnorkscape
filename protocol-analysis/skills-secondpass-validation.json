@@ -1,0 +1,29 @@
+{
+  "milestone": "skills-secondpass",
+  "at": "2026-09-12T16:36:52.002521+00:00",
+  "tests": {
+    "tests": 1249,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2
+  },
+  "engineSha256": "46ab8a0309cfb0d61ce217a3546cb59e2ce89fc8e48da8618b48fd9f8c4dda00",
+  "server": {
+    "ProcessId": 10736,
+    "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+    "CreatedUtc": "2026-09-12T16:36:07.1104040Z",
+    "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.1.8-hotspot\\bin\\java.exe",
+    "ClassPath": "C:\\Users\\developer\\Desktop\\950RevTest\\patches\\classes;C:\\Users\\developer\\Desktop\\950RevTest\\OpenNXT\\runtime\\lib\\*"
+  },
+  "inventionRouting": {
+    "ticks": 271,
+    "encryptedFrames": 445,
+    "visibilityPacketObserved": true
+  },
+  "productionRouting": {
+    "ticks": 317,
+    "encryptedFrames": 490
+  },
+  "bridgePasses": 19,
+  "visualStatus": "User stopped Computer Use with Escape; no input thereafter. Post-deployment pouch pixels and drag gesture need user confirmation."
+}

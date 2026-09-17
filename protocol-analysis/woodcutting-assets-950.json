@@ -1,0 +1,235 @@
+{
+  "animationRole": "AxeDef.specialEmote, paired950 hatchetparam8835 and named cache struct11172 Lumberjack Woodcutting. Everyselectedbody andduration anditemoverride matches910. Ordinary910 IDs879/etc repurposed andneveremitted.",
+  "entries": [
+    {
+      "kind": "sequence",
+      "id": 17091,
+      "sha256950": "d7699264b87ab29f43a5334b9372e65f29097a671f378e9406b88a25310d4e02",
+      "binding": "identical-frame-duration-binding",
+      "durationCycles": 185,
+      "hands": {
+        "6": "0547",
+        "7": "ffff"
+      }
+    },
+    {
+      "kind": "sequence",
+      "id": 17090,
+      "sha256950": "9435881232eb0c1b04695013a9cf1083a8a20da95d2a812af8a71a61e3bfa2ce",
+      "binding": "identical-frame-duration-binding",
+      "durationCycles": 185,
+      "hands": {
+        "6": "0545",
+        "7": "ffff"
+      }
+    },
+    {
+      "kind": "sequence",
+      "id": 17089,
+      "sha256950": "db88e1c604284eebc9cbdad7045cc571c12d60c322bdaa66392153dd961af361",
+      "binding": "identical-frame-duration-binding",
+      "durationCycles": 185,
+      "hands": {
+        "6": "0549",
+        "7": "ffff"
+      }
+    },
+    {
+      "kind": "sequence",
+      "id": 17088,
+      "sha256950": "b1ad51f55b181423c28ba0b74bc5615225088f2b757a645f958978ac9681f3b2",
+      "binding": "identical-frame-duration-binding",
+      "durationCycles": 185,
+      "hands": {
+        "6": "0551",
+        "7": "ffff"
+      }
+    },
+    {
+      "kind": "sequence",
+      "id": 17087,
+      "sha256950": "cca747c089b6e157f3df2736359cabf83a065a29b80681d3b854a77b251fd8e4",
+      "binding": "identical-frame-duration-binding",
+      "durationCycles": 185,
+      "hands": {
+        "6": "054b",
+        "7": "ffff"
+      }
+    },
+    {
+      "kind": "sequence",
+      "id": 17086,
+      "sha256950": "df5b700b495d251affbf4b90ead4e7681a2bef5427edea04a7d84937e58b20d6",
+      "binding": "identical-frame-duration-binding",
+      "durationCycles": 185,
+      "hands": {
+        "6": "054d",
+        "7": "ffff"
+      }
+    },
+    {
+      "kind": "sequence",
+      "id": 17085,
+      "sha256950": "ee1989e00ef3248aaa755a4e7cb1cc78361b803a36b9a5b6852478e3ae51f3a9",
+      "binding": "identical-frame-duration-binding",
+      "durationCycles": 185,
+      "hands": {
+        "6": "054f",
+        "7": "ffff"
+      }
+    },
+    {
+      "kind": "sequence",
+      "id": 17093,
+      "sha256950": "7eedf58f432fe0d1b4eeda86ddda12a56d4ccb499cd085255b7f8a2002d413b5",
+      "binding": "identical-frame-duration-binding",
+      "durationCycles": 185,
+      "hands": {
+        "6": "355d",
+        "7": "ffff"
+      }
+    },
+    {
+      "kind": "sequence",
+      "id": 17092,
+      "sha256950": "a89140d559337922b32f705b013a50667181ac536d230d42704f7aec76d7c248",
+      "binding": "identical-frame-duration-binding",
+      "durationCycles": 185,
+      "hands": {
+        "6": "1a53",
+        "7": "ffff"
+      }
+    },
+    {
+      "kind": "sequence",
+      "id": 25064,
+      "sha256950": "284e007ecae77cc919e742ca709f3526a3d98f5e7a11e669f56f5b833d183eb2",
+      "binding": "identical-frame-duration-binding",
+      "durationCycles": 185,
+      "hands": {
+        "6": "7f85",
+        "7": "ffff"
+      }
+    },
+    {
+      "kind": "item",
+      "id": 1351,
+      "sha256950": "602d0c1f9d1aaf3c55e7e7149fb71e8f80335c3770c607499c82f6a4ab56d0df"
+    },
+    {
+      "kind": "item",
+      "id": 1349,
+      "sha256950": "61d78264c491049eb7be6051c3995a949a6004792b5931bb1daa648e889f7e6d"
+    },
+    {
+      "kind": "item",
+      "id": 1353,
+      "sha256950": "fbac67899bf2647a67b000fe254b959f1e2694d5f4f7165f59bbfc09112da9bc"
+    },
+    {
+      "kind": "item",
+      "id": 1361,
+      "sha256950": "1b1f79e72d13a58b198554306fad41231d3c1e04cdc47c7f16b7ef0e1bb7cc5f"
+    },
+    {
+      "kind": "item",
+      "id": 1355,
+      "sha256950": "6172c7dcbaa1c42db7482e6c41180bdd95399dccade2aad0faa2f64bc6fee91b"
+    },
+    {
+      "kind": "item",
+      "id": 1357,
+      "sha256950": "d5c5b785716809f4d7d3e1c05ae5276a39726ae3578bf98f59e8ef4dbd539203"
+    },
+    {
+      "kind": "item",
+      "id": 1359,
+      "sha256950": "22d397980401c319d192aac811aaf9c5af8e52dbff725bd2ec368e7da5173b12"
+    },
+    {
+      "kind": "item",
+      "id": 6739,
+      "sha256950": "c83a191f455b5f8924bd41e058bc45d43ed60731ccc61f579d3856d7dd6dfea7"
+    },
+    {
+      "kind": "item",
+      "id": 13661,
+      "sha256950": "5afc96aa3ff31a07a76f3483cbff32167a943f29d64214579bb3fbad87c772e6"
+    },
+    {
+      "kind": "item",
+      "id": 32645,
+      "sha256950": "3af45e3a2e0f693fd0059cd3cb434d51389317fe46fe0a055640d105b27d2e19"
+    },
+    {
+      "kind": "item",
+      "id": 1511,
+      "sha256950": "29257b9164a4e328cc2d6c3117695a386da8e41f1b9cea023bda905a1f45ba00"
+    },
+    {
+      "kind": "item",
+      "id": 1521,
+      "sha256950": "9e27f0786f59e199807cd972633f33fab919823cbb7381e5e0ba7069be0f86f0"
+    },
+    {
+      "kind": "item",
+      "id": 1519,
+      "sha256950": "e5c821a64fcb62f909412cb200c3ff0aae306732c8f17dc5c845d7e490854221"
+    },
+    {
+      "kind": "item",
+      "id": 1517,
+      "sha256950": "56465f082745d3d93bd4a931fffa01dba0d76a7b58e992e76730ed2651260c85"
+    },
+    {
+      "kind": "item",
+      "id": 1515,
+      "sha256950": "8f2848f83d72edeaa3059c4663e581aa4382e951d1100c851f616b9b71f5cb77"
+    },
+    {
+      "kind": "item",
+      "id": 1513,
+      "sha256950": "88c4c84b368ba6d2d9beeccafc1b8794703780b3b5d1f307cc17df349e8ab8c7"
+    },
+    {
+      "kind": "item",
+      "id": 6332,
+      "sha256950": "11dffa5477467988cd00cd8f522ccf373768c4b824830cd514f97ba4fb124c13"
+    },
+    {
+      "kind": "item",
+      "id": 6333,
+      "sha256950": "c830c76801d3c8f05ec85d6b495cef3cb29ef1831573554760dad68fe8ca66d8"
+    },
+    {
+      "kind": "item",
+      "id": 29556,
+      "sha256950": "9d412a997e2f6dd7d414d2b6a6244f3152276613c31546fd54673fb8d1ae25fe"
+    },
+    {
+      "kind": "object",
+      "id": 1341,
+      "sha256950": "f3b02f2c0794464c8b40b66881824cc471c76b2e4eee2398ef99ed47f2af9103"
+    },
+    {
+      "kind": "object",
+      "id": 57931,
+      "sha256950": "a7743fe3d5a00dd144679ba5efd5114a1f9958b5bb56accfeca6257228632f18"
+    },
+    {
+      "kind": "object",
+      "id": 12733,
+      "sha256950": "6593f1ab50bb1615aa813941164b842a651c43eeb2ff9510fa431782d2f2bcd2"
+    },
+    {
+      "kind": "object",
+      "id": 31057,
+      "sha256950": "7abceee405d3d2d64b1502e2dabc7cb54e213aa2789a45c6e3df01c61cea9cab"
+    },
+    {
+      "kind": "object",
+      "id": 37824,
+      "sha256950": "8c727d4668c0c4323d80063b19b982faa47e25c4005eeea1dd332a80cd9af448"
+    }
+  ]
+}

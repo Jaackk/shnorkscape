@@ -1,0 +1,1 @@
+package com.rs.game.player.content.hcim_news;

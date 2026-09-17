@@ -1,0 +1,49 @@
+{
+  "revision": 950,
+  "legacyRevision": 910,
+  "assets": [
+    {
+      "id": 16385,
+      "kind": "sequence",
+      "oldSha256": "cc1cf761d3c8257436d38bb3c608680f0765ece282a4bf2b664e389940011400",
+      "sha256": "cc1cf761d3c8257436d38bb3c608680f0765ece282a4bf2b664e389940011400",
+      "compatibility": "identical-definition",
+      "durationCycles": 510,
+      "frameCount": 104
+    },
+    {
+      "id": 16386,
+      "kind": "sequence",
+      "oldSha256": "be1b466ae0350eeda46458102d2c29e78522c2f70f0fbc64f9c50d8f75914e59",
+      "sha256": "be1b466ae0350eeda46458102d2c29e78522c2f70f0fbc64f9c50d8f75914e59",
+      "compatibility": "identical-definition",
+      "durationCycles": 120,
+      "frameCount": 27
+    },
+    {
+      "id": 16393,
+      "kind": "sequence",
+      "oldSha256": "f383d321fd34f367ecb795532555a070cb46dd5dfe3d0531599ace3412a1fd2c",
+      "sha256": "f383d321fd34f367ecb795532555a070cb46dd5dfe3d0531599ace3412a1fd2c",
+      "compatibility": "identical-definition",
+      "durationCycles": 60,
+      "frameCount": 21
+    },
+    {
+      "id": 3017,
+      "kind": "graphic",
+      "oldSha256": "ec01c25974612114dabe94e9a6f36c1e48ea407c7651c0746892adcd5265c198",
+      "sha256": "ec01c25974612114dabe94e9a6f36c1e48ea407c7651c0746892adcd5265c198",
+      "compatibility": "identical-definition"
+    },
+    {
+      "id": 3018,
+      "kind": "graphic",
+      "oldSha256": "2b956ecfc84a7f9956774eff884803b832829645c605697ba03c8bb3c622ed64",
+      "sha256": "2b956ecfc84a7f9956774eff884803b832829645c605697ba03c8bb3c622ed64",
+      "compatibility": "identical-definition"
+    }
+  ],
+  "limitation": "Identical raw configuration proves the same referenced frame/model identifiers and duration; rendered model/frame payloads were not compared by this check.",
+  "behavior": "Original HomeTeleport counter and ActionManager retained: departure1, exact final arrival18, arrival effect19, landing/unlock24, finish25. Native journey does not initialize unrelated legacy destination controllers."
+}

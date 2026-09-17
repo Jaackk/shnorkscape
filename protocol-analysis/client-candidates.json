@@ -1,0 +1,807 @@
+[
+  {
+    "opcode947": 0,
+    "size": 5,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 1,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 2,
+    "size": 4,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 3,
+    "size": 5,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 4,
+    "size": 8,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 5,
+    "size": 8,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 6,
+    "size": 15,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 7,
+    "size": 6,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 8,
+    "size": 4,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 9,
+    "size": 12,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 10,
+    "size": 9,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 11,
+    "size": 9,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 12,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 13,
+    "size": 16,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 14,
+    "size": -2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 15,
+    "size": 6,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 16,
+    "size": 8,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 17,
+    "size": 7,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 18,
+    "size": 8,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 19,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 20,
+    "size": 1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 21,
+    "size": 8,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 22,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 23,
+    "size": 4,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 24,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 25,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 26,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 27,
+    "size": 0,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 28,
+    "size": 18,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 29,
+    "size": 8,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 30,
+    "size": 4,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 31,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 32,
+    "size": 4,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 33,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 34,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 35,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 36,
+    "size": 8,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 37,
+    "size": 1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 38,
+    "size": 1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 39,
+    "size": -2,
+    "candidates": [
+      {
+        "opcode950": 86,
+        "exactSenderShapes": 1
+      }
+    ],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 40,
+    "size": 16,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 41,
+    "size": 0,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 42,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 43,
+    "size": 0,
+    "candidates": [
+      {
+        "opcode950": 93,
+        "exactSenderShapes": 1
+      }
+    ],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 44,
+    "size": 7,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 45,
+    "size": 9,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 46,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 47,
+    "size": 4,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 48,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 49,
+    "size": 17,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 50,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 51,
+    "size": 8,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 52,
+    "size": 1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 53,
+    "size": -2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 54,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 55,
+    "size": 0,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 56,
+    "size": 1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 57,
+    "size": 1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 58,
+    "size": 15,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 59,
+    "size": 4,
+    "candidates": [
+      {
+        "opcode950": 110,
+        "exactSenderShapes": 1
+      }
+    ],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 60,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 61,
+    "size": 4,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 62,
+    "size": 2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 63,
+    "size": 4,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 64,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 65,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 66,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 67,
+    "size": 7,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 68,
+    "size": -2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 69,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 70,
+    "size": -2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 71,
+    "size": 0,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 72,
+    "size": 9,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 73,
+    "size": 9,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 74,
+    "size": -2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 75,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 76,
+    "size": -2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 77,
+    "size": 8,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 78,
+    "size": -2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 79,
+    "size": 9,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 80,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 81,
+    "size": 11,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 82,
+    "size": 4,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 83,
+    "size": 18,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 84,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 85,
+    "size": 11,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 86,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 87,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 88,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 89,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 90,
+    "size": -2,
+    "candidates": [
+      {
+        "opcode950": 123,
+        "exactSenderShapes": 1
+      }
+    ],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 91,
+    "size": 2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 92,
+    "size": 22,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 93,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 94,
+    "size": -2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 95,
+    "size": 8,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 96,
+    "size": 8,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 97,
+    "size": 9,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 98,
+    "size": 7,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 99,
+    "size": 2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 100,
+    "size": -2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 101,
+    "size": 2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 102,
+    "size": 7,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 103,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 104,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 105,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 106,
+    "size": 4,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 107,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 108,
+    "size": 6,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 109,
+    "size": 9,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 110,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 111,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 112,
+    "size": 11,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 113,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 114,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 115,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 116,
+    "size": -2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 117,
+    "size": -1,
+    "candidates": [
+      {
+        "opcode950": 47,
+        "exactSenderShapes": 1
+      }
+    ],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 118,
+    "size": 7,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 119,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 120,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 121,
+    "size": -2,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 122,
+    "size": 7,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 123,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 124,
+    "size": -1,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 125,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 126,
+    "size": 9,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 127,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 128,
+    "size": 0,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  },
+  {
+    "opcode947": 129,
+    "size": 3,
+    "candidates": [],
+    "status": "review-only sender shape matches"
+  }
+]

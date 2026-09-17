@@ -1,0 +1,55 @@
+{
+  "dateUtc": "2026-09-10T23:38:38.124064+00:00",
+  "scope": "950RevTest only; cache name exports plus diagnostic NPC/object commands",
+  "engineSha256": "27427e7451bce46c24b2f41fd72c3cc0454da6a835c77519302423f6ce7b84d2",
+  "unitTests": {
+    "tests": 949,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2,
+    "passed": 947
+  },
+  "cacheDumpReport": "dumps/export-report.json",
+  "actualCacheAcceptance": {
+    "passed": true,
+    "encryptedFrames": 7,
+    "log": "logs/diagnostic-spawns-acceptance-950.log",
+    "checks": [
+      "Exact player tile unchanged",
+      "Actual-cache Bill42 and Goblin12353 in world and region rosters",
+      "Instance-specific viewport admission for repurposed NPC42",
+      "Existing goblin combat registered",
+      "Scenery auto type10 and wall auto type0",
+      "Occupied object slot unchanged",
+      "Multi-tile wall-edge overlap refused",
+      "Native object add/remove frames",
+      "Registries cleaned without player saves"
+    ]
+  },
+  "worldRegression": {
+    "passed": true,
+    "log": "logs/diagnostic-world-regression-950.log"
+  },
+  "launcherChecks": {
+    "passed": 17,
+    "log": "logs/verify950-diagnostic-spawns.log"
+  },
+  "kotlinBridge": "rebuilt after engine deployment",
+  "backup": "implementation-backup/2026-09-10-diagnostic-spawns",
+  "server": {
+    "ProcessId": 9600,
+    "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+    "CreatedUtc": "2026-09-10T23:37:45.0549310Z",
+    "JavaPath": "C:\\Program Files\\Eclipse Adoptium\\jdk-25.0.1.8-hotspot\\bin\\java.exe",
+    "ClassPath": "C:\\Users\\developer\\Desktop\\950RevTest\\patches\\classes;C:\\Users\\developer\\Desktop\\950RevTest\\OpenNXT\\runtime\\lib\\*"
+  },
+  "client": {
+    "ProcessId": 25800,
+    "Workspace": "C:\\Users\\developer\\Desktop\\950RevTest",
+    "CreatedUtc": "2026-09-10T23:37:46.6746010Z",
+    "ExecutablePath": "C:\\Users\\developer\\Desktop\\950RevTest\\client\\rs2client-vulkan.exe"
+  },
+  "launchFlags": "-Ataraxia -Collision -Vulkan -LumbridgeNpcs -DevTools",
+  "startup": "Game server bound to127.0.0.2:43650; new client JS5 950.1 handshake accepted",
+  "liveRendering": "Pending user check; no authenticated in-game UI test claimed"
+}

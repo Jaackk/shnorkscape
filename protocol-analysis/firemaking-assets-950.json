@@ -1,0 +1,252 @@
+{
+  "assets": [
+    {
+      "kind": "sequence",
+      "id": 16700,
+      "sha256": "c645c83fded8a4577321bcc70ee425e86060c9ad9bfce355661e1f6aeedfb3da",
+      "legacySha256": "aa98ff60d16630592a0f3652f63d28aa845bb897049109d2b103834c4ee39459",
+      "compatibility": "identical-frame-duration-binding",
+      "durationCycles": 90
+    },
+    {
+      "kind": "sequence",
+      "id": 16703,
+      "sha256": "a35eba342dc34e9a38ffcdec42dd0eeaf35ae03e95989811eb7854e4ca1b015b",
+      "legacySha256": "4fe4d9e5928656abc822c8d8f3338759b3b5cede30aa5c0bf04d2df727d638ed",
+      "compatibility": "identical-frame-duration-binding",
+      "durationCycles": 90
+    },
+    {
+      "kind": "sequence",
+      "id": 16702,
+      "sha256": "773aa3e6eb3ad48496b7cf8928f7d38ee5baed172ddbe29fc000513d500d565b",
+      "legacySha256": "e9d27a76c61f27e8f9705213a10477dc687596d2262d62db966c2620ee3f1bb2",
+      "compatibility": "identical-frame-duration-binding",
+      "durationCycles": 30
+    },
+    {
+      "kind": "object",
+      "id": 70755,
+      "sha256": "8cfef4090d8a3b17e828e96c4c2397ceaba62465de545db06c7acbd2b5617a5d",
+      "legacySha256": "8cfef4090d8a3b17e828e96c4c2397ceaba62465de545db06c7acbd2b5617a5d",
+      "compatibility": "identical-definition"
+    },
+    {
+      "kind": "object",
+      "id": 70756,
+      "sha256": "407fbf31d1fcd9efdedfe00266015ce974808b142db374896149d85932fe4fdf",
+      "legacySha256": "407fbf31d1fcd9efdedfe00266015ce974808b142db374896149d85932fe4fdf",
+      "compatibility": "identical-definition"
+    },
+    {
+      "kind": "object",
+      "id": 70757,
+      "sha256": "78600c654cd04a48805c9dec950f2db43345a1ddfbfd882a268aa9d3c9121ef4",
+      "legacySha256": "78600c654cd04a48805c9dec950f2db43345a1ddfbfd882a268aa9d3c9121ef4",
+      "compatibility": "identical-definition"
+    },
+    {
+      "kind": "object",
+      "id": 70758,
+      "sha256": "407fbf31d1fcd9efdedfe00266015ce974808b142db374896149d85932fe4fdf",
+      "legacySha256": "407fbf31d1fcd9efdedfe00266015ce974808b142db374896149d85932fe4fdf",
+      "compatibility": "identical-definition"
+    },
+    {
+      "kind": "object",
+      "id": 70759,
+      "sha256": "cfb8177397321de130ec7d746312465ad79b5c19b7c626679c0edcf50e88a860",
+      "legacySha256": "cfb8177397321de130ec7d746312465ad79b5c19b7c626679c0edcf50e88a860",
+      "compatibility": "identical-definition"
+    },
+    {
+      "kind": "object",
+      "id": 70760,
+      "sha256": "10f592fdf3eb7be35d48119f3be0318f6da8885b4b50e42571a0cb33d1991e08",
+      "legacySha256": "10f592fdf3eb7be35d48119f3be0318f6da8885b4b50e42571a0cb33d1991e08",
+      "compatibility": "identical-definition"
+    },
+    {
+      "kind": "object",
+      "id": 70761,
+      "sha256": "407fbf31d1fcd9efdedfe00266015ce974808b142db374896149d85932fe4fdf",
+      "legacySha256": "407fbf31d1fcd9efdedfe00266015ce974808b142db374896149d85932fe4fdf",
+      "compatibility": "identical-definition"
+    },
+    {
+      "kind": "object",
+      "id": 70762,
+      "sha256": "da262f8bf8aeed8fa5753989867fce81062976df27f0c6d8f3d6c7c979b3a105",
+      "legacySha256": "da262f8bf8aeed8fa5753989867fce81062976df27f0c6d8f3d6c7c979b3a105",
+      "compatibility": "identical-definition"
+    },
+    {
+      "kind": "object",
+      "id": 70763,
+      "sha256": "98bf2607116a1a09643cc7c8540e5f702064303f7d0748253e8f0b2531147a22",
+      "legacySha256": "98bf2607116a1a09643cc7c8540e5f702064303f7d0748253e8f0b2531147a22",
+      "compatibility": "identical-definition"
+    },
+    {
+      "kind": "object",
+      "id": 70764,
+      "sha256": "78600c654cd04a48805c9dec950f2db43345a1ddfbfd882a268aa9d3c9121ef4",
+      "legacySha256": "78600c654cd04a48805c9dec950f2db43345a1ddfbfd882a268aa9d3c9121ef4",
+      "compatibility": "identical-definition"
+    },
+    {
+      "kind": "object",
+      "id": 70765,
+      "sha256": "410f9ac8669139a9b09c402fc59bbca2de1571e43ada483f6a68d4da259aa2cf",
+      "legacySha256": "410f9ac8669139a9b09c402fc59bbca2de1571e43ada483f6a68d4da259aa2cf",
+      "compatibility": "identical-definition"
+    },
+    {
+      "kind": "object",
+      "id": 70766,
+      "sha256": "74f3754d915af4dfc3b2f7606ad5e1b47f37f1e9c9d13231d6c0aefafcfa8ae2",
+      "legacySha256": "74f3754d915af4dfc3b2f7606ad5e1b47f37f1e9c9d13231d6c0aefafcfa8ae2",
+      "compatibility": "identical-definition"
+    },
+    {
+      "kind": "object",
+      "id": 70769,
+      "sha256": "c23962a80363c369ebf3d3417e3f59ade98bcc1c4dec68ea0ba4bbcdbb0d3c07",
+      "legacySha256": "c23962a80363c369ebf3d3417e3f59ade98bcc1c4dec68ea0ba4bbcdbb0d3c07",
+      "compatibility": "identical-definition"
+    },
+    {
+      "kind": "item",
+      "id": 1511,
+      "sha256": "29257b9164a4e328cc2d6c3117695a386da8e41f1b9cea023bda905a1f45ba00",
+      "legacySha256": "4fba06bfa7fb3c898dec11e2d102c2730bd1f367a81a0d6cf18a703a6e8e6d53",
+      "name": "Logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 2862,
+      "sha256": "31a15e7942cc3e5d53167bfe1ab520c27e405263c6f13677f03e0675671dff01",
+      "legacySha256": "bac0b2336c6de837a5710512ed66f2f7a18f570e1366b833554bfe453f822d4d",
+      "name": "Achey tree logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 1521,
+      "sha256": "9e27f0786f59e199807cd972633f33fab919823cbb7381e5e0ba7069be0f86f0",
+      "legacySha256": "a7225847804da791717522a48c603ecf1677b6f4ea48cdc51debae9af8fa4785",
+      "name": "Oak logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 1519,
+      "sha256": "e5c821a64fcb62f909412cb200c3ff0aae306732c8f17dc5c845d7e490854221",
+      "legacySha256": "91573a1f9b9bdb4cb73a31be858dabf2496d86d82a756875ede5160678efd3fb",
+      "name": "Willow logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 6333,
+      "sha256": "c830c76801d3c8f05ec85d6b495cef3cb29ef1831573554760dad68fe8ca66d8",
+      "legacySha256": "04fd1f22f9c463ce30002418e39c6b4ac3f6a0d7141f01015fc8023c2674e94c",
+      "name": "Teak logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 10810,
+      "sha256": "4788af1a46e94242754f597112b7dcfe27fa1d56fc8e3a06ae0b765c514059b9",
+      "legacySha256": "161f7975b55e8b77d830422cf327fb8b3b4008601ae51b244bef88072cff91c3",
+      "name": "Arctic pine logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 1517,
+      "sha256": "56465f082745d3d93bd4a931fffa01dba0d76a7b58e992e76730ed2651260c85",
+      "legacySha256": "af2cba5265e0c547cd5866a86beeeada391b642f16ac2ffd16c24e41d105c40c",
+      "name": "Maple logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 6332,
+      "sha256": "11dffa5477467988cd00cd8f522ccf373768c4b824830cd514f97ba4fb124c13",
+      "legacySha256": "339793fd1864e3902ed26f2df566aa0a8fb5f36c26110fb25ef75e05ea2c0d1f",
+      "name": "Mahogany logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 12581,
+      "sha256": "ae2f68701b268619fb504fc4ed3d04d21155d88870ae4ad842ee4a0e42716056",
+      "legacySha256": "1e743c5b518d7b0cedc8306e8f691eba9f6e250f54f862c150ab1cb969fb971b",
+      "name": "Eucalyptus logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 1515,
+      "sha256": "8f2848f83d72edeaa3059c4663e581aa4382e951d1100c851f616b9b71f5cb77",
+      "legacySha256": "cf4254c8e74d6704f96b76f4ccfed86270cf0a61dff3f57159192354372b8fed",
+      "name": "Yew logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 1513,
+      "sha256": "88c4c84b368ba6d2d9beeccafc1b8794703780b3b5d1f307cc17df349e8ab8c7",
+      "legacySha256": "9cbba798cf9feaa4d2bf2a087ed56950ca2660df21346b9ba730f1dbd7b1ddd1",
+      "name": "Magic logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 40338,
+      "sha256": "e101f8e36f1419989101454c972216eadd54aa032753525284de96ec0fde63cc",
+      "legacySha256": "ae8bdca3d389c2d8e8ee9cdf1e8468015a3cab18940b289f0676ea37a0e703c3",
+      "name": "Corrupted magic logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 13567,
+      "sha256": "2d9752be508355cc1d7dafbdfc1b80039f665cec8c8063d58fb09af5a878421d",
+      "legacySha256": "b2ed8bac317a1083fb7a7526ec06f7190276898dde3242d580279e53f31adcf9",
+      "name": "Cursed magic logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 29556,
+      "sha256": "9d412a997e2f6dd7d414d2b6a6244f3152276613c31546fd54673fb8d1ae25fe",
+      "legacySha256": "58f558f989bbef344f495b69f8d56070f81a20157aa07d8d99af788980242b7c",
+      "name": "Elder logs",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 590,
+      "sha256": "2184d785b53877a11b2a293243793d67e58a40ac16bd6143e5d8d146e1a2b4e6",
+      "legacySha256": "b209417dd71b62f79bdeab087b93f662887a055368435fbfbcfafbdc4bcb6b3b",
+      "name": "Tinderbox",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    },
+    {
+      "kind": "item",
+      "id": 592,
+      "sha256": "f1e3797be1a5769942602695bf78994fc649c3cd37d6da5e4b22234e3e132ada",
+      "legacySha256": "40017b1c1a8e99346c4fb0fabeb52f98d70ef619310859e765ff53a6d58486cb",
+      "name": "Ashes",
+      "compatibility": "same-authored-item-name-current-definition-pin"
+    }
+  ],
+  "excluded": {
+    "3239": "Old Evil bark is modern Bark; not admitted as the old high-XP log.",
+    "34528": "Protean log resource and XP rules are separate."
+  },
+  "limitation": "Matching definitions/frame references establish authored roles but do not prove identical rendered models."
+}

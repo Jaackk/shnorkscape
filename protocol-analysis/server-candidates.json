@@ -1,0 +1,7172 @@
+[
+  {
+    "opcode947": 0,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400ff670",
+    "instructions947": 4,
+    "candidates": [
+      {
+        "opcode950": 99,
+        "score": 0.75,
+        "parser950": "0x14010f730",
+        "instructions950": 4,
+        "exactShape": false
+      },
+      {
+        "opcode950": 159,
+        "score": 0.6,
+        "parser950": "0x14010fa80",
+        "instructions950": 6,
+        "exactShape": false
+      },
+      {
+        "opcode950": 204,
+        "score": 0.33333,
+        "parser950": "0x1400fd740",
+        "instructions950": 2,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 99,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 1,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x140140ee0",
+    "instructions947": 30,
+    "candidates": [
+      {
+        "opcode950": 126,
+        "score": 0.6,
+        "parser950": "0x140141ee0",
+        "instructions950": 30,
+        "exactShape": false
+      },
+      {
+        "opcode950": 28,
+        "score": 0.28986,
+        "parser950": "0x1401421e0",
+        "instructions950": 39,
+        "exactShape": false
+      },
+      {
+        "opcode950": 174,
+        "score": 0.21429,
+        "parser950": "0x140142820",
+        "instructions950": 26,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 126,
+      "blockLength": 5
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 2,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x140109180",
+    "instructions947": 92,
+    "candidates": [
+      {
+        "opcode950": 115,
+        "score": 0.97826,
+        "parser950": "0x140107690",
+        "instructions950": 92,
+        "exactShape": false
+      },
+      {
+        "opcode950": 81,
+        "score": 0.30667,
+        "parser950": "0x1401416d0",
+        "instructions950": 58,
+        "exactShape": false
+      },
+      {
+        "opcode950": 142,
+        "score": 0.3038,
+        "parser950": "0x140104d50",
+        "instructions950": 66,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 115,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 3,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x14010bc60",
+    "instructions947": 13,
+    "candidates": [
+      {
+        "opcode950": 6,
+        "score": 0.92308,
+        "parser950": "0x14010a250",
+        "instructions950": 13,
+        "exactShape": false
+      },
+      {
+        "opcode950": 46,
+        "score": 0.48,
+        "parser950": "0x140109210",
+        "instructions950": 12,
+        "exactShape": false
+      },
+      {
+        "opcode950": 194,
+        "score": 0.25806,
+        "parser950": "0x140142c60",
+        "instructions950": 18,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 6,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 4,
+    "name947": null,
+    "size": 4,
+    "parser947": "0x14010bb20",
+    "instructions947": 31,
+    "candidates": [
+      {
+        "opcode950": 56,
+        "score": 0.46667,
+        "parser950": "0x14010a120",
+        "instructions950": 29,
+        "exactShape": false
+      },
+      {
+        "opcode950": 109,
+        "score": 0.26471,
+        "parser950": "0x140140ab0",
+        "instructions950": 37,
+        "exactShape": false
+      },
+      {
+        "opcode950": 155,
+        "score": 0.22951,
+        "parser950": "0x14010a6a0",
+        "instructions950": 30,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 56,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 5,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400fd4b0",
+    "instructions947": 201,
+    "candidates": [
+      {
+        "opcode950": 50,
+        "score": 0.79602,
+        "parser950": "0x1400fcd60",
+        "instructions950": 201,
+        "exactShape": false
+      },
+      {
+        "opcode950": 9,
+        "score": 0.39691,
+        "parser950": "0x1400fd060",
+        "instructions950": 187,
+        "exactShape": false
+      },
+      {
+        "opcode950": 220,
+        "score": 0.17886,
+        "parser950": "0x1400fe4d0",
+        "instructions950": 168,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 50,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 6,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x140105f00",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 88,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 7,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f17c0",
+    "instructions947": 35,
+    "candidates": [
+      {
+        "opcode950": 89,
+        "score": 0.94286,
+        "parser950": "0x1400f1320",
+        "instructions950": 35,
+        "exactShape": false
+      },
+      {
+        "opcode950": 60,
+        "score": 0.24138,
+        "parser950": "0x1400f2c80",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 22,
+        "score": 0.2069,
+        "parser950": "0x1400f32d0",
+        "instructions950": 23,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 89,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 8,
+    "name947": "IF_OPENSUB",
+    "size": 23,
+    "parser947": "0x1400fbca0",
+    "instructions947": 54,
+    "candidates": [
+      {
+        "opcode950": 100,
+        "score": 0.43103,
+        "parser950": "0x1400fb790",
+        "instructions950": 62,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 100,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 10,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x1401414a0",
+    "instructions947": 60,
+    "candidates": [
+      {
+        "opcode950": 79,
+        "score": 0.64463,
+        "parser950": "0x1401425a0",
+        "instructions950": 61,
+        "exactShape": false
+      },
+      {
+        "opcode950": 48,
+        "score": 0.19417,
+        "parser950": "0x140141b50",
+        "instructions950": 43,
+        "exactShape": false
+      },
+      {
+        "opcode950": 28,
+        "score": 0.18182,
+        "parser950": "0x1401421e0",
+        "instructions950": 39,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 79,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 11,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x14010b000",
+    "instructions947": 82,
+    "candidates": [
+      {
+        "opcode950": 61,
+        "score": 0.96341,
+        "parser950": "0x140109630",
+        "instructions950": 82,
+        "exactShape": false
+      },
+      {
+        "opcode950": 125,
+        "score": 0.32,
+        "parser950": "0x140109430",
+        "instructions950": 93,
+        "exactShape": false
+      },
+      {
+        "opcode950": 142,
+        "score": 0.21622,
+        "parser950": "0x140104d50",
+        "instructions950": 66,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 61,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 12,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x140106b50",
+    "instructions947": 8,
+    "candidates": [
+      {
+        "opcode950": 80,
+        "score": 0.875,
+        "parser950": "0x140104fa0",
+        "instructions950": 8,
+        "exactShape": false
+      },
+      {
+        "opcode950": 129,
+        "score": 0.75,
+        "parser950": "0x140105290",
+        "instructions950": 8,
+        "exactShape": false
+      },
+      {
+        "opcode950": 18,
+        "score": 0.19355,
+        "parser950": "0x14010a2c0",
+        "instructions950": 23,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 80,
+      "blockLength": 2
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 13,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x14010b9c0",
+    "instructions947": 69,
+    "candidates": [
+      {
+        "opcode950": 90,
+        "score": 0.33333,
+        "parser950": "0x140109fd0",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 52,
+        "score": 0.28788,
+        "parser950": "0x140109e80",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 4,
+        "score": 0.20833,
+        "parser950": "0x140142430",
+        "instructions950": 75,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 90,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 14,
+    "name947": null,
+    "size": 5,
+    "parser947": "0x140107b50",
+    "instructions947": 53,
+    "candidates": [
+      {
+        "opcode950": 67,
+        "score": 0.66038,
+        "parser950": "0x140107590",
+        "instructions950": 53,
+        "exactShape": false
+      },
+      {
+        "opcode950": 85,
+        "score": 0.62264,
+        "parser950": "0x140105e60",
+        "instructions950": 53,
+        "exactShape": false
+      },
+      {
+        "opcode950": 152,
+        "score": 0.56881,
+        "parser950": "0x140105f60",
+        "instructions950": 56,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 85,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 15,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x140140810",
+    "instructions947": 63,
+    "candidates": [
+      {
+        "opcode950": 81,
+        "score": 0.57851,
+        "parser950": "0x1401416d0",
+        "instructions950": 58,
+        "exactShape": false
+      },
+      {
+        "opcode950": 142,
+        "score": 0.55814,
+        "parser950": "0x140104d50",
+        "instructions950": 66,
+        "exactShape": false
+      },
+      {
+        "opcode950": 115,
+        "score": 0.34839,
+        "parser950": "0x140107690",
+        "instructions950": 92,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 81,
+      "blockLength": 17
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 16,
+    "name947": null,
+    "size": 4,
+    "parser947": "0x140108ba0",
+    "instructions947": 63,
+    "candidates": [
+      {
+        "opcode950": 101,
+        "score": 0.88889,
+        "parser950": "0x140107070",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 38,
+        "score": 0.61538,
+        "parser950": "0x140106a20",
+        "instructions950": 67,
+        "exactShape": false
+      },
+      {
+        "opcode950": 53,
+        "score": 0.33929,
+        "parser950": "0x140109be0",
+        "instructions950": 49,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 101,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 17,
+    "name947": null,
+    "size": 8,
+    "parser947": "0x140109920",
+    "instructions947": 81,
+    "candidates": [
+      {
+        "opcode950": 127,
+        "score": 0.3354,
+        "parser950": "0x140107f90",
+        "instructions950": 80,
+        "exactShape": false
+      },
+      {
+        "opcode950": 25,
+        "score": 0.32051,
+        "parser950": "0x140106b60",
+        "instructions950": 75,
+        "exactShape": false
+      },
+      {
+        "opcode950": 47,
+        "score": 0.30986,
+        "parser950": "0x140106cc0",
+        "instructions950": 61,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 127,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 18,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x140112310",
+    "instructions947": 321,
+    "candidates": [
+      {
+        "opcode950": 2,
+        "score": 0.61807,
+        "parser950": "0x140112c00",
+        "instructions950": 310,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 2,
+      "blockLength": 17
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 19,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x140109c60",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 40,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 20,
+    "name947": null,
+    "size": 7,
+    "parser947": "0x1401147a0",
+    "instructions947": 100,
+    "candidates": [
+      {
+        "opcode950": 75,
+        "score": 0.05797,
+        "parser950": "0x140114450",
+        "instructions950": 176,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": null,
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 21,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f3120",
+    "instructions947": 23,
+    "candidates": [
+      {
+        "opcode950": 60,
+        "score": 0.95652,
+        "parser950": "0x1400f2c80",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 22,
+        "score": 0.69565,
+        "parser950": "0x1400f32d0",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 175,
+        "score": 0.59574,
+        "parser950": "0x1400f5060",
+        "instructions950": 24,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 60,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 22,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x14010b6d0",
+    "instructions947": 57,
+    "candidates": [
+      {
+        "opcode950": 27,
+        "score": 0.30909,
+        "parser950": "0x140109cf0",
+        "instructions950": 53,
+        "exactShape": false
+      },
+      {
+        "opcode950": 92,
+        "score": 0.30909,
+        "parser950": "0x140141290",
+        "instructions950": 53,
+        "exactShape": false
+      },
+      {
+        "opcode950": 52,
+        "score": 0.21667,
+        "parser950": "0x140109e80",
+        "instructions950": 63,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 27,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 23,
+    "name947": null,
+    "size": 4,
+    "parser947": "0x14010b5b0",
+    "instructions947": 53,
+    "candidates": [
+      {
+        "opcode950": 53,
+        "score": 0.37255,
+        "parser950": "0x140109be0",
+        "instructions950": 49,
+        "exactShape": false
+      },
+      {
+        "opcode950": 38,
+        "score": 0.25,
+        "parser950": "0x140106a20",
+        "instructions950": 67,
+        "exactShape": false
+      },
+      {
+        "opcode950": 153,
+        "score": 0.20253,
+        "parser950": "0x140108cd0",
+        "instructions950": 26,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 53,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 24,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f76a0",
+    "instructions947": 121,
+    "candidates": [
+      {
+        "opcode950": 123,
+        "score": 0.96694,
+        "parser950": "0x1400f71f0",
+        "instructions950": 121,
+        "exactShape": false
+      },
+      {
+        "opcode950": 135,
+        "score": 0.11354,
+        "parser950": "0x140110290",
+        "instructions950": 108,
+        "exactShape": false
+      },
+      {
+        "opcode950": 8,
+        "score": 0.11111,
+        "parser950": "0x1401413b0",
+        "instructions950": 95,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 123,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 25,
+    "name947": null,
+    "size": 0,
+    "parser947": "0x140140700",
+    "instructions947": 13,
+    "candidates": [
+      {
+        "opcode950": 112,
+        "score": 0.92308,
+        "parser950": "0x1401415c0",
+        "instructions950": 13,
+        "exactShape": false
+      },
+      {
+        "opcode950": 76,
+        "score": 0.52174,
+        "parser950": "0x14010ab80",
+        "instructions950": 10,
+        "exactShape": false
+      },
+      {
+        "opcode950": 161,
+        "score": 0.5,
+        "parser950": "0x14010a500",
+        "instructions950": 11,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 112,
+      "blockLength": 17
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 26,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x14010b870",
+    "instructions947": 65,
+    "candidates": [
+      {
+        "opcode950": 27,
+        "score": 0.35593,
+        "parser950": "0x140109cf0",
+        "instructions950": 53,
+        "exactShape": false
+      },
+      {
+        "opcode950": 52,
+        "score": 0.26562,
+        "parser950": "0x140109e80",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 90,
+        "score": 0.21875,
+        "parser950": "0x140109fd0",
+        "instructions950": 63,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 52,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 27,
+    "name947": "PLAYER_INFO",
+    "size": -2,
+    "parser947": "0x140106560",
+    "instructions947": 42,
+    "candidates": [
+      {
+        "opcode950": 36,
+        "score": 0.97619,
+        "parser950": "0x140143660",
+        "instructions950": 42,
+        "exactShape": false
+      },
+      {
+        "opcode950": 18,
+        "score": 0.21538,
+        "parser950": "0x14010a2c0",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 166,
+        "score": 0.16471,
+        "parser950": "0x140143230",
+        "instructions950": 43,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 36,
+      "blockLength": 32
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 28,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400f8e00",
+    "instructions947": 22,
+    "candidates": [
+      {
+        "opcode950": 29,
+        "score": 0.90909,
+        "parser950": "0x1400f88f0",
+        "instructions950": 22,
+        "exactShape": false
+      },
+      {
+        "opcode950": 78,
+        "score": 0.22222,
+        "parser950": "0x1400f23e0",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 140,
+        "score": 0.17241,
+        "parser950": "0x14010e1c0",
+        "instructions950": 36,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 29,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 29,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x1400fda90",
+    "instructions947": 62,
+    "candidates": [
+      {
+        "opcode950": 20,
+        "score": 0.72,
+        "parser950": "0x1400fd340",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 126,
+        "score": 0.17391,
+        "parser950": "0x140141ee0",
+        "instructions950": 30,
+        "exactShape": false
+      },
+      {
+        "opcode950": 206,
+        "score": 0.12,
+        "parser950": "0x1400f8650",
+        "instructions950": 38,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 20,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 30,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400fa970",
+    "instructions947": 10,
+    "candidates": [
+      {
+        "opcode950": 10,
+        "score": 1.0,
+        "parser950": "0x1400fa460",
+        "instructions950": 10,
+        "exactShape": true
+      },
+      {
+        "opcode950": 3,
+        "score": 0.54545,
+        "parser950": "0x1400f9480",
+        "instructions950": 12,
+        "exactShape": false
+      },
+      {
+        "opcode950": 78,
+        "score": 0.18182,
+        "parser950": "0x1400f23e0",
+        "instructions950": 23,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 10,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 31,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x140110740",
+    "instructions947": 168,
+    "candidates": [
+      {
+        "opcode950": 86,
+        "score": 1.0,
+        "parser950": "0x1401115d0",
+        "instructions950": 168,
+        "exactShape": true
+      },
+      {
+        "opcode950": 162,
+        "score": 0.23423,
+        "parser950": "0x140141100",
+        "instructions950": 54,
+        "exactShape": false
+      },
+      {
+        "opcode950": 208,
+        "score": 0.16105,
+        "parser950": "0x1400f7800",
+        "instructions950": 366,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 86,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 32,
+    "name947": null,
+    "size": 10,
+    "parser947": "0x14010c880",
+    "instructions947": 71,
+    "candidates": [
+      {
+        "opcode950": 19,
+        "score": 0.43662,
+        "parser950": "0x14010ac20",
+        "instructions950": 71,
+        "exactShape": false
+      },
+      {
+        "opcode950": 54,
+        "score": 0.43662,
+        "parser950": "0x14010ac20",
+        "instructions950": 71,
+        "exactShape": false
+      },
+      {
+        "opcode950": 164,
+        "score": 0.15126,
+        "parser950": "0x140115190",
+        "instructions950": 167,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 19,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 33,
+    "name947": null,
+    "size": 4,
+    "parser947": "0x1400fc8d0",
+    "instructions947": 109,
+    "candidates": [
+      {
+        "opcode950": 69,
+        "score": 0.41206,
+        "parser950": "0x140107b00",
+        "instructions950": 90,
+        "exactShape": false
+      },
+      {
+        "opcode950": 101,
+        "score": 0.17442,
+        "parser950": "0x140107070",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 53,
+        "score": 0.16456,
+        "parser950": "0x140109be0",
+        "instructions950": 49,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 69,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 34,
+    "name947": null,
+    "size": 10,
+    "parser947": "0x140109310",
+    "instructions947": 61,
+    "candidates": [
+      {
+        "opcode950": 71,
+        "score": 0.464,
+        "parser950": "0x140107820",
+        "instructions950": 64,
+        "exactShape": false
+      },
+      {
+        "opcode950": 118,
+        "score": 0.14765,
+        "parser950": "0x1400fc5c0",
+        "instructions950": 88,
+        "exactShape": false
+      },
+      {
+        "opcode950": 165,
+        "score": 0.14765,
+        "parser950": "0x1401422b0",
+        "instructions950": 88,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 71,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 35,
+    "name947": null,
+    "size": 12,
+    "parser947": "0x140109450",
+    "instructions947": 63,
+    "candidates": [
+      {
+        "opcode950": 24,
+        "score": 0.27692,
+        "parser950": "0x140107970",
+        "instructions950": 67,
+        "exactShape": false
+      },
+      {
+        "opcode950": 117,
+        "score": 0.07874,
+        "parser950": "0x1400ef0e0",
+        "instructions950": 64,
+        "exactShape": false
+      },
+      {
+        "opcode950": 143,
+        "score": 0.0315,
+        "parser950": "0x1400f0700",
+        "instructions950": 64,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 24,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 36,
+    "name947": null,
+    "size": 28,
+    "parser947": "0x1400ff9c0",
+    "instructions947": 134,
+    "candidates": [
+      {
+        "opcode950": 103,
+        "score": 1.0,
+        "parser950": "0x14010fd50",
+        "instructions950": 134,
+        "exactShape": true
+      },
+      {
+        "opcode950": 169,
+        "score": 0.01163,
+        "parser950": "0x140115a10",
+        "instructions950": 210,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 103,
+      "blockLength": 9
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 37,
+    "name947": null,
+    "size": 2,
+    "parser947": "0x140113690",
+    "instructions947": 75,
+    "candidates": [
+      {
+        "opcode950": 26,
+        "score": 0.78667,
+        "parser950": "0x140113f30",
+        "instructions950": 75,
+        "exactShape": false
+      },
+      {
+        "opcode950": 151,
+        "score": 0.06289,
+        "parser950": "0x140110cf0",
+        "instructions950": 84,
+        "exactShape": false
+      },
+      {
+        "opcode950": 218,
+        "score": 0.05085,
+        "parser950": "0x140110e30",
+        "instructions950": 43,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 26,
+      "blockLength": 17
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 38,
+    "name947": null,
+    "size": 5,
+    "parser947": "0x14013fd20",
+    "instructions947": 67,
+    "candidates": [
+      {
+        "opcode950": 105,
+        "score": 0.08247,
+        "parser950": "0x14010a410",
+        "instructions950": 30,
+        "exactShape": false
+      },
+      {
+        "opcode950": 152,
+        "score": 0.0813,
+        "parser950": "0x140105f60",
+        "instructions950": 56,
+        "exactShape": false
+      },
+      {
+        "opcode950": 107,
+        "score": 0.07692,
+        "parser950": "0x14010a560",
+        "instructions950": 63,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": null,
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 39,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f41a0",
+    "instructions947": 121,
+    "candidates": [
+      {
+        "opcode950": 55,
+        "score": 0.97521,
+        "parser950": "0x1400f3d00",
+        "instructions950": 121,
+        "exactShape": false
+      },
+      {
+        "opcode950": 199,
+        "score": 0.23457,
+        "parser950": "0x1400f5680",
+        "instructions950": 365,
+        "exactShape": false
+      },
+      {
+        "opcode950": 43,
+        "score": 0.22754,
+        "parser950": "0x1400f3f10",
+        "instructions950": 380,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 55,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 40,
+    "name947": null,
+    "size": 19,
+    "parser947": "0x1400efd60",
+    "instructions947": 119,
+    "candidates": [
+      {
+        "opcode950": 94,
+        "score": 0.27907,
+        "parser950": "0x1400ef560",
+        "instructions950": 96,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 94,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 41,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x140112d40",
+    "instructions947": 98,
+    "candidates": [
+      {
+        "opcode950": 104,
+        "score": 0.66667,
+        "parser950": "0x1401135e0",
+        "instructions950": 97,
+        "exactShape": false
+      },
+      {
+        "opcode950": 11,
+        "score": 0.15385,
+        "parser950": "0x1401130b0",
+        "instructions950": 318,
+        "exactShape": false
+      },
+      {
+        "opcode950": 144,
+        "score": 0.12721,
+        "parser950": "0x140115720",
+        "instructions950": 185,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 104,
+      "blockLength": 17
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 42,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x14013fc50",
+    "instructions947": 36,
+    "candidates": [
+      {
+        "opcode950": 189,
+        "score": 0.2619,
+        "parser950": "0x1401429c0",
+        "instructions950": 48,
+        "exactShape": false
+      },
+      {
+        "opcode950": 174,
+        "score": 0.25806,
+        "parser950": "0x140142820",
+        "instructions950": 26,
+        "exactShape": false
+      },
+      {
+        "opcode950": 28,
+        "score": 0.21333,
+        "parser950": "0x1401421e0",
+        "instructions950": 39,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": null,
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 43,
+    "name947": null,
+    "size": 0,
+    "parser947": "0x14010cb00",
+    "instructions947": 95,
+    "candidates": [
+      {
+        "opcode950": 113,
+        "score": 0.97895,
+        "parser950": "0x14010aea0",
+        "instructions950": 95,
+        "exactShape": false
+      },
+      {
+        "opcode950": 202,
+        "score": 0.07547,
+        "parser950": "0x1400fe2b0",
+        "instructions950": 117,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 113,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 44,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x140107f80",
+    "instructions947": 65,
+    "candidates": [
+      {
+        "opcode950": 83,
+        "score": 0.6015,
+        "parser950": "0x1401062b0",
+        "instructions950": 68,
+        "exactShape": false
+      },
+      {
+        "opcode950": 16,
+        "score": 0.46667,
+        "parser950": "0x140107e80",
+        "instructions950": 55,
+        "exactShape": false
+      },
+      {
+        "opcode950": 138,
+        "score": 0.23762,
+        "parser950": "0x140142900",
+        "instructions950": 36,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 83,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 45,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400f2880",
+    "instructions947": 23,
+    "candidates": [
+      {
+        "opcode950": 78,
+        "score": 0.95652,
+        "parser950": "0x1400f23e0",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 140,
+        "score": 0.33898,
+        "parser950": "0x14010e1c0",
+        "instructions950": 36,
+        "exactShape": false
+      },
+      {
+        "opcode950": 29,
+        "score": 0.22222,
+        "parser950": "0x1400f88f0",
+        "instructions950": 22,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 78,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 46,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x14010bcd0",
+    "instructions947": 23,
+    "candidates": [
+      {
+        "opcode950": 18,
+        "score": 0.86957,
+        "parser950": "0x14010a2c0",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 78,
+        "score": 0.21739,
+        "parser950": "0x1400f23e0",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 36,
+        "score": 0.21538,
+        "parser950": "0x140143660",
+        "instructions950": 42,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 18,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 47,
+    "name947": null,
+    "size": 20,
+    "parser947": "0x140113ea0",
+    "instructions947": 97,
+    "candidates": [
+      {
+        "opcode950": 114,
+        "score": 1.0,
+        "parser950": "0x140114720",
+        "instructions950": 97,
+        "exactShape": true
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 114,
+      "blockLength": 17
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 48,
+    "name947": null,
+    "size": 0,
+    "parser947": "0x1401415c0",
+    "instructions947": 23,
+    "candidates": [
+      {
+        "opcode950": 23,
+        "score": 0.73913,
+        "parser950": "0x1401426d0",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 160,
+        "score": 0.27778,
+        "parser950": "0x14010ae30",
+        "instructions950": 13,
+        "exactShape": false
+      },
+      {
+        "opcode950": 214,
+        "score": 0.25532,
+        "parser950": "0x1401051b0",
+        "instructions950": 24,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 23,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 49,
+    "name947": null,
+    "size": 0,
+    "parser947": "0x140107af0",
+    "instructions947": 11,
+    "candidates": [
+      {
+        "opcode950": 124,
+        "score": 0.72727,
+        "parser950": "0x140105e00",
+        "instructions950": 11,
+        "exactShape": false
+      },
+      {
+        "opcode950": 76,
+        "score": 0.57143,
+        "parser950": "0x14010ab80",
+        "instructions950": 10,
+        "exactShape": false
+      },
+      {
+        "opcode950": 108,
+        "score": 0.55556,
+        "parser950": "0x140141570",
+        "instructions950": 7,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 124,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 50,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x1401410e0",
+    "instructions947": 40,
+    "candidates": [
+      {
+        "opcode950": 28,
+        "score": 0.58228,
+        "parser950": "0x1401421e0",
+        "instructions950": 39,
+        "exactShape": false
+      },
+      {
+        "opcode950": 126,
+        "score": 0.34286,
+        "parser950": "0x140141ee0",
+        "instructions950": 30,
+        "exactShape": false
+      },
+      {
+        "opcode950": 48,
+        "score": 0.31325,
+        "parser950": "0x140141b50",
+        "instructions950": 43,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 28,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 51,
+    "name947": null,
+    "size": 7,
+    "parser947": "0x140113bd0",
+    "instructions947": 178,
+    "candidates": [
+      {
+        "opcode950": 75,
+        "score": 0.68362,
+        "parser950": "0x140114450",
+        "instructions950": 176,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 75,
+      "blockLength": 17
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 52,
+    "name947": null,
+    "size": 2,
+    "parser947": "0x14010a780",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 31,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 53,
+    "name947": null,
+    "size": 8,
+    "parser947": "0x140108f60",
+    "instructions947": 59,
+    "candidates": [
+      {
+        "opcode950": 47,
+        "score": 0.71667,
+        "parser950": "0x140106cc0",
+        "instructions950": 61,
+        "exactShape": false
+      },
+      {
+        "opcode950": 41,
+        "score": 0.47059,
+        "parser950": "0x140107470",
+        "instructions950": 60,
+        "exactShape": false
+      },
+      {
+        "opcode950": 122,
+        "score": 0.47059,
+        "parser950": "0x1401063e0",
+        "instructions950": 60,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 41,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 54,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x14010a4d0",
+    "instructions947": 62,
+    "candidates": [
+      {
+        "opcode950": 12,
+        "score": 0.88333,
+        "parser950": "0x140108b10",
+        "instructions950": 58,
+        "exactShape": false
+      },
+      {
+        "opcode950": 60,
+        "score": 0.16471,
+        "parser950": "0x1400f2c80",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 148,
+        "score": 0.1327,
+        "parser950": "0x1400f6500",
+        "instructions950": 149,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 12,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 55,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x140140a60",
+    "instructions947": 50,
+    "candidates": [
+      {
+        "opcode950": 87,
+        "score": 0.70588,
+        "parser950": "0x140141a40",
+        "instructions950": 52,
+        "exactShape": false
+      },
+      {
+        "opcode950": 82,
+        "score": 0.26667,
+        "parser950": "0x140142100",
+        "instructions950": 40,
+        "exactShape": false
+      },
+      {
+        "opcode950": 191,
+        "score": 0.22222,
+        "parser950": "0x140142b90",
+        "instructions950": 40,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 87,
+      "blockLength": 5
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 56,
+    "name947": null,
+    "size": 10,
+    "parser947": "0x140114910",
+    "instructions947": 134,
+    "candidates": [
+      {
+        "opcode950": 164,
+        "score": 0.58472,
+        "parser950": "0x140115190",
+        "instructions950": 167,
+        "exactShape": false
+      },
+      {
+        "opcode950": 19,
+        "score": 0.21463,
+        "parser950": "0x14010ac20",
+        "instructions950": 71,
+        "exactShape": false
+      },
+      {
+        "opcode950": 54,
+        "score": 0.21463,
+        "parser950": "0x14010ac20",
+        "instructions950": 71,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 164,
+      "blockLength": 6
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 57,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x1401401c0",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 96,
+      "blockLength": 17
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 58,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f3770",
+    "instructions947": 23,
+    "candidates": [
+      {
+        "opcode950": 22,
+        "score": 0.95652,
+        "parser950": "0x1400f32d0",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 175,
+        "score": 0.7234,
+        "parser950": "0x1400f5060",
+        "instructions950": 24,
+        "exactShape": false
+      },
+      {
+        "opcode950": 60,
+        "score": 0.69565,
+        "parser950": "0x1400f2c80",
+        "instructions950": 23,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 22,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 59,
+    "name947": null,
+    "size": 4,
+    "parser947": "0x140106640",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 0,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 60,
+    "name947": null,
+    "size": 7,
+    "parser947": "0x14013fac0",
+    "instructions947": 87,
+    "candidates": [
+      {
+        "opcode950": 75,
+        "score": 0.05323,
+        "parser950": "0x140114450",
+        "instructions950": 176,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": null,
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 61,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x14010ac00",
+    "instructions947": 12,
+    "candidates": [
+      {
+        "opcode950": 46,
+        "score": 0.91667,
+        "parser950": "0x140109210",
+        "instructions950": 12,
+        "exactShape": false
+      },
+      {
+        "opcode950": 6,
+        "score": 0.48,
+        "parser950": "0x14010a250",
+        "instructions950": 13,
+        "exactShape": false
+      },
+      {
+        "opcode950": 194,
+        "score": 0.26667,
+        "parser950": "0x140142c60",
+        "instructions950": 18,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 46,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 62,
+    "name947": null,
+    "size": 11,
+    "parser947": "0x1401144c0",
+    "instructions947": 170,
+    "candidates": [
+      {
+        "opcode950": 14,
+        "score": 0.95882,
+        "parser950": "0x140114d40",
+        "instructions950": 170,
+        "exactShape": false
+      },
+      {
+        "opcode950": 95,
+        "score": 0.07299,
+        "parser950": "0x1400f0940",
+        "instructions950": 104,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 14,
+      "blockLength": 17
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 63,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x14010ae00",
+    "instructions947": 93,
+    "candidates": [
+      {
+        "opcode950": 125,
+        "score": 0.95699,
+        "parser950": "0x140109430",
+        "instructions950": 93,
+        "exactShape": false
+      },
+      {
+        "opcode950": 61,
+        "score": 0.30857,
+        "parser950": "0x140109630",
+        "instructions950": 82,
+        "exactShape": false
+      },
+      {
+        "opcode950": 142,
+        "score": 0.18868,
+        "parser950": "0x140104d50",
+        "instructions950": 66,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 125,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 64,
+    "name947": null,
+    "size": 8,
+    "parser947": "0x140108e40",
+    "instructions947": 63,
+    "candidates": [
+      {
+        "opcode950": 39,
+        "score": 0.38235,
+        "parser950": "0x140107320",
+        "instructions950": 73,
+        "exactShape": false
+      },
+      {
+        "opcode950": 47,
+        "score": 0.33871,
+        "parser950": "0x140106cc0",
+        "instructions950": 61,
+        "exactShape": false
+      },
+      {
+        "opcode950": 122,
+        "score": 0.22764,
+        "parser950": "0x1401063e0",
+        "instructions950": 60,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 39,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 65,
+    "name947": null,
+    "size": 0,
+    "parser947": "0x140109cc0",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 93,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 66,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x140140410",
+    "instructions947": 54,
+    "candidates": [
+      {
+        "opcode950": 92,
+        "score": 0.57944,
+        "parser950": "0x140141290",
+        "instructions950": 53,
+        "exactShape": false
+      },
+      {
+        "opcode950": 138,
+        "score": 0.2,
+        "parser950": "0x140142900",
+        "instructions950": 36,
+        "exactShape": false
+      },
+      {
+        "opcode950": 82,
+        "score": 0.19149,
+        "parser950": "0x140142100",
+        "instructions950": 40,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 92,
+      "blockLength": 17
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 67,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x140140940",
+    "instructions947": 60,
+    "candidates": [
+      {
+        "opcode950": 30,
+        "score": 0.56911,
+        "parser950": "0x1401417f0",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 134,
+        "score": 0.48889,
+        "parser950": "0x140105700",
+        "instructions950": 75,
+        "exactShape": false
+      },
+      {
+        "opcode950": 74,
+        "score": 0.22764,
+        "parser950": "0x140141920",
+        "instructions950": 63,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 30,
+      "blockLength": 17
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 68,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x140109810",
+    "instructions947": 55,
+    "candidates": [
+      {
+        "opcode950": 16,
+        "score": 0.96364,
+        "parser950": "0x140107e80",
+        "instructions950": 55,
+        "exactShape": false
+      },
+      {
+        "opcode950": 83,
+        "score": 0.45528,
+        "parser950": "0x1401062b0",
+        "instructions950": 68,
+        "exactShape": false
+      },
+      {
+        "opcode950": 92,
+        "score": 0.24074,
+        "parser950": "0x140141290",
+        "instructions950": 53,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 16,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 69,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400fd7b0",
+    "instructions947": 194,
+    "candidates": [
+      {
+        "opcode950": 9,
+        "score": 0.79265,
+        "parser950": "0x1400fd060",
+        "instructions950": 187,
+        "exactShape": false
+      },
+      {
+        "opcode950": 50,
+        "score": 0.39494,
+        "parser950": "0x1400fcd60",
+        "instructions950": 201,
+        "exactShape": false
+      },
+      {
+        "opcode950": 220,
+        "score": 0.13812,
+        "parser950": "0x1400fe4d0",
+        "instructions950": 168,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 9,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 70,
+    "name947": null,
+    "size": 0,
+    "parser947": "0x14010c6f0",
+    "instructions947": 10,
+    "candidates": [
+      {
+        "opcode950": 76,
+        "score": 0.9,
+        "parser950": "0x14010ab80",
+        "instructions950": 10,
+        "exactShape": false
+      },
+      {
+        "opcode950": 161,
+        "score": 0.66667,
+        "parser950": "0x14010a500",
+        "instructions950": 11,
+        "exactShape": false
+      },
+      {
+        "opcode950": 108,
+        "score": 0.58824,
+        "parser950": "0x140141570",
+        "instructions950": 7,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 76,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 71,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x140140ff0",
+    "instructions947": 49,
+    "candidates": [
+      {
+        "opcode950": 82,
+        "score": 0.42697,
+        "parser950": "0x140142100",
+        "instructions950": 40,
+        "exactShape": false
+      },
+      {
+        "opcode950": 87,
+        "score": 0.39604,
+        "parser950": "0x140141a40",
+        "instructions950": 52,
+        "exactShape": false
+      },
+      {
+        "opcode950": 138,
+        "score": 0.28235,
+        "parser950": "0x140142900",
+        "instructions950": 36,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 82,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 72,
+    "name947": null,
+    "size": 5,
+    "parser947": "0x14010be20",
+    "instructions947": 30,
+    "candidates": [
+      {
+        "opcode950": 105,
+        "score": 0.73333,
+        "parser950": "0x14010a410",
+        "instructions950": 30,
+        "exactShape": false
+      },
+      {
+        "opcode950": 107,
+        "score": 0.17204,
+        "parser950": "0x14010a560",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 67,
+        "score": 0.12048,
+        "parser950": "0x140107590",
+        "instructions950": 53,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 105,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 73,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f4f20",
+    "instructions947": 387,
+    "candidates": [
+      {
+        "opcode950": 77,
+        "score": 0.9845,
+        "parser950": "0x1400f4a80",
+        "instructions950": 387,
+        "exactShape": false
+      },
+      {
+        "opcode950": 199,
+        "score": 0.57979,
+        "parser950": "0x1400f5680",
+        "instructions950": 365,
+        "exactShape": false
+      },
+      {
+        "opcode950": 43,
+        "score": 0.39635,
+        "parser950": "0x1400f3f10",
+        "instructions950": 380,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 77,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 74,
+    "name947": null,
+    "size": 8,
+    "parser947": "0x140108900",
+    "instructions947": 74,
+    "candidates": [
+      {
+        "opcode950": 47,
+        "score": 0.6963,
+        "parser950": "0x140106cc0",
+        "instructions950": 61,
+        "exactShape": false
+      },
+      {
+        "opcode950": 25,
+        "score": 0.60403,
+        "parser950": "0x140106b60",
+        "instructions950": 75,
+        "exactShape": false
+      },
+      {
+        "opcode950": 65,
+        "score": 0.39456,
+        "parser950": "0x140106de0",
+        "instructions950": 73,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 65,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 75,
+    "name947": null,
+    "size": 10,
+    "parser947": "0x14010c880",
+    "instructions947": 71,
+    "candidates": [
+      {
+        "opcode950": 19,
+        "score": 0.43662,
+        "parser950": "0x14010ac20",
+        "instructions950": 71,
+        "exactShape": false
+      },
+      {
+        "opcode950": 54,
+        "score": 0.43662,
+        "parser950": "0x14010ac20",
+        "instructions950": 71,
+        "exactShape": false
+      },
+      {
+        "opcode950": 164,
+        "score": 0.15126,
+        "parser950": "0x140115190",
+        "instructions950": 167,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 54,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 76,
+    "name947": null,
+    "size": 10,
+    "parser947": "0x1400fce80",
+    "instructions947": 181,
+    "candidates": [
+      {
+        "opcode950": 37,
+        "score": 0.22053,
+        "parser950": "0x1401071a0",
+        "instructions950": 82,
+        "exactShape": false
+      },
+      {
+        "opcode950": 118,
+        "score": 0.17844,
+        "parser950": "0x1400fc5c0",
+        "instructions950": 88,
+        "exactShape": false
+      },
+      {
+        "opcode950": 68,
+        "score": 0.17293,
+        "parser950": "0x1400fc720",
+        "instructions950": 85,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": null,
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 77,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x1401070a0",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 32,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 78,
+    "name947": null,
+    "size": 14,
+    "parser947": "0x1400fa5b0",
+    "instructions947": 61,
+    "candidates": [
+      {
+        "opcode950": 98,
+        "score": 0.96721,
+        "parser950": "0x1400fa0a0",
+        "instructions950": 61,
+        "exactShape": false
+      },
+      {
+        "opcode950": 216,
+        "score": 0.06512,
+        "parser950": "0x140110030",
+        "instructions950": 154,
+        "exactShape": false
+      },
+      {
+        "opcode950": 188,
+        "score": 0.056,
+        "parser950": "0x140116190",
+        "instructions950": 189,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 98,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 79,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1401127e0",
+    "instructions947": 326,
+    "candidates": [
+      {
+        "opcode950": 11,
+        "score": 0.61491,
+        "parser950": "0x1401130b0",
+        "instructions950": 318,
+        "exactShape": false
+      },
+      {
+        "opcode950": 104,
+        "score": 0.10402,
+        "parser950": "0x1401135e0",
+        "instructions950": 97,
+        "exactShape": false
+      },
+      {
+        "opcode950": 33,
+        "score": 0.10046,
+        "parser950": "0x1400f1ed0",
+        "instructions950": 331,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 11,
+      "blockLength": 17
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 80,
+    "name947": null,
+    "size": 0,
+    "parser947": "0x14010bbe0",
+    "instructions947": 17,
+    "candidates": [
+      {
+        "opcode950": 72,
+        "score": 0.76471,
+        "parser950": "0x14010a1d0",
+        "instructions950": 17,
+        "exactShape": false
+      },
+      {
+        "opcode950": 106,
+        "score": 0.64865,
+        "parser950": "0x140109e00",
+        "instructions950": 20,
+        "exactShape": false
+      },
+      {
+        "opcode950": 160,
+        "score": 0.6,
+        "parser950": "0x14010ae30",
+        "instructions950": 13,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 72,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 81,
+    "name947": null,
+    "size": 4,
+    "parser947": "0x140108550",
+    "instructions947": 63,
+    "candidates": [
+      {
+        "opcode950": 101,
+        "score": 0.87302,
+        "parser950": "0x140107070",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 38,
+        "score": 0.63077,
+        "parser950": "0x140106a20",
+        "instructions950": 67,
+        "exactShape": false
+      },
+      {
+        "opcode950": 53,
+        "score": 0.33929,
+        "parser950": "0x140109be0",
+        "instructions950": 49,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 38,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 82,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f43b0",
+    "instructions947": 380,
+    "candidates": [
+      {
+        "opcode950": 43,
+        "score": 0.98947,
+        "parser950": "0x1400f3f10",
+        "instructions950": 380,
+        "exactShape": false
+      },
+      {
+        "opcode950": 120,
+        "score": 0.76842,
+        "parser950": "0x1400f44d0",
+        "instructions950": 380,
+        "exactShape": false
+      },
+      {
+        "opcode950": 199,
+        "score": 0.42416,
+        "parser950": "0x1400f5680",
+        "instructions950": 365,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 43,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 83,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f9480",
+    "instructions947": 4,
+    "candidates": [
+      {
+        "opcode950": 34,
+        "score": 1.0,
+        "parser950": "0x1400f8f70",
+        "instructions950": 4,
+        "exactShape": true
+      },
+      {
+        "opcode950": 204,
+        "score": 0.33333,
+        "parser950": "0x1400fd740",
+        "instructions950": 2,
+        "exactShape": false
+      },
+      {
+        "opcode950": 99,
+        "score": 0.25,
+        "parser950": "0x14010f730",
+        "instructions950": 4,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 34,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 84,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400f6310",
+    "instructions947": 62,
+    "candidates": [
+      {
+        "opcode950": 64,
+        "score": 0.87097,
+        "parser950": "0x1400f5e70",
+        "instructions950": 62,
+        "exactShape": false
+      },
+      {
+        "opcode950": 66,
+        "score": 0.65574,
+        "parser950": "0x1400f5c00",
+        "instructions950": 60,
+        "exactShape": false
+      },
+      {
+        "opcode950": 210,
+        "score": 0.17391,
+        "parser950": "0x14010dfd0",
+        "instructions950": 122,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 64,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 85,
+    "name947": null,
+    "size": 8,
+    "parser947": "0x1400fca70",
+    "instructions947": 5,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 45,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 86,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400f6bf0",
+    "instructions947": 66,
+    "candidates": [
+      {
+        "opcode950": 5,
+        "score": 0.47244,
+        "parser950": "0x1400f6750",
+        "instructions950": 61,
+        "exactShape": false
+      },
+      {
+        "opcode950": 78,
+        "score": 0.1573,
+        "parser950": "0x1400f23e0",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 29,
+        "score": 0.13636,
+        "parser950": "0x1400f88f0",
+        "instructions950": 22,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 5,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 87,
+    "name947": null,
+    "size": 5,
+    "parser947": "0x14010bf70",
+    "instructions947": 56,
+    "candidates": [
+      {
+        "opcode950": 107,
+        "score": 0.47059,
+        "parser950": "0x14010a560",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 105,
+        "score": 0.18605,
+        "parser950": "0x14010a410",
+        "instructions950": 30,
+        "exactShape": false
+      },
+      {
+        "opcode950": 152,
+        "score": 0.10714,
+        "parser950": "0x140105f60",
+        "instructions950": 56,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 107,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 88,
+    "name947": null,
+    "size": 10,
+    "parser947": "0x140107960",
+    "instructions947": 84,
+    "candidates": [
+      {
+        "opcode950": 37,
+        "score": 0.48193,
+        "parser950": "0x1401071a0",
+        "instructions950": 82,
+        "exactShape": false
+      },
+      {
+        "opcode950": 59,
+        "score": 0.43636,
+        "parser950": "0x1401068a0",
+        "instructions950": 81,
+        "exactShape": false
+      },
+      {
+        "opcode950": 68,
+        "score": 0.3432,
+        "parser950": "0x1400fc720",
+        "instructions950": 85,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 68,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 89,
+    "name947": null,
+    "size": 0,
+    "parser947": "0x14010b7f0",
+    "instructions947": 20,
+    "candidates": [
+      {
+        "opcode950": 106,
+        "score": 0.9,
+        "parser950": "0x140109e00",
+        "instructions950": 20,
+        "exactShape": false
+      },
+      {
+        "opcode950": 72,
+        "score": 0.64865,
+        "parser950": "0x14010a1d0",
+        "instructions950": 17,
+        "exactShape": false
+      },
+      {
+        "opcode950": 160,
+        "score": 0.54545,
+        "parser950": "0x14010ae30",
+        "instructions950": 13,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 106,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 90,
+    "name947": "REBUILD_NORMAL",
+    "size": -2,
+    "parser947": "0x1400f72c0",
+    "instructions947": 239,
+    "candidates": [
+      {
+        "opcode950": 63,
+        "score": 0.5595,
+        "parser950": "0x1400f6e10",
+        "instructions950": 240,
+        "exactShape": false
+      },
+      {
+        "opcode950": 50,
+        "score": 0.13636,
+        "parser950": "0x1400fcd60",
+        "instructions950": 201,
+        "exactShape": false
+      },
+      {
+        "opcode950": 220,
+        "score": 0.10811,
+        "parser950": "0x1400fe4d0",
+        "instructions950": 168,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 63,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 91,
+    "name947": null,
+    "size": 35,
+    "parser947": "0x140107700",
+    "instructions947": 53,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": null,
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 92,
+    "name947": null,
+    "size": 8,
+    "parser947": "0x1401087e0",
+    "instructions947": 61,
+    "candidates": [
+      {
+        "opcode950": 47,
+        "score": 0.96721,
+        "parser950": "0x140106cc0",
+        "instructions950": 61,
+        "exactShape": false
+      },
+      {
+        "opcode950": 25,
+        "score": 0.39706,
+        "parser950": "0x140106b60",
+        "instructions950": 75,
+        "exactShape": false
+      },
+      {
+        "opcode950": 122,
+        "score": 0.39669,
+        "parser950": "0x1401063e0",
+        "instructions950": 60,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 47,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 93,
+    "name947": null,
+    "size": 10,
+    "parser947": "0x14010a870",
+    "instructions947": 81,
+    "candidates": [
+      {
+        "opcode950": 110,
+        "score": 0.40462,
+        "parser950": "0x140108e60",
+        "instructions950": 92,
+        "exactShape": false
+      },
+      {
+        "opcode950": 118,
+        "score": 0.14201,
+        "parser950": "0x1400fc5c0",
+        "instructions950": 88,
+        "exactShape": false
+      },
+      {
+        "opcode950": 164,
+        "score": 0.1371,
+        "parser950": "0x140115190",
+        "instructions950": 167,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 110,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 94,
+    "name947": "IF_OPENTOP",
+    "size": 19,
+    "parser947": "0x140109750",
+    "instructions947": 33,
+    "candidates": [
+      {
+        "opcode950": 1,
+        "score": 0.625,
+        "parser950": "0x140107dd0",
+        "instructions950": 31,
+        "exactShape": false
+      },
+      {
+        "opcode950": 94,
+        "score": 0.09302,
+        "parser950": "0x1400ef560",
+        "instructions950": 96,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 1,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 95,
+    "name947": null,
+    "size": 10,
+    "parser947": "0x1400ef280",
+    "instructions947": 105,
+    "candidates": [
+      {
+        "opcode950": 97,
+        "score": 0.45098,
+        "parser950": "0x1400eea80",
+        "instructions950": 99,
+        "exactShape": false
+      },
+      {
+        "opcode950": 37,
+        "score": 0.09626,
+        "parser950": "0x1401071a0",
+        "instructions950": 82,
+        "exactShape": false
+      },
+      {
+        "opcode950": 110,
+        "score": 0.07107,
+        "parser950": "0x140108e60",
+        "instructions950": 92,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 97,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 96,
+    "name947": null,
+    "size": 8,
+    "parser947": "0x14010c750",
+    "instructions947": 58,
+    "candidates": [
+      {
+        "opcode950": 65,
+        "score": 0.33588,
+        "parser950": "0x140106de0",
+        "instructions950": 73,
+        "exactShape": false
+      },
+      {
+        "opcode950": 44,
+        "score": 0.22222,
+        "parser950": "0x1400f0580",
+        "instructions950": 95,
+        "exactShape": false
+      },
+      {
+        "opcode950": 70,
+        "score": 0.12658,
+        "parser950": "0x140115020",
+        "instructions950": 100,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 44,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 97,
+    "name947": null,
+    "size": 25,
+    "parser947": "0x1400fbe60",
+    "instructions947": 58,
+    "candidates": [
+      {
+        "opcode950": 13,
+        "score": 0.44248,
+        "parser950": "0x1400fb970",
+        "instructions950": 55,
+        "exactShape": false
+      },
+      {
+        "opcode950": 42,
+        "score": 0.35088,
+        "parser950": "0x1400fbb50",
+        "instructions950": 56,
+        "exactShape": false
+      },
+      {
+        "opcode950": 17,
+        "score": 0.05809,
+        "parser950": "0x1400eedb0",
+        "instructions950": 183,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 13,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 98,
+    "name947": null,
+    "size": 10,
+    "parser947": "0x1400fcd00",
+    "instructions947": 97,
+    "candidates": [
+      {
+        "opcode950": 118,
+        "score": 0.34595,
+        "parser950": "0x1400fc5c0",
+        "instructions950": 88,
+        "exactShape": false
+      },
+      {
+        "opcode950": 68,
+        "score": 0.28571,
+        "parser950": "0x1400fc720",
+        "instructions950": 85,
+        "exactShape": false
+      },
+      {
+        "opcode950": 59,
+        "score": 0.26966,
+        "parser950": "0x1401068a0",
+        "instructions950": 81,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 118,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 99,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x140140530",
+    "instructions947": 87,
+    "candidates": [
+      {
+        "opcode950": 8,
+        "score": 0.57143,
+        "parser950": "0x1401413b0",
+        "instructions950": 95,
+        "exactShape": false
+      },
+      {
+        "opcode950": 30,
+        "score": 0.17333,
+        "parser950": "0x1401417f0",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 55,
+        "score": 0.13462,
+        "parser950": "0x1400f3d00",
+        "instructions950": 121,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 8,
+      "blockLength": 17
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 100,
+    "name947": null,
+    "size": 10,
+    "parser947": "0x140108cd0",
+    "instructions947": 81,
+    "candidates": [
+      {
+        "opcode950": 37,
+        "score": 0.52761,
+        "parser950": "0x1401071a0",
+        "instructions950": 82,
+        "exactShape": false
+      },
+      {
+        "opcode950": 118,
+        "score": 0.3432,
+        "parser950": "0x1400fc5c0",
+        "instructions950": 88,
+        "exactShape": false
+      },
+      {
+        "opcode950": 68,
+        "score": 0.33735,
+        "parser950": "0x1400fc720",
+        "instructions950": 85,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 37,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 101,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400f2ef0",
+    "instructions947": 140,
+    "candidates": [
+      {
+        "opcode950": 15,
+        "score": 0.97857,
+        "parser950": "0x1400f2a50",
+        "instructions950": 140,
+        "exactShape": false
+      },
+      {
+        "opcode950": 81,
+        "score": 0.20202,
+        "parser950": "0x1401416d0",
+        "instructions950": 58,
+        "exactShape": false
+      },
+      {
+        "opcode950": 142,
+        "score": 0.18447,
+        "parser950": "0x140104d50",
+        "instructions950": 66,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 15,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 102,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400f9990",
+    "instructions947": 12,
+    "candidates": [
+      {
+        "opcode950": 3,
+        "score": 1.0,
+        "parser950": "0x1400f9480",
+        "instructions950": 12,
+        "exactShape": true
+      },
+      {
+        "opcode950": 10,
+        "score": 0.54545,
+        "parser950": "0x1400fa460",
+        "instructions950": 10,
+        "exactShape": false
+      },
+      {
+        "opcode950": 78,
+        "score": 0.17143,
+        "parser950": "0x1400f23e0",
+        "instructions950": 23,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 3,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 103,
+    "name947": "IF_SETHIDE",
+    "size": 5,
+    "parser947": "0x140109080",
+    "instructions947": 53,
+    "candidates": [
+      {
+        "opcode950": 85,
+        "score": 0.66038,
+        "parser950": "0x140105e60",
+        "instructions950": 53,
+        "exactShape": false
+      },
+      {
+        "opcode950": 67,
+        "score": 0.62264,
+        "parser950": "0x140107590",
+        "instructions950": 53,
+        "exactShape": false
+      },
+      {
+        "opcode950": 152,
+        "score": 0.55046,
+        "parser950": "0x140105f60",
+        "instructions950": 56,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 67,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 104,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400f60a0",
+    "instructions947": 60,
+    "candidates": [
+      {
+        "opcode950": 66,
+        "score": 0.88333,
+        "parser950": "0x1400f5c00",
+        "instructions950": 60,
+        "exactShape": false
+      },
+      {
+        "opcode950": 64,
+        "score": 0.65574,
+        "parser950": "0x1400f5e70",
+        "instructions950": 62,
+        "exactShape": false
+      },
+      {
+        "opcode950": 210,
+        "score": 0.1978,
+        "parser950": "0x14010dfd0",
+        "instructions950": 122,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 66,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 105,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f2370",
+    "instructions947": 331,
+    "candidates": [
+      {
+        "opcode950": 33,
+        "score": 0.98489,
+        "parser950": "0x1400f1ed0",
+        "instructions950": 331,
+        "exactShape": false
+      },
+      {
+        "opcode950": 43,
+        "score": 0.18847,
+        "parser950": "0x1400f3f10",
+        "instructions950": 380,
+        "exactShape": false
+      },
+      {
+        "opcode950": 120,
+        "score": 0.18847,
+        "parser950": "0x1400f44d0",
+        "instructions950": 380,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 33,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 106,
+    "name947": null,
+    "size": 10,
+    "parser947": "0x1401083d0",
+    "instructions947": 83,
+    "candidates": [
+      {
+        "opcode950": 59,
+        "score": 0.5122,
+        "parser950": "0x1401068a0",
+        "instructions950": 81,
+        "exactShape": false
+      },
+      {
+        "opcode950": 37,
+        "score": 0.44848,
+        "parser950": "0x1401071a0",
+        "instructions950": 82,
+        "exactShape": false
+      },
+      {
+        "opcode950": 68,
+        "score": 0.30952,
+        "parser950": "0x1400fc720",
+        "instructions950": 85,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 59,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 107,
+    "name947": null,
+    "size": 25,
+    "parser947": "0x1400fc040",
+    "instructions947": 56,
+    "candidates": [
+      {
+        "opcode950": 13,
+        "score": 0.52252,
+        "parser950": "0x1400fb970",
+        "instructions950": 55,
+        "exactShape": false
+      },
+      {
+        "opcode950": 42,
+        "score": 0.44643,
+        "parser950": "0x1400fbb50",
+        "instructions950": 56,
+        "exactShape": false
+      },
+      {
+        "opcode950": 17,
+        "score": 0.05858,
+        "parser950": "0x1400eedb0",
+        "instructions950": 183,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 42,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 108,
+    "name947": null,
+    "size": 2,
+    "parser947": "0x140106400",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 7,
+      "blockLength": 9
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 109,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x140109ae0",
+    "instructions947": 47,
+    "candidates": [
+      {
+        "opcode950": 58,
+        "score": 0.97872,
+        "parser950": "0x140108140",
+        "instructions950": 47,
+        "exactShape": false
+      },
+      {
+        "opcode950": 115,
+        "score": 0.14388,
+        "parser950": "0x140107690",
+        "instructions950": 92,
+        "exactShape": false
+      },
+      {
+        "opcode950": 78,
+        "score": 0.11429,
+        "parser950": "0x1400f23e0",
+        "instructions950": 23,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 58,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 110,
+    "name947": null,
+    "size": 29,
+    "parser947": "0x1400fc630",
+    "instructions947": 167,
+    "candidates": [
+      {
+        "opcode950": 196,
+        "score": 0.09207,
+        "parser950": "0x140115db0",
+        "instructions950": 224,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": null,
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 111,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x140141330",
+    "instructions947": 79,
+    "candidates": [
+      {
+        "opcode950": 4,
+        "score": 0.61039,
+        "parser950": "0x140142430",
+        "instructions950": 75,
+        "exactShape": false
+      },
+      {
+        "opcode950": 90,
+        "score": 0.1831,
+        "parser950": "0x140109fd0",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 92,
+        "score": 0.18182,
+        "parser950": "0x140141290",
+        "instructions950": 53,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 4,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 112,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x140140dc0",
+    "instructions947": 35,
+    "candidates": [
+      {
+        "opcode950": 119,
+        "score": 0.44737,
+        "parser950": "0x140141db0",
+        "instructions950": 41,
+        "exactShape": false
+      },
+      {
+        "opcode950": 82,
+        "score": 0.26667,
+        "parser950": "0x140142100",
+        "instructions950": 40,
+        "exactShape": false
+      },
+      {
+        "opcode950": 217,
+        "score": 0.15789,
+        "parser950": "0x14010a870",
+        "instructions950": 41,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 119,
+      "blockLength": 5
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 113,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x14010aaf0",
+    "instructions947": 50,
+    "candidates": [
+      {
+        "opcode950": 73,
+        "score": 0.88,
+        "parser950": "0x140109100",
+        "instructions950": 50,
+        "exactShape": false
+      },
+      {
+        "opcode950": 194,
+        "score": 0.14706,
+        "parser950": "0x140142c60",
+        "instructions950": 18,
+        "exactShape": false
+      },
+      {
+        "opcode950": 182,
+        "score": 0.12,
+        "parser950": "0x1401430b0",
+        "instructions950": 50,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 73,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 114,
+    "name947": null,
+    "size": 2,
+    "parser947": "0x14010b470",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 62,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 115,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x140140b60",
+    "instructions947": 45,
+    "candidates": [
+      {
+        "opcode950": 28,
+        "score": 0.52381,
+        "parser950": "0x1401421e0",
+        "instructions950": 39,
+        "exactShape": false
+      },
+      {
+        "opcode950": 48,
+        "score": 0.5,
+        "parser950": "0x140141b50",
+        "instructions950": 43,
+        "exactShape": false
+      },
+      {
+        "opcode950": 193,
+        "score": 0.22857,
+        "parser950": "0x140142780",
+        "instructions950": 25,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 48,
+      "blockLength": 5
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 116,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x1401064a0",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 21,
+      "blockLength": 9
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 117,
+    "name947": null,
+    "size": 32,
+    "parser947": "0x1400fc220",
+    "instructions947": 259,
+    "candidates": [
+      {
+        "opcode950": 111,
+        "score": 0.53204,
+        "parser950": "0x1400fbd30",
+        "instructions950": 256,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 111,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 118,
+    "name947": null,
+    "size": 25,
+    "parser947": "0x1400ef5b0",
+    "instructions947": 116,
+    "candidates": [
+      {
+        "opcode950": 17,
+        "score": 0.16054,
+        "parser950": "0x1400eedb0",
+        "instructions950": 183,
+        "exactShape": false
+      },
+      {
+        "opcode950": 42,
+        "score": 0.05814,
+        "parser950": "0x1400fbb50",
+        "instructions950": 56,
+        "exactShape": false
+      },
+      {
+        "opcode950": 13,
+        "score": 0.04678,
+        "parser950": "0x1400fb970",
+        "instructions950": 55,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 17,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 119,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f4970",
+    "instructions947": 380,
+    "candidates": [
+      {
+        "opcode950": 120,
+        "score": 0.98947,
+        "parser950": "0x1400f44d0",
+        "instructions950": 380,
+        "exactShape": false
+      },
+      {
+        "opcode950": 43,
+        "score": 0.76842,
+        "parser950": "0x1400f3f10",
+        "instructions950": 380,
+        "exactShape": false
+      },
+      {
+        "opcode950": 199,
+        "score": 0.44295,
+        "parser950": "0x1400f5680",
+        "instructions950": 365,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 120,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 120,
+    "name947": null,
+    "size": 0,
+    "parser947": "0x1401406b0",
+    "instructions947": 7,
+    "candidates": [
+      {
+        "opcode950": 108,
+        "score": 0.85714,
+        "parser950": "0x140141570",
+        "instructions950": 7,
+        "exactShape": false
+      },
+      {
+        "opcode950": 76,
+        "score": 0.58824,
+        "parser950": "0x14010ab80",
+        "instructions950": 10,
+        "exactShape": false
+      },
+      {
+        "opcode950": 124,
+        "score": 0.55556,
+        "parser950": "0x140105e00",
+        "instructions950": 11,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 108,
+      "blockLength": 17
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 121,
+    "name947": "RUNCLIENTSCRIPT",
+    "size": -2,
+    "parser947": "0x1400f7870",
+    "instructions947": 304,
+    "candidates": [
+      {
+        "opcode950": 50,
+        "score": 0.10297,
+        "parser950": "0x1400fcd60",
+        "instructions950": 201,
+        "exactShape": false
+      },
+      {
+        "opcode950": 9,
+        "score": 0.09776,
+        "parser950": "0x1400fd060",
+        "instructions950": 187,
+        "exactShape": false
+      },
+      {
+        "opcode950": 220,
+        "score": 0.09322,
+        "parser950": "0x1400fe4d0",
+        "instructions950": 168,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 35,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 122,
+    "name947": null,
+    "size": 8,
+    "parser947": "0x140108680",
+    "instructions947": 74,
+    "candidates": [
+      {
+        "opcode950": 47,
+        "score": 0.6963,
+        "parser950": "0x140106cc0",
+        "instructions950": 61,
+        "exactShape": false
+      },
+      {
+        "opcode950": 25,
+        "score": 0.5906,
+        "parser950": "0x140106b60",
+        "instructions950": 75,
+        "exactShape": false
+      },
+      {
+        "opcode950": 65,
+        "score": 0.39456,
+        "parser950": "0x140106de0",
+        "instructions950": 73,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 25,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 123,
+    "name947": null,
+    "size": 8,
+    "parser947": "0x1401080a0",
+    "instructions947": 68,
+    "candidates": [
+      {
+        "opcode950": 65,
+        "score": 0.42553,
+        "parser950": "0x140106de0",
+        "instructions950": 73,
+        "exactShape": false
+      },
+      {
+        "opcode950": 122,
+        "score": 0.40625,
+        "parser950": "0x1401063e0",
+        "instructions950": 60,
+        "exactShape": false
+      },
+      {
+        "opcode950": 41,
+        "score": 0.39062,
+        "parser950": "0x140107470",
+        "instructions950": 60,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 122,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 124,
+    "name947": null,
+    "size": 12,
+    "parser947": "0x1400ef8f0",
+    "instructions947": 66,
+    "candidates": [
+      {
+        "opcode950": 117,
+        "score": 0.43077,
+        "parser950": "0x1400ef0e0",
+        "instructions950": 64,
+        "exactShape": false
+      },
+      {
+        "opcode950": 143,
+        "score": 0.09231,
+        "parser950": "0x1400f0700",
+        "instructions950": 64,
+        "exactShape": false
+      },
+      {
+        "opcode950": 24,
+        "score": 0.06015,
+        "parser950": "0x140107970",
+        "instructions950": 67,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 117,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 125,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f3dc0",
+    "instructions947": 256,
+    "candidates": [
+      {
+        "opcode950": 121,
+        "score": 0.98047,
+        "parser950": "0x1400f3920",
+        "instructions950": 256,
+        "exactShape": false
+      },
+      {
+        "opcode950": 77,
+        "score": 0.22084,
+        "parser950": "0x1400f4a80",
+        "instructions950": 387,
+        "exactShape": false
+      },
+      {
+        "opcode950": 199,
+        "score": 0.19968,
+        "parser950": "0x1400f5680",
+        "instructions950": 365,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 121,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 126,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x140140020",
+    "instructions947": 79,
+    "candidates": [
+      {
+        "opcode950": 49,
+        "score": 0.78205,
+        "parser950": "0x140140ea0",
+        "instructions950": 77,
+        "exactShape": false
+      },
+      {
+        "opcode950": 185,
+        "score": 0.16822,
+        "parser950": "0x140110830",
+        "instructions950": 28,
+        "exactShape": false
+      },
+      {
+        "opcode950": 166,
+        "score": 0.14754,
+        "parser950": "0x140143230",
+        "instructions950": 43,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 49,
+      "blockLength": 17
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 127,
+    "name947": null,
+    "size": 11,
+    "parser947": "0x1400f0dd0",
+    "instructions947": 106,
+    "candidates": [
+      {
+        "opcode950": 95,
+        "score": 0.33333,
+        "parser950": "0x1400f0940",
+        "instructions950": 104,
+        "exactShape": false
+      },
+      {
+        "opcode950": 14,
+        "score": 0.08696,
+        "parser950": "0x140114d40",
+        "instructions950": 170,
+        "exactShape": false
+      },
+      {
+        "opcode950": 102,
+        "score": 0.08,
+        "parser950": "0x140106640",
+        "instructions950": 44,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 95,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 128,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x14010c150",
+    "instructions947": 56,
+    "candidates": [
+      {
+        "opcode950": 215,
+        "score": 0.98214,
+        "parser950": "0x14010a750",
+        "instructions950": 56,
+        "exactShape": false
+      },
+      {
+        "opcode950": 217,
+        "score": 0.2268,
+        "parser950": "0x14010a870",
+        "instructions950": 41,
+        "exactShape": false
+      },
+      {
+        "opcode950": 27,
+        "score": 0.16514,
+        "parser950": "0x140109cf0",
+        "instructions950": 53,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 215,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 129,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f5500",
+    "instructions947": 24,
+    "candidates": [
+      {
+        "opcode950": 175,
+        "score": 0.95833,
+        "parser950": "0x1400f5060",
+        "instructions950": 24,
+        "exactShape": false
+      },
+      {
+        "opcode950": 22,
+        "score": 0.7234,
+        "parser950": "0x1400f32d0",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 60,
+        "score": 0.59574,
+        "parser950": "0x1400f2c80",
+        "instructions950": 23,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 175,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 130,
+    "name947": null,
+    "size": 0,
+    "parser947": "0x14010bf10",
+    "instructions947": 11,
+    "candidates": [
+      {
+        "opcode950": 161,
+        "score": 0.90909,
+        "parser950": "0x14010a500",
+        "instructions950": 11,
+        "exactShape": false
+      },
+      {
+        "opcode950": 76,
+        "score": 0.66667,
+        "parser950": "0x14010ab80",
+        "instructions950": 10,
+        "exactShape": false
+      },
+      {
+        "opcode950": 108,
+        "score": 0.55556,
+        "parser950": "0x140141570",
+        "instructions950": 7,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 161,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 131,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x140141720",
+    "instructions947": 31,
+    "candidates": [
+      {
+        "opcode950": 28,
+        "score": 0.37143,
+        "parser950": "0x1401421e0",
+        "instructions950": 39,
+        "exactShape": false
+      },
+      {
+        "opcode950": 174,
+        "score": 0.31579,
+        "parser950": "0x140142820",
+        "instructions950": 26,
+        "exactShape": false
+      },
+      {
+        "opcode950": 193,
+        "score": 0.25,
+        "parser950": "0x140142780",
+        "instructions950": 25,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 174,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 132,
+    "name947": null,
+    "size": 4,
+    "parser947": "0x140105f40",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 133,
+      "blockLength": 9
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 133,
+    "name947": null,
+    "size": 2,
+    "parser947": "0x14010c380",
+    "instructions947": 18,
+    "candidates": [
+      {
+        "opcode950": 146,
+        "score": 0.94444,
+        "parser950": "0x14010aa00",
+        "instructions950": 18,
+        "exactShape": false
+      },
+      {
+        "opcode950": 149,
+        "score": 0.94444,
+        "parser950": "0x14010a980",
+        "instructions950": 18,
+        "exactShape": false
+      },
+      {
+        "opcode950": 139,
+        "score": 0.82353,
+        "parser950": "0x1401053f0",
+        "instructions950": 16,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 149,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 134,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x140105f00",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 140,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 135,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x1401418e0",
+    "instructions947": 53,
+    "candidates": [
+      {
+        "opcode950": 189,
+        "score": 0.45545,
+        "parser950": "0x1401429c0",
+        "instructions950": 48,
+        "exactShape": false
+      },
+      {
+        "opcode950": 28,
+        "score": 0.30435,
+        "parser950": "0x1401421e0",
+        "instructions950": 39,
+        "exactShape": false
+      },
+      {
+        "opcode950": 174,
+        "score": 0.22785,
+        "parser950": "0x140142820",
+        "instructions950": 26,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 189,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 136,
+    "name947": null,
+    "size": 9,
+    "parser947": "0x140107d50",
+    "instructions947": 58,
+    "candidates": [
+      {
+        "opcode950": 150,
+        "score": 0.31148,
+        "parser950": "0x140106180",
+        "instructions950": 64,
+        "exactShape": false
+      },
+      {
+        "opcode950": 168,
+        "score": 0.29091,
+        "parser950": "0x140106070",
+        "instructions950": 52,
+        "exactShape": false
+      },
+      {
+        "opcode950": 212,
+        "score": 0.15126,
+        "parser950": "0x140104e80",
+        "instructions950": 61,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 168,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 137,
+    "name947": null,
+    "size": 8,
+    "parser947": "0x1400f8540",
+    "instructions947": 57,
+    "candidates": [
+      {
+        "opcode950": 187,
+        "score": 0.35088,
+        "parser950": "0x1400f8000",
+        "instructions950": 57,
+        "exactShape": false
+      },
+      {
+        "opcode950": 39,
+        "score": 0.09231,
+        "parser950": "0x140107320",
+        "instructions950": 73,
+        "exactShape": false
+      },
+      {
+        "opcode950": 70,
+        "score": 0.07643,
+        "parser950": "0x140115020",
+        "instructions950": 100,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 187,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 138,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x140106ee0",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 192,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 139,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x140105f00",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 172,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 140,
+    "name947": null,
+    "size": 5,
+    "parser947": "0x140141c80",
+    "instructions947": 58,
+    "candidates": [
+      {
+        "opcode950": 176,
+        "score": 0.91379,
+        "parser950": "0x140142d40",
+        "instructions950": 58,
+        "exactShape": false
+      },
+      {
+        "opcode950": 207,
+        "score": 0.25397,
+        "parser950": "0x140106f30",
+        "instructions950": 68,
+        "exactShape": false
+      },
+      {
+        "opcode950": 213,
+        "score": 0.25397,
+        "parser950": "0x140106720",
+        "instructions950": 68,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 176,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 141,
+    "name947": null,
+    "size": 5,
+    "parser947": "0x140108a60",
+    "instructions947": 68,
+    "candidates": [
+      {
+        "opcode950": 207,
+        "score": 0.97059,
+        "parser950": "0x140106f30",
+        "instructions950": 68,
+        "exactShape": false
+      },
+      {
+        "opcode950": 213,
+        "score": 0.95588,
+        "parser950": "0x140106720",
+        "instructions950": 68,
+        "exactShape": false
+      },
+      {
+        "opcode950": 85,
+        "score": 0.54545,
+        "parser950": "0x140105e60",
+        "instructions950": 53,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 207,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 142,
+    "name947": null,
+    "size": 0,
+    "parser947": "0x140140770",
+    "instructions947": 25,
+    "candidates": [
+      {
+        "opcode950": 136,
+        "score": 0.96,
+        "parser950": "0x140141630",
+        "instructions950": 25,
+        "exactShape": false
+      },
+      {
+        "opcode950": 160,
+        "score": 0.36842,
+        "parser950": "0x14010ae30",
+        "instructions950": 13,
+        "exactShape": false
+      },
+      {
+        "opcode950": 214,
+        "score": 0.36735,
+        "parser950": "0x1401051b0",
+        "instructions950": 24,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 136,
+      "blockLength": 17
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 143,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x1401074b0",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 128,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 144,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x140106340",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 145,
+      "blockLength": 9
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 145,
+    "name947": null,
+    "size": 14,
+    "parser947": "0x1401159b0",
+    "instructions947": 189,
+    "candidates": [
+      {
+        "opcode950": 188,
+        "score": 0.96296,
+        "parser950": "0x140116190",
+        "instructions950": 189,
+        "exactShape": false
+      },
+      {
+        "opcode950": 216,
+        "score": 0.0758,
+        "parser950": "0x140110030",
+        "instructions950": 154,
+        "exactShape": false
+      },
+      {
+        "opcode950": 98,
+        "score": 0.056,
+        "parser950": "0x1400fa0a0",
+        "instructions950": 61,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 188,
+      "blockLength": 6
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 146,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400fe810",
+    "instructions947": 4,
+    "candidates": [
+      {
+        "opcode950": 147,
+        "score": 1.0,
+        "parser950": "0x1400fe0a0",
+        "instructions950": 4,
+        "exactShape": true
+      },
+      {
+        "opcode950": 99,
+        "score": 0.5,
+        "parser950": "0x14010f730",
+        "instructions950": 4,
+        "exactShape": false
+      },
+      {
+        "opcode950": 204,
+        "score": 0.33333,
+        "parser950": "0x1400fd740",
+        "instructions950": 2,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 147,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 147,
+    "name947": null,
+    "size": 0,
+    "parser947": "0x1400fea20",
+    "instructions947": 116,
+    "candidates": [
+      {
+        "opcode950": 202,
+        "score": 0.80687,
+        "parser950": "0x1400fe2b0",
+        "instructions950": 117,
+        "exactShape": false
+      },
+      {
+        "opcode950": 113,
+        "score": 0.08531,
+        "parser950": "0x14010aea0",
+        "instructions950": 95,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 202,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 148,
+    "name947": null,
+    "size": 9,
+    "parser947": "0x140106a10",
+    "instructions947": 67,
+    "candidates": [
+      {
+        "opcode950": 212,
+        "score": 0.48438,
+        "parser950": "0x140104e80",
+        "instructions950": 61,
+        "exactShape": false
+      },
+      {
+        "opcode950": 168,
+        "score": 0.13445,
+        "parser950": "0x140106070",
+        "instructions950": 52,
+        "exactShape": false
+      },
+      {
+        "opcode950": 150,
+        "score": 0.12214,
+        "parser950": "0x140106180",
+        "instructions950": 64,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 212,
+      "blockLength": 2
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 149,
+    "name947": null,
+    "size": 17,
+    "parser947": "0x14010ccf0",
+    "instructions947": 82,
+    "candidates": [
+      {
+        "opcode950": 171,
+        "score": 0.93976,
+        "parser950": "0x14010b090",
+        "instructions950": 84,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 171,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 150,
+    "name947": null,
+    "size": 5,
+    "parser947": "0x140107c50",
+    "instructions947": 53,
+    "candidates": [
+      {
+        "opcode950": 67,
+        "score": 0.64151,
+        "parser950": "0x140107590",
+        "instructions950": 53,
+        "exactShape": false
+      },
+      {
+        "opcode950": 85,
+        "score": 0.64151,
+        "parser950": "0x140105e60",
+        "instructions950": 53,
+        "exactShape": false
+      },
+      {
+        "opcode950": 152,
+        "score": 0.56881,
+        "parser950": "0x140105f60",
+        "instructions950": 56,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 152,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 151,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f5b20",
+    "instructions947": 365,
+    "candidates": [
+      {
+        "opcode950": 199,
+        "score": 0.9863,
+        "parser950": "0x1400f5680",
+        "instructions950": 365,
+        "exactShape": false
+      },
+      {
+        "opcode950": 77,
+        "score": 0.57713,
+        "parser950": "0x1400f4a80",
+        "instructions950": 387,
+        "exactShape": false
+      },
+      {
+        "opcode950": 120,
+        "score": 0.44295,
+        "parser950": "0x1400f44d0",
+        "instructions950": 380,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 199,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 152,
+    "name947": null,
+    "size": 4,
+    "parser947": "0x14010a6c0",
+    "instructions947": 32,
+    "candidates": [
+      {
+        "opcode950": 153,
+        "score": 0.44828,
+        "parser950": "0x140108cd0",
+        "instructions950": 26,
+        "exactShape": false
+      },
+      {
+        "opcode950": 219,
+        "score": 0.44828,
+        "parser950": "0x140108c30",
+        "instructions950": 26,
+        "exactShape": false
+      },
+      {
+        "opcode950": 179,
+        "score": 0.36364,
+        "parser950": "0x14010a360",
+        "instructions950": 34,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 153,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 153,
+    "name947": null,
+    "size": 4,
+    "parser947": "0x14010a600",
+    "instructions947": 32,
+    "candidates": [
+      {
+        "opcode950": 153,
+        "score": 0.44828,
+        "parser950": "0x140108cd0",
+        "instructions950": 26,
+        "exactShape": false
+      },
+      {
+        "opcode950": 219,
+        "score": 0.44828,
+        "parser950": "0x140108c30",
+        "instructions950": 26,
+        "exactShape": false
+      },
+      {
+        "opcode950": 53,
+        "score": 0.44444,
+        "parser950": "0x140109be0",
+        "instructions950": 49,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 219,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 154,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x140106260",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 195,
+      "blockLength": 9
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 155,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x140107570",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 156,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 156,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x140107630",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 137,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 157,
+    "name947": null,
+    "size": 2,
+    "parser947": "0x140106fa0",
+    "instructions947": 16,
+    "candidates": [
+      {
+        "opcode950": 139,
+        "score": 0.9375,
+        "parser950": "0x1401053f0",
+        "instructions950": 16,
+        "exactShape": false
+      },
+      {
+        "opcode950": 205,
+        "score": 0.90909,
+        "parser950": "0x140105d40",
+        "instructions950": 17,
+        "exactShape": false
+      },
+      {
+        "opcode950": 146,
+        "score": 0.82353,
+        "parser950": "0x14010aa00",
+        "instructions950": 18,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 139,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 158,
+    "name947": null,
+    "size": 12,
+    "parser947": "0x14010c480",
+    "instructions947": 88,
+    "candidates": [
+      {
+        "opcode950": 143,
+        "score": 0.35526,
+        "parser950": "0x1400f0700",
+        "instructions950": 64,
+        "exactShape": false
+      },
+      {
+        "opcode950": 24,
+        "score": 0.03871,
+        "parser950": "0x140107970",
+        "instructions950": 67,
+        "exactShape": false
+      },
+      {
+        "opcode950": 117,
+        "score": 0.01316,
+        "parser950": "0x1400ef0e0",
+        "instructions950": 64,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 143,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 159,
+    "name947": "WORLDLIST_FETCH_REPLY",
+    "size": -2,
+    "parser947": "0x140106e40",
+    "instructions947": 8,
+    "candidates": [
+      {
+        "opcode950": 129,
+        "score": 0.875,
+        "parser950": "0x140105290",
+        "instructions950": 8,
+        "exactShape": false
+      },
+      {
+        "opcode950": 80,
+        "score": 0.75,
+        "parser950": "0x140104fa0",
+        "instructions950": 8,
+        "exactShape": false
+      },
+      {
+        "opcode950": 18,
+        "score": 0.19355,
+        "parser950": "0x14010a2c0",
+        "instructions950": 23,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 129,
+      "blockLength": 32
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 160,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x140141670",
+    "instructions947": 28,
+    "candidates": [
+      {
+        "opcode950": 193,
+        "score": 0.41509,
+        "parser950": "0x140142780",
+        "instructions950": 25,
+        "exactShape": false
+      },
+      {
+        "opcode950": 157,
+        "score": 0.32727,
+        "parser950": "0x140142aa0",
+        "instructions950": 27,
+        "exactShape": false
+      },
+      {
+        "opcode950": 189,
+        "score": 0.21053,
+        "parser950": "0x1401429c0",
+        "instructions950": 48,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 193,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 161,
+    "name947": null,
+    "size": 10,
+    "parser947": "0x140140c50",
+    "instructions947": 53,
+    "candidates": [
+      {
+        "opcode950": 200,
+        "score": 0.81132,
+        "parser950": "0x140141c40",
+        "instructions950": 53,
+        "exactShape": false
+      },
+      {
+        "opcode950": 37,
+        "score": 0.14815,
+        "parser950": "0x1401071a0",
+        "instructions950": 82,
+        "exactShape": false
+      },
+      {
+        "opcode950": 165,
+        "score": 0.12766,
+        "parser950": "0x1401422b0",
+        "instructions950": 88,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 200,
+      "blockLength": 5
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 162,
+    "name947": null,
+    "size": 2,
+    "parser947": "0x14010c340",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 132,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 163,
+    "name947": null,
+    "size": 2,
+    "parser947": "0x14010fcd0",
+    "instructions947": 83,
+    "candidates": [
+      {
+        "opcode950": 151,
+        "score": 0.8024,
+        "parser950": "0x140110cf0",
+        "instructions950": 84,
+        "exactShape": false
+      },
+      {
+        "opcode950": 218,
+        "score": 0.25397,
+        "parser950": "0x140110e30",
+        "instructions950": 43,
+        "exactShape": false
+      },
+      {
+        "opcode950": 26,
+        "score": 0.05063,
+        "parser950": "0x140113f30",
+        "instructions950": 75,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 151,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 164,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x140107020",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 221,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 165,
+    "name947": null,
+    "size": 4,
+    "parser947": "0x14010c630",
+    "instructions947": 33,
+    "candidates": [
+      {
+        "opcode950": 211,
+        "score": 0.9697,
+        "parser950": "0x14010aac0",
+        "instructions950": 33,
+        "exactShape": false
+      },
+      {
+        "opcode950": 38,
+        "score": 0.24,
+        "parser950": "0x140106a20",
+        "instructions950": 67,
+        "exactShape": false
+      },
+      {
+        "opcode950": 153,
+        "score": 0.16949,
+        "parser950": "0x140108cd0",
+        "instructions950": 26,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 211,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 166,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x140106bb0",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 177,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 167,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x140114f40",
+    "instructions947": 185,
+    "candidates": [
+      {
+        "opcode950": 144,
+        "score": 0.99459,
+        "parser950": "0x140115720",
+        "instructions950": 185,
+        "exactShape": false
+      },
+      {
+        "opcode950": 148,
+        "score": 0.20958,
+        "parser950": "0x1400f6500",
+        "instructions950": 149,
+        "exactShape": false
+      },
+      {
+        "opcode950": 134,
+        "score": 0.16923,
+        "parser950": "0x140105700",
+        "instructions950": 75,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 144,
+      "blockLength": 6
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 168,
+    "name947": null,
+    "size": 2,
+    "parser947": "0x14010c400",
+    "instructions947": 18,
+    "candidates": [
+      {
+        "opcode950": 146,
+        "score": 0.94444,
+        "parser950": "0x14010aa00",
+        "instructions950": 18,
+        "exactShape": false
+      },
+      {
+        "opcode950": 149,
+        "score": 0.94444,
+        "parser950": "0x14010a980",
+        "instructions950": 18,
+        "exactShape": false
+      },
+      {
+        "opcode950": 139,
+        "score": 0.82353,
+        "parser950": "0x1401053f0",
+        "instructions950": 16,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 146,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 169,
+    "name947": null,
+    "size": 2,
+    "parser947": "0x1401078e0",
+    "instructions947": 15,
+    "candidates": [
+      {
+        "opcode950": 205,
+        "score": 0.5625,
+        "parser950": "0x140105d40",
+        "instructions950": 17,
+        "exactShape": false
+      },
+      {
+        "opcode950": 139,
+        "score": 0.51613,
+        "parser950": "0x1401053f0",
+        "instructions950": 16,
+        "exactShape": false
+      },
+      {
+        "opcode950": 146,
+        "score": 0.42424,
+        "parser950": "0x14010aa00",
+        "instructions950": 18,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 205,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 170,
+    "name947": null,
+    "size": 10,
+    "parser947": "0x1401411b0",
+    "instructions947": 90,
+    "candidates": [
+      {
+        "opcode950": 165,
+        "score": 0.55056,
+        "parser950": "0x1401422b0",
+        "instructions950": 88,
+        "exactShape": false
+      },
+      {
+        "opcode950": 71,
+        "score": 0.18182,
+        "parser950": "0x140107820",
+        "instructions950": 64,
+        "exactShape": false
+      },
+      {
+        "opcode950": 37,
+        "score": 0.16279,
+        "parser950": "0x1401071a0",
+        "instructions950": 82,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 165,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 171,
+    "name947": null,
+    "size": 8,
+    "parser947": "0x140106c40",
+    "instructions947": 56,
+    "candidates": [
+      {
+        "opcode950": 141,
+        "score": 0.96429,
+        "parser950": "0x140105090",
+        "instructions950": 56,
+        "exactShape": false
+      },
+      {
+        "opcode950": 39,
+        "score": 0.26357,
+        "parser950": "0x140107320",
+        "instructions950": 73,
+        "exactShape": false
+      },
+      {
+        "opcode950": 41,
+        "score": 0.2069,
+        "parser950": "0x140107470",
+        "instructions950": 60,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 141,
+      "blockLength": 32
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 172,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x14010f810",
+    "instructions947": 28,
+    "candidates": [
+      {
+        "opcode950": 185,
+        "score": 0.96429,
+        "parser950": "0x140110830",
+        "instructions950": 28,
+        "exactShape": false
+      },
+      {
+        "opcode950": 49,
+        "score": 0.17143,
+        "parser950": "0x140140ea0",
+        "instructions950": 77,
+        "exactShape": false
+      },
+      {
+        "opcode950": 29,
+        "score": 0.16,
+        "parser950": "0x1400f88f0",
+        "instructions950": 22,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 185,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 173,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x140106710",
+    "instructions947": 41,
+    "candidates": [
+      {
+        "opcode950": 222,
+        "score": 0.78049,
+        "parser950": "0x140143810",
+        "instructions950": 41,
+        "exactShape": false
+      },
+      {
+        "opcode950": 61,
+        "score": 0.22764,
+        "parser950": "0x140109630",
+        "instructions950": 82,
+        "exactShape": false
+      },
+      {
+        "opcode950": 18,
+        "score": 0.125,
+        "parser950": "0x14010a2c0",
+        "instructions950": 23,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 210,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 174,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x140105ff0",
+    "instructions947": 50,
+    "candidates": [
+      {
+        "opcode950": 182,
+        "score": 0.98,
+        "parser950": "0x1401430b0",
+        "instructions950": 50,
+        "exactShape": false
+      },
+      {
+        "opcode950": 194,
+        "score": 0.14706,
+        "parser950": "0x140142c60",
+        "instructions950": 18,
+        "exactShape": false
+      },
+      {
+        "opcode950": 73,
+        "score": 0.12,
+        "parser950": "0x140109100",
+        "instructions950": 50,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 182,
+      "blockLength": 9
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 175,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x140141810",
+    "instructions947": 38,
+    "candidates": [
+      {
+        "opcode950": 138,
+        "score": 0.37838,
+        "parser950": "0x140142900",
+        "instructions950": 36,
+        "exactShape": false
+      },
+      {
+        "opcode950": 191,
+        "score": 0.35897,
+        "parser950": "0x140142b90",
+        "instructions950": 40,
+        "exactShape": false
+      },
+      {
+        "opcode950": 82,
+        "score": 0.30769,
+        "parser950": "0x140142100",
+        "instructions950": 40,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 138,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 176,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x140140280",
+    "instructions947": 54,
+    "candidates": [
+      {
+        "opcode950": 162,
+        "score": 1.0,
+        "parser950": "0x140141100",
+        "instructions950": 54,
+        "exactShape": true
+      },
+      {
+        "opcode950": 86,
+        "score": 0.24324,
+        "parser950": "0x1401115d0",
+        "instructions950": 168,
+        "exactShape": false
+      },
+      {
+        "opcode950": 18,
+        "score": 0.15584,
+        "parser950": "0x14010a2c0",
+        "instructions950": 23,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 162,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 177,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400ff0c0",
+    "instructions947": 36,
+    "candidates": [
+      {
+        "opcode950": 140,
+        "score": 0.63889,
+        "parser950": "0x14010e1c0",
+        "instructions950": 36,
+        "exactShape": false
+      },
+      {
+        "opcode950": 78,
+        "score": 0.30508,
+        "parser950": "0x1400f23e0",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 29,
+        "score": 0.17241,
+        "parser950": "0x1400f88f0",
+        "instructions950": 22,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 222,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 178,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x140106170",
+    "instructions947": 43,
+    "candidates": [
+      {
+        "opcode950": 166,
+        "score": 0.97674,
+        "parser950": "0x140143230",
+        "instructions950": 43,
+        "exactShape": false
+      },
+      {
+        "opcode950": 163,
+        "score": 0.40449,
+        "parser950": "0x140105600",
+        "instructions950": 46,
+        "exactShape": false
+      },
+      {
+        "opcode950": 36,
+        "score": 0.16471,
+        "parser950": "0x140143660",
+        "instructions950": 42,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 166,
+      "blockLength": 9
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 179,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400f69a0",
+    "instructions947": 149,
+    "candidates": [
+      {
+        "opcode950": 148,
+        "score": 0.97315,
+        "parser950": "0x1400f6500",
+        "instructions950": 149,
+        "exactShape": false
+      },
+      {
+        "opcode950": 134,
+        "score": 0.25893,
+        "parser950": "0x140105700",
+        "instructions950": 75,
+        "exactShape": false
+      },
+      {
+        "opcode950": 144,
+        "score": 0.19162,
+        "parser950": "0x140115720",
+        "instructions950": 185,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 148,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 180,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400f7d40",
+    "instructions947": 366,
+    "candidates": [
+      {
+        "opcode950": 208,
+        "score": 0.99454,
+        "parser950": "0x1400f7800",
+        "instructions950": 366,
+        "exactShape": false
+      },
+      {
+        "opcode950": 86,
+        "score": 0.16479,
+        "parser950": "0x1401115d0",
+        "instructions950": 168,
+        "exactShape": false
+      },
+      {
+        "opcode950": 220,
+        "score": 0.10861,
+        "parser950": "0x1400fe4d0",
+        "instructions950": 168,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 208,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 181,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x14010c270",
+    "instructions947": 41,
+    "candidates": [
+      {
+        "opcode950": 217,
+        "score": 0.97561,
+        "parser950": "0x14010a870",
+        "instructions950": 41,
+        "exactShape": false
+      },
+      {
+        "opcode950": 215,
+        "score": 0.2268,
+        "parser950": "0x14010a750",
+        "instructions950": 56,
+        "exactShape": false
+      },
+      {
+        "opcode950": 82,
+        "score": 0.19753,
+        "parser950": "0x140142100",
+        "instructions950": 40,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 217,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 182,
+    "name947": null,
+    "size": 5,
+    "parser947": "0x1400f8720",
+    "instructions947": 50,
+    "candidates": [
+      {
+        "opcode950": 167,
+        "score": 0.46465,
+        "parser950": "0x1400f81d0",
+        "instructions950": 49,
+        "exactShape": false
+      },
+      {
+        "opcode950": 181,
+        "score": 0.07843,
+        "parser950": "0x1401406e0",
+        "instructions950": 52,
+        "exactShape": false
+      },
+      {
+        "opcode950": 105,
+        "score": 0.075,
+        "parser950": "0x14010a410",
+        "instructions950": 30,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 167,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 183,
+    "name947": null,
+    "size": 4,
+    "parser947": "0x14010c0a0",
+    "instructions947": 30,
+    "candidates": [
+      {
+        "opcode950": 155,
+        "score": 0.96667,
+        "parser950": "0x14010a6a0",
+        "instructions950": 30,
+        "exactShape": false
+      },
+      {
+        "opcode950": 56,
+        "score": 0.27119,
+        "parser950": "0x14010a120",
+        "instructions950": 29,
+        "exactShape": false
+      },
+      {
+        "opcode950": 201,
+        "score": 0.21875,
+        "parser950": "0x140108700",
+        "instructions950": 34,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 155,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 184,
+    "name947": null,
+    "size": 4,
+    "parser947": "0x14010a0b0",
+    "instructions947": 34,
+    "candidates": [
+      {
+        "opcode950": 201,
+        "score": 0.44118,
+        "parser950": "0x140108700",
+        "instructions950": 34,
+        "exactShape": false
+      },
+      {
+        "opcode950": 153,
+        "score": 0.1,
+        "parser950": "0x140108cd0",
+        "instructions950": 26,
+        "exactShape": false
+      },
+      {
+        "opcode950": 219,
+        "score": 0.1,
+        "parser950": "0x140108c30",
+        "instructions950": 26,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 201,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 185,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x140141ba0",
+    "instructions947": 18,
+    "candidates": [
+      {
+        "opcode950": 194,
+        "score": 0.94444,
+        "parser950": "0x140142c60",
+        "instructions950": 18,
+        "exactShape": false
+      },
+      {
+        "opcode950": 46,
+        "score": 0.26667,
+        "parser950": "0x140109210",
+        "instructions950": 12,
+        "exactShape": false
+      },
+      {
+        "opcode950": 6,
+        "score": 0.25806,
+        "parser950": "0x14010a250",
+        "instructions950": 13,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 194,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 186,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400fec50",
+    "instructions947": 168,
+    "candidates": [
+      {
+        "opcode950": 220,
+        "score": 0.9881,
+        "parser950": "0x1400fe4d0",
+        "instructions950": 168,
+        "exactShape": false
+      },
+      {
+        "opcode950": 15,
+        "score": 0.16234,
+        "parser950": "0x1400f2a50",
+        "instructions950": 140,
+        "exactShape": false
+      },
+      {
+        "opcode950": 115,
+        "score": 0.15385,
+        "parser950": "0x140107690",
+        "instructions950": 92,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 220,
+      "blockLength": 32
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 187,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1400fde90",
+    "instructions947": 2,
+    "candidates": [
+      {
+        "opcode950": 204,
+        "score": 1.0,
+        "parser950": "0x1400fd740",
+        "instructions950": 2,
+        "exactShape": true
+      },
+      {
+        "opcode950": 34,
+        "score": 0.33333,
+        "parser950": "0x1400f8f70",
+        "instructions950": 4,
+        "exactShape": false
+      },
+      {
+        "opcode950": 99,
+        "score": 0.33333,
+        "parser950": "0x14010f730",
+        "instructions950": 4,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 204,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 188,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x14010fb80",
+    "instructions947": 12,
+    "candidates": [
+      {
+        "opcode950": 130,
+        "score": 1.0,
+        "parser950": "0x140110ba0",
+        "instructions950": 12,
+        "exactShape": true
+      },
+      {
+        "opcode950": 185,
+        "score": 0.15,
+        "parser950": "0x140110830",
+        "instructions950": 28,
+        "exactShape": false
+      },
+      {
+        "opcode950": 35,
+        "score": 0.10256,
+        "parser950": "0x1400f73c0",
+        "instructions950": 27,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 130,
+      "blockLength": 18
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 189,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x140109f60",
+    "instructions947": 28,
+    "candidates": [
+      {
+        "opcode950": 203,
+        "score": 0.96429,
+        "parser950": "0x140108450",
+        "instructions950": 28,
+        "exactShape": false
+      },
+      {
+        "opcode950": 206,
+        "score": 0.39394,
+        "parser950": "0x1400f8650",
+        "instructions950": 38,
+        "exactShape": false
+      },
+      {
+        "opcode950": 186,
+        "score": 0.34375,
+        "parser950": "0x1400f83c0",
+        "instructions950": 36,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 180,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 190,
+    "name947": null,
+    "size": 15,
+    "parser947": "0x1400f0330",
+    "instructions947": 85,
+    "candidates": [
+      {
+        "opcode950": 173,
+        "score": 0.04,
+        "parser950": "0x140106500",
+        "instructions950": 65,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 197,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 191,
+    "name947": null,
+    "size": 2,
+    "parser947": "0x14010fe10",
+    "instructions947": 43,
+    "candidates": [
+      {
+        "opcode950": 218,
+        "score": 0.69767,
+        "parser950": "0x140110e30",
+        "instructions950": 43,
+        "exactShape": false
+      },
+      {
+        "opcode950": 151,
+        "score": 0.17323,
+        "parser950": "0x140110cf0",
+        "instructions950": 84,
+        "exactShape": false
+      },
+      {
+        "opcode950": 139,
+        "score": 0.0678,
+        "parser950": "0x1401053f0",
+        "instructions950": 16,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 218,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 192,
+    "name947": null,
+    "size": 29,
+    "parser947": "0x1401155d0",
+    "instructions947": 224,
+    "candidates": [
+      {
+        "opcode950": 196,
+        "score": 0.99554,
+        "parser950": "0x140115db0",
+        "instructions950": 224,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 196,
+      "blockLength": 6
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 193,
+    "name947": null,
+    "size": 5,
+    "parser947": "0x140108250",
+    "instructions947": 68,
+    "candidates": [
+      {
+        "opcode950": 213,
+        "score": 0.70588,
+        "parser950": "0x140106720",
+        "instructions950": 68,
+        "exactShape": false
+      },
+      {
+        "opcode950": 207,
+        "score": 0.69118,
+        "parser950": "0x140106f30",
+        "instructions950": 68,
+        "exactShape": false
+      },
+      {
+        "opcode950": 67,
+        "score": 0.36364,
+        "parser950": "0x140107590",
+        "instructions950": 53,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 213,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 194,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x1400f88f0",
+    "instructions947": 35,
+    "candidates": [
+      {
+        "opcode950": 186,
+        "score": 0.90141,
+        "parser950": "0x1400f83c0",
+        "instructions950": 36,
+        "exactShape": false
+      },
+      {
+        "opcode950": 206,
+        "score": 0.41096,
+        "parser950": "0x1400f8650",
+        "instructions950": 38,
+        "exactShape": false
+      },
+      {
+        "opcode950": 203,
+        "score": 0.34921,
+        "parser950": "0x140108450",
+        "instructions950": 28,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 186,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 195,
+    "name947": "SERVER_TICK_END",
+    "size": 0,
+    "parser947": "0x14010ca90",
+    "instructions947": 13,
+    "candidates": [
+      {
+        "opcode950": 160,
+        "score": 0.92308,
+        "parser950": "0x14010ae30",
+        "instructions950": 13,
+        "exactShape": false
+      },
+      {
+        "opcode950": 72,
+        "score": 0.6,
+        "parser950": "0x14010a1d0",
+        "instructions950": 17,
+        "exactShape": false
+      },
+      {
+        "opcode950": 106,
+        "score": 0.54545,
+        "parser950": "0x140109e00",
+        "instructions950": 20,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 160,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 196,
+    "name947": null,
+    "size": 21,
+    "parser947": "0x1401141c0",
+    "instructions947": 170,
+    "candidates": [
+      {
+        "opcode950": 154,
+        "score": 0.99412,
+        "parser950": "0x140114a40",
+        "instructions950": 170,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 154,
+      "blockLength": 17
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 197,
+    "name947": null,
+    "size": 5,
+    "parser947": "0x140114da0",
+    "instructions947": 44,
+    "candidates": [
+      {
+        "opcode950": 181,
+        "score": 0.6875,
+        "parser950": "0x1401406e0",
+        "instructions950": 52,
+        "exactShape": false
+      },
+      {
+        "opcode950": 107,
+        "score": 0.33645,
+        "parser950": "0x14010a560",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 152,
+        "score": 0.2,
+        "parser950": "0x140105f60",
+        "instructions950": 56,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 181,
+      "blockLength": 6
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 198,
+    "name947": null,
+    "size": 8,
+    "parser947": "0x1400fe510",
+    "instructions947": 209,
+    "candidates": [
+      {
+        "opcode950": 190,
+        "score": 0.57767,
+        "parser950": "0x1400fddc0",
+        "instructions950": 203,
+        "exactShape": false
+      },
+      {
+        "opcode950": 45,
+        "score": 0.10682,
+        "parser950": "0x1400fc3d0",
+        "instructions950": 128,
+        "exactShape": false
+      },
+      {
+        "opcode950": 39,
+        "score": 0.04965,
+        "parser950": "0x140107320",
+        "instructions950": 73,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 190,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 199,
+    "name947": null,
+    "size": 28,
+    "parser947": "0x140115230",
+    "instructions947": 210,
+    "candidates": [
+      {
+        "opcode950": 169,
+        "score": 0.99524,
+        "parser950": "0x140115a10",
+        "instructions950": 210,
+        "exactShape": false
+      },
+      {
+        "opcode950": 103,
+        "score": 0.01163,
+        "parser950": "0x14010fd50",
+        "instructions950": 134,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 169,
+      "blockLength": 6
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 200,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x1401072b0",
+    "instructions947": 75,
+    "candidates": [
+      {
+        "opcode950": 134,
+        "score": 0.98667,
+        "parser950": "0x140105700",
+        "instructions950": 75,
+        "exactShape": false
+      },
+      {
+        "opcode950": 30,
+        "score": 0.3913,
+        "parser950": "0x1401417f0",
+        "instructions950": 63,
+        "exactShape": false
+      },
+      {
+        "opcode950": 148,
+        "score": 0.26786,
+        "parser950": "0x1400f6500",
+        "instructions950": 149,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 134,
+      "blockLength": 32
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 201,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x1401419d0",
+    "instructions947": 29,
+    "candidates": [
+      {
+        "opcode950": 157,
+        "score": 0.39286,
+        "parser950": "0x140142aa0",
+        "instructions950": 27,
+        "exactShape": false
+      },
+      {
+        "opcode950": 193,
+        "score": 0.25926,
+        "parser950": "0x140142780",
+        "instructions950": 25,
+        "exactShape": false
+      },
+      {
+        "opcode950": 174,
+        "score": 0.25455,
+        "parser950": "0x140142820",
+        "instructions950": 26,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 157,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 202,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x140109df0",
+    "instructions947": 35,
+    "candidates": [
+      {
+        "opcode950": 203,
+        "score": 0.47619,
+        "parser950": "0x140108450",
+        "instructions950": 28,
+        "exactShape": false
+      },
+      {
+        "opcode950": 186,
+        "score": 0.4507,
+        "parser950": "0x1400f83c0",
+        "instructions950": 36,
+        "exactShape": false
+      },
+      {
+        "opcode950": 206,
+        "score": 0.38356,
+        "parser950": "0x1400f8650",
+        "instructions950": 38,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 203,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 203,
+    "name947": null,
+    "size": 4,
+    "parser947": "0x14010bd70",
+    "instructions947": 34,
+    "candidates": [
+      {
+        "opcode950": 179,
+        "score": 0.82353,
+        "parser950": "0x14010a360",
+        "instructions950": 34,
+        "exactShape": false
+      },
+      {
+        "opcode950": 153,
+        "score": 0.26667,
+        "parser950": "0x140108cd0",
+        "instructions950": 26,
+        "exactShape": false
+      },
+      {
+        "opcode950": 219,
+        "score": 0.26667,
+        "parser950": "0x140108c30",
+        "instructions950": 26,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 179,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 204,
+    "name947": null,
+    "size": 3,
+    "parser947": "0x1400f8b80",
+    "instructions947": 28,
+    "candidates": [
+      {
+        "opcode950": 203,
+        "score": 0.5,
+        "parser950": "0x140108450",
+        "instructions950": 28,
+        "exactShape": false
+      },
+      {
+        "opcode950": 186,
+        "score": 0.40625,
+        "parser950": "0x1400f83c0",
+        "instructions950": 36,
+        "exactShape": false
+      },
+      {
+        "opcode950": 206,
+        "score": 0.39394,
+        "parser950": "0x1400f8650",
+        "instructions950": 38,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 206,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 205,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1400feed0",
+    "instructions947": 122,
+    "candidates": [
+      {
+        "opcode950": 210,
+        "score": 0.86885,
+        "parser950": "0x14010dfd0",
+        "instructions950": 122,
+        "exactShape": false
+      },
+      {
+        "opcode950": 66,
+        "score": 0.17582,
+        "parser950": "0x1400f5c00",
+        "instructions950": 60,
+        "exactShape": false
+      },
+      {
+        "opcode950": 64,
+        "score": 0.16304,
+        "parser950": "0x1400f5e70",
+        "instructions950": 62,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 142,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 206,
+    "name947": null,
+    "size": 33,
+    "parser947": "0x1400eff30",
+    "instructions947": 231,
+    "candidates": [
+      {
+        "opcode950": 198,
+        "score": 0.36674,
+        "parser950": "0x1400ef6f0",
+        "instructions950": 238,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 198,
+      "blockLength": 83
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 207,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1401071b0",
+    "instructions947": 46,
+    "candidates": [
+      {
+        "opcode950": 163,
+        "score": 0.95652,
+        "parser950": "0x140105600",
+        "instructions950": 46,
+        "exactShape": false
+      },
+      {
+        "opcode950": 166,
+        "score": 0.40449,
+        "parser950": "0x140143230",
+        "instructions950": 43,
+        "exactShape": false
+      },
+      {
+        "opcode950": 61,
+        "score": 0.09375,
+        "parser950": "0x140109630",
+        "instructions950": 82,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 163,
+      "blockLength": 32
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 208,
+    "name947": null,
+    "size": 14,
+    "parser947": "0x1400fd130",
+    "instructions947": 192,
+    "candidates": [
+      {
+        "opcode950": 216,
+        "score": 0.10405,
+        "parser950": "0x140110030",
+        "instructions950": 154,
+        "exactShape": false
+      },
+      {
+        "opcode950": 188,
+        "score": 0.09449,
+        "parser950": "0x140116190",
+        "instructions950": 189,
+        "exactShape": false
+      },
+      {
+        "opcode950": 98,
+        "score": 0.03162,
+        "parser950": "0x1400fa0a0",
+        "instructions950": 61,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": null,
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 209,
+    "name947": null,
+    "size": 0,
+    "parser947": "0x140106d60",
+    "instructions947": 24,
+    "candidates": [
+      {
+        "opcode950": 214,
+        "score": 0.91667,
+        "parser950": "0x1401051b0",
+        "instructions950": 24,
+        "exactShape": false
+      },
+      {
+        "opcode950": 160,
+        "score": 0.48649,
+        "parser950": "0x14010ae30",
+        "instructions950": 13,
+        "exactShape": false
+      },
+      {
+        "opcode950": 72,
+        "score": 0.43902,
+        "parser950": "0x14010a1d0",
+        "instructions950": 17,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 214,
+      "blockLength": 32
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 210,
+    "name947": null,
+    "size": 9,
+    "parser947": "0x140107e70",
+    "instructions947": 58,
+    "candidates": [
+      {
+        "opcode950": 150,
+        "score": 0.37705,
+        "parser950": "0x140106180",
+        "instructions950": 64,
+        "exactShape": false
+      },
+      {
+        "opcode950": 168,
+        "score": 0.25455,
+        "parser950": "0x140106070",
+        "instructions950": 52,
+        "exactShape": false
+      },
+      {
+        "opcode950": 212,
+        "score": 0.13445,
+        "parser950": "0x140104e80",
+        "instructions950": 61,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 150,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 211,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x14010a330",
+    "instructions947": 71,
+    "candidates": [
+      {
+        "opcode950": 209,
+        "score": 0.97183,
+        "parser950": "0x140108970",
+        "instructions950": 71,
+        "exactShape": false
+      },
+      {
+        "opcode950": 22,
+        "score": 0.10638,
+        "parser950": "0x1400f32d0",
+        "instructions950": 23,
+        "exactShape": false
+      },
+      {
+        "opcode950": 60,
+        "score": 0.10638,
+        "parser950": "0x1400f2c80",
+        "instructions950": 23,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": true,
+    "orderedBindingCandidate": {
+      "opcode950": 209,
+      "blockLength": 83
+    },
+    "independentAgreement": true
+  },
+  {
+    "opcode947": 212,
+    "name947": null,
+    "size": -2,
+    "parser947": "0x1401068c0",
+    "instructions947": 73,
+    "candidates": [
+      {
+        "opcode950": 142,
+        "score": 0.41727,
+        "parser950": "0x140104d50",
+        "instructions950": 66,
+        "exactShape": false
+      },
+      {
+        "opcode950": 81,
+        "score": 0.35115,
+        "parser950": "0x1401416d0",
+        "instructions950": 58,
+        "exactShape": false
+      },
+      {
+        "opcode950": 115,
+        "score": 0.32727,
+        "parser950": "0x140107690",
+        "instructions950": 92,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": null,
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 213,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x1401062d0",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 178,
+      "blockLength": 9
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 214,
+    "name947": null,
+    "size": -1,
+    "parser947": "0x14010ad00",
+    "instructions947": 2,
+    "candidates": [
+      {
+        "opcode950": 170,
+        "score": 1.0,
+        "parser950": "0x140109310",
+        "instructions950": 2,
+        "exactShape": true
+      },
+      {
+        "opcode950": 34,
+        "score": 0.0,
+        "parser950": "0x1400f8f70",
+        "instructions950": 4,
+        "exactShape": false
+      },
+      {
+        "opcode950": 99,
+        "score": 0.0,
+        "parser950": "0x14010f730",
+        "instructions950": 4,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 170,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 215,
+    "name947": null,
+    "size": 6,
+    "parser947": "0x140141ac0",
+    "instructions947": 42,
+    "candidates": [
+      {
+        "opcode950": 191,
+        "score": 0.36585,
+        "parser950": "0x140142b90",
+        "instructions950": 40,
+        "exactShape": false
+      },
+      {
+        "opcode950": 138,
+        "score": 0.33333,
+        "parser950": "0x140142900",
+        "instructions950": 36,
+        "exactShape": false
+      },
+      {
+        "opcode950": 82,
+        "score": 0.29268,
+        "parser950": "0x140142100",
+        "instructions950": 40,
+        "exactShape": false
+      }
+    ],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 191,
+      "blockLength": 18
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 216,
+    "name947": "NO_TIMEOUT",
+    "size": 0,
+    "parser947": "0x140105f00",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 183,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  },
+  {
+    "opcode947": 217,
+    "name947": null,
+    "size": 1,
+    "parser947": "0x140107410",
+    "instructions947": 0,
+    "candidates": [],
+    "status": "review-only: address normalization does not validate callee semantics or wire transforms",
+    "uniqueStrongCandidate": false,
+    "orderedBindingCandidate": {
+      "opcode950": 184,
+      "blockLength": 32
+    },
+    "independentAgreement": false
+  }
+]
