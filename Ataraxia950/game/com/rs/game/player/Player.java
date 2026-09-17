@@ -1842,6 +1842,11 @@ public class Player extends Entity {
      */
     private transient com.rs.game.player.client.Native950MeleeCombat native950Combat;
     private transient com.rs.game.player.client.Native950Slayer.State native950Slayer;
+    private transient com.rs.game.player.client.Native950ActionBar native950ActionBar;
+    public com.rs.game.player.client.Native950ActionBar getNative950ActionBar() {
+        if(native950ActionBar==null)native950ActionBar=new com.rs.game.player.client.Native950ActionBar();
+        return native950ActionBar;
+    }
     public com.rs.game.player.client.Native950Slayer.State getNative950Slayer() {
         if(native950Slayer==null)native950Slayer=new com.rs.game.player.client.Native950Slayer.State();
         return native950Slayer;
@@ -1930,12 +1935,14 @@ public class Player extends Entity {
         // getDefaultInteractionAmount() resolves X to its current count and loses the mode.
         settings.put(SETTING_BANK_QUANTITY_MODE, nativeBankQuantityMode(bank.getNativeDefaultInteractionAmount()));
         if(isNative950())getNative950Slayer().writeSettings(settings);
+        if(isNative950())getNative950ActionBar().writeSettings(settings);
         return settings;
     }
 
     /** Applies a saved settings snapshot; absent bank keys use old-profile defaults, without packets. */
     public void applyNativeSettings(final java.util.Map<String, Integer> settings) {
         if(isNative950())getNative950Slayer().restore(settings);
+        if(isNative950())getNative950ActionBar().restore(settings);
         Integer value;
         if ((value = settings.get(SETTING_CHAT_EFFECTS)) != null) allowChatEffects = value != 0;
         if ((value = settings.get(SETTING_PROFANITY_FILTER)) != null) profanityFilter = value != 0;

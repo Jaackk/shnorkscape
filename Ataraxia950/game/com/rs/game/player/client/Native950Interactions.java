@@ -185,7 +185,7 @@ public final class Native950Interactions {
         final Native950Beasts beasts = new Native950Beasts(player, channel);
         final Native950Minigames minigames = new Native950Minigames(player, channel);
         skillGuide.navigation().setPageListener(new Native950Navigation.PageListener() {
-            public void opened(int menu,int page) { quests.opened(menu,page); beasts.opened(menu,page); minigames.opened(menu,page); }
+            public void opened(int menu,int page) { quests.opened(menu,page); beasts.opened(menu,page); minigames.opened(menu,page); player.getNative950ActionBar().enableBooks(channel); }
             public void closed(int menu,int page) { quests.closed(menu,page); beasts.closed(menu,page); minigames.closed(menu,page); }
             public boolean handle(Native950Actions.InterfaceAction action) {
                 return quests.handle(action) || beasts.handle(action) || minigames.handle(action);
@@ -289,6 +289,7 @@ public final class Native950Interactions {
         // (Native950Session.ready) sends that burst immediately after this method
         // returns, which is why the panels are attached here and not later.
         statsUi.bootstrap();
+        player.getNative950ActionBar().bootstrap(channel);
         lodestones.bootstrap();
         skillGuide.bootstrap();
         exitUi.bootstrap();
@@ -771,6 +772,7 @@ public final class Native950Interactions {
 
     private boolean skillOption(WorldObject object, int option) {
         if (object == null || option < 1 || option > 5) return false;
+        if(Native950WarsRetreat.handles(object,option))return true;
         if(Native950Farming.isPatch(object))return Native950Farming.accepts(player,object,option);
         String[] options = object.getDefinitions().options;
         if (options == null || option > options.length) return false;
@@ -824,7 +826,8 @@ public final class Native950Interactions {
             default: permitted=false;
         }
         if (!permitted) return;
-        if(Native950Farming.isPatch(object))Native950Farming.handle(player,object,pendingSkillOption);
+        if(Native950WarsRetreat.handles(object,pendingSkillOption))Native950WarsRetreat.use(player,object,pendingSkillOption);
+        else if(Native950Farming.isPatch(object))Native950Farming.handle(player,object,pendingSkillOption);
         else if(Native950Construction.handles(object,pendingSkillOption))productionMenu.openChoices("Construct furniture",Native950Construction.choices(player,object));
         else if(Native950Prayer.accepts(object,pendingSkillOption)){
             if("Pray at".equalsIgnoreCase(object.getDefinitions().options[pendingSkillOption-1]))Native950Prayer.recharge(player,object);
@@ -1095,6 +1098,7 @@ public final class Native950Interactions {
     }
 
     private void button(Native950Actions.InterfaceAction action) {
+        if(player.getNative950ActionBar().button(player,channel,action))return;
         System.out.println("[Ataraxia950] Interface action " + action.interfaceId() + ":" + action.componentId()
                 + " option=" + action.option() + " slot=" + action.slot() + " item=" + action.itemId());
         // A quick-options action is accepted only while its owned window is open.
@@ -1452,6 +1456,21 @@ public final class Native950Interactions {
     }
 
     private void itemOnNpc(Native950Actions.ItemOnNpcAction action) {
+        if(Native950ActionBar.barSlot(action.sourceInterfaceId(),action.sourceComponentId())>=0
+                ||Native950ActionBar.bookType(action.sourceInterfaceId(),action.sourceComponentId())>0){
+            int structure=player.getNative950ActionBar().selectedStructure(player,action.sourceInterfaceId(),action.sourceComponentId(),action.sourceSlot());
+            if(structure<0||npcView==null||!npcView.canInteract(player,action.index())||!player.clientHasLoadedMapRegion()){
+                reject("Select an available ability and visible target");return;
+            }
+            NPC target=World.getNPCs().get(action.index());
+            if(target==null||!target.canBeAttacked(player)||!player.getControlerManager().processPlayerOption1(target))return;
+            if(Native950MeleeCombat.abilityStyle(structure)<0){reject("That ability is not implemented yet");return;}
+            Native950MeleeCombat combat=player.getNative950Combat();
+            String refusal=combat==null?"Combat is not ready":combat.attack(player,target);
+            if(refusal==null)refusal=combat.ability(player,structure);
+            if(refusal!=null)reject(refusal);
+            return;
+        }
         if(!selectedBackpackItem(action.sourceHash(),action.sourceSlot(),action.sourceItemId()))return;
         if(npcView==null||!npcView.canInteract(player,action.index())){reject("That NPC is not visible or in range");return;}
         NPC target=World.getNPCs().get(action.index());
@@ -1602,6 +1621,7 @@ public final class Native950Interactions {
     }
 
     private void drag(Native950Actions.DragAction action) {
+        if(player.getNative950ActionBar().drag(player,channel,action))return;
         if(Native950InventionUi.target(action.targetComponentHash(),action.targetSlot(),action.targetItemId())){
             if(!pouchAvailable()){reject("You cannot disassemble items right now");return;}
             if(!selectedBackpackItem(action.sourceComponentHash(),action.sourceSlot(),action.sourceItemId()))return;

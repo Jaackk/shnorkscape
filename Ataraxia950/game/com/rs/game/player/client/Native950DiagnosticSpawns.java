@@ -16,6 +16,28 @@ import com.rs.game.player.Player;
 public final class Native950DiagnosticSpawns {
     private static final java.util.Map<NPC,String> OWNERS = new java.util.IdentityHashMap<>();
     private Native950DiagnosticSpawns() { }
+    static String spawnTrainingDummy(Player player) {
+        String refusal=refusal(player);if(refusal!=null)return refusal;
+        if(player.getNative950Combat()==null)return "Combat is not ready.";
+        pruneOwners();
+        for(NPC existing:OWNERS.keySet())if(ownedBy(player,existing)&&existing.getId()==16027)
+            return "You already have a training dummy (index "+existing.getIndex()+"). Use ;;removenpc or ;;clearnpcs first.";
+        for(int[] offset:new int[][]{{1,0},{-1,0},{0,1},{0,-1}}) {
+            WorldTile tile=new WorldTile(player.getX()+offset[0],player.getY()+offset[1],player.getPlane());
+            if(!World.canMoveNPC(tile,1)||!World.checkWalkStep(player.getPlane(),player.getX(),player.getY(),offset[0],offset[1],1))continue;
+            NPC npc=null;
+            try {
+                npc=NPC.createNative950Diagnostic(16027,tile);
+                Native950World.getInstance().addDiagnosticNpc(npc);
+                player.getNative950Combat().registerTraining(npc);OWNERS.put(npc,player.getUsername());
+                return "Training dummy spawned beside you (index "+npc.getIndex()+"). It restores health and awards no XP or loot.";
+            }catch(IllegalArgumentException|IllegalStateException e){
+                if(npc!=null&&World.containsNPC(npc))Native950World.getInstance().removeDiagnosticNpc(npc);
+                return "Cannot place training dummy: "+e.getMessage();
+            }
+        }
+        return "Move to an open tile before placing a training dummy.";
+    }
 
     public static String spawnNpc(Player player, int id) {
         String refusal = refusal(player);

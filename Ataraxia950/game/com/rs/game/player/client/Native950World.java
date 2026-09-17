@@ -837,6 +837,7 @@ public final class Native950World {
             final SceneConfig configured = saved == null ? scene : new SceneConfig(saved.x(), saved.y(), saved.plane(),
                     scene.playerIndex, scene.npcBits, scene.areaType, scene.hash1, scene.hash2);
             Native950MapAreas.verify();
+            Native950AbilityAssets.verify();
             final int entryArea = Native950MapAreas.areaTypeFor(configured.x, configured.y, configured.areaType);
             final SceneConfig entryScene = entryArea == configured.areaType ? configured
                     : new SceneConfig(configured.x, configured.y, configured.plane, configured.playerIndex,

@@ -397,7 +397,7 @@ public final class Native950ActionRouter {
                 || interfaceId == MINIMAP_INTERFACE;
     }
 
-    public boolean whitelistedObject(int objectId) { return objectId == BANK_CHEST_ID; }
+    public boolean whitelistedObject(int objectId) { return objectId == BANK_CHEST_ID || Native950WarsRetreat.bank(objectId); }
 
     public boolean whitelistedNpc(int definitionId) { return definitionId == BANKER_ID; }
 
@@ -483,6 +483,11 @@ public final class Native950ActionRouter {
         if (object == null) return reject("The requested object is not present");
         if (!whitelistedObject(object.getId())) return reject("Object " + object.getId() + " is outside the M2b whitelist");
         if (option < 1 || option > 5) return reject("Unsupported object option " + option);
+        if(Native950WarsRetreat.bank(object.getId())) {
+            if(option!=2||!player.getControlerManager().processObjectClick2(object))return reject("Bank access refused");
+            player.getBank().openBank();
+            return Outcome.accepted(-1);
+        }
         try {
             handlers.object(player, object, option, forceRun);
             processRouteEvent();

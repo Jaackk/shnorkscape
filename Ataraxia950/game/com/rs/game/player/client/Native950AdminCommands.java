@@ -15,6 +15,7 @@ public final class Native950AdminCommands {
         switch (command) {
             case "god": case "infprayer": case "infadren": case "adrenaline":
             case "almighty": case "infrunes": case "infrun": case "infammo": case "commands":
+            case "wars": case "warsretreat": case "dummy": case "testbar": case "clearbar":
             case "heal": case "max": case "coords": case "disengage": case "devhelp": case "devstatus":
                 return true;
             default: return false;
@@ -48,6 +49,10 @@ public final class Native950AdminCommands {
             reply(channel, "Wait until your character can act."); return;
         }
         switch (command) {
+            case "wars": case "warsretreat":reply(channel,Native950WarsRetreat.teleport(p,true));break;
+            case "dummy":reply(channel,Native950DiagnosticSpawns.spawnTrainingDummy(p));break;
+            case "testbar":p.getNative950ActionBar().testBar(channel);break;
+            case "clearbar":p.getNative950ActionBar().clear(channel);break;
             case "almighty":
                 boolean enabled=!(p.isDevelopmentGodMode()&&p.getPrayer().isInfinitePrayer()
                         &&p.getCombatDefinitions().isInfiniteAdrenaline()&&p.isInfiniteRunEnergy()
@@ -137,6 +142,8 @@ public final class Native950AdminCommands {
              "clearnpcs [radius]|Remove your test NPCs", "tele <x> <y> [plane]|Teleport to coordinates",
              "coords|Show your tile and region", "disengage|Stop native combat and movement"},
             {"DEVELOPMENT", "devstatus|Show combat resource toggle states", "nxt status|Show native world/combat diagnostics",
+             "wars|Teleport to War's Retreat", "dummy|Place one non-retaliating training dummy",
+             "testbar|Replace slots 1-3 with the three supported test abilities", "clearbar|Empty the saved main action bar",
              "nxt level <skill ID> <level>|Set one saved skill", "obj <id> [type] [rotation]|Place a diagnostic object",
              "nxt|List existing native diagnostic tools", "devhelp|Quick administrator help", "commands [1-4]|Browse this command directory"}
         };

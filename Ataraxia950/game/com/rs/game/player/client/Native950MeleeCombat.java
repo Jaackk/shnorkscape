@@ -34,6 +34,9 @@ public final class Native950MeleeCombat {
     private final Map<NPC,Fighter> fighters = new IdentityHashMap<>();
     private final Map<Player,Fighter> targets = new IdentityHashMap<>();
     private final Map<Player,Long> nextAttack = new IdentityHashMap<>();
+    private final Map<Player,Integer> queuedAbilities = new IdentityHashMap<>();
+    private final Map<Player,Long> globalCooldown = new IdentityHashMap<>();
+    private final Map<Player,Map<Integer,Long>> abilityCooldowns = new IdentityHashMap<>();
     private final Map<Player,Long> deadPlayers = new IdentityHashMap<>();
     private final Map<Integer,String> unavailableDefinitions = new java.util.TreeMap<>();
     private long tick, swings, hits, kills, respawns;
@@ -58,6 +61,7 @@ public final class Native950MeleeCombat {
     }
     public void detach(Player player) {
         owned();stop(player);deadPlayers.remove(player);nextAttack.remove(player);player.setNative950Combat(null);
+        globalCooldown.remove(player);abilityCooldowns.remove(player);
         player.setDevelopmentGodMode(false);
         player.setInfiniteRunEnergy(false);
         player.setInfiniteCombatRunes(false);
@@ -93,6 +97,15 @@ public final class Native950MeleeCombat {
         fighters.put(npc,new Fighter(npc,profile));
     }
     public boolean supports(NPC npc) { owned();return fighters.containsKey(npc); }
+    void registerTraining(NPC npc) {
+        owned();
+        if(npc.getId()!=16027||!npc.isNative950DiagnosticDefinition())throw new IllegalArgumentException("Expected training dummy");
+        unregister(npc);
+        register(npc,new Native950NpcCombatProfile(16027,1,1,100000,1,1,0,100,1,1,-1,-1,-1,0,0));
+        Fighter fighter=fighters.get(npc);
+        if(fighter==null)throw new IllegalStateException("Training tile is blocked");
+        fighter.training=true;
+    }
     void unregister(NPC npc) {
         owned();Fighter fighter=fighters.get(npc);
         if(fighter!=null&&fighter.target!=null)stop(fighter.target);
@@ -142,6 +155,7 @@ public final class Native950MeleeCombat {
     }
     /** Logout, death, teleport or a leash break retires both combat owners. */
     public void stop(Player player) {
+        queuedAbilities.remove(player);
         owned();Fighter fighter=targets.remove(player);
         if(fighter==null)return;
         player.resetWalkSteps();player.setNextFaceEntity(null);player.setAttackedBy(null);
@@ -153,6 +167,63 @@ public final class Native950MeleeCombat {
     public void clear() {
         owned();for(Player player:new ArrayList<>(targets.keySet()))stop(player);
         fighters.clear();unavailableDefinitions.clear();nextAttack.clear();deadPlayers.clear();
+        queuedAbilities.clear();globalCooldown.clear();abilityCooldowns.clear();
+    }
+    /** A deliberately small native basic-ability slice; legacy ability callbacks never run. */
+    public String ability(Player player,int structure) {
+        owned();
+        String refusal=abilityRefusal(player,structure);
+        if(refusal!=null)return refusal;
+        queuedAbilities.put(player,structure);
+        return null;
+    }
+    static int abilityStyle(int structure){return structure==14682?0:structure==14664?1:structure==14727?2:-1;}
+    private String abilityRefusal(Player player,int structure) {
+        int style=abilityStyle(structure);
+        if(style<0)return "That ability is not implemented yet. This native test supports Backhand, Binding Shot and Impact.";
+        Fighter fighter=targets.get(player);
+        if(fighter==null||!available(player,fighter.npc)||fighter.npc.isDead()||player.getNextWorldTile()!=null)
+            return "Attack a supported NPC or training dummy first.";
+        if(tick<globalCooldown.getOrDefault(player,0L))return "Abilities are on global cooldown.";
+        Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
+        if(cooldowns!=null&&tick<cooldowns.getOrDefault(structure,0L))return "That ability is cooling down.";
+        Loadout gear;
+        try{gear=loadouts.get(player);}catch(IllegalArgumentException e){return e.getMessage();}
+        if((gear.profile==null?0:gear.profile.style)!=style)return "Equip a weapon matching that ability's combat style.";
+        int skill=style==0?Skills.ATTACK:style==1?Skills.RANGE:Skills.MAGIC;
+        if(player.getSkills().getLevel(skill)<31)return "You need level 31 in the matching combat skill.";
+        if(!playerReach(player,fighter.npc,gear))return "Move within attack range first.";
+        if(player.getFoodDelay()>Utils.currentTimeMillis())return "Wait until you have finished eating.";
+        String refusal=Native950Slayer.attackRefusal(player,fighter.npc);
+        if(refusal==null)refusal=Native950Dungeoneering.attackRefusal(player,fighter.npc);
+        return refusal!=null?refusal:gear.profile==null?null:gear.profile.costRefusal(player);
+    }
+    private boolean performAbility(Player player,Fighter fighter) {
+        Integer structure=queuedAbilities.remove(player);
+        if(structure==null)return false;
+        String refusal=abilityRefusal(player,structure);
+        if(refusal!=null){player.sendMessage(refusal);return false;}
+        Loadout gear=loadouts.get(player);int style=abilityStyle(structure);
+        if(gear.profile!=null&&!gear.profile.consume(player)){player.sendMessage("You cannot supply that ability's ammunition or runes.");return false;}
+        globalCooldown.put(player,tick+3);
+        abilityCooldowns.computeIfAbsent(player,p->new java.util.HashMap<>()).put(structure,tick+25);
+        nextAttack.put(player,tick+3);
+        int skill=style==0?Skills.STRENGTH:style==1?Skills.RANGE:Skills.MAGIC;
+        int level=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(skill),0,0,1);
+        int maximum=Rs2CombatFormula.meleeOrRangedMaxHit(level,gear.strengthBonus,1);
+        if(gear.profile!=null)maximum=gear.profile.maxHit(player,maximum);
+        // First-pass native damage uses the existing server's max-hit scale, not retail EOC parity.
+        int rolled=Math.max(1,maximum/5+rolls.damage(Math.max(0,maximum-maximum/5)));
+        int actual=damage(player,fighter.npc,Rs2CombatFormula.scaleDamageForAtaraxia(rolled),gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
+        player.setNextAnimation(new Animation(style==0?14212:style==1?14244:14234));
+        player.getCombatDefinitions().setSpecialAttackPercentage(Math.min(100,player.getCombatDefinitions().getSpecialAttackPercentage()+9));
+        fighter.retaliating=!fighter.training;fighter.stunnedUntil=tick+5;
+        fighter.npc.resetWalkSteps();
+        if(actual>0&&!fighter.training)rewards.hit(player,fighter.npc,actual,gear);
+        if(fighter.training)fighter.npc.setHitpoints(fighter.profile.hp);
+        else if(fighter.npc.isDead())npcDied(fighter,player);
+        swings++;
+        return true;
     }
     /** Runs after input and before ordinary entity movement, on the same world tick. */
     public void beforeMovement() {
@@ -211,11 +282,11 @@ public final class Native950MeleeCombat {
             if(inReach) {
                 fighter.approachTicks=0;
                 if(npcInReach){npc.resetWalkSteps();fighter.followFailures=0;}
-                else if(fighter.retaliating){if(access.follow(npc,player))fighter.followFailures=0;else if(++fighter.followFailures>APPROACH_TIMEOUT){stop(player);continue;}}
+                else if(fighter.retaliating&&tick>=fighter.stunnedUntil){if(access.follow(npc,player))fighter.followFailures=0;else if(++fighter.followFailures>APPROACH_TIMEOUT){stop(player);continue;}}
                 if(fighter.attacking)player.resetWalkSteps();
             } else {
                 // Same shared Entity.calcFollow path used by the ordinary910 NPCCombat.checkAll.
-                if(fighter.retaliating) {
+                if(fighter.retaliating&&tick>=fighter.stunnedUntil) {
                     if(access.follow(npc,player))fighter.followFailures=0;
                     else if(++fighter.followFailures>APPROACH_TIMEOUT){stop(player);continue;}
                 }
@@ -240,6 +311,7 @@ public final class Native950MeleeCombat {
             try {gear=loadouts.get(player);}catch(IllegalArgumentException unsupported){player.getPackets().sendGameMessage(unsupported.getMessage());stop(player);continue;}
             String slayerRefusal=Native950Slayer.attackRefusal(player,npc);
             if(slayerRefusal!=null){player.sendMessage(slayerRefusal);stop(player);continue;}
+            if(performAbility(player,fighter)&&npc.isDead())continue;
             Long next=nextAttack.get(player);
             if(fighter.attacking && playerReach(player,npc,gear) && (next==null||tick>=next) && player.getFoodDelay()<=Utils.currentTimeMillis()) {
                 if(gear.profile!=null&&!gear.profile.consume(player)){player.sendMessage("You cannot supply the ammunition or runes for that attack.");fighter.outOfSupplies=true;cancelAttack(player);}
@@ -254,9 +326,10 @@ public final class Native950MeleeCombat {
                 int damage=rolls.accurate(Rs2CombatFormula.roll(attack,gear.attackBonus),
                         Rs2CombatFormula.roll(Rs2CombatFormula.npcEffectiveLevel(fighter.profile.defenceLevel),fighter.profile.meleeDefenceBonus))
                         ? Rs2CombatFormula.scaleDamageForAtaraxia(rolls.damage(maximum)) : 0;
-                fighter.retaliating=true;
+                fighter.retaliating=!fighter.training;
                 int actual=damage(player,npc,damage,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());swings++;
-                if(actual>0)rewards.hit(player,npc,actual,gear);
+                if(actual>0&&!fighter.training)rewards.hit(player,npc,actual,gear);
+                if(fighter.training)npc.setHitpoints(fighter.profile.hp);
                 if(gear.profile!=null&&gear.profile.ammoFamily==3&&player.getEquipment().getItem(Equipment.SLOT_WEAPON)==null){
                     fighter.outOfSupplies=true;cancelAttack(player);player.sendMessage("You have run out of thrown weapons.");
                 }
@@ -264,7 +337,7 @@ public final class Native950MeleeCombat {
                 if(damage>0 && fighter.profile.blockAnim>=0)npc.setNextAnimation(new Animation(fighter.profile.blockAnim));
                 }
             }
-            if(fighter.retaliating && access.reach(npc,player) && tick>=fighter.nextAttack && !player.isDead()) {
+            if(fighter.retaliating && tick>=fighter.stunnedUntil && access.reach(npc,player) && tick>=fighter.nextAttack && !player.isDead()) {
                 fighter.nextAttack=tick+fighter.profile.attackSpeed;
                 npc.setNextFaceEntity(player);
                 if(fighter.profile.attackAnim>=0)npc.setNextAnimation(new Animation(fighter.profile.attackAnim));
@@ -440,7 +513,7 @@ public final class Native950MeleeCombat {
     }
     private static final class Fighter {
         final NPC npc;final Native950NpcCombatProfile profile;final WorldTile home;
-        Player target;boolean attacking,retaliating,returning,outOfSupplies;int approachTicks,followFailures;long nextAttack,hideAt,respawnAt;
+        Player target;boolean attacking,retaliating,returning,outOfSupplies,training;int approachTicks,followFailures;long nextAttack,hideAt,respawnAt,stunnedUntil;
         Fighter(NPC npc,Native950NpcCombatProfile profile){this.npc=npc;this.profile=profile;home=new WorldTile(npc);}
     }
 }

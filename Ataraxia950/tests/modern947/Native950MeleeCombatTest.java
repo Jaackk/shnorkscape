@@ -34,6 +34,33 @@ public class Native950MeleeCombatTest {
         combat.attach(player);combat.register(npc,profile(50,10,3));
     }
     @After public void cleanup(){combat.clear();channel.finishAndReleaseAll();}
+    @Test public void abilityWaitsForWorldPhaseAndHonoursCooldownAcrossTargetChanges(){
+        player.getSkills().set(0,31);npc.setHitpoints(1000);
+        assertNotNull(combat.ability(player,14682));
+        assertNull(combat.attack(player,npc));assertNull(combat.ability(player,14682));
+        assertEquals(1000,npc.getHitpoints());step();
+        assertTrue(npc.getHitpoints()<1000);assertEquals(100,player.getHitpoints());
+        assertEquals(14212,player.getNextAnimation().getIds()[0]);
+        assertNotNull(combat.ability(player,14682));
+        combat.stop(player);combat.attack(player,npc);
+        assertNotNull(combat.ability(player,14682));
+        for(int i=0;i<3;i++)step();
+        assertNotNull(combat.ability(player,14682));
+    }
+    @Test public void abilityRechecksRangeAndStateBeforeDamage(){
+        player.getSkills().set(0,31);combat.attack(player,npc);
+        assertNull(combat.ability(player,14682));access.reachable=false;step();
+        assertEquals(50,npc.getHitpoints());
+        access.reachable=true;
+        assertNull(combat.ability(player,14682));combat.stop(player);step();
+        assertEquals(50,npc.getHitpoints());
+    }
+    @Test public void abilityRejectsWrongWeaponLowLevelAndUnsupportedEffects(){
+        combat.attack(player,npc);
+        assertNotNull(combat.ability(player,14682));player.getSkills().set(0,31);
+        assertNotNull(combat.ability(player,14664));assertNotNull(combat.ability(player,14727));
+        assertNotNull(combat.ability(player,14688));assertNull(combat.ability(player,14682));
+    }
     @Test public void repeatedClicksRespectBothCadencesAndExchangeRealDamage(){
         assertNull(combat.attack(player,npc));step();
         assertEquals(40,npc.getHitpoints());assertEquals(90,player.getHitpoints());
