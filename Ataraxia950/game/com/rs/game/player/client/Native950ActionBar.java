@@ -7,6 +7,7 @@ import com.rs.network.protocol.modern950.Native950Actions;
 import com.rs.network.protocol.modern950.Native950Packets;
 import io.netty.channel.Channel;
 import java.util.Map;
+import java.util.function.Consumer;
 
 /** Main native bar. Uses 950 script11797's layout, not the legacy four-bit type. */
 public final class Native950ActionBar {
@@ -93,7 +94,8 @@ public final class Native950ActionBar {
         return Native950Revolution.select(structures,enabledSlots,canExecute);
     }
     boolean isRevolutionEnabled(){return revolutionEnabled;}
-    void setRevolutionEnabled(Channel c,boolean enabled){revolutionEnabled=enabled;refreshRevolution(c);}
+    void setRevolutionEnabled(Channel c,boolean enabled){setRevolutionEnabled(enabled,packet->c.write(packet));}
+    void setRevolutionEnabled(boolean enabled,Consumer<Native950Packets.Packet> send){revolutionEnabled=enabled;send.accept(Native950Packets.varbitSmall(21682,revolutionEnabled?1:0));}
     void refreshRevolution(Channel c){c.write(Native950Packets.varbitSmall(21682,revolutionEnabled?1:0));}
     void cooldown(Channel c,int structure,int currentCycle,int duration){c.write(Native950Packets.runClientScript(6570,structure,currentCycle,currentCycle+duration,1,1));}
     public void clear(Channel c){java.util.Arrays.fill(slots,0);refresh(c);reply(c,"Main action bar cleared.");}

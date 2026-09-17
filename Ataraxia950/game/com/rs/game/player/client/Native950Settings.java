@@ -5,6 +5,7 @@ import com.rs.game.player.Player;
 import com.rs.network.protocol.modern950.Native950Actions;
 import com.rs.network.protocol.modern950.Native950Packets;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
@@ -25,6 +26,9 @@ public final class Native950Settings {
     private final Runnable verifier;
     private boolean cacheVerified;
     private int page;
+    private long revolutionTransaction;
+    private long awaitingRevolutionTransaction;
+    private boolean awaitingRevolutionState;
 
     public Native950Settings(Player player, Channel channel) {
         this(player, channel, Native950Settings::verify);
@@ -79,14 +83,27 @@ public final class Native950Settings {
         if (action.interfaceId() == 365 && action.componentId() == 19
                 && Native950PendingSettings.isPendingCheckbox(page, action.slot())) {
             if (Native950PendingSettings.isManualOrRevolutionChoice(action.slot())) {
-                player.getNative950ActionBar().setRevolutionEnabled(channel,
-                        Native950PendingSettings.isRevolutionChoice(action.slot()));
+                boolean enabled = Native950PendingSettings.isRevolutionChoice(action.slot());
+                long transaction = ++revolutionTransaction;
+                boolean wasEnabled = player.getNative950ActionBar().isRevolutionEnabled();
+                String previous = awaitingRevolutionTransaction == 0 ? "none"
+                        : String.valueOf(awaitingRevolutionTransaction);
+                traceRevolution(transaction, "incoming", "action=" + action.interfaceId() + ":"
+                        + action.componentId() + " option=" + action.option() + " slot=" + action.slot()
+                        + " requested=" + enabled + " priorState=" + wasEnabled
+                        + " awaitingTransaction=" + previous + " awaitingState=" + awaitingRevolutionState);
+                awaitingRevolutionTransaction = transaction;
+                awaitingRevolutionState = enabled;
+                player.getNative950ActionBar().setRevolutionEnabled(enabled,
+                        packet -> sendRevolution(transaction, "authoritative-varbit", packet));
+                traceRevolution(transaction, "state", "actionBar.revolution="
+                        + player.getNative950ActionBar().isRevolutionEnabled());
                 // The cache marks this row as server-acknowledged.  2929 is the
                 // paired client's completion path for that acknowledgement; send
                 // the persisted varbit again afterwards so its local preference
                 // reload cannot replace the server's selected combat mode.
-                channel.write(Native950Packets.runClientScript(2929));
-                player.getNative950ActionBar().refreshRevolution(channel);
+                sendRevolution(transaction, "client-completion-script", Native950Packets.runClientScript(2929));
+                sendRevolution(transaction, "post-script-varbit", Native950Packets.varbitSmall(21682, enabled ? 1 : 0));
                 return true;
             }
             // Classic remains unavailable: restore the native row rather than claiming it changed.
@@ -265,6 +282,25 @@ public final class Native950Settings {
         channel.write(Native950Packets.hideInterface(ROOT, 708, true));
         player.getInterfaceManager().unregisterNativeOpen(1448);
         channel.write(Native950Packets.interfaceEvents(ROOT, 8, -1, -1, 254));
+    }
+
+    private void sendRevolution(long transaction, String stage, Native950Packets.Packet packet) {
+        traceRevolution(transaction, stage + "-write-requested", describe(packet));
+        ChannelFuture future = channel.write(packet);
+        future.addListener(result -> traceRevolution(transaction, stage + "-write-"
+                + (result.isSuccess() ? "accepted" : "failed"), result.isSuccess() ? describe(packet)
+                : String.valueOf(result.cause())));
+    }
+
+    private static String describe(Native950Packets.Packet packet) {
+        StringBuilder payload = new StringBuilder();
+        for (byte value : packet.payload()) payload.append(String.format("%02x", value & 255));
+        return "packet=" + packet.type() + " payload=" + payload;
+    }
+
+    private static void traceRevolution(long transaction, String stage, String detail) {
+        System.out.println("[Ataraxia950] Revolution transaction=" + transaction + " stage=" + stage
+                + " " + detail);
     }
 
     public static synchronized void verify() {
