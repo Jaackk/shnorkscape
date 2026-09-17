@@ -3,6 +3,7 @@ package com.rs.game.player.client;
 import com.rs.game.WorldObject;
 import com.rs.game.WorldTile;
 import com.rs.game.player.Player;
+import com.rs.network.protocol.modern950.Native950Packets;
 import io.netty.channel.embedded.EmbeddedChannel;
 import java.util.*;
 import org.junit.Test;
@@ -47,7 +48,31 @@ public class Native950ActionBarTest {
     @Test public void badAndOldSettingsProduceEmptySlots(){
         Native950ActionBar bar=new Native950ActionBar();
         bar.restore(Collections.singletonMap("actionBar.0",-1));Map<String,Integer> out=new HashMap<>();bar.writeSettings(out);
-        assertEquals(Integer.valueOf(0),out.get("actionBar.0"));assertEquals(14,out.size());
+        assertEquals(Integer.valueOf(0),out.get("actionBar.0"));assertEquals(15,out.size());
+    }
+    @Test public void revolutionStatePersistsAndUsesTheVerifiedClientVarbit(){
+        EmbeddedChannel c=new EmbeddedChannel();
+        try{
+            Native950ActionBar bar=new Native950ActionBar();bar.setRevolutionEnabled(c,true);
+            assertTrue(bar.isRevolutionEnabled());Map<String,Integer> settings=new HashMap<>();bar.writeSettings(settings);
+            Native950ActionBar restored=new Native950ActionBar();restored.restore(settings);assertTrue(restored.isRevolutionEnabled());
+            c.flush();Object packet;boolean config=false;
+            Native950Packets.Packet expected=Native950Packets.varbitSmall(21682,1);
+            while((packet=c.readOutbound())!=null)if(packet instanceof Native950Packets.Packet){
+                Native950Packets.Packet actual=(Native950Packets.Packet)packet;
+                config|=actual.type()==expected.type()&&Arrays.equals(actual.payload(),expected.payload());
+            }
+            assertTrue(config);
+        }finally{c.finishAndReleaseAll();}
+    }
+    @Test public void cooldownUsesTheNativeActionBarScript(){
+        EmbeddedChannel c=new EmbeddedChannel();
+        try{
+            new Native950ActionBar().cooldown(c,14682,100,25);c.flush();Object packet=c.readOutbound();
+            assertTrue(packet instanceof Native950Packets.Packet);Native950Packets.Packet actual=(Native950Packets.Packet)packet;
+            Native950Packets.Packet expected=Native950Packets.runClientScript(6570,14682,100,125,1,1);
+            assertEquals(expected.type(),actual.type());assertArrayEquals(expected.payload(),actual.payload());
+        }finally{c.finishAndReleaseAll();}
     }
     @Test public void hubActionsAreBoundedToTheHubAndSupportedOptions(){
         WorldObject altar=new WorldObject(114748,10,0,3304,10125,0);

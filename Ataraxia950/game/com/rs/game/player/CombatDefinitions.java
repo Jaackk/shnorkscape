@@ -18,6 +18,7 @@ import com.rs.game.npc.NPC;
 import com.rs.game.player.actions.invention.InventionConstants.Perks;
 import com.rs.game.player.actions.invention.InventionData.Perk;
 import com.rs.game.player.combat.PlayerCombat;
+import com.rs.game.player.client.Native950MeleeCombat;
 import com.rs.game.player.content.Combat;
 import com.rs.game.player.content.InterfaceManager;
 import com.rs.game.player.content.ItemConstants;
@@ -469,10 +470,12 @@ public final class CombatDefinitions implements Serializable {
             player.getAppearence().generateAppearenceData();
         }
         if (underCombat) {
-            Entity target = player.getActionManager().getAction() instanceof PlayerCombat ? ((PlayerCombat) player.getActionManager().getAction()).getTarget() : null;
+            Native950MeleeCombat nativeCombat = player.getNative950Combat();
+            Entity target = nativeCombat != null ? nativeCombat.combatTarget(player)
+                    : player.getActionManager().getAction() instanceof PlayerCombat ? ((PlayerCombat) player.getActionManager().getAction()).getTarget() : null;
             if (target != null && currentTarget != target) {
                 setCurrentTarget(target);
-            } else if (currentTarget != null && (currentTarget.hasFinished() || !player.withinDistance(currentTarget, 16)))
+            } else if (currentTarget != null && (nativeCombat != null || currentTarget.hasFinished() || !player.withinDistance(currentTarget, 16)))
                 setCurrentTarget(null);
         }
     }

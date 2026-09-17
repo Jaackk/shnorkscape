@@ -133,6 +133,7 @@ public final class Native950MeleeCombat {
         try { Loadout initial=loadouts.get(player);if(initial.profile!=null){String cost=initial.profile.costRefusal(player);if(cost!=null)return cost;} } catch(IllegalArgumentException unsupported) { return unsupported.getMessage(); }
         if(targets.get(player)==fighter) {
             fighter.attacking=true;fighter.outOfSupplies=false;fighter.approachTicks=0;player.resetWalkSteps();player.setRouteEvent(null);
+            player.setTarget(npc);player.setAttackingDelay(Utils.currentTimeMillis()+6000);
             return null; // Clicking again resumes the action without resetting either swing timer.
         }
         stop(player);
@@ -141,6 +142,7 @@ public final class Native950MeleeCombat {
         npc.resetWalkSteps();npc.setNative950CombatEngaged(true);
         player.setRouteEvent(null);player.resetWalkSteps();
         player.setNextFaceEntity(npc);npc.setNextFaceEntity(player);
+        player.setTarget(npc);player.setAttackingDelay(Utils.currentTimeMillis()+6000);
         player.setAttackedBy(npc);npc.setAttackedBy(player);
         System.out.println("[Ataraxia950] Melee target player="+player.getIndex()+" npc="+npc.getIndex()+" id="+npc.getId());
         return null;
@@ -159,6 +161,7 @@ public final class Native950MeleeCombat {
         owned();Fighter fighter=targets.remove(player);
         if(fighter==null)return;
         player.resetWalkSteps();player.setNextFaceEntity(null);player.setAttackedBy(null);
+        if(player.getTarget()==fighter.npc)player.setTarget(null);
         fighter.target=null;fighter.attacking=false;fighter.retaliating=false;fighter.outOfSupplies=false;fighter.approachTicks=0;fighter.followFailures=0;
         fighter.npc.resetWalkSteps();fighter.npc.setNextFaceEntity(null);fighter.npc.setAttackedBy(null);
         fighter.returning=!fighter.npc.isDead() && distance(fighter.npc,fighter.home)>0;
@@ -176,7 +179,10 @@ public final class Native950MeleeCombat {
             Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
             if(cooldowns!=null&&tick<cooldowns.getOrDefault(structure,0L))return "Surge is cooling down.";
             String refusal=Native950Surge.use(player);
-            if(refusal==null)abilityCooldowns.computeIfAbsent(player,p->new java.util.HashMap<>()).put(structure,tick+34);
+            if(refusal==null){
+                abilityCooldowns.computeIfAbsent(player,p->new java.util.HashMap<>()).put(structure,tick+34);
+                player.getNative950ActionBar().cooldown(player.getRealChannel(),structure,(int)Utils.currentWorldCycle(),34);
+            }
             return refusal;
         }
         String refusal=abilityRefusal(player,structure);
@@ -188,6 +194,11 @@ public final class Native950MeleeCombat {
     int revolutionCandidate(Player player,int slots){
         owned();
         return player.getNative950ActionBar().revolutionCandidate(slots,id->abilityRefusal(player,id)==null);
+    }
+    /** Native combat has no legacy PlayerCombat action, so expose its live target explicitly. */
+    public Entity combatTarget(Player player){
+        owned();Fighter fighter=targets.get(player);
+        return fighter!=null&&fighter.attacking&&fighter.target==player&&!fighter.npc.isDead()?fighter.npc:null;
     }
     private String abilityRefusal(Player player,int structure) {
         int style=abilityStyle(structure);
@@ -218,6 +229,9 @@ public final class Native950MeleeCombat {
         if(gear.profile!=null&&!gear.profile.consume(player)){player.sendMessage("You cannot supply that ability's ammunition or runes.");return false;}
         globalCooldown.put(player,tick+3);
         abilityCooldowns.computeIfAbsent(player,p->new java.util.HashMap<>()).put(structure,tick+25);
+        int cycle=(int)Utils.currentWorldCycle();
+        player.getNative950ActionBar().cooldown(player.getRealChannel(),structure,cycle,25);
+        player.getNative950ActionBar().cooldown(player.getRealChannel(),14881,cycle,3);
         nextAttack.put(player,tick+3);
         int skill=style==0?Skills.STRENGTH:style==1?Skills.RANGE:Skills.MAGIC;
         int level=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(skill),0,0,1);
@@ -397,7 +411,7 @@ public final class Native950MeleeCombat {
                 ? 0 : Math.max(0,Math.min(target.getHitpoints(),requested));
         target.setHitpoints(target.getHitpoints()-damage);
         target.getNextHits().add(new Hit(source,damage,look,0));target.addHitBars();
-        target.setAttackedBy(source);target.setAttackedByDelay(Utils.currentTimeMillis()+6000);source.setAttackingDelay(Utils.currentTimeMillis());
+        target.setAttackedBy(source);target.setAttackedByDelay(Utils.currentTimeMillis()+6000);source.setAttackingDelay(Utils.currentTimeMillis()+6000);
         if(target instanceof Player)((Player)target).refreshHitPoints();
         if(damage>0){hits++;target.addReceivedDamage(source,damage);}
         System.out.println("[Ataraxia950] Melee hit "+source.getClientIndex()+" -> "+target.getClientIndex()+" damage="+damage+" hp="+target.getHitpoints());

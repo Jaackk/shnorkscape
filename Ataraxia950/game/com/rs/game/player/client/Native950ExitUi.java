@@ -19,7 +19,7 @@ public final class Native950ExitUi {
     private final Channel channel;
     private final Runnable verifier;
     private final LogoutTransport logoutTransport;
-    private boolean open,cacheVerified,confirmation,signingOut;
+    private boolean open,cacheVerified,confirmation,signingOut,openingCloseAcknowledgement;
 
     /** The world session owns persistence; implementations must never call legacy realFinish(). */
     interface LogoutTransport { void logout(boolean toLobby); }
@@ -35,6 +35,11 @@ public final class Native950ExitUi {
     }
     public boolean isOpen(){return open;}
     public boolean isSigningOut(){return signingOut;}
+    /** The paired client immediately acknowledges this overlay with CLOSE_MODAL. */
+    boolean consumeOpeningCloseAcknowledgement(){
+        if(!open||!openingCloseAcknowledgement)return false;
+        openingCloseAcknowledgement=false;return true;
+    }
     public static boolean isOpenRequest(Native950Actions.InterfaceAction a){
         // enum7716[1004] ->21278 param3507 is the minimap frame's exit actor layer.
         return a.interfaceId()==ROOT&&a.componentId()==ENTRY&&a.slot()==1
@@ -97,9 +102,9 @@ public final class Native950ExitUi {
         //1477:805 is the cache's dedicated full-screen quick-options wrapper.806 is an empty child
         //beneath its native click shield808; scripts8177/8179 own wrapper visibility and input context.
         // This is an input-blocking confirmation, not a walkable HUD subinterface.
-        channel.write(Native950Packets.openSub(ROOT,HOST,INTERFACE,false));
+        channel.write(Native950Packets.openSub(ROOT,HOST,INTERFACE,true));
         player.getInterfaceManager().registerNativeOpen(INTERFACE,ROOT,HOST);
-        open=true;confirmation=false;
+        open=true;confirmation=false;openingCloseAcknowledgement=true;
         channel.write(Native950Packets.runClientScript(8177));
         //8177 shows805 before touching legacy274:192 and initializing13831. Ensure the
         //owned roots and modern layout are applied directly, independently of that preamble.
@@ -148,7 +153,7 @@ public final class Native950ExitUi {
 
     public void close(){
         if(!open)return;
-        open=false;confirmation=false;
+        open=false;confirmation=false;openingCloseAcknowledgement=false;
         int parent=player.getInterfaceManager().getInterfaceParentId(INTERFACE);
         System.out.println("[Ataraxia950] Exit menu queued close for player "+player.getIndex()
                 +"; parent="+parent+"; owned="+(parent==(ROOT<<16|HOST))

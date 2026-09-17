@@ -363,7 +363,10 @@ public final class Native950Interactions {
     void handle(Native950Actions.Action action) {
         // CLOSE_MODAL reports a change the client already made. It must reconcile
         // server state even if the player died or became inactive before this tick.
-        if (action instanceof Native950Actions.CloseModalAction) { closeModal(); return; }
+        if (action instanceof Native950Actions.CloseModalAction) {
+            if(exitUi.consumeOpeningCloseAcknowledgement())return;
+            closeModal();return;
+        }
         if(exitUi.isOpen()&&(action instanceof Native950Actions.ObjectAction
                 ||action instanceof Native950Actions.NpcAction||action instanceof Native950Actions.GroundItemAction
                 ||action instanceof Native950Actions.ItemOnObjectAction||action instanceof Native950Actions.ItemOnNpcAction)){

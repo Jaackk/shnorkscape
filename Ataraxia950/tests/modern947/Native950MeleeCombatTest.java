@@ -47,6 +47,13 @@ public class Native950MeleeCombatTest {
         for(int i=0;i<3;i++)step();
         assertNotNull(combat.ability(player,14682));
     }
+    @Test public void nativeTargetLifecycleKeepsThePlayerInCombatUntilStopped(){
+        assertNull(combat.attack(player,npc));
+        assertSame(npc,player.getTarget());assertSame(npc,combat.combatTarget(player));
+        assertTrue(player.isUnderCombat());
+        combat.stop(player);
+        assertNull(player.getTarget());assertNull(combat.combatTarget(player));
+    }
     @Test public void abilityRechecksRangeAndStateBeforeDamage(){
         player.getSkills().set(0,31);combat.attack(player,npc);
         assertNull(combat.ability(player,14682));access.reachable=false;step();

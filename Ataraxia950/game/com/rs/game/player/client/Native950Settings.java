@@ -50,16 +50,18 @@ public final class Native950Settings {
         if (action.option() != 1 || action.itemId() != -1) return false;
         return (action.interfaceId() == ROOT && action.componentId() == 8 && action.slot() == -1)
                 || (action.interfaceId() == 1431 && action.componentId() == 0 && action.slot() == 7)
+                || (action.interfaceId() == 1430 && action.componentId() == 256 && action.slot() == -1)
                 || (action.interfaceId() == 1433 && action.slot() == -1
                     && (action.componentId() == 15 || action.componentId() == 35 || action.componentId() == 36));
     }
 
     public boolean handle(Native950Actions.InterfaceAction action) {
         if (isOpenRequest(action)) {
-            int destination = action.interfaceId() == 1433 && action.componentId() == 35 ? RIBBON
+            int destination = action.interfaceId() == 1430 ? RIBBON
+                    : action.interfaceId() == 1433 && action.componentId() == 35 ? RIBBON
                     : action.interfaceId() == 1433 && action.componentId() == 36 ? CONTROLS : GRAPHICS;
             if (!isOpen()) open(destination);
-            else if (action.interfaceId() == 1431 || action.interfaceId() == 1433) {
+            else if (action.interfaceId() == 1430 || action.interfaceId() == 1431 || action.interfaceId() == 1433) {
                 // Native gear hooks can close the old frame before notifying us.
                 // Always focus Graphics, regardless of that notification timing.
                 channel.write(Native950Packets.runClientScript(8179));
@@ -73,8 +75,13 @@ public final class Native950Settings {
             return false;
         if (action.interfaceId() == 365 && action.componentId() == 19
                 && Native950PendingSettings.isPendingCheckbox(page, action.slot())) {
-            // These cache-pinned combat-mode choices wait for a server response.
-            // Restore the native rows without pretending the unported mode changed.
+            if (Native950PendingSettings.isManualOrRevolutionChoice(action.slot())) {
+                player.getNative950ActionBar().setRevolutionEnabled(channel,
+                        Native950PendingSettings.isRevolutionChoice(action.slot()));
+                channel.write(Native950Packets.runClientScript(2929));
+                return true;
+            }
+            // Classic remains unavailable: restore the native row rather than claiming it changed.
             channel.write(Native950Packets.runClientScript(2929));
             channel.write(Native950Packets.gameMessage(0,
                     "This combat mode is not available yet on the local server."));
@@ -174,7 +181,10 @@ public final class Native950Settings {
         if (next == AUDIO) channel.write(Native950Packets.hideInterface(1448, 5, false));
         channel.write(Native950Packets.hideInterface(1448, 1, true));
         channel.write(Native950Packets.hideInterface(ROOT, 708, false));
-        if (next == GAMEPLAY) pendingCheckboxEvents(2);
+        if (next == GAMEPLAY) {
+            pendingCheckboxEvents(2);
+            player.getNative950ActionBar().refreshRevolution(channel);
+        }
         for (int tab = GAMEPLAY; tab <= ACCESSIBILITY; tab++)
             channel.write(Native950Packets.interfaceEvents(ROOT, 714, tab * 4 - 1, tab * 4 - 1, 2));
         channel.write(Native950Packets.interfaceEvents(ROOT, 717, 1, 1, 2));

@@ -55,7 +55,7 @@ public final class Native950ExitUiAcceptance {
             if(o instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)o);
             ReferenceCountUtil.release(o);
         }
-        Native950Packets.Packet[] ordered={Native950Packets.openSub(1477,806,1433,false),
+        Native950Packets.Packet[] ordered={Native950Packets.openSub(1477,806,1433,true),
             Native950Packets.runClientScript(8177),Native950Packets.hideInterface(1477,805,false),
             Native950Packets.hideInterface(1477,806,false),Native950Packets.hideInterface(1433,0,false),
             Native950Packets.runClientScript(13831,1)};
@@ -99,6 +99,8 @@ public final class Native950ExitUiAcceptance {
             check(ui.handle(entry())&&ui.isOpen(),"Exit entry did not open options");
             checkOpeningRecipe(ch);
             check(p.getInterfaceManager().containsInterface(1433),"Opened options were not owned");
+            check(ui.consumeOpeningCloseAcknowledgement(),"Opening acknowledgement was not fenced");
+            check(!ui.consumeOpeningCloseAcknowledgement(),"Opening acknowledgement was consumed more than once");
             ui.handle(click(86));check(calls[0]==0,"Unarmed confirmation logged out");
             ui.handle(click(72));check(packet(ch,Native950Packets.hideInterface(1433,62,false)),"Logout does not show native confirmation");
             ui.handle(click(89));ui.handle(click(86));check(calls[0]==0&&p.isActive(),"Cancel did not retire confirmation");

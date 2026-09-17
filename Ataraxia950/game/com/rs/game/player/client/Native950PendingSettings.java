@@ -113,6 +113,8 @@ public final class Native950PendingSettings {
     public static boolean isPendingCheckbox(int page, int slot) {
         return page == 1 && ((slot >= 10240 && slot <= 10242) || slot == 15872);
     }
+    static boolean isManualOrRevolutionChoice(int slot) { return slot == 10240 || slot == 10241; }
+    static boolean isRevolutionChoice(int slot) { return slot == 10241; }
 
     public static synchronized void verify() {
         if (verified) return;

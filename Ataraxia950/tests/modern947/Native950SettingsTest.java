@@ -33,6 +33,7 @@ public class Native950SettingsTest {
     @Test public void entryRequiresTheExactNativeTargetAndSentinels() {
         assertTrue(Native950Settings.isOpenRequest(button(1477, 8, -1, -1, 1)));
         assertTrue(Native950Settings.isOpenRequest(button(1431, 0, 7, -1, 1)));
+        assertTrue(Native950Settings.isOpenRequest(button(1430, 256, -1, -1, 1)));
         for (Native950Actions.InterfaceAction invalid : Arrays.asList(
                 button(1477, 8, 0, -1, 1), button(1477, 8, -1, 0, 1),
                 button(1477, 8, -1, -1, 2), button(1431, 0, 137, -1, 1),
@@ -57,6 +58,19 @@ public class Native950SettingsTest {
         settings.close();
         assertFalse(player.getInterfaceManager().containsInterface(1448));
         assertTrue(player.getInterfaceManager().containsInterface(1482));
+    }
+    @Test public void actionBarCogUsesTheNativeRibbonSettingsPage() {
+        assertTrue(settings.handle(button(1430,256,-1,-1,1)));
+        assertTrue(player.getInterfaceManager().containsInterface(567));
+    }
+    @Test public void gameplayRevolutionRowPersistsTheRealClientConfiguration(){
+        settings.handle(button(1477,8,-1,-1,1));
+        assertTrue(settings.handle(button(1477,714,3,-1,1)));packets();
+        assertTrue(settings.handle(button(365,19,10241,-1,1)));
+        assertTrue(player.getNative950ActionBar().isRevolutionEnabled());
+        assertTrue(contains(packets(),Native950Packets.varbitSmall(21682,1)));
+        assertTrue(settings.handle(button(365,19,10240,-1,1)));
+        assertFalse(player.getNative950ActionBar().isRevolutionEnabled());
     }
 
     @Test public void aCacheMismatchCannotMutateOrWriteAnOpen() {
@@ -337,7 +351,14 @@ public class Native950SettingsTest {
         List<Native950Packets.Packet> opened = packets();
         assertTrue(contains(opened, Native950Packets.interfaceEvents(365, 19, 10240, 10242, 2)));
         assertTrue(contains(opened, Native950Packets.interfaceEvents(365, 19, 15872, 15872, 2)));
-        for (int slot : new int[] {10240, 10241, 10242, 15872}) {
+        for (int slot : new int[] {10240, 10241}) {
+            assertTrue(settings.handle(button(365, 19, slot, -1, 1)));
+            List<Native950Packets.Packet> response = packets();
+            assertEquals(2, response.size());
+            assertTrue(contains(response, Native950Packets.runClientScript(2929)));
+            assertTrue(contains(response, Native950Packets.varbitSmall(21682,slot == 10241 ? 1 : 0)));
+        }
+        for (int slot : new int[] {10242, 15872}) {
             assertTrue(settings.handle(button(365, 19, slot, -1, 1)));
             List<Native950Packets.Packet> response = packets();
             assertEquals(2, response.size());

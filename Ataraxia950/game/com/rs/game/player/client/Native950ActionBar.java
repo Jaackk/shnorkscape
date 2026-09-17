@@ -15,8 +15,9 @@ public final class Native950ActionBar {
     static final int ABILITY_EVENTS=2|(2<<11)|(1<<18)|(1<<23);
     static final int BOOK_LAST_SLOT=264;
     private final int[] slots=new int[SLOTS];
-    public void writeSettings(Map<String,Integer> settings){for(int i=0;i<SLOTS;i++)settings.put("actionBar."+i,slots[i]);}
-    public void restore(Map<String,Integer> settings){for(int i=0;i<SLOTS;i++){int v=settings.getOrDefault("actionBar."+i,0);slots[i]=valid(v)?v:0;}}
+    private boolean revolutionEnabled;
+    public void writeSettings(Map<String,Integer> settings){for(int i=0;i<SLOTS;i++)settings.put("actionBar."+i,slots[i]);settings.put("actionBar.revolution",revolutionEnabled?1:0);}
+    public void restore(Map<String,Integer> settings){for(int i=0;i<SLOTS;i++){int v=settings.getOrDefault("actionBar."+i,0);slots[i]=valid(v)?v:0;}revolutionEnabled=settings.getOrDefault("actionBar.revolution",0)==1;}
     static int pack(int type,int id){if(enumFor(type)<0||id<1||id>8191)throw new IllegalArgumentException("Invalid ability");return (type<<17)|(id<<4);}
     static boolean valid(int packed){return packed==0||((packed&~0xffffff)==0&&(packed&15)==0&&enumFor(packed>>>17)>=0&&((packed>>>4)&8191)>0);}
     static int enumFor(int type){return type==1?10147:type==5?6738:type==6?6740:-1;}
@@ -27,6 +28,7 @@ public final class Native950ActionBar {
     public void bootstrap(Channel c){
         c.write(Native950Packets.varbitSmall(1893,1));
         c.write(Native950Packets.varbitSmall(1892,0));
+        refreshRevolution(c);
         enableBooks(c);
         refresh(c);
     }
@@ -34,6 +36,7 @@ public final class Native950ActionBar {
         for(int face:new int[]{1460,1452,1461,1450,1456,1459})c.write(Native950Packets.interfaceEvents(face,face==1450?3:1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
         for(int face:new int[]{1430,1436})for(int i=0;i<SLOTS;i++)for(int component:new int[]{(face==1430?65:19)+i*13,(face==1430?66:20)+i*13})
             c.write(Native950Packets.interfaceEvents(face,component,-1,1,ABILITY_EVENTS|(1<<21)));
+        c.write(Native950Packets.interfaceEvents(1430,256,-1,-1,2));
     }
     private void refresh(Channel c){
         for(int i=0;i<SLOTS;i++){
@@ -78,6 +81,10 @@ public final class Native950ActionBar {
         int[] structures=new int[SLOTS];for(int i=0;i<SLOTS;i++)structures[i]=struct(slots[i]);
         return Native950Revolution.select(structures,enabledSlots,canExecute);
     }
+    boolean isRevolutionEnabled(){return revolutionEnabled;}
+    void setRevolutionEnabled(Channel c,boolean enabled){revolutionEnabled=enabled;refreshRevolution(c);}
+    void refreshRevolution(Channel c){c.write(Native950Packets.varbitSmall(21682,revolutionEnabled?1:0));}
+    void cooldown(Channel c,int structure,int currentCycle,int duration){c.write(Native950Packets.runClientScript(6570,structure,currentCycle,currentCycle+duration,1,1));}
     public void clear(Channel c){java.util.Arrays.fill(slots,0);refresh(c);reply(c,"Main action bar cleared.");}
     private static void reply(Channel c,String text){c.write(Native950Packets.gameMessage(0,text));}
 }

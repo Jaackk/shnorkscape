@@ -21,10 +21,26 @@ public final class Native950AbilityProbe {
                 }
             }return;
         }
+        if(args[0].equals("findint")) {
+            int value=Integer.parseInt(args[1]);byte[] needle={(byte)(value>>>24),(byte)(value>>>16),(byte)(value>>>8),(byte)value};
+            for(int script:Cache.STORE.getIndexes()[12].getTable().getValidArchiveIds()){
+                byte[] data=Cache.STORE.getIndexes()[12].getFile(script,0);if(data==null)continue;
+                for(int p=0;p<=data.length-4;p++)if(data[p]==needle[0]&&data[p+1]==needle[1]&&data[p+2]==needle[2]&&data[p+3]==needle[3]){System.out.println(script+" offset="+p);break;}
+            }return;
+        }
+        if(args[0].equals("ifaceone")) {
+            int face=Integer.parseInt(args[1]),file=Integer.parseInt(args[2]);IComponentDefinitions d=new IComponentDefinitions();d.ihash=face<<16|file;
+            d.decode(new com.rs.network.io.InputStream(Cache.STORE.getIndexes()[3].getFile(face,file)));
+            System.out.println(face+":"+file+" type="+d.type+" parent="+d.parentLayer+" ops="+Arrays.toString(d.ops));
+            for(Field f:IComponentDefinitions.class.getDeclaredFields()){
+                f.setAccessible(true);Object value=f.get(d);if(value instanceof Object[]||value instanceof int[]||value instanceof String[])
+                    System.out.println(f.getName()+"="+Arrays.deepToString(new Object[]{value}));
+            }return;
+        }
         if(args[0].equals("assets")) {
             List<String> pins=new ArrayList<>();pins.add("# Paired revision950 hub/action-bar cache assets.");
             for(int face:new int[]{1430,1436,1460,1452,1461,1450,1456,1459})for(int file:Cache.STORE.getIndexes()[3].getTable().getArchives()[face].getValidFileIds())pin(pins,3,face,file);
-            for(int script:new int[]{6992,6995,11797,8423,8426,8437,7001,5900,1580,7974,7964})pin(pins,12,script,0);
+            for(int script:new int[]{6570,6992,6995,11797,8423,8426,8437,7001,5900,1580,7974,7964})pin(pins,12,script,0);
             for(int id:new int[]{10147,6738,6740})pin(pins,17,id>>>8,id&255);
             for(int id:new int[]{14682,14664,14727,14700,14701,14729,19342,14726})pin(pins,22,id>>>5,id&31);
             for(int script:new int[]{18633,18647,18648,18607,18610,18623,18621,17721,17726,17696})pin(pins,12,script,0);
@@ -40,7 +56,7 @@ public final class Native950AbilityProbe {
                     if(gfx instanceof Integer)pin(pins,21,(Integer)gfx>>>8,(Integer)gfx&255);
                 }
             }
-            for(int id:new int[]{1747,1748,1892,1893})pin(pins,2,69,id);
+            for(int id:new int[]{1747,1748,1892,1893,21682})pin(pins,2,69,id);
             for(int id:new int[]{114745,114746,114748,114749,114750,83634,79034})pin(pins,16,id>>>8,id&255);
             pin(pins,18,16027>>>7,16027&127);
             Files.write(Paths.get("Ataraxia950/resources/native950/ability-hub-assets.properties"),(String.join("\r\n",new java.util.LinkedHashSet<>(pins))+"\r\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));

@@ -51,7 +51,7 @@ public class Native950AbilityFoundationTest {
             Native950ExitUi ui=new Native950ExitUi(p,c,()->{},lobby->fail("Unconfirmed logout"));
             assertTrue(ui.handle(click(1477,99,1)));assertTrue(ui.isOpen());
             c.flush();Object packet;boolean modal=false;
-            Native950Packets.Packet expected=Native950Packets.openSub(1477,806,1433,false);
+            Native950Packets.Packet expected=Native950Packets.openSub(1477,806,1433,true);
             while((packet=c.readOutbound())!=null)if(packet instanceof Native950Packets.Packet){
                 Native950Packets.Packet actual=(Native950Packets.Packet)packet;
                 modal|=actual.type()==expected.type()&&Arrays.equals(actual.payload(),expected.payload());
