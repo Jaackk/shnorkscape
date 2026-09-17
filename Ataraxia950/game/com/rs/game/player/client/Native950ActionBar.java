@@ -64,11 +64,22 @@ public final class Native950ActionBar {
         int slot=barSlot(a.interfaceId(),a.componentId());
         int type=bookType(a.interfaceId(),a.componentId());
         if(slot<0&&type<0)return false;
-        if(a.option()!=1||!p.getInterfaceManager().containsInterface(a.interfaceId())||p.isLocked()||p.isDead())return true;
+        if(a.option()!=1||!p.getInterfaceManager().containsInterface(a.interfaceId())||p.isLocked()||p.isDead()){
+            System.out.println("[Ataraxia950] Ability action ignored iface="+a.interfaceId()+":"+a.componentId()
+                    +" option="+a.option()+" slot="+a.slot()+" mounted="+p.getInterfaceManager().containsInterface(a.interfaceId())
+                    +" locked="+p.isLocked()+" dead="+p.isDead());
+            return true;
+        }
         int value=slot>=0?slots[slot]:a.slot()>0&&a.slot()<=BOOK_LAST_SLOT?pack(type,a.slot()):0;
-        if(value==0)return true;
+        if(value==0){
+            if(slot>=0)reply(c,"That action bar slot does not contain an ability.");
+            System.out.println("[Ataraxia950] Ability action had no binding iface="+a.interfaceId()+":"+a.componentId()+" slot="+a.slot());
+            return true;
+        }
         Native950MeleeCombat combat=p.getNative950Combat();
         String result=combat==null?"Combat is not ready.":combat.ability(p,struct(value));
+        System.out.println("[Ataraxia950] Ability action iface="+a.interfaceId()+":"+a.componentId()+" option="+a.option()
+                +" slot="+a.slot()+" structure="+struct(value)+" result="+(result==null?"queued":result));
         if(result!=null)reply(c,result);
         return true;
     }

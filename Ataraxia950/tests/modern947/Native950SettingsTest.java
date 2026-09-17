@@ -68,7 +68,9 @@ public class Native950SettingsTest {
         assertTrue(settings.handle(button(1477,714,3,-1,1)));packets();
         assertTrue(settings.handle(button(365,19,10241,-1,1)));
         assertTrue(player.getNative950ActionBar().isRevolutionEnabled());
-        assertTrue(contains(packets(),Native950Packets.varbitSmall(21682,1)));
+        List<Native950Packets.Packet> revolution=packets();
+        assertTrue(contains(revolution,Native950Packets.varbitSmall(21682,1)));
+        assertTrue(contains(revolution,Native950Packets.runClientScript(2929)));
         assertTrue(settings.handle(button(365,19,10240,-1,1)));
         assertFalse(player.getNative950ActionBar().isRevolutionEnabled());
     }
@@ -354,8 +356,9 @@ public class Native950SettingsTest {
         for (int slot : new int[] {10240, 10241}) {
             assertTrue(settings.handle(button(365, 19, slot, -1, 1)));
             List<Native950Packets.Packet> response = packets();
-            assertEquals(1, response.size());
+            assertEquals(3, response.size());
             assertTrue(contains(response, Native950Packets.varbitSmall(21682,slot == 10241 ? 1 : 0)));
+            assertTrue(contains(response, Native950Packets.runClientScript(2929)));
         }
         for (int slot : new int[] {10242, 15872}) {
             assertTrue(settings.handle(button(365, 19, slot, -1, 1)));

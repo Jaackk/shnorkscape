@@ -81,9 +81,12 @@ public final class Native950Settings {
             if (Native950PendingSettings.isManualOrRevolutionChoice(action.slot())) {
                 player.getNative950ActionBar().setRevolutionEnabled(channel,
                         Native950PendingSettings.isRevolutionChoice(action.slot()));
-                // 2929 reapplies the client's local preference and can overwrite
-                // the just-authoritative varbit.  setRevolutionEnabled has already
-                // echoed the saved state, while the checkbox's native onOp redraws.
+                // The cache marks this row as server-acknowledged.  2929 is the
+                // paired client's completion path for that acknowledgement; send
+                // the persisted varbit again afterwards so its local preference
+                // reload cannot replace the server's selected combat mode.
+                channel.write(Native950Packets.runClientScript(2929));
+                player.getNative950ActionBar().refreshRevolution(channel);
                 return true;
             }
             // Classic remains unavailable: restore the native row rather than claiming it changed.

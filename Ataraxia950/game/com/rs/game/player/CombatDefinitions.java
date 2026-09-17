@@ -454,8 +454,11 @@ public final class CombatDefinitions implements Serializable {
             }
         }
         if (underCombat != combatStance) {
-            // wait until def emote performs, cuz render anims cant be delayed
-            if (underCombat && player.getNextAnimation() == null) {
+            // Legacy combat starts its defence emote before this method. Native
+            // combat commits its swing later in the world tick, so applying that
+            // legacy wait to it prevents the stance state from ever reaching the
+            // client on the initial target acquisition.
+            if (underCombat && nativeCombat == null && player.getNextAnimation() == null) {
                 return;
             }
             combatStance = underCombat;
