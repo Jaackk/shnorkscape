@@ -10,14 +10,19 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class Native950AbilityFoundationTest {
-    @Test public void eightDefinitionsSeparateUtilityFromDamage(){
-        assertEquals(8,Native950AbilityCatalog.DEFINITIONS.size());
+    @Test public void verifiedRotationSeparatesUtilityDamageAndAdrenalineTiers(){
+        assertEquals(31,Native950AbilityCatalog.DEFINITIONS.size());
         long melee=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==1).count();
         long ranged=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==5).count();
         long magic=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==6&&d.targetRequired()).count();
-        assertEquals(3,melee);assertEquals(1,ranged);assertEquals(3,magic);
+        assertEquals(12,melee);assertEquals(8,ranged);assertEquals(10,magic);
         Native950AbilityCatalog.Definition surge=Native950AbilityCatalog.get(14726);
         assertFalse(surge.targetRequired());assertEquals(34,surge.cooldown);assertEquals(16,surge.skill);assertEquals(5,surge.level);
+        assertEquals(0,Native950AbilityCatalog.get(14682).adrenalineCost());
+        assertEquals(15,Native950AbilityCatalog.get(14704).adrenalineCost());
+        assertEquals(100,Native950AbilityCatalog.get(14736).adrenalineCost());
+        assertTrue(Native950AbilityCatalog.get(14684).offhandRequired);
+        assertTrue(Native950AbilityCatalog.get(14685).twoHandedRequired);
     }
     @Test public void dragMaskEscapesBookClippingWithoutEnablingOtherOperations(){
         assertTrue((Native950ActionBar.ABILITY_EVENTS&(1<<23))!=0);

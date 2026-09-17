@@ -37,6 +37,7 @@ public final class Native950MeleeCombat {
     private final Map<Player,Integer> queuedAbilities = new IdentityHashMap<>();
     private final Map<Player,Long> globalCooldown = new IdentityHashMap<>();
     private final Map<Player,Map<Integer,Long>> abilityCooldowns = new IdentityHashMap<>();
+    private final Map<Player,DamageOverTime> damageOverTime = new IdentityHashMap<>();
     private final Map<Player,Long> deadPlayers = new IdentityHashMap<>();
     private final Map<Integer,String> unavailableDefinitions = new java.util.TreeMap<>();
     private long tick, swings, hits, kills, respawns;
@@ -61,7 +62,7 @@ public final class Native950MeleeCombat {
     }
     public void detach(Player player) {
         owned();stop(player);deadPlayers.remove(player);nextAttack.remove(player);player.setNative950Combat(null);
-        globalCooldown.remove(player);abilityCooldowns.remove(player);
+        globalCooldown.remove(player);abilityCooldowns.remove(player);damageOverTime.remove(player);
         player.setDevelopmentGodMode(false);
         player.setInfiniteRunEnergy(false);
         player.setInfiniteCombatRunes(false);
@@ -162,7 +163,7 @@ public final class Native950MeleeCombat {
         if(fighter==null)return;
         player.resetWalkSteps();player.setNextFaceEntity(null);player.setAttackedBy(null);
         if(player.getTarget()==fighter.npc)player.setTarget(null);
-        fighter.target=null;fighter.attacking=false;fighter.retaliating=false;fighter.outOfSupplies=false;fighter.approachTicks=0;fighter.followFailures=0;
+        damageOverTime.remove(player);fighter.target=null;fighter.attacking=false;fighter.retaliating=false;fighter.outOfSupplies=false;fighter.approachTicks=0;fighter.followFailures=0;
         fighter.npc.resetWalkSteps();fighter.npc.setNextFaceEntity(null);fighter.npc.setAttackedBy(null);
         fighter.returning=!fighter.npc.isDead() && distance(fighter.npc,fighter.home)>0;
         fighter.npc.setNative950CombatEngaged(fighter.returning);
@@ -170,7 +171,7 @@ public final class Native950MeleeCombat {
     public void clear() {
         owned();for(Player player:new ArrayList<>(targets.keySet()))stop(player);
         fighters.clear();unavailableDefinitions.clear();nextAttack.clear();deadPlayers.clear();
-        queuedAbilities.clear();globalCooldown.clear();abilityCooldowns.clear();
+        queuedAbilities.clear();globalCooldown.clear();abilityCooldowns.clear();damageOverTime.clear();
     }
     /** A deliberately small native basic-ability slice; legacy ability callbacks never run. */
     public String ability(Player player,int structure) {
@@ -205,7 +206,7 @@ public final class Native950MeleeCombat {
     }
     private String abilityRefusal(Player player,int structure) {
         int style=abilityStyle(structure);
-        if(style<0)return "That ability's full950 effect is not implemented yet. Supported: Backhand, Binding Shot, Impact and targetless Surge.";
+        if(style<0)return "That ability is not available in Combat Alpha yet.";
         Fighter fighter=targets.get(player);
         if(fighter==null||!fighter.attacking||!available(player,fighter.npc)||fighter.npc.isDead()||player.getNextWorldTile()!=null||player.isStunned())
             return "Attack a supported NPC or training dummy first.";
@@ -217,6 +218,12 @@ public final class Native950MeleeCombat {
         if((gear.profile==null?0:gear.profile.style)!=style)return "Equip a weapon matching that ability's combat style.";
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
         if(definition==null)return "That ability is not implemented yet.";
+        int energy=definition.adrenalineCost();
+        if(energy>0&&!player.getCombatDefinitions().isInfiniteAdrenaline()
+                &&player.getCombatDefinitions().getSpecialAttackPercentage()<energy)
+            return (definition.tier==2?"Threshold":"Ultimate")+" abilities require "+energy+"% adrenaline.";
+        if(definition.offhandRequired&&!player.getEquipment().hasOffHand())return definition.name+" requires a matching off-hand weapon.";
+        if(definition.twoHandedRequired&&!player.getEquipment().hasTwoHandedWeapon())return definition.name+" requires a two-handed weapon.";
         int skill=style==0?Skills.ATTACK:style==1?Skills.RANGE:Skills.MAGIC;
         if(player.getSkills().getLevel(skill)<definition.level)
             return "You need level "+definition.level+" in the matching combat skill.";
@@ -250,8 +257,12 @@ public final class Native950MeleeCombat {
         int percent=definition.minPercent+rolls.damage(Math.max(0,definition.maxPercent-definition.minPercent));
         if(definition.effect==Native950AbilityCatalog.Effect.EXECUTE
                 && fighter.npc.getHitpoints()*2<=fighter.profile.hp)percent+=20;
-        int rolled=Math.max(1,maximum*percent/100);
-        int actual=damage(player,fighter.npc,Rs2CombatFormula.scaleDamageForAtaraxia(rolled),gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
+        int total=0;
+        for(int hit=0;hit<definition.hits;hit++){
+            int rolled=Math.max(1,maximum*percent/100);
+            total+=damage(player,fighter.npc,Rs2CombatFormula.scaleDamageForAtaraxia(rolled),gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
+            if(fighter.npc.isDead())break;
+        }
         // Param2802 is an icon sprite. Actual sequences come from param2915's weapon-family enum.
         int animation=com.rs.cache.Cache.STORE==null?-1:Native950AbilityCatalog.animation(player,structure);
         if(animation>=0){
@@ -259,11 +270,17 @@ public final class Native950MeleeCombat {
             int effect=Native950AbilityCatalog.sequenceParam(animation,2920);
             if(effect>=0)player.setNextGraphics(new com.rs.game.Graphics(effect));
         }
-        player.getCombatDefinitions().setSpecialAttackPercentage(Math.min(100,player.getCombatDefinitions().getSpecialAttackPercentage()+9));
+        int targetGraphic=Native950AbilityCatalog.targetGraphic(structure);
+        if(targetGraphic>0)fighter.npc.setNextGraphics(new com.rs.game.Graphics(targetGraphic));
+        if(definition.adrenalineCost()>0)player.getCombatDefinitions().decreaseSpecialAttack(definition.adrenalineCost());
+        else if(definition.adrenalineGain()>0)player.getCombatDefinitions().setSpecialAttackPercentage(
+                Math.min(100,player.getCombatDefinitions().getSpecialAttackPercentage()+definition.adrenalineGain()));
         fighter.retaliating=!fighter.training;
         if(definition.effect==Native950AbilityCatalog.Effect.STUN)fighter.stunnedUntil=tick+5;
+        if(definition.effect==Native950AbilityCatalog.Effect.BLEED&&!fighter.training&&!fighter.npc.isDead())
+            damageOverTime.put(player,new DamageOverTime(fighter,Math.max(1,maximum*15/100),3,tick+2,gear));
         fighter.npc.resetWalkSteps();
-        if(actual>0&&!fighter.training)rewards.hit(player,fighter.npc,actual,gear);
+        if(total>0&&!fighter.training)rewards.hit(player,fighter.npc,total,gear);
         if(fighter.training)fighter.npc.setHitpoints(fighter.profile.hp);
         else if(fighter.npc.isDead())npcDied(fighter,player);
         swings++;
@@ -348,6 +365,8 @@ public final class Native950MeleeCombat {
             try {
             Player player=fighter.target;NPC npc=fighter.npc;
             if(player==null || npc.isDead())continue;
+            processDamageOverTime(player,fighter);
+            if(npc.isDead())continue;
             if(!available(player,npc) || player.hasTeleported() || player.getNextWorldTile()!=null
                     || distanceToFootprint(player,fighter.home,fighter.profile.size)>LEASH
                     || distance(npc,fighter.home)>LEASH){stop(player);continue;}
@@ -421,6 +440,16 @@ public final class Native950MeleeCombat {
             fighter.npc.setNative950DeathVisible(false);fighter.hideAt=tick;
             fighter.respawnAt=tick+fighter.profile.respawnTicks;
         }
+    }
+    private void processDamageOverTime(Player player,Fighter fighter){
+        DamageOverTime dot=damageOverTime.get(player);
+        if(dot==null||dot.fighter!=fighter)return;
+        if(dot.nextTick>tick)return;
+        if(!available(player,fighter.npc)||fighter.npc.isDead()){damageOverTime.remove(player);return;}
+        int actual=damage(player,fighter.npc,dot.damage,dot.gear.profile==null?Hit.HitLook.MELEE_DAMAGE:dot.gear.profile.look());
+        if(actual>0)rewards.hit(player,fighter.npc,actual,dot.gear);
+        if(fighter.npc.isDead()){damageOverTime.remove(player);npcDied(fighter,player);return;}
+        if(--dot.remaining==0)damageOverTime.remove(player);else dot.nextTick=tick+2;
     }
     private boolean playerReach(Player p,NPC n,Loadout gear){
         if(gear.profile==null||gear.profile.range<=1)return access.reach(p,n);
@@ -567,5 +596,9 @@ public final class Native950MeleeCombat {
         final NPC npc;final Native950NpcCombatProfile profile;final WorldTile home;
         Player target;boolean attacking,retaliating,returning,outOfSupplies,training;int approachTicks,followFailures;long nextAttack,hideAt,respawnAt,stunnedUntil;
         Fighter(NPC npc,Native950NpcCombatProfile profile){this.npc=npc;this.profile=profile;home=new WorldTile(npc);}
+    }
+    private static final class DamageOverTime {
+        final Fighter fighter;final int damage;int remaining;long nextTick;final Loadout gear;
+        DamageOverTime(Fighter fighter,int damage,int remaining,long nextTick,Loadout gear){this.fighter=fighter;this.damage=damage;this.remaining=remaining;this.nextTick=nextTick;this.gear=gear;}
     }
 }
