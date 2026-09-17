@@ -54,6 +54,15 @@ public class Native950MeleeCombatTest {
         combat.stop(player);
         assertNull(player.getTarget());assertNull(combat.combatTarget(player));
     }
+    @Test public void nativeTargetDoesNotEnterTheUnverifiedLegacyTargetPanel(){
+        boolean strict=Native950PacketDispatcher.isStrict();Native950PacketDispatcher.setStrict(true);
+        try {
+            assertNull(combat.attack(player,npc));
+            player.getCombatDefinitions().processCombatStance();
+            assertSame(npc,player.getTarget());assertSame(npc,combat.combatTarget(player));
+            assertNull(player.getCombatDefinitions().getCurrentTarget());
+        } finally {Native950PacketDispatcher.setStrict(strict);}
+    }
     @Test public void abilityRechecksRangeAndStateBeforeDamage(){
         player.getSkills().set(0,31);combat.attack(player,npc);
         assertNull(combat.ability(player,14682));access.reachable=false;step();

@@ -435,10 +435,8 @@ public final class CombatDefinitions implements Serializable {
 
     public void processCombatStance() {
         final boolean forceSheathe = isForceNoSheathe();
-        // Native 950 combat owns its target outside the legacy ActionManager.  Its
-        // attack timer is still maintained for logout and other legacy gates, but
-        // presentation must follow the authoritative live target so the stance
-        // cannot flicker between otherwise continuous hits.
+        // Native 950 combat owns its target outside the legacy ActionManager. Its
+        // attack timer is still maintained for logout and other legacy gates.
         Native950MeleeCombat nativeCombat = player.getNative950Combat();
         final boolean underCombat = player.isUnderCombat()
                 || nativeCombat != null && nativeCombat.combatTarget(player) != null;
@@ -454,11 +452,9 @@ public final class CombatDefinitions implements Serializable {
             }
         }
         if (underCombat != combatStance) {
-            // Legacy combat starts its defence emote before this method. Native
-            // combat commits its swing later in the world tick, so applying that
-            // legacy wait to it prevents the stance state from ever reaching the
-            // client on the initial target acquisition.
-            if (underCombat && nativeCombat == null && player.getNextAnimation() == null) {
+            // Wait until the defence emote performs because render animations
+            // cannot be delayed. Native combat has no verified stance handshake.
+            if (underCombat && player.getNextAnimation() == null) {
                 return;
             }
             combatStance = underCombat;
@@ -478,12 +474,14 @@ public final class CombatDefinitions implements Serializable {
             }
             player.getAppearence().generateAppearenceData();
         }
-        if (underCombat) {
-            Entity target = nativeCombat != null ? nativeCombat.combatTarget(player)
-                    : player.getActionManager().getAction() instanceof PlayerCombat ? ((PlayerCombat) player.getActionManager().getAction()).getTarget() : null;
+        // The legacy current-target panel sends IF_OPENSUB_ACTIVE_*, which is not
+        // a verified 950 packet. Native combat already owns player.getTarget().
+        if (underCombat && nativeCombat == null) {
+            Entity target = player.getActionManager().getAction() instanceof PlayerCombat
+                    ? ((PlayerCombat) player.getActionManager().getAction()).getTarget() : null;
             if (target != null && currentTarget != target) {
                 setCurrentTarget(target);
-            } else if (currentTarget != null && (nativeCombat != null || currentTarget.hasFinished() || !player.withinDistance(currentTarget, 16)))
+            } else if (currentTarget != null && (currentTarget.hasFinished() || !player.withinDistance(currentTarget, 16)))
                 setCurrentTarget(null);
         }
     }
