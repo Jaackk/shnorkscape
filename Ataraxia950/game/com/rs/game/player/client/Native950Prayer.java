@@ -32,7 +32,8 @@ public final class Native950Prayer {
     private Native950Prayer() { }
 
     /** The cache's normal Prayer/Curses grid; the existing Prayer owner remains authoritative. */
-    static void enableInterface(Channel channel){channel.write(Native950Packets.interfaceEvents(1458,39,0,38,2));}
+    // The full 950 grid mask is required for icon clicks to enter the native IF_BUTTON sender.
+    static void enableInterface(Channel channel){channel.write(Native950Packets.interfaceEvents(1458,39,0,38,8388610));}
     static boolean button(Player player,Native950Actions.InterfaceAction action){
         if(action.interfaceId()!=1458||action.componentId()!=39)return false;
         if(action.option()==1&&action.slot()>=0&&action.slot()<=38&&!player.isDead()&&!player.isLocked())

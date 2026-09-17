@@ -95,7 +95,9 @@ public final class Native950Save {
     public static final int LEGACY_SKILL_COUNT = 27;
     public static final int COLOUR_COUNT = 10;
     public static final int BODY_KIT_COUNT = 7;
-    public static final int MAX_SETTINGS = 32;
+    // Three compact native action bars use 23 entries and must coexist with normal UI preferences.
+    // 48 still fits the SaveStore's fixed 2 KB settings section at the maximum key size.
+    public static final int MAX_SETTINGS = 48;
     public static final int MAX_SETTING_KEY = 32;
     public static final int MAX_DISPLAY_NAME = 32;
     /**

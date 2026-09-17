@@ -923,7 +923,7 @@ public class Native950SaveStoreTest {
         expectIllegal(() -> new Native950Save.Identity("a/b", 0, 0));
         expectIllegal(() -> new Native950Save.Identity("alice", -1, 0));
         Map<String, Integer> tooMany = new java.util.LinkedHashMap<>();
-        for (int i = 0; i < 33; i++) tooMany.put("k" + i, i);
+        for (int i = 0; i <= Native950Save.MAX_SETTINGS; i++) tooMany.put("k" + i, i);
         Native950Save base = sample("alice", 3200, 1000);
         expectIllegal(() -> base.withSections(null, null, tooMany, null, null));
         expectIllegal(() -> base.withSections(null, null, java.util.Collections.singletonMap("bad key", 1), null, null));

@@ -12,15 +12,43 @@ import java.util.function.Consumer;
 /** Main native bar. Uses 950 script11797's layout, not the legacy four-bit type. */
 public final class Native950ActionBar {
     public static final int SLOTS=14;
+    public static final int BARS=3;
     // 950 native drag-parent resolver 0x1401ab903: bit23 bypasses parent-depth clipping.
     static final int ABILITY_EVENTS=2|(2<<11)|(1<<18)|(1<<23);
+    // Native 950's ordinary spellbook grid mask, captured from the local 950 bootstrap.
+    static final int MAGIC_EVENTS=8617038;
+    static final int BAR_SELECTOR_EVENTS=2046;
+    static final int ROOT_INTERFACE=1477, TRASH_COMPONENT=18;
     static final int BOOK_LAST_SLOT=264;
     static final int FULL_MANUAL_MODE_VARBIT=41598;
     static final int REVOLUTION_MODE_VARBIT=41599;
-    private final int[] slots=new int[SLOTS];
+    private final int[][] bars=new int[BARS][SLOTS];
+    private int activeBar;
     private boolean revolutionEnabled;
-    public void writeSettings(Map<String,Integer> settings){for(int i=0;i<SLOTS;i++)settings.put("actionBar."+i,slots[i]);settings.put("actionBar.revolution",revolutionEnabled?1:0);}
-    public void restore(Map<String,Integer> settings){for(int i=0;i<SLOTS;i++){int v=settings.getOrDefault("actionBar."+i,0);slots[i]=valid(v)?v:0;}revolutionEnabled=settings.getOrDefault("actionBar.revolution",0)==1;}
+    private int[] slots(){return bars[activeBar];}
+    public void writeSettings(Map<String,Integer> settings){
+        // Schema one stored only bar one as fourteen raw values. Remove those keys so a
+        // migrated save stays below Native950Save's bounded settings section.
+        for(int i=0;i<SLOTS;i++)settings.remove("actionBar."+i);
+        for(int bar=0;bar<BARS;bar++)for(int pair=0;pair<SLOTS/2;pair++)
+            settings.put("actionBar."+bar+"."+pair,savePair(bars[bar][pair*2],bars[bar][pair*2+1]));
+        settings.put("actionBar.active",activeBar);
+        settings.put("actionBar.revolution",revolutionEnabled?1:0);
+    }
+    public void restore(Map<String,Integer> settings){
+        boolean compact=settings.containsKey("actionBar.0.0");
+        for(int bar=0;bar<BARS;bar++)for(int pair=0;pair<SLOTS/2;pair++){
+            int value=compact?settings.getOrDefault("actionBar."+bar+"."+pair,0):(bar==0?legacyPair(settings,pair):0);
+            bars[bar][pair*2]=loadValue(value&65535);
+            bars[bar][pair*2+1]=loadValue(value>>>16);
+        }
+        activeBar=Math.max(0,Math.min(BARS-1,settings.getOrDefault("actionBar.active",0)));
+        revolutionEnabled=settings.getOrDefault("actionBar.revolution",0)==1;
+    }
+    private static int legacyPair(Map<String,Integer> settings,int pair){return savePair(settings.getOrDefault("actionBar."+(pair*2),0),settings.getOrDefault("actionBar."+(pair*2+1),0));}
+    private static int savePair(int first,int second){return saveValue(first)|(saveValue(second)<<16);}
+    private static int saveValue(int packed){return packed==0?0:((packed>>>17)<<13)|((packed>>>4)&8191);}
+    private static int loadValue(int value){int type=value>>>13,id=value&8191;return type==0&&id==0?0:(enumFor(type)>=0&&id>0?pack(type,id):0);}
     static int pack(int type,int id){if(enumFor(type)<0||id<1||id>8191)throw new IllegalArgumentException("Invalid ability");return (type<<17)|(id<<4);}
     static boolean valid(int packed){return packed==0||((packed&~0xffffff)==0&&(packed&15)==0&&enumFor(packed>>>17)>=0&&((packed>>>4)&8191)>0);}
     static int enumFor(int type){return type==1?10147:type==5?6738:type==6?6740:-1;}
@@ -38,34 +66,44 @@ public final class Native950ActionBar {
     }
     void enableBooks(Channel c){
         for(int face:new int[]{1460,1452,1461,1450,1456,1459,1884})c.write(Native950Packets.interfaceEvents(face,face==1450?3:1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
-        c.write(Native950Packets.interfaceEvents(1885,1,0,BOOK_LAST_SLOT,2));
+        c.write(Native950Packets.interfaceEvents(1885,1,0,BOOK_LAST_SLOT,MAGIC_EVENTS));
         for(int face:new int[]{1430,1436})for(int i=0;i<SLOTS;i++)for(int component:new int[]{(face==1430?65:19)+i*13,(face==1430?66:20)+i*13})
             c.write(Native950Packets.interfaceEvents(face,component,-1,1,ABILITY_EVENTS|(1<<21)));
+        c.write(Native950Packets.interfaceEvents(1430,16,-1,-1,BAR_SELECTOR_EVENTS));
+        c.write(Native950Packets.interfaceEvents(1430,254,-1,-1,BAR_SELECTOR_EVENTS));
         c.write(Native950Packets.interfaceEvents(1430,256,-1,-1,2));
     }
     private void refresh(Channel c){
         for(int i=0;i<SLOTS;i++){
             c.write(Native950Packets.varp(i<12?823+i:4429+i-12,-1));
-            c.write(Native950Packets.varp(i<12?739+i:4415+i-12,slots[i]));
+            c.write(Native950Packets.varp(i<12?739+i:4415+i-12,slots()[i]));
         }
         c.write(Native950Packets.runClientScript(6992));
         c.write(Native950Packets.runClientScript(7964,1436,0,0,1,-1));
     }
-    public void testBar(Channel c){slots[0]=pack(1,3);slots[1]=pack(5,2);slots[2]=pack(6,3);bootstrap(c);reply(c,"Test slots 1-3: Backhand (melee), Binding Shot (ranged), Impact (magic). Equip the matching weapon and attack a target first.");}
+    public void testBar(Channel c){slots()[0]=pack(1,3);slots()[1]=pack(5,2);slots()[2]=pack(6,3);bootstrap(c);reply(c,"Test slots 1-3: Backhand (melee), Binding Shot (ranged), Impact (magic). Equip the matching weapon and attack a target first.");}
     public boolean drag(Player p,Channel c,Native950Actions.DragAction a){
         int to=barSlot(a.targetInterfaceId(),a.targetComponentId()),from=barSlot(a.sourceInterfaceId(),a.sourceComponentId());
         if(to<0&&from<0)return false;
-        if(p.isLocked()||p.isDead()||!p.getInterfaceManager().containsInterface(a.targetInterfaceId())
-                ||!p.getInterfaceManager().containsInterface(a.sourceInterfaceId()))return true;
-        if(to<0){reply(c,"Only main-bar rearrangement is supported. Use ;;clearbar to empty it.");return true;}
-        if(from>=0){int old=slots[to];slots[to]=slots[from];slots[from]=old;refresh(c);return true;}
+        if(p.isLocked()||p.isDead()||!p.getInterfaceManager().containsInterface(a.sourceInterfaceId()))return true;
+        if(from>=0&&isTrashTarget(a)){slots()[from]=0;refresh(c);reply(c,"Action bar slot "+(from+1)+" cleared.");return true;}
+        if(to<0){reply(c,"Drop an action-bar slot on the native trash target to remove it.");return true;}
+        if(!p.getInterfaceManager().containsInterface(a.targetInterfaceId()))return true;
+        if(from>=0){int old=slots()[to];slots()[to]=slots()[from];slots()[from]=old;refresh(c);return true;}
         int type=bookType(a.sourceInterfaceId(),a.sourceComponentId());
         if(type<0||!p.getInterfaceManager().containsInterface(a.sourceInterfaceId())||a.sourceSlot()<1||a.sourceSlot()>BOOK_LAST_SLOT){reply(c,"Drag an ability from the melee, ranged or magic ability book.");return true;}
         int packed=pack(type,a.sourceSlot());String name=name(packed);
         if(name==null||name.isEmpty()){reply(c,"That ability is not in the current cache.");return true;}
-        slots[to]=packed;refresh(c);reply(c,name+" bound to slot "+(to+1)+".");return true;
+        slots()[to]=packed;refresh(c);reply(c,name+" bound to slot "+(to+1)+".");return true;
     }
+    static boolean isTrashTarget(Native950Actions.DragAction action){return action.targetInterfaceId()==ROOT_INTERFACE&&action.targetComponentId()==TRASH_COMPONENT;}
     public boolean button(Player p,Channel c,Native950Actions.InterfaceAction a){
+        if(a.interfaceId()==1430&&(a.componentId()==16||a.componentId()==254)){
+            if(a.slot()==-1&&a.option()>=1&&a.option()<=BARS&&!p.isLocked()&&!p.isDead()){
+                setActiveBar(c,a.option()-1);reply(c,"Action bar "+(activeBar+1)+" selected.");
+            }
+            return true;
+        }
         if(a.interfaceId()==1885&&a.componentId()==1){
             if(a.option()!=1||a.slot()<1||a.slot()>BOOK_LAST_SLOT||!p.getInterfaceManager().containsInterface(1885))return true;
             reply(c,Native950AutoSpells.choose(p,a.slot()));return true;
@@ -79,7 +117,7 @@ public final class Native950ActionBar {
                     +" locked="+p.isLocked()+" dead="+p.isDead());
             return true;
         }
-        int value=slot>=0?slots[slot]:a.slot()>0&&a.slot()<=BOOK_LAST_SLOT?pack(type,a.slot()):0;
+        int value=slot>=0?slots()[slot]:a.slot()>0&&a.slot()<=BOOK_LAST_SLOT?pack(type,a.slot()):0;
         if(value==0){
             if(slot>=0)reply(c,"That action bar slot does not contain an ability.");
             System.out.println("[Ataraxia950] Ability action had no binding iface="+a.interfaceId()+":"+a.componentId()+" slot="+a.slot());
@@ -95,10 +133,10 @@ public final class Native950ActionBar {
     int selectedStructure(Player p,int face,int component,int slot){
         if(!p.getInterfaceManager().containsInterface(face))return -1;
         int index=barSlot(face,component),type=bookType(face,component);
-        return index>=0?struct(slots[index]):type>0&&slot>0&&slot<=BOOK_LAST_SLOT?struct(pack(type,slot)):-1;
+        return index>=0?struct(slots()[index]):type>0&&slot>0&&slot<=BOOK_LAST_SLOT?struct(pack(type,slot)):-1;
     }
     int revolutionCandidate(int enabledSlots,java.util.function.IntPredicate canExecute){
-        int[] structures=new int[SLOTS];for(int i=0;i<SLOTS;i++)structures[i]=struct(slots[i]);
+        int[] structures=new int[SLOTS];for(int i=0;i<SLOTS;i++)structures[i]=struct(slots()[i]);
         return Native950Revolution.select(structures,enabledSlots,canExecute);
     }
     boolean isRevolutionEnabled(){return revolutionEnabled;}
@@ -110,6 +148,9 @@ public final class Native950ActionBar {
         send.accept(Native950Packets.varbitSmall(REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0));
     }
     void cooldown(Channel c,int structure,int currentCycle,int duration){c.write(Native950Packets.runClientScript(6570,structure,currentCycle,currentCycle+duration,1,1));}
-    public void clear(Channel c){java.util.Arrays.fill(slots,0);refresh(c);reply(c,"Main action bar cleared.");}
+    void setActiveBar(Channel c,int index){if(index<0||index>=BARS)return;activeBar=index;c.write(Native950Packets.varbitSmall(1893,activeBar+1));refresh(c);}
+    int activeBar(){return activeBar;}
+    int slot(int bar,int index){return bar>=0&&bar<BARS&&index>=0&&index<SLOTS?bars[bar][index]:0;}
+    public void clear(Channel c){java.util.Arrays.fill(slots(),0);refresh(c);reply(c,"Action bar "+(activeBar+1)+" cleared.");}
     private static void reply(Channel c,String text){c.write(Native950Packets.gameMessage(0,text));}
 }
