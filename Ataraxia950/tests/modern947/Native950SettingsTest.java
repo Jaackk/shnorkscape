@@ -59,9 +59,9 @@ public class Native950SettingsTest {
         assertFalse(player.getInterfaceManager().containsInterface(1448));
         assertTrue(player.getInterfaceManager().containsInterface(1482));
     }
-    @Test public void actionBarCogUsesTheNativeRibbonSettingsPage() {
+    @Test public void actionBarCogUsesTheNativeCombatSettingsPage() {
         assertTrue(settings.handle(button(1430,256,-1,-1,1)));
-        assertTrue(player.getInterfaceManager().containsInterface(567));
+        assertTrue(player.getInterfaceManager().containsInterface(365));
     }
     @Test public void gameplayRevolutionRowPersistsTheRealClientConfiguration(){
         settings.handle(button(1477,8,-1,-1,1));
@@ -354,8 +354,7 @@ public class Native950SettingsTest {
         for (int slot : new int[] {10240, 10241}) {
             assertTrue(settings.handle(button(365, 19, slot, -1, 1)));
             List<Native950Packets.Packet> response = packets();
-            assertEquals(2, response.size());
-            assertTrue(contains(response, Native950Packets.runClientScript(2929)));
+            assertEquals(1, response.size());
             assertTrue(contains(response, Native950Packets.varbitSmall(21682,slot == 10241 ? 1 : 0)));
         }
         for (int slot : new int[] {10242, 15872}) {

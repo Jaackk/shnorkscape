@@ -25,6 +25,7 @@ final class Native950AbilityCatalog {
         new Definition(14682,1,3,"Backhand",0,31,25,95,105,Effect.STUN),
         new Definition(14700,1,9,"Punish",0,60,40,110,130,Effect.EXECUTE),
         new Definition(14701,1,10,"Fury",0,21,25,110,130,Effect.CRITICAL_BUFF),
+        new Definition(14664,5,2,"Binding Shot",4,31,25,90,100,Effect.STUN),
         new Definition(14727,6,3,"Impact",6,31,25,65,75,Effect.STUN),
         new Definition(14729,6,5,"Combust",6,38,30,27,33,Effect.BURN),
         new Definition(19342,6,165,"Sonic Wave",6,6,25,90,110,Effect.FLOW),

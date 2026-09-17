@@ -190,7 +190,10 @@ public final class Native950MeleeCombat {
         queuedAbilities.put(player,structure);
         return null;
     }
-    static int abilityStyle(int structure){return structure==14682?0:structure==14664?1:structure==14727?2:-1;}
+    static int abilityStyle(int structure){
+        Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
+        return definition==null?-1:definition.style();
+    }
     int revolutionCandidate(Player player,int slots){
         owned();
         return player.getNative950ActionBar().revolutionCandidate(slots,id->abilityRefusal(player,id)==null);
@@ -212,8 +215,11 @@ public final class Native950MeleeCombat {
         Loadout gear;
         try{gear=loadouts.get(player);}catch(IllegalArgumentException e){return e.getMessage();}
         if((gear.profile==null?0:gear.profile.style)!=style)return "Equip a weapon matching that ability's combat style.";
+        Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
+        if(definition==null)return "That ability is not implemented yet.";
         int skill=style==0?Skills.ATTACK:style==1?Skills.RANGE:Skills.MAGIC;
-        if(player.getSkills().getLevel(skill)<31)return "You need level 31 in the matching combat skill.";
+        if(player.getSkills().getLevel(skill)<definition.level)
+            return "You need level "+definition.level+" in the matching combat skill.";
         if(!playerReach(player,fighter.npc,gear))return "Move within attack range first.";
         if(player.getFoodDelay()>Utils.currentTimeMillis())return "Wait until you have finished eating.";
         String refusal=Native950Slayer.attackRefusal(player,fighter.npc);
@@ -227,18 +233,24 @@ public final class Native950MeleeCombat {
         if(refusal!=null){player.sendMessage(refusal);return false;}
         Loadout gear=loadouts.get(player);int style=abilityStyle(structure);
         if(gear.profile!=null&&!gear.profile.consume(player)){player.sendMessage("You cannot supply that ability's ammunition or runes.");return false;}
+        Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
+        if(definition==null)return false;
         globalCooldown.put(player,tick+3);
-        abilityCooldowns.computeIfAbsent(player,p->new java.util.HashMap<>()).put(structure,tick+25);
+        abilityCooldowns.computeIfAbsent(player,p->new java.util.HashMap<>()).put(structure,tick+definition.cooldown);
         int cycle=(int)Utils.currentWorldCycle();
-        player.getNative950ActionBar().cooldown(player.getRealChannel(),structure,cycle,25);
+        player.getNative950ActionBar().cooldown(player.getRealChannel(),structure,cycle,definition.cooldown);
         player.getNative950ActionBar().cooldown(player.getRealChannel(),14881,cycle,3);
         nextAttack.put(player,tick+3);
         int skill=style==0?Skills.STRENGTH:style==1?Skills.RANGE:Skills.MAGIC;
         int level=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(skill),0,0,1);
         int maximum=Rs2CombatFormula.meleeOrRangedMaxHit(level,gear.strengthBonus,1);
         if(gear.profile!=null)maximum=gear.profile.maxHit(player,maximum);
-        // First-pass native damage uses the existing server's max-hit scale, not retail EOC parity.
-        int rolled=Math.max(1,maximum/5+rolls.damage(Math.max(0,maximum-maximum/5)));
+        // Coefficients come from the paired ability definitions.  This remains a
+        // minimum playable combat model, not a claim of retail EOC parity.
+        int percent=definition.minPercent+rolls.damage(Math.max(0,definition.maxPercent-definition.minPercent));
+        if(definition.effect==Native950AbilityCatalog.Effect.EXECUTE
+                && fighter.npc.getHitpoints()*2<=fighter.profile.hp)percent+=20;
+        int rolled=Math.max(1,maximum*percent/100);
         int actual=damage(player,fighter.npc,Rs2CombatFormula.scaleDamageForAtaraxia(rolled),gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
         // Param2802 is an icon sprite. Actual sequences come from param2915's weapon-family enum.
         int animation=com.rs.cache.Cache.STORE==null?-1:Native950AbilityCatalog.animation(player,structure);
@@ -248,7 +260,8 @@ public final class Native950MeleeCombat {
             if(effect>=0)player.setNextGraphics(new com.rs.game.Graphics(effect));
         }
         player.getCombatDefinitions().setSpecialAttackPercentage(Math.min(100,player.getCombatDefinitions().getSpecialAttackPercentage()+9));
-        fighter.retaliating=!fighter.training;fighter.stunnedUntil=tick+5;
+        fighter.retaliating=!fighter.training;
+        if(definition.effect==Native950AbilityCatalog.Effect.STUN)fighter.stunnedUntil=tick+5;
         fighter.npc.resetWalkSteps();
         if(actual>0&&!fighter.training)rewards.hit(player,fighter.npc,actual,gear);
         if(fighter.training)fighter.npc.setHitpoints(fighter.profile.hp);
@@ -342,6 +355,14 @@ public final class Native950MeleeCombat {
             try {gear=loadouts.get(player);}catch(IllegalArgumentException unsupported){player.getPackets().sendGameMessage(unsupported.getMessage());stop(player);continue;}
             String slayerRefusal=Native950Slayer.attackRefusal(player,npc);
             if(slayerRefusal!=null){player.sendMessage(slayerRefusal);stop(player);continue;}
+            // Revolution follows the first nine main-bar slots, like the older
+            // EOC implementation, but activates through this same validated
+            // manual path.  No client-only animation or unchecked callback is
+            // treated as an attack.
+            if(queuedAbilities.get(player)==null&&player.getNative950ActionBar().isRevolutionEnabled()){
+                int candidate=revolutionCandidate(player,9);
+                if(candidate>=0)queuedAbilities.put(player,candidate);
+            }
             if(performAbility(player,fighter)&&npc.isDead())continue;
             Long next=nextAttack.get(player);
             if(fighter.attacking && playerReach(player,npc,gear) && (next==null||tick>=next) && player.getFoodDelay()<=Utils.currentTimeMillis()) {

@@ -35,9 +35,15 @@ public final class Native950ExitUi {
     }
     public boolean isOpen(){return open;}
     public boolean isSigningOut(){return signingOut;}
-    /** The paired client immediately acknowledges this overlay with CLOSE_MODAL. */
+    /**
+     * The paired client emits CLOSE_MODAL while it swaps quick-options state for
+     * this server-owned overlay.  It can repeat that acknowledgement as its
+     * world-list widget initialises, so retain the overlay until the player uses
+     * one of its explicit controls instead of treating the acknowledgement as a
+     * request to dismiss it.
+     */
     boolean consumeOpeningCloseAcknowledgement(){
-        if(!open||!openingCloseAcknowledgement)return false;
+        if(!open||confirmation)return false;
         openingCloseAcknowledgement=false;return true;
     }
     public static boolean isOpenRequest(Native950Actions.InterfaceAction a){

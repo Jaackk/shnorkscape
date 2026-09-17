@@ -10,11 +10,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class Native950AbilityFoundationTest {
-    @Test public void sevenDefinitionsSeparateUtilityFromDamage(){
-        assertEquals(7,Native950AbilityCatalog.DEFINITIONS.size());
+    @Test public void eightDefinitionsSeparateUtilityFromDamage(){
+        assertEquals(8,Native950AbilityCatalog.DEFINITIONS.size());
         long melee=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==1).count();
+        long ranged=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==5).count();
         long magic=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==6&&d.targetRequired()).count();
-        assertEquals(3,melee);assertEquals(3,magic);
+        assertEquals(3,melee);assertEquals(1,ranged);assertEquals(3,magic);
         Native950AbilityCatalog.Definition surge=Native950AbilityCatalog.get(14726);
         assertFalse(surge.targetRequired());assertEquals(34,surge.cooldown);assertEquals(16,surge.skill);assertEquals(5,surge.level);
     }

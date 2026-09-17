@@ -57,7 +57,10 @@ public final class Native950Settings {
 
     public boolean handle(Native950Actions.InterfaceAction action) {
         if (isOpenRequest(action)) {
-            int destination = action.interfaceId() == 1430 ? RIBBON
+            // The action-bar cog is its combat-mode configuration entry.  Ribbon
+            // controls unrelated HUD layout, which made the cog look functional
+            // while putting the player on the wrong settings page.
+            int destination = action.interfaceId() == 1430 ? GAMEPLAY
                     : action.interfaceId() == 1433 && action.componentId() == 35 ? RIBBON
                     : action.interfaceId() == 1433 && action.componentId() == 36 ? CONTROLS : GRAPHICS;
             if (!isOpen()) open(destination);
@@ -78,7 +81,9 @@ public final class Native950Settings {
             if (Native950PendingSettings.isManualOrRevolutionChoice(action.slot())) {
                 player.getNative950ActionBar().setRevolutionEnabled(channel,
                         Native950PendingSettings.isRevolutionChoice(action.slot()));
-                channel.write(Native950Packets.runClientScript(2929));
+                // 2929 reapplies the client's local preference and can overwrite
+                // the just-authoritative varbit.  setRevolutionEnabled has already
+                // echoed the saved state, while the checkbox's native onOp redraws.
                 return true;
             }
             // Classic remains unavailable: restore the native row rather than claiming it changed.

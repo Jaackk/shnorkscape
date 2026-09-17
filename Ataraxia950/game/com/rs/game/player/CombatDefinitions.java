@@ -435,7 +435,13 @@ public final class CombatDefinitions implements Serializable {
 
     public void processCombatStance() {
         final boolean forceSheathe = isForceNoSheathe();
-        final boolean underCombat = player.isUnderCombat();
+        // Native 950 combat owns its target outside the legacy ActionManager.  Its
+        // attack timer is still maintained for logout and other legacy gates, but
+        // presentation must follow the authoritative live target so the stance
+        // cannot flicker between otherwise continuous hits.
+        Native950MeleeCombat nativeCombat = player.getNative950Combat();
+        final boolean underCombat = player.isUnderCombat()
+                || nativeCombat != null && nativeCombat.combatTarget(player) != null;
 
         if (!underCombat && !player.getActivityTimersManager().isInsideSpecialBoss()) {
             player.getActivityTimersManager().resetTimers();
@@ -470,7 +476,6 @@ public final class CombatDefinitions implements Serializable {
             player.getAppearence().generateAppearenceData();
         }
         if (underCombat) {
-            Native950MeleeCombat nativeCombat = player.getNative950Combat();
             Entity target = nativeCombat != null ? nativeCombat.combatTarget(player)
                     : player.getActionManager().getAction() instanceof PlayerCombat ? ((PlayerCombat) player.getActionManager().getAction()).getTarget() : null;
             if (target != null && currentTarget != target) {
