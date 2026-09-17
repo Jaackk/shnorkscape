@@ -10,6 +10,9 @@ import java.util.List;
 import com.rs.game.Graphics;
 import com.rs.game.item.Item;
 import com.rs.game.player.Player;
+import com.rs.network.protocol.modern950.Native950Actions;
+import com.rs.network.protocol.modern950.Native950Packets;
+import io.netty.channel.Channel;
 import com.rs.game.player.Skills;
 import com.rs.game.player.content.Burying.Bone;
 import com.rs.game.player.content.items.AshScattering.AshesData;
@@ -27,6 +30,15 @@ public final class Native950Prayer {
     private static final Map<Integer,Native950ItemCatalog.Entry> ENTRIES=new HashMap<>();
     private static Object store;
     private Native950Prayer() { }
+
+    /** The cache's normal Prayer/Curses grid; the existing Prayer owner remains authoritative. */
+    static void enableInterface(Channel channel){channel.write(Native950Packets.interfaceEvents(1458,39,0,38,2));}
+    static boolean button(Player player,Native950Actions.InterfaceAction action){
+        if(action.interfaceId()!=1458||action.componentId()!=39)return false;
+        if(action.option()==1&&action.slot()>=0&&action.slot()<=38&&!player.isDead()&&!player.isLocked())
+            player.getPrayer().delayUsePrayer(action.slot(),false);
+        return true;
+    }
 
     /** Retains only the actual ordinary offering operation, not unported Craft/Grind/etc. */
     public static synchronized Native950ItemCatalog.Entry itemEntry(int id) {

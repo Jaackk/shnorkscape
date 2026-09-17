@@ -1107,6 +1107,7 @@ public final class Native950Interactions {
     }
 
     private void button(Native950Actions.InterfaceAction action) {
+        if(Native950Prayer.button(player,action))return;
         if(player.getNative950ActionBar().button(player,channel,action))return;
         System.out.println("[Ataraxia950] Interface action " + action.interfaceId() + ":" + action.componentId()
                 + " option=" + action.option() + " slot=" + action.slot() + " item=" + action.itemId());

@@ -2,6 +2,7 @@ package com.rs.game.player.client;
 
 import com.rs.game.WorldTile;
 import com.rs.game.player.Player;
+import com.rs.game.player.Skills;
 import com.rs.network.protocol.modern950.Native950Actions;
 import com.rs.network.protocol.modern950.Native950Packets;
 import io.netty.channel.embedded.EmbeddedChannel;
@@ -50,6 +51,30 @@ public class Native950AbilityFoundationTest {
         assertEquals(-1,Native950Revolution.select(bar,14,id->false));
         assertEquals(-1,Native950Revolution.select(bar,0,id->true));
     }
+    @Test public void nativeMagicGridSelectsOnlyVerifiedCombatAirSpells(){
+        EmbeddedChannel c=new EmbeddedChannel();
+        try{
+            Player p=Player.createNative950("spell-test",new WorldTile(3217,3258,0),c);p.setActive(true);
+            p.getSkills().set(Skills.MAGIC,1);
+            assertEquals("Air Strike selected for native auto-casting.",Native950AutoSpells.choose(p,14));
+            assertSame(Native950AutoSpells.Spell.STRIKE,Native950AutoSpells.select(p));
+            assertTrue(Native950AutoSpells.choose(p,73).contains("level 81 Magic"));
+            p.getSkills().set(Skills.MAGIC,81);
+            assertEquals("Air Surge selected for native auto-casting.",Native950AutoSpells.choose(p,73));
+            assertSame(Native950AutoSpells.Spell.SURGE,Native950AutoSpells.select(p));
+            assertTrue(Native950AutoSpells.choose(p,15).contains("not in the supported"));
+            Native950AutoSpells.clear(p);
+        }finally{c.finishAndReleaseAll();}
+    }
+    @Test public void bootstrapEnablesPrayerAndCombatSpellGridWithOnlyOptionOne(){
+        EmbeddedChannel c=new EmbeddedChannel();
+        try{
+            new Native950ActionBar().bootstrap(c);c.flush();
+            List<Native950Packets.Packet> packets=packets(c);
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1458,39,0,38,2)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1885,1,0,Native950ActionBar.BOOK_LAST_SLOT,2)));
+        }finally{c.finishAndReleaseAll();}
+    }
     @Test public void exitIsModalAndConfirmationSurvivesUntilExplicitCancel(){
         EmbeddedChannel c=new EmbeddedChannel();
         try{
@@ -70,5 +95,15 @@ public class Native950AbilityFoundationTest {
     private static Native950Actions.InterfaceAction click(int face,int component,int slot){
         int hash=face<<16|component;
         return (Native950Actions.InterfaceAction)Native950Actions.decode(18,new byte[]{-1,-1,-1,(byte)(hash>>16),(byte)(hash>>24),(byte)hash,(byte)(hash>>8),(byte)(slot>>8),(byte)slot});
+    }
+    private static List<Native950Packets.Packet> packets(EmbeddedChannel channel){
+        List<Native950Packets.Packet> packets=new ArrayList<>();Object packet;
+        while((packet=channel.readOutbound())!=null)if(packet instanceof Native950Packets.Packet){
+            packets.add((Native950Packets.Packet)packet);
+        }return packets;
+    }
+    private static boolean hasPacket(List<Native950Packets.Packet> packets,Native950Packets.Packet expected){
+        for(Native950Packets.Packet actual:packets)if(actual.type()==expected.type()&&Arrays.equals(actual.payload(),expected.payload()))return true;
+        return false;
     }
 }

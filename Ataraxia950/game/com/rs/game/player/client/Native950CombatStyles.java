@@ -115,7 +115,7 @@ public final class Native950CombatStyles {
                 return null;
             }
             if(style==MAGIC){
-                Native950AutoSpells.Spell spell=Native950AutoSpells.select(p.getSkills().getLevel(Skills.MAGIC));
+                Native950AutoSpells.Spell spell=Native950AutoSpells.select(p);
                 if(!p.isInfiniteCombatRunes()&&!airStaff&&!p.getInventory().containsItem(556,spell.airRunes))
                     return spell.name+" needs "+spell.airRunes+" air rune(s) per cast, or an air-supplying staff.";
             }
@@ -131,7 +131,7 @@ public final class Native950CombatStyles {
         boolean consume(Player p){
             if(costRefusal(p)!=null)return false;
             if(style==MAGIC){
-                int runes=Native950AutoSpells.select(p.getSkills().getLevel(Skills.MAGIC)).airRunes;
+                int runes=Native950AutoSpells.select(p).airRunes;
                 return p.isInfiniteCombatRunes()||airStaff||Native950Skilling.exchange(p,new Item[]{new Item(556,runes)},new Item[0]);
             }
             if(style==RANGED){
@@ -147,7 +147,7 @@ public final class Native950CombatStyles {
         int maxHit(Player p,int computed){
             if(style!=MAGIC)return computed;
             int level=p.getSkills().getLevel(Skills.MAGIC);
-            int effective=Native950AutoSpells.damageTier(level,tier,Native950AutoSpells.select(level));
+            int effective=Native950AutoSpells.damageTier(level,tier,Native950AutoSpells.select(p));
             // Retain the server's classic damage units/formula, with RS3 progression limits.
             return com.rs.game.player.combat.rs2.Rs2CombatFormula.meleeOrRangedMaxHit(
                     com.rs.game.player.combat.rs2.Rs2CombatFormula.effectiveLevel(effective,0,0,1),4+effective,1);

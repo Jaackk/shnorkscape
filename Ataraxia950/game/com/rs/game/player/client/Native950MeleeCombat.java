@@ -62,7 +62,7 @@ public final class Native950MeleeCombat {
     }
     public void detach(Player player) {
         owned();stop(player);deadPlayers.remove(player);nextAttack.remove(player);player.setNative950Combat(null);
-        globalCooldown.remove(player);abilityCooldowns.remove(player);damageOverTime.remove(player);
+        globalCooldown.remove(player);abilityCooldowns.remove(player);damageOverTime.remove(player);Native950AutoSpells.clear(player);
         player.setDevelopmentGodMode(false);
         player.setInfiniteRunEnergy(false);
         player.setInfiniteCombatRunes(false);

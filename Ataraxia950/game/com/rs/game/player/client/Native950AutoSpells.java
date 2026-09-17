@@ -1,21 +1,38 @@
 package com.rs.game.player.client;
 
+import com.rs.game.player.Player;
+import java.util.IdentityHashMap;
+import java.util.Map;
+
 /** RS3 standard air spell progression. No RS2 catalytic runes or base cast XP.
  * https://runescape.wiki/w/Standard_spellbook and https://runescape.wiki/w/Air_rune */
 public final class Native950AutoSpells {
+    private static final Map<Player,Spell> SELECTED=new IdentityHashMap<>();
     private Native950AutoSpells() { }
     public enum Spell {
-        STRIKE("Air Strike",1,16,1), BOLT("Air Bolt",17,40,2), BLAST("Air Blast",41,61,3),
-        WAVE("Air Wave",62,80,4), SURGE("Air Surge",81,99,5);
+        STRIKE("Air Strike",14,1,16,1), BOLT("Air Bolt",23,17,40,2), BLAST("Air Blast",37,41,61,3),
+        WAVE("Air Wave",58,62,80,4), SURGE("Air Surge",73,81,99,5);
         public final String name;
-        public final int level, damageCap, airRunes;
-        Spell(String name,int level,int cap,int runes) { this.name=name;this.level=level;damageCap=cap;airRunes=runes; }
+        public final int key,level,damageCap,airRunes;
+        Spell(String name,int key,int level,int cap,int runes) { this.name=name;this.key=key;this.level=level;damageCap=cap;airRunes=runes; }
     }
     public static Spell select(int magicLevel) {
         Spell best=Spell.STRIKE;
         for(Spell spell:Spell.values())if(magicLevel>=spell.level)best=spell;
         return best;
     }
+    public static synchronized Spell select(Player player) {
+        Spell selected=SELECTED.get(player);
+        return selected!=null&&player.getSkills().getLevel(6)>=selected.level?selected:select(player.getSkills().getLevel(6));
+    }
+    static synchronized String choose(Player player,int key) {
+        for(Spell spell:Spell.values())if(spell.key==key){
+            if(player.getSkills().getLevel(6)<spell.level)return "You need level "+spell.level+" Magic to select "+spell.name+".";
+            SELECTED.put(player,spell);return spell.name+" selected for native auto-casting.";
+        }
+        return "That spell is not in the supported native combat spellbook yet.";
+    }
+    static synchronized void clear(Player player){SELECTED.remove(player);}
     static int damageTier(int playerLevel,int weaponTier,Spell spell) {
         return Math.max(1,Math.min(Math.min(playerLevel,weaponTier),spell.damageCap));
     }

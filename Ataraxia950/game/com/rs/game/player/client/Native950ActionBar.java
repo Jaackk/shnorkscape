@@ -24,7 +24,7 @@ public final class Native950ActionBar {
     static int pack(int type,int id){if(enumFor(type)<0||id<1||id>8191)throw new IllegalArgumentException("Invalid ability");return (type<<17)|(id<<4);}
     static boolean valid(int packed){return packed==0||((packed&~0xffffff)==0&&(packed&15)==0&&enumFor(packed>>>17)>=0&&((packed>>>4)&8191)>0);}
     static int enumFor(int type){return type==1?10147:type==5?6738:type==6?6740:-1;}
-    static int bookType(int face,int component){if(face==1450&&component==3)return 1;if(component!=1)return -1;return face==1460?1:face==1452||face==1456?5:face==1461||face==1459?6:-1;}
+    static int bookType(int face,int component){if(face==1450&&component==3)return 1;if(component!=1)return -1;return face==1460?1:face==1452||face==1456?5:face==1461||face==1459||face==1884?6:-1;}
     static int barSlot(int face,int component){if(face!=1430&&face!=1436)return -1;int relative=component-(face==1430?65:19);return relative>=0&&relative/13<SLOTS&&(relative%13==0||relative%13==1)?relative/13:-1;}
     static int struct(int packed){if(!valid(packed)||packed==0)return -1;Object id=RS3ClientScriptMap.getMap(enumFor(packed>>>17)).getValue((packed>>>4)&8191);return id instanceof Integer?(Integer)id:-1;}
     static String name(int packed){int id=struct(packed);return id<0?null:RS3GeneralRequirementMap.getMap(id).getStringValue(2794);}
@@ -33,10 +33,12 @@ public final class Native950ActionBar {
         c.write(Native950Packets.varbitSmall(1892,0));
         refreshRevolution(c);
         enableBooks(c);
+        Native950Prayer.enableInterface(c);
         refresh(c);
     }
     void enableBooks(Channel c){
-        for(int face:new int[]{1460,1452,1461,1450,1456,1459})c.write(Native950Packets.interfaceEvents(face,face==1450?3:1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
+        for(int face:new int[]{1460,1452,1461,1450,1456,1459,1884})c.write(Native950Packets.interfaceEvents(face,face==1450?3:1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
+        c.write(Native950Packets.interfaceEvents(1885,1,0,BOOK_LAST_SLOT,2));
         for(int face:new int[]{1430,1436})for(int i=0;i<SLOTS;i++)for(int component:new int[]{(face==1430?65:19)+i*13,(face==1430?66:20)+i*13})
             c.write(Native950Packets.interfaceEvents(face,component,-1,1,ABILITY_EVENTS|(1<<21)));
         c.write(Native950Packets.interfaceEvents(1430,256,-1,-1,2));
@@ -64,6 +66,10 @@ public final class Native950ActionBar {
         slots[to]=packed;refresh(c);reply(c,name+" bound to slot "+(to+1)+".");return true;
     }
     public boolean button(Player p,Channel c,Native950Actions.InterfaceAction a){
+        if(a.interfaceId()==1885&&a.componentId()==1){
+            if(a.option()!=1||a.slot()<1||a.slot()>BOOK_LAST_SLOT||!p.getInterfaceManager().containsInterface(1885))return true;
+            reply(c,Native950AutoSpells.choose(p,a.slot()));return true;
+        }
         int slot=barSlot(a.interfaceId(),a.componentId());
         int type=bookType(a.interfaceId(),a.componentId());
         if(slot<0&&type<0)return false;
