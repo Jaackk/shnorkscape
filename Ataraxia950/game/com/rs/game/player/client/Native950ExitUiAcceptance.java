@@ -100,7 +100,8 @@ public final class Native950ExitUiAcceptance {
             checkOpeningRecipe(ch);
             check(p.getInterfaceManager().containsInterface(1433),"Opened options were not owned");
             check(ui.consumeOpeningCloseAcknowledgement(),"Opening acknowledgement was not fenced");
-            check(!ui.consumeOpeningCloseAcknowledgement(),"Opening acknowledgement was consumed more than once");
+            check(ui.consumeOpeningCloseAcknowledgement(),"Repeated opening acknowledgement closed the exit overlay");
+            check(ui.isOpen(),"Repeated opening acknowledgement did not retain the exit overlay");
             ui.handle(click(86));check(calls[0]==0,"Unarmed confirmation logged out");
             ui.handle(click(72));check(packet(ch,Native950Packets.hideInterface(1433,62,false)),"Logout does not show native confirmation");
             ui.handle(click(89));ui.handle(click(86));check(calls[0]==0&&p.isActive(),"Cancel did not retire confirmation");
