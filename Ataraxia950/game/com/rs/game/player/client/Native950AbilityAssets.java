@@ -20,6 +20,7 @@ final class Native950AbilityAssets {
                 StringBuilder hash=new StringBuilder();for(byte b:MessageDigest.getInstance("SHA-256").digest(raw))hash.append(String.format("%02x",b&255));
                 if(!pins.getProperty(key).equals(hash.toString()))throw new IllegalStateException("Changed ability asset "+key);
             }
+            Native950AbilityCatalog.verify();
             verified=Cache.STORE;
         }catch(java.io.IOException|java.security.NoSuchAlgorithmException e){throw new IllegalStateException("Cannot verify ability assets",e);}
     }

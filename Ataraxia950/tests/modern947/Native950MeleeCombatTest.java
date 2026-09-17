@@ -40,7 +40,7 @@ public class Native950MeleeCombatTest {
         assertNull(combat.attack(player,npc));assertNull(combat.ability(player,14682));
         assertEquals(1000,npc.getHitpoints());step();
         assertTrue(npc.getHitpoints()<1000);assertEquals(100,player.getHitpoints());
-        assertEquals(14212,player.getNextAnimation().getIds()[0]);
+        assertNull("No cache means no invented sequence; real-cache acceptance checks the mapping",player.getNextAnimation());
         assertNotNull(combat.ability(player,14682));
         combat.stop(player);combat.attack(player,npc);
         assertNotNull(combat.ability(player,14682));

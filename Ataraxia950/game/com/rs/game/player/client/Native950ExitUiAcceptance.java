@@ -55,7 +55,7 @@ public final class Native950ExitUiAcceptance {
             if(o instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)o);
             ReferenceCountUtil.release(o);
         }
-        Native950Packets.Packet[] ordered={Native950Packets.openSub(1477,806,1433,true),
+        Native950Packets.Packet[] ordered={Native950Packets.openSub(1477,806,1433,false),
             Native950Packets.runClientScript(8177),Native950Packets.hideInterface(1477,805,false),
             Native950Packets.hideInterface(1477,806,false),Native950Packets.hideInterface(1433,0,false),
             Native950Packets.runClientScript(13831,1)};

@@ -11,17 +11,39 @@ import java.lang.reflect.Field;
 public final class Native950AbilityProbe {
     public static void main(String[] args) throws Exception {
         Cache.initFlatReadOnly(Paths.get("cache"));
+        if(args[0].equals("findwire")) {
+            byte[] pattern=new java.math.BigInteger(args[1],16).toByteArray();
+            for(int group:Cache.STORE.getIndexes()[12].getTable().getValidArchiveIds()){
+                byte[] data=Cache.STORE.getIndexes()[12].getFile(group,0);
+                outer:for(int p=0;p<=data.length-pattern.length;p++){
+                    for(int j=0;j<pattern.length;j++)if(data[p+j]!=pattern[j])continue outer;
+                    System.out.println(group+" offset="+p);break;
+                }
+            }return;
+        }
         if(args[0].equals("assets")) {
             List<String> pins=new ArrayList<>();pins.add("# Paired revision950 hub/action-bar cache assets.");
             for(int face:new int[]{1430,1436,1460,1452,1461,1450,1456,1459})for(int file:Cache.STORE.getIndexes()[3].getTable().getArchives()[face].getValidFileIds())pin(pins,3,face,file);
             for(int script:new int[]{6992,6995,11797,8423,8426,8437,7001,5900,1580,7974,7964})pin(pins,12,script,0);
             for(int id:new int[]{10147,6738,6740})pin(pins,17,id>>>8,id&255);
-            for(int id:new int[]{14682,14664,14727})pin(pins,22,id>>>5,id&31);
-            for(int id:new int[]{14212,14244,14234})pin(pins,20,id>>>7,id&127);
+            for(int id:new int[]{14682,14664,14727,14700,14701,14729,19342,14726})pin(pins,22,id>>>5,id&31);
+            for(int script:new int[]{18633,18647,18648,18607,18610,18623,18621,17721,17726,17696})pin(pins,12,script,0);
+            for(int id:new int[]{6692,6714,6727,6724,10089,10085,7122}){
+                pin(pins,17,id>>>8,id&255);
+                RS3ClientScriptMap map=RS3ClientScriptMap.getMap(id);
+                Set<Integer> sequences=new TreeSet<>();sequences.add(map.getDefaultIntValue());
+                for(Object value:map.getValues().values())if(value instanceof Integer)sequences.add((Integer)value);
+                for(int seq:sequences)if(seq>=0){
+                    pin(pins,20,seq>>>7,seq&127);
+                    Map<Integer,Object> params=AnimationDefinitions.getAnimationDefinitions(seq).clientScriptData;
+                    Object gfx=params==null?null:params.get(2920);
+                    if(gfx instanceof Integer)pin(pins,21,(Integer)gfx>>>8,(Integer)gfx&255);
+                }
+            }
             for(int id:new int[]{1747,1748,1892,1893})pin(pins,2,69,id);
             for(int id:new int[]{114745,114746,114748,114749,114750,83634,79034})pin(pins,16,id>>>8,id&255);
             pin(pins,18,16027>>>7,16027&127);
-            Files.write(Paths.get("Ataraxia950/resources/native950/ability-hub-assets.properties"),pins,java.nio.charset.StandardCharsets.UTF_8);
+            Files.write(Paths.get("Ataraxia950/resources/native950/ability-hub-assets.properties"),(String.join("\r\n",new java.util.LinkedHashSet<>(pins))+"\r\n").getBytes(java.nio.charset.StandardCharsets.UTF_8));
             System.out.println("Wrote "+(pins.size()-1)+" cache asset pins");return;
         }
         if(args[0].equals("findstruct")) {
@@ -34,6 +56,8 @@ public final class Native950AbilityProbe {
         }
         for(int a=1;a<args.length;a++) {
             int id=Integer.parseInt(args[a]);
+            if(args[0].equals("anim")){AnimationDefinitions d=AnimationDefinitions.getAnimationDefinitions(id);System.out.println(id+" failure="+d.decodeFailure+" params="+d.clientScriptData);continue;}
+            if(args[0].equals("item")){ItemDefinitions d=ItemDefinitions.getItemDefinitions(id);System.out.println(id+" "+d.getName()+" params="+d.clientScriptData);continue;}
             if(args[0].equals("npc")){byte[] raw=Cache.STORE.getIndexes()[18].getFile(id>>>7,id&127);NPCDefinitions d=NPCDefinitions.decodeStrict947(id,raw,null);System.out.println(id+" "+d.name+" size="+d.size+" options="+Arrays.toString(d.menuOptions)+" transforms="+Arrays.toString(d.transformTo));continue;}
             if(args[0].equals("bit")) {VarBitDefinitions d=VarBitDefinitions.getClientVarpBitDefinitions(id);System.out.println(id+" base="+d.baseVar+" bits="+d.startBit+".."+d.endBit);continue;}
             if(args[0].equals("region")) {
@@ -51,7 +75,7 @@ public final class Native950AbilityProbe {
                 continue;
             }
             if(args[0].equals("script")){script(id);continue;}
-            if(args[0].equals("enum"))System.out.println(id+" "+RS3ClientScriptMap.getMap(id).getValues());
+            if(args[0].equals("enum"))System.out.println(id+" default="+RS3ClientScriptMap.getMap(id).getDefaultIntValue()+" "+RS3ClientScriptMap.getMap(id).getValues());
             else if(args[0].equals("struct"))System.out.println(id+" "+RS3GeneralRequirementMap.getMap(id).getValues());
             else if(args[0].equals("raw")) {
                 int file=Integer.parseInt(args[++a]);

@@ -29,8 +29,10 @@ The smaller HUD ability books and the Powers window have separate widget IDs;
 both are handled. Dropping from an unopened book is rejected. Ability-on-NPC
 input requires a published, visible NPC and goes through the native combat gates.
 
-Only Backhand, Binding Shot and Impact currently execute. Other abilities may
-be bound but return an explicit not-implemented message. Secondary bars, bar
+Backhand, Binding Shot and Impact execute the limited damage prototype. Surge
+now has a targetless, collision-checked movement implementation, without verified
+animation/effects. Other abilities may be bound but return an explicit
+not-implemented message. Secondary bars, bar
 switching, item shortcuts, Revolution, thresholds/ultimates, necromancy,
 channels, bleeds, buffs and a complete retail combat model remain unimplemented.
 Cooldown enforcement is server-side; retail cooldown overlays are not added.
@@ -55,6 +57,10 @@ No client executable, rendering settings, game cache or existing saved-character
 file was manually edited. This is a limited native ability implementation, not
 a claim that all combat content is fixed. In-game drag/drop and rendering still
 need a live-client check; automated tests inspect state and packets only.
+
+See `ABILITY-FOUNDATIONS-20260917.md` for the subsequent drag-mask correction,
+animation correction, logout candidate fix, seven-definition research and
+explicitly incomplete combat/Revolution work.
 
 ## Verification (2026-09-17)
 

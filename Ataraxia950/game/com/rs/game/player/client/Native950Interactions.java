@@ -326,6 +326,7 @@ public final class Native950Interactions {
     Native950Containers.Snapshot equipmentSnapshot() { return containers.equipmentSnapshot(); }
 
     Native950ActionRouter router() { return router; }
+    boolean blocksWorldInput(){return exitUi.isOpen()||exitUi.isSigningOut();}
 
     void beginTick() {
         inventionUi.sync(player,channel);
@@ -363,6 +364,11 @@ public final class Native950Interactions {
         // CLOSE_MODAL reports a change the client already made. It must reconcile
         // server state even if the player died or became inactive before this tick.
         if (action instanceof Native950Actions.CloseModalAction) { closeModal(); return; }
+        if(exitUi.isOpen()&&(action instanceof Native950Actions.ObjectAction
+                ||action instanceof Native950Actions.NpcAction||action instanceof Native950Actions.GroundItemAction
+                ||action instanceof Native950Actions.ItemOnObjectAction||action instanceof Native950Actions.ItemOnNpcAction)){
+            rejectedActions++;return;
+        }
         if (!router.playerMayAct()) { cancelConversations(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); rejectedActions++; return; }
         // Loadout is a second view of the same inventory. Normalize only while that
         // verified page is mounted; stale off-screen actors retain their rejected hashes.

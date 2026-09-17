@@ -147,7 +147,7 @@ public final class Native950MeleeCombat {
     }
     /** Like stopping PlayerCombat in910: cancel the player's action, not NPCCombat.target. */
     public void cancelAttack(Player player) {
-        owned();Fighter fighter=targets.get(player);
+        owned();queuedAbilities.remove(player);Fighter fighter=targets.get(player);
         if(fighter==null)return;
         fighter.attacking=false;fighter.approachTicks=0;
         player.resetWalkSteps();player.setNextFaceEntity(null);
@@ -172,17 +172,28 @@ public final class Native950MeleeCombat {
     /** A deliberately small native basic-ability slice; legacy ability callbacks never run. */
     public String ability(Player player,int structure) {
         owned();
+        if(structure==14726){
+            Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
+            if(cooldowns!=null&&tick<cooldowns.getOrDefault(structure,0L))return "Surge is cooling down.";
+            String refusal=Native950Surge.use(player);
+            if(refusal==null)abilityCooldowns.computeIfAbsent(player,p->new java.util.HashMap<>()).put(structure,tick+34);
+            return refusal;
+        }
         String refusal=abilityRefusal(player,structure);
         if(refusal!=null)return refusal;
         queuedAbilities.put(player,structure);
         return null;
     }
     static int abilityStyle(int structure){return structure==14682?0:structure==14664?1:structure==14727?2:-1;}
+    int revolutionCandidate(Player player,int slots){
+        owned();
+        return player.getNative950ActionBar().revolutionCandidate(slots,id->abilityRefusal(player,id)==null);
+    }
     private String abilityRefusal(Player player,int structure) {
         int style=abilityStyle(structure);
-        if(style<0)return "That ability is not implemented yet. This native test supports Backhand, Binding Shot and Impact.";
+        if(style<0)return "That ability's full950 effect is not implemented yet. Supported: Backhand, Binding Shot, Impact and targetless Surge.";
         Fighter fighter=targets.get(player);
-        if(fighter==null||!available(player,fighter.npc)||fighter.npc.isDead()||player.getNextWorldTile()!=null)
+        if(fighter==null||!fighter.attacking||!available(player,fighter.npc)||fighter.npc.isDead()||player.getNextWorldTile()!=null||player.isStunned())
             return "Attack a supported NPC or training dummy first.";
         if(tick<globalCooldown.getOrDefault(player,0L))return "Abilities are on global cooldown.";
         Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
@@ -215,7 +226,13 @@ public final class Native950MeleeCombat {
         // First-pass native damage uses the existing server's max-hit scale, not retail EOC parity.
         int rolled=Math.max(1,maximum/5+rolls.damage(Math.max(0,maximum-maximum/5)));
         int actual=damage(player,fighter.npc,Rs2CombatFormula.scaleDamageForAtaraxia(rolled),gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
-        player.setNextAnimation(new Animation(style==0?14212:style==1?14244:14234));
+        // Param2802 is an icon sprite. Actual sequences come from param2915's weapon-family enum.
+        int animation=com.rs.cache.Cache.STORE==null?-1:Native950AbilityCatalog.animation(player,structure);
+        if(animation>=0){
+            player.setNextAnimation(new Animation(animation));
+            int effect=Native950AbilityCatalog.sequenceParam(animation,2920);
+            if(effect>=0)player.setNextGraphics(new com.rs.game.Graphics(effect));
+        }
         player.getCombatDefinitions().setSpecialAttackPercentage(Math.min(100,player.getCombatDefinitions().getSpecialAttackPercentage()+9));
         fighter.retaliating=!fighter.training;fighter.stunnedUntil=tick+5;
         fighter.npc.resetWalkSteps();

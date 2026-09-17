@@ -96,7 +96,8 @@ public final class Native950ExitUi {
     private void open(){
         //1477:805 is the cache's dedicated full-screen quick-options wrapper.806 is an empty child
         //beneath its native click shield808; scripts8177/8179 own wrapper visibility and input context.
-        channel.write(Native950Packets.openSub(ROOT,HOST,INTERFACE,true));
+        // This is an input-blocking confirmation, not a walkable HUD subinterface.
+        channel.write(Native950Packets.openSub(ROOT,HOST,INTERFACE,false));
         player.getInterfaceManager().registerNativeOpen(INTERFACE,ROOT,HOST);
         open=true;confirmation=false;
         channel.write(Native950Packets.runClientScript(8177));
@@ -150,7 +151,8 @@ public final class Native950ExitUi {
         open=false;confirmation=false;
         int parent=player.getInterfaceManager().getInterfaceParentId(INTERFACE);
         System.out.println("[Ataraxia950] Exit menu queued close for player "+player.getIndex()
-                +"; parent="+parent+"; owned="+(parent==(ROOT<<16|HOST)));
+                +"; parent="+parent+"; owned="+(parent==(ROOT<<16|HOST))
+                +"; caller="+new Throwable().getStackTrace()[1]);
         if(parent!=(ROOT<<16|HOST))return;
         channel.write(Native950Packets.runClientScript(8179));
         channel.write(Native950Packets.runClientScript(8180,1,1));

@@ -287,7 +287,7 @@ public final class Native950Session {
     private void route(WalkRequest request) {
         // The shared Ataraxia pathfinder covers 128x128 tiles around the player.
         // Modifier flags cannot authorize teleportation or change movement speed.
-        if (!player.isActive() || player.hasFinished() || player.isDead()
+        if ((interactions!=null&&interactions.blocksWorldInput()) || !player.isActive() || player.hasFinished() || player.isDead()
                 || player.isLocked() || player.isNative950ForceMovementActive()
                 || Math.abs(request.x() - player.getX()) > 48
                 || Math.abs(request.y() - player.getY()) > 48) {

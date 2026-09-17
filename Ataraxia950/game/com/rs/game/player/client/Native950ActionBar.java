@@ -11,6 +11,9 @@ import java.util.Map;
 /** Main native bar. Uses 950 script11797's layout, not the legacy four-bit type. */
 public final class Native950ActionBar {
     public static final int SLOTS=14;
+    // 950 native drag-parent resolver 0x1401ab903: bit23 bypasses parent-depth clipping.
+    static final int ABILITY_EVENTS=2|(2<<11)|(1<<18)|(1<<23);
+    static final int BOOK_LAST_SLOT=264;
     private final int[] slots=new int[SLOTS];
     public void writeSettings(Map<String,Integer> settings){for(int i=0;i<SLOTS;i++)settings.put("actionBar."+i,slots[i]);}
     public void restore(Map<String,Integer> settings){for(int i=0;i<SLOTS;i++){int v=settings.getOrDefault("actionBar."+i,0);slots[i]=valid(v)?v:0;}}
@@ -28,9 +31,9 @@ public final class Native950ActionBar {
         refresh(c);
     }
     void enableBooks(Channel c){
-        for(int face:new int[]{1460,1452,1461,1450,1456,1459})c.write(Native950Packets.interfaceEvents(face,face==1450?3:1,0,263,2|(2<<11)|(1<<18)));
+        for(int face:new int[]{1460,1452,1461,1450,1456,1459})c.write(Native950Packets.interfaceEvents(face,face==1450?3:1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
         for(int face:new int[]{1430,1436})for(int i=0;i<SLOTS;i++)for(int component:new int[]{(face==1430?65:19)+i*13,(face==1430?66:20)+i*13})
-            c.write(Native950Packets.interfaceEvents(face,component,-1,1,2|(2<<11)|(1<<18)|(1<<21)));
+            c.write(Native950Packets.interfaceEvents(face,component,-1,1,ABILITY_EVENTS|(1<<21)));
     }
     private void refresh(Channel c){
         for(int i=0;i<SLOTS;i++){
@@ -49,7 +52,7 @@ public final class Native950ActionBar {
         if(to<0){reply(c,"Only main-bar rearrangement is supported. Use ;;clearbar to empty it.");return true;}
         if(from>=0){int old=slots[to];slots[to]=slots[from];slots[from]=old;refresh(c);return true;}
         int type=bookType(a.sourceInterfaceId(),a.sourceComponentId());
-        if(type<0||!p.getInterfaceManager().containsInterface(a.sourceInterfaceId())||a.sourceSlot()<1||a.sourceSlot()>263){reply(c,"Drag an ability from the melee, ranged or magic ability book.");return true;}
+        if(type<0||!p.getInterfaceManager().containsInterface(a.sourceInterfaceId())||a.sourceSlot()<1||a.sourceSlot()>BOOK_LAST_SLOT){reply(c,"Drag an ability from the melee, ranged or magic ability book.");return true;}
         int packed=pack(type,a.sourceSlot());String name=name(packed);
         if(name==null||name.isEmpty()){reply(c,"That ability is not in the current cache.");return true;}
         slots[to]=packed;refresh(c);reply(c,name+" bound to slot "+(to+1)+".");return true;
@@ -59,7 +62,7 @@ public final class Native950ActionBar {
         int type=bookType(a.interfaceId(),a.componentId());
         if(slot<0&&type<0)return false;
         if(a.option()!=1||!p.getInterfaceManager().containsInterface(a.interfaceId())||p.isLocked()||p.isDead())return true;
-        int value=slot>=0?slots[slot]:a.slot()>0&&a.slot()<=263?pack(type,a.slot()):0;
+        int value=slot>=0?slots[slot]:a.slot()>0&&a.slot()<=BOOK_LAST_SLOT?pack(type,a.slot()):0;
         if(value==0)return true;
         Native950MeleeCombat combat=p.getNative950Combat();
         String result=combat==null?"Combat is not ready.":combat.ability(p,struct(value));
@@ -69,7 +72,11 @@ public final class Native950ActionBar {
     int selectedStructure(Player p,int face,int component,int slot){
         if(!p.getInterfaceManager().containsInterface(face))return -1;
         int index=barSlot(face,component),type=bookType(face,component);
-        return index>=0?struct(slots[index]):type>0&&slot>0&&slot<=263?struct(pack(type,slot)):-1;
+        return index>=0?struct(slots[index]):type>0&&slot>0&&slot<=BOOK_LAST_SLOT?struct(pack(type,slot)):-1;
+    }
+    int revolutionCandidate(int enabledSlots,java.util.function.IntPredicate canExecute){
+        int[] structures=new int[SLOTS];for(int i=0;i<SLOTS;i++)structures[i]=struct(slots[i]);
+        return Native950Revolution.select(structures,enabledSlots,canExecute);
     }
     public void clear(Channel c){java.util.Arrays.fill(slots,0);refresh(c);reply(c,"Main action bar cleared.");}
     private static void reply(Channel c,String text){c.write(Native950Packets.gameMessage(0,text));}

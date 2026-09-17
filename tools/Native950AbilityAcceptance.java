@@ -36,6 +36,13 @@ public final class Native950AbilityAcceptance {
             p.getInterfaceManager().unregisterNativeOpen(1450);
             p.getNative950ActionBar().drag(p,c,drag(1450,3,1,1430,66));
             require(p.nativeSettingsSnapshot().get("actionBar.0")==Native950ActionBar.pack(1,3),"Closed book rejected");
+            int[] empty=new int[28];java.util.Arrays.fill(empty,-1);
+            Native950Save base=new Native950Save("ability-test",p.getX(),p.getY(),p.getPlane(),empty,new int[28],new int[0],new int[0]);
+            java.nio.file.Path directory=java.nio.file.Files.createTempDirectory("native950-actionbar-");
+            new Native950SaveStore(directory).save(Native950PlayerBinder.capture(p,base,System.currentTimeMillis()));
+            Player restored=Player.createNative950("ability-test",new WorldTile(p),c);
+            Native950PlayerBinder.restore(restored,new Native950SaveStore(directory).load("ability-test"));
+            require(restored.nativeSettingsSnapshot().get("actionBar.0")==Native950ActionBar.pack(1,3),"Action bar survives disk save and new player restore");
         }finally{c.finishAndReleaseAll();}
         c=new EmbeddedChannel();
         try{
@@ -52,7 +59,9 @@ public final class Native950AbilityAcceptance {
                 });
             combat.attach(p);combat.registerTraining(dummy);int hp=p.getHitpoints();
             require(combat.attack(p,dummy)==null,"Dummy attack");require(combat.ability(p,14682)==null,"Backhand queued");
-            for(int i=0;i<30;i++){combat.beforeMovement();combat.afterMovement();}
+            combat.beforeMovement();combat.afterMovement();
+            require(p.getNextAnimation()!=null&&p.getNextAnimation().getIds()[0]==18154,"Unarmed Backhand uses animation enum, never sprite14212");
+            for(int i=1;i<30;i++){combat.beforeMovement();combat.afterMovement();}
             require(dummy.getHitpoints()==100000,"Dummy health restored");require(p.getHitpoints()==hp,"Dummy never retaliates");require(rewardCalls[0]==0,"No dummy XP/loot");
             require(combat.ability(p,14682)==null,"Cooldown expires");combat.detach(p);combat.clear();
         }finally{c.finishAndReleaseAll();}
@@ -60,7 +69,7 @@ public final class Native950AbilityAcceptance {
             World.getRegion(tile.getRegionId(),true);
             require(World.isRegionLoaded(tile.getRegionId())&&World.canMoveNPC(tile,1),"Landing tile "+tile.getX()+","+tile.getY());
         }
-        System.out.println("PASS: pinned assets, ability IDs/names, modern varbits, Powers drag/save, closed-book rejection, dummy health/no retaliation/no rewards, cooldown expiry and clear hub/exit landing tiles.");
+        System.out.println("PASS: pinned assets, seven definitions, modern varbits, Powers drag and disk-save restore, closed-book rejection, Backhand animation18154, dummy health/no retaliation/no rewards, cooldown expiry and clear hub/exit landing tiles.");
     }
     static Native950Actions.DragAction drag(int sf,int sc,int slot,int tf,int tc){
         int source=sf<<16|sc,target=tf<<16|tc;
