@@ -27,7 +27,7 @@ internal object Native950InterfaceBootstrap {
     private data class Panel(val slot: Int, val interfaceId: Int, val showWrapper: Boolean)
     private val panels = listOf(
         Panel(1000, 1482, false), Panel(1004, 1465, false), Panel(2, 1473, true),
-        Panel(3, 1462, true), Panel(18, 137, true)
+        Panel(3, 1462, true), Panel(4, 1458, true), Panel(5, 1461, true), Panel(18, 137, true)
     )
 
     /** [ribbonEnabled] stays false until the ribbon's component and click evidence is admitted. */

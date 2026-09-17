@@ -72,7 +72,7 @@ fun main() {
  verify("IF_SETEVENTS run orb 1465:15", "00020000ffffff7f0f00b905"){IfSetevents.Codec(fields("IF_SETEVENTS")).encode(IfSetevents(InterfaceHash((1465 shl 16) or 15),-1,-1,2),it)}
  println("PASS IF_SETEVENTS 950 wire vectors")
  // Inspect the actual bridge bootstrap, independently of the Java menu constant's own tests.
- val menuSlots=(Native950InterfaceBootstrap.hiddenSlots+listOf(1000,1004,2,3,18)).distinct()
+ val menuSlots=(Native950InterfaceBootstrap.hiddenSlots+listOf(1000,1004,2,3,4,5,18)).distinct()
    .mapIndexed { index,key -> key to Native950InterfaceBootstrap.Slot((1477 shl 16) or (100+index),(1477 shl 16) or (400+index)) }.toMap()
  val backpackEvents=Native950InterfaceBootstrap.packets(menuSlots).filter {
    it.type().opcode()==24 && ByteBufUtil.hexDump(io.netty.buffer.Unpooled.wrappedBuffer(it.payload())).endsWith("0500c105")
