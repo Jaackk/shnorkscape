@@ -37,8 +37,7 @@ public class Native950AdminCommandsTest {
         p.setRunEnergy(75);assertEquals(75,p.getRunEnergy());
     }
     @Test public void allDirectoryPagesFitPacketLimitsAndBadArgumentsDoNotToggle() {
-        for(int page=1;page<=4;page++)run(";;commands "+page);
-        run(";;commands");run(";;commands 0");run(";;commands rubbish");run(";;commands 2 3");
+        run(";;commands");run(";;commands 1");run(";;commands rubbish");run(";;commands 2 3");
         run(";;almighty nope");assertFalse(p.isDevelopmentGodMode());
         System.clearProperty(Native950AdminCommands.ACCOUNTS);run(";;almighty");assertFalse(p.isInfiniteCombatRunes());
     }
@@ -54,6 +53,11 @@ public class Native950AdminCommandsTest {
         run(";;bar 0");run(";;bar nope");assertEquals(2,p.getNative950ActionBar().activeBar());
         run(";;revo");assertTrue(p.getNative950ActionBar().isRevolutionEnabled());
         run(";;revolution");assertFalse(p.getNative950ActionBar().isRevolutionEnabled());
+    }
+    @Test public void spellAndRefillCommandsUseTheNativeCombatState() {
+        run(";;spell");run(";;spell strike");assertSame(Native950AutoSpells.Spell.STRIKE,Native950AutoSpells.select(p));
+        p.getSkills().set(Skills.MAGIC,81);run(";;spell surge");assertSame(Native950AutoSpells.Spell.SURGE,Native950AutoSpells.select(p));
+        p.setHitpoints(1);p.setRunEnergy(1);run(";;refill");assertEquals(p.getMaxHitpoints(),p.getHitpoints());assertEquals(100,p.getRunEnergy());
     }
     @Test public void permissionRequiresBothLocalDevelopmentAndAccountGrant() {
         System.clearProperty(Native950AdminCommands.ACCOUNTS);run(";;god");assertFalse(p.isDevelopmentGodMode());

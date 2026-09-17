@@ -391,7 +391,9 @@ public final class Native950MeleeCombat {
                 if(gear.profile!=null&&!gear.profile.consume(player)){player.sendMessage("You cannot supply the ammunition or runes for that attack.");fighter.outOfSupplies=true;cancelAttack(player);}
                 else {
                 nextAttack.put(player,tick+gear.speed);
-                player.setNextFaceEntity(npc);player.setNextAnimation(new Animation(gear.attackAnimation));
+                int animation=gear.profile!=null&&gear.profile.style==Native950CombatStyles.MAGIC
+                        ? Native950AutoSpells.animation(player) : -1;
+                player.setNextFaceEntity(npc);player.setNextAnimation(new Animation(animation>=0?animation:gear.attackAnimation));
                 int skill=gear.profile==null?Skills.ATTACK:gear.profile.skill;
                 int attack=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(skill),0,3,1);
                 int strength=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(gear.profile==null||gear.profile.style==0?Skills.STRENGTH:skill),0,0,1);

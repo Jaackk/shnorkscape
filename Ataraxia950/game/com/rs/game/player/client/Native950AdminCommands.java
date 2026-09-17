@@ -14,10 +14,10 @@ public final class Native950AdminCommands {
         if (Native950ContentCommands.recognizes(command)) return true;
         switch (command) {
             case "god": case "infprayer": case "infadren": case "adrenaline":
-            case "almighty": case "infrunes": case "infrun": case "infammo": case "commands":
+            case "almighty": case "infrunes": case "infrun": case "infammo": case "commands": case "spell":
             case "wars": case "warsretreat": case "dummy": case "testbar": case "clearbar": case "bar":
             case "revo": case "revolution":
-            case "heal": case "max": case "coords": case "disengage": case "devhelp": case "devstatus":
+            case "heal": case "refill": case "max": case "coords": case "disengage": case "devhelp": case "devstatus":
                 return true;
             default: return false;
         }
@@ -43,8 +43,9 @@ public final class Native950AdminCommands {
             Native950ContentCommands.handle(p, channel, args); return;
         }
         if(command.equals("commands")) { commandList(channel,args);return; }
-        if (args.length > (command.equals("adrenaline") || command.equals("bar") ? 2 : 1)) {
-            String usage=command.equals("adrenaline") ? " [0-100]" : command.equals("bar") ? " [1-3]" : "";
+        if (args.length > (command.equals("adrenaline") || command.equals("bar") || command.equals("spell") ? 2 : 1)) {
+            String usage=command.equals("adrenaline") ? " [0-100]" : command.equals("bar") ? " [1-3]"
+                    : command.equals("spell") ? " [strike|bolt|blast|wave|surge]" : "";
             reply(channel, "Usage: ;;" + command + usage); return;
         }
         if (!p.isActive() || p.hasFinished() || p.isDead() || p.isLocked()) {
@@ -67,6 +68,9 @@ public final class Native950AdminCommands {
                 p.getNative950ActionBar().setRevolutionEnabled(channel,revolution);
                 reply(channel,"Server-side Revolution "+state(revolution)+" for this saved action bar.");
                 reply(channel,"The Combat Settings checkbox still awaits its native client acknowledgement fix.");break;
+            case "spell":
+                if(args.length==1){reply(channel,"Selected native auto-spell: "+Native950AutoSpells.select(p).name+". Use ;;spell strike|bolt|blast|wave|surge.");break;}
+                reply(channel,Native950AutoSpells.choose(p,args[1]));break;
             case "almighty":
                 boolean enabled=!(p.isDevelopmentGodMode()&&p.getPrayer().isInfinitePrayer()
                         &&p.getCombatDefinitions().isInfiniteAdrenaline()&&p.isInfiniteRunEnergy()
@@ -116,7 +120,7 @@ public final class Native950AdminCommands {
                     p.getSkills().set(skill, cap);
                 }
                 heal(p); reply(channel, "All skills set to their cache-defined caps. XP and levels are saved."); break;
-            case "heal": heal(p); reply(channel, "Health, prayer, run energy and drained stats restored."); break;
+            case "heal": case "refill": heal(p); reply(channel, "Health, prayer, run energy and drained stats restored."); break;
             case "coords":
                 reply(channel, "Tile " + p.getX() + "," + p.getY() + "," + p.getPlane() + "; region " + p.getRegionId() + "."); break;
             case "disengage":
@@ -129,45 +133,34 @@ public final class Native950AdminCommands {
                 reply(channel,"Run: "+state(p.isInfiniteRunEnergy())+"; combat runes: "+state(p.isInfiniteCombatRunes())
                         +"; ammunition: "+state(p.isInfiniteAmmunition())+".");break;
             default:
-                reply(channel, ";;god, ;;infprayer, ;;infadren toggle independently; reset on logout.");
-                reply(channel, ";;adrenaline [0-100], ;;heal, ;;max, ;;coords, ;;disengage, ;;devstatus.");
-                reply(channel, "Existing: ;;tele <x> <y> [plane], ;;item <id> [quantity], ;;npc <id>, ;;obj <id>, ;;nxt.");
-                reply(channel, ";;gearhelp for gear sets, item/NPC search, spawning and cleanup.");
-                reply(channel, ";;almighty toggles all combat resource modes; ;;commands shows the full described list.");
+                reply(channel, ";;commands shows every supported local command and a short description.");
         }
     }
 
     private static void commandList(Channel channel,String[] args) {
-        int page=1;
-        try { if(args.length>2)throw new NumberFormatException();if(args.length==2)page=Integer.parseInt(args[1]); }
-        catch(NumberFormatException invalid){reply(channel,"Use ;;commands [1-4].");return;}
-        if(page<1||page>4){reply(channel,"Use ;;commands [1-4].");return;}
-        String[][] pages={
-            {"COMBAT & RESOURCES", "almighty|Toggle all six combat resource modes", "god|Toggle damage immunity",
-             "infprayer|Toggle unlimited prayer", "infadren|Toggle unlimited adrenaline", "infrunes|Toggle free native combat casts",
-             "infrun|Toggle unlimited run energy", "infammo|Toggle ammo consumption (equip ammo first)",
-             "adrenaline [0-100]|Set energy; defaults to 100", "heal|Restore health, prayer, run and drained stats"},
-            {"GEAR & ITEMS", "meleegear|Torva, Chaotic rapier and accessories", "magegear|Virtus, Chaotic staff and accessories",
-             "rangegear|Pernix, Chaotic crossbow and bolts", "weapons|Noxious weapons and Drygore rapiers",
-             "item <id> [amount]|Give an item to your backpack", "search <name> [page]|Find item IDs; 10 results per page",
-             "gearhelp|Gear and search help", "max|Permanently max skills to their individual caps"},
-            {"NPCS & TRAVEL", "findnpc <name> [page]|Search NPC definition IDs", "npc <id> [1-50]|Spawn test NPCs at your tile",
-             "npcs|List nearby test NPCs and their live indexes", "removenpc <index>|Remove one of your test NPCs",
-             "clearnpcs [radius]|Remove your test NPCs", "tele <x> <y> [plane]|Teleport to coordinates",
-             "coords|Show your tile and region", "disengage|Stop native combat and movement"},
-            {"DEVELOPMENT", "devstatus|Show combat resource toggle states", "bar [1-3]|Show or select one of three saved action bars",
-             "revo|Toggle server-side Revolution without opening Combat Settings", "nxt status|Show native world/combat diagnostics",
-             "wars|Teleport to War's Retreat", "dummy|Place one non-retaliating training dummy",
-             "testbar|Replace slots 1-3 with the three supported test abilities", "clearbar|Empty the saved main action bar",
-             "nxt level <skill ID> <level>|Set one saved skill", "obj <id> [type] [rotation]|Place a diagnostic object",
-             "nxt|List existing native diagnostic tools", "devhelp|Quick administrator help", "commands [1-4]|Browse this command directory"}
+        if(args.length!=1){reply(channel,"Use ;;commands.");return;}
+        String[] rows={
+            "<col=ffd166>===== SHNORKSCAPE LOCAL COMMANDS =====</col>",
+            "<col=ffd166>COMBAT</col> ;;almighty - all six infinite combat resources; ;;god - damage immunity.",
+            ";;infprayer - no drain; ;;infadren - endless adrenaline; ;;infrunes - free spell runes.",
+            ";;infrun - endless run energy; ;;infammo - no ammunition use; ;;adrenaline [0-100] - set energy.",
+            ";;heal or ;;refill - restore health, prayer, run and drained levels; ;;max - max all skills.",
+            ";;spell [strike|bolt|blast|wave|surge] - view or select an Air auto-spell.",
+            "<col=ffd166>ACTION BARS</col> ;;bar [1-3] - view/select a saved action bar; ;;revo - toggle server Revolution.",
+            ";;testbar - place Backhand, Binding Shot and Impact in slots 1-3; ;;clearbar - empty the selected bar.",
+            "<col=ffd166>GEAR & ITEMS</col> ;;meleegear, ;;magegear, ;;rangegear - add full combat kits; ;;weapons - weapon kit.",
+            ";;gear melee|mage|range|weapons - choose a kit; ;;item <id> [amount] - give an item.",
+            ";;search <name> [page] - find item IDs; ;;findnpc <name> [page] - find NPC IDs; ;;gearhelp - kit details.",
+            "<col=ffd166>NPCS & TRAVEL</col> ;;npc <id> [1-50] - spawn your test NPCs; ;;npcs - list them.",
+            ";;removenpc <index> - remove one; ;;clearnpcs [0-128] - remove nearby test NPCs; ;;dummy - training dummy.",
+            ";;wars - War's Retreat; ;;tele <x> <y> [plane] - coordinate teleport; ;;coords - current tile and region.",
+            ";;disengage - stop native combat and movement; ;;obj <id> [type] [rotation] - diagnostic object.",
+            "<col=ffd166>DEVELOPMENT</col> ;;devstatus - resource modes; ;;nxt status - native world/combat diagnostics.",
+            ";;nxt level <skill ID> <level> - set a saved level; ;;nxt banker|cook|combat|skilling|agility|barbarian|wilderness|slayer.",
+            ";;nxt effects|clear|bar|force - display diagnostics; ;;area, ;;areascan, ;;areastop - scene debugging.",
+            ";;open, ;;unhide, ;;events, ;;guideclose, ;;cs, ;;varbit, ;;varc - native UI diagnostics; ;;devhelp - brief help."
         };
-        String[] rows=pages[page-1];reply(channel,"<col=ffd166>===== "+rows[0]+" - "+page+"/4 =====</col>");
-        for(int i=1;i<rows.length;i++) {
-            String[] row=rows[i].split("\\|",2);
-            reply(channel,"<col=80d8ff>;;"+row[0]+"</col> - "+row[1]);
-        }
-        reply(channel,"<col=ffd166>"+(page<4?"Next: ;;commands "+(page+1):"Back to combat: ;;commands 1")+"</col>");
+        for(String row:rows)reply(channel,row);
     }
 
     private static void heal(Player p) {
@@ -179,5 +172,5 @@ public final class Native950AdminCommands {
         p.setRunEnergy(100);
     }
     private static String state(boolean enabled) { return enabled ? "enabled" : "disabled"; }
-    private static void reply(Channel channel, String message) { channel.write(Native950Packets.gameMessage(0, message)); }
+    private static void reply(Channel channel, String message) { channel.write(Native950Packets.gameMessage(0, message.length()>180?message.substring(0,177)+"...":message)); }
 }

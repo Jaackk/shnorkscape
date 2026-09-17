@@ -1,5 +1,9 @@
 package com.rs.game.player.client;
 
+import com.rs.cache.Cache;
+import com.rs.cache.loaders.AnimationDefinitions;
+import com.rs.cache.loaders.rs3.RS3ClientScriptMap;
+import com.rs.cache.loaders.rs3.RS3GeneralRequirementMap;
 import com.rs.game.player.Player;
 import java.util.IdentityHashMap;
 import java.util.Map;
@@ -31,6 +35,22 @@ public final class Native950AutoSpells {
             SELECTED.put(player,spell);return spell.name+" selected for native auto-casting.";
         }
         return "That spell is not in the supported native combat spellbook yet.";
+    }
+    static synchronized String choose(Player player,String name) {
+        String normalized=name==null?"":name.toLowerCase(java.util.Locale.ROOT).replace(" ","");
+        if(normalized.startsWith("air"))normalized=normalized.substring(3);
+        for(Spell spell:Spell.values())if(spell.name.toLowerCase(java.util.Locale.ROOT).replace("air ","").equals(normalized))
+            return choose(player,spell.key);
+        return "Use ;;spell strike|bolt|blast|wave|surge.";
+    }
+    /** Exact paired-950 standard-spell cast sequence; callers retain their weapon animation as a fallback. */
+    static int animation(Player player) {
+        if(Cache.STORE==null)return -1;
+        int structure=RS3ClientScriptMap.getMap(6740).getIntValue(select(player).key);
+        if(structure<0)return -1;
+        int animation=RS3GeneralRequirementMap.getMap(structure).getIntValue(2914);
+        if(animation<0)return -1;
+        return AnimationDefinitions.getAnimationDefinitions(animation).decodeFailure==null?animation:-1;
     }
     static synchronized void clear(Player player){SELECTED.remove(player);}
     static int damageTier(int playerLevel,int weaponTier,Spell spell) {
