@@ -38,6 +38,7 @@ public final class Native950MeleeCombat {
     private final Map<Player,Long> globalCooldown = new IdentityHashMap<>();
     private final Map<Player,Map<Integer,Long>> abilityCooldowns = new IdentityHashMap<>();
     private final Map<Player,DamageOverTime> damageOverTime = new IdentityHashMap<>();
+    private final Map<Player,java.util.List<PendingHit>> pendingHits = new IdentityHashMap<>();
     private final Map<Player,Long> deadPlayers = new IdentityHashMap<>();
     private final Map<Integer,String> unavailableDefinitions = new java.util.TreeMap<>();
     private long tick, swings, hits, kills, respawns;
@@ -62,7 +63,7 @@ public final class Native950MeleeCombat {
     }
     public void detach(Player player) {
         owned();stop(player);deadPlayers.remove(player);nextAttack.remove(player);player.setNative950Combat(null);
-        globalCooldown.remove(player);abilityCooldowns.remove(player);damageOverTime.remove(player);Native950AutoSpells.clear(player);
+        globalCooldown.remove(player);abilityCooldowns.remove(player);damageOverTime.remove(player);pendingHits.remove(player);Native950AutoSpells.clear(player);
         player.setDevelopmentGodMode(false);
         player.setInfiniteRunEnergy(false);
         player.setInfiniteCombatRunes(false);
@@ -150,7 +151,7 @@ public final class Native950MeleeCombat {
     }
     /** Like stopping PlayerCombat in910: cancel the player's action, not NPCCombat.target. */
     public void cancelAttack(Player player) {
-        owned();queuedAbilities.remove(player);Fighter fighter=targets.get(player);
+        owned();queuedAbilities.remove(player);pendingHits.remove(player);Fighter fighter=targets.get(player);
         if(fighter==null)return;
         fighter.attacking=false;fighter.approachTicks=0;
         player.resetWalkSteps();player.setNextFaceEntity(null);
@@ -163,7 +164,7 @@ public final class Native950MeleeCombat {
         if(fighter==null)return;
         player.resetWalkSteps();player.setNextFaceEntity(null);player.setAttackedBy(null);
         if(player.getTarget()==fighter.npc)player.setTarget(null);
-        damageOverTime.remove(player);fighter.target=null;fighter.attacking=false;fighter.retaliating=false;fighter.outOfSupplies=false;fighter.approachTicks=0;fighter.followFailures=0;
+        damageOverTime.remove(player);pendingHits.remove(player);fighter.target=null;fighter.attacking=false;fighter.retaliating=false;fighter.outOfSupplies=false;fighter.approachTicks=0;fighter.followFailures=0;
         fighter.npc.resetWalkSteps();fighter.npc.setNextFaceEntity(null);fighter.npc.setAttackedBy(null);
         fighter.returning=!fighter.npc.isDead() && distance(fighter.npc,fighter.home)>0;
         fighter.npc.setNative950CombatEngaged(fighter.returning);
@@ -171,7 +172,7 @@ public final class Native950MeleeCombat {
     public void clear() {
         owned();for(Player player:new ArrayList<>(targets.keySet()))stop(player);
         fighters.clear();unavailableDefinitions.clear();nextAttack.clear();deadPlayers.clear();
-        queuedAbilities.clear();globalCooldown.clear();abilityCooldowns.clear();damageOverTime.clear();
+        queuedAbilities.clear();globalCooldown.clear();abilityCooldowns.clear();damageOverTime.clear();pendingHits.clear();
     }
     /** A deliberately small native basic-ability slice; legacy ability callbacks never run. */
     public String ability(Player player,int structure) {
@@ -257,14 +258,21 @@ public final class Native950MeleeCombat {
         int percent=definition.minPercent+rolls.damage(Math.max(0,definition.maxPercent-definition.minPercent));
         if(definition.effect==Native950AbilityCatalog.Effect.EXECUTE
                 && fighter.npc.getHitpoints()*2<=fighter.profile.hp)percent+=20;
+        int animation=com.rs.cache.Cache.STORE==null?-1:Native950AbilityCatalog.animation(player,structure);
+        int animationTicks=Native950AbilityCatalog.animationTicks(animation);
         int total=0;
         for(int hit=0;hit<definition.hits;hit++){
             int rolled=Math.max(1,maximum*percent/100);
-            total+=damage(player,fighter.npc,Rs2CombatFormula.scaleDamageForAtaraxia(rolled),gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
+            int requested=Rs2CombatFormula.scaleDamageForAtaraxia(rolled);
+            if(hit>0){
+                long dueTick=tick+Native950AbilityCatalog.secondaryHitDelay(animationTicks,hit,definition.hits);
+                pendingHits.computeIfAbsent(player,p->new ArrayList<>()).add(new PendingHit(fighter,requested,dueTick,gear));
+                continue;
+            }
+            total+=damage(player,fighter.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
             if(fighter.npc.isDead())break;
         }
         // Param2802 is an icon sprite. Actual sequences come from param2915's weapon-family enum.
-        int animation=com.rs.cache.Cache.STORE==null?-1:Native950AbilityCatalog.animation(player,structure);
         if(animation>=0){
             player.setNextAnimation(new Animation(animation));
             int effect=Native950AbilityCatalog.sequenceParam(animation,2920);
@@ -367,6 +375,8 @@ public final class Native950MeleeCombat {
             if(player==null || npc.isDead())continue;
             processDamageOverTime(player,fighter);
             if(npc.isDead())continue;
+            processPendingHits(player,fighter);
+            if(npc.isDead())continue;
             if(!available(player,npc) || player.hasTeleported() || player.getNextWorldTile()!=null
                     || distanceToFootprint(player,fighter.home,fighter.profile.size)>LEASH
                     || distance(npc,fighter.home)>LEASH){stop(player);continue;}
@@ -457,6 +467,28 @@ public final class Native950MeleeCombat {
         if(fighter.npc.isDead()){damageOverTime.remove(player);npcDied(fighter,player);return;}
         if(--dot.remaining==0)damageOverTime.remove(player);else dot.nextTick=tick+2;
     }
+    private void processPendingHits(Player player,Fighter fighter){
+        java.util.List<PendingHit> scheduled=pendingHits.get(player);
+        if(scheduled==null)return;
+        if(!available(player,fighter.npc)||player.hasTeleported()){
+            pendingHits.remove(player);
+            return;
+        }
+        Iterator<PendingHit> iterator=scheduled.iterator();
+        while(iterator.hasNext()){
+            PendingHit hit=iterator.next();
+            if(hit.dueTick>tick)continue;
+            iterator.remove();
+            if(hit.fighter!=fighter||!fighter.attacking||fighter.npc.isDead())continue;
+            int actual=damage(player,fighter.npc,hit.damage,hit.gear.profile==null?Hit.HitLook.MELEE_DAMAGE:hit.gear.profile.look());
+            if(actual>0&&!fighter.training)rewards.hit(player,fighter.npc,actual,hit.gear);
+            if(fighter.training)fighter.npc.setHitpoints(fighter.profile.hp);
+            else if(fighter.npc.isDead()){
+                pendingHits.remove(player);npcDied(fighter,player);return;
+            }
+        }
+        if(scheduled.isEmpty())pendingHits.remove(player);
+    }
     private boolean playerReach(Player p,NPC n,Loadout gear){
         if(gear.profile==null||gear.profile.range<=1)return access.reach(p,n);
         return access.rangedReach(p,n,gear.profile.range);
@@ -502,6 +534,7 @@ public final class Native950MeleeCombat {
         return null;
     }
     public String status() {owned();return "fighters="+fighters.size()+", unavailableTypes="+unavailableDefinitions.size()+", engaged="+targets.size()+", swings="+swings+", damagingHits="+hits+", kills="+kills+", respawns="+respawns;}
+    int pendingHitCount(Player player) {owned();java.util.List<PendingHit> hits=pendingHits.get(player);return hits==null?0:hits.size();}
     static WorldTile respawnTile(){return new WorldTile(3217,3258,0);}
     private boolean available(Player player,NPC npc) {
         return player!=null&&player.getClientProfile()==ClientProfile.NATIVE_950&&access.player(player)&&access.npc(npc)
@@ -606,5 +639,9 @@ public final class Native950MeleeCombat {
     private static final class DamageOverTime {
         final Fighter fighter;final int damage;int remaining;long nextTick;final Loadout gear;
         DamageOverTime(Fighter fighter,int damage,int remaining,long nextTick,Loadout gear){this.fighter=fighter;this.damage=damage;this.remaining=remaining;this.nextTick=nextTick;this.gear=gear;}
+    }
+    private static final class PendingHit {
+        final Fighter fighter;final int damage;final long dueTick;final Loadout gear;
+        PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear){this.fighter=fighter;this.damage=damage;this.dueTick=dueTick;this.gear=gear;}
     }
 }

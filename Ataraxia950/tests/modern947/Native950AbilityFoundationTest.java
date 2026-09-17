@@ -51,6 +51,13 @@ public class Native950AbilityFoundationTest {
         assertEquals(-1,Native950Revolution.select(bar,14,id->false));
         assertEquals(-1,Native950Revolution.select(bar,0,id->true));
     }
+    @Test public void abilityHitSpacingUsesTheSameFrameTimelineAsEntityAnimations(){
+        assertEquals(1,Native950AbilityCatalog.animationTicksForMillis(0));
+        assertEquals(1,Native950AbilityCatalog.animationTicksForMillis(600));
+        assertEquals(2,Native950AbilityCatalog.animationTicksForMillis(601));
+        assertEquals(2,Native950AbilityCatalog.secondaryHitDelay(5,1,3));
+        assertEquals(4,Native950AbilityCatalog.secondaryHitDelay(5,2,3));
+    }
     @Test public void nativeMagicGridSelectsOnlyVerifiedCombatAirSpells(){
         EmbeddedChannel c=new EmbeddedChannel();
         try{

@@ -77,6 +77,19 @@ public class Native950MeleeCombatTest {
         assertNotNull(combat.ability(player,14664));assertNotNull(combat.ability(player,14727));
         assertNotNull(combat.ability(player,14688));assertNull(combat.ability(player,14682));
     }
+    @Test public void multiHitAbilitiesPublishTheirFirstHitBeforeTheirScheduledFollowUps(){
+        player.getSkills().set(0,21);npc.setHitpoints(1000);combat.attack(player,npc);
+        assertNull(combat.ability(player,14701));step();
+        assertEquals("Fury must not publish all three hits on its opening tick",1,npc.getNextHits().size());
+        assertEquals("Fury must schedule its other two hits for later world ticks",2,combat.pendingHitCount(player));
+    }
+    @Test public void cancellingCombatRemovesUnlandedMultiHitAbilityDamage(){
+        player.getSkills().set(0,21);npc.setHitpoints(1000);combat.attack(player,npc);
+        assertNull(combat.ability(player,14701));step();
+        assertEquals(2,combat.pendingHitCount(player));
+        combat.cancelAttack(player);
+        assertEquals(0,combat.pendingHitCount(player));
+    }
     @Test public void repeatedClicksRespectBothCadencesAndExchangeRealDamage(){
         assertNull(combat.attack(player,npc));step();
         assertEquals(40,npc.getHitpoints());assertEquals(90,player.getHitpoints());

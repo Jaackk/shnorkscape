@@ -93,6 +93,19 @@ final class Native950AbilityCatalog {
         Map<Integer,Object> values=AnimationDefinitions.getAnimationDefinitions(animation).clientScriptData;
         Object value=values==null?null:values.get(param);return value instanceof Integer?(Integer)value:-1;
     }
-    static int targetGraphic(int struct){return RS3GeneralRequirementMap.getMap(struct).getIntValue(2933);}
+    /** Mirrors Entity#setNextAnimation's cache-frame duration in the native world's 600ms ticks. */
+    static int animationTicks(int animation){
+        if(animation<0)return 1;
+        return animationTicksForMillis(AnimationDefinitions.getAnimationDefinitions(animation).getEmoteTime());
+    }
+    static int animationTicksForMillis(int millis){return Math.max(1,(Math.max(0,millis)+599)/600);}
+    static int secondaryHitDelay(int animationTicks,int hitIndex,int hits){
+        if(hitIndex<1||hitIndex>=hits)throw new IllegalArgumentException("Invalid secondary hit index");
+        return Math.max(1,(animationTicks*hitIndex+hits-1)/hits);
+    }
+    static int targetGraphic(int struct){
+        if(com.rs.cache.Cache.STORE==null)return -1;
+        return RS3GeneralRequirementMap.getMap(struct).getIntValue(2933);
+    }
     private Native950AbilityCatalog(){}
 }
