@@ -69,7 +69,7 @@ public final class Native950AbilityAcceptance {
             World.getRegion(tile.getRegionId(),true);
             require(World.isRegionLoaded(tile.getRegionId())&&World.canMoveNPC(tile,1),"Landing tile "+tile.getX()+","+tile.getY());
         }
-        System.out.println("PASS: pinned assets, seven definitions, modern varbits, Powers drag and disk-save restore, closed-book rejection, Backhand animation18154, dummy health/no retaliation/no rewards, cooldown expiry and clear hub/exit landing tiles.");
+        System.out.println("PASS: pinned assets, eight definitions, modern varbits, Powers drag and disk-save restore, closed-book rejection, Backhand animation18154, dummy health/no retaliation/no rewards, cooldown expiry and clear hub/exit landing tiles.");
     }
     static Native950Actions.DragAction drag(int sf,int sc,int slot,int tf,int tc){
         int source=sf<<16|sc,target=tf<<16|tc;
