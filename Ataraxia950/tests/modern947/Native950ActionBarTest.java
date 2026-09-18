@@ -107,6 +107,24 @@ public class Native950ActionBarTest {
             assertTrue(hasPacket(packets,Native950Packets.varbitSmall(1893,3)));
         }finally{c.finishAndReleaseAll();}
     }
+    @Test public void everySavedBarMutationSynchronizesTheSameNativeDisplayContext(){
+        EmbeddedChannel c=new EmbeddedChannel();try{
+            Native950ActionBar bar=new Native950ActionBar();bar.testBar(c);c.flush();
+            List<Native950Packets.Packet> packets=new ArrayList<>();Object next;
+            while((next=c.readOutbound())!=null)if(next instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)next);
+            assertTrue(hasPacket(packets,Native950Packets.varbitSmall(1893,1)));
+            assertTrue(hasPacket(packets,Native950Packets.varbitSmall(1892,0)));
+            assertTrue(hasPacket(packets,Native950Packets.varbitSmall(Native950ActionBar.FULL_MANUAL_MODE_VARBIT,1)));
+            assertTrue(hasPacket(packets,Native950Packets.varbitSmall(Native950ActionBar.REVOLUTION_MODE_VARBIT,0)));
+            assertTrue(hasPacket(packets,Native950Packets.varp(739,Native950ActionBar.pack(1,3))));
+            assertTrue(hasPacket(packets,Native950Packets.runClientScript(6992)));
+            assertTrue(hasPacket(packets,Native950Packets.runClientScript(7964,1436,0,0,1,-1)));
+            bar.setActiveBar(c,1);c.flush();packets.clear();
+            while((next=c.readOutbound())!=null)if(next instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)next);
+            assertTrue(hasPacket(packets,Native950Packets.varbitSmall(1893,2)));
+            assertTrue(hasPacket(packets,Native950Packets.varp(739,0)));
+        }finally{c.finishAndReleaseAll();}
+    }
     private static boolean hasPacket(List<Native950Packets.Packet> packets,Native950Packets.Packet expected){
         for(Native950Packets.Packet actual:packets)if(actual.type()==expected.type()&&Arrays.equals(actual.payload(),expected.payload()))return true;
         return false;

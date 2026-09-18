@@ -552,29 +552,42 @@ public final class Native950Containers {
         if (inventory.getSize() != INVENTORY_SIZE || equipment.getSize() != EQUIPMENT_SIZE
                 || bank.bankTabs.length != 1 || bank.bankTabs[0].length > Bank.MAX_BANK_SIZE)
             throw new IllegalStateException("Unexpected modern container shape");
-        for (Item item : inventory.getItems()) {
+        Item[] inventoryItems = inventory.getItems();
+        for (int slot = 0; slot < inventoryItems.length; slot++) {
+            Item item = inventoryItems[slot];
             if (item == null) continue;
-            validateItem(item);
+            validateItem(item, "inventory", slot);
             if (!requireType(item.getId()).stackable && item.getAmount() != 1)
                 throw new IllegalStateException("Non-stackable item occupies more than one item per backpack slot");
         }
-        for (Item item : bank.bankTabs[0]) {
+        for (int slot = 0; slot < bank.bankTabs[0].length; slot++) {
+            Item item = bank.bankTabs[0][slot];
             if (item == null) throw new IllegalStateException("Modern bank requires compact slots");
-            validateItem(item);
+            validateItem(item, "bank", slot);
         }
         for (int slot = 0; slot < EQUIPMENT_SIZE; slot++) {
             Item item = equipment.get(slot);
             if (item == null) continue;
-            validateItem(item);
+            validateItem(item, "equipment", slot);
             if ((!requireType(item.getId()).stackable && item.getAmount() != 1) || requireType(item.getId()).equipSlot != slot)
                 throw new IllegalStateException("Equipment does not match its verified wear slot");
         }
     }
 
-    private void validateItem(Item item) {
-        requireType(item.getId());
-        if (item.getAmount() < 1 || item.getCharges() != 0 || item.getAttributes() != null || item.getInventionData() != null)
-            throw new IllegalStateException("Unsupported modern item state");
+    private void validateItem(Item item, String container, int slot) {
+        int id = item.getId();
+        Native950ItemCatalog.Entry type = requireType(id);
+        int amount = item.getAmount();
+        int charges = item.getCharges();
+        boolean attributes = item.getAttributes() != null;
+        boolean invention = item.getInventionData() != null;
+        if (amount < 1 || charges != 0 || attributes || invention) {
+            String rule = amount < 1 ? "amount must be positive" : charges != 0 ? "charges are unsupported"
+                    : attributes ? "item attributes are unsupported" : "invention metadata is unsupported";
+            throw new IllegalStateException("Unsupported modern item state: container=" + container + " slot=" + slot
+                    + " item=" + id + " (" + type.name + ") amount=" + amount + " charges=" + charges
+                    + " attributes=" + attributes + " invention=" + invention + "; rule=" + rule);
+        }
     }
 
     private Native950ItemCatalog.Entry requireType(int id) {

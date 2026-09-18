@@ -303,6 +303,21 @@ public class Native950ContainersTest {
         assertEquals(1000,total(995)); assertEquals(5,total(1511));
     }
 
+    @Test public void unsupportedItemDiagnosticsIdentifyContainerSlotAndRule() {
+        Item charged=new Item(995,1);
+        charged.setCharges(1);
+        player.getInventory().items.set(7,charged);
+        try {
+            new Native950Containers(player,catalog);
+            fail("Expected charged native item rejection");
+        } catch(IllegalStateException expected) {
+            assertTrue(expected.getMessage(),expected.getMessage().contains("container=inventory slot=7"));
+            assertTrue(expected.getMessage(),expected.getMessage().contains("item=995 (Coins)"));
+            assertTrue(expected.getMessage(),expected.getMessage().contains("charges=1"));
+            assertTrue(expected.getMessage(),expected.getMessage().contains("rule=charges are unsupported"));
+        }
+    }
+
     private void assertInvalidRestoreLeavesEmpty(Native950Save saved) {
         try { containers.restore(saved); fail("Expected invalid saved item rejection"); }
         catch(IllegalArgumentException expected) { }
