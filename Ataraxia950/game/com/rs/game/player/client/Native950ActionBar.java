@@ -6,6 +6,8 @@ import com.rs.game.player.Player;
 import com.rs.network.protocol.modern950.Native950Actions;
 import com.rs.network.protocol.modern950.Native950Packets;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -84,15 +86,16 @@ public final class Native950ActionBar {
         if(p!=null)Native950BugTest.event(p,"action-bar","visual-sync","reason",reason,"activeBar",activeBar+1,
                 "before",before,"after",barSnapshot(),"varbits",binding("varbit",1893)+","+binding("varbit",1892)+","+binding("varbit",FULL_MANUAL_MODE_VARBIT)+","+binding("varbit",REVOLUTION_MODE_VARBIT),
                 "slotConfigs",slotConfigs(),"scripts",binding("script",6992)+","+binding("script",7964));
-        c.write(Native950Packets.varbitSmall(1893,activeBar+1));
-        c.write(Native950Packets.varbitSmall(1892,0));
-        refreshRevolution(c);
+        visualWrite(p,c,Native950Packets.varbitSmall(1893,activeBar+1),"varbit",1893,activeBar+1);
+        visualWrite(p,c,Native950Packets.varbitSmall(1892,0),"varbit",1892,0);
+        visualWrite(p,c,Native950Packets.varbitSmall(FULL_MANUAL_MODE_VARBIT,revolutionEnabled?0:1),"varbit",FULL_MANUAL_MODE_VARBIT,revolutionEnabled?0:1);
+        visualWrite(p,c,Native950Packets.varbitSmall(REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0),"varbit",REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0);
         for(int i=0;i<SLOTS;i++){
-            c.write(Native950Packets.varp(i<12?823+i:4429+i-12,-1));
-            c.write(Native950Packets.varp(i<12?739+i:4415+i-12,slots()[i]));
+            visualWrite(p,c,Native950Packets.varp(i<12?823+i:4429+i-12,-1),"varp",i<12?823+i:4429+i-12,-1);
+            visualWrite(p,c,Native950Packets.varp(i<12?739+i:4415+i-12,slots()[i]),"varp",i<12?739+i:4415+i-12,slots()[i]);
         }
-        c.write(Native950Packets.runClientScript(6992));
-        c.write(Native950Packets.runClientScript(7964,1436,0,0,1,-1));
+        visualWrite(p,c,Native950Packets.runClientScript(6992),"script",6992,"");
+        visualWrite(p,c,Native950Packets.runClientScript(7964,1436,0,0,1,-1),"script",7964,"1436,0,0,1,-1");
     }
     public void testBar(Player p,Channel c){String before=barSnapshot();slots()[0]=pack(1,3);slots()[1]=pack(5,2);slots()[2]=pack(6,3);sync(p,c,"testbar",before);reply(c,"Test slots 1-3: Backhand (melee), Binding Shot (ranged), Impact (magic). Equip the matching weapon and attack a target first.");}
     public void testBar(Channel c){testBar(null,c);}
@@ -174,5 +177,14 @@ public final class Native950ActionBar {
     private String barSnapshot(){return java.util.Arrays.toString(slots());}
     private String slotConfigs(){StringBuilder out=new StringBuilder();for(int i=0;i<SLOTS;i++){if(i>0)out.append(',');out.append(binding("varp",i<12?823+i:4429+i-12)).append('|').append(binding("varp",i<12?739+i:4415+i-12));}return out.toString();}
     private static String binding(String kind,int id){int resolved=kind.equals("varp")?Native950IdMap.varp(id):kind.equals("varbit")?Native950IdMap.varbit(id):Native950IdMap.script(id);return kind+"="+id+":"+(resolved<0?"rejected:not-declared":"accepted:"+resolved);}
+    private static void visualWrite(final Player p,Channel c,Native950Packets.Packet packet,final String kind,final int id,final Object value){
+        if(p!=null)Native950BugTest.event(p,"action-bar","visual-write-attempt","kind",kind,"id",id,"value",value,"binding",binding(kind,id));
+        ChannelFuture future=c.write(packet);
+        if(p!=null)future.addListener(new ChannelFutureListener(){public void operationComplete(ChannelFuture completed){
+            Throwable failure=completed.cause();String message=failure==null?"":String.valueOf(failure.getMessage());if(message.length()>512)message=message.substring(0,512);
+            Native950BugTest.event(p,"action-bar",completed.isSuccess()?"visual-write-succeeded":"visual-write-failed","kind",kind,"id",id,
+                    "failure",failure==null?"":failure.getClass().getSimpleName(),"message",message);
+        }});
+    }
     private static void reply(Channel c,String text){c.write(Native950Packets.gameMessage(0,text));}
 }
