@@ -56,6 +56,19 @@ public final class Native950AbilityProbe {
             }
             return;
         }
+        if(args[0].equals("findonload")) {
+            int script=Integer.parseInt(args[1]);
+            for(int face:Cache.STORE.getIndexes()[3].getTable().getValidArchiveIds()) {
+                for(int file:Cache.STORE.getIndexes()[3].getTable().getArchives()[face].getValidFileIds()) try {
+                    IComponentDefinitions d=new IComponentDefinitions();d.ihash=face<<16|file;
+                    d.decode(new com.rs.network.io.InputStream(Cache.STORE.getIndexes()[3].getFile(face,file)));
+                    Object[] hook=d.onLoadHook;
+                    if(hook!=null&&hook.length>0&&hook[0] instanceof Integer&&((Integer)hook[0])==script)
+                        System.out.println(face+":"+file+" "+Arrays.toString(hook));
+                }catch(RuntimeException ignored) { }
+            }
+            return;
+        }
         if(args[0].equals("assets")) {
             List<String> pins=new ArrayList<>();pins.add("# Paired revision950 hub/action-bar cache assets.");
             for(int face:new int[]{1430,1436,1460,1452,1461,1450,1456,1459})for(int file:Cache.STORE.getIndexes()[3].getTable().getArchives()[face].getValidFileIds())pin(pins,3,face,file);

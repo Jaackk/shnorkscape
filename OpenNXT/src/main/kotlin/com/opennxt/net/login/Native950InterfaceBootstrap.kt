@@ -28,6 +28,9 @@ internal object Native950InterfaceBootstrap {
     private val panels = listOf(
         Panel(1000, 1482, false), Panel(1004, 1465, false), Panel(2, 1473, true),
         Panel(3, 1462, true), Panel(4, 1458, true), Panel(5, 1461, true),
+        // These cache slot entries own the populated ability-book windows.  Leaving
+        // them unattached creates empty Melee/Ranged/Defensive frames while Magic loads.
+        Panel(6, 1460, true), Panel(7, 1452, true), Panel(39, 1880, true),
         Panel(33, 1884, true), Panel(34, 1885, true), Panel(35, 1887, true), Panel(36, 1886, true),
         Panel(18, 137, true)
     )
