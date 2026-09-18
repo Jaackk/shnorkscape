@@ -257,7 +257,7 @@ public final class Native950MeleeCombat {
         int energy=definition.adrenalineRequired();
         if(energy>0&&!player.getCombatDefinitions().isInfiniteAdrenaline()
                 &&player.getCombatDefinitions().getSpecialAttackPercentage()<energy)
-            return (definition.tier==2?"Threshold":"Ultimate")+" abilities require "+energy+"% adrenaline.";
+            return definition.name+" requires "+energy+"% adrenaline.";
         if(definition.offhandRequired&&!player.getEquipment().hasOffHand())return definition.name+" requires a matching off-hand weapon.";
         if(definition.twoHandedRequired&&!player.getEquipment().hasTwoHandedWeapon())return definition.name+" requires a two-handed weapon.";
         int skill=style==0?Skills.ATTACK:style==1?Skills.RANGE:Skills.MAGIC;

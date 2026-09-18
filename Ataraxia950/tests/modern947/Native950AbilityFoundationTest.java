@@ -20,10 +20,21 @@ public class Native950AbilityFoundationTest {
         Native950AbilityCatalog.Definition surge=Native950AbilityCatalog.get(14726);
         assertFalse(surge.targetRequired());assertEquals(34,surge.cooldown);assertEquals(16,surge.skill);assertEquals(5,surge.level);
         assertEquals(0,Native950AbilityCatalog.get(14682).adrenalineCost());
-        assertEquals(15,Native950AbilityCatalog.get(14704).adrenalineCost());
-        assertEquals(100,Native950AbilityCatalog.get(14736).adrenalineCost());
+        assertEquals(25,Native950AbilityCatalog.get(14704).adrenalineCost());
+        assertEquals(60,Native950AbilityCatalog.get(14736).adrenalineCost());
         assertTrue(Native950AbilityCatalog.get(14684).offhandRequired);
         assertTrue(Native950AbilityCatalog.get(14685).twoHandedRequired);
+    }
+    @Test public void pairedModernisedAdrenalineDefinitionsAreNotLegacyThresholdRules(){
+        for(Native950AbilityCatalog.Definition d:Native950AbilityCatalog.DEFINITIONS){
+            assertEquals(d.name,d.adrenalineCost(),d.adrenalineRequired());
+            if(d.tier==1)assertEquals(d.name,d.struct==14679?12:9,d.adrenalineGain());
+            else assertEquals(d.name,0,d.adrenalineGain());
+        }
+        assertEquals(0,Native950AbilityCatalog.get(44244).adrenalineCost());
+        assertEquals(0,Native950AbilityCatalog.get(14666).adrenalineCost());
+        assertEquals(100,Native950AbilityCatalog.get(14707).adrenalineCost());
+        assertEquals(7,Native950AbilityCatalog.get(14726).tier);
     }
     @Test public void dragMaskEscapesBookClippingWithoutEnablingOtherOperations(){
         assertTrue((Native950ActionBar.ABILITY_EVENTS&(1<<23))!=0);

@@ -82,13 +82,29 @@ public class Native950MeleeCombatTest {
         step();assertTrue(combat.isBerserkActive(player));assertEquals(990,npc.getHitpoints());
         assertEquals(0,player.getCombatDefinitions().getSpecialAttackPercentage());
     }
-    @Test public void thresholdAdmissionIsFiftyButConsumptionIsFifteen(){
+    @Test public void enhancedAdmissionAndConsumptionMatchPairedCacheTwentyFive(){
         player.getSkills().set(0,99);npc.setHitpoints(10000);combat.attack(player,npc);
-        player.getCombatDefinitions().setSpecialAttackPercentage(49);
-        assertEquals("Threshold abilities require 50% adrenaline.",combat.ability(player,14704));
-        player.getCombatDefinitions().setSpecialAttackPercentage(50);
+        player.getCombatDefinitions().setSpecialAttackPercentage(24);
+        assertEquals("Assault requires 25% adrenaline.",combat.ability(player,14704));
+        assertEquals(24,player.getCombatDefinitions().getSpecialAttackPercentage());
+        player.getCombatDefinitions().setSpecialAttackPercentage(25);
         assertNull(combat.ability(player,14704));step();
-        assertEquals(35,player.getCombatDefinitions().getSpecialAttackPercentage());
+        assertEquals(0,player.getCombatDefinitions().getSpecialAttackPercentage());
+    }
+    @Test public void sixtyPercentUltimateDoesNotRequireOrConsumeOneHundred(){
+        player.getSkills().set(0,99);npc.setHitpoints(10000);combat.attack(player,npc);
+        player.getCombatDefinitions().setSpecialAttackPercentage(59);
+        assertEquals("Overpower requires 60% adrenaline.",combat.ability(player,14686));
+        player.getCombatDefinitions().setSpecialAttackPercentage(60);
+        assertNull(combat.ability(player,14686));step();
+        assertEquals(0,player.getCombatDefinitions().getSpecialAttackPercentage());
+    }
+    @Test public void adaptiveStrikeGainsTwelveAndQueuedReplacementChargesOnlyExecutedAbility(){
+        player.getSkills().set(0,99);npc.setHitpoints(10000);combat.attack(player,npc);
+        player.getCombatDefinitions().setSpecialAttackPercentage(0);
+        assertNull(combat.ability(player,14682));
+        assertNull(combat.ability(player,14679));step();
+        assertEquals(12,player.getCombatDefinitions().getSpecialAttackPercentage());
     }
     @Test public void queuedUltimateRechecksAdrenalineBeforeExecution(){
         player.getSkills().set(0,99);player.getCombatDefinitions().setSpecialAttackPercentage(100);npc.setHitpoints(1000);

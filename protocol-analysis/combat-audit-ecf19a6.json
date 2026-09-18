@@ -1,0 +1,2727 @@
+[
+  {
+    "name": "Barge",
+    "structure": 14678,
+    "style": 0,
+    "type": 1,
+    "level": 65,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 34,
+    "gcd": 3,
+    "damagePercent": [
+      100,
+      120
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 1,
+      "2794": "Barge",
+      "2795": "Run up and ram the target.",
+      "2796": 34,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14208,
+      "2806": 1,
+      "2807": 65,
+      "2809": 0,
+      "2915": 10052,
+      "5198": 10,
+      "5542": 9,
+      "6527": 1,
+      "8120": 3101,
+      "8170": 1,
+      "9410": 17345
+    },
+    "structSha256": "e191eed3b8013a7ba1f1927ccce0559f2bada127b8eeff571927b4cdc23a2c1e",
+    "animationEnum": 10052,
+    "animationFamilies": {
+      "-1": 37394,
+      "14930": 37395,
+      "14931": 37396,
+      "14932": 37397,
+      "14933": 37397,
+      "14937": 37397
+    },
+    "animations": {
+      "37394": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9018,
+          "9411": 0
+        }
+      },
+      "37395": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9018,
+          "9411": 0
+        }
+      },
+      "37396": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9018,
+          "9411": 0
+        }
+      },
+      "37397": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9018,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Adaptive Strike",
+    "structure": 14679,
+    "style": 0,
+    "type": 1,
+    "level": 7,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 9,
+    "gcd": 3,
+    "damagePercent": [
+      90,
+      110
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 2,
+      "2794": "Adaptive Strike",
+      "2795": "Channel your weapons form into an adaptive strike.",
+      "2796": 9,
+      "2799": 1,
+      "2800": 120,
+      "2802": 21237,
+      "2806": 1,
+      "2807": 7,
+      "2809": 0,
+      "2915": 442,
+      "5542": 9,
+      "8109": 1,
+      "8114": 1,
+      "8115": 60,
+      "8120": 35556,
+      "8170": 1,
+      "9407": 1,
+      "9410": 6689
+    },
+    "structSha256": "8e49333ece02ec4702b15c69d34144fc05662a6205bbb455387098ee165af673",
+    "animationEnum": 442,
+    "animationFamilies": {
+      "-1": 37388,
+      "14929": 37389,
+      "14930": 37407,
+      "14931": 37408,
+      "14932": 37406,
+      "14933": 37406,
+      "14935": 37390
+    },
+    "animations": {
+      "37388": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9012,
+          "9411": 0
+        }
+      },
+      "37389": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9012,
+          "9411": 0
+        }
+      },
+      "37390": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9012,
+          "9411": 0
+        }
+      },
+      "37406": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      },
+      "37407": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      },
+      "37408": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      }
+    }
+  },
+  {
+    "name": "Backhand",
+    "structure": 14682,
+    "style": 0,
+    "type": 1,
+    "level": 31,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 25,
+    "gcd": 3,
+    "damagePercent": [
+      95,
+      105
+    ],
+    "effect": "STUN",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "539": 1,
+      "2793": 3,
+      "2794": "Backhand",
+      "2795": "Strike the target with the back of the hand.",
+      "2796": 25,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14212,
+      "2806": 1,
+      "2807": 31,
+      "2809": 0,
+      "2880": 5,
+      "2915": 6692,
+      "5542": 9,
+      "8120": 3105,
+      "8170": 1
+    },
+    "structSha256": "35e642477cfad353d4fe1e1fd60c5bb44100c0c1f55ae53b32bd8ce048028799",
+    "animationEnum": 6692,
+    "animationFamilies": {
+      "-1": 18154,
+      "14930": 18169,
+      "14931": 18168,
+      "14932": 18167,
+      "14933": 18167,
+      "14937": 18167
+    },
+    "animations": {
+      "18154": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 420,
+        "params": {}
+      },
+      "18167": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 450,
+        "params": {}
+      },
+      "18168": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 510,
+        "params": {}
+      },
+      "18169": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 460,
+        "params": {}
+      }
+    }
+  },
+  {
+    "name": "Flurry",
+    "structure": 14684,
+    "style": 0,
+    "type": 2,
+    "level": 45,
+    "offhand": true,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 50,
+    "adrenalineCost": 15,
+    "adrenalineGain": 0,
+    "cooldown": 34,
+    "gcd": 3,
+    "damagePercent": [
+      45,
+      55
+    ],
+    "effect": "DIRECT",
+    "hits": 3,
+    "hitTicks": [
+      0,
+      2,
+      4
+    ],
+    "channelTicks": 5,
+    "cacheParams": {
+      "539": 1,
+      "2793": 4,
+      "2794": "Flurry",
+      "2795": "Swing both weapons rapidly around you.",
+      "2796": 34,
+      "2798": 250,
+      "2799": 2,
+      "2801": 1,
+      "2802": 14214,
+      "2806": 1,
+      "2807": 45,
+      "2809": 0,
+      "2811": 1,
+      "2842": 1,
+      "2915": 10041,
+      "3740": 8,
+      "5542": 9,
+      "6527": 1,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 60,
+      "8120": 3107,
+      "8170": 4,
+      "8884": 1,
+      "8885": 7,
+      "9087": 1,
+      "9089": 1,
+      "9410": 6691
+    },
+    "structSha256": "1a24d9926979fe57e5bf7d915c4779f55e20037ba644a8e3071fe95a3e851db0",
+    "animationEnum": 10041,
+    "animationFamilies": {
+      "-1": 37428,
+      "14934": 37429,
+      "14935": 37428
+    },
+    "animations": {
+      "37428": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9016,
+          "9411": 0
+        }
+      },
+      "37429": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9016,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Overpower",
+    "structure": 14686,
+    "style": 0,
+    "type": 4,
+    "level": 15,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 100,
+    "adrenalineCost": 100,
+    "adrenalineGain": 0,
+    "cooldown": 50,
+    "gcd": 3,
+    "damagePercent": [
+      180,
+      220
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 5,
+      "2794": "Overpower",
+      "2795": "Strike the target with a massive overhead swing.",
+      "2796": 50,
+      "2798": 600,
+      "2799": 4,
+      "2802": 14216,
+      "2806": 1,
+      "2807": 15,
+      "2809": 0,
+      "2915": 6695,
+      "5542": 9,
+      "8120": 3109,
+      "8170": 1,
+      "9090": 55
+    },
+    "structSha256": "175f4111fc6a78d2e2285a1b51f4ccf31f655d180a0925b8d1e2afc92f3d693e",
+    "animationEnum": 6695,
+    "animationFamilies": {
+      "-1": 18179,
+      "14930": 18180,
+      "14931": 18177,
+      "14932": 18178,
+      "14933": 18178,
+      "14937": 18178
+    },
+    "animations": {
+      "18177": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 3585
+        }
+      },
+      "18178": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 3586
+        }
+      },
+      "18179": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 3584
+        }
+      },
+      "18180": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 3587
+        }
+      }
+    }
+  },
+  {
+    "name": "Meteor Strike",
+    "structure": 14688,
+    "style": 0,
+    "type": 4,
+    "level": 90,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 100,
+    "adrenalineCost": 100,
+    "adrenalineGain": 0,
+    "cooldown": 100,
+    "gcd": 3,
+    "damagePercent": [
+      240,
+      280
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 6,
+      "2794": "Meteor Strike",
+      "2795": "Jump up and strike the ground.",
+      "2796": 100,
+      "2798": 600,
+      "2799": 4,
+      "2802": 21363,
+      "2806": 1,
+      "2807": 90,
+      "2809": 0,
+      "2842": 1,
+      "2915": 6697,
+      "3740": 50,
+      "5542": 9,
+      "8120": 35561,
+      "8170": 4,
+      "9089": 1
+    },
+    "structSha256": "32d7498427be1c6c98f267e596bb86d542d7a11c6003a9499840754d11de7f17",
+    "animationEnum": 6697,
+    "animationFamilies": {
+      "-1": 18175,
+      "14931": 18199,
+      "14932": 18198,
+      "14933": 18198
+    },
+    "animations": {
+      "18175": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 9053,
+          "9411": 26
+        }
+      },
+      "18198": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 9053,
+          "9411": 26
+        }
+      },
+      "18199": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 9053,
+          "9411": 26
+        }
+      }
+    }
+  },
+  {
+    "name": "Dismember",
+    "structure": 44244,
+    "style": 0,
+    "type": 2,
+    "level": 50,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 50,
+    "adrenalineCost": 15,
+    "adrenalineGain": 0,
+    "cooldown": 40,
+    "gcd": 3,
+    "damagePercent": [
+      70,
+      85
+    ],
+    "effect": "BLEED",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 8,
+      "2794": "Dismember",
+      "2795": "Slice at the target causing them to \u003ccol\u003dffffff\u003eBleed\u003c/col\u003e.",
+      "2796": 40,
+      "2798": 0,
+      "2799": 2,
+      "2802": 21239,
+      "2806": 1,
+      "2807": 50,
+      "2809": 0,
+      "2915": 10145,
+      "5335": 1,
+      "5542": 9,
+      "6527": 1,
+      "8109": 1,
+      "8114": 1,
+      "8115": 100,
+      "8120": 35558,
+      "8170": 1,
+      "8366": 1,
+      "9410": 6723
+    },
+    "structSha256": "c03008e0570988f9404feb5e1f091e560d3c70328aace797a8fcfe917f7c54dd",
+    "animationEnum": 10145,
+    "animationFamilies": {
+      "-1": 37412,
+      "14930": 37414,
+      "14931": 37413,
+      "14932": 37411,
+      "14933": 37411,
+      "14934": 37409,
+      "14935": 37410
+    },
+    "animations": {
+      "37409": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9013
+        }
+      },
+      "37410": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9013
+        }
+      },
+      "37411": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9013
+        }
+      },
+      "37412": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9013
+        }
+      },
+      "37413": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9013
+        }
+      },
+      "37414": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9013
+        }
+      }
+    }
+  },
+  {
+    "name": "Punish",
+    "structure": 14700,
+    "style": 0,
+    "type": 1,
+    "level": 60,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 40,
+    "gcd": 3,
+    "damagePercent": [
+      110,
+      130
+    ],
+    "effect": "EXECUTE",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 9,
+      "2794": "Punish",
+      "2795": "Slash at the target unexpectedly.",
+      "2796": 40,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14257,
+      "2806": 1,
+      "2807": 60,
+      "2809": 0,
+      "2915": 6727,
+      "5542": 9,
+      "8120": 3397,
+      "8170": 1
+    },
+    "structSha256": "7ce6f851b553d55e5a5cb545514ce4823f4dbe9be0e9b875382c93c871b1971b",
+    "animationEnum": 6727,
+    "animationFamilies": {
+      "-1": 18560,
+      "14930": 18563,
+      "14931": 18562,
+      "14932": 18564,
+      "14933": 18564,
+      "14937": 18564
+    },
+    "animations": {
+      "18560": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 946
+        }
+      },
+      "18562": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 946
+        }
+      },
+      "18563": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 946
+        }
+      },
+      "18564": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 946
+        }
+      }
+    }
+  },
+  {
+    "name": "Fury",
+    "structure": 14701,
+    "style": 0,
+    "type": 1,
+    "level": 21,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 25,
+    "gcd": 3,
+    "damagePercent": [
+      105,
+      125
+    ],
+    "effect": "DIRECT",
+    "hits": 3,
+    "hitTicks": [
+      0,
+      2,
+      5
+    ],
+    "channelTicks": 6,
+    "cacheParams": {
+      "2793": 10,
+      "2794": "Fury",
+      "2795": "Swing your weapon at the target with fury.",
+      "2796": 25,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14258,
+      "2806": 1,
+      "2807": 21,
+      "2809": 0,
+      "2915": 6724,
+      "5542": 9,
+      "6527": 1,
+      "8120": 3398,
+      "8170": 1,
+      "9410": 6689
+    },
+    "structSha256": "d74a4738688fe961711d887930f81e1d81a9806b9c40a02ec979e3395c13fd5a",
+    "animationEnum": 6724,
+    "animationFamilies": {
+      "-1": 37425,
+      "14930": 37426,
+      "14931": 37424,
+      "14932": 37423,
+      "14933": 37423,
+      "14934": 37421,
+      "14935": 37422
+    },
+    "animations": {
+      "37421": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9014
+        }
+      },
+      "37422": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9014
+        }
+      },
+      "37423": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9014
+        }
+      },
+      "37424": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9014
+        }
+      },
+      "37425": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9014
+        }
+      },
+      "37426": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9014
+        }
+      }
+    }
+  },
+  {
+    "name": "Assault",
+    "structure": 14704,
+    "style": 0,
+    "type": 2,
+    "level": 3,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 50,
+    "adrenalineCost": 15,
+    "adrenalineGain": 0,
+    "cooldown": 10,
+    "gcd": 3,
+    "damagePercent": [
+      55,
+      70
+    ],
+    "effect": "DIRECT",
+    "hits": 4,
+    "hitTicks": [
+      0,
+      2,
+      4,
+      6
+    ],
+    "channelTicks": 7,
+    "cacheParams": {
+      "2793": 11,
+      "2794": "Assault",
+      "2795": "Strike at the target multiple times.",
+      "2796": 10,
+      "2798": 250,
+      "2799": 2,
+      "2801": 1,
+      "2802": 14261,
+      "2806": 1,
+      "2807": 3,
+      "2809": 0,
+      "2915": 6725,
+      "3740": 8,
+      "5542": 9,
+      "6527": 1,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 50,
+      "8120": 3401,
+      "8170": 1,
+      "8884": 2,
+      "8885": 3,
+      "9087": 1,
+      "9090": 75
+    },
+    "structSha256": "2245c93efc1dbd2b1d750f029f874bb2ce6343e340bbdc4faca6dcc4cf727011",
+    "animationEnum": 6725,
+    "animationFamilies": {
+      "-1": 18577,
+      "14930": 18579,
+      "14931": 18580,
+      "14932": 18578,
+      "14933": 18578,
+      "14937": 18578
+    },
+    "animations": {
+      "18577": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 2400,
+        "params": {
+          "2920": 9078
+        }
+      },
+      "18578": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 2400,
+        "params": {
+          "2920": 9077
+        }
+      },
+      "18579": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 2400,
+        "params": {
+          "2920": 9077
+        }
+      },
+      "18580": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 2400,
+        "params": {
+          "2920": 9077
+        }
+      }
+    }
+  },
+  {
+    "name": "Hurricane",
+    "structure": 14685,
+    "style": 0,
+    "type": 2,
+    "level": 37,
+    "offhand": false,
+    "twoHanded": true,
+    "target": true,
+    "adrenalineRequired": 50,
+    "adrenalineCost": 15,
+    "adrenalineGain": 0,
+    "cooldown": 34,
+    "gcd": 3,
+    "damagePercent": [
+      65,
+      80
+    ],
+    "effect": "DIRECT",
+    "hits": 2,
+    "hitTicks": [
+      0,
+      1
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 12,
+      "2794": "Hurricane",
+      "2795": "Spin on the spot with your weapon.",
+      "2796": 34,
+      "2798": 250,
+      "2799": 2,
+      "2802": 14215,
+      "2806": 1,
+      "2807": 37,
+      "2809": 0,
+      "2812": 1,
+      "2842": 1,
+      "2915": 10057,
+      "5542": 9,
+      "6527": 1,
+      "8120": 3108,
+      "8170": 4,
+      "9089": 1,
+      "9090": 55,
+      "9410": 6694
+    },
+    "structSha256": "3cfd360d4467ce3e0977fd507fc235f3b2469644f622be0fd976c7b0d40870f9",
+    "animationEnum": 10057,
+    "animationFamilies": {
+      "-1": 37437,
+      "14931": 37438,
+      "14933": 37439
+    },
+    "animations": {
+      "37437": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9017,
+          "9411": 0
+        }
+      },
+      "37438": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9017,
+          "9411": 0
+        }
+      },
+      "37439": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9017,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Berserk",
+    "structure": 14707,
+    "style": 0,
+    "type": 4,
+    "level": 76,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 100,
+    "adrenalineCost": 100,
+    "adrenalineGain": 0,
+    "cooldown": 100,
+    "gcd": 3,
+    "damagePercent": [
+      220,
+      260
+    ],
+    "effect": "BUFF",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 13,
+      "2794": "Berserk",
+      "2795": "Go berserk, empowering yourself.",
+      "2796": 100,
+      "2798": 1000,
+      "2799": 4,
+      "2802": 14264,
+      "2806": 1,
+      "2807": 76,
+      "2809": 1,
+      "2819": 1,
+      "3394": 0,
+      "3740": 33,
+      "4030": 36244,
+      "5542": 9,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 60,
+      "8120": 3404,
+      "8170": 3
+    },
+    "structSha256": "79d028b1b9fad09804128e2a6de234d9c66192c05794f2a30d82fd06a0bbe6c5",
+    "animationEnum": 0,
+    "animations": {}
+  },
+  {
+    "name": "Piercing Shot",
+    "structure": 14663,
+    "style": 1,
+    "type": 1,
+    "level": 13,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 5,
+    "gcd": 3,
+    "damagePercent": [
+      90,
+      110
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 1,
+      "2794": "Piercing Shot",
+      "2795": "Fire two piercing shots.",
+      "2796": 5,
+      "2799": 1,
+      "2800": 90,
+      "2802": 23727,
+      "2806": 3,
+      "2807": 13,
+      "2809": 0,
+      "2915": 10112,
+      "5542": 6,
+      "8120": 35572,
+      "8170": 1,
+      "9410": 6713
+    },
+    "structSha256": "580c8328dfb783da0b31c11745d9e1829d2ac0170930e3b437742a2d626748c5",
+    "animationEnum": 10112,
+    "animationFamilies": {
+      "-1": 37473,
+      "14939": 37470,
+      "14940": 37470,
+      "14942": 37474,
+      "14943": 37471,
+      "14944": 37471,
+      "14945": 37471,
+      "14946": 37472,
+      "14947": 37471,
+      "31925": 32827
+    },
+    "animations": {
+      "32827": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 7240
+        }
+      },
+      "37470": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8981,
+          "9412": 8979,
+          "9413": 0
+        }
+      },
+      "37471": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8981,
+          "9412": 8979,
+          "9413": 128
+        }
+      },
+      "37472": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8981,
+          "9412": 8979,
+          "9413": 128
+        }
+      },
+      "37473": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8981,
+          "9412": 8979,
+          "9413": 92
+        }
+      },
+      "37474": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8981,
+          "9412": 8979,
+          "9413": 44
+        }
+      }
+    }
+  },
+  {
+    "name": "Binding Shot",
+    "structure": 14664,
+    "style": 1,
+    "type": 1,
+    "level": 31,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 25,
+    "gcd": 3,
+    "damagePercent": [
+      90,
+      100
+    ],
+    "effect": "STUN",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "539": 1,
+      "2793": 2,
+      "2794": "Binding Shot",
+      "2795": "Fire a binding shot.",
+      "2796": 25,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14244,
+      "2806": 3,
+      "2807": 31,
+      "2809": 0,
+      "2915": 6714,
+      "2933": 3488,
+      "5542": 6,
+      "8120": 3255,
+      "8170": 1
+    },
+    "structSha256": "017a8d3468ce1694932d0c7945e163d5b0a93ab056f477b071b67c8303a7f72f",
+    "animationEnum": 6714,
+    "animationFamilies": {
+      "-1": 18461,
+      "14939": 18459,
+      "14940": 18459,
+      "14942": 18462,
+      "14943": 18463,
+      "14944": 18463,
+      "14945": 18463,
+      "14946": 18460,
+      "14947": 18463,
+      "31925": 32824
+    },
+    "animations": {
+      "18459": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 590,
+        "params": {}
+      },
+      "18460": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 540,
+        "params": {}
+      },
+      "18461": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 590,
+        "params": {
+          "9413": 92
+        }
+      },
+      "18462": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 590,
+        "params": {}
+      },
+      "18463": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 540,
+        "params": {}
+      },
+      "32824": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {}
+      }
+    }
+  },
+  {
+    "name": "Snipe",
+    "structure": 14666,
+    "style": 1,
+    "type": 2,
+    "level": 7,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 50,
+    "adrenalineCost": 15,
+    "adrenalineGain": 0,
+    "cooldown": 100,
+    "gcd": 3,
+    "damagePercent": [
+      150,
+      180
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 4,
+      "2794": "Snipe",
+      "2795": "Fire a precise shot.",
+      "2796": 100,
+      "2798": 0,
+      "2799": 2,
+      "2801": 1,
+      "2802": 23729,
+      "2806": 3,
+      "2807": 7,
+      "2809": 0,
+      "2915": 10140,
+      "5542": 6,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 60,
+      "8120": 35574,
+      "8170": 1,
+      "8884": 2,
+      "8885": 1,
+      "9086": 1,
+      "9090": 75,
+      "9410": 6717
+    },
+    "structSha256": "5980f8664ffcf7b4475884b7753596a43d5b3e615167c65bb7f8207e770090bd",
+    "animationEnum": 10140,
+    "animationFamilies": {
+      "-1": 37498,
+      "14939": 37494,
+      "14940": 37494,
+      "14942": 37504,
+      "14943": 37502,
+      "14944": 37502,
+      "14945": 37500,
+      "14946": 37496,
+      "14947": 37502,
+      "31925": 32823
+    },
+    "animations": {
+      "32823": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 1290,
+        "params": {}
+      },
+      "37494": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9027,
+          "2933": 8985,
+          "9411": 9,
+          "9412": 8986,
+          "9413": -16
+        }
+      },
+      "37496": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9028,
+          "2933": 8985,
+          "9411": 9,
+          "9412": 8986,
+          "9413": 68
+        }
+      },
+      "37498": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9029,
+          "2933": 8985,
+          "9411": 9,
+          "9412": 8986,
+          "9413": 96
+        }
+      },
+      "37500": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9030,
+          "2933": 8985,
+          "9411": 9,
+          "9412": 8986,
+          "9413": 92
+        }
+      },
+      "37502": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9031,
+          "2933": 8985,
+          "9411": 9,
+          "9412": 8986,
+          "9413": -68
+        }
+      },
+      "37504": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9032,
+          "2933": 8985,
+          "9411": 9,
+          "9412": 8986,
+          "9413": 36
+        }
+      }
+    }
+  },
+  {
+    "name": "Ricochet",
+    "structure": 14668,
+    "style": 1,
+    "type": 1,
+    "level": 67,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 17,
+    "gcd": 3,
+    "damagePercent": [
+      85,
+      105
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 5,
+      "2794": "Ricochet",
+      "2795": "Fire a shot which ricochets off the target.",
+      "2796": 17,
+      "2799": 1,
+      "2800": 90,
+      "2802": 23868,
+      "2806": 3,
+      "2807": 67,
+      "2809": 0,
+      "2915": 10113,
+      "5542": 6,
+      "6527": 1,
+      "8120": 35571,
+      "8170": 2,
+      "9410": 6713
+    },
+    "structSha256": "94436a14bea19f6974f1c40ae0fbc8eb928402a8ca6a6c3bbf18010654cc67cc",
+    "animationEnum": 10113,
+    "animationFamilies": {
+      "-1": 37478,
+      "14939": 37475,
+      "14940": 37475,
+      "14942": 37479,
+      "14943": 37476,
+      "14944": 37476,
+      "14945": 37476,
+      "14946": 37477,
+      "14947": 37476,
+      "31925": 32827
+    },
+    "animations": {
+      "32827": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 7240
+        }
+      },
+      "37475": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8983,
+          "9412": 8977,
+          "9413": 0
+        }
+      },
+      "37476": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8983,
+          "9412": 8977,
+          "9413": 112
+        }
+      },
+      "37477": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8983,
+          "9412": 8977,
+          "9413": 112
+        }
+      },
+      "37478": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8983,
+          "9412": 8977,
+          "9413": 144
+        }
+      },
+      "37479": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8983,
+          "9412": 8977,
+          "9413": 92
+        }
+      }
+    }
+  },
+  {
+    "name": "Snap Shot",
+    "structure": 14669,
+    "style": 1,
+    "type": 2,
+    "level": 2,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 50,
+    "adrenalineCost": 15,
+    "adrenalineGain": 0,
+    "cooldown": 0,
+    "gcd": 3,
+    "damagePercent": [
+      70,
+      90
+    ],
+    "effect": "DIRECT",
+    "hits": 2,
+    "hitTicks": [
+      0,
+      1
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 6,
+      "2794": "Snap Shot",
+      "2795": "Fire two shots in quick succession.",
+      "2796": 0,
+      "2798": 250,
+      "2799": 2,
+      "2802": 23728,
+      "2806": 3,
+      "2807": 2,
+      "2809": 0,
+      "2915": 10139,
+      "5542": 6,
+      "8120": 35573,
+      "8170": 1,
+      "9090": 60,
+      "9410": 6716
+    },
+    "structSha256": "4c5b0b1b5596d899d73b59c65917d873f2eb84f853b87fa870fe06c70ec7d17e",
+    "animationEnum": 10139,
+    "animationFamilies": {
+      "-1": 37451,
+      "14939": 37445,
+      "14940": 37445,
+      "14942": 37453,
+      "14943": 37447,
+      "14944": 37447,
+      "14945": 37447,
+      "14946": 37449,
+      "14947": 37447,
+      "24343": 24382,
+      "31925": 32828
+    },
+    "animations": {
+      "24382": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {}
+      },
+      "32828": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 7241
+        }
+      },
+      "37445": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9039,
+          "2933": 8991,
+          "9411": 42,
+          "9412": 8990,
+          "9413": 88
+        }
+      },
+      "37447": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9040,
+          "2933": 8991,
+          "9411": 45,
+          "9412": 8990,
+          "9413": 116
+        }
+      },
+      "37449": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9041,
+          "2933": 8991,
+          "9411": 45,
+          "9412": 8990,
+          "9413": 124
+        }
+      },
+      "37451": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9042,
+          "2933": 8991,
+          "9411": 45,
+          "9412": 8990,
+          "9413": 108
+        }
+      },
+      "37453": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9043,
+          "2933": 8991,
+          "9411": 45,
+          "9412": 8990,
+          "9413": 108
+        }
+      }
+    }
+  },
+  {
+    "name": "Rapid Fire",
+    "structure": 14670,
+    "style": 1,
+    "type": 2,
+    "level": 62,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 50,
+    "adrenalineCost": 15,
+    "adrenalineGain": 0,
+    "cooldown": 34,
+    "gcd": 3,
+    "damagePercent": [
+      45,
+      55
+    ],
+    "effect": "DIRECT",
+    "hits": 4,
+    "hitTicks": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "channelTicks": 4,
+    "cacheParams": {
+      "2793": 7,
+      "2794": "Rapid Fire",
+      "2795": "Rapidly fire at the target.",
+      "2796": 34,
+      "2798": 250,
+      "2799": 2,
+      "2801": 1,
+      "2802": 14250,
+      "2806": 3,
+      "2807": 62,
+      "2809": 0,
+      "2915": 10141,
+      "5542": 6,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 60,
+      "8120": 3261,
+      "8170": 1,
+      "8884": 1,
+      "8885": 7,
+      "9087": 1,
+      "9090": 80,
+      "9410": 6718
+    },
+    "structSha256": "e4d288ecdceaa15d08f4d96b7a31c072b7c223d59a572567eb887a9df7b69ca9",
+    "animationEnum": 10141,
+    "animationFamilies": {
+      "-1": 37488,
+      "14939": 37480,
+      "14940": 37480,
+      "14942": 37490,
+      "14943": 37482,
+      "14944": 37486,
+      "14945": 37492,
+      "14946": 37484,
+      "14947": 37482,
+      "31925": 35773
+    },
+    "animations": {
+      "35773": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {}
+      },
+      "37480": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9020,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 0
+        }
+      },
+      "37482": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9021,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 12
+        }
+      },
+      "37484": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9022,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 12
+        }
+      },
+      "37486": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9023,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 12
+        }
+      },
+      "37488": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9024,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 84
+        }
+      },
+      "37490": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9025,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 68
+        }
+      },
+      "37492": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9026,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 88
+        }
+      }
+    }
+  },
+  {
+    "name": "Deadshot",
+    "structure": 14674,
+    "style": 1,
+    "type": 4,
+    "level": 21,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 100,
+    "adrenalineCost": 100,
+    "adrenalineGain": 0,
+    "cooldown": 50,
+    "gcd": 3,
+    "damagePercent": [
+      210,
+      250
+    ],
+    "effect": "BLEED",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 9,
+      "2794": "Deadshot",
+      "2795": "Fire an enchanted shot at the target, striking them multiple times.",
+      "2796": 50,
+      "2798": 600,
+      "2799": 4,
+      "2802": 23730,
+      "2806": 3,
+      "2807": 21,
+      "2809": 0,
+      "2915": 10142,
+      "5542": 6,
+      "8109": 1,
+      "8112": 1,
+      "8114": 1,
+      "8115": 100,
+      "8120": 35570,
+      "8170": 1,
+      "9090": 60,
+      "9410": 6720
+    },
+    "structSha256": "f58eb5e8020c10b2fcfe9a56720a0bfe9ba81f7411e22331e79fdfa40f05d31d",
+    "animationEnum": 10142,
+    "animationFamilies": {
+      "-1": 37530,
+      "14939": 37522,
+      "14940": 37522,
+      "14942": 37534,
+      "14943": 37524,
+      "14944": 37528,
+      "14945": 37532,
+      "14946": 37526,
+      "14947": 37528,
+      "31925": 32829
+    },
+    "animations": {
+      "32829": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 1040,
+        "params": {}
+      },
+      "37522": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9044,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995,
+          "9413": 16
+        }
+      },
+      "37524": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9045,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995,
+          "9413": 88
+        }
+      },
+      "37526": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9046,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995,
+          "9413": 92
+        }
+      },
+      "37528": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9047,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995,
+          "9413": 92
+        }
+      },
+      "37530": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9048,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995,
+          "9413": 84
+        }
+      },
+      "37532": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9049,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995
+        }
+      },
+      "37534": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9050,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995,
+          "9413": 120
+        }
+      }
+    }
+  },
+  {
+    "name": "Death\u0027s Swiftness",
+    "structure": 19251,
+    "style": 1,
+    "type": 4,
+    "level": 76,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 100,
+    "adrenalineCost": 100,
+    "adrenalineGain": 0,
+    "cooldown": 100,
+    "gcd": 3,
+    "damagePercent": [
+      220,
+      260
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 10,
+      "2794": "Death\u0027s Swiftness",
+      "2795": "Create a shroud of death.",
+      "2796": 100,
+      "2798": 1000,
+      "2799": 4,
+      "2802": 20185,
+      "2806": 3,
+      "2807": 76,
+      "2809": 1,
+      "2819": 1,
+      "3001": 1,
+      "3394": 0,
+      "3740": 50,
+      "4030": 11784,
+      "4650": "Unlocked by completing the quest \u0027The World Wakes\u0027.",
+      "5542": 6,
+      "6527": 1,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 60,
+      "8120": 20480,
+      "8170": 3
+    },
+    "structSha256": "1d622238135d888b287ce1ec483a9ddb703fc8cfb668d2cdaa598386d6b96c30",
+    "animationEnum": 0,
+    "animations": {}
+  },
+  {
+    "name": "Impact",
+    "structure": 14727,
+    "style": 2,
+    "type": 1,
+    "level": 31,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 25,
+    "gcd": 3,
+    "damagePercent": [
+      65,
+      75
+    ],
+    "effect": "STUN",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "539": 1,
+      "2793": 3,
+      "2794": "Impact",
+      "2795": "Smash the target with a burst of earth energy.",
+      "2796": 25,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14234,
+      "2806": 4,
+      "2807": 31,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10089,
+      "5542": 7,
+      "8120": 3217,
+      "8170": 1,
+      "9410": 6709
+    },
+    "structSha256": "84bbfc70e05e9131ce65e9d32e8f062dcad5b81c3d2fa70657fce8fe5892adfe",
+    "animationEnum": 10089,
+    "animationFamilies": {
+      "-1": 37358,
+      "14937": 37357
+    },
+    "animations": {
+      "37357": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9004,
+          "2933": 9006,
+          "2940": 9007,
+          "9411": 0
+        }
+      },
+      "37358": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9004,
+          "2933": 9006,
+          "2940": 9007,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Chain",
+    "structure": 14728,
+    "style": 2,
+    "type": 1,
+    "level": 51,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 17,
+    "gcd": 3,
+    "damagePercent": [
+      90,
+      110
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 4,
+      "2794": "Chain",
+      "2795": "A magical spell that chains between nearby targets.",
+      "2796": 17,
+      "2799": 1,
+      "2800": 90,
+      "2802": 15037,
+      "2806": 4,
+      "2807": 51,
+      "2809": 0,
+      "2842": 1,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10090,
+      "5542": 7,
+      "6527": 1,
+      "8120": 15080,
+      "8170": 2,
+      "9410": 6709
+    },
+    "structSha256": "a9f96bcb139eef390cc95615992b66b0a9776c4c8cec22183cc1c855a9b8f910",
+    "animationEnum": 10090,
+    "animationFamilies": {
+      "-1": 37355,
+      "14937": 37354
+    },
+    "animations": {
+      "37354": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8969,
+          "2940": 8968,
+          "9411": 0
+        }
+      },
+      "37355": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8969,
+          "2940": 8968,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Combust",
+    "structure": 14729,
+    "style": 2,
+    "type": 1,
+    "level": 38,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 30,
+    "gcd": 3,
+    "damagePercent": [
+      45,
+      55
+    ],
+    "effect": "BLEED",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 5,
+      "2794": "Combust",
+      "2795": "Explode the target, causing them to \u003ccol\u003dffffff\u003eBurn\u003c/col\u003e.",
+      "2796": 30,
+      "2799": 1,
+      "2800": 90,
+      "2802": 23401,
+      "2806": 4,
+      "2807": 38,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10085,
+      "2933": 8170,
+      "5335": 1,
+      "5542": 7,
+      "8109": 1,
+      "8114": 1,
+      "8115": 100,
+      "8120": 35563,
+      "8170": 1,
+      "8565": 1,
+      "9410": 6707
+    },
+    "structSha256": "10243873cc68451f1ef3bbbdc566349952706cf17d8f96d5c920631140a57c3e",
+    "animationEnum": 10085,
+    "animationFamilies": {
+      "-1": 37350,
+      "14937": 37349
+    },
+    "animations": {
+      "37349": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      },
+      "37350": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      }
+    }
+  },
+  {
+    "name": "Dragon Breath",
+    "structure": 14730,
+    "style": 2,
+    "type": 1,
+    "level": 19,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 12,
+    "gcd": 3,
+    "damagePercent": [
+      100,
+      120
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 6,
+      "2794": "Dragon Breath",
+      "2795": "Breathe a mighty cloud of fire.",
+      "2796": 12,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14236,
+      "2806": 4,
+      "2807": 19,
+      "2809": 0,
+      "2842": 1,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 6735,
+      "5542": 7,
+      "8120": 3219,
+      "8170": 4,
+      "9410": 6710
+    },
+    "structSha256": "8b434f99724db7f834fefea73e440fa9af3b4b0b6b115fdd6cafa114968a0652",
+    "animationEnum": 6735,
+    "animationFamilies": {
+      "-1": 36640,
+      "14937": 36639
+    },
+    "animations": {
+      "36639": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      },
+      "36640": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      }
+    }
+  },
+  {
+    "name": "Asphyxiate",
+    "structure": 14731,
+    "style": 2,
+    "type": 2,
+    "level": 59,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 50,
+    "adrenalineCost": 15,
+    "adrenalineGain": 0,
+    "cooldown": 34,
+    "gcd": 3,
+    "damagePercent": [
+      45,
+      55
+    ],
+    "effect": "DIRECT",
+    "hits": 4,
+    "hitTicks": [
+      0,
+      2,
+      4,
+      6
+    ],
+    "channelTicks": 7,
+    "cacheParams": {
+      "539": 1,
+      "2793": 7,
+      "2794": "Asphyxiate",
+      "2795": "Reach out with magical force and choke the target.",
+      "2796": 34,
+      "2798": 250,
+      "2799": 2,
+      "2801": 1,
+      "2802": 14237,
+      "2806": 4,
+      "2807": 59,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10087,
+      "3740": 8,
+      "5542": 7,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 50,
+      "8120": 3220,
+      "8170": 1,
+      "8884": 2,
+      "8885": 3,
+      "9410": 6708
+    },
+    "structSha256": "3f1e4dfdb3288a3f639cac98a33a1e459cfe242f4b7c85cfa4f8997ef6de4724",
+    "animationEnum": 10087,
+    "animationFamilies": {
+      "-1": 37352,
+      "14937": 37353
+    },
+    "animations": {
+      "37352": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9003
+        }
+      },
+      "37353": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9003
+        }
+      }
+    }
+  },
+  {
+    "name": "Wild Magic",
+    "structure": 14733,
+    "style": 2,
+    "type": 2,
+    "level": 3,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 50,
+    "adrenalineCost": 15,
+    "adrenalineGain": 0,
+    "cooldown": 9,
+    "gcd": 3,
+    "damagePercent": [
+      75,
+      95
+    ],
+    "effect": "DIRECT",
+    "hits": 2,
+    "hitTicks": [
+      0,
+      1
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 9,
+      "2794": "Wild Magic",
+      "2795": "Fire an unpredictable double magical attack at the target.",
+      "2796": 9,
+      "2798": 250,
+      "2799": 2,
+      "2802": 14239,
+      "2806": 4,
+      "2807": 3,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10091,
+      "5542": 7,
+      "8120": 3222,
+      "8170": 1,
+      "9410": 6711
+    },
+    "structSha256": "8a7f0f52d28ce94923e8716b924380809c1a124ea88ea29c844361f3916c7218",
+    "animationEnum": 10091,
+    "animationFamilies": {
+      "-1": 37366,
+      "14937": 37365
+    },
+    "animations": {
+      "37365": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8967,
+          "2940": 8966,
+          "9411": 0
+        }
+      },
+      "37366": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8967,
+          "2940": 8966,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Tsunami",
+    "structure": 14735,
+    "style": 2,
+    "type": 4,
+    "level": 90,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 100,
+    "adrenalineCost": 100,
+    "adrenalineGain": 0,
+    "cooldown": 100,
+    "gcd": 3,
+    "damagePercent": [
+      230,
+      270
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 10,
+      "2794": "Tsunami",
+      "2795": "Summon forth a destructive wall of water.",
+      "2796": 100,
+      "2798": 1000,
+      "2799": 4,
+      "2802": 14240,
+      "2806": 4,
+      "2807": 90,
+      "2809": 0,
+      "2842": 1,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 7124,
+      "2933": 3562,
+      "3740": 50,
+      "5542": 7,
+      "8120": 3231,
+      "8170": 4,
+      "9410": 10111
+    },
+    "structSha256": "0a939b05bb8fcc602f127c438ea928b5a9bf5195493a6537ed242227e5152c16",
+    "animationEnum": 7124,
+    "animationFamilies": {
+      "-1": 37101,
+      "14937": 37100
+    },
+    "animations": {
+      "37100": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      },
+      "37101": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      }
+    }
+  },
+  {
+    "name": "Omnipower",
+    "structure": 14736,
+    "style": 2,
+    "type": 4,
+    "level": 12,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 100,
+    "adrenalineCost": 100,
+    "adrenalineGain": 0,
+    "cooldown": 50,
+    "gcd": 3,
+    "damagePercent": [
+      65,
+      80
+    ],
+    "effect": "DIRECT",
+    "hits": 4,
+    "hitTicks": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 11,
+      "2794": "Omnipower",
+      "2795": "Bombard the target with each of the four elements.",
+      "2796": 50,
+      "2798": 600,
+      "2799": 4,
+      "2802": 14242,
+      "2806": 4,
+      "2807": 12,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10092,
+      "5542": 7,
+      "8120": 3233,
+      "8170": 1,
+      "9090": 60,
+      "9410": 6712
+    },
+    "structSha256": "21724c2bb2ff33af1a3fb939d8a722ca438129d149bf5bc2254acdf17b504fc0",
+    "animationEnum": 10092,
+    "animationFamilies": {
+      "-1": 37360,
+      "14937": 37359
+    },
+    "animations": {
+      "37359": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 8976,
+          "2933": 8975,
+          "2940": 8974,
+          "9411": 0
+        }
+      },
+      "37360": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 8976,
+          "2933": 8975,
+          "2940": 8974,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Sonic Wave",
+    "structure": 19342,
+    "style": 2,
+    "type": 1,
+    "level": 6,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 25,
+    "gcd": 3,
+    "damagePercent": [
+      90,
+      110
+    ],
+    "effect": "FLOW",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 165,
+      "2794": "Sonic Wave",
+      "2795": "A focused blast of magic that pummels the target.",
+      "2796": 25,
+      "2799": 1,
+      "2800": 90,
+      "2802": 27430,
+      "2806": 4,
+      "2807": 6,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 7122,
+      "5542": 7,
+      "6527": 1,
+      "8120": 27431,
+      "8170": 1,
+      "9410": 10108
+    },
+    "structSha256": "e466f150415f580b11c2bfd53c9ce157bdaf70a27c6938cd0f6cadd6adb0032e",
+    "animationEnum": 7122,
+    "animationFamilies": {
+      "-1": 36651,
+      "14937": 36641
+    },
+    "animations": {
+      "36641": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9008,
+          "2933": 9009,
+          "2940": 9010
+        }
+      },
+      "36651": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9008,
+          "2933": 9009,
+          "2940": 9010
+        }
+      }
+    }
+  },
+  {
+    "name": "Concentrated Blast",
+    "structure": 19343,
+    "style": 2,
+    "type": 1,
+    "level": 66,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 9,
+    "gcd": 3,
+    "damagePercent": [
+      70,
+      90
+    ],
+    "effect": "DIRECT",
+    "hits": 3,
+    "hitTicks": [
+      0,
+      2,
+      4
+    ],
+    "channelTicks": 5,
+    "cacheParams": {
+      "2793": 166,
+      "2794": "Concentrated Blast",
+      "2795": "Blast the target with beams of concentrated energy.",
+      "2796": 9,
+      "2799": 1,
+      "2800": 90,
+      "2801": 1,
+      "2802": 13309,
+      "2806": 4,
+      "2807": 66,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10104,
+      "3740": 6,
+      "5542": 7,
+      "6527": 1,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 50,
+      "8120": 15183,
+      "8170": 1,
+      "8884": 1,
+      "8885": 2,
+      "9410": 10093
+    },
+    "structSha256": "36537c2d65e0fd1d5f7da42c01d289f757962760230db602a9a4a52676317f50",
+    "animationEnum": 10104,
+    "animationFamilies": {
+      "-1": 37340,
+      "14937": 37338
+    },
+    "animations": {
+      "37338": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 8970,
+          "2933": 8973,
+          "2940": 8972,
+          "9411": 0
+        }
+      },
+      "37340": {
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 8971,
+          "2933": 8973,
+          "2940": 8972,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Surge",
+    "structure": 14726,
+    "style": 2,
+    "type": 1,
+    "level": 5,
+    "offhand": false,
+    "twoHanded": false,
+    "target": false,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 8,
+    "cooldown": 34,
+    "gcd": 3,
+    "damagePercent": [
+      0,
+      0
+    ],
+    "effect": "MOVEMENT",
+    "hits": 0,
+    "hitTicks": [],
+    "channelTicks": 0,
+    "cacheParams": {
+      "2793": 2,
+      "2794": "Surge",
+      "2795": "Teleport forward.",
+      "2796": 34,
+      "2799": 7,
+      "2800": 0,
+      "2802": 14233,
+      "2806": 8,
+      "2807": 5,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "3394": 0,
+      "4499": 1,
+      "5348": 1,
+      "5542": 3,
+      "5550": 1,
+      "6528": 1,
+      "7949": 1,
+      "8120": 3216,
+      "8170": 3,
+      "9061": 1,
+      "9408": 1
+    },
+    "structSha256": "90867e319ec4e13a4fe0e83498591deb991dc4c8f662e3f3e8f1157ea754e623",
+    "animationEnum": 0,
+    "animations": {}
+  }
+]

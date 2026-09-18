@@ -23,9 +23,15 @@ final class Native950AbilityCatalog {
         }
         boolean targetRequired(){return effect!=Effect.MOVEMENT;}
         int style(){return book==1?0:book==5?1:2;}
-        int adrenalineCost(){return tier==2?15:tier==4?100:0;}
-        int adrenalineRequired(){return tier==2?50:adrenalineCost();}
-        int adrenalineGain(){return tier==1?8:0;}
+        // Paired 950 params 2798/2800 use tenths of one percent. Tier 2 is
+        // enhanced, not the pre-modernisation 50%-admission/15%-cost threshold.
+        int adrenalineCost(){
+            if(struct==44244||struct==14666)return 0;
+            if(struct==14686||struct==14688||struct==14674||struct==14736)return 60;
+            return tier==2?25:tier==4?100:0;
+        }
+        int adrenalineRequired(){return adrenalineCost();}
+        int adrenalineGain(){return struct==14679?12:tier==1?9:0;}
         boolean channelled(){return struct==14684||struct==14701||struct==14704||struct==14670||struct==14731||struct==19343;}
         /** EOC effect cadence, never inferred from a sequence's optional legacy frame table. */
         int hitDelay(int hit){
@@ -71,7 +77,7 @@ final class Native950AbilityCatalog {
         d(14736,6,11,"Omnipower",6,12,50,65,80,4,4,Effect.DIRECT),
         d(19342,6,165,"Sonic Wave",6,6,25,90,110,1,1,Effect.FLOW),
         d(19343,6,166,"Concentrated Blast",6,66,9,70,90,1,3,Effect.DIRECT),
-        d(14726,6,2,"Surge",16,5,34,0,0,1,0,Effect.MOVEMENT)));
+        d(14726,6,2,"Surge",16,5,34,0,0,7,0,Effect.MOVEMENT)));
     private static Definition d(int struct,int book,int key,String name,int skill,int level,int cooldown,int min,int max,
                                 int tier,int hits,Effect effect){return d(struct,book,key,name,skill,level,cooldown,min,max,tier,hits,effect,false,false);}
     private static Definition d(int struct,int book,int key,String name,int skill,int level,int cooldown,int min,int max,
@@ -84,6 +90,10 @@ final class Native950AbilityCatalog {
             RS3GeneralRequirementMap s=RS3GeneralRequirementMap.getMap(d.struct);
             if(!d.name.equals(s.getStringValue(2794))||s.getIntValue(2793)!=d.key
                 ||s.getIntValue(2807)!=d.level||s.getIntValue(2796)!=d.cooldown
+                ||s.getIntValue(2799)!=d.tier||s.getIntValue(2798)!=10*d.adrenalineCost()
+                ||s.getIntValue(2800)!=10*d.adrenalineGain()
+                ||(s.getIntValue(2811)==1)!=d.offhandRequired
+                ||(s.getIntValue(2812)==1)!=d.twoHandedRequired
                 ||Native950ActionBar.struct(Native950ActionBar.pack(d.book,d.key))!=d.struct)
                 throw new IllegalStateException("Changed950 ability definition: "+d.name);
         }

@@ -74,7 +74,7 @@ public final class Native950AbilityAcceptance {
             int adrenaline=p.getCombatDefinitions().getSpecialAttackPercentage();p.resetMasks();
             combat.beforeMovement();combat.afterMovement();
             require(p.getNextAnimation()!=null&&p.getNextAnimation().getIds()[0]==18154,"Requeued Backhand executes after its animation gate");
-            require(p.getCombatDefinitions().getSpecialAttackPercentage()==Math.min(100,adrenaline+8),"Requeued Backhand grants a capped basic gain");
+            require(p.getCombatDefinitions().getSpecialAttackPercentage()==Math.min(100,adrenaline+9),"Requeued Backhand grants the paired 950 capped basic gain");
             require(combat.ability(p,14682).contains("cooling down"),"Executed Backhand starts a new cooldown");
             combat.detach(p);combat.clear();
         }finally{c.finishAndReleaseAll();}
