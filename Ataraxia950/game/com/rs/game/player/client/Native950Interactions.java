@@ -478,6 +478,9 @@ public final class Native950Interactions {
     /** Counts one decoded action that no branch above claims, and names it once in the log. */
     private void unhandled(Native950Actions.Action action) {
         String kind = action == null ? "null" : action.getClass().getSimpleName();
+        // Bug Test is opt-in; this records a real decoded action only when it has no
+        // gameplay owner, which is the evidence needed for unwired native controls.
+        Native950BugTest.event(player, "input", "unhandled-action", "type", kind);
         Long seen = unhandledActions.get(kind);
         unhandledActions.put(kind, Long.valueOf(seen == null ? 1L : seen.longValue() + 1L));
         unhandledActionTotal++;
