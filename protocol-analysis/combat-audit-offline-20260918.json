@@ -1,0 +1,3333 @@
+[
+  {
+    "name": "Barge",
+    "structure": 14678,
+    "style": 0,
+    "type": 1,
+    "level": 65,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 9,
+    "cooldown": 34,
+    "gcd": 3,
+    "damagePercent": [
+      100,
+      120
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 1,
+      "2794": "Barge",
+      "2795": "Run up and ram the target.",
+      "2796": 34,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14208,
+      "2806": 1,
+      "2807": 65,
+      "2809": 0,
+      "2915": 10052,
+      "5198": 10,
+      "5542": 9,
+      "6527": 1,
+      "8120": 3101,
+      "8170": 1,
+      "9410": 17345
+    },
+    "structSha256": "e191eed3b8013a7ba1f1927ccce0559f2bada127b8eeff571927b4cdc23a2c1e",
+    "animationEnum": 10052,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37394,
+      "14930": 37395,
+      "14931": 37396,
+      "14932": 37397,
+      "14933": 37397,
+      "14937": 37397
+    },
+    "animations": {
+      "37394": {
+        "rawPresent": true,
+        "sha256": "7d63f84f34f3939b7990d5db464ab083d613f3d6c287254696f21f3e29c837d1",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9018,
+          "9411": 0
+        }
+      },
+      "37395": {
+        "rawPresent": true,
+        "sha256": "4225a69fd3de5f923b58a7e6ec0280187dd947117cd7e177e40536538b032895",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9018,
+          "9411": 0
+        }
+      },
+      "37396": {
+        "rawPresent": true,
+        "sha256": "5f38f6773a3b9bc270af4b5e05bfb31a244861d8b66d09521d84c498622ded8f",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9018,
+          "9411": 0
+        }
+      },
+      "37397": {
+        "rawPresent": true,
+        "sha256": "be27f403bb302742d39bd274bb6978826ace3d36312fa29a5e7973581247f26e",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9018,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Adaptive Strike",
+    "structure": 14679,
+    "style": 0,
+    "type": 1,
+    "level": 7,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 12,
+    "cooldown": 9,
+    "gcd": 3,
+    "damagePercent": [
+      90,
+      110
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 2,
+      "2794": "Adaptive Strike",
+      "2795": "Channel your weapons form into an adaptive strike.",
+      "2796": 9,
+      "2799": 1,
+      "2800": 120,
+      "2802": 21237,
+      "2806": 1,
+      "2807": 7,
+      "2809": 0,
+      "2915": 442,
+      "5542": 9,
+      "8109": 1,
+      "8114": 1,
+      "8115": 60,
+      "8120": 35556,
+      "8170": 1,
+      "9407": 1,
+      "9410": 6689
+    },
+    "structSha256": "8e49333ece02ec4702b15c69d34144fc05662a6205bbb455387098ee165af673",
+    "animationEnum": 442,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37388,
+      "14929": 37389,
+      "14930": 37407,
+      "14931": 37408,
+      "14932": 37406,
+      "14933": 37406,
+      "14935": 37390
+    },
+    "animations": {
+      "37388": {
+        "rawPresent": true,
+        "sha256": "d25a5389d1d111ab3f03a57d94a8aa40bb1e3efad957b51a779ba8b92c1bb5e8",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9012,
+          "9411": 0
+        }
+      },
+      "37389": {
+        "rawPresent": true,
+        "sha256": "b636d538deb38cc94613c529800c3a85e1cf19986af1cb682e12638bdb1351b2",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9012,
+          "9411": 0
+        }
+      },
+      "37390": {
+        "rawPresent": true,
+        "sha256": "dd94a6c34ec0906268e6efaac0c194fd91c35b285b35a990092c48a8f80c4010",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9012,
+          "9411": 0
+        }
+      },
+      "37406": {
+        "rawPresent": true,
+        "sha256": "f8c08fcb7c8b34cf4474a9b8726f81da0c8bdf87d1bf1c2587635c7f6b5dce92",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      },
+      "37407": {
+        "rawPresent": true,
+        "sha256": "d1f4ea55dee8750ad924994c92e3385106d9fcb71508ce1f1b80afb8514fa444",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      },
+      "37408": {
+        "rawPresent": true,
+        "sha256": "0a2cbac8b5b959a2d7baeff840ea96934e4ab20c49b0ed0e065afc0f1365a900",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      }
+    }
+  },
+  {
+    "name": "Backhand",
+    "structure": 14682,
+    "style": 0,
+    "type": 1,
+    "level": 31,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 9,
+    "cooldown": 25,
+    "gcd": 3,
+    "damagePercent": [
+      95,
+      105
+    ],
+    "effect": "STUN",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "5 ticks NPC attack/follow suppression; immunity and charge systems incomplete",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "539": 1,
+      "2793": 3,
+      "2794": "Backhand",
+      "2795": "Strike the target with the back of the hand.",
+      "2796": 25,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14212,
+      "2806": 1,
+      "2807": 31,
+      "2809": 0,
+      "2880": 5,
+      "2915": 6692,
+      "5542": 9,
+      "8120": 3105,
+      "8170": 1
+    },
+    "structSha256": "35e642477cfad353d4fe1e1fd60c5bb44100c0c1f55ae53b32bd8ce048028799",
+    "animationEnum": 6692,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 18154,
+      "14930": 18169,
+      "14931": 18168,
+      "14932": 18167,
+      "14933": 18167,
+      "14937": 18167
+    },
+    "animations": {
+      "18154": {
+        "rawPresent": true,
+        "sha256": "11bf81ffe17bc848e9f726c586f31a572bd3e11c3fa5e9a828fe0c6c1f8cadd3",
+        "decodeFailure": null,
+        "legacyFrameMillis": 420,
+        "params": {}
+      },
+      "18167": {
+        "rawPresent": true,
+        "sha256": "1e9c27b9821865c130c55ff53aa801f5762264051b61205ceec2b70bb794af49",
+        "decodeFailure": null,
+        "legacyFrameMillis": 450,
+        "params": {}
+      },
+      "18168": {
+        "rawPresent": true,
+        "sha256": "36f54ec5f8aa928679bc2c23a2c8389373554503cfb68c2e621fb5c5b4780e11",
+        "decodeFailure": null,
+        "legacyFrameMillis": 510,
+        "params": {}
+      },
+      "18169": {
+        "rawPresent": true,
+        "sha256": "654d93534a1b32bafce888442a15dd1d2feff02bcb3a1a19d8c43dffe835dc39",
+        "decodeFailure": null,
+        "legacyFrameMillis": 460,
+        "params": {}
+      }
+    }
+  },
+  {
+    "name": "Flurry",
+    "structure": 14684,
+    "style": 0,
+    "type": 2,
+    "level": 45,
+    "offhand": true,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 25,
+    "adrenalineCost": 25,
+    "adrenalineGain": 0,
+    "cooldown": 34,
+    "gcd": 3,
+    "damagePercent": [
+      45,
+      55
+    ],
+    "effect": "DIRECT",
+    "hits": 8,
+    "hitTicks": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "channelTicks": 8,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "539": 1,
+      "2793": 4,
+      "2794": "Flurry",
+      "2795": "Swing both weapons rapidly around you.",
+      "2796": 34,
+      "2798": 250,
+      "2799": 2,
+      "2801": 1,
+      "2802": 14214,
+      "2806": 1,
+      "2807": 45,
+      "2809": 0,
+      "2811": 1,
+      "2842": 1,
+      "2915": 10041,
+      "3740": 8,
+      "5542": 9,
+      "6527": 1,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 60,
+      "8120": 3107,
+      "8170": 4,
+      "8884": 1,
+      "8885": 7,
+      "9087": 1,
+      "9089": 1,
+      "9410": 6691
+    },
+    "structSha256": "1a24d9926979fe57e5bf7d915c4779f55e20037ba644a8e3071fe95a3e851db0",
+    "animationEnum": 10041,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37428,
+      "14934": 37429,
+      "14935": 37428
+    },
+    "animations": {
+      "37428": {
+        "rawPresent": true,
+        "sha256": "11d39a8d9774185ffcd08448b93af0f4c188e81a271fff4ac942001f73e3d6f9",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9016,
+          "9411": 0
+        }
+      },
+      "37429": {
+        "rawPresent": true,
+        "sha256": "e6d70d621931ef9ffdc1a44d6b5d6b1eb10f4dfe0be9fd04baea936a86b239bd",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9016,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Overpower",
+    "structure": 14686,
+    "style": 0,
+    "type": 4,
+    "level": 15,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 60,
+    "adrenalineCost": 60,
+    "adrenalineGain": 0,
+    "cooldown": 50,
+    "gcd": 3,
+    "damagePercent": [
+      180,
+      220
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 5,
+      "2794": "Overpower",
+      "2795": "Strike the target with a massive overhead swing.",
+      "2796": 50,
+      "2798": 600,
+      "2799": 4,
+      "2802": 14216,
+      "2806": 1,
+      "2807": 15,
+      "2809": 0,
+      "2915": 6695,
+      "5542": 9,
+      "8120": 3109,
+      "8170": 1,
+      "9090": 55
+    },
+    "structSha256": "175f4111fc6a78d2e2285a1b51f4ccf31f655d180a0925b8d1e2afc92f3d693e",
+    "animationEnum": 6695,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 18179,
+      "14930": 18180,
+      "14931": 18177,
+      "14932": 18178,
+      "14933": 18178,
+      "14937": 18178
+    },
+    "animations": {
+      "18177": {
+        "rawPresent": true,
+        "sha256": "24e2ad045c9db1b36a330320d9eea70f0a2b04bb4c4e6de39de5c4e8bdeefe4e",
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 3585
+        }
+      },
+      "18178": {
+        "rawPresent": true,
+        "sha256": "ac45a9ea8039cad41db2be581ccb1276696bac38387929911291a6a55544284b",
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 3586
+        }
+      },
+      "18179": {
+        "rawPresent": true,
+        "sha256": "c7d84e76f158764d637d2e13da041a449e48e59b4ecf485bb9dd8d8b3b1b13fb",
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 3584
+        }
+      },
+      "18180": {
+        "rawPresent": true,
+        "sha256": "ab9ff2793da64e60188ad24d3ae384f8a300c11cce9ce431b1da3c8ef048702c",
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 3587
+        }
+      }
+    }
+  },
+  {
+    "name": "Meteor Strike",
+    "structure": 14688,
+    "style": 0,
+    "type": 4,
+    "level": 90,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 60,
+    "adrenalineCost": 60,
+    "adrenalineGain": 0,
+    "cooldown": 100,
+    "gcd": 3,
+    "damagePercent": [
+      240,
+      280
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 6,
+      "2794": "Meteor Strike",
+      "2795": "Jump up and strike the ground.",
+      "2796": 100,
+      "2798": 600,
+      "2799": 4,
+      "2802": 21363,
+      "2806": 1,
+      "2807": 90,
+      "2809": 0,
+      "2842": 1,
+      "2915": 6697,
+      "3740": 50,
+      "5542": 9,
+      "8120": 35561,
+      "8170": 4,
+      "9089": 1
+    },
+    "structSha256": "32d7498427be1c6c98f267e596bb86d542d7a11c6003a9499840754d11de7f17",
+    "animationEnum": 6697,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 18175,
+      "14931": 18199,
+      "14932": 18198,
+      "14933": 18198
+    },
+    "animations": {
+      "18175": {
+        "rawPresent": true,
+        "sha256": "4a144446499323135e0229ba47c1c748569ce84cd56166312d1eaff1422eecff",
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 9053,
+          "9411": 26
+        }
+      },
+      "18198": {
+        "rawPresent": true,
+        "sha256": "e6a2d50ba3abf8fa04b51d9c3f3e0653b2f0bdc6682004dd1cd1c01bfe208051",
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 9053,
+          "9411": 26
+        }
+      },
+      "18199": {
+        "rawPresent": true,
+        "sha256": "5d81f7aa3b20ba3b41cb3749417e83a6bf997ab985983c3fce842c7636a10503",
+        "decodeFailure": null,
+        "legacyFrameMillis": 1200,
+        "params": {
+          "2920": 9053,
+          "9411": 26
+        }
+      }
+    }
+  },
+  {
+    "name": "Dismember",
+    "structure": 44244,
+    "style": 0,
+    "type": 2,
+    "level": 50,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 0,
+    "cooldown": 40,
+    "gcd": 3,
+    "damagePercent": [
+      70,
+      85
+    ],
+    "effect": "BLEED",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "Alpha opening hit plus 3 follow-ups every 2 ticks; retail bleed model incomplete",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 8,
+      "2794": "Dismember",
+      "2795": "Slice at the target causing them to \u003ccol\u003dffffff\u003eBleed\u003c/col\u003e.",
+      "2796": 40,
+      "2798": 0,
+      "2799": 2,
+      "2802": 21239,
+      "2806": 1,
+      "2807": 50,
+      "2809": 0,
+      "2915": 10145,
+      "5335": 1,
+      "5542": 9,
+      "6527": 1,
+      "8109": 1,
+      "8114": 1,
+      "8115": 100,
+      "8120": 35558,
+      "8170": 1,
+      "8366": 1,
+      "9410": 6723
+    },
+    "structSha256": "c03008e0570988f9404feb5e1f091e560d3c70328aace797a8fcfe917f7c54dd",
+    "animationEnum": 10145,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37412,
+      "14930": 37414,
+      "14931": 37413,
+      "14932": 37411,
+      "14933": 37411,
+      "14934": 37409,
+      "14935": 37410
+    },
+    "animations": {
+      "37409": {
+        "rawPresent": true,
+        "sha256": "38994bd564bce7234cf2a69175f4c2e54c2e13f849479489bd4296eae3838155",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9013
+        }
+      },
+      "37410": {
+        "rawPresent": true,
+        "sha256": "0fa92a5c95997fac2fecc81baa126d764ab53f1225b40f41a078462d2ff36da2",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9013
+        }
+      },
+      "37411": {
+        "rawPresent": true,
+        "sha256": "df7e8d80abfd26691c636e54940800bf2d94406a369c752ea04d1e198aca3a0d",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9013
+        }
+      },
+      "37412": {
+        "rawPresent": true,
+        "sha256": "deb856836d2f887153639d3ca6c59b4b2bb54b5a4721fb331a34884a925f75e9",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9013
+        }
+      },
+      "37413": {
+        "rawPresent": true,
+        "sha256": "6b115661bb0174cf9eb45d3968778f031a07ac3ee4aff6094de3069704839911",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9013
+        }
+      },
+      "37414": {
+        "rawPresent": true,
+        "sha256": "1f9bc09d6c0f9857743277a2c4c90f117018d8dfe407328967b749a6af1a3ee0",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9013
+        }
+      }
+    }
+  },
+  {
+    "name": "Punish",
+    "structure": 14700,
+    "style": 0,
+    "type": 1,
+    "level": 60,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 9,
+    "cooldown": 40,
+    "gcd": 3,
+    "damagePercent": [
+      110,
+      130
+    ],
+    "effect": "EXECUTE",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 9,
+      "2794": "Punish",
+      "2795": "Slash at the target unexpectedly.",
+      "2796": 40,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14257,
+      "2806": 1,
+      "2807": 60,
+      "2809": 0,
+      "2915": 6727,
+      "5542": 9,
+      "8120": 3397,
+      "8170": 1
+    },
+    "structSha256": "7ce6f851b553d55e5a5cb545514ce4823f4dbe9be0e9b875382c93c871b1971b",
+    "animationEnum": 6727,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 18560,
+      "14930": 18563,
+      "14931": 18562,
+      "14932": 18564,
+      "14933": 18564,
+      "14937": 18564
+    },
+    "animations": {
+      "18560": {
+        "rawPresent": true,
+        "sha256": "b6e890a2babf9664c7d92d179d3158639371889514df73b0bee6171eed00c1d8",
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 946
+        }
+      },
+      "18562": {
+        "rawPresent": true,
+        "sha256": "1026ad735c31f74ad24915ce1d482dfef9993c2ceb75a76cdda2226cf11e4bef",
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 946
+        }
+      },
+      "18563": {
+        "rawPresent": true,
+        "sha256": "a4e3d38135524e8991ec13d7984e651b16c81fdd1a28111eaa121c5c8ddf2fc5",
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 946
+        }
+      },
+      "18564": {
+        "rawPresent": true,
+        "sha256": "931712b2090f05e70d757a65f46326f2a31ecc778b6bc8d2a4221a76d720dacf",
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 946
+        }
+      }
+    }
+  },
+  {
+    "name": "Fury",
+    "structure": 14701,
+    "style": 0,
+    "type": 1,
+    "level": 21,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 9,
+    "cooldown": 25,
+    "gcd": 3,
+    "damagePercent": [
+      105,
+      125
+    ],
+    "effect": "DIRECT",
+    "hits": 3,
+    "hitTicks": [
+      0,
+      2,
+      5
+    ],
+    "channelTicks": 6,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 10,
+      "2794": "Fury",
+      "2795": "Swing your weapon at the target with fury.",
+      "2796": 25,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14258,
+      "2806": 1,
+      "2807": 21,
+      "2809": 0,
+      "2915": 6724,
+      "5542": 9,
+      "6527": 1,
+      "8120": 3398,
+      "8170": 1,
+      "9410": 6689
+    },
+    "structSha256": "d74a4738688fe961711d887930f81e1d81a9806b9c40a02ec979e3395c13fd5a",
+    "animationEnum": 6724,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37425,
+      "14930": 37426,
+      "14931": 37424,
+      "14932": 37423,
+      "14933": 37423,
+      "14934": 37421,
+      "14935": 37422
+    },
+    "animations": {
+      "37421": {
+        "rawPresent": true,
+        "sha256": "0ec0d59adebc4e65e0298f3fc4e2d72b1b2536483649a53357da58565abb2f1c",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9014
+        }
+      },
+      "37422": {
+        "rawPresent": true,
+        "sha256": "2714f9fe9f96ccdacfc2202fe9a72a0ba6f4915b59a8079ac284c33675724621",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9014
+        }
+      },
+      "37423": {
+        "rawPresent": true,
+        "sha256": "c2783aaf1e8d1ee797bcefae019900de6c0a1c406736affe20aede67b0e4a1b3",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9014
+        }
+      },
+      "37424": {
+        "rawPresent": true,
+        "sha256": "75236500edd1b33b4e95de235ad867bd230be867a20e5fc56336a69fd5b07dc9",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9014
+        }
+      },
+      "37425": {
+        "rawPresent": true,
+        "sha256": "e4e2fe7479005985f9e4a43d417ffdcdff86dfdd1ab66d52d4d9ae0c67c2d86c",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9014
+        }
+      },
+      "37426": {
+        "rawPresent": true,
+        "sha256": "fd16ca7e4755fbd104187d90d50d8e32f6cf2a9d87dada8ac465e92e2791d263",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9014
+        }
+      }
+    }
+  },
+  {
+    "name": "Assault",
+    "structure": 14704,
+    "style": 0,
+    "type": 2,
+    "level": 3,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 25,
+    "adrenalineCost": 25,
+    "adrenalineGain": 0,
+    "cooldown": 10,
+    "gcd": 3,
+    "damagePercent": [
+      55,
+      70
+    ],
+    "effect": "DIRECT",
+    "hits": 4,
+    "hitTicks": [
+      0,
+      2,
+      4,
+      6
+    ],
+    "channelTicks": 7,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 11,
+      "2794": "Assault",
+      "2795": "Strike at the target multiple times.",
+      "2796": 10,
+      "2798": 250,
+      "2799": 2,
+      "2801": 1,
+      "2802": 14261,
+      "2806": 1,
+      "2807": 3,
+      "2809": 0,
+      "2915": 6725,
+      "3740": 8,
+      "5542": 9,
+      "6527": 1,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 50,
+      "8120": 3401,
+      "8170": 1,
+      "8884": 2,
+      "8885": 3,
+      "9087": 1,
+      "9090": 75
+    },
+    "structSha256": "2245c93efc1dbd2b1d750f029f874bb2ce6343e340bbdc4faca6dcc4cf727011",
+    "animationEnum": 6725,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 18577,
+      "14930": 18579,
+      "14931": 18580,
+      "14932": 18578,
+      "14933": 18578,
+      "14937": 18578
+    },
+    "animations": {
+      "18577": {
+        "rawPresent": true,
+        "sha256": "50e4e7217ee866e2d61196bfbed1db71ec7d9d504794f602ae3019fc108f2b47",
+        "decodeFailure": null,
+        "legacyFrameMillis": 2400,
+        "params": {
+          "2920": 9078
+        }
+      },
+      "18578": {
+        "rawPresent": true,
+        "sha256": "da18c110edc426190c47757fedf8f6b4e64ec9f59a89fd8e1ec785ce1dab3de5",
+        "decodeFailure": null,
+        "legacyFrameMillis": 2400,
+        "params": {
+          "2920": 9077
+        }
+      },
+      "18579": {
+        "rawPresent": true,
+        "sha256": "2ec6ff8e8acd1348592fead820cc66eb0b872066bef2ab1fc0c3bc28f4c85c9e",
+        "decodeFailure": null,
+        "legacyFrameMillis": 2400,
+        "params": {
+          "2920": 9077
+        }
+      },
+      "18580": {
+        "rawPresent": true,
+        "sha256": "96009cedb764ad1bb9e99622402c7e23815f844f7d9355fa905c828c3a1e6a3e",
+        "decodeFailure": null,
+        "legacyFrameMillis": 2400,
+        "params": {
+          "2920": 9077
+        }
+      }
+    }
+  },
+  {
+    "name": "Hurricane",
+    "structure": 14685,
+    "style": 0,
+    "type": 2,
+    "level": 37,
+    "offhand": false,
+    "twoHanded": true,
+    "target": true,
+    "adrenalineRequired": 25,
+    "adrenalineCost": 25,
+    "adrenalineGain": 0,
+    "cooldown": 34,
+    "gcd": 3,
+    "damagePercent": [
+      65,
+      80
+    ],
+    "effect": "DIRECT",
+    "hits": 2,
+    "hitTicks": [
+      0,
+      1
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 12,
+      "2794": "Hurricane",
+      "2795": "Spin on the spot with your weapon.",
+      "2796": 34,
+      "2798": 250,
+      "2799": 2,
+      "2802": 14215,
+      "2806": 1,
+      "2807": 37,
+      "2809": 0,
+      "2812": 1,
+      "2842": 1,
+      "2915": 10057,
+      "5542": 9,
+      "6527": 1,
+      "8120": 3108,
+      "8170": 4,
+      "9089": 1,
+      "9090": 55,
+      "9410": 6694
+    },
+    "structSha256": "3cfd360d4467ce3e0977fd507fc235f3b2469644f622be0fd976c7b0d40870f9",
+    "animationEnum": 10057,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37437,
+      "14931": 37438,
+      "14933": 37439
+    },
+    "animations": {
+      "37437": {
+        "rawPresent": true,
+        "sha256": "af4cf9f87b09bc884d261900d2c0de5a9940ef69cfd6e36f5c75993515b226b4",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9017,
+          "9411": 0
+        }
+      },
+      "37438": {
+        "rawPresent": true,
+        "sha256": "33ff23ddadbdf220bffaa22623fe2b9d209cdda1486dabd6cfef828255a52ce7",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9017,
+          "9411": 0
+        }
+      },
+      "37439": {
+        "rawPresent": true,
+        "sha256": "f3a298c1c23bc27fc614bf3305d9d3098d27b72874591cf71e790faf95bcbdb7",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9017,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Berserk",
+    "structure": 14707,
+    "style": 0,
+    "type": 4,
+    "level": 76,
+    "offhand": false,
+    "twoHanded": false,
+    "target": false,
+    "adrenalineRequired": 100,
+    "adrenalineCost": 100,
+    "adrenalineGain": 0,
+    "cooldown": 100,
+    "gcd": 3,
+    "damagePercent": [
+      0,
+      0
+    ],
+    "effect": "BUFF",
+    "hits": 0,
+    "hitTicks": [],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "death/logout/world clear; persists through combat stop until expiry",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "33 ticks; melee +75%, incoming combat +25%",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 13,
+      "2794": "Berserk",
+      "2795": "Go berserk, empowering yourself.",
+      "2796": 100,
+      "2798": 1000,
+      "2799": 4,
+      "2802": 14264,
+      "2806": 1,
+      "2807": 76,
+      "2809": 1,
+      "2819": 1,
+      "3394": 0,
+      "3740": 33,
+      "4030": 36244,
+      "5542": 9,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 60,
+      "8120": 3404,
+      "8170": 3
+    },
+    "structSha256": "79d028b1b9fad09804128e2a6de234d9c66192c05794f2a30d82fd06a0bbe6c5",
+    "animationEnum": 0,
+    "animationConfidence": "missing; no invented fallback",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animations": {}
+  },
+  {
+    "name": "Piercing Shot",
+    "structure": 14663,
+    "style": 1,
+    "type": 1,
+    "level": 13,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 9,
+    "cooldown": 5,
+    "gcd": 3,
+    "damagePercent": [
+      45,
+      55
+    ],
+    "effect": "DIRECT",
+    "hits": 2,
+    "hitTicks": [
+      0,
+      1
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 1,
+      "2794": "Piercing Shot",
+      "2795": "Fire two piercing shots.",
+      "2796": 5,
+      "2799": 1,
+      "2800": 90,
+      "2802": 23727,
+      "2806": 3,
+      "2807": 13,
+      "2809": 0,
+      "2915": 10112,
+      "5542": 6,
+      "8120": 35572,
+      "8170": 1,
+      "9410": 6713
+    },
+    "structSha256": "580c8328dfb783da0b31c11745d9e1829d2ac0170930e3b437742a2d626748c5",
+    "animationEnum": 10112,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37473,
+      "14939": 37470,
+      "14940": 37470,
+      "14942": 37474,
+      "14943": 37471,
+      "14944": 37471,
+      "14945": 37471,
+      "14946": 37472,
+      "14947": 37471,
+      "31925": 32827
+    },
+    "animations": {
+      "32827": {
+        "rawPresent": true,
+        "sha256": "a78972ce6621f8f59473903e0701331dede1ac2c987c154213f1f85f16aa844c",
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 7240
+        }
+      },
+      "37470": {
+        "rawPresent": true,
+        "sha256": "95d03f8192512a40d4e603f5d16f9db929e7b6eb698ce9d3dbf60671fd6747c9",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8981,
+          "9412": 8979,
+          "9413": 0
+        }
+      },
+      "37471": {
+        "rawPresent": true,
+        "sha256": "76944d019e2aa7a575e6cbabd5ac5fde07e9be8ee4c832a5c42077aec147fd94",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8981,
+          "9412": 8979,
+          "9413": 128
+        }
+      },
+      "37472": {
+        "rawPresent": true,
+        "sha256": "6b33b078846c1aa4f69655c19366384d9e0091b7c24af333fa46d762256abe40",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8981,
+          "9412": 8979,
+          "9413": 128
+        }
+      },
+      "37473": {
+        "rawPresent": true,
+        "sha256": "b5cb83f2cda17db411724822e2ed25992b9789710704b44bf14a4e33ebf1b4a6",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8981,
+          "9412": 8979,
+          "9413": 92
+        }
+      },
+      "37474": {
+        "rawPresent": true,
+        "sha256": "b162a534aa2d87210a75b4afcdb41779521a1d9db450449ad510473560865007",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8981,
+          "9412": 8979,
+          "9413": 44
+        }
+      }
+    }
+  },
+  {
+    "name": "Binding Shot",
+    "structure": 14664,
+    "style": 1,
+    "type": 1,
+    "level": 31,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 9,
+    "cooldown": 25,
+    "gcd": 3,
+    "damagePercent": [
+      90,
+      100
+    ],
+    "effect": "STUN",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "5 ticks NPC attack/follow suppression; immunity and charge systems incomplete",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "539": 1,
+      "2793": 2,
+      "2794": "Binding Shot",
+      "2795": "Fire a binding shot.",
+      "2796": 25,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14244,
+      "2806": 3,
+      "2807": 31,
+      "2809": 0,
+      "2915": 6714,
+      "2933": 3488,
+      "5542": 6,
+      "8120": 3255,
+      "8170": 1
+    },
+    "structSha256": "017a8d3468ce1694932d0c7945e163d5b0a93ab056f477b071b67c8303a7f72f",
+    "animationEnum": 6714,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 3488,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 18461,
+      "14939": 18459,
+      "14940": 18459,
+      "14942": 18462,
+      "14943": 18463,
+      "14944": 18463,
+      "14945": 18463,
+      "14946": 18460,
+      "14947": 18463,
+      "31925": 32824
+    },
+    "animations": {
+      "18459": {
+        "rawPresent": true,
+        "sha256": "b53002b7d69c473a539a440e1ddbf49ce13006af425df3e9bc59335412323a73",
+        "decodeFailure": null,
+        "legacyFrameMillis": 590,
+        "params": {}
+      },
+      "18460": {
+        "rawPresent": true,
+        "sha256": "fb4eb9240cb045ad9eea07eacf69396722164538c79fa7812e5e04059c6f5f44",
+        "decodeFailure": null,
+        "legacyFrameMillis": 540,
+        "params": {}
+      },
+      "18461": {
+        "rawPresent": true,
+        "sha256": "46ad8b256e3be7e99ac1e75b7c7695d7a58e1134392c5f9bbeda55b288f9941d",
+        "decodeFailure": null,
+        "legacyFrameMillis": 590,
+        "params": {
+          "9413": 92
+        }
+      },
+      "18462": {
+        "rawPresent": true,
+        "sha256": "26fcff04581ff9a67df79b1f7d7e87fa9750e80d432dc25ea7aa62b2abe53f5e",
+        "decodeFailure": null,
+        "legacyFrameMillis": 590,
+        "params": {}
+      },
+      "18463": {
+        "rawPresent": true,
+        "sha256": "ddaa72cd97b95e1711360c09188c31f66a9fdab3cfb904f0646e7b5c505043ee",
+        "decodeFailure": null,
+        "legacyFrameMillis": 540,
+        "params": {}
+      },
+      "32824": {
+        "rawPresent": true,
+        "sha256": "514d1d6b4e092ebd146f2cb209f0a569bfe4b0f8b2802642f6dde88989b75d43",
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {}
+      }
+    }
+  },
+  {
+    "name": "Snipe",
+    "structure": 14666,
+    "style": 1,
+    "type": 2,
+    "level": 7,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 0,
+    "cooldown": 100,
+    "gcd": 3,
+    "damagePercent": [
+      150,
+      180
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      2
+    ],
+    "channelTicks": 3,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 4,
+      "2794": "Snipe",
+      "2795": "Fire a precise shot.",
+      "2796": 100,
+      "2798": 0,
+      "2799": 2,
+      "2801": 1,
+      "2802": 23729,
+      "2806": 3,
+      "2807": 7,
+      "2809": 0,
+      "2915": 10140,
+      "5542": 6,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 60,
+      "8120": 35574,
+      "8170": 1,
+      "8884": 2,
+      "8885": 1,
+      "9086": 1,
+      "9090": 75,
+      "9410": 6717
+    },
+    "structSha256": "5980f8664ffcf7b4475884b7753596a43d5b3e615167c65bb7f8207e770090bd",
+    "animationEnum": 10140,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37498,
+      "14939": 37494,
+      "14940": 37494,
+      "14942": 37504,
+      "14943": 37502,
+      "14944": 37502,
+      "14945": 37500,
+      "14946": 37496,
+      "14947": 37502,
+      "31925": 32823
+    },
+    "animations": {
+      "32823": {
+        "rawPresent": true,
+        "sha256": "a79c6238251fde6c86e38df6bbc16b7b81d3a5cf257db70f5aaf1cd0617df8e9",
+        "decodeFailure": null,
+        "legacyFrameMillis": 1290,
+        "params": {}
+      },
+      "37494": {
+        "rawPresent": true,
+        "sha256": "762b9e1bec1e33b68bf5dc5074bd013ed3cd5e327e3185827816aa3655b512bc",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9027,
+          "2933": 8985,
+          "9411": 9,
+          "9412": 8986,
+          "9413": -16
+        }
+      },
+      "37496": {
+        "rawPresent": true,
+        "sha256": "bdbd4fee90dc783a156537cf7813ccb3ea4c1c1c4cff849f1d6779f3820e8f0b",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9028,
+          "2933": 8985,
+          "9411": 9,
+          "9412": 8986,
+          "9413": 68
+        }
+      },
+      "37498": {
+        "rawPresent": true,
+        "sha256": "dcfd47ddae32b6d9644769503726756d98735f31fea9deb2b4494d640939a512",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9029,
+          "2933": 8985,
+          "9411": 9,
+          "9412": 8986,
+          "9413": 96
+        }
+      },
+      "37500": {
+        "rawPresent": true,
+        "sha256": "29fb41f91a7b286b2df33382cc7f104e908e50da155c9fba9c65508662e5eda2",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9030,
+          "2933": 8985,
+          "9411": 9,
+          "9412": 8986,
+          "9413": 92
+        }
+      },
+      "37502": {
+        "rawPresent": true,
+        "sha256": "440514611b83e93a528bcccdab1025660c296d0cb6f0cb2540bddd3c3e55b741",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9031,
+          "2933": 8985,
+          "9411": 9,
+          "9412": 8986,
+          "9413": -68
+        }
+      },
+      "37504": {
+        "rawPresent": true,
+        "sha256": "2f1ec04f4b77cbaae102ae65f35c21047e769a1ea05cf95886a0c036401719dd",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9032,
+          "2933": 8985,
+          "9411": 9,
+          "9412": 8986,
+          "9413": 36
+        }
+      }
+    }
+  },
+  {
+    "name": "Ricochet",
+    "structure": 14668,
+    "style": 1,
+    "type": 1,
+    "level": 67,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 9,
+    "cooldown": 17,
+    "gcd": 3,
+    "damagePercent": [
+      85,
+      105
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 5,
+      "2794": "Ricochet",
+      "2795": "Fire a shot which ricochets off the target.",
+      "2796": 17,
+      "2799": 1,
+      "2800": 90,
+      "2802": 23868,
+      "2806": 3,
+      "2807": 67,
+      "2809": 0,
+      "2915": 10113,
+      "5542": 6,
+      "6527": 1,
+      "8120": 35571,
+      "8170": 2,
+      "9410": 6713
+    },
+    "structSha256": "94436a14bea19f6974f1c40ae0fbc8eb928402a8ca6a6c3bbf18010654cc67cc",
+    "animationEnum": 10113,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37478,
+      "14939": 37475,
+      "14940": 37475,
+      "14942": 37479,
+      "14943": 37476,
+      "14944": 37476,
+      "14945": 37476,
+      "14946": 37477,
+      "14947": 37476,
+      "31925": 32827
+    },
+    "animations": {
+      "32827": {
+        "rawPresent": true,
+        "sha256": "a78972ce6621f8f59473903e0701331dede1ac2c987c154213f1f85f16aa844c",
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 7240
+        }
+      },
+      "37475": {
+        "rawPresent": true,
+        "sha256": "14564b2534b593fb2bd148f13b694581b04a5158697e463c5f02e55f69627542",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8983,
+          "9412": 8977,
+          "9413": 0
+        }
+      },
+      "37476": {
+        "rawPresent": true,
+        "sha256": "1e053f4e8f5599d1c4c63438b61f40c7bfac0865c5a59f35bb81492d94dea320",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8983,
+          "9412": 8977,
+          "9413": 112
+        }
+      },
+      "37477": {
+        "rawPresent": true,
+        "sha256": "721c8999b4b5c7592105f6fae4f4ddd364e0309a5ce206c8dd15e88beec273b7",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8983,
+          "9412": 8977,
+          "9413": 112
+        }
+      },
+      "37478": {
+        "rawPresent": true,
+        "sha256": "e73d16adcf3987c5f0bea7b734e3e965fe368d9cf6e0a044cd7c1b3a628dabe3",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8983,
+          "9412": 8977,
+          "9413": 144
+        }
+      },
+      "37479": {
+        "rawPresent": true,
+        "sha256": "543dc9ee50dca32a084ce5e2c455362c69fb08eb53cef004a2884bf13f2721df",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8983,
+          "9412": 8977,
+          "9413": 92
+        }
+      }
+    }
+  },
+  {
+    "name": "Snap Shot",
+    "structure": 14669,
+    "style": 1,
+    "type": 2,
+    "level": 2,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 25,
+    "adrenalineCost": 25,
+    "adrenalineGain": 0,
+    "cooldown": 0,
+    "gcd": 3,
+    "damagePercent": [
+      70,
+      90
+    ],
+    "effect": "DIRECT",
+    "hits": 2,
+    "hitTicks": [
+      0,
+      1
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 6,
+      "2794": "Snap Shot",
+      "2795": "Fire two shots in quick succession.",
+      "2796": 0,
+      "2798": 250,
+      "2799": 2,
+      "2802": 23728,
+      "2806": 3,
+      "2807": 2,
+      "2809": 0,
+      "2915": 10139,
+      "5542": 6,
+      "8120": 35573,
+      "8170": 1,
+      "9090": 60,
+      "9410": 6716
+    },
+    "structSha256": "4c5b0b1b5596d899d73b59c65917d873f2eb84f853b87fa870fe06c70ec7d17e",
+    "animationEnum": 10139,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37451,
+      "14939": 37445,
+      "14940": 37445,
+      "14942": 37453,
+      "14943": 37447,
+      "14944": 37447,
+      "14945": 37447,
+      "14946": 37449,
+      "14947": 37447,
+      "24343": 24382,
+      "31925": 32828
+    },
+    "animations": {
+      "24382": {
+        "rawPresent": true,
+        "sha256": "78d07ec71aee89e4ad1e64f8c2fa6382b5163ddfc9f195795a06d0652aa5edba",
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {}
+      },
+      "32828": {
+        "rawPresent": true,
+        "sha256": "a4ffc372113124c105b6fe215313ef5d05a3d92335d9e2ac9f94f87fe063f838",
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {
+          "2920": 7241
+        }
+      },
+      "37445": {
+        "rawPresent": true,
+        "sha256": "ca0ac67e5c3281f6243a69674fea9ce07b97aa5e9b94b4746a6cadfd1c2c7144",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9039,
+          "2933": 8991,
+          "9411": 42,
+          "9412": 8990,
+          "9413": 88
+        }
+      },
+      "37447": {
+        "rawPresent": true,
+        "sha256": "b79757e4f0abfc5c6089aa8eb58e3211b624866ae7e0212a719eecce8c546759",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9040,
+          "2933": 8991,
+          "9411": 45,
+          "9412": 8990,
+          "9413": 116
+        }
+      },
+      "37449": {
+        "rawPresent": true,
+        "sha256": "25e0cea9a957a6d228fa078bf367f0c90a8e0b500b00733ba3a7c8574d83bb56",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9041,
+          "2933": 8991,
+          "9411": 45,
+          "9412": 8990,
+          "9413": 124
+        }
+      },
+      "37451": {
+        "rawPresent": true,
+        "sha256": "5765bac88a0f7a16525d527bd292b358c46b16fff0cd28301cc5320d6f4532dd",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9042,
+          "2933": 8991,
+          "9411": 45,
+          "9412": 8990,
+          "9413": 108
+        }
+      },
+      "37453": {
+        "rawPresent": true,
+        "sha256": "bda4be6cc67c12b21e53ef0f9551cbd5ac4304f3de1cff46846a294337c445be",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9043,
+          "2933": 8991,
+          "9411": 45,
+          "9412": 8990,
+          "9413": 108
+        }
+      }
+    }
+  },
+  {
+    "name": "Rapid Fire",
+    "structure": 14670,
+    "style": 1,
+    "type": 2,
+    "level": 62,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 25,
+    "adrenalineCost": 25,
+    "adrenalineGain": 0,
+    "cooldown": 34,
+    "gcd": 3,
+    "damagePercent": [
+      45,
+      55
+    ],
+    "effect": "DIRECT",
+    "hits": 8,
+    "hitTicks": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "channelTicks": 8,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 7,
+      "2794": "Rapid Fire",
+      "2795": "Rapidly fire at the target.",
+      "2796": 34,
+      "2798": 250,
+      "2799": 2,
+      "2801": 1,
+      "2802": 14250,
+      "2806": 3,
+      "2807": 62,
+      "2809": 0,
+      "2915": 10141,
+      "5542": 6,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 60,
+      "8120": 3261,
+      "8170": 1,
+      "8884": 1,
+      "8885": 7,
+      "9087": 1,
+      "9090": 80,
+      "9410": 6718
+    },
+    "structSha256": "e4d288ecdceaa15d08f4d96b7a31c072b7c223d59a572567eb887a9df7b69ca9",
+    "animationEnum": 10141,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37488,
+      "14939": 37480,
+      "14940": 37480,
+      "14942": 37490,
+      "14943": 37482,
+      "14944": 37486,
+      "14945": 37492,
+      "14946": 37484,
+      "14947": 37482,
+      "31925": 35773
+    },
+    "animations": {
+      "35773": {
+        "rawPresent": true,
+        "sha256": "92a3b3b2a4ab0082c8a7c09c335233c2294f994a619df4a3b9672acd2f3907a6",
+        "decodeFailure": null,
+        "legacyFrameMillis": 600,
+        "params": {}
+      },
+      "37480": {
+        "rawPresent": true,
+        "sha256": "fbcf520687ece922d0b8fbffcd70065500f883e24f83d0506c371e5e3202f709",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9020,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 0
+        }
+      },
+      "37482": {
+        "rawPresent": true,
+        "sha256": "ac5ec9312f13a15a21d42fddad9b4fe88e5fe14dede5adef519786c5c6173d06",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9021,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 12
+        }
+      },
+      "37484": {
+        "rawPresent": true,
+        "sha256": "66033da984e5d35d1002f17cfbe8487b8987ed2b6b342b90aeeb493e41b64f09",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9022,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 12
+        }
+      },
+      "37486": {
+        "rawPresent": true,
+        "sha256": "35734a0a556d45048916a497c898c2c295494e6f325131332b47e7cf80135355",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9023,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 12
+        }
+      },
+      "37488": {
+        "rawPresent": true,
+        "sha256": "f90e541cdf1e25be1472763ea807d485f2eaf4f143efaccf38d92e64bdab657c",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9024,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 84
+        }
+      },
+      "37490": {
+        "rawPresent": true,
+        "sha256": "92a6632c48f3f65c103beee6db04a1aa1d78825b96ba39094df349d4d8084f1c",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9025,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 68
+        }
+      },
+      "37492": {
+        "rawPresent": true,
+        "sha256": "4e9d550ca1f89ca58e754ed9a46523a18c1a2cdd507229d27303f507cefb3e50",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9026,
+          "2933": 8993,
+          "9411": 40,
+          "9412": 8992,
+          "9413": 88
+        }
+      }
+    }
+  },
+  {
+    "name": "Deadshot",
+    "structure": 14674,
+    "style": 1,
+    "type": 4,
+    "level": 21,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 60,
+    "adrenalineCost": 60,
+    "adrenalineGain": 0,
+    "cooldown": 50,
+    "gcd": 3,
+    "damagePercent": [
+      115,
+      115
+    ],
+    "effect": "DIRECT",
+    "hits": 4,
+    "hitTicks": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 9,
+      "2794": "Deadshot",
+      "2795": "Fire an enchanted shot at the target, striking them multiple times.",
+      "2796": 50,
+      "2798": 600,
+      "2799": 4,
+      "2802": 23730,
+      "2806": 3,
+      "2807": 21,
+      "2809": 0,
+      "2915": 10142,
+      "5542": 6,
+      "8109": 1,
+      "8112": 1,
+      "8114": 1,
+      "8115": 100,
+      "8120": 35570,
+      "8170": 1,
+      "9090": 60,
+      "9410": 6720
+    },
+    "structSha256": "f58eb5e8020c10b2fcfe9a56720a0bfe9ba81f7411e22331e79fdfa40f05d31d",
+    "animationEnum": 10142,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37530,
+      "14939": 37522,
+      "14940": 37522,
+      "14942": 37534,
+      "14943": 37524,
+      "14944": 37528,
+      "14945": 37532,
+      "14946": 37526,
+      "14947": 37528,
+      "31925": 32829
+    },
+    "animations": {
+      "32829": {
+        "rawPresent": true,
+        "sha256": "3ac0de24a07edf02a8b3fc28ad84cb3349596adc2818a257bb2902578bc1cc93",
+        "decodeFailure": null,
+        "legacyFrameMillis": 1040,
+        "params": {}
+      },
+      "37522": {
+        "rawPresent": true,
+        "sha256": "b6a8ac7e6d3143558f6bfc900c502e88c8b524d3915055753323de9b5082adab",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9044,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995,
+          "9413": 16
+        }
+      },
+      "37524": {
+        "rawPresent": true,
+        "sha256": "9ad5981b7bc64136f29574c2f07a62533fea95360ad6ac274f24d48ba78ab4bb",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9045,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995,
+          "9413": 88
+        }
+      },
+      "37526": {
+        "rawPresent": true,
+        "sha256": "045703839565fbe2e1888f98a8c5b1374241238098e6d4004448b3a9e957e9a6",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9046,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995,
+          "9413": 92
+        }
+      },
+      "37528": {
+        "rawPresent": true,
+        "sha256": "664511a64bd46d4bc6b67649480e28bb9eb65f7ccab0da58161ec1682276022a",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9047,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995,
+          "9413": 92
+        }
+      },
+      "37530": {
+        "rawPresent": true,
+        "sha256": "9f1c9847c3e9eff2423bf89c186ec2cc3fd269379137eb34a1d23e48d7934a7b",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9048,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995,
+          "9413": 84
+        }
+      },
+      "37532": {
+        "rawPresent": true,
+        "sha256": "306e0a1e3eb49ee0e05b3805ffb38d7d0fd0345c1852babded100f62a87e2392",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9049,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995
+        }
+      },
+      "37534": {
+        "rawPresent": true,
+        "sha256": "b8e595226eba7b781f2a7157527c40dc6ffcc240bdfc2aaf12cd1b3bfa37b985",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9050,
+          "2933": 8994,
+          "9411": 72,
+          "9412": 8995,
+          "9413": 120
+        }
+      }
+    }
+  },
+  {
+    "name": "Death\u0027s Swiftness",
+    "structure": 19251,
+    "style": 1,
+    "type": 4,
+    "level": 76,
+    "offhand": false,
+    "twoHanded": false,
+    "target": false,
+    "adrenalineRequired": 100,
+    "adrenalineCost": 100,
+    "adrenalineGain": 0,
+    "cooldown": 100,
+    "gcd": 3,
+    "damagePercent": [
+      0,
+      0
+    ],
+    "effect": "BUFF",
+    "hits": 0,
+    "hitTicks": [],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "death/logout/world clear; persists through combat stop until expiry",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "50 ticks; ranged +50% within 3 tiles of cast origin; area DOT not implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 10,
+      "2794": "Death\u0027s Swiftness",
+      "2795": "Create a shroud of death.",
+      "2796": 100,
+      "2798": 1000,
+      "2799": 4,
+      "2802": 20185,
+      "2806": 3,
+      "2807": 76,
+      "2809": 1,
+      "2819": 1,
+      "3001": 1,
+      "3394": 0,
+      "3740": 50,
+      "4030": 11784,
+      "4650": "Unlocked by completing the quest \u0027The World Wakes\u0027.",
+      "5542": 6,
+      "6527": 1,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 60,
+      "8120": 20480,
+      "8170": 3
+    },
+    "structSha256": "1d622238135d888b287ce1ec483a9ddb703fc8cfb668d2cdaa598386d6b96c30",
+    "animationEnum": 0,
+    "animationConfidence": "missing; no invented fallback",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animations": {}
+  },
+  {
+    "name": "Impact",
+    "structure": 14727,
+    "style": 2,
+    "type": 1,
+    "level": 31,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 9,
+    "cooldown": 25,
+    "gcd": 3,
+    "damagePercent": [
+      65,
+      75
+    ],
+    "effect": "STUN",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "5 ticks NPC attack/follow suppression; immunity and charge systems incomplete",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "539": 1,
+      "2793": 3,
+      "2794": "Impact",
+      "2795": "Smash the target with a burst of earth energy.",
+      "2796": 25,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14234,
+      "2806": 4,
+      "2807": 31,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10089,
+      "5542": 7,
+      "8120": 3217,
+      "8170": 1,
+      "9410": 6709
+    },
+    "structSha256": "84bbfc70e05e9131ce65e9d32e8f062dcad5b81c3d2fa70657fce8fe5892adfe",
+    "animationEnum": 10089,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37358,
+      "14937": 37357
+    },
+    "animations": {
+      "37357": {
+        "rawPresent": true,
+        "sha256": "3f616f04582230f1ed97dd4fe76f6f48a93ad530cda74613ce7a22ab690829f2",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9004,
+          "2933": 9006,
+          "2940": 9007,
+          "9411": 0
+        }
+      },
+      "37358": {
+        "rawPresent": true,
+        "sha256": "cbb8f6a3917391cbb684a67197a18405b5c82ec75772cb349f9b1d49883a7fb1",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9004,
+          "2933": 9006,
+          "2940": 9007,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Chain",
+    "structure": 14728,
+    "style": 2,
+    "type": 1,
+    "level": 51,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 9,
+    "cooldown": 17,
+    "gcd": 3,
+    "damagePercent": [
+      90,
+      110
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 4,
+      "2794": "Chain",
+      "2795": "A magical spell that chains between nearby targets.",
+      "2796": 17,
+      "2799": 1,
+      "2800": 90,
+      "2802": 15037,
+      "2806": 4,
+      "2807": 51,
+      "2809": 0,
+      "2842": 1,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10090,
+      "5542": 7,
+      "6527": 1,
+      "8120": 15080,
+      "8170": 2,
+      "9410": 6709
+    },
+    "structSha256": "a9f96bcb139eef390cc95615992b66b0a9776c4c8cec22183cc1c855a9b8f910",
+    "animationEnum": 10090,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37355,
+      "14937": 37354
+    },
+    "animations": {
+      "37354": {
+        "rawPresent": true,
+        "sha256": "ad62545c46f906db87b5bdfe5042be8248e8c0c04704b82cb937d599baa835e2",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8969,
+          "2940": 8968,
+          "9411": 0
+        }
+      },
+      "37355": {
+        "rawPresent": true,
+        "sha256": "d6cbda9a9a9780dfc7e5bb88d0c704eee1caf08603fe1af88cc11e1973a96e24",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8969,
+          "2940": 8968,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Combust",
+    "structure": 14729,
+    "style": 2,
+    "type": 1,
+    "level": 38,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 9,
+    "cooldown": 30,
+    "gcd": 3,
+    "damagePercent": [
+      45,
+      55
+    ],
+    "effect": "BLEED",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "Alpha opening hit plus 3 follow-ups every 2 ticks; retail bleed model incomplete",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 5,
+      "2794": "Combust",
+      "2795": "Explode the target, causing them to \u003ccol\u003dffffff\u003eBurn\u003c/col\u003e.",
+      "2796": 30,
+      "2799": 1,
+      "2800": 90,
+      "2802": 23401,
+      "2806": 4,
+      "2807": 38,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10085,
+      "2933": 8170,
+      "5335": 1,
+      "5542": 7,
+      "8109": 1,
+      "8114": 1,
+      "8115": 100,
+      "8120": 35563,
+      "8170": 1,
+      "8565": 1,
+      "9410": 6707
+    },
+    "structSha256": "10243873cc68451f1ef3bbbdc566349952706cf17d8f96d5c920631140a57c3e",
+    "animationEnum": 10085,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 8170,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37350,
+      "14937": 37349
+    },
+    "animations": {
+      "37349": {
+        "rawPresent": true,
+        "sha256": "61d185042ab7ffcdf4053559a0ba18822aeaff590816d456dec465606cd0f81c",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      },
+      "37350": {
+        "rawPresent": true,
+        "sha256": "0cf2e63c53109444ad33cdb34200a60db3bc5f9f7c3225c13071e94f11deb418",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      }
+    }
+  },
+  {
+    "name": "Dragon Breath",
+    "structure": 14730,
+    "style": 2,
+    "type": 1,
+    "level": 19,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 9,
+    "cooldown": 12,
+    "gcd": 3,
+    "damagePercent": [
+      100,
+      120
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 6,
+      "2794": "Dragon Breath",
+      "2795": "Breathe a mighty cloud of fire.",
+      "2796": 12,
+      "2799": 1,
+      "2800": 90,
+      "2802": 14236,
+      "2806": 4,
+      "2807": 19,
+      "2809": 0,
+      "2842": 1,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 6735,
+      "5542": 7,
+      "8120": 3219,
+      "8170": 4,
+      "9410": 6710
+    },
+    "structSha256": "8b434f99724db7f834fefea73e440fa9af3b4b0b6b115fdd6cafa114968a0652",
+    "animationEnum": 6735,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 36640,
+      "14937": 36639
+    },
+    "animations": {
+      "36639": {
+        "rawPresent": true,
+        "sha256": "e48477aa9ab9bb67d52bad5277569d2d0d2f0d2b137ee4ac275d5d1c907b83e2",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      },
+      "36640": {
+        "rawPresent": true,
+        "sha256": "d7e343689c503580b03ffeb359bdfdf91214fa777323e0c214568962144a3083",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      }
+    }
+  },
+  {
+    "name": "Asphyxiate",
+    "structure": 14731,
+    "style": 2,
+    "type": 2,
+    "level": 59,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 25,
+    "adrenalineCost": 25,
+    "adrenalineGain": 0,
+    "cooldown": 34,
+    "gcd": 3,
+    "damagePercent": [
+      45,
+      55
+    ],
+    "effect": "DIRECT",
+    "hits": 4,
+    "hitTicks": [
+      0,
+      2,
+      4,
+      6
+    ],
+    "channelTicks": 7,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "539": 1,
+      "2793": 7,
+      "2794": "Asphyxiate",
+      "2795": "Reach out with magical force and choke the target.",
+      "2796": 34,
+      "2798": 250,
+      "2799": 2,
+      "2801": 1,
+      "2802": 14237,
+      "2806": 4,
+      "2807": 59,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10087,
+      "3740": 8,
+      "5542": 7,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 50,
+      "8120": 3220,
+      "8170": 1,
+      "8884": 2,
+      "8885": 3,
+      "9410": 6708
+    },
+    "structSha256": "3f1e4dfdb3288a3f639cac98a33a1e459cfe242f4b7c85cfa4f8997ef6de4724",
+    "animationEnum": 10087,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37352,
+      "14937": 37353
+    },
+    "animations": {
+      "37352": {
+        "rawPresent": true,
+        "sha256": "1d62a8f27dec7c1964c9c468626204f3fb50172d5b215e6f7dbf9473ac7aed9c",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9003
+        }
+      },
+      "37353": {
+        "rawPresent": true,
+        "sha256": "dd929d3756fb256691814e15fe6ca2b015db2b01eee01bc9c79551c8db3d120a",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 9003
+        }
+      }
+    }
+  },
+  {
+    "name": "Wild Magic",
+    "structure": 14733,
+    "style": 2,
+    "type": 2,
+    "level": 3,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 25,
+    "adrenalineCost": 25,
+    "adrenalineGain": 0,
+    "cooldown": 9,
+    "gcd": 3,
+    "damagePercent": [
+      75,
+      95
+    ],
+    "effect": "DIRECT",
+    "hits": 2,
+    "hitTicks": [
+      0,
+      1
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 9,
+      "2794": "Wild Magic",
+      "2795": "Fire an unpredictable double magical attack at the target.",
+      "2796": 9,
+      "2798": 250,
+      "2799": 2,
+      "2802": 14239,
+      "2806": 4,
+      "2807": 3,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10091,
+      "5542": 7,
+      "8120": 3222,
+      "8170": 1,
+      "9410": 6711
+    },
+    "structSha256": "8a7f0f52d28ce94923e8716b924380809c1a124ea88ea29c844361f3916c7218",
+    "animationEnum": 10091,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37366,
+      "14937": 37365
+    },
+    "animations": {
+      "37365": {
+        "rawPresent": true,
+        "sha256": "82994b485717b9aaa6ccdc8a97974cbb94037d45956412a6170094066b160139",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8967,
+          "2940": 8966,
+          "9411": 0
+        }
+      },
+      "37366": {
+        "rawPresent": true,
+        "sha256": "e9a1d17cc9ff7d31462c71101bb8a4300de0d9923455b63ed2a4bf007155c618",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2933": 8967,
+          "2940": 8966,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Tsunami",
+    "structure": 14735,
+    "style": 2,
+    "type": 4,
+    "level": 90,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 100,
+    "adrenalineCost": 100,
+    "adrenalineGain": 0,
+    "cooldown": 100,
+    "gcd": 3,
+    "damagePercent": [
+      230,
+      270
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 10,
+      "2794": "Tsunami",
+      "2795": "Summon forth a destructive wall of water.",
+      "2796": 100,
+      "2798": 1000,
+      "2799": 4,
+      "2802": 14240,
+      "2806": 4,
+      "2807": 90,
+      "2809": 0,
+      "2842": 1,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 7124,
+      "2933": 3562,
+      "3740": 50,
+      "5542": 7,
+      "8120": 3231,
+      "8170": 4,
+      "9410": 10111
+    },
+    "structSha256": "0a939b05bb8fcc602f127c438ea928b5a9bf5195493a6537ed242227e5152c16",
+    "animationEnum": 7124,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 3562,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37101,
+      "14937": 37100
+    },
+    "animations": {
+      "37100": {
+        "rawPresent": true,
+        "sha256": "08a19cc8441aa6e788b7300328ed746633925ef0c6a893d09cdcc14c79f5936f",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      },
+      "37101": {
+        "rawPresent": true,
+        "sha256": "af7e98207f04f7b38e7c9c5c141d8f7e1bf200903d5efab956441d71892f05bc",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {}
+      }
+    }
+  },
+  {
+    "name": "Omnipower",
+    "structure": 14736,
+    "style": 2,
+    "type": 4,
+    "level": 12,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 60,
+    "adrenalineCost": 60,
+    "adrenalineGain": 0,
+    "cooldown": 50,
+    "gcd": 3,
+    "damagePercent": [
+      460,
+      460
+    ],
+    "effect": "DIRECT",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 11,
+      "2794": "Omnipower",
+      "2795": "Bombard the target with each of the four elements.",
+      "2796": 50,
+      "2798": 600,
+      "2799": 4,
+      "2802": 14242,
+      "2806": 4,
+      "2807": 12,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10092,
+      "5542": 7,
+      "8120": 3233,
+      "8170": 1,
+      "9090": 60,
+      "9410": 6712
+    },
+    "structSha256": "21724c2bb2ff33af1a3fb939d8a722ca438129d149bf5bc2254acdf17b504fc0",
+    "animationEnum": 10092,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37360,
+      "14937": 37359
+    },
+    "animations": {
+      "37359": {
+        "rawPresent": true,
+        "sha256": "ff00361805379f8a3d3dfac479c02e6aecacc1c072ed6701706c769c73663d97",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 8976,
+          "2933": 8975,
+          "2940": 8974,
+          "9411": 0
+        }
+      },
+      "37360": {
+        "rawPresent": true,
+        "sha256": "dbcdd7dd60edd2d469deddb86faba6d7dcf4f2651855c35c5e879d9be46422e4",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 8976,
+          "2933": 8975,
+          "2940": 8974,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Sonic Wave",
+    "structure": 19342,
+    "style": 2,
+    "type": 1,
+    "level": 6,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 9,
+    "cooldown": 25,
+    "gcd": 3,
+    "damagePercent": [
+      90,
+      110
+    ],
+    "effect": "FLOW",
+    "hits": 1,
+    "hitTicks": [
+      0
+    ],
+    "channelTicks": 0,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 165,
+      "2794": "Sonic Wave",
+      "2795": "A focused blast of magic that pummels the target.",
+      "2796": 25,
+      "2799": 1,
+      "2800": 90,
+      "2802": 27430,
+      "2806": 4,
+      "2807": 6,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 7122,
+      "5542": 7,
+      "6527": 1,
+      "8120": 27431,
+      "8170": 1,
+      "9410": 10108
+    },
+    "structSha256": "e466f150415f580b11c2bfd53c9ce157bdaf70a27c6938cd0f6cadd6adb0032e",
+    "animationEnum": 7122,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 36651,
+      "14937": 36641
+    },
+    "animations": {
+      "36641": {
+        "rawPresent": true,
+        "sha256": "2a29638b04cbcf8baec06ba052f31a062157f73c450cd80495e6b62969ec17ca",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9008,
+          "2933": 9009,
+          "2940": 9010
+        }
+      },
+      "36651": {
+        "rawPresent": true,
+        "sha256": "4527dc87d32eaacf78ee6fd8c71331f82b7866aead0fd4e5037638912a3652de",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 9008,
+          "2933": 9009,
+          "2940": 9010
+        }
+      }
+    }
+  },
+  {
+    "name": "Concentrated Blast",
+    "structure": 19343,
+    "style": 2,
+    "type": 1,
+    "level": 66,
+    "offhand": false,
+    "twoHanded": false,
+    "target": true,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 9,
+    "cooldown": 9,
+    "gcd": 3,
+    "damagePercent": [
+      70,
+      90
+    ],
+    "effect": "DIRECT",
+    "hits": 3,
+    "hitTicks": [
+      0,
+      1,
+      2
+    ],
+    "channelTicks": 3,
+    "weaponRequirement": "matching attack style and admitted 950 equipment",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": true,
+    "manualQueue": "one replacement request; waits for GCD/animation/channel; own cooldown window \u003c\u003d3 ticks; state revalidated",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 166,
+      "2794": "Concentrated Blast",
+      "2795": "Blast the target with beams of concentrated energy.",
+      "2796": 9,
+      "2799": 1,
+      "2800": 90,
+      "2801": 1,
+      "2802": 13309,
+      "2806": 4,
+      "2807": 66,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "2915": 10104,
+      "3740": 6,
+      "5542": 7,
+      "6527": 1,
+      "8109": 0,
+      "8112": 1,
+      "8114": 1,
+      "8115": 50,
+      "8120": 15183,
+      "8170": 1,
+      "8884": 1,
+      "8885": 2,
+      "9410": 10093
+    },
+    "structSha256": "36537c2d65e0fd1d5f7da42c01d289f757962760230db602a9a4a52676317f50",
+    "animationEnum": 10104,
+    "animationConfidence": "paired-cache weapon-family mapping; rendered visibility unverified",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animationFamilies": {
+      "-1": 37340,
+      "14937": 37338
+    },
+    "animations": {
+      "37338": {
+        "rawPresent": true,
+        "sha256": "389426cef900fb0d12553bfc94e2ce590a314155f80d4ab104eae84be647cbca",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 8970,
+          "2933": 8973,
+          "2940": 8972,
+          "9411": 0
+        }
+      },
+      "37340": {
+        "rawPresent": true,
+        "sha256": "d50398a9f834bed64ac5f1a0d79f99c28f0c4e430e3576369908b5db288a678e",
+        "decodeFailure": null,
+        "legacyFrameMillis": 0,
+        "params": {
+          "2920": 8971,
+          "2933": 8973,
+          "2940": 8972,
+          "9411": 0
+        }
+      }
+    }
+  },
+  {
+    "name": "Surge",
+    "structure": 14726,
+    "style": 2,
+    "type": 7,
+    "level": 5,
+    "offhand": false,
+    "twoHanded": false,
+    "target": false,
+    "adrenalineRequired": 0,
+    "adrenalineCost": 0,
+    "adrenalineGain": 0,
+    "cooldown": 34,
+    "gcd": 0,
+    "damagePercent": [
+      0,
+      0
+    ],
+    "effect": "MOVEMENT",
+    "hits": 0,
+    "hitTicks": [],
+    "channelTicks": 0,
+    "weaponRequirement": "none",
+    "damageModel": "classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance",
+    "revolutionEligible": false,
+    "manualQueue": "immediate utility path",
+    "cancellation": "queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity",
+    "stunBind": "none implemented",
+    "dot": "none",
+    "buff": "none implemented",
+    "implementationStatus": "partial Combat Alpha; see combat-offline-audit.md for per-ability gaps",
+    "cacheParams": {
+      "2793": 2,
+      "2794": "Surge",
+      "2795": "Teleport forward.",
+      "2796": 34,
+      "2799": 7,
+      "2800": 0,
+      "2802": 14233,
+      "2806": 8,
+      "2807": 5,
+      "2809": 0,
+      "2871": 3,
+      "2872": 1,
+      "2880": 5,
+      "3394": 0,
+      "4499": 1,
+      "5348": 1,
+      "5542": 3,
+      "5550": 1,
+      "6528": 1,
+      "7949": 1,
+      "8120": 3216,
+      "8170": 3,
+      "9061": 1,
+      "9408": 1
+    },
+    "structSha256": "90867e319ec4e13a4fe0e83498591deb991dc4c8f662e3f3e8f1157ea754e623",
+    "animationEnum": 0,
+    "animationConfidence": "missing; no invented fallback",
+    "targetGraphic": 0,
+    "presentationPolicy": "sequence param 2920 self graphic; struct 2933 target graphic; ability projectile emission incomplete; raw sequence params below",
+    "animations": {}
+  }
+]
