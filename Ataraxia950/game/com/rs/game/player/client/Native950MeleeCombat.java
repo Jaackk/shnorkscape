@@ -467,8 +467,9 @@ public final class Native950MeleeCombat {
                 if(gear.profile!=null&&!gear.profile.consume(player)){player.sendMessage("You cannot supply the ammunition or runes for that attack.");fighter.outOfSupplies=true;cancelAttack(player);}
                 else {
                 nextAttack.put(player,tick+gear.speed);
-                int animation=gear.profile!=null&&gear.profile.style==Native950CombatStyles.MAGIC
-                        ? Native950AutoSpells.animation(player) : -1;
+                Native950AutoSpells.Presentation spell=gear.profile!=null&&gear.profile.style==Native950CombatStyles.MAGIC
+                        ?Native950AutoSpells.presentation(player):null;
+                int animation=spell!=null&&spell.available()?spell.animation:-1;
                 player.setNextFaceEntity(npc);player.setNextAnimation(new Animation(animation>=0?animation:gear.attackAnimation));
                 int skill=gear.profile==null?Skills.ATTACK:gear.profile.skill;
                 int attack=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(skill),0,3,1);
@@ -479,9 +480,20 @@ public final class Native950MeleeCombat {
                         Rs2CombatFormula.roll(Rs2CombatFormula.npcEffectiveLevel(fighter.profile.defenceLevel),fighter.profile.meleeDefenceBonus))
                         ? Rs2CombatFormula.scaleDamageForAtaraxia(rolls.damage(maximum)) : 0;
                 fighter.retaliating=!fighter.training;
-                int actual=damage(player,npc,damage,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());swings++;
-                if(actual>0&&!fighter.training)rewards.hit(player,npc,actual,gear);
-                if(fighter.training)npc.setHitpoints(fighter.profile.hp);
+                if(spell!=null&&spell.available()){
+                    // Use the same 950 projectile owner as existing world content and
+                    // commit the hit when its cache-defined impact reaches the target.
+                    int flightCycles=World.sendProjectileNew(player,npc,spell.projectile,41,16,55,5,0,90).getEndTime();
+                    long dueTick=tick+Math.max(1,Utils.projectileTimeToCycles(flightCycles));
+                    pendingHits.computeIfAbsent(player,p->new ArrayList<>()).add(new PendingHit(fighter,damage,dueTick,gear,spell.impact));
+                    Native950BugTest.event(player,"magic","spell-auto-cast","spell",Native950AutoSpells.select(player).name,
+                            "animation",spell.animation,"projectile",spell.projectile,"impact",spell.impact,"hitTick",dueTick);
+                } else {
+                    int actual=damage(player,npc,damage,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
+                    if(actual>0&&!fighter.training)rewards.hit(player,npc,actual,gear);
+                    if(fighter.training)npc.setHitpoints(fighter.profile.hp);
+                }
+                swings++;
                 if(gear.profile!=null&&gear.profile.ammoFamily==3&&player.getEquipment().getItem(Equipment.SLOT_WEAPON)==null){
                     fighter.outOfSupplies=true;cancelAttack(player);player.sendMessage("You have run out of thrown weapons.");
                 }
@@ -546,6 +558,7 @@ public final class Native950MeleeCombat {
             if(hit.dueTick>tick)continue;
             iterator.remove();
             if(hit.fighter!=fighter||!fighter.attacking||fighter.npc.isDead())continue;
+            if(hit.impactGraphic>=0)fighter.npc.setNextGraphics(new com.rs.game.Graphics(hit.impactGraphic));
             int actual=damage(player,fighter.npc,hit.damage,hit.gear.profile==null?Hit.HitLook.MELEE_DAMAGE:hit.gear.profile.look());
             if(actual>0&&!fighter.training)rewards.hit(player,fighter.npc,actual,hit.gear);
             if(fighter.training)fighter.npc.setHitpoints(fighter.profile.hp);
@@ -718,7 +731,8 @@ public final class Native950MeleeCombat {
         DamageOverTime(Fighter fighter,int damage,int remaining,long nextTick,Loadout gear){this.fighter=fighter;this.damage=damage;this.remaining=remaining;this.nextTick=nextTick;this.gear=gear;}
     }
     private static final class PendingHit {
-        final Fighter fighter;final int damage;final long dueTick;final Loadout gear;
-        PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear){this.fighter=fighter;this.damage=damage;this.dueTick=dueTick;this.gear=gear;}
+        final Fighter fighter;final int damage;final long dueTick;final Loadout gear;final int impactGraphic;
+        PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear){this(fighter,damage,dueTick,gear,-1);}
+        PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear,int impactGraphic){this.fighter=fighter;this.damage=damage;this.dueTick=dueTick;this.gear=gear;this.impactGraphic=impactGraphic;}
     }
 }

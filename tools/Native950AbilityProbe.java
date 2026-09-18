@@ -42,7 +42,7 @@ public final class Native950AbilityProbe {
             for(int face:new int[]{1430,1436,1460,1452,1461,1450,1456,1459})for(int file:Cache.STORE.getIndexes()[3].getTable().getArchives()[face].getValidFileIds())pin(pins,3,face,file);
             for(int script:new int[]{6570,6992,6995,11797,8423,8426,8437,7001,5900,1580,7974,7964})pin(pins,12,script,0);
             for(int id:new int[]{10147,6738,6740})pin(pins,17,id>>>8,id&255);
-            for(int id:new int[]{14682,14664,14727,14700,14701,14729,19342,14726})pin(pins,22,id>>>5,id&31);
+            for(int id:new int[]{14682,14664,14727,14700,14701,14729,19342,14726,14738,14748,14761,14779,14793})pin(pins,22,id>>>5,id&31);
             for(int script:new int[]{18633,18647,18648,18607,18610,18623,18621,17721,17726,17696})pin(pins,12,script,0);
             for(int id:new int[]{6692,6714,6727,6724,10089,10085,7122}){
                 pin(pins,17,id>>>8,id&255);
@@ -54,6 +54,13 @@ public final class Native950AbilityProbe {
                     Map<Integer,Object> params=AnimationDefinitions.getAnimationDefinitions(seq).clientScriptData;
                     Object gfx=params==null?null:params.get(2920);
                     if(gfx instanceof Integer)pin(pins,21,(Integer)gfx>>>8,(Integer)gfx&255);
+                }
+            }
+            for(int id:new int[]{37250,37251,37252,37253,37254,37255,37256,37257,37258,37259}){
+                pin(pins,20,id>>>7,id&127);
+                Map<Integer,Object> params=AnimationDefinitions.getAnimationDefinitions(id).clientScriptData;
+                for(int key:new int[]{2940,2933})if(params!=null&&params.get(key) instanceof Integer){
+                    int graphic=(Integer)params.get(key);pin(pins,21,graphic>>>8,graphic&255);
                 }
             }
             for(int id:new int[]{1747,1748,1892,1893,21682})pin(pins,2,69,id);

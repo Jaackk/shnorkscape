@@ -20,6 +20,16 @@ public final class Native950AutoSpells {
         public final int key,level,damageCap,airRunes;
         Spell(String name,int key,int level,int cap,int runes) { this.name=name;this.key=key;this.level=level;damageCap=cap;airRunes=runes; }
     }
+    /**
+     * Standard-spell presentation is owned by the spell structure rather than the
+     * equipped weapon. These values are read from the paired, startup-verified
+     * 950 cache at the moment of a cast.
+     */
+    static final class Presentation {
+        final int animation, projectile, impact;
+        Presentation(int animation,int projectile,int impact){this.animation=animation;this.projectile=projectile;this.impact=impact;}
+        boolean available(){return animation>=0&&projectile>=0&&impact>=0;}
+    }
     public static Spell select(int magicLevel) {
         Spell best=Spell.STRIKE;
         for(Spell spell:Spell.values())if(magicLevel>=spell.level)best=spell;
@@ -44,13 +54,18 @@ public final class Native950AutoSpells {
         return "Use ;;spell strike|bolt|blast|wave|surge.";
     }
     /** Exact paired-950 standard-spell cast sequence; callers retain their weapon animation as a fallback. */
-    static int animation(Player player) {
-        if(Cache.STORE==null)return -1;
+    static int animation(Player player) {return presentation(player).animation;}
+    static Presentation presentation(Player player) {
+        if(Cache.STORE==null)return new Presentation(-1,-1,-1);
         int structure=RS3ClientScriptMap.getMap(6740).getIntValue(select(player).key);
-        if(structure<0)return -1;
-        int animation=RS3GeneralRequirementMap.getMap(structure).getIntValue(2914);
-        if(animation<0)return -1;
-        return AnimationDefinitions.getAnimationDefinitions(animation).decodeFailure==null?animation:-1;
+        if(structure<0)return new Presentation(-1,-1,-1);
+        int animation=RS3GeneralRequirementMap.getMap(structure).getIntValue(player.getEquipment().hasTwoHandedWeapon()?2919:2914);
+        if(animation<0)return new Presentation(-1,-1,-1);
+        AnimationDefinitions sequence=AnimationDefinitions.getAnimationDefinitions(animation);
+        if(sequence.decodeFailure!=null||sequence.clientScriptData==null)return new Presentation(-1,-1,-1);
+        Object projectile=sequence.clientScriptData.get(2940),impact=sequence.clientScriptData.get(2933);
+        return projectile instanceof Integer&&impact instanceof Integer
+                ?new Presentation(animation,(Integer)projectile,(Integer)impact):new Presentation(-1,-1,-1);
     }
     static synchronized void clear(Player player){SELECTED.remove(player);}
     static int damageTier(int playerLevel,int weaponTier,Spell spell) {
