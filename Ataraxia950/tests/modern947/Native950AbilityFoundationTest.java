@@ -30,7 +30,7 @@ public class Native950AbilityFoundationTest {
         assertEquals(2,Native950ActionBar.ABILITY_EVENTS&0x7fe);
         assertEquals(2,(Native950ActionBar.ABILITY_EVENTS>>>11)&127);
         for(int i=0;i<14;i++)assertEquals(i,Native950ActionBar.barSlot(1436,20+13*i));
-        assertEquals(1,Native950ActionBar.bookType(1450,3));assertEquals(6,Native950ActionBar.bookType(1459,1));
+        assertEquals(1,Native950ActionBar.bookType(1450,3));assertEquals(6,Native950ActionBar.bookType(1885,1));
     }
     @Test public void surgeTracesEveryStepAndStopsBeforeTheFirstWall(){
         WorldTile from=new WorldTile(100,100,2);
@@ -86,7 +86,7 @@ public class Native950AbilityFoundationTest {
             new Native950ActionBar().bootstrap(c);c.flush();
             List<Native950Packets.Packet> packets=packets(c);
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1458,33,0,38,8388610)));
-            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1885,1,0,Native950ActionBar.BOOK_LAST_SLOT,10320974)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1885,1,0,Native950ActionBar.BOOK_LAST_SLOT,8617038)));
         }finally{c.finishAndReleaseAll();}
     }
     @Test public void exitIsModalAndConfirmationSurvivesUntilExplicitCancel(){
