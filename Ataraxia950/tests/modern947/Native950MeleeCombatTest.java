@@ -81,6 +81,15 @@ public class Native950MeleeCombatTest {
         assertEquals(15,player.getHitpoints());
         assertSame(necklace,player.getEquipment().getItem(com.rs.game.player.Equipment.SLOT_AMULET));
     }
+    @Test public void nativeDeathRemovesOverloadWithoutHealingTheDeadPlayerOrRestartingItsBoosts(){
+        player.getSkills().setLevelWithoutRefresh(0,25);player.setOverloadDelay(400);
+        player.setHitpoints(5);
+        player.processHit(new com.rs.game.Hit(player,100,com.rs.game.Hit.HitLook.REGULAR_DAMAGE));
+        assertTrue(player.isDead());assertEquals(0,player.getOverloadDelay());
+        assertEquals(player.getSkills().getLevelForXp(0),player.getSkills().getLevel(0));
+        for(int i=0;i<6;i++)step();
+        assertEquals(0,player.getOverloadDelay());assertEquals(player.getMaxHitpoints(),player.getHitpoints());
+    }
     @Test public void teleportBetweenWorldPhasesCancelsDueChannelHitsAndQueue(){
         player.getSkills().set(0,99);npc.setHitpoints(1000);
         combat.attack(player,npc);combat.ability(player,14701);step();step();

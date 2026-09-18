@@ -464,11 +464,18 @@ public final class Native950MeleeCombat {
         owned();
         // Self buffs need the same queue/executor even when no encounter owns the player.
         if(!queuedAbilities.isEmpty())for(Player player:new ArrayList<>(queuedAbilities.keySet())){
+            try{
             Native950AbilityCatalog.Definition queued=Native950AbilityCatalog.get(queuedAbilities.get(player));
             Fighter target=targets.get(player);
             if(queued!=null&&!queued.targetRequired()&&(target==null||!target.attacking)
                     &&player.getLastAnimationEnd()<=Utils.currentTimeMillis()&&tick>=channelUntil.getOrDefault(player,0L))
                 performAbility(player,null);
+            }catch(RuntimeException failure){
+                stop(player);
+                System.err.println("[Ataraxia950] Native self ability failed player="+player.getIndex()+": "+failure);
+                failure.printStackTrace();
+                if(player.getRealChannel()!=null)player.getRealChannel().close();
+            }
         }
         for(Fighter fighter:new ArrayList<>(fighters.values())) {
             try {
@@ -675,9 +682,10 @@ public final class Native950MeleeCombat {
     }
     public void playerDied(Player player) {
         owned();
-        if(deadPlayers.containsKey(player))return;
+        if(!player.isDead()||deadPlayers.containsKey(player))return;
         Native950Dungeoneering.onPlayerDeath(player);
         buffs.remove(player,this::buffRemoved);
+        Native950Potions.removeOverloadOnDeath(player);
         if(player.getPrayer().hasPrayersOn())player.getPrayer().closeAllPrayers();
         stop(player);player.resetWalkSteps();player.setRouteEvent(null);player.setNextForceMovement(null);
         player.setNextAnimation(new Animation(Native950CombatAnimations.deathAnimation()));player.lock(PLAYER_RESPAWN_TICKS);

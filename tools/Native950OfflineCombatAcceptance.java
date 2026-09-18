@@ -17,6 +17,7 @@ public final class Native950OfflineCombatAcceptance {
     public static void main(String[] args)throws Exception{
         Cache.initFlatReadOnly(Paths.get("cache"));Native950AbilityCatalog.verify();
         cadence(14670,841,new int[]{0,1,2,3,4,5,6,7});
+        cadence(14684,26579,new int[]{0,1,2,3,4,5,6,7});
         cadence(19343,1381,new int[]{0,1,2});
         cadence(14731,1381,new int[]{0,2,4,6});
         cadence(14666,841,new int[]{2});
@@ -27,6 +28,11 @@ public final class Native950OfflineCombatAcceptance {
             f.step();check(f.npc.getNextHits().isEmpty(),"Swiftness dealt a fake opening hit");
             check(f.combat.combatTarget(f.player)==null,"Buff created a target");
             check(f.combat.ability(f.player,19251)!=null,"Buff ignored cooldown");
+        }
+        try(Fixture f=new Fixture(26579)){
+            f.player.getEquipment().getItems().set(5,new Item(25662));
+            check(f.combat.attack(f.player,f.npc)==null,"Mixed offhand attack setup refused");
+            check(f.combat.ability(f.player,14684).contains("matching off-hand"),"Flurry accepted a Magic offhand");
         }
         try(Fixture f=new Fixture(841)){
             f.start(14670);f.step();f.player.getEquipment().getItems().set(3,new Item(861));
@@ -69,6 +75,7 @@ public final class Native950OfflineCombatAcceptance {
     }
     private static void cadence(int structure,int weapon,int[] expected)throws Exception{
         try(Fixture f=new Fixture(weapon)){
+            if(structure==14684)f.player.getEquipment().getItems().set(5,new Item(46132));
             f.start(structure);List<Integer> actual=new ArrayList<>();
             for(int tick=0;tick<=expected[expected.length-1];tick++){
                 f.step();for(Hit hit:f.npc.getNextHits())actual.add(tick);
@@ -111,7 +118,11 @@ public final class Native950OfflineCombatAcceptance {
                 });
             combat.attach(player);combat.registerTraining(npc);
         }
-        void start(int structure){check(combat.attack(player,npc)==null,"Attack refused");check(combat.ability(player,structure)==null,"Ability refused: "+structure);}
+        void start(int structure){
+            for(Item item:player.getEquipment().getItems().getItems())if(item!=null)
+                check(Native950EquipmentTypes.resolve(item.getId())!=null,"Cache equipment rejected item "+item.getId());
+            String attack=combat.attack(player,npc);check(attack==null,"Attack refused: "+attack);
+            String ability=combat.ability(player,structure);check(ability==null,"Ability refused: "+structure+": "+ability);}
         void step()throws Exception{
             player.resetMasks();npc.resetMasks();
             // Advance the existing presentation clock by one simulated game tick.

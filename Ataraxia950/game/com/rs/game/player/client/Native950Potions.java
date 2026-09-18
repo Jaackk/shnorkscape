@@ -25,4 +25,13 @@ final class Native950Potions {
         Item item=player.getInventory().getItem(slot);
         return item!=null&&item.getId()==itemId&&Pots.getPot(itemId)!=null&&Pots.pot(player,item,slot);
     }
+    static void removeOverloadOnDeath(Player player){
+        if(player.getOverloadDelay()<=0)return;
+        player.setOverloadDelay(0);
+        player.getBuffDebuffTimersManager().removeTimer(com.rs.game.player.BuffDebuffTimersManager.Timer.OVERLOADED);
+        for(int skill:new int[]{0,1,2,4,6}){
+            int base=player.getSkills().getLevelForXp(skill);
+            if(player.getSkills().getLevel(skill)>base)player.getSkills().set(skill,base);
+        }
+    }
 }
