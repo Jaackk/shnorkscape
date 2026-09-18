@@ -289,7 +289,7 @@ public final class Native950Interactions {
         // (Native950Session.ready) sends that burst immediately after this method
         // returns, which is why the panels are attached here and not later.
         statsUi.bootstrap();
-        player.getNative950ActionBar().bootstrap(channel);
+        player.getNative950ActionBar().bootstrap(player,channel);
         lodestones.bootstrap();
         skillGuide.bootstrap();
         exitUi.bootstrap();

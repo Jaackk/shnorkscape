@@ -56,11 +56,12 @@ public final class Native950ActionBar {
     static int barSlot(int face,int component){if(face!=1430&&face!=1436)return -1;int relative=component-(face==1430?65:19);return relative>=0&&relative/13<SLOTS&&(relative%13==0||relative%13==1)?relative/13:-1;}
     static int struct(int packed){if(!valid(packed)||packed==0)return -1;Object id=RS3ClientScriptMap.getMap(enumFor(packed>>>17)).getValue((packed>>>4)&8191);return id instanceof Integer?(Integer)id:-1;}
     static String name(int packed){int id=struct(packed);return id<0?null:RS3GeneralRequirementMap.getMap(id).getStringValue(2794);}
-    public void bootstrap(Channel c){
+    public void bootstrap(Player p,Channel c){
         enableBooks(c);
         Native950Prayer.enableInterface(c);
-        sync(c);
+        sync(p,c,"bootstrap",barSnapshot());
     }
+    public void bootstrap(Channel c){bootstrap(null,c);}
     void enableBooks(Channel c){
         for(int face:new int[]{1460,1452,1461,1450,1456,1459,1884})c.write(Native950Packets.interfaceEvents(face,face==1450?3:1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
         c.write(Native950Packets.interfaceEvents(1885,1,0,BOOK_LAST_SLOT,MAGIC_EVENTS));
@@ -75,10 +76,14 @@ public final class Native950ActionBar {
      * reaches this method so a server-side binding cannot diverge from the bar the client
      * renders.  It is deliberately event-driven: no world-tick caller refreshes the UI.
      */
-    private void sync(Channel c){
+    private void sync(Channel c){sync(null,c,"sync",barSnapshot());}
+    private void sync(Player p,Channel c,String reason,String before){
         // A single summary ties every emitted action-bar config/script burst to its mutation.
         // The detailed wire list stays bounded to these event-driven calls, never world ticks.
         // Player-specific tracing is emitted by the caller paths where a Player is available.
+        if(p!=null)Native950BugTest.event(p,"action-bar","visual-sync","reason",reason,"activeBar",activeBar+1,
+                "before",before,"after",barSnapshot(),"varbits",binding("varbit",1893)+","+binding("varbit",1892)+","+binding("varbit",FULL_MANUAL_MODE_VARBIT)+","+binding("varbit",REVOLUTION_MODE_VARBIT),
+                "slotConfigs",slotConfigs(),"scripts",binding("script",6992)+","+binding("script",7964));
         c.write(Native950Packets.varbitSmall(1893,activeBar+1));
         c.write(Native950Packets.varbitSmall(1892,0));
         refreshRevolution(c);
@@ -89,26 +94,27 @@ public final class Native950ActionBar {
         c.write(Native950Packets.runClientScript(6992));
         c.write(Native950Packets.runClientScript(7964,1436,0,0,1,-1));
     }
-    public void testBar(Channel c){slots()[0]=pack(1,3);slots()[1]=pack(5,2);slots()[2]=pack(6,3);sync(c);reply(c,"Test slots 1-3: Backhand (melee), Binding Shot (ranged), Impact (magic). Equip the matching weapon and attack a target first.");}
+    public void testBar(Player p,Channel c){String before=barSnapshot();slots()[0]=pack(1,3);slots()[1]=pack(5,2);slots()[2]=pack(6,3);sync(p,c,"testbar",before);reply(c,"Test slots 1-3: Backhand (melee), Binding Shot (ranged), Impact (magic). Equip the matching weapon and attack a target first.");}
+    public void testBar(Channel c){testBar(null,c);}
     public boolean drag(Player p,Channel c,Native950Actions.DragAction a){
         int to=barSlot(a.targetInterfaceId(),a.targetComponentId()),from=barSlot(a.sourceInterfaceId(),a.sourceComponentId());
         if(to<0&&from<0)return false;
         if(p.isLocked()||p.isDead()||!p.getInterfaceManager().containsInterface(a.sourceInterfaceId()))return true;
-        if(from>=0&&isTrashTarget(a)){slots()[from]=0;sync(c);Native950BugTest.event(p,"action-bar","cleared","bar",activeBar+1,"slot",from+1);reply(c,"Action bar slot "+(from+1)+" cleared.");return true;}
+        if(from>=0&&isTrashTarget(a)){String before=barSnapshot();slots()[from]=0;sync(p,c,"clear",before);Native950BugTest.event(p,"action-bar","cleared","bar",activeBar+1,"slot",from+1);reply(c,"Action bar slot "+(from+1)+" cleared.");return true;}
         if(to<0){reply(c,"Drop an action-bar slot on the native trash target to remove it.");return true;}
         if(!p.getInterfaceManager().containsInterface(a.targetInterfaceId()))return true;
-        if(from>=0){int old=slots()[to];slots()[to]=slots()[from];slots()[from]=old;sync(c);Native950BugTest.event(p,"action-bar","rearranged","bar",activeBar+1,"from",from+1,"to",to+1);return true;}
+        if(from>=0){String before=barSnapshot();int old=slots()[to];slots()[to]=slots()[from];slots()[from]=old;sync(p,c,"rearrange",before);Native950BugTest.event(p,"action-bar","rearranged","bar",activeBar+1,"from",from+1,"to",to+1);return true;}
         int type=bookType(a.sourceInterfaceId(),a.sourceComponentId());
         if(type<0||!p.getInterfaceManager().containsInterface(a.sourceInterfaceId())||a.sourceSlot()<1||a.sourceSlot()>BOOK_LAST_SLOT){reply(c,"Drag an ability from the melee, ranged or magic ability book.");return true;}
         int packed=pack(type,a.sourceSlot());String name=name(packed);
         if(name==null||name.isEmpty()){reply(c,"That ability is not in the current cache.");return true;}
-        slots()[to]=packed;sync(c);Native950BugTest.event(p,"action-bar","bound","bar",activeBar+1,"slot",to+1,"packed",packed,"structure",struct(packed),"name",name,"sync","varps+6992+7964");reply(c,name+" bound to slot "+(to+1)+".");return true;
+        String before=barSnapshot();slots()[to]=packed;sync(p,c,"bind",before);Native950BugTest.event(p,"action-bar","bound","bar",activeBar+1,"slot",to+1,"packed",packed,"structure",struct(packed),"name",name,"sync","varps+6992+7964");reply(c,name+" bound to slot "+(to+1)+".");return true;
     }
     static boolean isTrashTarget(Native950Actions.DragAction action){return action.targetInterfaceId()==ROOT_INTERFACE&&action.targetComponentId()==TRASH_COMPONENT;}
     public boolean button(Player p,Channel c,Native950Actions.InterfaceAction a){
         if(a.interfaceId()==1430&&(a.componentId()==16||a.componentId()==254)){
             if(a.slot()==-1&&a.option()>=1&&a.option()<=BARS&&!p.isLocked()&&!p.isDead()){
-                setActiveBar(c,a.option()-1);reply(c,"Action bar "+(activeBar+1)+" selected.");
+                setActiveBar(p,c,a.option()-1);reply(c,"Action bar "+(activeBar+1)+" selected.");
             }else if(a.slot()==-1&&a.option()>BARS&&a.option()<=10&&!p.isLocked()&&!p.isDead()){
                 reply(c,"Only action bars 1-"+BARS+" are saved by this local build. Use ;;bar <1-"+BARS+"> to select one.");
             }
@@ -159,9 +165,14 @@ public final class Native950ActionBar {
         send.accept(Native950Packets.varbitSmall(REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0));
     }
     void cooldown(Channel c,int structure,int currentCycle,int duration){c.write(Native950Packets.runClientScript(6570,structure,currentCycle,currentCycle+duration,1,1));}
-    void setActiveBar(Channel c,int index){if(index<0||index>=BARS)return;activeBar=index;sync(c);}
+    void setActiveBar(Player p,Channel c,int index){if(index<0||index>=BARS)return;String before=barSnapshot();activeBar=index;sync(p,c,"select-bar",before);}
+    void setActiveBar(Channel c,int index){setActiveBar(null,c,index);}
     int activeBar(){return activeBar;}
     int slot(int bar,int index){return bar>=0&&bar<BARS&&index>=0&&index<SLOTS?bars[bar][index]:0;}
-    public void clear(Channel c){java.util.Arrays.fill(slots(),0);sync(c);reply(c,"Action bar "+(activeBar+1)+" cleared.");}
+    public void clear(Player p,Channel c){String before=barSnapshot();java.util.Arrays.fill(slots(),0);sync(p,c,"clear-command",before);reply(c,"Action bar "+(activeBar+1)+" cleared.");}
+    public void clear(Channel c){clear(null,c);}
+    private String barSnapshot(){return java.util.Arrays.toString(slots());}
+    private String slotConfigs(){StringBuilder out=new StringBuilder();for(int i=0;i<SLOTS;i++){if(i>0)out.append(',');out.append(binding("varp",i<12?823+i:4429+i-12)).append('|').append(binding("varp",i<12?739+i:4415+i-12));}return out.toString();}
+    private static String binding(String kind,int id){int resolved=kind.equals("varp")?Native950IdMap.varp(id):kind.equals("varbit")?Native950IdMap.varbit(id):Native950IdMap.script(id);return kind+"="+id+":"+(resolved<0?"rejected:not-declared":"accepted:"+resolved);}
     private static void reply(Channel c,String text){c.write(Native950Packets.gameMessage(0,text));}
 }

@@ -67,14 +67,14 @@ public final class Native950AdminCommands {
             case "death": case "deathsoffice":reply(channel,Native950WarsRetreat.deathsOffice(p));break;
             case "vorago":reply(channel,Native950WarsRetreat.voragoEntrance(p));break;
             case "dummy":reply(channel,Native950DiagnosticSpawns.spawnTrainingDummy(p));break;
-            case "testbar":p.getNative950ActionBar().testBar(channel);break;
-            case "clearbar":p.getNative950ActionBar().clear(channel);break;
+            case "testbar":p.getNative950ActionBar().testBar(p,channel);break;
+            case "clearbar":p.getNative950ActionBar().clear(p,channel);break;
             case "bar":
                 if(args.length==1){reply(channel,"Active saved action bar: "+(p.getNative950ActionBar().activeBar()+1)+". Use ;;bar <1-3>.");break;}
                 int requestedBar;
                 try{requestedBar=Integer.parseInt(args[1]);}catch(NumberFormatException invalid){reply(channel,"Use ;;bar <1-3>.");break;}
                 if(requestedBar<1||requestedBar>Native950ActionBar.BARS){reply(channel,"Use ;;bar <1-3>.");break;}
-                p.getNative950ActionBar().setActiveBar(channel,requestedBar-1);
+                p.getNative950ActionBar().setActiveBar(p,channel,requestedBar-1);
                 reply(channel,"Action bar "+requestedBar+" selected and saved.");break;
             case "revo": case "revolution":
                 boolean revolution=!p.getNative950ActionBar().isRevolutionEnabled();

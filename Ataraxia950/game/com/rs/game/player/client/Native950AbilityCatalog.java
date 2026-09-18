@@ -78,17 +78,24 @@ final class Native950AbilityCatalog {
                 throw new IllegalStateException("Changed950 ability definition: "+d.name);
         }
     }
-    static int animation(Player p,int struct){
+    static final class AnimationResolution {
+        final int id; final String source;
+        AnimationResolution(int id,String source){this.id=id;this.source=source;}
+    }
+    static AnimationResolution animationResolution(Player p,int struct){
+        if(com.rs.cache.Cache.STORE==null)return new AnimationResolution(-1,"none:cache-unavailable");
         RS3GeneralRequirementMap d=RS3GeneralRequirementMap.getMap(struct);
         int enumId=d.getIntValue(2915);
-        if(enumId<=0)return -1;
+        if(enumId<=0)return new AnimationResolution(-1,"none:ability-has-no-animation-enum");
         ItemDefinitions weapon=p.getEquipment().getWeaponId()<0?null:Native950CacheItems.definition(p.getEquipment().getWeaponId());
         int family=weapon==null?0:weapon.getCSOpcode(686);
         int id=RS3ClientScriptMap.getMap(enumId).getIntValue(family);
-        if(id<0)return -1;
+        if(id<0)return new AnimationResolution(-1,"none:weapon-family-"+family+"-has-no-entry");
         AnimationDefinitions seq=AnimationDefinitions.getAnimationDefinitions(id);
-        return seq.decodeFailure==null?id:-1;
+        return seq.decodeFailure==null?new AnimationResolution(id,"cache:enum-"+enumId+"-weapon-family-"+family)
+                :new AnimationResolution(-1,"none:sequence-"+id+"-decode-failed");
     }
+    static int animation(Player p,int struct){return animationResolution(p,struct).id;}
     static int sequenceParam(int animation,int param){
         Map<Integer,Object> values=AnimationDefinitions.getAnimationDefinitions(animation).clientScriptData;
         Object value=values==null?null:values.get(param);return value instanceof Integer?(Integer)value:-1;

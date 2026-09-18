@@ -261,8 +261,10 @@ public final class Native950MeleeCombat {
         int percent=definition.minPercent+rolls.damage(Math.max(0,definition.maxPercent-definition.minPercent));
         if(definition.effect==Native950AbilityCatalog.Effect.EXECUTE
                 && fighter.npc.getHitpoints()*2<=fighter.profile.hp)percent+=20;
-        int animation=com.rs.cache.Cache.STORE==null?-1:Native950AbilityCatalog.animation(player,structure);
+        Native950AbilityCatalog.AnimationResolution resolution=Native950AbilityCatalog.animationResolution(player,structure);
+        int animation=resolution.id;
         int animationTicks=Native950AbilityCatalog.animationTicks(animation);
+        java.util.List<Long> followUps=new java.util.ArrayList<Long>();
         int total=0;
         for(int hit=0;hit<definition.hits;hit++){
             int rolled=Math.max(1,maximum*percent/100);
@@ -270,19 +272,27 @@ public final class Native950MeleeCombat {
             if(hit>0){
                 long dueTick=tick+Native950AbilityCatalog.secondaryHitDelay(animationTicks,hit,definition.hits);
                 pendingHits.computeIfAbsent(player,p->new ArrayList<>()).add(new PendingHit(fighter,requested,dueTick,gear));
+                followUps.add(dueTick);
                 continue;
             }
             total+=damage(player,fighter.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
             if(fighter.npc.isDead())break;
         }
         // Param2802 is an icon sprite. Actual sequences come from param2915's weapon-family enum.
+        int effect=-1;
         if(animation>=0){
             player.setNextAnimation(new Animation(animation));
-            int effect=Native950AbilityCatalog.sequenceParam(animation,2920);
+            effect=Native950AbilityCatalog.sequenceParam(animation,2920);
             if(effect>=0)player.setNextGraphics(new com.rs.game.Graphics(effect));
         }
         int targetGraphic=Native950AbilityCatalog.targetGraphic(structure);
         if(targetGraphic>0)fighter.npc.setNextGraphics(new com.rs.game.Graphics(targetGraphic));
+        Native950BugTest.event(player,"combat","ability-executed","name",definition.name,"structure",structure,
+                "target",fighter.npc.getId()+":"+fighter.npc.getIndex(),"animation",animation<0?"none":animation,
+                "animationResolution",resolution.source,"animationLockEndTick",tick+animationTicks,
+                "animationLockEndMillis",player.getLastAnimationEnd(),"graphic",effect<0?"none":effect,
+                "targetGraphic",targetGraphic>0?targetGraphic:"none","cooldownDuration",definition.cooldown,
+                "gcdEndTick",tick+3,"firstHitTick",tick,"followUpHitTicks",followUps.toString());
         if(definition.adrenalineCost()>0)player.getCombatDefinitions().decreaseSpecialAttack(definition.adrenalineCost());
         else if(definition.adrenalineGain()>0)player.getCombatDefinitions().setSpecialAttackPercentage(
                 Math.min(100,player.getCombatDefinitions().getSpecialAttackPercentage()+definition.adrenalineGain()));

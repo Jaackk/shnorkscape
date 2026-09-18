@@ -5,6 +5,7 @@ import com.rs.network.protocol.modern950.Native950Actions;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -50,6 +51,12 @@ final class Native950BugTest {
         capture(session, image);
     }
 
+    static void command(Player player, String command, String argument) {
+        Session session = session(player);
+        if (session != null) session.event("command", "development", "command", command,
+                "argument", argument == null ? "" : argument, "state", state(player));
+    }
+
     static void action(Player player, Native950Actions.Action action) {
         Session session = session(player);
         if (session == null) return;
@@ -86,15 +93,29 @@ final class Native950BugTest {
     private static void capture(final Session session, final String image) {
         WRITER.execute(new Runnable() { public void run() {
             File output=new File(session.directory,image);
-            String script="$p=Get-Process -Name rs2client-vulkan -ErrorAction Stop | Select-Object -First 1; Add-Type -AssemblyName System.Drawing; Add-Type @'\nusing System; using System.Runtime.InteropServices; public static class BugTestWindow { [DllImport(\"user32.dll\")] public static extern bool GetWindowRect(IntPtr h,out RECT r); public struct RECT { public int Left,Top,Right,Bottom; } }\n'@; $r=New-Object BugTestWindow+RECT; if(-not [BugTestWindow]::GetWindowRect($p.MainWindowHandle,[ref]$r)){throw 'GetWindowRect failed'}; $w=$r.Right-$r.Left; $h=$r.Bottom-$r.Top; if($w -le 0 -or $h -le 0){throw 'window is not visible'}; $b=New-Object System.Drawing.Bitmap $w,$h; $g=[System.Drawing.Graphics]::FromImage($b); $g.CopyFromScreen($r.Left,$r.Top,0,0,$b.Size); $b.Save('"+ps(output.getAbsolutePath())+"',[System.Drawing.Imaging.ImageFormat]::Png); $g.Dispose(); $b.Dispose()";
+            String executable=powershell();
+            String script="$ErrorActionPreference='Stop'; $p=Get-Process -Name rs2client-vulkan -ErrorAction Stop | Where-Object {$_.MainWindowHandle -ne 0} | Select-Object -First 1; if($null -eq $p){throw 'RuneTek window was not found'}; Add-Type -AssemblyName System.Drawing; Add-Type @'\nusing System; using System.Runtime.InteropServices; public static class BugTestWindow { [DllImport(\"user32.dll\")] public static extern bool GetWindowRect(IntPtr h,out RECT r); public struct RECT { public int Left,Top,Right,Bottom; } }\n'@; $r=New-Object BugTestWindow+RECT; if(-not [BugTestWindow]::GetWindowRect($p.MainWindowHandle,[ref]$r)){throw 'GetWindowRect failed'}; $w=$r.Right-$r.Left; $h=$r.Bottom-$r.Top; if($w -le 0 -or $h -le 0){throw 'window is not visible'}; Write-Output ('windowHandle=0x{0:X};bounds={1},{2},{3},{4}' -f $p.MainWindowHandle,$r.Left,$r.Top,$r.Right,$r.Bottom); $b=New-Object System.Drawing.Bitmap $w,$h; $g=[System.Drawing.Graphics]::FromImage($b); try {$g.CopyFromScreen($r.Left,$r.Top,0,0,$b.Size); $b.Save('"+ps(output.getAbsolutePath())+"',[System.Drawing.Imaging.ImageFormat]::Png)} finally {$g.Dispose(); $b.Dispose()}";
             try {
                 String encoded=java.util.Base64.getEncoder().encodeToString(script.getBytes(StandardCharsets.UTF_16LE));
-                Process process=new ProcessBuilder("powershell.exe","-NoProfile","-NonInteractive","-ExecutionPolicy","Bypass","-EncodedCommand",encoded).redirectErrorStream(true).start();
+                Process process=new ProcessBuilder(executable,"-NoProfile","-NonInteractive","-ExecutionPolicy","Bypass","-EncodedCommand",encoded).redirectErrorStream(true).start();
                 int exit=process.waitFor();
-                session.event("screenshot",exit==0&&output.isFile()?"saved":"failed","file",image,"exit",exit);
-            } catch(Throwable failure) { session.event("screenshot","failed","file",image,"error",failure.getClass().getSimpleName()); }
+                String outputText=read(process.getInputStream());
+                session.event("screenshot",exit==0&&output.isFile()&&output.length()>0?"saved":"failed","file",image,"exit",exit,
+                        "helper",executable,"output",outputText,"bytes",output.isFile()?output.length():0);
+            } catch(Throwable failure) { session.event("screenshot","failed","file",image,"helper",executable,
+                    "error",failure.getClass().getSimpleName(),"message",safeMessage(failure)); }
         }});
     }
+    private static String powershell() {
+        String root=System.getenv("SystemRoot"); if(root==null||root.trim().isEmpty())root="C:\\Windows";
+        return new File(root,"System32\\WindowsPowerShell\\v1.0\\powershell.exe").getAbsolutePath();
+    }
+    private static String read(InputStream input) throws java.io.IOException {
+        byte[] buffer=new byte[1024]; int total=0,read; StringBuilder out=new StringBuilder();
+        while(total<8192&&(read=input.read(buffer,0,Math.min(buffer.length,8192-total)))>=0){out.append(new String(buffer,0,read,StandardCharsets.UTF_8));total+=read;}
+        return out.toString().trim();
+    }
+    private static String safeMessage(Throwable failure) { String value=failure.getMessage(); return value==null?"":value.length()>1024?value.substring(0,1024):value; }
     private static String ps(String path) { return path.replace("'", "''"); }
 
     private static final class Session {

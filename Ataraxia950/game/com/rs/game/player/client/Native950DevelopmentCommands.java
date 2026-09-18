@@ -62,6 +62,7 @@ public final class Native950DevelopmentCommands {
         }
         String commandText=text.substring(2).trim();
         String[] parts = commandText.toLowerCase(Locale.ROOT).split("\\s+");
+        Native950BugTest.command(player, parts[0], parts.length > 1 && !parts[0].equals("bug") ? commandText.substring(parts[0].length()).trim() : "");
         if (Native950AdminCommands.recognizes(parts[0])) {
             // Markers are diagnostic prose, not a command argument. Preserve the user's casing
             // in the JSONL timeline while the command name remains case-insensitive.
