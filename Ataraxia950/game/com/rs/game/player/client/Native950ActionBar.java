@@ -17,8 +17,9 @@ public final class Native950ActionBar {
     public static final int BARS=3;
     // 950 native drag-parent resolver 0x1401ab903: bit23 bypasses parent-depth clipping.
     static final int ABILITY_EVENTS=2|(2<<11)|(1<<18)|(1<<23);
-    // Native 950's ordinary spellbook grid mask, captured from the local 950 bootstrap.
-    static final int MAGIC_EVENTS=8617038;
+    // The same full combat-spell grid mask the native 950 InterfaceManager applies to 1885:1.
+    // The earlier reduced mask drew the book but did not let the client emit a spell click.
+    static final int MAGIC_EVENTS=10320974;
     static final int BAR_SELECTOR_EVENTS=2046;
     // Script 11797's native 950 shortcut children, captured from the local bootstrap.
     // Each pair is a separately masked child in one of the fourteen slot groups.

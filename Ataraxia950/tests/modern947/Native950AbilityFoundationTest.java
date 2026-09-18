@@ -85,7 +85,7 @@ public class Native950AbilityFoundationTest {
             new Native950ActionBar().bootstrap(c);c.flush();
             List<Native950Packets.Packet> packets=packets(c);
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1458,33,0,38,8388610)));
-            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1885,1,0,Native950ActionBar.BOOK_LAST_SLOT,8617038)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1885,1,0,Native950ActionBar.BOOK_LAST_SLOT,10320974)));
         }finally{c.finishAndReleaseAll();}
     }
     @Test public void exitIsModalAndConfirmationSurvivesUntilExplicitCancel(){
