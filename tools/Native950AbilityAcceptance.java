@@ -32,17 +32,19 @@ public final class Native950AbilityAcceptance {
             p.getInterfaceManager().registerNativeOpen(1450,1477,2);
             Native950Actions.DragAction drag=drag(1450,3,3,1430,66);
             require(p.getNative950ActionBar().drag(p,c,drag),"Powers drag handled");
-            require(p.nativeSettingsSnapshot().get("actionBar.0")==Native950ActionBar.pack(1,3),"Powers drag saved");
+            Native950ActionBar savedBar=p.getNative950ActionBar();
+            require(savedBar.slot(0,0)==Native950ActionBar.pack(1,3),"Powers drag saved");
+            require(p.nativeSettingsSnapshot().containsKey("actionBar.0.0"),"Compact action-bar settings saved");
             p.getInterfaceManager().unregisterNativeOpen(1450);
             p.getNative950ActionBar().drag(p,c,drag(1450,3,1,1430,66));
-            require(p.nativeSettingsSnapshot().get("actionBar.0")==Native950ActionBar.pack(1,3),"Closed book rejected");
+            require(savedBar.slot(0,0)==Native950ActionBar.pack(1,3),"Closed book rejected");
             int[] empty=new int[28];java.util.Arrays.fill(empty,-1);
             Native950Save base=new Native950Save("ability-test",p.getX(),p.getY(),p.getPlane(),empty,new int[28],new int[0],new int[0]);
             java.nio.file.Path directory=java.nio.file.Files.createTempDirectory("native950-actionbar-");
             new Native950SaveStore(directory).save(Native950PlayerBinder.capture(p,base,System.currentTimeMillis()));
             Player restored=Player.createNative950("ability-test",new WorldTile(p),c);
             Native950PlayerBinder.restore(restored,new Native950SaveStore(directory).load("ability-test"));
-            require(restored.nativeSettingsSnapshot().get("actionBar.0")==Native950ActionBar.pack(1,3),"Action bar survives disk save and new player restore");
+            require(restored.getNative950ActionBar().slot(0,0)==Native950ActionBar.pack(1,3),"Action bar survives disk save and new player restore");
         }finally{c.finishAndReleaseAll();}
         c=new EmbeddedChannel();
         try{
