@@ -1508,6 +1508,10 @@ public final class Pots {
 
                         @Override
                         public void run() {
+                            if(player.isNative950()&&(!player.isActive()||player.hasFinished()||player.isDead()
+                                    ||player.getOverloadDelay()<=0||player.getRealChannel()==null||!player.getRealChannel().isActive())){
+                                stop();return;
+                            }
                             if (count == 0)
                                 stop();
                             player.setNextAnimation(new Animation(3170));

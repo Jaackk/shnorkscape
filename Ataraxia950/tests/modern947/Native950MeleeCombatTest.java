@@ -58,6 +58,37 @@ public class Native950MeleeCombatTest {
         for(int i=0;i<3;i++)step();
         assertNotNull(combat.ability(player,14682));
     }
+    @Test public void lethalEnvironmentalHitUsesNativeRecoveryWithoutDestroyingLifeSavingEquipment(){
+        com.rs.game.item.Item ring=new com.rs.game.item.Item(2570);
+        player.getEquipment().getItems().set(com.rs.game.player.Equipment.SLOT_RING,ring);
+        player.setHitpoints(5);
+        player.applyHit(new com.rs.game.Hit(player,100,com.rs.game.Hit.HitLook.REGULAR_DAMAGE));
+        player.processReceivedHits();
+        assertTrue(player.isDead());assertTrue(player.isLocked());
+        assertSame(ring,player.getEquipment().getItem(com.rs.game.player.Equipment.SLOT_RING));
+        assertNull(ring.getAttributes());assertEquals(5,player.getNextHits().get(0).getDamage());
+        for(int i=0;i<6;i++)step();
+        assertFalse(player.isDead());assertFalse(player.isLocked());
+        assertEquals(player.getMaxHitpoints(),player.getHitpoints());
+    }
+    @Test public void nativeEnvironmentalHitHonoursGodModeAndDoesNotDegradeOrTriggerJewellery(){
+        com.rs.game.item.Item necklace=new com.rs.game.item.Item(11090);
+        player.getEquipment().getItems().set(com.rs.game.player.Equipment.SLOT_AMULET,necklace);
+        player.setHitpoints(5);player.setDevelopmentGodMode(true);
+        player.processHit(new com.rs.game.Hit(player,100,com.rs.game.Hit.HitLook.REGULAR_DAMAGE));
+        assertEquals(5,player.getHitpoints());assertEquals(0,player.getNextHits().get(0).getDamage());
+        player.processHit(new com.rs.game.Hit(player,10,com.rs.game.Hit.HitLook.HEALED_DAMAGE));
+        assertEquals(15,player.getHitpoints());
+        assertSame(necklace,player.getEquipment().getItem(com.rs.game.player.Equipment.SLOT_AMULET));
+    }
+    @Test public void teleportBetweenWorldPhasesCancelsDueChannelHitsAndQueue(){
+        player.getSkills().set(0,99);npc.setHitpoints(1000);
+        combat.attack(player,npc);combat.ability(player,14701);step();step();
+        combat.ability(player,14682);int hp=npc.getHitpoints();
+        combat.beforeMovement();player.setNextWorldTile(new WorldTile(3217,3259,0));combat.afterMovement();
+        assertEquals(hp,npc.getHitpoints());assertEquals(0,combat.pendingHitCount(player));
+        assertNull(combat.combatTarget(player));
+    }
     @Test public void validManualAbilityQueuesDuringGlobalCooldownAndStillRevalidatesBeforeExecution(){
         player.getSkills().set(0,31);npc.setHitpoints(1000);assertNull(combat.attack(player,npc));
         assertNull(combat.ability(player,14682));step();

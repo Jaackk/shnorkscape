@@ -456,6 +456,10 @@ public abstract class Entity extends WorldTile {
     }
 
     public void applyHit(Hit hit) {
+        if(this instanceof Player&&((Player)this).isNative950()){
+            if(!isDead()&&!hasFinished())getReceivedHits().add(hit);
+            return;
+        }
         try {
             if (isDead()) {
                 return;
@@ -1509,6 +1513,10 @@ public abstract class Entity extends WorldTile {
     }
 
     public void processHit(final Hit hit) {
+        if(this instanceof Player&&((Player)this).isNative950()){
+            com.rs.game.player.client.Native950PlayerHits.process((Player)this,hit);
+            return;
+        }
         if (isDead()) {
             return;
         }

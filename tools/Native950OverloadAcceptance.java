@@ -41,7 +41,19 @@ public final class Native950OverloadAcceptance {
             if(player.getInventory().getItem(0).getId()!=23534)throw new AssertionError("Dose transition");
             if(player.getOverloadDelay()<=0)throw new AssertionError("Missing Overload effect");
             if(player.getHitpoints()!=490)throw new AssertionError("Expected five self-hits: HP="+player.getHitpoints());
-            System.out.println("PASS: Overload dose/effect/self-hits retain native equipment state.");
+            player.setOverloadDelay(0);player.setHitpoints(990);player.addPotDelay(-1);
+            if(!Native950Potions.drink(player,0,23534))throw new AssertionError("Second dose was rejected");
+            player.setActive(false);int hp=player.getHitpoints();
+            for(int tick=0;tick<15;tick++){WorldTasksManager.processTasks();player.processReceivedHits();}
+            if(player.getHitpoints()!=hp)throw new AssertionError("Overload pulses survived inactive session");
+            player.setActive(true);player.setOverloadDelay(0);player.addPotDelay(-1);
+            if(!Native950Potions.drink(player,0,23535))throw new AssertionError("Third dose was rejected");
+            player.setHitpoints(0);WorldTasksManager.processTasks();
+            player.setHitpoints(990);
+            for(int tick=0;tick<15;tick++){WorldTasksManager.processTasks();player.processReceivedHits();}
+            if(player.getHitpoints()!=990)throw new AssertionError("Overload pulses resumed after death");
+            if(helm.getAttributes()!=null)throw new AssertionError("Metadata was created");
+            System.out.println("PASS: Overload dose/effect/five self-hits preserve gear; pending pulses terminate on death/inactive session.");
         } finally { channel.finishAndReleaseAll(); }
     }
 }

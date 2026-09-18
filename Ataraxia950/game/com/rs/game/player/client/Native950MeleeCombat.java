@@ -163,9 +163,11 @@ public final class Native950MeleeCombat {
     }
     /** Logout, death, teleport or a leash break retires both combat owners. */
     public void stop(Player player) {
+        owned();
         queuedAbilities.remove(player);
         channelUntil.remove(player);
-        owned();Fighter fighter=targets.remove(player);
+        pendingHits.remove(player);damageOverTime.remove(player);
+        Fighter fighter=targets.remove(player);
         if(fighter==null)return;
         player.resetWalkSteps();player.setNextFaceEntity(null);player.setAttackedBy(null);
         if(player.getTarget()==fighter.npc)player.setTarget(null);
@@ -457,13 +459,13 @@ public final class Native950MeleeCombat {
             try {
             Player player=fighter.target;NPC npc=fighter.npc;
             if(player==null || npc.isDead())continue;
+            if(!available(player,npc) || player.hasTeleported() || player.getNextWorldTile()!=null
+                    || distanceToFootprint(player,fighter.home,fighter.profile.size)>LEASH
+                    || distance(npc,fighter.home)>LEASH){stop(player);continue;}
             processDamageOverTime(player,fighter);
             if(npc.isDead())continue;
             processPendingHits(player,fighter);
             if(npc.isDead())continue;
-            if(!available(player,npc) || player.hasTeleported() || player.getNextWorldTile()!=null
-                    || distanceToFootprint(player,fighter.home,fighter.profile.size)>LEASH
-                    || distance(npc,fighter.home)>LEASH){stop(player);continue;}
             Loadout gear;
             try {gear=loadouts.get(player);}catch(IllegalArgumentException unsupported){player.getPackets().sendGameMessage(unsupported.getMessage());stop(player);continue;}
             String slayerRefusal=Native950Slayer.attackRefusal(player,npc);
@@ -620,7 +622,6 @@ public final class Native950MeleeCombat {
         target.setAttackedBy(source);target.setAttackedByDelay(Utils.currentTimeMillis()+6000);source.setAttackingDelay(Utils.currentTimeMillis()+6000);
         if(target instanceof Player)((Player)target).refreshHitPoints();
         if(damage>0){hits++;target.addReceivedDamage(source,damage);}
-        System.out.println("[Ataraxia950] Melee hit "+source.getClientIndex()+" -> "+target.getClientIndex()+" damage="+damage+" hp="+target.getHitpoints());
         return damage;
     }
     /** Shares Prayer's authoritative buffs without entering legacy hit/degradation callbacks. */
@@ -646,9 +647,12 @@ public final class Native950MeleeCombat {
         player.getPackets().sendGameMessage("You defeat the "+fighter.profile.name+".");
         System.out.println("[Ataraxia950] Melee death npc="+npc.getIndex()+" id="+npc.getId()+" respawnIn="+(fighter.respawnAt-tick)+" ticks");
     }
-    private void playerDied(Player player) {
+    public void playerDied(Player player) {
+        owned();
+        if(deadPlayers.containsKey(player))return;
         Native950Dungeoneering.onPlayerDeath(player);
         clearBerserk(player);
+        if(player.getPrayer().hasPrayersOn())player.getPrayer().closeAllPrayers();
         stop(player);player.resetWalkSteps();player.setRouteEvent(null);player.setNextForceMovement(null);
         player.setNextAnimation(new Animation(Native950CombatAnimations.deathAnimation()));player.lock(PLAYER_RESPAWN_TICKS);
         deadPlayers.put(player,tick+PLAYER_RESPAWN_TICKS);
