@@ -8,6 +8,47 @@ import io.netty.channel.Channel;
 /** Session-only tools, behind the native local-development gate and an explicit account grant. */
 public final class Native950AdminCommands {
     public static final String ACCOUNTS = "ataraxia950.devAccounts";
+
+    /*
+     * Permanent local-development rule: add every player/admin/development command to this
+     * directory in the same change as its handler. Keep aliases beside their canonical command.
+     */
+    private static final CommandGroup[] COMMAND_DIRECTORY = {
+            group("COMBAT & RESOURCES", "ffd166", "fff1b8",
+                    entry(";;almighty, ;;god", "all six infinite combat resources; damage immunity"),
+                    entry(";;infprayer, ;;infadren, ;;infrunes", "infinite prayer, adrenaline, or combat runes"),
+                    entry(";;infrun, ;;infammo, ;;adrenaline [0-100]", "infinite run or ammo; set adrenaline"),
+                    entry(";;heal / ;;refill, ;;max", "restore resources and drained levels; max skills"),
+                    entry(";;spell [strike|bolt|blast|wave|surge]", "view or choose an Air auto-spell")),
+            group("ACTION BARS", "7dd3fc", "bae6fd",
+                    entry(";;bar [1-3]", "view or select a saved action bar"),
+                    entry(";;revo / ;;revolution", "toggle server-side Revolution for the saved bar"),
+                    entry(";;testbar, ;;clearbar", "add the test abilities; empty the selected bar")),
+            group("BUG TEST", "c4b5fd", "e9d5ff",
+                    entry(";;bugtest", "start or stop local UI/combat telemetry"),
+                    entry(";;bug <description>", "record a marked state snapshot and queue a game-window screenshot")),
+            group("GEAR & ITEMS", "86efac", "d9f99d",
+                    entry(";;meleegear, ;;magegear, ;;rangegear, ;;weapons", "add a complete combat kit"),
+                    entry(";;gear melee|mage|range|weapons, ;;gearhelp", "choose a kit or show its contents"),
+                    entry(";;item <id> [amount]", "add an item by cache ID"),
+                    entry(";;search / ;;find / ;;si / ;;itemid / ;;finditem <name> [page]", "find item IDs"),
+                    entry(";;findnpc / ;;snpc <name> [page]", "find NPC IDs")),
+            group("NPCS & TRAVEL", "fda4af", "fecdd3",
+                    entry(";;npc <id> [1-50], ;;npcs", "spawn and list your nearby test NPCs"),
+                    entry(";;removenpc / ;;delnpc <index>, ;;clearnpcs [0-128]", "remove one or nearby test NPCs"),
+                    entry(";;dummy", "spawn a training dummy"),
+                    entry(";;wars / ;;warsretreat, ;;death / ;;deathsoffice, ;;vorago", "travel to combat destinations"),
+                    entry(";;tele <x> <y> [plane], ;;coords", "teleport by coordinates; report your current tile"),
+                    entry(";;disengage, ;;obj <id> [type] [rotation]", "stop combat/movement; spawn a diagnostic object")),
+            group("DEVELOPMENT", "f9a8d4", "fbcfe8",
+                    entry(";;devstatus, ;;commands / ;;devhelp", "show resource modes; show this directory"),
+                    entry(";;nxt status|level|banker|cook|combat|skilling|agility|barbarian|wilderness|slayer", "native world and combat tools"),
+                    entry(";;nxt effects|clear|bar|force", "player-effect and hit-bar diagnostics"),
+                    entry(";;area, ;;areascan, ;;areastop", "scene-area debugging"),
+                    entry(";;open, ;;unhide, ;;events, ;;guideclose", "native interface diagnostics"),
+                    entry(";;cs, ;;varbit, ;;varc", "client-script and variable diagnostics"))
+    };
+
     private Native950AdminCommands() { }
 
     static boolean recognizes(String command) {
@@ -152,30 +193,42 @@ public final class Native950AdminCommands {
 
     private static void commandList(Channel channel,String[] args) {
         if(args.length!=1){reply(channel,"Use ;;commands.");return;}
-        String[] rows={
-            "<col=ffd166>===== SHNORKSCAPE LOCAL COMMANDS =====</col>",
-            "<col=ffd166>COMBAT</col> ;;almighty - all six infinite combat resources; ;;god - damage immunity.",
-            ";;infprayer - no drain; ;;infadren - endless adrenaline; ;;infrunes - free spell runes.",
-            ";;infrun - endless run energy; ;;infammo - no ammunition use; ;;adrenaline [0-100] - set energy.",
-            ";;heal or ;;refill - restore health, prayer, run and drained levels; ;;max - max all skills.",
-            ";;spell [strike|bolt|blast|wave|surge] - view or select an Air auto-spell.",
-            "<col=ffd166>ACTION BARS</col> ;;bar [1-3] - view/select a saved action bar; ;;revo - toggle server Revolution.",
-            ";;testbar - place Backhand, Binding Shot and Impact in slots 1-3; ;;clearbar - empty the selected bar.",
-            "<col=ffd166>BUG TEST</col> ;;bugtest - toggle local UI/combat telemetry; ;;bug <description> - mark an issue and capture the game window.",
-            "<col=ffd166>GEAR & ITEMS</col> ;;meleegear, ;;magegear, ;;rangegear - add full combat kits; ;;weapons - weapon kit.",
-            ";;gear melee|mage|range|weapons - choose a kit; ;;item <id> [amount] - give an item.",
-            ";;search <name> [page] - find item IDs; ;;findnpc <name> [page] - find NPC IDs; ;;gearhelp - kit details.",
-            "<col=ffd166>NPCS & TRAVEL</col> ;;npc <id> [1-50] - spawn your test NPCs; ;;npcs - list them.",
-            ";;removenpc <index> - remove one; ;;clearnpcs [0-128] - remove nearby test NPCs; ;;dummy - training dummy.",
-            ";;wars - War's Retreat; ;;death - Death's Office; ;;vorago - Vorago borehole entrance.",
-            ";;tele <x> <y> [plane] - coordinate teleport; ;;coords - current tile and region.",
-            ";;disengage - stop native combat and movement; ;;obj <id> [type] [rotation] - diagnostic object.",
-            "<col=ffd166>DEVELOPMENT</col> ;;devstatus - resource modes; ;;nxt status - native world/combat diagnostics.",
-            ";;nxt level <skill ID> <level> - set a saved level; ;;nxt banker|cook|combat|skilling|agility|barbarian|wilderness|slayer.",
-            ";;nxt effects|clear|bar|force - display diagnostics; ;;area, ;;areascan, ;;areastop - scene debugging.",
-            ";;open, ;;unhide, ;;events, ;;guideclose, ;;cs, ;;varbit, ;;varc - native UI diagnostics; ;;devhelp - brief help."
-        };
-        for(String row:rows)reply(channel,row);
+        reply(channel,"<col=ffd166>===== SHNORKSCAPE LOCAL COMMANDS =====</col>");
+        for (CommandGroup group : COMMAND_DIRECTORY) {
+            reply(channel,"<col="+group.headerColor+">"+group.title+"</col>");
+            for (CommandEntry entry : group.entries)
+                reply(channel,"<col="+group.commandColor+">"+entry.names+"</col><col=e8e8e8> - "+entry.description+".</col>");
+        }
+    }
+
+    private static CommandGroup group(String title, String headerColor, String commandColor, CommandEntry... entries) {
+        return new CommandGroup(title, headerColor, commandColor, entries);
+    }
+
+    private static CommandEntry entry(String names, String description) { return new CommandEntry(names, description); }
+
+    private static final class CommandGroup {
+        private final String title;
+        private final String headerColor;
+        private final String commandColor;
+        private final CommandEntry[] entries;
+
+        private CommandGroup(String title, String headerColor, String commandColor, CommandEntry[] entries) {
+            this.title = title;
+            this.headerColor = headerColor;
+            this.commandColor = commandColor;
+            this.entries = entries;
+        }
+    }
+
+    private static final class CommandEntry {
+        private final String names;
+        private final String description;
+
+        private CommandEntry(String names, String description) {
+            this.names = names;
+            this.description = description;
+        }
     }
 
     private static void heal(Player p) {
