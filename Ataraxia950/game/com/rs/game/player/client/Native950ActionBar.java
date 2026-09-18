@@ -201,7 +201,15 @@ public final class Native950ActionBar {
     private String barSnapshot(){return java.util.Arrays.toString(slots());}
     private String clientSnapshot(){int[] values=new int[SLOTS];for(int i=0;i<SLOTS;i++)values[i]=clientShortcut(slots()[i]);return java.util.Arrays.toString(values);}
     private String slotConfigs(){StringBuilder out=new StringBuilder();for(int i=0;i<SLOTS;i++){if(i>0)out.append(',');out.append(binding("varp",i<12?823+i:4429+i-12)).append('|').append(binding("varp",i<12?739+i:4415+i-12));}return out.toString();}
-    private static String binding(String kind,int id){int resolved=kind.equals("varp")?Native950IdMap.varp(id):kind.equals("varbit")?Native950IdMap.varbit(id):Native950IdMap.script(id);return kind+"="+id+":"+(resolved<0?"rejected:not-declared":"accepted:"+resolved);}
+    /**
+     * Native950Packets writes these known wire IDs directly.  Native950IdMap is a separate
+     * compatibility allow-list, so an absent entry is diagnostic context, not a client-write
+     * rejection.  Keeping that distinction in Bug Test avoids chasing a false transport fault.
+     */
+    private static String binding(String kind,int id){
+        int resolved=kind.equals("varp")?Native950IdMap.varp(id):kind.equals("varbit")?Native950IdMap.varbit(id):Native950IdMap.script(id);
+        return kind+"="+id+":direct-native-packet; mapping="+(resolved<0?"unmapped":"declared:"+resolved);
+    }
     private static void visualWrite(final Player p,Channel c,Native950Packets.Packet packet,final String kind,final int id,final Object value){
         if(p!=null)Native950BugTest.event(p,"action-bar","visual-write-attempt","kind",kind,"id",id,"value",value,"binding",binding(kind,id));
         ChannelFuture future=c.write(packet);
