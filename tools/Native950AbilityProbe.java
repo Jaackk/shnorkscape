@@ -37,6 +37,25 @@ public final class Native950AbilityProbe {
                     System.out.println(f.getName()+"="+Arrays.deepToString(new Object[]{value}));
             }return;
         }
+        if(args[0].equals("ifacecompact")) {
+            int face=Integer.parseInt(args[1]);
+            for(int file:Cache.STORE.getIndexes()[3].getTable().getArchives()[face].getValidFileIds()) {
+                try {
+                    IComponentDefinitions d=new IComponentDefinitions();d.ihash=face<<16|file;
+                    d.decode(new com.rs.network.io.InputStream(Cache.STORE.getIndexes()[3].getFile(face,file)));
+                    List<String> hooks=new ArrayList<>();
+                    for(String name:new String[]{"onLoadHook","onOptHook","onClickHook","onClickRepeatHook","onHoldHook","onDragHook","onDragCompleteHook","onTargetEnterHook","onTargetLeaveHook"}) {
+                        Object[] hook=(Object[])IComponentDefinitions.class.getField(name).get(d);
+                        if(hook!=null)hooks.add(name+"="+Arrays.toString(hook));
+                    }
+                    int settings=d.activeProperties==null?0:d.activeProperties.settings;
+                    System.out.println(face+":"+file+" type="+d.type+" parent="+d.parentLayer+" pos="+d.basePositionX+","+d.basePositionY
+                            +" size="+d.baseWidth+"x"+d.baseHeight+" settings="+Integer.toUnsignedString(settings)+" clickMask="+d.clickMask
+                            +" ops="+Arrays.toString(d.ops)+(hooks.isEmpty()?"":" hooks="+String.join(";",hooks)));
+                }catch(Exception error){System.out.println(face+":"+file+" ERROR "+error.getClass().getSimpleName()+": "+error.getMessage());}
+            }
+            return;
+        }
         if(args[0].equals("assets")) {
             List<String> pins=new ArrayList<>();pins.add("# Paired revision950 hub/action-bar cache assets.");
             for(int face:new int[]{1430,1436,1460,1452,1461,1450,1456,1459})for(int file:Cache.STORE.getIndexes()[3].getTable().getArchives()[face].getValidFileIds())pin(pins,3,face,file);
