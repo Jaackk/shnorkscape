@@ -8,6 +8,7 @@ import com.rs.game.WorldTile;
 import com.rs.game.item.Item;
 import com.rs.game.npc.NPC;
 import com.rs.game.player.Equipment;
+import com.rs.game.player.BuffDebuffTimersManager.Timer;
 import com.rs.game.player.Player;
 import com.rs.game.player.Skills;
 import com.rs.game.player.combat.rs2.ClassicBonuses;
@@ -64,7 +65,7 @@ public final class Native950MeleeCombat {
     }
     public void detach(Player player) {
         owned();stop(player);deadPlayers.remove(player);nextAttack.remove(player);player.setNative950Combat(null);
-        globalCooldown.remove(player);abilityCooldowns.remove(player);damageOverTime.remove(player);berserkUntil.remove(player);pendingHits.remove(player);Native950AutoSpells.clear(player);
+        globalCooldown.remove(player);abilityCooldowns.remove(player);damageOverTime.remove(player);clearBerserk(player);pendingHits.remove(player);Native950AutoSpells.clear(player);
         player.setDevelopmentGodMode(false);
         player.setInfiniteRunEnergy(false);
         player.setInfiniteCombatRunes(false);
@@ -174,7 +175,9 @@ public final class Native950MeleeCombat {
     public void clear() {
         owned();for(Player player:new ArrayList<>(targets.keySet()))stop(player);
         fighters.clear();unavailableDefinitions.clear();nextAttack.clear();deadPlayers.clear();
-        queuedAbilities.clear();globalCooldown.clear();abilityCooldowns.clear();damageOverTime.clear();berserkUntil.clear();pendingHits.clear();
+        queuedAbilities.clear();globalCooldown.clear();abilityCooldowns.clear();damageOverTime.clear();
+        for(Player player:new ArrayList<>(berserkUntil.keySet()))clearBerserk(player);
+        pendingHits.clear();
     }
     /** A deliberately small native basic-ability slice; legacy ability callbacks never run. */
     public String ability(Player player,int structure) {
@@ -312,9 +315,11 @@ public final class Native950MeleeCombat {
         int animationTicks=Native950AbilityCatalog.animationTicks(animation);
         java.util.List<Long> followUps=new java.util.ArrayList<Long>();
         if(definition.effect==Native950AbilityCatalog.Effect.BUFF&&structure==14707){
-            // The mature local EOC reference uses a 33-tick Berserk duration.  The
-            // client status-owner is not yet verified, so this remains server-authoritative.
+            // The mature local EOC reference uses a 33-tick Berserk duration. The
+            // existing 950 timer owner exposes its matching BERSERK map id, while
+            // this world loop remains the authoritative effect owner.
             berserkUntil.put(player,tick+33);
+            player.getBuffDebuffTimersManager().addTimer(Timer.BERSERK,33*600L);
             Native950BugTest.event(player,"combat","effect-started","effect","Berserk","durationTicks",33,"endTick",tick+33);
         }
         int total=0;
@@ -597,6 +602,7 @@ public final class Native950MeleeCombat {
     }
     private void playerDied(Player player) {
         Native950Dungeoneering.onPlayerDeath(player);
+        clearBerserk(player);
         stop(player);player.resetWalkSteps();player.setRouteEvent(null);player.setNextForceMovement(null);
         player.setNextAnimation(new Animation(Native950CombatAnimations.deathAnimation()));player.lock(PLAYER_RESPAWN_TICKS);
         deadPlayers.put(player,tick+PLAYER_RESPAWN_TICKS);
@@ -624,6 +630,10 @@ public final class Native950MeleeCombat {
             Native950BugTest.event(effect.getKey(),"combat","effect-expired","effect","Berserk","endTick",effect.getValue());
             effects.remove();
         }
+    }
+    private void clearBerserk(Player player){
+        berserkUntil.remove(player);
+        player.getBuffDebuffTimersManager().removeTimer(Timer.BERSERK);
     }
     static WorldTile respawnTile(){return new WorldTile(3217,3258,0);}
     private boolean available(Player player,NPC npc) {
