@@ -190,9 +190,16 @@ public final class Native950MeleeCombat {
             return refusal;
         }
         String refusal=abilityRefusal(player,structure);
-        if(refusal!=null)return refusal;
-        queuedAbilities.put(player,structure);
-        return null;
+        if(refusal==null){
+            queueAbility(player,structure,false);
+            return null;
+        }
+        if(tick>=globalCooldown.getOrDefault(player,0L))return refusal;
+        String queueRefusal=abilityQueueRefusal(player,structure);
+        if(queueRefusal!=null)return queueRefusal;
+        queueAbility(player,structure,true);
+        Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
+        return definition.name+" queued.";
     }
     static int abilityStyle(int structure){
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
@@ -208,12 +215,19 @@ public final class Native950MeleeCombat {
         return fighter!=null&&fighter.attacking&&fighter.target==player&&!fighter.npc.isDead()?fighter.npc:null;
     }
     private String abilityRefusal(Player player,int structure) {
+        return abilityRefusal(player,structure,true);
+    }
+    /** A queued manual click may wait for GCD, but never bypass any other validation. */
+    private String abilityQueueRefusal(Player player,int structure) {
+        return abilityRefusal(player,structure,false);
+    }
+    private String abilityRefusal(Player player,int structure,boolean requireGlobalCooldown) {
         int style=abilityStyle(structure);
         if(style<0)return "That ability is not available in Combat Alpha yet.";
         Fighter fighter=targets.get(player);
         if(fighter==null||!fighter.attacking||!available(player,fighter.npc)||fighter.npc.isDead()||player.getNextWorldTile()!=null||player.isStunned())
             return "Attack a supported NPC or training dummy first.";
-        if(tick<globalCooldown.getOrDefault(player,0L))return "Abilities are on global cooldown.";
+        if(requireGlobalCooldown&&tick<globalCooldown.getOrDefault(player,0L))return "Abilities are on global cooldown.";
         Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
         if(cooldowns!=null&&tick<cooldowns.getOrDefault(structure,0L))return "That ability is cooling down.";
         Loadout gear;
@@ -235,6 +249,14 @@ public final class Native950MeleeCombat {
         String refusal=Native950Slayer.attackRefusal(player,fighter.npc);
         if(refusal==null)refusal=Native950Dungeoneering.attackRefusal(player,fighter.npc);
         return refusal!=null?refusal:gear.profile==null?null:gear.profile.costRefusal(player);
+    }
+    private void queueAbility(Player player,int structure,boolean waitingForGlobalCooldown) {
+        Integer replaced=queuedAbilities.put(player,structure);
+        Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
+        Native950BugTest.event(player,"combat",replaced==null?"ability-queued":"ability-queue-replaced",
+                "structure",structure,"name",definition==null?"unknown":definition.name,
+                "replaced",replaced==null?"none":replaced,"waitingForGlobalCooldown",waitingForGlobalCooldown,
+                "globalCooldownEndTick",globalCooldown.getOrDefault(player,0L));
     }
     private boolean performAbility(Player player,Fighter fighter) {
         Integer structure=queuedAbilities.remove(player);

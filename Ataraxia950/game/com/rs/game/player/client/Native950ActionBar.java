@@ -24,6 +24,19 @@ public final class Native950ActionBar {
     static final int BOOK_LAST_SLOT=264;
     static final int FULL_MANUAL_MODE_VARBIT=41598;
     static final int REVOLUTION_MODE_VARBIT=41599;
+    /*
+     * The 950 HUD does not expose its fourteen shortcuts as a simple consecutive
+     * component range.  These pairs and masks are taken from the paired 950
+     * OpenNXT bootstrap, rather than inferred from the old client layout.
+     */
+    private static final int[][] PRIMARY_SLOT_COMPONENTS={
+            {64,69},{77,82},{90,95},{103,108},{116,121},{129,134},{142,147},
+            {155,160},{168,173},{181,186},{194,199},{207,212},{220,225},{233,238}
+    };
+    private static final int[] PRIMARY_SLOT_EVENTS={
+            11239422,2098176,2098176,2098176,2098176,2098176,2098176,
+            2098176,2098176,2098176,2098176,2098176,11239422,2098176
+    };
     private final int[][] bars=new int[BARS][SLOTS];
     private int activeBar;
     private boolean revolutionEnabled;
@@ -55,7 +68,11 @@ public final class Native950ActionBar {
     static boolean valid(int packed){return packed==0||((packed&~0xffffff)==0&&(packed&15)==0&&enumFor(packed>>>17)>=0&&((packed>>>4)&8191)>0);}
     static int enumFor(int type){return type==1?10147:type==5?6738:type==6?6740:-1;}
     static int bookType(int face,int component){if(face==1450&&component==3)return 1;if(component!=1)return -1;return face==1460?1:face==1452||face==1456?5:face==1461||face==1459||face==1884?6:-1;}
-    static int barSlot(int face,int component){if(face!=1430&&face!=1436)return -1;int relative=component-(face==1430?65:19);return relative>=0&&relative/13<SLOTS&&(relative%13==0||relative%13==1)?relative/13:-1;}
+    static int barSlot(int face,int component){
+        if(face!=1430)return -1;
+        for(int slot=0;slot<SLOTS;slot++)for(int candidate:PRIMARY_SLOT_COMPONENTS[slot])if(candidate==component)return slot;
+        return -1;
+    }
     static int struct(int packed){if(!valid(packed)||packed==0)return -1;Object id=RS3ClientScriptMap.getMap(enumFor(packed>>>17)).getValue((packed>>>4)&8191);return id instanceof Integer?(Integer)id:-1;}
     static String name(int packed){int id=struct(packed);return id<0?null:RS3GeneralRequirementMap.getMap(id).getStringValue(2794);}
     public void bootstrap(Player p,Channel c){
@@ -67,8 +84,8 @@ public final class Native950ActionBar {
     void enableBooks(Channel c){
         for(int face:new int[]{1460,1452,1461,1450,1456,1459,1884})c.write(Native950Packets.interfaceEvents(face,face==1450?3:1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
         c.write(Native950Packets.interfaceEvents(1885,1,0,BOOK_LAST_SLOT,MAGIC_EVENTS));
-        for(int face:new int[]{1430,1436})for(int i=0;i<SLOTS;i++)for(int component:new int[]{(face==1430?65:19)+i*13,(face==1430?66:20)+i*13})
-            c.write(Native950Packets.interfaceEvents(face,component,-1,1,ABILITY_EVENTS|(1<<21)));
+        for(int slot=0;slot<SLOTS;slot++)for(int component:PRIMARY_SLOT_COMPONENTS[slot])
+            c.write(Native950Packets.interfaceEvents(1430,component,-1,-1,PRIMARY_SLOT_EVENTS[slot]));
         c.write(Native950Packets.interfaceEvents(1430,16,-1,-1,BAR_SELECTOR_EVENTS));
         c.write(Native950Packets.interfaceEvents(1430,254,-1,-1,BAR_SELECTOR_EVENTS));
         c.write(Native950Packets.interfaceEvents(1430,256,-1,-1,2));

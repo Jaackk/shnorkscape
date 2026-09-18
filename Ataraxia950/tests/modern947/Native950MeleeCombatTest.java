@@ -47,6 +47,14 @@ public class Native950MeleeCombatTest {
         for(int i=0;i<3;i++)step();
         assertNotNull(combat.ability(player,14682));
     }
+    @Test public void validManualAbilityQueuesDuringGlobalCooldownAndStillRevalidatesBeforeExecution(){
+        player.getSkills().set(0,31);npc.setHitpoints(1000);assertNull(combat.attack(player,npc));
+        assertNull(combat.ability(player,14682));step();
+        assertEquals("Fury queued.",combat.ability(player,14701));
+        access.reachable=false;
+        for(int i=0;i<3;i++)step();
+        assertEquals("Queued ability must not damage after its target becomes unreachable",990,npc.getHitpoints());
+    }
     @Test public void nativeTargetLifecycleKeepsThePlayerInCombatUntilStopped(){
         assertNull(combat.attack(player,npc));
         assertSame(npc,player.getTarget());assertSame(npc,combat.combatTarget(player));
