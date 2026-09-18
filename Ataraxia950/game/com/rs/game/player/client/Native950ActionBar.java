@@ -66,13 +66,13 @@ public final class Native950ActionBar {
     static int pack(int type,int id){if(enumFor(type)<0||id<1||id>8191)throw new IllegalArgumentException("Invalid ability");return (type<<17)|(id<<4);}
     static boolean valid(int packed){return packed==0||((packed&~0xffffff)==0&&(packed&15)==0&&enumFor(packed>>>17)>=0&&((packed>>>4)&8191)>0);}
     /**
-     * The server keeps the type in bits 17..23 so persistence and structure lookup cannot
-     * confuse an ability id with a shortcut type.  The 950 action-bar builder (CS2 6995),
-     * however, reads its shortcut value in the client wire form: ability id in bits 4.. and
-     * the type in bits 0..3.  Sending the server form leaves the client type at zero, which
-     * is its empty-shortcut sentinel.
+     * The cache's live action-bar builder (CS2 11797) reads the shortcut type from
+     * varbits 1747 (bits 17..23) and the ability id from varbits 1748 (bits 4..16).
+     * The native varp must therefore retain the same packed layout as the authoritative
+     * server value.  Repacking the type into bits 0..3 makes every ability type zero,
+     * which the client renders as an empty shortcut.
      */
-    static int clientShortcut(int packed){return packed==0?0:((packed>>>4)&8191)<<4|(packed>>>17);}
+    static int clientShortcut(int packed){return packed;}
     static int enumFor(int type){return type==1?10147:type==5?6738:type==6?6740:-1;}
     static int bookType(int face,int component){
         // Recorded in the live 950 Bug Test session while dragging Flurry and Dismember.
