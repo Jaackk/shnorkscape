@@ -50,6 +50,19 @@ public final class Native950PrayerContractAcceptance {
             p.getPrayer().setPrayerBook(true);click(p,13);
             require(p.getPrayer().usingPrayer(1,11),"Curses translate native key13 to Deflect Magic");
             p.getPrayer().closeAllPrayers();
+            p.getPrayer().setPrayerBook(false);
+            click(p,3);require(p.getPrayer().getDamageMultiplier(1)>0&&p.getPrayer().getStatBonuses(Skills.RANGE)==0,
+                    "Unstoppable Force changes ranged damage, not accuracy");
+            p.getPrayer().closeAllPrayers();
+            click(p,4);require(p.getPrayer().getDamageMultiplier(1)==0&&p.getPrayer().getStatBonuses(Skills.RANGE)>0,
+                    "Sharp Eye changes ranged accuracy, not damage");
+            p.getPrayer().closeAllPrayers();
+            click(p,5);require(p.getPrayer().getDamageMultiplier(2)>0&&p.getPrayer().getStatBonuses(Skills.MAGIC)==0,
+                    "Charge changes magic damage, not accuracy");
+            p.getPrayer().closeAllPrayers();
+            click(p,6);require(p.getPrayer().getDamageMultiplier(2)==0&&p.getPrayer().getStatBonuses(Skills.MAGIC)>0,
+                    "Mystic Will changes magic accuracy, not damage");
+            p.getPrayer().closeAllPrayers();
             p.getPrayer().setPrayerBook(false);p.getSkills().setXp(Skills.PRAYER,0);p.getSkills().set(Skills.PRAYER,1);
             click(p,15);require(!p.getPrayer().hasPrayersOn(),"Level requirement retained");
             VarBitDefinitions bits=VarBitDefinitions.getClientVarpBitDefinitions(16747);
