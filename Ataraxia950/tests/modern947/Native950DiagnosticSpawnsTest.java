@@ -47,4 +47,13 @@ public final class Native950DiagnosticSpawnsTest {
         assertTrue(Native950DiagnosticSpawns.spawnNpc(null,42).contains("stand normally"));
         assertTrue(Native950DiagnosticSpawns.spawnObject(null,1).contains("stand normally"));
     }
+    @Test public void trainingDummiesUseAHardPerOwnerCapWithoutAcceptingBadCounts() {
+        assertEquals(1,Native950DiagnosticSpawns.trainingDummySpawnCount(1,0));
+        assertEquals(5,Native950DiagnosticSpawns.trainingDummySpawnCount(5,0));
+        assertEquals(2,Native950DiagnosticSpawns.trainingDummySpawnCount(5,3));
+        assertEquals(0,Native950DiagnosticSpawns.trainingDummySpawnCount(1,5));
+        assertEquals(-1,Native950DiagnosticSpawns.trainingDummySpawnCount(0,0));
+        assertEquals(-1,Native950DiagnosticSpawns.trainingDummySpawnCount(6,0));
+        assertEquals(-1,Native950DiagnosticSpawns.trainingDummySpawnCount(1,-1));
+    }
 }

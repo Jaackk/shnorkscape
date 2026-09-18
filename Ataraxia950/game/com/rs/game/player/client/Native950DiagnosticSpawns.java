@@ -14,15 +14,25 @@ import com.rs.game.player.Player;
 
 /** Actual-cache diagnostic placement at the exact player tile; no legacy spawn subclasses. */
 public final class Native950DiagnosticSpawns {
+    static final int MAX_TRAINING_DUMMIES=5;
+    private static final int[][] TRAINING_DUMMY_OFFSETS={{1,0},{-1,0},{0,1},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}};
     private static final java.util.Map<NPC,String> OWNERS = new java.util.IdentityHashMap<>();
     private Native950DiagnosticSpawns() { }
     static String spawnTrainingDummy(Player player) {
+        return spawnTrainingDummies(player,1);
+    }
+    static String spawnTrainingDummies(Player player,int requested) {
         String refusal=refusal(player);if(refusal!=null)return refusal;
         if(player.getNative950Combat()==null)return "Combat is not ready.";
         pruneOwners();
-        for(NPC existing:OWNERS.keySet())if(ownedBy(player,existing)&&existing.getId()==16027)
-            return "You already have a training dummy (index "+existing.getIndex()+"). Use ;;removenpc or ;;clearnpcs first.";
-        for(int[] offset:new int[][]{{1,0},{-1,0},{0,1},{0,-1}}) {
+        int existing=trainingDummyCount(player);
+        int wanted=trainingDummySpawnCount(requested,existing);
+        if(wanted<0)return "Use ;;dummy [1-"+MAX_TRAINING_DUMMIES+"].";
+        if(wanted==0)return "You already have the maximum of "+MAX_TRAINING_DUMMIES+" owned training dummies. Use ;;removenpc or ;;clearnpcs first.";
+        int spawned=0;
+        String failure=null;
+        for(int[] offset:TRAINING_DUMMY_OFFSETS) {
+            if(spawned>=wanted)break;
             WorldTile tile=new WorldTile(player.getX()+offset[0],player.getY()+offset[1],player.getPlane());
             if(!World.canMoveNPC(tile,1)||!World.checkWalkStep(player.getPlane(),player.getX(),player.getY(),offset[0],offset[1],1))continue;
             NPC npc=null;
@@ -30,13 +40,25 @@ public final class Native950DiagnosticSpawns {
                 npc=NPC.createNative950Diagnostic(16027,tile);
                 Native950World.getInstance().addDiagnosticNpc(npc);
                 player.getNative950Combat().registerTraining(npc);OWNERS.put(npc,player.getUsername());
-                return "Training dummy spawned beside you (index "+npc.getIndex()+"). It restores health and awards no XP or loot.";
+                spawned++;
             }catch(IllegalArgumentException|IllegalStateException e){
                 if(npc!=null&&World.containsNPC(npc))Native950World.getInstance().removeDiagnosticNpc(npc);
-                return "Cannot place training dummy: "+e.getMessage();
+                failure=e.getMessage();
             }
         }
-        return "Move to an open tile before placing a training dummy.";
+        if(spawned==0)return failure==null?"Move to an open tile before placing a training dummy.":"Cannot place a training dummy: "+failure;
+        int total=existing+spawned;
+        return "Spawned "+spawned+" training dumm"+(spawned==1?"y":"ies")+" ("+total+"/"+MAX_TRAINING_DUMMIES+"). They restore health and award no XP or loot."
+                +(spawned<wanted?" Some nearby tiles were blocked.":"");
+    }
+
+    static int trainingDummySpawnCount(int requested,int existing) {
+        if(requested<1||requested>MAX_TRAINING_DUMMIES||existing<0)return -1;
+        return Math.max(0,Math.min(requested,MAX_TRAINING_DUMMIES-existing));
+    }
+    private static int trainingDummyCount(Player player) {
+        int count=0;for(NPC npc:OWNERS.keySet())if(ownedBy(player,npc)&&npc.getId()==16027)count++;
+        return count;
     }
 
     public static String spawnNpc(Player player, int id) {

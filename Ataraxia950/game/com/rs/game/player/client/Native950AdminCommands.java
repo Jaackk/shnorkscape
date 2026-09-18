@@ -36,7 +36,7 @@ public final class Native950AdminCommands {
             group("NPCS & TRAVEL", "fda4af", "fecdd3",
                     entry(";;npc <id> [1-50], ;;npcs", "spawn and list your nearby test NPCs"),
                     entry(";;removenpc / ;;delnpc <index>, ;;clearnpcs [0-128]", "remove one or nearby test NPCs"),
-                    entry(";;dummy", "spawn a training dummy"),
+                    entry(";;dummy [1-5]", "spawn up to five owned training dummies"),
                     entry(";;wars / ;;warsretreat, ;;death / ;;deathsoffice, ;;vorago", "travel to combat destinations"),
                     entry(";;tele <x> <y> [plane], ;;coords", "teleport by coordinates; report your current tile"),
                     entry(";;disengage, ;;obj <id> [type] [rotation]", "stop combat/movement; spawn a diagnostic object")),
@@ -95,9 +95,9 @@ public final class Native950AdminCommands {
             StringBuilder description=new StringBuilder();for(int i=1;i<args.length;i++){if(i>1)description.append(' ');description.append(args[i]);}
             Native950BugTest.marker(p,description.toString());reply(channel,"Bug marker recorded. Screenshot capture queued.");return;
         }
-        if (args.length > (command.equals("adrenaline") || command.equals("bar") || command.equals("spell") ? 2 : 1)) {
+        if (args.length > (command.equals("adrenaline") || command.equals("bar") || command.equals("spell") || command.equals("dummy") ? 2 : 1)) {
             String usage=command.equals("adrenaline") ? " [0-100]" : command.equals("bar") ? " [1-3]"
-                    : command.equals("spell") ? " [strike|bolt|blast|wave|surge]" : "";
+                    : command.equals("spell") ? " [strike|bolt|blast|wave|surge]" : command.equals("dummy") ? " [1-5]" : "";
             reply(channel, "Usage: ;;" + command + usage); return;
         }
         if (!p.isActive() || p.hasFinished() || p.isDead() || p.isLocked()) {
@@ -107,7 +107,10 @@ public final class Native950AdminCommands {
             case "wars": case "warsretreat":reply(channel,Native950WarsRetreat.teleport(p,true));break;
             case "death": case "deathsoffice":reply(channel,Native950WarsRetreat.deathsOffice(p));break;
             case "vorago":reply(channel,Native950WarsRetreat.voragoEntrance(p));break;
-            case "dummy":reply(channel,Native950DiagnosticSpawns.spawnTrainingDummy(p));break;
+            case "dummy":
+                int requestedDummies=1;
+                try{if(args.length==2)requestedDummies=Integer.parseInt(args[1]);}catch(NumberFormatException invalid){reply(channel,"Use ;;dummy [1-5].");break;}
+                reply(channel,Native950DiagnosticSpawns.spawnTrainingDummies(p,requestedDummies));break;
             case "testbar":p.getNative950ActionBar().testBar(p,channel);break;
             case "clearbar":p.getNative950ActionBar().clear(p,channel);break;
             case "bar":
