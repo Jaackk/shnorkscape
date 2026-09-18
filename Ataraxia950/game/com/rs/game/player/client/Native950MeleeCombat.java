@@ -491,7 +491,7 @@ public final class Native950MeleeCombat {
                 int animation=spell!=null&&spell.available()?spell.animation:-1;
                 player.setNextFaceEntity(npc);player.setNextAnimation(new Animation(animation>=0?animation:gear.attackAnimation));
                 int skill=gear.profile==null?Skills.ATTACK:gear.profile.skill;
-                int attack=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(skill),0,3,1);
+                int attack=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(skill)+player.getPrayer().getStatBonuses(skill),0,3,1);
                 int strength=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(gear.profile==null||gear.profile.style==0?Skills.STRENGTH:skill),0,0,1);
                 int maximum=Rs2CombatFormula.meleeOrRangedMaxHit(strength,gear.strengthBonus,1);
                 if(gear.profile!=null)maximum=gear.profile.maxHit(player,maximum);
@@ -525,7 +525,8 @@ public final class Native950MeleeCombat {
                 fighter.nextAttack=tick+fighter.profile.attackSpeed;
                 npc.setNextFaceEntity(player);
                 if(fighter.profile.attackAnim>=0)npc.setNextAnimation(new Animation(fighter.profile.attackAnim));
-                int defence=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(Skills.DEFENCE),0,0,1);
+                int defence=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(Skills.DEFENCE)
+                        +player.getPrayer().getStatBonuses(Skills.DEFENCE),0,0,1);
                 int damage=rolls.accurate(Rs2CombatFormula.roll(Rs2CombatFormula.npcEffectiveLevel(fighter.profile.attackLevel),fighter.profile.meleeAttackBonus),
                         Rs2CombatFormula.roll(defence,gear.defenceBonus))
                         ? Rs2CombatFormula.scaleDamageForAtaraxia(rolls.damage(fighter.profile.maxHit/10)) : 0;
@@ -610,6 +611,7 @@ public final class Native950MeleeCombat {
     }
     private int damage(Entity source, Entity target, int requested) {return damage(source,target,requested,Hit.HitLook.MELEE_DAMAGE);}
     private int damage(Entity source, Entity target, int requested,Hit.HitLook look) {
+        requested=prayerAdjustedDamage(source,target,requested,look);
         if(source instanceof Player&&look==Hit.HitLook.MELEE_DAMAGE&&isBerserkActive((Player)source))requested=Math.min(Integer.MAX_VALUE/2,requested)*2;
         int damage=target instanceof Player && ((Player)target).isInvulnerable()
                 ? 0 : Math.max(0,Math.min(target.getHitpoints(),requested));
@@ -619,6 +621,19 @@ public final class Native950MeleeCombat {
         if(target instanceof Player)((Player)target).refreshHitPoints();
         if(damage>0){hits++;target.addReceivedDamage(source,damage);}
         System.out.println("[Ataraxia950] Melee hit "+source.getClientIndex()+" -> "+target.getClientIndex()+" damage="+damage+" hp="+target.getHitpoints());
+        return damage;
+    }
+    /** Shares Prayer's authoritative buffs without entering legacy hit/degradation callbacks. */
+    static int prayerAdjustedDamage(Entity source,Entity target,int damage,Hit.HitLook look){
+        int style=look==Hit.HitLook.MELEE_DAMAGE?0:look==Hit.HitLook.RANGE_DAMAGE?1:look==Hit.HitLook.MAGIC_DAMAGE?2:-1;
+        if(style<0)return damage;
+        if(source instanceof Player)damage=(int)Math.min(Integer.MAX_VALUE,
+                Math.floor(damage*(1.0+((Player)source).getPrayer().getDamageMultiplier(style))));
+        if(target instanceof Player){
+            com.rs.game.player.Prayer prayer=((Player)target).getPrayer();
+            int protection=style==0?13:style==1?12:11;
+            if(prayer.usingPrayer(0,protection)||prayer.usingPrayer(1,protection))damage/=2;
+        }
         return damage;
     }
     private void npcDied(Fighter fighter,Player player) {

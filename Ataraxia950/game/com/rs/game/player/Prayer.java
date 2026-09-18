@@ -688,12 +688,13 @@ public class Prayer implements Serializable {
             refreshPresetPrayers();
         else
             recalculatePrayer();
+        if(player.isNative950())com.rs.game.player.client.Native950PrayerContract.traceState(player,prayerId);
     }
 
     private boolean usePrayer(int prayerId, boolean usingQuickPrayer) {
         if (prayerPresets.isEmpty())
             usingQuickPrayer = false;
-        if (!ancientcurses) {
+        if (!ancientcurses && !player.isNative950()) {
             if (prayerId == 3 || prayerId == 4)
                 prayerId = prayerId == 3 ? 4 : 3;
             if (prayerId == 5 || prayerId == 6)
@@ -701,7 +702,7 @@ public class Prayer implements Serializable {
         }
         QuickPrayerPrest preset = !usingQuickPrayer ? null : prayerPresets.get(selectedPresetIndex);
         usingQuickPrayer = preset != null;
-        if (prayerId < 0 || prayerId >= ClientScriptMap.getMap((usingQuickPrayer ? preset.getPrayerBook() : getPrayerBook()) == 0 ? 6759 : 6760).getSize())
+        if (prayerId < 0 || prayerId >= onPrayers[usingQuickPrayer ? preset.getPrayerBook() : getPrayerBook()].length)
             return false;
         Perk antitheism = player.getInventionManager().hasPerk(Perks.ANTITHEISM);
         if (antitheism != null && (prayerId == 11 || prayerId == 12 || prayerId == 13 || prayerId == 10)) {
@@ -994,6 +995,10 @@ public class Prayer implements Serializable {
     private static final int[][] VARBIT_SLOTS = { { 0, 1, 2, 7, 8, 9, 11, 12, 13, 14, 15, 16, 3, 5, 4, 6, 10, 17, 19, 18, 21, 20 }, { 0, 1, 2, 4, 6, 9, 10, 11, 12, 13, 14, 15, 17, 19, 22, 23, 24, 27, 30, 32, 16, 18, 33, 34, 5, 3, 8, 7, 31, 20, 21, 26, /* 5859 start */ 28, 25, 29, 35, 36, 37 } };
 
     private void recalculatePrayer(boolean ancientCurses) {
+        if(player.isNative950()){
+            com.rs.game.player.client.Native950PrayerContract.sync(player);
+            return;
+        }
         boolean[] book = onPrayers[ancientCurses ? 1 : 0];
         int value = 0;
         int value2 = 0;
@@ -1016,6 +1021,7 @@ public class Prayer implements Serializable {
     }
 
     public void refresh() {
+        if(player.isNative950())com.rs.game.player.client.Native950PrayerContract.sync(player);
         player.getPackets().sendConfigByFile(16789, ancientcurses ? 1 : 0);
         unlockPrayerBookButtons(false);
     }
@@ -1235,7 +1241,8 @@ public class Prayer implements Serializable {
     public GeneralRequirementMap getPrayerMap(int slotId, boolean ancient) {
         ClientScriptMap map = ClientScriptMap.getMap(ancient ? 6760 : 6759);
         int level = player.getSkills().getLevelForXp(Skills.PRAYER);
-        GeneralRequirementMap baseGMap = GeneralRequirementMap.getMap(map.getIntValue(slotId));
+        GeneralRequirementMap baseGMap = GeneralRequirementMap.getMap(player.isNative950()
+                ?com.rs.game.player.client.Native950PrayerContract.structure(ancient,slotId):map.getIntValue(slotId));
         if (baseGMap.getIntValue(2961) == 1) {
             if (level >= baseGMap.getIntValue(2967)) {
                 return GeneralRequirementMap.getMap(baseGMap.getIntValue(2968));

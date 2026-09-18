@@ -120,7 +120,7 @@ public class Native950AbilityFoundationTest {
         try{
             new Native950ActionBar().bootstrap(c);c.flush();
             List<Native950Packets.Packet> packets=packets(c);
-            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1458,39,0,38,8388610)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1458,39,0,44,8388610)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1885,1,0,Native950ActionBar.BOOK_LAST_SLOT,8617038)));
         }finally{c.finishAndReleaseAll();}
     }

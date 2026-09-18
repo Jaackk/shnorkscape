@@ -34,7 +34,7 @@ public final class Native950Prayer {
     /** The cache's normal Prayer/Curses grid; the existing Prayer owner remains authoritative. */
     // OpenNXT's revision-950 bootstrap installs the grid event mask on 1458:39.  It is
     // the clickable child that backs the visible Prayer icons; 33 is only the container.
-    static void enableInterface(Channel channel){channel.write(Native950Packets.interfaceEvents(1458,39,0,38,8388610));}
+    static void enableInterface(Channel channel){channel.write(Native950Packets.interfaceEvents(1458,39,0,44,8388610));}
     static boolean button(Player player,Native950Actions.InterfaceAction action){
         if(action.interfaceId()==1430&&action.componentId()==16){
             if(!player.isDead()&&!player.isLocked()){
@@ -46,9 +46,15 @@ public final class Native950Prayer {
             return true;
         }
         if(action.interfaceId()!=1458||action.componentId()!=39)return false;
-        if(action.option()==1&&action.slot()>=0&&action.slot()<=38&&!player.isDead()&&!player.isLocked()) {
-            Native950BugTest.event(player,"prayer","click","slot",action.slot(),"points",player.getPrayer().getPrayerpoints());
-            player.getPrayer().delayUsePrayer(action.slot(),false);
+        if(action.option()==1&&action.slot()>=0&&action.slot()<=44&&!player.isDead()&&!player.isLocked()
+                &&player.getInterfaceManager().containsInterface(1458)) {
+            boolean curses=player.getPrayer().isAncientCurses();
+            int logical=Native950PrayerContract.logicalSlot(curses,action.slot());
+            Native950BugTest.event(player,"prayer","click","slot",action.slot(),"logicalSlot",logical,
+                    "structure",logical<0?-1:Native950PrayerContract.structure(curses,logical),"curses",curses,
+                    "points",player.getPrayer().getPrayerpoints());
+            if(logical<0)player.sendMessage("That prayer is not supported by Combat Alpha yet.");
+            else player.getPrayer().delayUsePrayer(logical,false);
         }
         return true;
     }
