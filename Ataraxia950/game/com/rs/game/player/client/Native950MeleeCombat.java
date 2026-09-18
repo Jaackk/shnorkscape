@@ -182,11 +182,17 @@ public final class Native950MeleeCombat {
         Native950BugTest.event(player,"combat","ability-request","structure",structure);
         if(structure==14726){
             Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
-            if(cooldowns!=null&&tick<cooldowns.getOrDefault(structure,0L))return "Surge is cooling down.";
+            if(cooldowns!=null&&tick<cooldowns.getOrDefault(structure,0L)){
+                Native950BugTest.event(player,"combat","ability-rejected","structure",structure,"reason","Surge is cooling down.",
+                        "source","manual","cooldownEndTick",cooldowns.getOrDefault(structure,0L));
+                return "Surge is cooling down.";
+            }
             String refusal=Native950Surge.use(player);
             if(refusal==null){
                 abilityCooldowns.computeIfAbsent(player,p->new java.util.HashMap<>()).put(structure,tick+34);
                 player.getNative950ActionBar().cooldown(player.getRealChannel(),structure,(int)Utils.currentWorldCycle(),34);
+            } else {
+                Native950BugTest.event(player,"combat","ability-rejected","structure",structure,"reason",refusal,"source","manual");
             }
             return refusal;
         }
@@ -195,9 +201,17 @@ public final class Native950MeleeCombat {
             queueAbility(player,structure,false);
             return null;
         }
-        if(tick>=globalCooldown.getOrDefault(player,0L))return refusal;
+        if(tick>=globalCooldown.getOrDefault(player,0L)){
+            Native950BugTest.event(player,"combat","ability-rejected","structure",structure,"reason",refusal,"source","manual",
+                    "globalCooldownEndTick",globalCooldown.getOrDefault(player,0L));
+            return refusal;
+        }
         String queueRefusal=abilityQueueRefusal(player,structure);
-        if(queueRefusal!=null)return queueRefusal;
+        if(queueRefusal!=null){
+            Native950BugTest.event(player,"combat","ability-queue-rejected","structure",structure,"reason",queueRefusal,
+                    "globalCooldownEndTick",globalCooldown.getOrDefault(player,0L));
+            return queueRefusal;
+        }
         queueAbility(player,structure,true);
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
         return definition.name+" queued.";
@@ -257,15 +271,24 @@ public final class Native950MeleeCombat {
         Native950BugTest.event(player,"combat",replaced==null?"ability-queued":"ability-queue-replaced",
                 "structure",structure,"name",definition==null?"unknown":definition.name,
                 "replaced",replaced==null?"none":replaced,"waitingForGlobalCooldown",waitingForGlobalCooldown,
-                "globalCooldownEndTick",globalCooldown.getOrDefault(player,0L));
+                "globalCooldownEndTick",globalCooldown.getOrDefault(player,0L),
+                "waitingForAnimation",player.getLastAnimationEnd()>Utils.currentTimeMillis(),
+                "animationEndMillis",player.getLastAnimationEnd());
     }
     private boolean performAbility(Player player,Fighter fighter) {
         Integer structure=queuedAbilities.remove(player);
         if(structure==null)return false;
         String refusal=abilityRefusal(player,structure);
-        if(refusal!=null){player.sendMessage(refusal);return false;}
+        if(refusal!=null){
+            Native950BugTest.event(player,"combat","ability-queue-cancelled","structure",structure,"reason",refusal);
+            player.sendMessage(refusal);return false;
+        }
         Loadout gear=loadouts.get(player);int style=abilityStyle(structure);
-        if(gear.profile!=null&&!gear.profile.consume(player)){player.sendMessage("You cannot supply that ability's ammunition or runes.");return false;}
+        if(gear.profile!=null&&!gear.profile.consume(player)){
+            Native950BugTest.event(player,"combat","ability-queue-cancelled","structure",structure,
+                    "reason","You cannot supply that ability's ammunition or runes.");
+            player.sendMessage("You cannot supply that ability's ammunition or runes.");return false;
+        }
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
         if(definition==null)return false;
         globalCooldown.put(player,tick+3);
