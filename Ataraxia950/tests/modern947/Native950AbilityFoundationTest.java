@@ -85,8 +85,16 @@ public class Native950AbilityFoundationTest {
         try{
             new Native950ActionBar().bootstrap(c);c.flush();
             List<Native950Packets.Packet> packets=packets(c);
-            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1458,33,0,38,8388610)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1458,39,0,38,8388610)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1885,1,0,Native950ActionBar.BOOK_LAST_SLOT,8617038)));
+        }finally{c.finishAndReleaseAll();}
+    }
+    @Test public void nativePrayerRoutesOnlyThe950ClickableGridChild(){
+        EmbeddedChannel c=new EmbeddedChannel();
+        try{
+            Player p=Player.createNative950("prayer-grid-test",new WorldTile(3217,3258,0),c);p.setActive(true);
+            assertTrue(Native950Prayer.button(p,click(1458,39,0)));
+            assertFalse(Native950Prayer.button(p,click(1458,33,0)));
         }finally{c.finishAndReleaseAll();}
     }
     @Test public void exitIsModalAndConfirmationSurvivesUntilExplicitCancel(){
