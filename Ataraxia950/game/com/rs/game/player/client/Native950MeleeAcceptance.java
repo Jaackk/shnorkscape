@@ -307,6 +307,13 @@ public final class Native950MeleeAcceptance {
             lastAppearanceHash=player.getAppearence().getMD5AppeareanceDataHash().clone();
         }
         Tick tick() {
+            // This isolated probe compresses600ms ticks into milliseconds. Advance the
+            // fixture's presentation deadline too; never change the global/game clock.
+            try {
+                java.lang.reflect.Field deadline=Entity.class.getDeclaredField("lastAnimationEnd");
+                deadline.setAccessible(true);
+                deadline.setLong(player,Math.max(0,deadline.getLong(player)-600));
+            } catch(ReflectiveOperationException failure){throw new AssertionError(failure);}
             ticks++;preX=player.getX();preY=player.getY();prePlane=player.getPlane();
             combat.beforeMovement();player.processMovement();npc.processNative950Movement();combat.afterMovement();
             Tick state=new Tick(!npc.getNextHits().isEmpty(),!player.getNextHits().isEmpty());

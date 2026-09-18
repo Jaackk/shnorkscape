@@ -65,7 +65,18 @@ public final class Native950AbilityAcceptance {
             require(p.getNextAnimation()!=null&&p.getNextAnimation().getIds()[0]==18154,"Unarmed Backhand uses animation enum, never sprite14212");
             for(int i=1;i<30;i++){combat.beforeMovement();combat.afterMovement();}
             require(dummy.getHitpoints()==100000,"Dummy health restored");require(p.getHitpoints()==hp,"Dummy never retaliates");require(rewardCalls[0]==0,"No dummy XP/loot");
-            require(combat.ability(p,14682)==null,"Cooldown expires");combat.detach(p);combat.clear();
+            String afterCooldown=combat.ability(p,14682);
+            require(afterCooldown==null||"Backhand queued.".equals(afterCooldown),"Cooldown expires: "+afterCooldown);
+            // This probe advances 30 game ticks instantly; the real animation clock has not elapsed.
+            long wait=Math.max(0,p.getLastAnimationEnd()-com.rs.utils.Utils.currentTimeMillis()+5);
+            require(wait<10000,"Backhand animation lock is unexpectedly long");
+            if(wait>0)Thread.sleep(wait);
+            int adrenaline=p.getCombatDefinitions().getSpecialAttackPercentage();p.resetMasks();
+            combat.beforeMovement();combat.afterMovement();
+            require(p.getNextAnimation()!=null&&p.getNextAnimation().getIds()[0]==18154,"Requeued Backhand executes after its animation gate");
+            require(p.getCombatDefinitions().getSpecialAttackPercentage()==Math.min(100,adrenaline+8),"Requeued Backhand grants a capped basic gain");
+            require(combat.ability(p,14682).contains("cooling down"),"Executed Backhand starts a new cooldown");
+            combat.detach(p);combat.clear();
         }finally{c.finishAndReleaseAll();}
         for(WorldTile tile:new WorldTile[]{new WorldTile(3294,10129,0),new WorldTile(3107,3298,0)}){
             World.getRegion(tile.getRegionId(),true);
