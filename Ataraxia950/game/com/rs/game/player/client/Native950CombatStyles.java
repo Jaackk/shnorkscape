@@ -106,6 +106,9 @@ public final class Native950CombatStyles {
             this.animation=animation;this.block=block;this.ammoFamily=ammoFamily;this.airStaff=airStaff;
         }
         String costRefusal(Player p){
+            // Development ammunition is an infinite compatible supply, not a
+            // substitute for equipping a ranged weapon/profile in the first place.
+            if(style==RANGED&&p.isInfiniteAmmunition())return null;
             if(ammoFamily==3){
                 Item held=p.getEquipment().getItem(Equipment.SLOT_WEAPON);
                 if(held==null||held.getAmount()<1)return "Equip more thrown weapons before attacking.";

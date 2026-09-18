@@ -46,4 +46,19 @@ public class Native950CombatBuffsTest {
             buffs.expire(60,(player,type)->removed[0]++);assertEquals(2,removed[0]);
         }finally{c.finishAndReleaseAll();}
     }
+    @Test public void clearingEffectsRemovesBerserkAndDeathsSwiftnessExactlyOnce(){
+        EmbeddedChannel c=new EmbeddedChannel();
+        try{
+            Player p=Player.createNative950("buff-test",new WorldTile(100,100,0),c);
+            Native950CombatBuffs buffs=new Native950CombatBuffs();int[] removed={0};
+            buffs.apply(p,Native950CombatBuffs.Type.BERSERK,0);
+            buffs.apply(p,Native950CombatBuffs.Type.DEATHS_SWIFTNESS,0);
+            buffs.clear((player,type)->removed[0]++);
+            assertEquals(2,removed[0]);
+            assertFalse(buffs.active(p,Native950CombatBuffs.Type.BERSERK,1));
+            assertFalse(buffs.active(p,Native950CombatBuffs.Type.DEATHS_SWIFTNESS,1));
+            buffs.clear((player,type)->removed[0]++);
+            assertEquals(2,removed[0]);
+        }finally{c.finishAndReleaseAll();}
+    }
 }

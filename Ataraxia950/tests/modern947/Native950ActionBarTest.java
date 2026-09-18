@@ -36,6 +36,10 @@ public class Native950ActionBarTest {
         assertEquals(6,Native950ActionBar.bookType(1461,1));
         assertEquals(-1,Native950ActionBar.bookType(1461,2));
     }
+    @Test public void sameSlotRearrangementIsRecognisedAsANoOp(){
+        assertTrue(Native950ActionBar.isNoOpRearrangement(8,8));
+        assertFalse(Native950ActionBar.isNoOpRearrangement(8,9));
+    }
     @Test public void bindingsRoundTripThroughExistingPlayerSettingsWithoutChangingSkills(){
         EmbeddedChannel c=new EmbeddedChannel();
         try{

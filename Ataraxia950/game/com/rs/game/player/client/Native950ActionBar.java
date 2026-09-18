@@ -149,7 +149,13 @@ public final class Native950ActionBar {
         if(from>=0&&isTrashTarget(a)){String before=barSnapshot();slots()[from]=0;sync(p,c,"clear",before);Native950BugTest.event(p,"action-bar","cleared","bar",activeBar+1,"slot",from+1);reply(c,"Action bar slot "+(from+1)+" cleared.");return true;}
         if(to<0){reply(c,"Drop an action-bar slot on the native trash target to remove it.");return true;}
         if(!p.getInterfaceManager().containsInterface(a.targetInterfaceId()))return true;
-        if(from>=0){String before=barSnapshot();int old=slots()[to];slots()[to]=slots()[from];slots()[from]=old;sync(p,c,"rearrange",before);Native950BugTest.event(p,"action-bar","rearranged","bar",activeBar+1,"from",from+1,"to",to+1);return true;}
+        if(from>=0){
+            if(isNoOpRearrangement(from,to)){
+                Native950BugTest.event(p,"action-bar","rearrange-ignored","bar",activeBar+1,"from",from+1,"to",to+1,"reason","same-slot");
+                return true;
+            }
+            String before=barSnapshot();int old=slots()[to];slots()[to]=slots()[from];slots()[from]=old;sync(p,c,"rearrange",before);Native950BugTest.event(p,"action-bar","rearranged","bar",activeBar+1,"from",from+1,"to",to+1);return true;
+        }
         int type=bookType(a.sourceInterfaceId(),a.sourceComponentId());
         if(type<0||!p.getInterfaceManager().containsInterface(a.sourceInterfaceId())||a.sourceSlot()<1||a.sourceSlot()>BOOK_LAST_SLOT){reply(c,"Drag an ability from the melee, ranged or magic ability book.");return true;}
         int packed=pack(type,a.sourceSlot());String name=name(packed);
@@ -157,6 +163,7 @@ public final class Native950ActionBar {
         String before=barSnapshot();slots()[to]=packed;sync(p,c,"bind",before);Native950BugTest.event(p,"action-bar","bound","bar",activeBar+1,"slot",to+1,"packed",packed,"structure",struct(packed),"name",name,"sync","varps+6992+7964");reply(c,name+" bound to slot "+(to+1)+".");return true;
     }
     static boolean isTrashTarget(Native950Actions.DragAction action){return action.targetInterfaceId()==ROOT_INTERFACE&&action.targetComponentId()==TRASH_COMPONENT;}
+    static boolean isNoOpRearrangement(int from,int to){return from==to;}
     public boolean button(Player p,Channel c,Native950Actions.InterfaceAction a){
         // Actual 950 input from the native preset menu uses 1430:261. Keep 254 for
         // layouts that still route through the sibling selector component.

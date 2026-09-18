@@ -27,6 +27,9 @@ import java.util.concurrent.ThreadLocalRandom;
 /** One world-thread melee loop. No legacy NPC combat, abilities, instance or death callbacks. */
 public final class Native950MeleeCombat {
     private static final int LEASH = 16, APPROACH_TIMEOUT = 25, PLAYER_RESPAWN_TICKS = 6;
+    // Chain targets the primary plus up to two eligible NPCs within six tiles.
+    // This is intentionally independent of the player's primary-target owner.
+    private static final int CHAIN_SECONDARY_TARGET_LIMIT = 2, CHAIN_SECONDARY_RANGE = 6;
     private final Thread owner;
     private final Access access;
     private final Rolls rolls;
@@ -334,10 +337,11 @@ public final class Native950MeleeCombat {
             if(type==Native950CombatBuffs.Type.BERSERK)player.getBuffDebuffTimersManager().addTimer(Timer.BERSERK,type.duration*600L);
             Native950BugTest.event(player,"combat","effect-started","effect",definition.name,"durationTicks",type.duration,"endTick",tick+type.duration);
         }
-        int total=0;
+        int total=0, chainDamage=-1;
         for(int hit=0;hit<(definition.effect==Native950AbilityCatalog.Effect.BUFF?0:definition.hits);hit++){
             int rolled=Math.max(1,maximum*percent/100);
-            int requested=Rs2CombatFormula.scaleDamageForAtaraxia(rolled);
+            int requested=Rs2CombatFormula.scaleNative950Damage(rolled,rolls.nativeDamageRemainder(rolled));
+            if(structure==14728&&hit==0)chainDamage=requested;
             if(definition.hitDelay(hit)>0){
                 long dueTick=tick+definition.hitDelay(hit);
                 pendingHits.computeIfAbsent(player,p->new ArrayList<>()).add(new PendingHit(fighter,requested,dueTick,gear,-1,
@@ -349,6 +353,8 @@ public final class Native950MeleeCombat {
                     definition.effect!=Native950AbilityCatalog.Effect.BLEED);
             if(fighter.npc.isDead())break;
         }
+        if(structure==14728&&chainDamage>0&&!fighter.npc.isDead())
+            chainSecondaryHits(player,fighter,chainDamage,gear);
         // Param2802 is an icon sprite. Actual sequences come from param2915's weapon-family enum.
         int effect=-1;
         if(animation>=0){
@@ -373,7 +379,8 @@ public final class Native950MeleeCombat {
         fighter.retaliating=!fighter.training;
         if(definition.effect==Native950AbilityCatalog.Effect.STUN)fighter.stunnedUntil=tick+5;
         if(definition.effect==Native950AbilityCatalog.Effect.BLEED&&!fighter.npc.isDead()){
-            int dotDamage=Rs2CombatFormula.scaleDamageForAtaraxia(Math.max(1,maximum*15/100));
+            int rawDotDamage=Math.max(1,maximum*15/100);
+            int dotDamage=Rs2CombatFormula.scaleNative950Damage(rawDotDamage,rolls.nativeDamageRemainder(rawDotDamage));
             dotDamage=prayerAdjustedDamage(player,fighter.npc,dotDamage,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
             damageOverTime.computeIfAbsent(player,p->new java.util.HashMap<>()).put(structure,
                     new DamageOverTime(fighter,dotDamage,3,tick+2,gear));
@@ -521,7 +528,7 @@ public final class Native950MeleeCombat {
                 if(gear.profile!=null)maximum=gear.profile.maxHit(player,maximum);
                 int damage=rolls.accurate(Rs2CombatFormula.roll(attack,gear.attackBonus),
                         Rs2CombatFormula.roll(Rs2CombatFormula.npcEffectiveLevel(fighter.profile.defenceLevel),fighter.profile.meleeDefenceBonus))
-                        ? Rs2CombatFormula.scaleDamageForAtaraxia(rolls.damage(maximum)) : 0;
+                        ? nativeDamage(rolls.damage(maximum)) : 0;
                 fighter.retaliating=!fighter.training;
                 if(spell!=null&&spell.available()){
                     // Use the same 950 projectile owner as existing world content and
@@ -553,7 +560,7 @@ public final class Native950MeleeCombat {
                         +player.getPrayer().getStatBonuses(Skills.DEFENCE),0,0,1);
                 int damage=rolls.accurate(Rs2CombatFormula.roll(Rs2CombatFormula.npcEffectiveLevel(fighter.profile.attackLevel),fighter.profile.meleeAttackBonus),
                         Rs2CombatFormula.roll(defence,gear.defenceBonus))
-                        ? Rs2CombatFormula.scaleDamageForAtaraxia(rolls.damage(fighter.profile.maxHit/10)) : 0;
+                        ? nativeDamage(rolls.damage(fighter.profile.maxHit/10)) : 0;
                 damage(npc,player,damage);swings++;
                 if(player.isDead())playerDied(player);
                 else {
@@ -595,6 +602,30 @@ public final class Native950MeleeCombat {
             if(--dot.remaining==0)iterator.remove();else dot.nextTick=tick+2;
         }
         if(effects.isEmpty())damageOverTime.remove(player);
+    }
+    /**
+     * Chain never changes the player's primary combat owner. It selects at most
+     * two idle native NPCs within six tiles of the primary footprint and applies
+     * the same hit/reward pipeline used by ordinary ability damage.
+     */
+    private void chainSecondaryHits(Player player,Fighter primary,int requested,Loadout gear){
+        int chained=0;
+        for(Fighter candidate:new ArrayList<>(fighters.values())){
+            if(chained>=CHAIN_SECONDARY_TARGET_LIMIT)break;
+            int range=distanceBetweenFootprints(primary.npc,primary.profile.size,candidate.npc,candidate.profile.size);
+            if(candidate==primary||candidate.target!=null||candidate.returning||candidate.respawnAt>0
+                    ||candidate.npc.isDead()||!access.npc(candidate.npc)||range>CHAIN_SECONDARY_RANGE)
+                continue;
+            int actual=damage(player,candidate.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
+            if(actual>0&&!candidate.training)rewards.hit(player,candidate.npc,actual,gear);
+            if(candidate.training)candidate.npc.setHitpoints(candidate.profile.hp);
+            Native950BugTest.event(player,"combat","chain-secondary-hit","npc",candidate.npc.getId()+":"+candidate.npc.getIndex(),
+                    "damage",actual,"range",range);
+            chained++;
+            if(candidate.npc.isDead())secondaryNpcDied(candidate,player);
+        }
+        Native950BugTest.event(player,"combat","chain-secondary-summary","count",chained,"limit",CHAIN_SECONDARY_TARGET_LIMIT,
+                "range",CHAIN_SECONDARY_RANGE);
     }
     private void processPendingHits(Player player,Fighter fighter){
         java.util.List<PendingHit> scheduled=pendingHits.get(player);
@@ -641,6 +672,7 @@ public final class Native950MeleeCombat {
         return access.rangedReach(p,n,gear.profile.range);
     }
     private int damage(Entity source, Entity target, int requested) {return damage(source,target,requested,Hit.HitLook.MELEE_DAMAGE);}
+    private int nativeDamage(int rawDamage){return Rs2CombatFormula.scaleNative950Damage(rawDamage,rolls.nativeDamageRemainder(rawDamage));}
     private int damage(Entity source, Entity target, int requested,Hit.HitLook look) {
         return damage(source,target,requested,look,false,true);
     }
@@ -671,7 +703,15 @@ public final class Native950MeleeCombat {
         return damage;
     }
     private void npcDied(Fighter fighter,Player player) {
-        NPC npc=fighter.npc;stop(player);npc.resetWalkSteps();npc.setNative950CombatEngaged(true);
+        stop(player);retireNpc(fighter,player);
+    }
+    /** A Chain secondary can die without interrupting the primary target. */
+    private void secondaryNpcDied(Fighter fighter,Player player) {
+        fighter.target=null;fighter.attacking=false;fighter.retaliating=false;fighter.npc.setAttackedBy(null);
+        retireNpc(fighter,player);
+    }
+    private void retireNpc(Fighter fighter,Player player) {
+        NPC npc=fighter.npc;npc.resetWalkSteps();npc.setNative950CombatEngaged(true);
         npc.setNative950DeathVisible(true);npc.setNextAnimation(new Animation(fighter.profile.deathAnim));
         fighter.hideAt=tick+Math.max(fighter.profile.deathTicks,fighter.profile.deathAnimationTicks);
         fighter.respawnAt=fighter.hideAt+fighter.profile.respawnTicks;kills++;
@@ -712,6 +752,7 @@ public final class Native950MeleeCombat {
                 &&Native950CombatStyles.classify(Native950CacheItems.definition(item.getId()))==style;
     }
     boolean isBerserkActive(Player player) {owned();return buffs.active(player,Native950CombatBuffs.Type.BERSERK,tick);}
+    boolean isDeathsSwiftnessActive(Player player) {owned();return buffs.active(player,Native950CombatBuffs.Type.DEATHS_SWIFTNESS,tick);}
     private void buffRemoved(Player player,Native950CombatBuffs.Type type){
         if(type==Native950CombatBuffs.Type.BERSERK)player.getBuffDebuffTimersManager().removeTimer(Timer.BERSERK);
         Native950BugTest.event(player,"combat","effect-removed","effect",type,"tick",tick);
@@ -728,6 +769,11 @@ public final class Native950MeleeCombat {
     static int distanceToFootprint(WorldTile point,WorldTile origin,int size) {
         int dx=Math.max(0,Math.max(origin.getX()-point.getX(),point.getX()-(origin.getX()+size-1)));
         int dy=Math.max(0,Math.max(origin.getY()-point.getY(),point.getY()-(origin.getY()+size-1)));
+        return Math.max(dx,dy);
+    }
+    private static int distanceBetweenFootprints(WorldTile first,int firstSize,WorldTile second,int secondSize){
+        int dx=Math.max(0,Math.max(first.getX()-(second.getX()+secondSize-1),second.getX()-(first.getX()+firstSize-1)));
+        int dy=Math.max(0,Math.max(first.getY()-(second.getY()+secondSize-1),second.getY()-(first.getY()+firstSize-1)));
         return Math.max(dx,dy);
     }
     static Loadout loadout(Player player) {
@@ -771,11 +817,12 @@ public final class Native950MeleeCombat {
     }
     interface Rewards {void hit(Player player,NPC npc,int damage);default void hit(Player player,NPC npc,int damage,Loadout gear){hit(player,npc,damage);}void death(NPC npc,Player owner);}
     interface Loadouts {Loadout get(Player player);}
-    interface Rolls {boolean accurate(long attack,long defence);int damage(int maximum);}
+    interface Rolls {boolean accurate(long attack,long defence);int damage(int maximum);default int nativeDamageRemainder(int rawDamage){return 0;}}
     interface Access {void activate(NPC npc);boolean player(Player player);boolean npc(NPC npc);boolean clear(WorldTile tile);default boolean clear(WorldTile tile,int size){return clear(tile);}boolean reach(Entity from,Entity to);default boolean rangedReach(Player from,NPC to,int range){return reach(from,to);}boolean approach(Player player,NPC npc);default boolean follow(NPC npc,WorldTile target){return false;}}
     private static final class LiveRolls implements Rolls {
         public boolean accurate(long a,long d){return ThreadLocalRandom.current().nextDouble()<Rs2CombatFormula.hitChance(a,d);}
         public int damage(int maximum){return maximum<=0?0:ThreadLocalRandom.current().nextInt(maximum+1);}
+        public int nativeDamageRemainder(int rawDamage){return rawDamage<=0?0:ThreadLocalRandom.current().nextInt(Rs2CombatFormula.ATARAXIA_DAMAGE_SCALE);}
     }
     private static final class LiveAccess implements Access {
         public void activate(NPC npc){npc.enableNative950Movement();}

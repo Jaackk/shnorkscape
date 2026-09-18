@@ -4,6 +4,8 @@ import com.rs.game.Entity;
 import com.rs.game.WorldTile;
 import com.rs.game.npc.NPC;
 import com.rs.game.player.Player;
+import com.rs.game.player.Skills;
+import com.rs.game.player.combat.rs2.Rs2CombatFormula;
 import io.netty.channel.embedded.EmbeddedChannel;
 import java.util.Collections;
 import java.util.IdentityHashMap;
@@ -23,13 +25,14 @@ public class Native950MeleeCombatTest {
     private Native950MeleeCombat combat;
     private final RewardRecorder rewards = new RewardRecorder();
     private boolean supported=true;
+    private Native950CombatStyles.Profile styleProfile;
     @Before public void setup(){
         channel=new EmbeddedChannel();player=Player.createNative950("melee-test",new WorldTile(3217,3258,0),channel);
         player.setIndex(1);player.setActive(true);npc=NPC.createNative950(12353,new WorldTile(3218,3258,0),1);npc.setIndex(1);
         access=new FakeAccess();access.players.add(player);access.npcs.add(npc);rolls=new FixedRolls();
         combat=new Native950MeleeCombat(Thread.currentThread(),access,rolls,p->{
             if(!supported)throw new IllegalArgumentException("Unsupported equipment");
-            return new Native950MeleeCombat.Loadout(0,0,0,4,-1,-1);
+            return new Native950MeleeCombat.Loadout(0,0,0,4,-1,-1,styleProfile);
         }, rewards);
         combat.attach(player);combat.register(npc,profile(50,10,3));
     }
@@ -200,6 +203,33 @@ public class Native950MeleeCombatTest {
         assertEquals(0,player.getCombatDefinitions().getSpecialAttackPercentage());
         assertEquals(0,npc.getNextHits().size());assertNotNull(combat.ability(player,14707));
         combat.detach(player);assertFalse(combat.isBerserkActive(player));
+    }
+    @Test public void deathsSwiftnessDetachCleansItsServerOwnedEffect(){
+        styleProfile=new Native950CombatStyles.Profile(Native950CombatStyles.RANGED,Skills.RANGE,99,4,6,-1,-1,1,false);
+        player.getSkills().set(Skills.RANGE,76);player.setInfiniteAmmunition(true);
+        player.getCombatDefinitions().setSpecialAttackPercentage(100);
+        assertNull(combat.ability(player,19251));step();
+        assertTrue(combat.isDeathsSwiftnessActive(player));
+        combat.detach(player);assertFalse(combat.isDeathsSwiftnessActive(player));
+    }
+    @Test public void nativeDamageUnitsKeepMagnitudeWithoutForcedTrailingZero(){
+        assertEquals(1707,Rs2CombatFormula.scaleNative950Damage(170,7));
+        assertEquals(10,Rs2CombatFormula.scaleNative950Damage(1,0));
+        assertEquals(0,Rs2CombatFormula.scaleNative950Damage(0,0));
+        try{Rs2CombatFormula.scaleNative950Damage(1,10);fail("out-of-range remainder accepted");}catch(IllegalArgumentException expected){}
+    }
+    @Test public void chainHitsAtMostTwoIdleNearbyNativeTargetsWithoutChangingPrimaryOwnership(){
+        styleProfile=new Native950CombatStyles.Profile(Native950CombatStyles.MAGIC,Skills.MAGIC,99,4,6,-1,-1,0,true);
+        player.getSkills().set(Skills.MAGIC,99);npc.setHitpoints(1000);
+        NPC nearbyOne=NPC.createNative950(12353,new WorldTile(3224,3258,0),1);nearbyOne.setIndex(2);nearbyOne.setHitpoints(1000);
+        NPC nearbyTwo=NPC.createNative950(12353,new WorldTile(3218,3264,0),1);nearbyTwo.setIndex(3);nearbyTwo.setHitpoints(1000);
+        NPC outsideRange=NPC.createNative950(12353,new WorldTile(3225,3258,0),1);outsideRange.setIndex(4);outsideRange.setHitpoints(1000);
+        access.npcs.add(nearbyOne);access.npcs.add(nearbyTwo);access.npcs.add(outsideRange);
+        combat.register(nearbyOne,profile(1000,10,3));combat.register(nearbyTwo,profile(1000,10,3));combat.register(outsideRange,profile(1000,10,3));
+        assertNull(combat.attack(player,npc));assertNull(combat.ability(player,14728));step();
+        assertSame(npc,combat.combatTarget(player));
+        assertTrue(nearbyOne.getHitpoints()<1000);assertTrue(nearbyTwo.getHitpoints()<1000);
+        assertEquals(1000,outsideRange.getHitpoints());
     }
     @Test public void multiHitAbilitiesPublishTheirFirstHitBeforeTheirScheduledFollowUps(){
         player.getSkills().set(0,21);npc.setHitpoints(1000);combat.attack(player,npc);

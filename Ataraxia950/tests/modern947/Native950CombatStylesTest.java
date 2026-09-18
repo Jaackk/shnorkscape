@@ -28,9 +28,11 @@ public class Native950CombatStylesTest {
    p.setInfiniteCombatRunes(false);assertTrue(magic.consume(p));assertEquals(1,p.getInventory().getAmountOf(556));
   }finally{Native950Skilling.detach(p);}
  }
- @Test public void infiniteAmmoStillRequiresAnEquippedSupply(){
+ @Test public void infiniteAmmoBypassesOnlyAmmunitionAvailability(){
   Native950CombatStyles.Profile ranged=new Native950CombatStyles.Profile(Native950CombatStyles.RANGED,Skills.RANGE,1,4,6,-1,-1,1,false);
-  p.setInfiniteAmmunition(true);assertFalse(ranged.consume(p));
+  assertFalse(ranged.consume(p));
+  p.setInfiniteAmmunition(true);assertTrue(ranged.consume(p));
+  p.setInfiniteAmmunition(false);assertFalse(ranged.consume(p));
  }
  @Test public void rangedHitDoesNotGiveNpcMeleeReach(){assertNull(combat.attack(p,npc));tick();assertEquals(40,npc.getHitpoints());assertEquals(100,p.getHitpoints());tick();assertTrue(follows>0);}
  @Test public void blockedLineOfSightCannotDamage(){line=false;assertNull(combat.attack(p,npc));tick();assertEquals(50,npc.getHitpoints());}

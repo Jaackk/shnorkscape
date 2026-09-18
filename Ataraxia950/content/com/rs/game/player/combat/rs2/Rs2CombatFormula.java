@@ -16,11 +16,7 @@ public final class Rs2CombatFormula {
     public static final int ROLL_BONUS_BASE = 64;
     public static final double MAX_HIT_DIVISOR = 640.0D;
 
-    /**
-     * Ataraxia stores damage in the post-Constitution scale. RS2-era formulae
-     * produce old HP hits, so player formula hits are multiplied by 10 at the
-     * boundary.
-     */
+    /** Legacy post-Constitution conversion used by non-native combat callers. */
     public static final int ATARAXIA_DAMAGE_SCALE = 10;
 
     private Rs2CombatFormula() {
@@ -145,6 +141,21 @@ public final class Rs2CombatFormula {
 
     public static int scaleDamageForAtaraxia(int rs2Damage) {
         return Math.max(0, rs2Damage) * ATARAXIA_DAMAGE_SCALE;
+    }
+
+    /**
+     * Native 950 hit packets use single life-point units. Preserve the legacy
+     * magnitude while retaining a supplied one-unit remainder so native combat
+     * is not artificially quantised to a trailing zero.
+     */
+    public static int scaleNative950Damage(int rs2Damage, int remainder) {
+        if (rs2Damage <= 0) {
+            return 0;
+        }
+        if (remainder < 0 || remainder >= ATARAXIA_DAMAGE_SCALE) {
+            throw new IllegalArgumentException("Invalid native damage remainder");
+        }
+        return rs2Damage * ATARAXIA_DAMAGE_SCALE + remainder;
     }
 
     public static double positiveMultiplier(double multiplier) {
