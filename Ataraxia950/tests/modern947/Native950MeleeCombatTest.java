@@ -73,6 +73,40 @@ public class Native950MeleeCombatTest {
         combat.stop(player);
         assertNull(player.getTarget());assertNull(combat.combatTarget(player));
     }
+    @Test public void queuedBerserkSurvivesEarlyTicksUntilGlobalCooldownExpires(){
+        player.getSkills().set(0,99);player.getCombatDefinitions().setSpecialAttackPercentage(100);npc.setHitpoints(1000);
+        assertNull(combat.attack(player,npc));assertNull(combat.ability(player,14682));step();
+        assertEquals("Berserk queued.",combat.ability(player,14707));
+        step();assertFalse(combat.isBerserkActive(player));assertEquals(990,npc.getHitpoints());
+        step();assertFalse(combat.isBerserkActive(player));assertEquals(990,npc.getHitpoints());
+        step();assertTrue(combat.isBerserkActive(player));assertEquals(990,npc.getHitpoints());
+        assertEquals(0,player.getCombatDefinitions().getSpecialAttackPercentage());
+    }
+    @Test public void thresholdAdmissionIsFiftyButConsumptionIsFifteen(){
+        player.getSkills().set(0,99);npc.setHitpoints(10000);combat.attack(player,npc);
+        player.getCombatDefinitions().setSpecialAttackPercentage(49);
+        assertEquals("Threshold abilities require 50% adrenaline.",combat.ability(player,14704));
+        player.getCombatDefinitions().setSpecialAttackPercentage(50);
+        assertNull(combat.ability(player,14704));step();
+        assertEquals(35,player.getCombatDefinitions().getSpecialAttackPercentage());
+    }
+    @Test public void queuedUltimateRechecksAdrenalineBeforeExecution(){
+        player.getSkills().set(0,99);player.getCombatDefinitions().setSpecialAttackPercentage(100);npc.setHitpoints(1000);
+        combat.attack(player,npc);combat.ability(player,14682);step();
+        assertEquals("Berserk queued.",combat.ability(player,14707));
+        player.getCombatDefinitions().setSpecialAttackPercentage(99);
+        for(int i=0;i<4;i++)step();
+        assertFalse(combat.isBerserkActive(player));
+    }
+    @Test public void ownCooldownCanQueueOnlyWithinOneGlobalCooldownOfReadiness(){
+        player.getSkills().set(0,99);player.setDevelopmentGodMode(true);npc.setHitpoints(10000);
+        combat.attack(player,npc);combat.ability(player,14682);step();
+        assertTrue(combat.ability(player,14682).contains("25 ticks remaining"));
+        for(int i=0;i<22;i++)step();
+        assertEquals("Backhand queued.",combat.ability(player,14682));
+        int hp=npc.getHitpoints();step();step();assertEquals(hp,npc.getHitpoints());
+        step();assertTrue(npc.getHitpoints()<hp);
+    }
     @Test public void nativeTargetDoesNotEnterTheUnverifiedLegacyTargetPanel(){
         boolean strict=Native950PacketDispatcher.isStrict();Native950PacketDispatcher.setStrict(true);
         try {

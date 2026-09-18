@@ -199,25 +199,24 @@ public final class Native950MeleeCombat {
             }
             return refusal;
         }
-        String refusal=abilityRefusal(player,structure);
-        if(refusal==null){
-            queueAbility(player,structure,false);
-            return null;
-        }
-        if(tick>=globalCooldown.getOrDefault(player,0L)){
+        String refusal=abilityQueueRefusal(player,structure);
+        if(refusal!=null){
             Native950BugTest.event(player,"combat","ability-rejected","structure",structure,"reason",refusal,"source","manual",
                     "globalCooldownEndTick",globalCooldown.getOrDefault(player,0L));
             return refusal;
         }
-        String queueRefusal=abilityQueueRefusal(player,structure);
-        if(queueRefusal!=null){
-            Native950BugTest.event(player,"combat","ability-queue-rejected","structure",structure,"reason",queueRefusal,
-                    "globalCooldownEndTick",globalCooldown.getOrDefault(player,0L));
-            return queueRefusal;
+        long remaining=abilityCooldownEnd(player,structure)-tick;
+        // One request, at most one GCD early. A long-cooldown click must not fire much later.
+        if(remaining>3){
+            Native950BugTest.event(player,"combat","ability-queue-rejected","structure",structure,"reason","ability-cooldown",
+                    "cooldownRemainingTicks",remaining,"queueWindowTicks",3);
+            return "That ability is cooling down ("+remaining+" ticks remaining).";
         }
-        queueAbility(player,structure,true);
+        boolean waiting=tick<globalCooldown.getOrDefault(player,0L)||remaining>0
+                ||player.getLastAnimationEnd()>Utils.currentTimeMillis();
+        queueAbility(player,structure,waiting);
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
-        return definition.name+" queued.";
+        return waiting?definition.name+" queued.":null;
     }
     static int abilityStyle(int structure){
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
@@ -235,7 +234,7 @@ public final class Native950MeleeCombat {
     private String abilityRefusal(Player player,int structure) {
         return abilityRefusal(player,structure,true);
     }
-    /** A queued manual click may wait for GCD, but never bypass any other validation. */
+    /** Temporal gates may delay a request; all gameplay requirements still apply. */
     private String abilityQueueRefusal(Player player,int structure) {
         return abilityRefusal(player,structure,false);
     }
@@ -246,14 +245,13 @@ public final class Native950MeleeCombat {
         if(fighter==null||!fighter.attacking||!available(player,fighter.npc)||fighter.npc.isDead()||player.getNextWorldTile()!=null||player.isStunned())
             return "Attack a supported NPC or training dummy first.";
         if(requireGlobalCooldown&&tick<globalCooldown.getOrDefault(player,0L))return "Abilities are on global cooldown.";
-        Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
-        if(cooldowns!=null&&tick<cooldowns.getOrDefault(structure,0L))return "That ability is cooling down.";
+        if(requireGlobalCooldown&&tick<abilityCooldownEnd(player,structure))return "That ability is cooling down.";
         Loadout gear;
         try{gear=loadouts.get(player);}catch(IllegalArgumentException e){return e.getMessage();}
         if((gear.profile==null?0:gear.profile.style)!=style)return "Equip a weapon matching that ability's combat style.";
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
         if(definition==null)return "That ability is not implemented yet.";
-        int energy=definition.adrenalineCost();
+        int energy=definition.adrenalineRequired();
         if(energy>0&&!player.getCombatDefinitions().isInfiniteAdrenaline()
                 &&player.getCombatDefinitions().getSpecialAttackPercentage()<energy)
             return (definition.tier==2?"Threshold":"Ultimate")+" abilities require "+energy+"% adrenaline.";
@@ -268,6 +266,10 @@ public final class Native950MeleeCombat {
         if(refusal==null)refusal=Native950Dungeoneering.attackRefusal(player,fighter.npc);
         return refusal!=null?refusal:gear.profile==null?null:gear.profile.costRefusal(player);
     }
+    private long abilityCooldownEnd(Player player,int structure){
+        Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
+        return cooldowns==null?0:cooldowns.getOrDefault(structure,0L);
+    }
     private void queueAbility(Player player,int structure,boolean waitingForGlobalCooldown) {
         Integer replaced=queuedAbilities.put(player,structure);
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
@@ -279,13 +281,16 @@ public final class Native950MeleeCombat {
                 "animationEndMillis",player.getLastAnimationEnd());
     }
     private boolean performAbility(Player player,Fighter fighter) {
-        Integer structure=queuedAbilities.remove(player);
+        Integer structure=queuedAbilities.get(player);
         if(structure==null)return false;
-        String refusal=abilityRefusal(player,structure);
+        String refusal=abilityQueueRefusal(player,structure);
         if(refusal!=null){
+            queuedAbilities.remove(player);
             Native950BugTest.event(player,"combat","ability-queue-cancelled","structure",structure,"reason",refusal);
             player.sendMessage(refusal);return false;
         }
+        if(tick<globalCooldown.getOrDefault(player,0L)||tick<abilityCooldownEnd(player,structure))return true;
+        queuedAbilities.remove(player);
         Loadout gear=loadouts.get(player);int style=abilityStyle(structure);
         if(gear.profile!=null&&!gear.profile.consume(player)){
             Native950BugTest.event(player,"combat","ability-queue-cancelled","structure",structure,
@@ -466,9 +471,10 @@ public final class Native950MeleeCombat {
                 int candidate=revolutionCandidate(player,9);
                 if(candidate>=0)queuedAbilities.put(player,candidate);
             }
-            if(performAbility(player,fighter)&&npc.isDead())continue;
+            boolean abilityTurn=performAbility(player,fighter);
+            if(npc.isDead())continue;
             Long next=nextAttack.get(player);
-            if(fighter.attacking && playerReach(player,npc,gear) && (next==null||tick>=next) && player.getFoodDelay()<=Utils.currentTimeMillis()) {
+            if(!abilityTurn && fighter.attacking && playerReach(player,npc,gear) && (next==null||tick>=next) && player.getFoodDelay()<=Utils.currentTimeMillis()) {
                 if(gear.profile!=null&&!gear.profile.consume(player)){player.sendMessage("You cannot supply the ammunition or runes for that attack.");fighter.outOfSupplies=true;cancelAttack(player);}
                 else {
                 nextAttack.put(player,tick+gear.speed);
@@ -579,7 +585,7 @@ public final class Native950MeleeCombat {
     }
     private int damage(Entity source, Entity target, int requested) {return damage(source,target,requested,Hit.HitLook.MELEE_DAMAGE);}
     private int damage(Entity source, Entity target, int requested,Hit.HitLook look) {
-        if(source instanceof Player&&isBerserkActive((Player)source))requested=Math.min(Integer.MAX_VALUE/2,requested)*2;
+        if(source instanceof Player&&look==Hit.HitLook.MELEE_DAMAGE&&isBerserkActive((Player)source))requested=Math.min(Integer.MAX_VALUE/2,requested)*2;
         int damage=target instanceof Player && ((Player)target).isInvulnerable()
                 ? 0 : Math.max(0,Math.min(target.getHitpoints(),requested));
         target.setHitpoints(target.getHitpoints()-damage);

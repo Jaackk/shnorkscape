@@ -24,6 +24,7 @@ final class Native950AbilityCatalog {
         boolean targetRequired(){return effect!=Effect.MOVEMENT;}
         int style(){return book==1?0:book==5?1:2;}
         int adrenalineCost(){return tier==2?15:tier==4?100:0;}
+        int adrenalineRequired(){return tier==2?50:adrenalineCost();}
         int adrenalineGain(){return tier==1?8:0;}
     }
     static final List<Definition> DEFINITIONS=Collections.unmodifiableList(Arrays.asList(
