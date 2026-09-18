@@ -787,6 +787,11 @@
       "sha256": "3277400face2411e85602eececb21520fd33a3003969678356d8cc20eeed36f8",
       "_note": "Retrieves the five item options for an actor and calls item_option_map"
     },
+    "buff_timer_duration": {
+      "id": 4252,
+      "sha256": "69c8600184c831ae68efd3c22761665802f54ad4fbc408b36712a8394ec7b09a",
+      "_note": "Native 950 buff/debuff duration owner. Its map-id switch includes Overloaded (23129); the established timer owner calls it with (mapId, ticks)."
+    },
     "bank_onop_switch": {
       "id": 5823,
       "sha256": "3b62c3587a3ff3dc3fa4cded6b988eb2e63dd79f0fac4532a863b13983472a06",
@@ -801,6 +806,11 @@
       "id": 6962,
       "sha256": "b21de7c4ef11b16da34ab8289ba768df6ad001c894846a4419366b5107aa3769",
       "_note": "Changes bank_quantity locally when a quantity button is pressed"
+    },
+    "buff_timer_visible": {
+      "id": 10624,
+      "sha256": "69176dea4112ed2a01f569e392bba216df64538e688fa9d1e19005cfeb56641d",
+      "_note": "Native 950 buff/debuff visibility owner. The established timer owner calls it with (mapId, onOff)."
     },
     "equipment_root_onload": {
       "id": 8468,

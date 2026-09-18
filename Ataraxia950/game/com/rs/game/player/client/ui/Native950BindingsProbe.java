@@ -69,7 +69,8 @@ public final class Native950BindingsProbe {
                 && resolver.varp(ABSENT_VARP) == -1;
         // hitpoints is a varp on 950 (13537), not varbit 1668; 1668 still exists in the
         // cache but is undeclared now, so the allow list must turn it down.
-        ok &= allow.varp(13537) == 13537 && allow.varbit(1668) == -1;
+        ok &= allow.varp(13537) == 13537 && allow.varbit(1668) == -1
+                && allow.script(4252) == 4252 && allow.script(10624) == 10624;
         System.out.println(resolver.report());
         System.out.println(allow.report());
         System.out.println("scripts pinned: " + bindings.scriptNames().size() + ", varp capacity from cache: " + com.rs.game.player.VarsManager.capacity());

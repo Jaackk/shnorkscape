@@ -242,6 +242,8 @@ public class Native950BindingsTest {
         assertTrue(b.var("bank_occupied_count").isVarp());
         assertEquals(1362, b.script("chat_init"));
         assertEquals(8471, b.script("equipment_layout"));
+        assertEquals(4252, b.script("buff_timer_duration"));
+        assertEquals(10624, b.script("buff_timer_visible"));
         assertEquals(ROOT << 16 | 103, b.slotAttach("backpack"));
         assertEquals(ROOT << 16 | 101, b.slotWrapper("backpack"));
         assertEquals(ROOT << 16 | 695, b.slotAttach("bank"));
@@ -249,7 +251,7 @@ public class Native950BindingsTest {
         assertEquals(1462 << 16 | 3, b.resolve("worn_equipment.root"));
         assertEquals(94, b.resolve("container:equipment"));
         assertEquals(18, b.resolve("slotkey:all_chat"));
-        assertEquals(138, b.scriptNames().size());
+        assertEquals(140, b.scriptNames().size());
         for (String name : b.slotNames()) { assertTrue(b.slotAttach(name) >= 0); assertEquals(ROOT, b.slotAttach(name) >>> 16); assertEquals(ROOT, b.slotWrapper(name) >>> 16); }
         for (String name : b.interfaceNames()) for (String comp : b.iface(name).components.keySet()) assertTrue(b.component(name, comp) >= 0);
         for (String name : b.varNames()) assertTrue(b.var(name).id >= 0);
@@ -409,6 +411,8 @@ public class Native950BindingsTest {
         assertEquals(463, allow.varp(463));
         assertEquals(462, allow.varp(462));
         assertEquals(679, allow.varp(679));
+        assertEquals(4252, allow.script(4252));
+        assertEquals(10624, allow.script(10624));
         // The equipment/combat bonus varps and varcs M3 deliberately retired
         // (notes/M3-bindings.md section 3) must stay unbound.
         for (int varp : new int[] {711, 712, 713, 714, 715, 716, 717, 718, 3561, 3562, 3563, 3596})
