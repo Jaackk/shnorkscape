@@ -27,7 +27,7 @@ public final class Native950BugTest {
 
     static synchronized boolean toggle(Player player) {
         Session prior = SESSIONS.remove(player);
-        if (prior != null) { prior.event("session", "disabled", "reason", "command"); prior.close(); return false; }
+        if (prior != null) { prior.flushUnknownFrames(); prior.event("session", "disabled", "reason", "command"); prior.close(); return false; }
         Session next = new Session(player);
         SESSIONS.put(player, next);
         next.event("session", "enabled", "player", player.getUsername(), "tile", tile(player));
@@ -37,6 +37,7 @@ public final class Native950BugTest {
     static synchronized void close(Player player, String reason) {
         Session session = SESSIONS.remove(player);
         if (session == null) return;
+        session.flushUnknownFrames();
         session.event("session", "closed", "reason", reason, "state", state(player));
         session.close();
     }
@@ -44,6 +45,7 @@ public final class Native950BugTest {
     static void marker(Player player, String description) {
         Session session = session(player);
         if (session == null) return;
+        session.flushUnknownFrames();
         String stamp = stamp();
         String image = "bug-" + stamp + ".png";
         session.event("marker", "bug", "description", description == null || description.trim().isEmpty() ? "(no description)" : description.trim(),
@@ -97,11 +99,27 @@ public final class Native950BugTest {
     static void unhandledFrame(Player player, int opcode, byte[] payload) {
         Session session = session(player);
         if (session == null) return;
-        int length=payload==null?0:payload.length, limit=Math.min(length,32);
-        StringBuilder hex=new StringBuilder(limit*2);
-        for(int i=0;i<limit;i++)hex.append(String.format(Locale.ROOT,"%02x",payload[i]&255));
-        session.event("input","unhandled-frame","opcode",opcode,"bytes",length,"preview",hex,
-                "truncated",length>limit);
+        int length=payload==null?0:payload.length;
+        if(session.unknownFrames.record(opcode,length))
+            session.event("input","unhandled-frame","opcode",opcode,"bytes",length,"payload","redacted");
+    }
+
+    /** Unknown traffic can contain keyboard/chat input. Retain counts, never payload bytes. */
+    static final class UnknownFrameCounts {
+        private final long[] counts=new long[256],bytes=new long[256];
+        synchronized boolean record(int opcode,int length){
+            if(opcode<0||opcode>=counts.length)return false;
+            bytes[opcode]+=Math.max(0,length);
+            return ++counts[opcode]==1;
+        }
+        synchronized java.util.List<long[]> drain(){
+            java.util.List<long[]> result=new java.util.ArrayList<>();
+            for(int opcode=0;opcode<counts.length;opcode++)if(counts[opcode]>0){
+                result.add(new long[]{opcode,counts[opcode],bytes[opcode]});
+                counts[opcode]=0;bytes[opcode]=0;
+            }
+            return result;
+        }
     }
 
     private static synchronized Session session(Player player) { return SESSIONS.get(player); }
@@ -144,6 +162,7 @@ public final class Native950BugTest {
 
     private static final class Session {
         final File directory, log;
+        final UnknownFrameCounts unknownFrames=new UnknownFrameCounts();
         Session(Player player) {
             directory=new File(new File(new File(System.getProperty("user.dir")).getParentFile(),"logs"),"bugtest"+File.separator+"session-"+stamp()+"-"+safe(player.getUsername()));
             directory.mkdirs(); log=new File(directory,"timeline.jsonl");
@@ -154,6 +173,10 @@ public final class Native950BugTest {
                 BufferedWriter writer=new BufferedWriter(new OutputStreamWriter(new FileOutputStream(log,true),StandardCharsets.UTF_8));
                 try { writer.write(line); writer.newLine(); } finally { writer.close(); }
             } catch(Throwable ignored) { } }});
+        }
+        void flushUnknownFrames(){
+            for(long[] summary:unknownFrames.drain())event("input","unhandled-frame-summary",
+                    "opcode",summary[0],"frames",summary[1],"bytes",summary[2],"scope","since-previous-marker-or-start");
         }
         void close() { }
         private static String json(String category,String name,Object... fields) {
