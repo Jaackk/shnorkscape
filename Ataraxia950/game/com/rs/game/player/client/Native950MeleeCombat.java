@@ -629,6 +629,7 @@ public final class Native950MeleeCombat {
             if(tick<effect.getValue())continue;
             Native950BugTest.event(effect.getKey(),"combat","effect-expired","effect","Berserk","endTick",effect.getValue());
             effects.remove();
+            effect.getKey().getBuffDebuffTimersManager().removeTimer(Timer.BERSERK);
         }
     }
     private void clearBerserk(Player player){
