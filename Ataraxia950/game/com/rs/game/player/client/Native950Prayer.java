@@ -35,6 +35,15 @@ public final class Native950Prayer {
     // The full 950 grid mask is required for icon clicks to enter the native IF_BUTTON sender.
     static void enableInterface(Channel channel){channel.write(Native950Packets.interfaceEvents(1458,39,0,38,8388610));}
     static boolean button(Player player,Native950Actions.InterfaceAction action){
+        if(action.interfaceId()==1430&&action.componentId()==16){
+            if(!player.isDead()&&!player.isLocked()){
+                if(action.option()==1)player.getPrayer().delaySwitchQuickPrayers();
+                else if(action.option()==2)player.getPrayer().openPrayerPresetsInterface();
+                else player.getPrayer().delaySwitchQuickPrayers(quickPrayerPreset(action.option()));
+                Native950BugTest.event(player,"prayer","orb-click","option",action.option());
+            }
+            return true;
+        }
         if(action.interfaceId()!=1458||action.componentId()!=39)return false;
         if(action.option()==1&&action.slot()>=0&&action.slot()<=38&&!player.isDead()&&!player.isLocked()) {
             Native950BugTest.event(player,"prayer","click","slot",action.slot(),"points",player.getPrayer().getPrayerpoints());
@@ -42,6 +51,7 @@ public final class Native950Prayer {
         }
         return true;
     }
+    static int quickPrayerPreset(int option){return option==3?0:option==4?1:option==5?2:option==9?3:option==6?4:option==7?5:option==10?6:7;}
 
     /** Retains only the actual ordinary offering operation, not unported Craft/Grind/etc. */
     public static synchronized Native950ItemCatalog.Entry itemEntry(int id) {

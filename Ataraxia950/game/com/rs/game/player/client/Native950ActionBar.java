@@ -20,6 +20,12 @@ public final class Native950ActionBar {
     // Native 950's ordinary spellbook grid mask, captured from the local 950 bootstrap.
     static final int MAGIC_EVENTS=8617038;
     static final int BAR_SELECTOR_EVENTS=2046;
+    // Script 11797's native 950 shortcut children, captured from the local bootstrap.
+    // Each pair is a separately masked child in one of the fourteen slot groups.
+    private static final int[][] NATIVE_SLOT_EVENT_COMPONENTS={{64,69},{77,82},{90,95},{103,108},{116,121},{129,134},{142,147},
+            {155,160},{168,173},{181,186},{194,199},{207,212},{220,225},{233,238}};
+    private static final int[] NATIVE_SLOT_EVENT_MASKS={11239422,2098176,2098176,2098176,2098176,2098176,2098176,
+            2098176,2098176,2098176,2098176,2098176,11239422,2098176};
     static final int ROOT_INTERFACE=1477, TRASH_COMPONENT=18;
     static final int BOOK_LAST_SLOT=264;
     static final int FULL_MANUAL_MODE_VARBIT=41598;
@@ -55,10 +61,14 @@ public final class Native950ActionBar {
     static boolean valid(int packed){return packed==0||((packed&~0xffffff)==0&&(packed&15)==0&&enumFor(packed>>>17)>=0&&((packed>>>4)&8191)>0);}
     static int enumFor(int type){return type==1?10147:type==5?6738:type==6?6740:-1;}
     static int bookType(int face,int component){if(face==1450&&component==3)return 1;if(component!=1)return -1;return face==1460?1:face==1452||face==1456?5:face==1461||face==1459||face==1884?6:-1;}
-    // Bug Test packet capture proves 1430:66 is a live drag target.  The separate
-    // OpenNXT bootstrap components are not substituted here until their shortcut
-    // representation is independently traced.
-    static int barSlot(int face,int component){if(face!=1430&&face!=1436)return -1;int relative=component-(face==1430?65:19);return relative>=0&&relative/13<SLOTS&&(relative%13==0||relative%13==1)?relative/13:-1;}
+    // The native 1430 shortcut children form fourteen consecutive thirteen-component
+    // groups. Bug Test captured 1430:66; the local bootstrap additionally proves the
+    // first/last children of every group through 1430:238.
+    static int barSlot(int face,int component){
+        if(face==1430)return component>=64&&component<=238?(component-64)/13:-1;
+        if(face==1436){int relative=component-19;return relative>=0&&relative/13<SLOTS&&(relative%13==0||relative%13==1)?relative/13:-1;}
+        return -1;
+    }
     static int struct(int packed){if(!valid(packed)||packed==0)return -1;Object id=RS3ClientScriptMap.getMap(enumFor(packed>>>17)).getValue((packed>>>4)&8191);return id instanceof Integer?(Integer)id:-1;}
     static String name(int packed){int id=struct(packed);return id<0?null:RS3GeneralRequirementMap.getMap(id).getStringValue(2794);}
     public void bootstrap(Player p,Channel c){
@@ -72,6 +82,8 @@ public final class Native950ActionBar {
         c.write(Native950Packets.interfaceEvents(1885,1,0,BOOK_LAST_SLOT,MAGIC_EVENTS));
         for(int face:new int[]{1430,1436})for(int i=0;i<SLOTS;i++)for(int component:new int[]{(face==1430?65:19)+i*13,(face==1430?66:20)+i*13})
             c.write(Native950Packets.interfaceEvents(face,component,-1,1,ABILITY_EVENTS|(1<<21)));
+        for(int slot=0;slot<SLOTS;slot++)for(int component:NATIVE_SLOT_EVENT_COMPONENTS[slot])
+            c.write(Native950Packets.interfaceEvents(1430,component,-1,-1,NATIVE_SLOT_EVENT_MASKS[slot]));
         c.write(Native950Packets.interfaceEvents(1430,16,-1,-1,BAR_SELECTOR_EVENTS));
         c.write(Native950Packets.interfaceEvents(1430,254,-1,-1,BAR_SELECTOR_EVENTS));
         c.write(Native950Packets.interfaceEvents(1430,256,-1,-1,2));
@@ -118,7 +130,7 @@ public final class Native950ActionBar {
     }
     static boolean isTrashTarget(Native950Actions.DragAction action){return action.targetInterfaceId()==ROOT_INTERFACE&&action.targetComponentId()==TRASH_COMPONENT;}
     public boolean button(Player p,Channel c,Native950Actions.InterfaceAction a){
-        if(a.interfaceId()==1430&&(a.componentId()==16||a.componentId()==254)){
+        if(a.interfaceId()==1430&&a.componentId()==254){
             if(a.slot()==-1&&a.option()>=1&&a.option()<=BARS&&!p.isLocked()&&!p.isDead()){
                 setActiveBar(p,c,a.option()-1);reply(c,"Action bar "+(activeBar+1)+" selected.");
             }else if(a.slot()==-1&&a.option()>BARS&&a.option()<=10&&!p.isLocked()&&!p.isDead()){

@@ -28,6 +28,12 @@ public class Native950PrayerTest {
         player.getInventory().items.set(2,new Item(20264,1));
     }
     @After public void cleanup(){Native950Skilling.detach(player);channel.finishAndReleaseAll();}
+    @Test public void quickPrayerOrbOptionsRetainTheExistingPrayerPresetMapping(){
+        assertEquals(0,Native950Prayer.quickPrayerPreset(3));assertEquals(1,Native950Prayer.quickPrayerPreset(4));
+        assertEquals(2,Native950Prayer.quickPrayerPreset(5));assertEquals(3,Native950Prayer.quickPrayerPreset(9));
+        assertEquals(4,Native950Prayer.quickPrayerPreset(6));assertEquals(5,Native950Prayer.quickPrayerPreset(7));
+        assertEquals(6,Native950Prayer.quickPrayerPreset(10));assertEquals(7,Native950Prayer.quickPrayerPreset(8));
+    }
     private boolean offer(int slot,int id,int option,Native950ItemCatalog.Entry type){return Native950Prayer.offer(player,slot,id,option,type);}
     private double xp(){return player.getSkills().getXp(Skills.PRAYER);}
     @Test public void buryConsumesOneAwardsOriginalXpAndRejectsRepeatDuringOneTickLock() {

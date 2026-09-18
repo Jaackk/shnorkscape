@@ -19,11 +19,13 @@ public class Native950ActionBarTest {
     }
     @Test public void widgetMappingIsExactAndBounded(){
         for(int i=0;i<14;i++){
-            assertEquals(i,Native950ActionBar.barSlot(1430,65+i*13));
-            assertEquals(i,Native950ActionBar.barSlot(1430,66+i*13));
-            assertEquals(-1,Native950ActionBar.barSlot(1430,67+i*13));
+            int first=64+i*13,last=Math.min(238,first+12);
+            for(int component=first;component<=last;component++)assertEquals(i,Native950ActionBar.barSlot(1430,component));
+            assertEquals(i,Native950ActionBar.barSlot(1436,19+i*13));
+            assertEquals(i,Native950ActionBar.barSlot(1436,20+i*13));
         }
-        assertEquals(-1,Native950ActionBar.barSlot(1430,247));
+        assertEquals(-1,Native950ActionBar.barSlot(1430,63));
+        assertEquals(-1,Native950ActionBar.barSlot(1430,239));
         assertEquals(-1,Native950ActionBar.barSlot(1670,65));
         assertEquals(1,Native950ActionBar.bookType(1460,1));
         assertEquals(5,Native950ActionBar.bookType(1452,1));
@@ -96,6 +98,8 @@ public class Native950ActionBarTest {
             while((next=c.readOutbound())!=null)if(next instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)next);
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,16,-1,-1,2046)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,254,-1,-1,2046)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,64,-1,-1,11239422)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,238,-1,-1,2098176)));
         }finally{c.finishAndReleaseAll();}
     }
     @Test public void bootstrapSelectsTheSavedActiveBar(){
