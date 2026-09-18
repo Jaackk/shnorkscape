@@ -10,10 +10,13 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class Native950ActionBarTest {
-    @Test public void packingUsesTheCurrentSevenBitTypeAboveTheThirteenBitAbilityId(){
+    @Test public void internalPackingSeparatesTypeFromIdAndConvertsToTheNativeShortcutWireForm(){
         assertEquals((1<<17)|(3<<4),Native950ActionBar.pack(1,3));
         assertTrue(Native950ActionBar.valid(Native950ActionBar.pack(6,263)));
         assertFalse(Native950ActionBar.valid((3<<4)|1));
+        assertEquals((3<<4)|1,Native950ActionBar.clientShortcut(Native950ActionBar.pack(1,3)));
+        assertEquals((263<<4)|6,Native950ActionBar.clientShortcut(Native950ActionBar.pack(6,263)));
+        assertEquals(0,Native950ActionBar.clientShortcut(0));
         assertFalse(Native950ActionBar.valid(-1));
         assertFalse(Native950ActionBar.valid(1<<17));
     }
@@ -120,7 +123,7 @@ public class Native950ActionBarTest {
             assertTrue(hasPacket(packets,Native950Packets.varbitSmall(1892,0)));
             assertTrue(hasPacket(packets,Native950Packets.varbitSmall(Native950ActionBar.FULL_MANUAL_MODE_VARBIT,1)));
             assertTrue(hasPacket(packets,Native950Packets.varbitSmall(Native950ActionBar.REVOLUTION_MODE_VARBIT,0)));
-            assertTrue(hasPacket(packets,Native950Packets.varp(739,Native950ActionBar.pack(1,3))));
+            assertTrue(hasPacket(packets,Native950Packets.varp(739,(3<<4)|1)));
             assertTrue(hasPacket(packets,Native950Packets.runClientScript(6992)));
             assertTrue(hasPacket(packets,Native950Packets.runClientScript(7964,1436,0,0,1,-1)));
             bar.setActiveBar(c,1);c.flush();packets.clear();

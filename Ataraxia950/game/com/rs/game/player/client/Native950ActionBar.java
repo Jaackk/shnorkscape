@@ -59,6 +59,14 @@ public final class Native950ActionBar {
     private static int loadValue(int value){int type=value>>>13,id=value&8191;return type==0&&id==0?0:(enumFor(type)>=0&&id>0?pack(type,id):0);}
     static int pack(int type,int id){if(enumFor(type)<0||id<1||id>8191)throw new IllegalArgumentException("Invalid ability");return (type<<17)|(id<<4);}
     static boolean valid(int packed){return packed==0||((packed&~0xffffff)==0&&(packed&15)==0&&enumFor(packed>>>17)>=0&&((packed>>>4)&8191)>0);}
+    /**
+     * The server keeps the type in bits 17..23 so persistence and structure lookup cannot
+     * confuse an ability id with a shortcut type.  The 950 action-bar builder (CS2 6995),
+     * however, reads its shortcut value in the client wire form: ability id in bits 4.. and
+     * the type in bits 0..3.  Sending the server form leaves the client type at zero, which
+     * is its empty-shortcut sentinel.
+     */
+    static int clientShortcut(int packed){return packed==0?0:((packed>>>4)&8191)<<4|(packed>>>17);}
     static int enumFor(int type){return type==1?10147:type==5?6738:type==6?6740:-1;}
     static int bookType(int face,int component){if(face==1450&&component==3)return 1;if(component!=1)return -1;return face==1460?1:face==1452||face==1456?5:face==1461||face==1459||face==1884?6:-1;}
     // The native 1430 shortcut children form fourteen consecutive thirteen-component
@@ -100,14 +108,14 @@ public final class Native950ActionBar {
         // Player-specific tracing is emitted by the caller paths where a Player is available.
         if(p!=null)Native950BugTest.event(p,"action-bar","visual-sync","reason",reason,"activeBar",activeBar+1,
                 "before",before,"after",barSnapshot(),"varbits",binding("varbit",1893)+","+binding("varbit",1892)+","+binding("varbit",FULL_MANUAL_MODE_VARBIT)+","+binding("varbit",REVOLUTION_MODE_VARBIT),
-                "slotConfigs",slotConfigs(),"scripts",binding("script",6992)+","+binding("script",7964));
+                "clientShortcuts",clientSnapshot(),"slotConfigs",slotConfigs(),"scripts",binding("script",6992)+","+binding("script",7964));
         visualWrite(p,c,Native950Packets.varbitSmall(1893,activeBar+1),"varbit",1893,activeBar+1);
         visualWrite(p,c,Native950Packets.varbitSmall(1892,0),"varbit",1892,0);
         visualWrite(p,c,Native950Packets.varbitSmall(FULL_MANUAL_MODE_VARBIT,revolutionEnabled?0:1),"varbit",FULL_MANUAL_MODE_VARBIT,revolutionEnabled?0:1);
         visualWrite(p,c,Native950Packets.varbitSmall(REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0),"varbit",REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0);
         for(int i=0;i<SLOTS;i++){
             visualWrite(p,c,Native950Packets.varp(i<12?823+i:4429+i-12,-1),"varp",i<12?823+i:4429+i-12,-1);
-            visualWrite(p,c,Native950Packets.varp(i<12?739+i:4415+i-12,slots()[i]),"varp",i<12?739+i:4415+i-12,slots()[i]);
+            visualWrite(p,c,Native950Packets.varp(i<12?739+i:4415+i-12,clientShortcut(slots()[i])),"varp",i<12?739+i:4415+i-12,clientShortcut(slots()[i]));
         }
         visualWrite(p,c,Native950Packets.runClientScript(6992),"script",6992,"");
         visualWrite(p,c,Native950Packets.runClientScript(7964,1436,0,0,1,-1),"script",7964,"1436,0,0,1,-1");
@@ -190,6 +198,7 @@ public final class Native950ActionBar {
     public void clear(Player p,Channel c){String before=barSnapshot();java.util.Arrays.fill(slots(),0);sync(p,c,"clear-command",before);reply(c,"Action bar "+(activeBar+1)+" cleared.");}
     public void clear(Channel c){clear(null,c);}
     private String barSnapshot(){return java.util.Arrays.toString(slots());}
+    private String clientSnapshot(){int[] values=new int[SLOTS];for(int i=0;i<SLOTS;i++)values[i]=clientShortcut(slots()[i]);return java.util.Arrays.toString(values);}
     private String slotConfigs(){StringBuilder out=new StringBuilder();for(int i=0;i<SLOTS;i++){if(i>0)out.append(',');out.append(binding("varp",i<12?823+i:4429+i-12)).append('|').append(binding("varp",i<12?739+i:4415+i-12));}return out.toString();}
     private static String binding(String kind,int id){int resolved=kind.equals("varp")?Native950IdMap.varp(id):kind.equals("varbit")?Native950IdMap.varbit(id):Native950IdMap.script(id);return kind+"="+id+":"+(resolved<0?"rejected:not-declared":"accepted:"+resolved);}
     private static void visualWrite(final Player p,Channel c,Native950Packets.Packet packet,final String kind,final int id,final Object value){
