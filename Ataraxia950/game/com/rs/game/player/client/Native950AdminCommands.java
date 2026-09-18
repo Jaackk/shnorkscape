@@ -93,7 +93,9 @@ public final class Native950AdminCommands {
         if(command.equals("bug")) {
             System.out.println("[Ataraxia950] Bug Test command routed: player="+p.getUsername()+" command=bug");
             StringBuilder description=new StringBuilder();for(int i=1;i<args.length;i++){if(i>1)description.append(' ');description.append(args[i]);}
-            Native950BugTest.marker(p,description.toString());reply(channel,"Bug marker recorded. Screenshot capture queued.");return;
+            String summary=description.toString().trim();
+            Native950BugTest.marker(p,summary);
+            reply(channel,summary.isEmpty()?"Bug marker recorded. Screenshot capture queued.":"Bug marker recorded: "+summary);return;
         }
         if (args.length > (command.equals("adrenaline") || command.equals("bar") || command.equals("spell") || command.equals("dummy") ? 2 : 1)) {
             String usage=command.equals("adrenaline") ? " [0-100]" : command.equals("bar") ? " [1-3]"
