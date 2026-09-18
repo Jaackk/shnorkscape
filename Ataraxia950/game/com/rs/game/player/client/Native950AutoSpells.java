@@ -40,7 +40,7 @@ public final class Native950AutoSpells {
     }
     public static synchronized Spell select(Player player) {
         Spell selected=SELECTED.get(player);
-        return selected!=null&&player.getSkills().getLevel(6)>=selected.level?selected:select(player.getSkills().getLevel(6));
+        return selected!=null?selected:select(player.getSkills().getLevel(6));
     }
     static Spell forKey(int key){for(Spell spell:Spell.values())if(spell.key==key)return spell;return null;}
     public static synchronized void writeSettings(Player player,Map<String,Integer> settings){

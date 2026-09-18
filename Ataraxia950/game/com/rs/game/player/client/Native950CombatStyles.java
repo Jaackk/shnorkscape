@@ -116,6 +116,8 @@ public final class Native950CombatStyles {
             }
             if(style==MAGIC){
                 Native950AutoSpells.Spell spell=Native950AutoSpells.select(p);
+                if(p.getSkills().getLevel(Skills.MAGIC)<spell.level)
+                    return "You need level "+spell.level+" Magic to cast the selected "+spell.name+".";
                 if(!p.isInfiniteCombatRunes()&&!airStaff&&!p.getInventory().containsItem(556,spell.airRunes))
                     return spell.name+" needs "+spell.airRunes+" air rune(s) per cast, or an air-supplying staff.";
             }

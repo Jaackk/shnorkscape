@@ -32,6 +32,39 @@ public final class Native950OfflineCombatAcceptance {
             f.start(14670);f.step();f.player.getEquipment().getItems().set(3,new Item(861));
             f.step();check(f.combat.pendingHitCount(f.player)==0,"Weapon swap retained channel hits");
         }
+        try(Fixture f=new Fixture(1277)){
+            f.start(44244);f.step();f.step();f.step();
+            check(f.combat.dotCount(f.player)==1,"Dismember missing on dummy");
+            f.player.getEquipment().getItems().set(3,new Item(1381));
+            String queued=f.combat.ability(f.player,14729);
+            check(queued==null||queued.contains("queued"),"Combust refused: "+queued);
+            f.step();check(f.combat.dotCount(f.player)==2,"Combust overwrote Dismember");
+            f.player.addFoodDelay(60000);
+            for(int i=0;i<8;i++)f.step();
+            check(f.combat.dotCount(f.player)==0,"Bleeds failed to expire");
+            check(f.npc.getHitpoints()==100000,"Bleed killed dummy");
+        }
+        try(Fixture f=new Fixture(841)){
+            Map<String,Integer> bar=new HashMap<>();
+            bar.put("actionBar.0",Native950ActionBar.pack(6,2));
+            bar.put("actionBar.1",Native950ActionBar.pack(5,10));
+            bar.put("actionBar.2",Native950ActionBar.pack(5,7));
+            bar.put("actionBar.3",Native950ActionBar.pack(5,1));
+            bar.put("actionBar.revolution",1);f.player.getNative950ActionBar().restore(bar);
+            f.player.getCombatDefinitions().setInfiniteAdrenaline(false);
+            check(f.combat.attack(f.player,f.npc)==null,"Revolution target refused");
+            f.player.getCombatDefinitions().setSpecialAttackPercentage(24);
+            check(f.combat.revolutionCandidate(f.player,9)==14663,"Revolution did not skip unaffordable spenders/utility");
+            f.player.getCombatDefinitions().setSpecialAttackPercentage(25);
+            check(f.combat.revolutionCandidate(f.player,9)==14670,"Revolution ignored enhanced boundary");
+            f.player.getCombatDefinitions().setSpecialAttackPercentage(100);
+            check(f.combat.revolutionCandidate(f.player,9)==19251,"Revolution ignored ordered targetless ultimate");
+            f.step();check(f.player.getCombatDefinitions().getSpecialAttackPercentage()==0,"Revolution bypassed shared debit");
+            check(f.npc.getNextHits().isEmpty(),"Revolution buff made a fake hit");
+            check(f.combat.revolutionCandidate(f.player,9)==-1,"Revolution ignored GCD");
+            f.player.getNative950ActionBar().setActiveBar(f.channel,1);
+            check(f.combat.revolutionCandidate(f.player,9)==-1,"Revolution read the inactive bar");
+        }
         System.out.println("PASS offline native combat: "+checks+" cache-backed timing, resource, dummy and cancellation checks.");
     }
     private static void cadence(int structure,int weapon,int[] expected)throws Exception{

@@ -142,6 +142,18 @@ public class Native950AbilityFoundationTest {
             assertSame(Native950AutoSpells.Spell.WAVE,Native950AutoSpells.select(restored));
         }finally{Native950AutoSpells.clear(p);Native950AutoSpells.clear(restored);c.finishAndReleaseAll();}
     }
+    @Test public void drainingMagicCannotSilentlyChangeAnExplicitAutocastSelection(){
+        EmbeddedChannel c=new EmbeddedChannel();Player p=Player.createNative950("spell-test",new WorldTile(3217,3258,0),c);
+        try{
+            p.getSkills().set(Skills.MAGIC,81);Native950AutoSpells.choose(p,73);
+            p.getSkills().set(Skills.MAGIC,80);p.setInfiniteCombatRunes(true);
+            Native950CombatStyles.Profile staff=new Native950CombatStyles.Profile(2,6,99,4,8,-1,-1,0,true);
+            assertSame(Native950AutoSpells.Spell.SURGE,Native950AutoSpells.select(p));
+            assertEquals("You need level 81 Magic to cast the selected Air Surge.",staff.costRefusal(p));
+            assertFalse(staff.consume(p));
+            p.getSkills().set(Skills.MAGIC,81);assertNull(staff.costRefusal(p));
+        }finally{Native950AutoSpells.clear(p);c.finishAndReleaseAll();}
+    }
     @Test public void bootstrapEnablesPrayerAndCombatSpellGridWithOnlyOptionOne(){
         EmbeddedChannel c=new EmbeddedChannel();
         try{

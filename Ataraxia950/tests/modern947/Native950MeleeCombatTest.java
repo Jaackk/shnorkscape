@@ -230,6 +230,16 @@ public class Native950MeleeCombatTest {
         player.getEquipment().getItems().set(com.rs.game.player.Equipment.SLOT_WEAPON,new com.rs.game.item.Item(1));
         step();assertEquals(0,combat.pendingHitCount(player));assertEquals(hp,npc.getHitpoints());
     }
+    @Test public void bleedUsesNativeDamageUnitsAndCancelRemovesItsScheduledTicks(){
+        player.getSkills().set(0,99);player.setDevelopmentGodMode(true);npc.setHitpoints(1000);
+        combat.attack(player,npc);assertNull(combat.ability(player,44244));step();
+        assertEquals(1,combat.dotCount(player));int hp=npc.getHitpoints();
+        step();assertEquals(hp,npc.getHitpoints());step();
+        assertEquals("DOT must use the same ten-unit HP scale as direct hits",hp-10,npc.getHitpoints());
+        player.getCombatDefinitions().setAutoRetaliate(false);combat.cancelAttack(player);
+        assertEquals(0,combat.dotCount(player));hp=npc.getHitpoints();
+        for(int i=0;i<6;i++)step();assertEquals(hp,npc.getHitpoints());
+    }
     @Test public void repeatedClicksRespectBothCadencesAndExchangeRealDamage(){
         assertNull(combat.attack(player,npc));step();
         assertEquals(40,npc.getHitpoints());assertEquals(90,player.getHitpoints());
