@@ -44,11 +44,13 @@ public final class Native950AdminCommands {
         }
         if(command.equals("commands")) { commandList(channel,args);return; }
         if(command.equals("bugtest")) {
+            System.out.println("[Ataraxia950] Bug Test command routed: player="+p.getUsername()+" command=bugtest");
             if(args.length!=1){reply(channel,"Use ;;bugtest.");return;}
             boolean enabled=Native950BugTest.toggle(p);
             reply(channel,enabled?"Bug Test Mode enabled. Use ;;bug <description> when something goes wrong.":"Bug Test Mode disabled. Session log saved.");return;
         }
         if(command.equals("bug")) {
+            System.out.println("[Ataraxia950] Bug Test command routed: player="+p.getUsername()+" command=bug");
             StringBuilder description=new StringBuilder();for(int i=1;i<args.length;i++){if(i>1)description.append(' ');description.append(args[i]);}
             Native950BugTest.marker(p,description.toString());reply(channel,"Bug marker recorded. Screenshot capture queued.");return;
         }

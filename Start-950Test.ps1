@@ -6,6 +6,7 @@ param([switch]$NoWalk,[switch]$NoRibbon,[switch]$NoSettings,[switch]$NoRegions,
 $ErrorActionPreference='Stop'
 $root=[IO.Path]::GetFullPath($PSScriptRoot)
 $recordPath=Join-Path $root 'logs\server.pid.json'
+$backendJar=Join-Path $root 'OpenNXT\runtime\lib\ataraxia-950-1.0-UNTRACKED.jar'
 $running=$false
 if (Test-Path -LiteralPath $recordPath) {
  $record=Get-Content -LiteralPath $recordPath -Raw | ConvertFrom-Json
@@ -13,6 +14,11 @@ if (Test-Path -LiteralPath $recordPath) {
  $running=$null -ne $process -and $record.Workspace -eq $root -and $process.ExecutablePath -eq $record.JavaPath -and $process.CreationDate.ToUniversalTime().Ticks -eq ([datetime]$record.CreatedUtc).ToUniversalTime().Ticks -and $process.CommandLine.Contains($record.ClassPath)
 }
 if ($running) {
+ # Classes in a running JVM cannot pick up a replacement JAR. Refuse to open a new
+ # client against an older process after deployment, rather than silently hiding it.
+ if ((Test-Path -LiteralPath $backendJar) -and (Get-Item -LiteralPath $backendJar).LastWriteTimeUtc -gt $process.CreationDate.ToUniversalTime()) {
+  throw 'The deployed backend JAR is newer than the running server. Use Stop.cmd, then Play.cmd, so the updated code is loaded.'
+ }
  # Never silently reuse a restricted server from an older launcher.
  foreach($required in @('-Dopennxt.950.walk=true','-Dopennxt.950.ribbon=true','-Dopennxt.950.settings=true','-Dopennxt.950.regions=true','-Dopennxt.950.collision=true','-Dataraxia950.npcSpawns=true','-Dataraxia950.npcRegions= ','-Dataraxia950.devTools=true','-Dataraxia950.worldMap=true')) {
   if (!$process.CommandLine.Contains($required)) { throw 'An older restricted server is running. Use Stop-950Test.cmd, then launch again to load all content.' }
