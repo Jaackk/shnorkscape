@@ -75,6 +75,9 @@ public final class Native950ActionBar {
     static int clientShortcut(int packed){return packed==0?0:((packed>>>4)&8191)<<4|(packed>>>17);}
     static int enumFor(int type){return type==1?10147:type==5?6738:type==6?6740:-1;}
     static int bookType(int face,int component){
+        // Recorded in the live 950 Bug Test session while dragging Flurry and Dismember.
+        // Preserve this native melee-page source until its cache owner is fully decoded.
+        if(face==1450&&component==3)return 1;
         if(component!=1)return -1;
         if(face==1460||face==1881||face==1888)return 1;
         if(face==1452||face==1883||face==1449||face==1882)return 5;
@@ -98,6 +101,7 @@ public final class Native950ActionBar {
     }
     public void bootstrap(Channel c){bootstrap(null,c);}
     void enableBooks(Channel c){
+        c.write(Native950Packets.interfaceEvents(1450,3,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
         for(int face:new int[]{1460,1881,1888})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,MELEE_BOOK_EVENTS));
         for(int face:new int[]{1452,1883,1449,1882})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,RANGED_BOOK_EVENTS));
         for(int face:new int[]{1461,1884,1885,1886})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,MAGIC_BOOK_EVENTS));

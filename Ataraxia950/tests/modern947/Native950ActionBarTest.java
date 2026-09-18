@@ -31,6 +31,7 @@ public class Native950ActionBarTest {
         assertEquals(-1,Native950ActionBar.barSlot(1430,239));
         assertEquals(-1,Native950ActionBar.barSlot(1670,65));
         assertEquals(1,Native950ActionBar.bookType(1460,1));
+        assertEquals(1,Native950ActionBar.bookType(1450,3));
         assertEquals(5,Native950ActionBar.bookType(1452,1));
         assertEquals(6,Native950ActionBar.bookType(1461,1));
         assertEquals(-1,Native950ActionBar.bookType(1461,2));
@@ -116,6 +117,7 @@ public class Native950ActionBarTest {
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1882,1,0,264,8616966)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1461,1,0,264,8617038)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1886,1,0,264,8617038)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1450,3,0,264,Native950ActionBar.ABILITY_EVENTS)));
             assertEquals(1,Native950ActionBar.bookType(1881,1));
             assertEquals(5,Native950ActionBar.bookType(1449,1));
             assertEquals(6,Native950ActionBar.bookType(1885,1));
