@@ -1514,7 +1514,9 @@ public abstract class Entity extends WorldTile {
         }
         removeHitpoints(hit);
         nextHits.add(hit);
-        if (this instanceof Player)
+        // Native950 containers cannot persist legacy charge/UUID metadata. Native combat
+        // owns equipment semantics; potion/environmental hits must respect that boundary too.
+        if (this instanceof Player && !((Player) this).isNative950())
             ((Player) this).getChargesManagerNew().useChargeOnHit(false);
         if (nextHitBars.isEmpty()) {
             addHitBars();

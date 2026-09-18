@@ -34,6 +34,17 @@ public class Native950MeleeCombatTest {
         combat.attach(player);combat.register(npc,profile(50,10,3));
     }
     @After public void cleanup(){combat.clear();channel.finishAndReleaseAll();}
+    @Test public void nativePotionHitsPreserveEquipmentWithoutLegacyDegradation() {
+        com.rs.game.item.Item helm=new com.rs.game.item.Item(20137);
+        player.getEquipment().getItems().set(0,helm);
+        player.setAttackingDelay(com.rs.utils.Utils.currentTimeMillis()+60000);
+        for(int i=0;i<5;i++)player.processHit(new com.rs.game.Hit(player,10,com.rs.game.Hit.HitLook.REGULAR_DAMAGE));
+        assertEquals(50,player.getHitpoints());
+        assertEquals(5,player.getNextHits().size());
+        assertSame(helm,player.getEquipment().getItem(0));
+        assertNull(helm.getAttributes());
+        assertEquals(20137,helm.getId());
+    }
     @Test public void abilityWaitsForWorldPhaseAndHonoursCooldownAcrossTargetChanges(){
         player.getSkills().set(0,31);npc.setHitpoints(1000);
         assertNotNull(combat.ability(player,14682));

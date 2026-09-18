@@ -8,6 +8,7 @@
 /build/
 /Ataraxia950/build/
 /Ataraxia950/.gradle/
+/.gradle/
 /OpenNXT/build/
 *.pid.json
 
