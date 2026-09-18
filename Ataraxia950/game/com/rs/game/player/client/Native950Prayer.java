@@ -32,8 +32,9 @@ public final class Native950Prayer {
     private Native950Prayer() { }
 
     /** The cache's normal Prayer/Curses grid; the existing Prayer owner remains authoritative. */
-    // The full 950 grid mask is required for icon clicks to enter the native IF_BUTTON sender.
-    static void enableInterface(Channel channel){channel.write(Native950Packets.interfaceEvents(1458,39,0,38,8388610));}
+    // The cache's prayer-grid container is 1458:33.  Enabling the adjacent decorative
+    // component 39 makes the tab appear usable, but the client never emits prayer icon input.
+    static void enableInterface(Channel channel){channel.write(Native950Packets.interfaceEvents(1458,33,0,38,8388610));}
     static boolean button(Player player,Native950Actions.InterfaceAction action){
         if(action.interfaceId()==1430&&action.componentId()==16){
             if(!player.isDead()&&!player.isLocked()){
@@ -44,7 +45,7 @@ public final class Native950Prayer {
             }
             return true;
         }
-        if(action.interfaceId()!=1458||action.componentId()!=39)return false;
+        if(action.interfaceId()!=1458||action.componentId()!=33)return false;
         if(action.option()==1&&action.slot()>=0&&action.slot()<=38&&!player.isDead()&&!player.isLocked()) {
             Native950BugTest.event(player,"prayer","click","slot",action.slot(),"points",player.getPrayer().getPrayerpoints());
             player.getPrayer().delayUsePrayer(action.slot(),false);
