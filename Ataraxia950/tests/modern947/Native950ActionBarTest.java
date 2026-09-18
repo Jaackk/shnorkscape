@@ -101,6 +101,7 @@ public class Native950ActionBarTest {
             while((next=c.readOutbound())!=null)if(next instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)next);
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,16,-1,-1,2046)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,254,-1,-1,2046)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,261,-1,-1,2046)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,64,-1,-1,11239422)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,238,-1,-1,2098176)));
         }finally{c.finishAndReleaseAll();}
@@ -121,6 +122,7 @@ public class Native950ActionBarTest {
             while((next=c.readOutbound())!=null)if(next instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)next);
             assertTrue(hasPacket(packets,Native950Packets.varbitSmall(1893,1)));
             assertTrue(hasPacket(packets,Native950Packets.varbitSmall(1892,0)));
+            assertTrue(hasPacket(packets,Native950Packets.varbitSmall(Native950ActionBar.DISPLAY_MODE_VARBIT,2)));
             assertTrue(hasPacket(packets,Native950Packets.varbitSmall(Native950ActionBar.FULL_MANUAL_MODE_VARBIT,1)));
             assertTrue(hasPacket(packets,Native950Packets.varbitSmall(Native950ActionBar.REVOLUTION_MODE_VARBIT,0)));
             assertTrue(hasPacket(packets,Native950Packets.varp(739,(3<<4)|1)));
@@ -129,8 +131,22 @@ public class Native950ActionBarTest {
             bar.setActiveBar(c,1);c.flush();packets.clear();
             while((next=c.readOutbound())!=null)if(next instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)next);
             assertTrue(hasPacket(packets,Native950Packets.varbitSmall(1893,2)));
-            assertTrue(hasPacket(packets,Native950Packets.varp(739,0)));
+            assertTrue(hasPacket(packets,Native950Packets.varp(751,0)));
         }finally{c.finishAndReleaseAll();}
+    }
+    @Test public void eachNativePresetUsesItsOwnCacheConfiguredVarpBank(){
+        assertEquals(823,Native950ActionBar.typeConfig(0,0));
+        assertEquals(739,Native950ActionBar.shortcutConfig(0,0));
+        assertEquals(834,Native950ActionBar.typeConfig(0,11));
+        assertEquals(750,Native950ActionBar.shortcutConfig(0,11));
+        assertEquals(4429,Native950ActionBar.typeConfig(0,12));
+        assertEquals(4415,Native950ActionBar.shortcutConfig(0,12));
+        assertEquals(835,Native950ActionBar.typeConfig(1,0));
+        assertEquals(751,Native950ActionBar.shortcutConfig(1,0));
+        assertEquals(847,Native950ActionBar.typeConfig(2,0));
+        assertEquals(763,Native950ActionBar.shortcutConfig(2,0));
+        assertEquals(4432,Native950ActionBar.typeConfig(1,13));
+        assertEquals(4418,Native950ActionBar.shortcutConfig(1,13));
     }
     private static boolean hasPacket(List<Native950Packets.Packet> packets,Native950Packets.Packet expected){
         for(Native950Packets.Packet actual:packets)if(actual.type()==expected.type()&&Arrays.equals(actual.payload(),expected.payload()))return true;

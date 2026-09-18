@@ -31,6 +31,9 @@ public final class Native950ActionBar {
     static final int BOOK_LAST_SLOT=264;
     static final int FULL_MANUAL_MODE_VARBIT=41598;
     static final int REVOLUTION_MODE_VARBIT=41599;
+    // The stock action-bar owner selects this display mode during every refresh. Without it
+    // the native slot builder can retain an uninitialised shortcut presentation.
+    static final int DISPLAY_MODE_VARBIT=27893;
     private final int[][] bars=new int[BARS][SLOTS];
     private int activeBar;
     private boolean revolutionEnabled;
@@ -96,6 +99,7 @@ public final class Native950ActionBar {
             c.write(Native950Packets.interfaceEvents(1430,component,-1,-1,NATIVE_SLOT_EVENT_MASKS[slot]));
         c.write(Native950Packets.interfaceEvents(1430,16,-1,-1,BAR_SELECTOR_EVENTS));
         c.write(Native950Packets.interfaceEvents(1430,254,-1,-1,BAR_SELECTOR_EVENTS));
+        c.write(Native950Packets.interfaceEvents(1430,261,-1,-1,BAR_SELECTOR_EVENTS));
         c.write(Native950Packets.interfaceEvents(1430,256,-1,-1,2));
     }
     /**
@@ -109,15 +113,17 @@ public final class Native950ActionBar {
         // The detailed wire list stays bounded to these event-driven calls, never world ticks.
         // Player-specific tracing is emitted by the caller paths where a Player is available.
         if(p!=null)Native950BugTest.event(p,"action-bar","visual-sync","reason",reason,"activeBar",activeBar+1,
-                "before",before,"after",barSnapshot(),"varbits",binding("varbit",1893)+","+binding("varbit",1892)+","+binding("varbit",FULL_MANUAL_MODE_VARBIT)+","+binding("varbit",REVOLUTION_MODE_VARBIT),
+                "before",before,"after",barSnapshot(),"varbits",binding("varbit",1893)+","+binding("varbit",1892)+","+binding("varbit",DISPLAY_MODE_VARBIT)+","+binding("varbit",FULL_MANUAL_MODE_VARBIT)+","+binding("varbit",REVOLUTION_MODE_VARBIT),
                 "clientShortcuts",clientSnapshot(),"slotConfigs",slotConfigs(),"scripts",binding("script",6992)+","+binding("script",7964));
         visualWrite(p,c,Native950Packets.varbitSmall(1893,activeBar+1),"varbit",1893,activeBar+1);
         visualWrite(p,c,Native950Packets.varbitSmall(1892,0),"varbit",1892,0);
+        visualWrite(p,c,Native950Packets.varbitSmall(DISPLAY_MODE_VARBIT,2),"varbit",DISPLAY_MODE_VARBIT,2);
         visualWrite(p,c,Native950Packets.varbitSmall(FULL_MANUAL_MODE_VARBIT,revolutionEnabled?0:1),"varbit",FULL_MANUAL_MODE_VARBIT,revolutionEnabled?0:1);
         visualWrite(p,c,Native950Packets.varbitSmall(REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0),"varbit",REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0);
         for(int i=0;i<SLOTS;i++){
-            visualWrite(p,c,Native950Packets.varp(i<12?823+i:4429+i-12,-1),"varp",i<12?823+i:4429+i-12,-1);
-            visualWrite(p,c,Native950Packets.varp(i<12?739+i:4415+i-12,clientShortcut(slots()[i])),"varp",i<12?739+i:4415+i-12,clientShortcut(slots()[i]));
+            int typeConfig=typeConfig(activeBar,i),shortcutConfig=shortcutConfig(activeBar,i);
+            visualWrite(p,c,Native950Packets.varp(typeConfig,-1),"varp",typeConfig,-1);
+            visualWrite(p,c,Native950Packets.varp(shortcutConfig,clientShortcut(slots()[i])),"varp",shortcutConfig,clientShortcut(slots()[i]));
         }
         visualWrite(p,c,Native950Packets.runClientScript(6992),"script",6992,"");
         visualWrite(p,c,Native950Packets.runClientScript(7964,1436,0,0,1,-1),"script",7964,"1436,0,0,1,-1");
@@ -140,7 +146,9 @@ public final class Native950ActionBar {
     }
     static boolean isTrashTarget(Native950Actions.DragAction action){return action.targetInterfaceId()==ROOT_INTERFACE&&action.targetComponentId()==TRASH_COMPONENT;}
     public boolean button(Player p,Channel c,Native950Actions.InterfaceAction a){
-        if(a.interfaceId()==1430&&a.componentId()==254){
+        // Actual 950 input from the native preset menu uses 1430:261. Keep 254 for
+        // layouts that still route through the sibling selector component.
+        if(a.interfaceId()==1430&&(a.componentId()==254||a.componentId()==261)){
             if(a.slot()==-1&&a.option()>=1&&a.option()<=BARS&&!p.isLocked()&&!p.isDead()){
                 setActiveBar(p,c,a.option()-1);reply(c,"Action bar "+(activeBar+1)+" selected.");
             }else if(a.slot()==-1&&a.option()>BARS&&a.option()<=10&&!p.isLocked()&&!p.isDead()){
@@ -201,7 +209,16 @@ public final class Native950ActionBar {
     public void clear(Channel c){clear(null,c);}
     private String barSnapshot(){return java.util.Arrays.toString(slots());}
     private String clientSnapshot(){int[] values=new int[SLOTS];for(int i=0;i<SLOTS;i++)values[i]=clientShortcut(slots()[i]);return java.util.Arrays.toString(values);}
-    private String slotConfigs(){StringBuilder out=new StringBuilder();for(int i=0;i<SLOTS;i++){if(i>0)out.append(',');out.append(binding("varp",i<12?823+i:4429+i-12)).append('|').append(binding("varp",i<12?739+i:4415+i-12));}return out.toString();}
+    private String slotConfigs(){StringBuilder out=new StringBuilder();for(int i=0;i<SLOTS;i++){if(i>0)out.append(',');out.append(binding("varp",typeConfig(activeBar,i))).append('|').append(binding("varp",shortcutConfig(activeBar,i)));}return out.toString();}
+    /** Exact per-preset config layout used by cache script 6995 and the retained ActionBar owner. */
+    static int typeConfig(int bar,int slot){
+        if(bar<0||slot<0||slot>=SLOTS)throw new IllegalArgumentException("Invalid action-bar config index");
+        return bar>=5?5335+14*(bar-5)+slot:slot>=12?4429+2*bar+slot-12:823+12*bar+slot;
+    }
+    static int shortcutConfig(int bar,int slot){
+        if(bar<0||slot<0||slot>=SLOTS)throw new IllegalArgumentException("Invalid action-bar config index");
+        return bar>=5?5265+14*(bar-5)+slot:slot>=12?4415+2*bar+slot-12:739+12*bar+slot;
+    }
     /**
      * Native950Packets writes these known wire IDs directly.  Native950IdMap is a separate
      * compatibility allow-list, so an absent entry is diagnostic context, not a client-write
