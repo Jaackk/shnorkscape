@@ -83,6 +83,7 @@ public final class Native950ActionBar {
     public void bootstrap(Player p,Channel c){
         enableBooks(c);
         Native950Prayer.enableInterface(c);
+        Native950AutoSpells.syncSelection(p,c);
         sync(p,c,"bootstrap",barSnapshot());
     }
     public void bootstrap(Channel c){bootstrap(null,c);}
@@ -149,7 +150,7 @@ public final class Native950ActionBar {
         }
         if(a.interfaceId()==1885&&a.componentId()==1){
             if(a.option()!=1||a.slot()<1||a.slot()>BOOK_LAST_SLOT||!p.getInterfaceManager().containsInterface(1885))return true;
-            String result=Native950AutoSpells.choose(p,a.slot());Native950BugTest.event(p,"magic","spell-click","slot",a.slot(),"result",result);reply(c,result);return true;
+            String result=Native950AutoSpells.choose(p,c,a.slot());Native950BugTest.event(p,"magic","spell-click","slot",a.slot(),"result",result);reply(c,result);return true;
         }
         int slot=barSlot(a.interfaceId(),a.componentId());
         int type=bookType(a.interfaceId(),a.componentId());

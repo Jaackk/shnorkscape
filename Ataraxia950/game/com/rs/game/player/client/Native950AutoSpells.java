@@ -4,6 +4,8 @@ import com.rs.cache.Cache;
 import com.rs.cache.loaders.AnimationDefinitions;
 import com.rs.cache.loaders.rs3.RS3ClientScriptMap;
 import com.rs.cache.loaders.rs3.RS3GeneralRequirementMap;
+import com.rs.network.protocol.modern950.Native950Packets;
+import io.netty.channel.Channel;
 import com.rs.game.player.Player;
 import java.util.IdentityHashMap;
 import java.util.Map;
@@ -39,19 +41,26 @@ public final class Native950AutoSpells {
         Spell selected=SELECTED.get(player);
         return selected!=null&&player.getSkills().getLevel(6)>=selected.level?selected:select(player.getSkills().getLevel(6));
     }
-    static synchronized String choose(Player player,int key) {
+    static synchronized String choose(Player player,int key) { return choose(player,null,key); }
+    /** The standard spellbook and the 950 combat owner both use the spell key as varbit 43's value. */
+    static synchronized String choose(Player player,Channel channel,int key) {
         for(Spell spell:Spell.values())if(spell.key==key){
             if(player.getSkills().getLevel(6)<spell.level)return "You need level "+spell.level+" Magic to select "+spell.name+".";
-            SELECTED.put(player,spell);return spell.name+" selected for native auto-casting.";
+            SELECTED.put(player,spell);syncSelection(player,channel);return spell.name+" selected for native auto-casting.";
         }
         return "That spell is not in the supported native combat spellbook yet.";
     }
-    static synchronized String choose(Player player,String name) {
+    static synchronized String choose(Player player,String name) { return choose(player,null,name); }
+    static synchronized String choose(Player player,Channel channel,String name) {
         String normalized=name==null?"":name.toLowerCase(java.util.Locale.ROOT).replace(" ","");
         if(normalized.startsWith("air"))normalized=normalized.substring(3);
         for(Spell spell:Spell.values())if(spell.name.toLowerCase(java.util.Locale.ROOT).replace("air ","").equals(normalized))
-            return choose(player,spell.key);
+            return choose(player,channel,spell.key);
         return "Use ;;spell strike|bolt|blast|wave|surge.";
+    }
+    static synchronized void syncSelection(Player player,Channel channel) {
+        if(player==null||channel==null)return;
+        channel.write(Native950Packets.varbitSmall(43,select(player).key));
     }
     /** Exact paired-950 standard-spell cast sequence; callers retain their weapon animation as a fallback. */
     static int animation(Player player) {return presentation(player).animation;}

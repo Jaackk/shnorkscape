@@ -129,7 +129,7 @@ public final class Native950AdminCommands {
                 reply(channel,"The Combat Settings checkbox still awaits its native client acknowledgement fix.");break;
             case "spell":
                 if(args.length==1){reply(channel,"Selected native auto-spell: "+Native950AutoSpells.select(p).name+". Use ;;spell strike|bolt|blast|wave|surge.");break;}
-                reply(channel,Native950AutoSpells.choose(p,args[1]));break;
+                reply(channel,Native950AutoSpells.choose(p,channel,args[1]));break;
             case "almighty":
                 boolean enabled=!(p.isDevelopmentGodMode()&&p.getPrayer().isInfinitePrayer()
                         &&p.getCombatDefinitions().isInfiniteAdrenaline()&&p.isInfiniteRunEnergy()

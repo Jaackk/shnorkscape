@@ -63,8 +63,9 @@ public class Native950AbilityFoundationTest {
         try{
             Player p=Player.createNative950("spell-test",new WorldTile(3217,3258,0),c);p.setActive(true);
             p.getSkills().set(Skills.MAGIC,1);
-            assertEquals("Air Strike selected for native auto-casting.",Native950AutoSpells.choose(p,14));
+            assertEquals("Air Strike selected for native auto-casting.",Native950AutoSpells.choose(p,c,14));
             assertSame(Native950AutoSpells.Spell.STRIKE,Native950AutoSpells.select(p));
+            c.flush();assertTrue(hasPacket(packets(c),Native950Packets.varbitSmall(43,14)));
             assertTrue(Native950AutoSpells.choose(p,73).contains("level 81 Magic"));
             p.getSkills().set(Skills.MAGIC,81);
             assertEquals("Air Surge selected for native auto-casting.",Native950AutoSpells.choose(p,73));
