@@ -106,6 +106,22 @@ public class Native950ActionBarTest {
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,238,-1,-1,2098176)));
         }finally{c.finishAndReleaseAll();}
     }
+    @Test public void nativeAbilityBooksUseThePaired950FacesAndEventMasks(){
+        EmbeddedChannel c=new EmbeddedChannel();try{
+            new Native950ActionBar().bootstrap(c);c.flush();List<Native950Packets.Packet> packets=new ArrayList<>();Object next;
+            while((next=c.readOutbound())!=null)if(next instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)next);
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1460,1,0,264,8592390)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1888,1,0,264,8592390)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1452,1,0,264,8616966)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1882,1,0,264,8616966)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1461,1,0,264,8617038)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1886,1,0,264,8617038)));
+            assertEquals(1,Native950ActionBar.bookType(1881,1));
+            assertEquals(5,Native950ActionBar.bookType(1449,1));
+            assertEquals(6,Native950ActionBar.bookType(1885,1));
+            assertEquals(-1,Native950ActionBar.bookType(1456,1));
+        }finally{c.finishAndReleaseAll();}
+    }
     @Test public void bootstrapSelectsTheSavedActiveBar(){
         EmbeddedChannel c=new EmbeddedChannel();try{
             Native950ActionBar bar=new Native950ActionBar();bar.setActiveBar(c,2);c.flush();

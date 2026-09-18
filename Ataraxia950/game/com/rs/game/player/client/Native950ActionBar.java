@@ -17,9 +17,11 @@ public final class Native950ActionBar {
     public static final int BARS=3;
     // 950 native drag-parent resolver 0x1401ab903: bit23 bypasses parent-depth clipping.
     static final int ABILITY_EVENTS=2|(2<<11)|(1<<18)|(1<<23);
-    // The same full combat-spell grid mask the native 950 InterfaceManager applies to 1885:1.
-    // The earlier reduced mask drew the book but did not let the client emit a spell click.
-    static final int MAGIC_EVENTS=10320974;
+    // Exact paired-950 masks and surfaces from OpenNXT's native world bootstrap.  These
+    // are the ability-book actors the client actually installs, not the older 910 faces.
+    static final int MELEE_BOOK_EVENTS=8592390;
+    static final int RANGED_BOOK_EVENTS=8616966;
+    static final int MAGIC_BOOK_EVENTS=8617038;
     static final int BAR_SELECTOR_EVENTS=2046;
     // Script 11797's native 950 shortcut children, captured from the local bootstrap.
     // Each pair is a separately masked child in one of the fourteen slot groups.
@@ -72,7 +74,12 @@ public final class Native950ActionBar {
      */
     static int clientShortcut(int packed){return packed==0?0:((packed>>>4)&8191)<<4|(packed>>>17);}
     static int enumFor(int type){return type==1?10147:type==5?6738:type==6?6740:-1;}
-    static int bookType(int face,int component){if(face==1450&&component==3)return 1;if(component!=1)return -1;return face==1460?1:face==1452||face==1456?5:face==1461||face==1459||face==1884?6:-1;}
+    static int bookType(int face,int component){
+        if(component!=1)return -1;
+        if(face==1460||face==1881||face==1888)return 1;
+        if(face==1452||face==1883||face==1449||face==1882)return 5;
+        return face==1461||face==1884||face==1885||face==1886?6:-1;
+    }
     // The native 1430 shortcut children form fourteen consecutive thirteen-component
     // groups. Bug Test captured 1430:66; the local bootstrap additionally proves the
     // first/last children of every group through 1430:238.
@@ -91,8 +98,9 @@ public final class Native950ActionBar {
     }
     public void bootstrap(Channel c){bootstrap(null,c);}
     void enableBooks(Channel c){
-        for(int face:new int[]{1460,1452,1461,1450,1456,1459,1884})c.write(Native950Packets.interfaceEvents(face,face==1450?3:1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
-        c.write(Native950Packets.interfaceEvents(1885,1,0,BOOK_LAST_SLOT,MAGIC_EVENTS));
+        for(int face:new int[]{1460,1881,1888})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,MELEE_BOOK_EVENTS));
+        for(int face:new int[]{1452,1883,1449,1882})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,RANGED_BOOK_EVENTS));
+        for(int face:new int[]{1461,1884,1885,1886})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,MAGIC_BOOK_EVENTS));
         for(int face:new int[]{1430,1436})for(int i=0;i<SLOTS;i++)for(int component:new int[]{(face==1430?65:19)+i*13,(face==1430?66:20)+i*13})
             c.write(Native950Packets.interfaceEvents(face,component,-1,1,ABILITY_EVENTS|(1<<21)));
         for(int slot=0;slot<SLOTS;slot++)for(int component:NATIVE_SLOT_EVENT_COMPONENTS[slot])
