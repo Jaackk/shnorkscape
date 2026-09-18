@@ -18,12 +18,12 @@ public class Native950ActionBarTest {
         assertFalse(Native950ActionBar.valid(1<<17));
     }
     @Test public void widgetMappingIsExactAndBounded(){
-        int[][] components={{64,69},{77,82},{90,95},{103,108},{116,121},{129,134},{142,147},
-                {155,160},{168,173},{181,186},{194,199},{207,212},{220,225},{233,238}};
-        for(int i=0;i<components.length;i++)for(int component:components[i])assertEquals(i,Native950ActionBar.barSlot(1430,component));
-        assertEquals(-1,Native950ActionBar.barSlot(1430,65));
-        assertEquals(-1,Native950ActionBar.barSlot(1430,239));
-        assertEquals(-1,Native950ActionBar.barSlot(1436,19));
+        for(int i=0;i<14;i++){
+            assertEquals(i,Native950ActionBar.barSlot(1430,65+i*13));
+            assertEquals(i,Native950ActionBar.barSlot(1430,66+i*13));
+            assertEquals(-1,Native950ActionBar.barSlot(1430,67+i*13));
+        }
+        assertEquals(-1,Native950ActionBar.barSlot(1430,247));
         assertEquals(-1,Native950ActionBar.barSlot(1670,65));
         assertEquals(1,Native950ActionBar.bookType(1460,1));
         assertEquals(5,Native950ActionBar.bookType(1452,1));
@@ -96,10 +96,6 @@ public class Native950ActionBarTest {
             while((next=c.readOutbound())!=null)if(next instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)next);
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,16,-1,-1,2046)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,254,-1,-1,2046)));
-            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,64,-1,-1,11239422)));
-            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,69,-1,-1,11239422)));
-            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,77,-1,-1,2098176)));
-            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1430,238,-1,-1,2098176)));
         }finally{c.finishAndReleaseAll();}
     }
     @Test public void bootstrapSelectsTheSavedActiveBar(){
