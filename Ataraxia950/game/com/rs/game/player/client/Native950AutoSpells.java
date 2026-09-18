@@ -60,7 +60,9 @@ public final class Native950AutoSpells {
     }
     static synchronized void syncSelection(Player player,Channel channel) {
         if(player==null||channel==null)return;
-        channel.write(Native950Packets.varbitSmall(43,select(player).key));
+        Spell spell=select(player);
+        Native950BugTest.event(player,"magic","selection-sync","spell",spell.name,"varbit",43,"value",spell.key);
+        channel.write(Native950Packets.varbitSmall(43,spell.key));
     }
     /** Exact paired-950 standard-spell cast sequence; callers retain their weapon animation as a fallback. */
     static int animation(Player player) {return presentation(player).animation;}
