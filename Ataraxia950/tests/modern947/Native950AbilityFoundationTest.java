@@ -51,12 +51,16 @@ public class Native950AbilityFoundationTest {
         assertEquals(-1,Native950Revolution.select(bar,14,id->false));
         assertEquals(-1,Native950Revolution.select(bar,0,id->true));
     }
-    @Test public void abilityHitSpacingUsesTheSameFrameTimelineAsEntityAnimations(){
+    @Test public void effectCadenceIsIndependentOfMissingLegacyAnimationFrames(){
         assertEquals(1,Native950AbilityCatalog.animationTicksForMillis(0));
         assertEquals(1,Native950AbilityCatalog.animationTicksForMillis(600));
         assertEquals(2,Native950AbilityCatalog.animationTicksForMillis(601));
-        assertEquals(2,Native950AbilityCatalog.secondaryHitDelay(5,1,3));
-        assertEquals(4,Native950AbilityCatalog.secondaryHitDelay(5,2,3));
+        Native950AbilityCatalog.Definition asphyxiate=Native950AbilityCatalog.get(14731);
+        assertTrue(asphyxiate.channelled());assertEquals(7,asphyxiate.channelTicks());
+        for(int hit=0;hit<4;hit++)assertEquals(hit*2,asphyxiate.hitDelay(hit));
+        assertEquals(5,Native950AbilityCatalog.get(14701).hitDelay(2));
+        assertFalse(Native950AbilityCatalog.get(14733).channelled());
+        assertEquals(1,Native950AbilityCatalog.get(14733).hitDelay(1));
     }
     @Test public void nativeMagicGridSelectsOnlyVerifiedCombatAirSpells(){
         EmbeddedChannel c=new EmbeddedChannel();

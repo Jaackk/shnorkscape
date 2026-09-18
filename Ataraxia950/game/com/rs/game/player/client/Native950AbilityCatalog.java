@@ -26,6 +26,15 @@ final class Native950AbilityCatalog {
         int adrenalineCost(){return tier==2?15:tier==4?100:0;}
         int adrenalineRequired(){return tier==2?50:adrenalineCost();}
         int adrenalineGain(){return tier==1?8:0;}
+        boolean channelled(){return struct==14684||struct==14701||struct==14704||struct==14670||struct==14731||struct==19343;}
+        /** EOC effect cadence, never inferred from a sequence's optional legacy frame table. */
+        int hitDelay(int hit){
+            if(hit<0||hit>=hits)throw new IllegalArgumentException("Invalid hit index");
+            if(struct==14701)return hit==2?5:hit*2;
+            if(channelled())return hit*(struct==14670?1:2);
+            return hit;
+        }
+        int channelTicks(){return channelled()?hitDelay(hits-1)+1:0;}
     }
     static final List<Definition> DEFINITIONS=Collections.unmodifiableList(Arrays.asList(
         // The tier, level, cooldown, hand requirements and placement below are cache-verified.
@@ -107,10 +116,6 @@ final class Native950AbilityCatalog {
         return animationTicksForMillis(AnimationDefinitions.getAnimationDefinitions(animation).getEmoteTime());
     }
     static int animationTicksForMillis(int millis){return Math.max(1,(Math.max(0,millis)+599)/600);}
-    static int secondaryHitDelay(int animationTicks,int hitIndex,int hits){
-        if(hitIndex<1||hitIndex>=hits)throw new IllegalArgumentException("Invalid secondary hit index");
-        return Math.max(1,(animationTicks*hitIndex+hits-1)/hits);
-    }
     static int targetGraphic(int struct){
         if(com.rs.cache.Cache.STORE==null)return -1;
         return RS3GeneralRequirementMap.getMap(struct).getIntValue(2933);
