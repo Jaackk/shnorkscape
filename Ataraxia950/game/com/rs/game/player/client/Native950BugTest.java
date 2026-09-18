@@ -19,7 +19,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 /** Opt-in local diagnostic timeline. It is deliberately outside every gameplay decision. */
-final class Native950BugTest {
+public final class Native950BugTest {
     private static final ThreadPoolExecutor WRITER = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS,
             new ArrayBlockingQueue<Runnable>(1024), daemon("native950-bugtest"), new ThreadPoolExecutor.DiscardPolicy());
     private static final Map<Player, Session> SESSIONS = new IdentityHashMap<Player, Session>();
@@ -78,6 +78,19 @@ final class Native950BugTest {
     static void event(Player player, String category, String name, Object... fields) {
         Session session = session(player);
         if (session != null) session.event(category, name, fields);
+    }
+
+    /**
+     * Records the authoritative timer transition and the exact native scripts requested.
+     * This remains a no-op unless the player explicitly enabled Bug Test Mode.
+     */
+    public static void statusTimer(Player player, String transition, int mapId, int ticks, boolean visible) {
+        Session session = session(player);
+        if (session == null) return;
+        session.event("status", "timer-" + transition, "mapId", mapId, "ticks", ticks,
+                "visible", visible, "scripts", ticks >= 0
+                        ? "4252(" + mapId + "," + ticks + ");10624(" + mapId + "," + (visible ? 1 : 0) + ")"
+                        : "10624(" + mapId + "," + (visible ? 1 : 0) + ")");
     }
 
     /** Framed-but-unimplemented client traffic, captured only while this diagnostic is enabled. */

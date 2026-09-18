@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.rs.game.player.client.Native950BugTest;
 import com.rs.utils.Utils;
 
 public class BuffDebuffTimersManager implements Serializable {
@@ -36,7 +37,11 @@ public class BuffDebuffTimersManager implements Serializable {
             if (time >= Long.MAX_VALUE || time > Utils.currentTimeMillis()) {
                 if (time != Long.MAX_VALUE) {
                     long remaining = time - Utils.currentTimeMillis();
-                    player.getPackets().sendExecuteScript(4252, mapId, (int) Math.ceil(1.6666666666666666666666666666667 * ((double) remaining / 1000.00)));
+                    int ticks = (int) Math.ceil(1.6666666666666666666666667 * ((double) remaining / 1000.00));
+                    player.getPackets().sendExecuteScript(4252, mapId, ticks);
+                    Native950BugTest.statusTimer(player, "restored", mapId, ticks, true);
+                } else {
+                    Native950BugTest.statusTimer(player, "restored", mapId, -1, true);
                 }
                 player.getPackets().sendExecuteScript(10624, mapId, 1);
             } else
@@ -60,6 +65,7 @@ public class BuffDebuffTimersManager implements Serializable {
             }
             if (time != Long.MAX_VALUE && Utils.currentTimeMillis() >= time) {
                 player.getPackets().sendExecuteScript(10624, mapId, 0);
+                Native950BugTest.statusTimer(player, "expired", mapId, -1, false);
                 itr.remove();
             }
         }
@@ -73,9 +79,13 @@ public class BuffDebuffTimersManager implements Serializable {
         removeDuplicates(timer.getMapId());
         timers.remove(timer.getMapId());
         timers.put(timer.getMapId(), time == -1 ? Long.MAX_VALUE : Utils.currentTimeMillis() + time);
-        if (time != -1)
-            player.getPackets().sendExecuteScript(4252, timer.getMapId(), (int) Math.ceil(1.6666666666666666666666666666667 * ((double) time / 1000.00)));
+        int ticks = -1;
+        if (time != -1) {
+            ticks = (int) Math.ceil(1.6666666666666666666666666666667 * ((double) time / 1000.00));
+            player.getPackets().sendExecuteScript(4252, timer.getMapId(), ticks);
+        }
         player.getPackets().sendExecuteScript(10624, timer.getMapId(), 1);
+        Native950BugTest.statusTimer(player, "started", timer.getMapId(), ticks, true);
     }
 
     private void removeDuplicates(int newId) {
@@ -99,6 +109,7 @@ public class BuffDebuffTimersManager implements Serializable {
             if (timer.getCsvarId() == newTimer.getCsvarId()) {
                 itr.remove();
                 player.getPackets().sendExecuteScript(10624, timer.getMapId(), 0);
+                Native950BugTest.statusTimer(player, "replaced", timer.getMapId(), -1, false);
             }
         }
     }
@@ -106,6 +117,7 @@ public class BuffDebuffTimersManager implements Serializable {
     public void removeTimer(Timer timer) {
         timers.remove(timer.getMapId());
         player.getPackets().sendExecuteScript(10624, timer.getMapId(), 0);
+        Native950BugTest.statusTimer(player, "removed", timer.getMapId(), -1, false);
     }
 
     public void setPlayer(Player player) {

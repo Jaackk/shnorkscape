@@ -163,8 +163,12 @@ public final class Native950ActionBar {
         if(a.interfaceId()==1430&&(a.componentId()==254||a.componentId()==261)){
             if(a.slot()==-1&&a.option()>=1&&a.option()<=BARS&&!p.isLocked()&&!p.isDead()){
                 setActiveBar(p,c,a.option()-1);reply(c,"Action bar "+(activeBar+1)+" selected.");
+                Native950BugTest.event(p,"action-bar","preset-selection","requested",a.option(),"result","selected","activeBar",activeBar+1);
             }else if(a.slot()==-1&&a.option()>BARS&&a.option()<=10&&!p.isLocked()&&!p.isDead()){
                 reply(c,"Only action bars 1-"+BARS+" are saved by this local build. Use ;;bar <1-"+BARS+"> to select one.");
+                Native950BugTest.event(p,"action-bar","preset-selection","requested",a.option(),"result","unsupported","savedBars",BARS);
+            }else{
+                Native950BugTest.event(p,"action-bar","preset-selection","requested",a.option(),"result","ignored","slot",a.slot(),"locked",p.isLocked(),"dead",p.isDead());
             }
             return true;
         }
