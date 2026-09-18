@@ -228,6 +228,20 @@ public final class Native950TransportTest {
     }
 
     @Test
+    public void unimplementedFramesMayBeObservedWithoutBecomingGameplayActions() {
+        Native950GameTransport transport = new Native950GameTransport(() -> 0, () -> 0, Thread.currentThread());
+        EmbeddedChannel channel = new EmbeddedChannel(transport);
+        try {
+            final int[] seen = {-1}; final byte[][] payload = {null};
+            transport.setUnhandledFrameObserver(frame -> { seen[0]=frame.opcode(); payload[0]=frame.payload(); });
+            byte[] frame = new byte[1 + Native950Protocol.clientSize(112)]; frame[0]=112;
+            channel.writeInbound(Unpooled.wrappedBuffer(frame));
+            assertEquals(112,seen[0]); assertArrayEquals(new byte[Native950Protocol.clientSize(112)],payload[0]);
+            assertEquals(0,transport.pendingActions()); assertTrue(channel.isActive());
+        } finally { channel.finishAndReleaseAll(); }
+    }
+
+    @Test
     public void queueOverflowClosesAndDiscardsPendingActions() {
         Native950GameTransport transport = new Native950GameTransport(new Native950Isaac(new int[] {1, 2, 3, 4}),
                 new Native950Isaac(new int[] {51, 52, 53, 54}), Thread.currentThread(), 1, 1);

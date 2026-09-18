@@ -84,6 +84,7 @@ public final class Native950Session {
         this.groundItems = new Native950GroundItemsView(Thread.currentThread(), packet -> channel.write(packet));
         this.objects = new Native950ObjectsView(Thread.currentThread(), packet -> channel.write(packet));
         this.transport = transport;
+        transport.setUnhandledFrameObserver(frame -> Native950BugTest.unhandledFrame(player, frame.opcode(), frame.payload()));
         this.scene = scene;
         this.publishedAreaType=Native950MapAreas.areaTypeFor(player.getX(),player.getY(),scene.areaType);
         this.saveStore = saveStore;

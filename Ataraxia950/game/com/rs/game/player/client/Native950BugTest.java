@@ -80,6 +80,17 @@ final class Native950BugTest {
         if (session != null) session.event(category, name, fields);
     }
 
+    /** Framed-but-unimplemented client traffic, captured only while this diagnostic is enabled. */
+    static void unhandledFrame(Player player, int opcode, byte[] payload) {
+        Session session = session(player);
+        if (session == null) return;
+        int length=payload==null?0:payload.length, limit=Math.min(length,32);
+        StringBuilder hex=new StringBuilder(limit*2);
+        for(int i=0;i<limit;i++)hex.append(String.format(Locale.ROOT,"%02x",payload[i]&255));
+        session.event("input","unhandled-frame","opcode",opcode,"bytes",length,"preview",hex,
+                "truncated",length>limit);
+    }
+
     private static synchronized Session session(Player player) { return SESSIONS.get(player); }
     private static String component(int face,int child) { return face+":"+child; }
     private static String tile(Player p) { return p.getX()+","+p.getY()+","+p.getPlane(); }

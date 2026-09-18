@@ -58,6 +58,8 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
     private final AtomicLong chatFramesDropped = new AtomicLong();
     private final java.util.Set<Integer> observedUnhandledOpcodes = new java.util.HashSet<>();
     private volatile int lastUnhandledOpcode = -1;
+    /** Installed only by the owning native session for opt-in diagnostics. */
+    private volatile Consumer<UnhandledFrame> unhandledFrameObserver;
     private volatile Throwable terminalFailure;
     private volatile ChannelHandlerContext context;
 
@@ -135,6 +137,8 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
                         // to the legacy PacketRepository or infer a gameplay action.
                         lastUnhandledOpcode = frame.opcode();
                         unhandledFrames.incrementAndGet();
+                        Consumer<UnhandledFrame> observer = unhandledFrameObserver;
+                        if (observer != null) observer.accept(new UnhandledFrame(frame.opcode(), frame.payload()));
                         if (observedUnhandledOpcodes.add(frame.opcode()))
                             System.out.println("[Ataraxia950] Unhandled native input opcode=" + frame.opcode()
                                     + " bytes=" + frame.payload().length);
@@ -256,6 +260,11 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
     }
     public long unhandledFrameCount() { return unhandledFrames.get(); }
     public int lastUnhandledOpcode() { return lastUnhandledOpcode; }
+    /**
+     * Receives only complete, framed packets whose opcode has deliberately not been given
+     * gameplay semantics. The observer runs on Netty's event loop and must return quickly.
+     */
+    public void setUnhandledFrameObserver(Consumer<UnhandledFrame> observer) { unhandledFrameObserver = observer; }
     /** NO_TIMEOUT frames observed. They are liveness only and never become actions. */
     public long keepAliveFrameCount() { return keepAliveFrames.get(); }
     /**
@@ -266,6 +275,18 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
     public long chatFramesDropped() { return chatFramesDropped.get(); }
     public Throwable terminalFailure() { return terminalFailure; }
 
+    /** Immutable bounded-diagnostic value. Payload ownership remains with this value. */
+    public static final class UnhandledFrame {
+        private final int opcode;
+        private final byte[] payload;
+        UnhandledFrame(int opcode, byte[] payload) {
+            this.opcode = opcode;
+            this.payload = payload == null ? new byte[0] : payload.clone();
+        }
+        public int opcode() { return opcode; }
+        public byte[] payload() { return payload.clone(); }
+    }
+
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         actions.clear();
@@ -275,6 +296,7 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) {
         context = null;
+        unhandledFrameObserver = null;
         actions.clear();
     }
 
