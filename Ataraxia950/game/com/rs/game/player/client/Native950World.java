@@ -1076,6 +1076,7 @@ public final class Native950World {
             try {
                 body.accept(session);
             } catch (Throwable failure) {
+                Native950BugTest.event(session.player(),"session","phase-failure","phase",name,"error",failure.getClass().getName(),"message",String.valueOf(failure.getMessage()));
                 System.err.println("[Ataraxia950] Native session " + session.playerIndex()
                         + " failed during the " + name + " phase: " + failure);
                 failure.printStackTrace();

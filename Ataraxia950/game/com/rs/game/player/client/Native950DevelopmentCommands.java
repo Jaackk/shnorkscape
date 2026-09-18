@@ -60,8 +60,13 @@ public final class Native950DevelopmentCommands {
         if (!allowed(Boolean.getBoolean(PROPERTY), player.getClientProfile(), channel.remoteAddress())) {
             reply(channel, "Local development commands are disabled for this connection."); return;
         }
-        String[] parts = text.substring(2).trim().toLowerCase(Locale.ROOT).split("\\s+");
+        String commandText=text.substring(2).trim();
+        String[] parts = commandText.toLowerCase(Locale.ROOT).split("\\s+");
         if (Native950AdminCommands.recognizes(parts[0])) {
+            // Markers are diagnostic prose, not a command argument. Preserve the user's casing
+            // in the JSONL timeline while the command name remains case-insensitive.
+            if(parts[0].equals("bug")&&commandText.length()>3)
+                parts=new String[]{"bug",commandText.substring(3).trim()};
             Native950AdminCommands.handle(player, channel, parts); return;
         }
         if (!player.isActive() || player.hasFinished() || player.isDead() || player.isLocked()) {

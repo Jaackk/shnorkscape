@@ -40,3 +40,4 @@ __pycache__/
 *.key
 *.p12
 *.pfx
+logs/bugtest/

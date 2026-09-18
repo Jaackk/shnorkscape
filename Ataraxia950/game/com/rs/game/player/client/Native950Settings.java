@@ -60,6 +60,7 @@ public final class Native950Settings {
     }
 
     public boolean handle(Native950Actions.InterfaceAction action) {
+        Native950BugTest.event(player,"settings","action","interface",action.interfaceId(),"component",action.componentId(),"slot",action.slot(),"option",action.option());
         if (isOpenRequest(action)) {
             // The action-bar cog is its combat-mode configuration entry.  Ribbon
             // controls unrelated HUD layout, which made the cog look functional

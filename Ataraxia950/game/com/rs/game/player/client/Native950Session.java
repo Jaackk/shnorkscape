@@ -314,6 +314,7 @@ public final class Native950Session {
 
     void close() {
         if (closed) return;
+        Native950BugTest.close(player,"session-close");
         closed = true;
         ready = false;
         music.close();

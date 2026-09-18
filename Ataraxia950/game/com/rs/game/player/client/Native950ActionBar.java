@@ -76,6 +76,9 @@ public final class Native950ActionBar {
      * renders.  It is deliberately event-driven: no world-tick caller refreshes the UI.
      */
     private void sync(Channel c){
+        // A single summary ties every emitted action-bar config/script burst to its mutation.
+        // The detailed wire list stays bounded to these event-driven calls, never world ticks.
+        // Player-specific tracing is emitted by the caller paths where a Player is available.
         c.write(Native950Packets.varbitSmall(1893,activeBar+1));
         c.write(Native950Packets.varbitSmall(1892,0));
         refreshRevolution(c);
@@ -91,15 +94,15 @@ public final class Native950ActionBar {
         int to=barSlot(a.targetInterfaceId(),a.targetComponentId()),from=barSlot(a.sourceInterfaceId(),a.sourceComponentId());
         if(to<0&&from<0)return false;
         if(p.isLocked()||p.isDead()||!p.getInterfaceManager().containsInterface(a.sourceInterfaceId()))return true;
-        if(from>=0&&isTrashTarget(a)){slots()[from]=0;sync(c);reply(c,"Action bar slot "+(from+1)+" cleared.");return true;}
+        if(from>=0&&isTrashTarget(a)){slots()[from]=0;sync(c);Native950BugTest.event(p,"action-bar","cleared","bar",activeBar+1,"slot",from+1);reply(c,"Action bar slot "+(from+1)+" cleared.");return true;}
         if(to<0){reply(c,"Drop an action-bar slot on the native trash target to remove it.");return true;}
         if(!p.getInterfaceManager().containsInterface(a.targetInterfaceId()))return true;
-        if(from>=0){int old=slots()[to];slots()[to]=slots()[from];slots()[from]=old;sync(c);return true;}
+        if(from>=0){int old=slots()[to];slots()[to]=slots()[from];slots()[from]=old;sync(c);Native950BugTest.event(p,"action-bar","rearranged","bar",activeBar+1,"from",from+1,"to",to+1);return true;}
         int type=bookType(a.sourceInterfaceId(),a.sourceComponentId());
         if(type<0||!p.getInterfaceManager().containsInterface(a.sourceInterfaceId())||a.sourceSlot()<1||a.sourceSlot()>BOOK_LAST_SLOT){reply(c,"Drag an ability from the melee, ranged or magic ability book.");return true;}
         int packed=pack(type,a.sourceSlot());String name=name(packed);
         if(name==null||name.isEmpty()){reply(c,"That ability is not in the current cache.");return true;}
-        slots()[to]=packed;sync(c);reply(c,name+" bound to slot "+(to+1)+".");return true;
+        slots()[to]=packed;sync(c);Native950BugTest.event(p,"action-bar","bound","bar",activeBar+1,"slot",to+1,"packed",packed,"structure",struct(packed),"name",name,"sync","varps+6992+7964");reply(c,name+" bound to slot "+(to+1)+".");return true;
     }
     static boolean isTrashTarget(Native950Actions.DragAction action){return action.targetInterfaceId()==ROOT_INTERFACE&&action.targetComponentId()==TRASH_COMPONENT;}
     public boolean button(Player p,Channel c,Native950Actions.InterfaceAction a){
@@ -113,7 +116,7 @@ public final class Native950ActionBar {
         }
         if(a.interfaceId()==1885&&a.componentId()==1){
             if(a.option()!=1||a.slot()<1||a.slot()>BOOK_LAST_SLOT||!p.getInterfaceManager().containsInterface(1885))return true;
-            reply(c,Native950AutoSpells.choose(p,a.slot()));return true;
+            String result=Native950AutoSpells.choose(p,a.slot());Native950BugTest.event(p,"magic","spell-click","slot",a.slot(),"result",result);reply(c,result);return true;
         }
         int slot=barSlot(a.interfaceId(),a.componentId());
         int type=bookType(a.interfaceId(),a.componentId());
@@ -132,6 +135,7 @@ public final class Native950ActionBar {
         }
         Native950MeleeCombat combat=p.getNative950Combat();
         String result=combat==null?"Combat is not ready.":combat.ability(p,struct(value));
+        Native950BugTest.event(p,"combat","ability-click","bar",activeBar+1,"slot",slot<0?-1:slot+1,"structure",struct(value),"result",result==null?"queued":result);
         System.out.println("[Ataraxia950] Ability action iface="+a.interfaceId()+":"+a.componentId()+" option="+a.option()
                 +" slot="+a.slot()+" structure="+struct(value)+" result="+(result==null?"queued":result));
         if(result!=null)reply(c,result);

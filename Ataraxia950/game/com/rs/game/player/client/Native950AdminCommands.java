@@ -14,7 +14,7 @@ public final class Native950AdminCommands {
         if (Native950ContentCommands.recognizes(command)) return true;
         switch (command) {
             case "god": case "infprayer": case "infadren": case "adrenaline":
-            case "almighty": case "infrunes": case "infrun": case "infammo": case "commands": case "spell":
+            case "almighty": case "infrunes": case "infrun": case "infammo": case "commands": case "spell": case "bugtest": case "bug":
             case "wars": case "warsretreat": case "death": case "deathsoffice": case "vorago": case "dummy": case "testbar": case "clearbar": case "bar":
             case "revo": case "revolution":
             case "heal": case "refill": case "max": case "coords": case "disengage": case "devhelp": case "devstatus":
@@ -43,6 +43,15 @@ public final class Native950AdminCommands {
             Native950ContentCommands.handle(p, channel, args); return;
         }
         if(command.equals("commands")) { commandList(channel,args);return; }
+        if(command.equals("bugtest")) {
+            if(args.length!=1){reply(channel,"Use ;;bugtest.");return;}
+            boolean enabled=Native950BugTest.toggle(p);
+            reply(channel,enabled?"Bug Test Mode enabled. Use ;;bug <description> when something goes wrong.":"Bug Test Mode disabled. Session log saved.");return;
+        }
+        if(command.equals("bug")) {
+            StringBuilder description=new StringBuilder();for(int i=1;i<args.length;i++){if(i>1)description.append(' ');description.append(args[i]);}
+            Native950BugTest.marker(p,description.toString());reply(channel,"Bug marker recorded. Screenshot capture queued.");return;
+        }
         if (args.length > (command.equals("adrenaline") || command.equals("bar") || command.equals("spell") ? 2 : 1)) {
             String usage=command.equals("adrenaline") ? " [0-100]" : command.equals("bar") ? " [1-3]"
                     : command.equals("spell") ? " [strike|bolt|blast|wave|surge]" : "";
@@ -150,6 +159,7 @@ public final class Native950AdminCommands {
             ";;spell [strike|bolt|blast|wave|surge] - view or select an Air auto-spell.",
             "<col=ffd166>ACTION BARS</col> ;;bar [1-3] - view/select a saved action bar; ;;revo - toggle server Revolution.",
             ";;testbar - place Backhand, Binding Shot and Impact in slots 1-3; ;;clearbar - empty the selected bar.",
+            "<col=ffd166>BUG TEST</col> ;;bugtest - toggle local UI/combat telemetry; ;;bug <description> - mark an issue and capture the game window.",
             "<col=ffd166>GEAR & ITEMS</col> ;;meleegear, ;;magegear, ;;rangegear - add full combat kits; ;;weapons - weapon kit.",
             ";;gear melee|mage|range|weapons - choose a kit; ;;item <id> [amount] - give an item.",
             ";;search <name> [page] - find item IDs; ;;findnpc <name> [page] - find NPC IDs; ;;gearhelp - kit details.",

@@ -36,8 +36,10 @@ public final class Native950Prayer {
     static void enableInterface(Channel channel){channel.write(Native950Packets.interfaceEvents(1458,39,0,38,8388610));}
     static boolean button(Player player,Native950Actions.InterfaceAction action){
         if(action.interfaceId()!=1458||action.componentId()!=39)return false;
-        if(action.option()==1&&action.slot()>=0&&action.slot()<=38&&!player.isDead()&&!player.isLocked())
+        if(action.option()==1&&action.slot()>=0&&action.slot()<=38&&!player.isDead()&&!player.isLocked()) {
+            Native950BugTest.event(player,"prayer","click","slot",action.slot(),"points",player.getPrayer().getPrayerpoints());
             player.getPrayer().delayUsePrayer(action.slot(),false);
+        }
         return true;
     }
 

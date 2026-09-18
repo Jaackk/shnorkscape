@@ -361,6 +361,7 @@ public final class Native950Interactions {
      * different facts, and conflating them attributes the drop to the wrong cause.
      */
     void handle(Native950Actions.Action action) {
+        Native950BugTest.action(player,action);
         // CLOSE_MODAL reports a change the client already made. It must reconcile
         // server state even if the player died or became inactive before this tick.
         if (action instanceof Native950Actions.CloseModalAction) {
@@ -1107,6 +1108,7 @@ public final class Native950Interactions {
     }
 
     private void button(Native950Actions.InterfaceAction action) {
+        Native950BugTest.event(player,"interface","button-dispatch","interface",action.interfaceId(),"component",action.componentId(),"slot",action.slot(),"option",action.option());
         if(Native950Prayer.button(player,action))return;
         if(player.getNative950ActionBar().button(player,channel,action))return;
         System.out.println("[Ataraxia950] Interface action " + action.interfaceId() + ":" + action.componentId()
@@ -1636,6 +1638,7 @@ public final class Native950Interactions {
     }
 
     private void drag(Native950Actions.DragAction action) {
+        Native950BugTest.event(player,"drag","dispatch","source",action.sourceInterfaceId()+":"+action.sourceComponentId(),"target",action.targetInterfaceId()+":"+action.targetComponentId());
         if(player.getNative950ActionBar().drag(player,channel,action))return;
         if(Native950InventionUi.target(action.targetComponentHash(),action.targetSlot(),action.targetItemId())){
             if(!pouchAvailable()){reject("You cannot disassemble items right now");return;}

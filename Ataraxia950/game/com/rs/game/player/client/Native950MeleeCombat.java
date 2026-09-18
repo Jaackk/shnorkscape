@@ -114,6 +114,7 @@ public final class Native950MeleeCombat {
         fighters.remove(npc);
     }
     public String attack(Player player, NPC npc) {
+        Native950BugTest.event(player,"combat","attack-request","npc",npc==null?-1:npc.getId(),"index",npc==null?-1:npc.getIndex());
         owned();
         Fighter fighter=fighters.get(npc);
         if(fighter==null) {
@@ -177,6 +178,7 @@ public final class Native950MeleeCombat {
     /** A deliberately small native basic-ability slice; legacy ability callbacks never run. */
     public String ability(Player player,int structure) {
         owned();
+        Native950BugTest.event(player,"combat","ability-request","structure",structure);
         if(structure==14726){
             Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
             if(cooldowns!=null&&tick<cooldowns.getOrDefault(structure,0L))return "Surge is cooling down.";
@@ -247,6 +249,7 @@ public final class Native950MeleeCombat {
         abilityCooldowns.computeIfAbsent(player,p->new java.util.HashMap<>()).put(structure,tick+definition.cooldown);
         int cycle=(int)Utils.currentWorldCycle();
         player.getNative950ActionBar().cooldown(player.getRealChannel(),structure,cycle,definition.cooldown);
+        Native950BugTest.event(player,"combat","cooldown","structure",structure,"cycle",cycle,"duration",definition.cooldown);
         player.getNative950ActionBar().cooldown(player.getRealChannel(),14881,cycle,3);
         nextAttack.put(player,tick+3);
         int skill=style==0?Skills.STRENGTH:style==1?Skills.RANGE:Skills.MAGIC;
