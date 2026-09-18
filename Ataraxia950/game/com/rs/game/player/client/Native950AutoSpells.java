@@ -14,6 +14,7 @@ import java.util.Map;
  * https://runescape.wiki/w/Standard_spellbook and https://runescape.wiki/w/Air_rune */
 public final class Native950AutoSpells {
     private static final Map<Player,Spell> SELECTED=new IdentityHashMap<>();
+    private static final String SETTING="combat.autocast";
     private Native950AutoSpells() { }
     public enum Spell {
         STRIKE("Air Strike",14,1,16,1), BOLT("Air Bolt",23,17,40,2), BLAST("Air Blast",37,41,61,3),
@@ -41,12 +42,24 @@ public final class Native950AutoSpells {
         Spell selected=SELECTED.get(player);
         return selected!=null&&player.getSkills().getLevel(6)>=selected.level?selected:select(player.getSkills().getLevel(6));
     }
+    static Spell forKey(int key){for(Spell spell:Spell.values())if(spell.key==key)return spell;return null;}
+    public static synchronized void writeSettings(Player player,Map<String,Integer> settings){
+        Spell selected=SELECTED.get(player);
+        if(selected!=null)settings.put(SETTING,selected.key);
+    }
+    public static synchronized void restore(Player player,Map<String,Integer> settings){
+        Spell selected=forKey(settings.getOrDefault(SETTING,-1));
+        if(selected==null)SELECTED.remove(player);else SELECTED.put(player,selected);
+    }
     static synchronized String choose(Player player,int key) { return choose(player,null,key); }
     /** The standard spellbook and the 950 combat owner both use the spell key as varbit 43's value. */
     static synchronized String choose(Player player,Channel channel,int key) {
         for(Spell spell:Spell.values())if(spell.key==key){
             if(player.getSkills().getLevel(6)<spell.level)return "You need level "+spell.level+" Magic to select "+spell.name+".";
-            SELECTED.put(player,spell);syncSelection(player,channel);return spell.name+" selected for native auto-casting.";
+            Spell before=select(player);
+            SELECTED.put(player,spell);syncSelection(player,channel);
+            Native950BugTest.event(player,"magic","selection-changed","before",before.name,"after",spell.name,"key",key);
+            return spell.name+" selected for native auto-casting.";
         }
         return "That spell is not in the supported native combat spellbook yet.";
     }

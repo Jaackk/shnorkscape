@@ -80,6 +80,37 @@ public class Native950AbilityFoundationTest {
         assertFalse(Native950Potions.handles(23531,"Drop"));
         assertFalse(Native950Potions.handles(995,"Drink"));
     }
+    @Test public void recordedAutocastOptionTwoChangesSelectionAndPublishesIt(){
+        EmbeddedChannel c=new EmbeddedChannel();Player p=Player.createNative950("spell-test",new WorldTile(3217,3258,0),c);
+        try{
+            p.setActive(true);p.getSkills().set(Skills.MAGIC,99);
+            p.getInterfaceManager().registerNativeOpen(1461,1477,1);
+            assertTrue(p.getNative950ActionBar().button(p,c,click(1461,1,58,122)));
+            assertSame(Native950AutoSpells.Spell.WAVE,Native950AutoSpells.select(p));
+            c.flush();assertTrue(hasPacket(packets(c),Native950Packets.varbitSmall(43,58)));
+            p.getNative950ActionBar().button(p,c,click(1461,1,37,122));
+            assertSame(Native950AutoSpells.Spell.BLAST,Native950AutoSpells.select(p));
+            p.getInterfaceManager().unregisterNativeOpen(1461);
+            p.getNative950ActionBar().button(p,c,click(1461,1,73,122));
+            assertSame(Native950AutoSpells.Spell.BLAST,Native950AutoSpells.select(p));
+        }finally{Native950AutoSpells.clear(p);c.finishAndReleaseAll();}
+    }
+    @Test public void spellShortcutAndCommandShareOnePersistedSelection(){
+        EmbeddedChannel c=new EmbeddedChannel();Player p=Player.createNative950("spell-test",new WorldTile(3217,3258,0),c);
+        Player restored=Player.createNative950("spell-test",new WorldTile(3217,3258,0),c);
+        try{
+            p.getSkills().set(Skills.MAGIC,99);restored.getSkills().set(Skills.MAGIC,99);
+            p.getInterfaceManager().registerNativeOpen(1430,1477,1);
+            p.getNative950ActionBar().restore(Collections.singletonMap("actionBar.0",Native950ActionBar.pack(6,14)));
+            p.getNative950ActionBar().button(p,c,click(1430,66,-1));
+            assertSame(Native950AutoSpells.Spell.STRIKE,Native950AutoSpells.select(p));
+            Map<String,Integer> settings=p.nativeSettingsSnapshot();assertTrue(settings.size()<=Native950Save.MAX_SETTINGS);
+            restored.applyNativeSettings(settings);
+            assertSame(Native950AutoSpells.Spell.STRIKE,Native950AutoSpells.select(restored));
+            Native950AutoSpells.choose(restored,c,"wave");
+            assertSame(Native950AutoSpells.Spell.WAVE,Native950AutoSpells.select(restored));
+        }finally{Native950AutoSpells.clear(p);Native950AutoSpells.clear(restored);c.finishAndReleaseAll();}
+    }
     @Test public void bootstrapEnablesPrayerAndCombatSpellGridWithOnlyOptionOne(){
         EmbeddedChannel c=new EmbeddedChannel();
         try{
@@ -115,8 +146,11 @@ public class Native950AbilityFoundationTest {
         }finally{c.finishAndReleaseAll();}
     }
     private static Native950Actions.InterfaceAction click(int face,int component,int slot){
+        return click(face,component,slot,18);
+    }
+    private static Native950Actions.InterfaceAction click(int face,int component,int slot,int opcode){
         int hash=face<<16|component;
-        return (Native950Actions.InterfaceAction)Native950Actions.decode(18,new byte[]{-1,-1,-1,(byte)(hash>>16),(byte)(hash>>24),(byte)hash,(byte)(hash>>8),(byte)(slot>>8),(byte)slot});
+        return (Native950Actions.InterfaceAction)Native950Actions.decode(opcode,new byte[]{-1,-1,-1,(byte)(hash>>16),(byte)(hash>>24),(byte)hash,(byte)(hash>>8),(byte)(slot>>8),(byte)slot});
     }
     private static List<Native950Packets.Packet> packets(EmbeddedChannel channel){
         List<Native950Packets.Packet> packets=new ArrayList<>();Object packet;

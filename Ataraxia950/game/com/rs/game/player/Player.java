@@ -1936,6 +1936,7 @@ public class Player extends Entity {
         settings.put(SETTING_BANK_QUANTITY_MODE, nativeBankQuantityMode(bank.getNativeDefaultInteractionAmount()));
         if(isNative950())getNative950Slayer().writeSettings(settings);
         if(isNative950())getNative950ActionBar().writeSettings(settings);
+        if(isNative950())com.rs.game.player.client.Native950AutoSpells.writeSettings(this,settings);
         return settings;
     }
 
@@ -1943,6 +1944,7 @@ public class Player extends Entity {
     public void applyNativeSettings(final java.util.Map<String, Integer> settings) {
         if(isNative950())getNative950Slayer().restore(settings);
         if(isNative950())getNative950ActionBar().restore(settings);
+        if(isNative950())com.rs.game.player.client.Native950AutoSpells.restore(this,settings);
         Integer value;
         if ((value = settings.get(SETTING_CHAT_EFFECTS)) != null) allowChatEffects = value != 0;
         if ((value = settings.get(SETTING_PROFANITY_FILTER)) != null) profanityFilter = value != 0;

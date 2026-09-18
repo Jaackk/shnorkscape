@@ -172,20 +172,28 @@ public final class Native950ActionBar {
             }
             return true;
         }
-        if(a.interfaceId()==1885&&a.componentId()==1){
-            if(a.option()!=1||a.slot()<1||a.slot()>BOOK_LAST_SLOT||!p.getInterfaceManager().containsInterface(1885))return true;
-            String result=Native950AutoSpells.choose(p,c,a.slot());Native950BugTest.event(p,"magic","spell-click","slot",a.slot(),"result",result);reply(c,result);return true;
-        }
         int slot=barSlot(a.interfaceId(),a.componentId());
         int type=bookType(a.interfaceId(),a.componentId());
         if(slot<0&&type<0)return false;
+        int value=slot>=0?slots()[slot]:a.slot()>0&&a.slot()<=BOOK_LAST_SLOT?pack(type,a.slot()):0;
+        int key=(value>>>4)&8191;
+        // Spells and abilities share enum6740. Live1461:1 autocast is IF_BUTTON2,
+        // while a spell shortcut on the bar is IF_BUTTON1; both own the same selection.
+        boolean spellAction=(value>>>17)==6&&Native950AutoSpells.forKey(key)!=null
+                &&(a.option()==1||(slot<0&&a.interfaceId()==1461&&a.option()==2));
+        if(spellAction){
+            if(!p.getInterfaceManager().containsInterface(a.interfaceId())||p.isLocked()||p.isDead())return true;
+            String result=Native950AutoSpells.choose(p,c,key);
+            Native950BugTest.event(p,"magic","spell-click","interface",a.interfaceId(),"component",a.componentId(),
+                    "option",a.option(),"key",key,"barSlot",slot,"result",result);
+            reply(c,result);return true;
+        }
         if(a.option()!=1||!p.getInterfaceManager().containsInterface(a.interfaceId())||p.isLocked()||p.isDead()){
             System.out.println("[Ataraxia950] Ability action ignored iface="+a.interfaceId()+":"+a.componentId()
                     +" option="+a.option()+" slot="+a.slot()+" mounted="+p.getInterfaceManager().containsInterface(a.interfaceId())
                     +" locked="+p.isLocked()+" dead="+p.isDead());
             return true;
         }
-        int value=slot>=0?slots()[slot]:a.slot()>0&&a.slot()<=BOOK_LAST_SLOT?pack(type,a.slot()):0;
         if(value==0){
             if(slot>=0)reply(c,"That action bar slot does not contain an ability.");
             System.out.println("[Ataraxia950] Ability action had no binding iface="+a.interfaceId()+":"+a.componentId()+" slot="+a.slot());
