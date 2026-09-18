@@ -61,7 +61,7 @@ final class Native950AbilityCatalog {
         d(14685,1,12,"Hurricane",0,37,34,65,80,2,2,Effect.DIRECT,false,true),
         d(14707,1,13,"Berserk",0,76,100,0,0,4,0,Effect.BUFF),
 
-        d(14663,5,1,"Piercing Shot",4,13,5,90,110,1,1,Effect.DIRECT),
+        d(14663,5,1,"Piercing Shot",4,13,5,45,55,1,2,Effect.DIRECT),
         d(14664,5,2,"Binding Shot",4,31,25,90,100,1,1,Effect.STUN),
         d(14666,5,4,"Snipe",4,7,100,150,180,2,1,Effect.DIRECT),
         d(14668,5,5,"Ricochet",4,67,17,85,105,1,1,Effect.DIRECT),

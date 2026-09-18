@@ -17,6 +17,7 @@ public final class Native950OfflineCombatAcceptance {
     public static void main(String[] args)throws Exception{
         Cache.initFlatReadOnly(Paths.get("cache"));Native950AbilityCatalog.verify();
         cadence(14670,841,new int[]{0,1,2,3,4,5,6,7});
+        cadence(14663,841,new int[]{0,1});
         cadence(14684,26579,new int[]{0,1,2,3,4,5,6,7});
         cadence(19343,1381,new int[]{0,1,2});
         cadence(14731,1381,new int[]{0,2,4,6});
@@ -70,6 +71,17 @@ public final class Native950OfflineCombatAcceptance {
             check(f.combat.revolutionCandidate(f.player,9)==-1,"Revolution ignored GCD");
             f.player.getNative950ActionBar().setActiveBar(f.channel,1);
             check(f.combat.revolutionCandidate(f.player,9)==-1,"Revolution read the inactive bar");
+        }
+        try(Fixture f=new Fixture(841)){
+            f.player.getPrayer().setPrayerpoints(990);
+            f.player.getPrayer().delayUsePrayer(13,false);
+            com.rs.game.tasks.WorldTasksManager.processTasks();com.rs.game.tasks.WorldTasksManager.processTasks();
+            check(f.player.getPrayer().hasPrayersOn(),"Death fixture Prayer did not activate");
+            f.player.setDevelopmentGodMode(false);
+            f.player.processHit(new Hit(f.player,2000,Hit.HitLook.REGULAR_DAMAGE));
+            check(f.player.isDead()&&!f.player.getPrayer().hasPrayersOn(),"Native death left Prayer active");
+            for(int tick=0;tick<6;tick++)f.step();
+            check(!f.player.isDead(),"Environmental death did not recover through native owner");
         }
         System.out.println("PASS offline native combat: "+checks+" cache-backed timing, resource, dummy and cancellation checks.");
     }

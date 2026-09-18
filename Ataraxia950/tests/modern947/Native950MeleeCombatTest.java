@@ -249,6 +249,14 @@ public class Native950MeleeCombatTest {
         assertEquals(0,combat.dotCount(player));hp=npc.getHitpoints();
         for(int i=0;i<6;i++)step();assertEquals(hp,npc.getHitpoints());
     }
+    @Test public void berserkDoesNotMultiplyBleedOpeningOrPeriodicDamage(){
+        player.getSkills().set(0,99);player.setDevelopmentGodMode(true);npc.setHitpoints(1000);
+        player.getCombatDefinitions().setSpecialAttackPercentage(100);
+        combat.ability(player,14707);step();combat.attack(player,npc);
+        assertEquals("Dismember queued.",combat.ability(player,44244));
+        step();step();step();assertEquals(990,npc.getHitpoints());
+        step();step();assertEquals(980,npc.getHitpoints());
+    }
     @Test public void repeatedClicksRespectBothCadencesAndExchangeRealDamage(){
         assertNull(combat.attack(player,npc));step();
         assertEquals(40,npc.getHitpoints());assertEquals(90,player.getHitpoints());
