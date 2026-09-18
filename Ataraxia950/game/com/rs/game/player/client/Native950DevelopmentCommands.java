@@ -25,6 +25,12 @@ public final class Native950DevelopmentCommands {
                 || command.equals("areascan") || command.equals("areastop")
                 || command.equals("open") || command.equals("unhide") || command.equals("events") || command.equals("guideclose") || command.equals("cs") || command.equals("varbit") || command.equals("varc");
     }
+    /** Bug Test controls are observational and must never interrupt an active manual test. */
+    public static boolean preservesGameplay(String text) {
+        if (text == null || !(text.startsWith("::") || text.startsWith(";;"))) return false;
+        String command = text.substring(2).trim().toLowerCase(Locale.ROOT).split("\\s+", 2)[0];
+        return command.equals("bug") || command.equals("bugtest");
+    }
     public static boolean allowed(boolean enabled, ClientProfile profile, SocketAddress remote) {
         if (!enabled || profile != ClientProfile.NATIVE_950 || !(remote instanceof InetSocketAddress)) return false;
         InetSocketAddress address = (InetSocketAddress) remote;

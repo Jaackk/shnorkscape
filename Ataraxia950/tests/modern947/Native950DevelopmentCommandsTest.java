@@ -5,6 +5,12 @@ import java.net.InetSocketAddress;
 import org.junit.Test;
 import static org.junit.Assert.*;
 public class Native950DevelopmentCommandsTest {
+    @Test public void bugTestControlsArePassiveDiagnostics() {
+        assertTrue(Native950DevelopmentCommands.preservesGameplay(";;bug animation missing"));
+        assertTrue(Native950DevelopmentCommands.preservesGameplay("::bugtest"));
+        assertFalse(Native950DevelopmentCommands.preservesGameplay(";;dummy"));
+        assertFalse(Native950DevelopmentCommands.preservesGameplay("hello"));
+    }
     @Test public void onlyExplicitCommandNamespaceIsIntercepted() {
         assertTrue(Native950DevelopmentCommands.isCommand("::nxt"));
         assertTrue(Native950DevelopmentCommands.isCommand(";;NXT effects"));

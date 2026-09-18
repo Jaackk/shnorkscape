@@ -440,13 +440,16 @@ public final class Native950Interactions {
             return;
         }
         commandsRun++;
-        cancelSkill();
-        combatActions.cancelAttack(player);
-        cancelConversations();
-        settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close();
+        boolean passiveDiagnostic=Native950DevelopmentCommands.preservesGameplay(text);
+        if(!passiveDiagnostic){
+            cancelSkill();
+            combatActions.cancelAttack(player);
+            cancelConversations();
+            settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close();
+        }
         try {
             if (Native950DevelopmentCommands.isCommand(text)) {
-                closeModal();
+                if(!passiveDiagnostic)closeModal();
                 Native950DevelopmentCommands.handle(player, channel, text, skillGuide);
             } else if (!Commands.processCommand(player, text, false, false)) commandsRefused++;
         } catch (Throwable failure) {
