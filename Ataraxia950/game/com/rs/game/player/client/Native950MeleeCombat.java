@@ -38,6 +38,7 @@ public final class Native950MeleeCombat {
     private final Map<Player,Long> globalCooldown = new IdentityHashMap<>();
     private final Map<Player,Map<Integer,Long>> abilityCooldowns = new IdentityHashMap<>();
     private final Map<Player,DamageOverTime> damageOverTime = new IdentityHashMap<>();
+    private final Map<Player,Long> berserkUntil = new IdentityHashMap<>();
     private final Map<Player,java.util.List<PendingHit>> pendingHits = new IdentityHashMap<>();
     private final Map<Player,Long> deadPlayers = new IdentityHashMap<>();
     private final Map<Integer,String> unavailableDefinitions = new java.util.TreeMap<>();
@@ -63,7 +64,7 @@ public final class Native950MeleeCombat {
     }
     public void detach(Player player) {
         owned();stop(player);deadPlayers.remove(player);nextAttack.remove(player);player.setNative950Combat(null);
-        globalCooldown.remove(player);abilityCooldowns.remove(player);damageOverTime.remove(player);pendingHits.remove(player);Native950AutoSpells.clear(player);
+        globalCooldown.remove(player);abilityCooldowns.remove(player);damageOverTime.remove(player);berserkUntil.remove(player);pendingHits.remove(player);Native950AutoSpells.clear(player);
         player.setDevelopmentGodMode(false);
         player.setInfiniteRunEnergy(false);
         player.setInfiniteCombatRunes(false);
@@ -173,7 +174,7 @@ public final class Native950MeleeCombat {
     public void clear() {
         owned();for(Player player:new ArrayList<>(targets.keySet()))stop(player);
         fighters.clear();unavailableDefinitions.clear();nextAttack.clear();deadPlayers.clear();
-        queuedAbilities.clear();globalCooldown.clear();abilityCooldowns.clear();damageOverTime.clear();pendingHits.clear();
+        queuedAbilities.clear();globalCooldown.clear();abilityCooldowns.clear();damageOverTime.clear();berserkUntil.clear();pendingHits.clear();
     }
     /** A deliberately small native basic-ability slice; legacy ability callbacks never run. */
     public String ability(Player player,int structure) {
@@ -287,8 +288,14 @@ public final class Native950MeleeCombat {
         int animation=resolution.id;
         int animationTicks=Native950AbilityCatalog.animationTicks(animation);
         java.util.List<Long> followUps=new java.util.ArrayList<Long>();
+        if(definition.effect==Native950AbilityCatalog.Effect.BUFF&&structure==14707){
+            // The mature local EOC reference uses a 33-tick Berserk duration.  The
+            // client status-owner is not yet verified, so this remains server-authoritative.
+            berserkUntil.put(player,tick+33);
+            Native950BugTest.event(player,"combat","effect-started","effect","Berserk","durationTicks",33,"endTick",tick+33);
+        }
         int total=0;
-        for(int hit=0;hit<definition.hits;hit++){
+        for(int hit=0;hit<(definition.effect==Native950AbilityCatalog.Effect.BUFF?0:definition.hits);hit++){
             int rolled=Math.max(1,maximum*percent/100);
             int requested=Rs2CombatFormula.scaleDamageForAtaraxia(rolled);
             if(hit>0){
@@ -332,6 +339,7 @@ public final class Native950MeleeCombat {
     /** Runs after input and before ordinary entity movement, on the same world tick. */
     public void beforeMovement() {
         owned();tick++;
+        expireTimedEffects();
         Iterator<Map.Entry<Player,Long>> dead=deadPlayers.entrySet().iterator();
         while(dead.hasNext()) {
             Map.Entry<Player,Long> entry=dead.next();Player player=entry.getKey();
@@ -530,6 +538,7 @@ public final class Native950MeleeCombat {
     }
     private int damage(Entity source, Entity target, int requested) {return damage(source,target,requested,Hit.HitLook.MELEE_DAMAGE);}
     private int damage(Entity source, Entity target, int requested,Hit.HitLook look) {
+        if(source instanceof Player&&isBerserkActive((Player)source))requested=Math.min(Integer.MAX_VALUE/2,requested)*2;
         int damage=target instanceof Player && ((Player)target).isInvulnerable()
                 ? 0 : Math.max(0,Math.min(target.getHitpoints(),requested));
         target.setHitpoints(target.getHitpoints()-damage);
@@ -570,6 +579,16 @@ public final class Native950MeleeCombat {
     }
     public String status() {owned();return "fighters="+fighters.size()+", unavailableTypes="+unavailableDefinitions.size()+", engaged="+targets.size()+", swings="+swings+", damagingHits="+hits+", kills="+kills+", respawns="+respawns;}
     int pendingHitCount(Player player) {owned();java.util.List<PendingHit> hits=pendingHits.get(player);return hits==null?0:hits.size();}
+    boolean isBerserkActive(Player player) {owned();return tick<berserkUntil.getOrDefault(player,0L);}
+    private void expireTimedEffects(){
+        Iterator<Map.Entry<Player,Long>> effects=berserkUntil.entrySet().iterator();
+        while(effects.hasNext()){
+            Map.Entry<Player,Long> effect=effects.next();
+            if(tick<effect.getValue())continue;
+            Native950BugTest.event(effect.getKey(),"combat","effect-expired","effect","Berserk","endTick",effect.getValue());
+            effects.remove();
+        }
+    }
     static WorldTile respawnTile(){return new WorldTile(3217,3258,0);}
     private boolean available(Player player,NPC npc) {
         return player!=null&&player.getClientProfile()==ClientProfile.NATIVE_950&&access.player(player)&&access.npc(npc)

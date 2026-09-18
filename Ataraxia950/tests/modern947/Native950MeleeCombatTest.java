@@ -85,6 +85,13 @@ public class Native950MeleeCombatTest {
         assertNotNull(combat.ability(player,14664));assertNotNull(combat.ability(player,14727));
         assertNotNull(combat.ability(player,14688));assertNull(combat.ability(player,14682));
     }
+    @Test public void berserkIsAThirtyThreeTickMeleeBuffRatherThanAnImmediateHit(){
+        player.getSkills().set(0,76);player.getCombatDefinitions().setSpecialAttackPercentage(100);npc.setHitpoints(1000);
+        assertNull(combat.attack(player,npc));assertNull(combat.ability(player,14707));step();
+        assertTrue(combat.isBerserkActive(player));assertEquals("Berserk must not deal an immediate hit",1000,npc.getHitpoints());
+        for(int i=0;i<33;i++)step();
+        assertFalse(combat.isBerserkActive(player));
+    }
     @Test public void multiHitAbilitiesPublishTheirFirstHitBeforeTheirScheduledFollowUps(){
         player.getSkills().set(0,21);npc.setHitpoints(1000);combat.attack(player,npc);
         assertNull(combat.ability(player,14701));step();

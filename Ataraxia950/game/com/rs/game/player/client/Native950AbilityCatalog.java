@@ -9,7 +9,7 @@ import java.util.*;
 
 /** Paired950 definitions. A tooltip coefficient is not a verified server damage formula. */
 final class Native950AbilityCatalog {
-    enum Effect { DIRECT, STUN, EXECUTE, BLEED, FLOW, MOVEMENT }
+    enum Effect { DIRECT, STUN, EXECUTE, BLEED, BUFF, FLOW, MOVEMENT }
     static final class Definition {
         final int struct,book,key,skill,level,cooldown,minPercent,maxPercent,tier,hits;
         final String name;
@@ -40,7 +40,7 @@ final class Native950AbilityCatalog {
         d(14701,1,10,"Fury",0,21,25,105,125,1,3,Effect.DIRECT),
         d(14704,1,11,"Assault",0,3,10,55,70,2,4,Effect.DIRECT),
         d(14685,1,12,"Hurricane",0,37,34,65,80,2,2,Effect.DIRECT,false,true),
-        d(14707,1,13,"Berserk",0,76,100,220,260,4,1,Effect.DIRECT),
+        d(14707,1,13,"Berserk",0,76,100,220,260,4,1,Effect.BUFF),
 
         d(14663,5,1,"Piercing Shot",4,13,5,90,110,1,1,Effect.DIRECT),
         d(14664,5,2,"Binding Shot",4,31,25,90,100,1,1,Effect.STUN),
