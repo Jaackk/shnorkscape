@@ -23,6 +23,12 @@ public final class Native950OfflineCombatAcceptance {
         cadence(14674,841,new int[]{0,1,2,3});
         cadence(14736,1381,new int[]{0});
         try(Fixture f=new Fixture(841)){
+            check(f.combat.ability(f.player,19251)==null,"Targetless Swiftness refused");
+            f.step();check(f.npc.getNextHits().isEmpty(),"Swiftness dealt a fake opening hit");
+            check(f.combat.combatTarget(f.player)==null,"Buff created a target");
+            check(f.combat.ability(f.player,19251)!=null,"Buff ignored cooldown");
+        }
+        try(Fixture f=new Fixture(841)){
             f.start(14670);f.step();f.player.getEquipment().getItems().set(3,new Item(861));
             f.step();check(f.combat.pendingHitCount(f.player)==0,"Weapon swap retained channel hits");
         }

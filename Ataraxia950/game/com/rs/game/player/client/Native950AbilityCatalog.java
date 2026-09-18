@@ -21,7 +21,8 @@ final class Native950AbilityCatalog {
             this.cooldown=cooldown;minPercent=min;maxPercent=max;this.tier=tier;this.hits=hits;this.effect=effect;
             this.offhandRequired=offhandRequired;this.twoHandedRequired=twoHandedRequired;
         }
-        boolean targetRequired(){return effect!=Effect.MOVEMENT;}
+        boolean targetRequired(){return effect!=Effect.MOVEMENT&&effect!=Effect.BUFF;}
+        boolean revolutionEligible(){return effect!=Effect.MOVEMENT;}
         int style(){return book==1?0:book==5?1:2;}
         // Paired 950 params 2798/2800 use tenths of one percent. Tier 2 is
         // enhanced, not the pre-modernisation 50%-admission/15%-cost threshold.
@@ -58,7 +59,7 @@ final class Native950AbilityCatalog {
         d(14701,1,10,"Fury",0,21,25,105,125,1,3,Effect.DIRECT),
         d(14704,1,11,"Assault",0,3,10,55,70,2,4,Effect.DIRECT),
         d(14685,1,12,"Hurricane",0,37,34,65,80,2,2,Effect.DIRECT,false,true),
-        d(14707,1,13,"Berserk",0,76,100,220,260,4,1,Effect.BUFF),
+        d(14707,1,13,"Berserk",0,76,100,0,0,4,0,Effect.BUFF),
 
         d(14663,5,1,"Piercing Shot",4,13,5,90,110,1,1,Effect.DIRECT),
         d(14664,5,2,"Binding Shot",4,31,25,90,100,1,1,Effect.STUN),
@@ -67,7 +68,7 @@ final class Native950AbilityCatalog {
         d(14669,5,6,"Snap Shot",4,2,0,70,90,2,2,Effect.DIRECT),
         d(14670,5,7,"Rapid Fire",4,62,34,45,55,2,8,Effect.DIRECT),
         d(14674,5,9,"Deadshot",4,21,50,115,115,4,4,Effect.DIRECT),
-        d(19251,5,10,"Death's Swiftness",4,76,100,220,260,4,1,Effect.DIRECT),
+        d(19251,5,10,"Death's Swiftness",4,76,100,0,0,4,0,Effect.BUFF),
 
         d(14727,6,3,"Impact",6,31,25,65,75,1,1,Effect.STUN),
         d(14728,6,4,"Chain",6,51,17,90,110,1,1,Effect.DIRECT),
@@ -96,12 +97,16 @@ final class Native950AbilityCatalog {
                 ||s.getIntValue(2800)!=10*d.adrenalineGain()
                 ||(s.getIntValue(2811)==1)!=d.offhandRequired
                 ||(s.getIntValue(2812)==1)!=d.twoHandedRequired
+                ||(d.effect==Effect.BUFF)!=(s.getIntValue(2809)==1)
                 ||Native950ActionBar.struct(Native950ActionBar.pack(d.book,d.key))!=d.struct)
                 throw new IllegalStateException("Changed950 ability definition: "+d.name);
             if(d.channelled()&&d.struct!=14701&&d.struct!=14666
                     &&(s.getIntValue(8884)!=d.hitSpacing()||s.getIntValue(8885)!=d.hits-1))
                 throw new IllegalStateException("Changed950 channel cadence: "+d.name);
         }
+        for(Native950CombatBuffs.Type type:Native950CombatBuffs.Type.values())
+            if(RS3GeneralRequirementMap.getMap(type.structure).getIntValue(3740)!=type.duration)
+                throw new IllegalStateException("Changed950 buff duration: "+type);
     }
     static final class AnimationResolution {
         final int id; final String source;

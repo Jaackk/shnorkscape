@@ -9,7 +9,7 @@ final class Native950Revolution {
         int end=Math.min(structures.length,Math.min(Native950ActionBar.SLOTS,Math.max(0,enabledSlots)));
         for(int i=0;i<end;i++){
             Native950AbilityCatalog.Definition d=Native950AbilityCatalog.get(structures[i]);
-            if(d!=null&&d.targetRequired()&&canExecute.test(d.struct))return d.struct;
+            if(d!=null&&d.revolutionEligible()&&canExecute.test(d.struct))return d.struct;
         }
         return -1;
     }

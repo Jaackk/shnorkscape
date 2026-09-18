@@ -184,6 +184,14 @@ public class Native950MeleeCombatTest {
         for(int i=0;i<33;i++)step();
         assertFalse(combat.isBerserkActive(player));
     }
+    @Test public void berserkCanBeQueuedAndExecutedWithoutInventingACombatTarget(){
+        player.getSkills().set(0,99);player.getCombatDefinitions().setSpecialAttackPercentage(100);
+        assertNull(combat.ability(player,14707));assertFalse(combat.isBerserkActive(player));
+        step();assertTrue(combat.isBerserkActive(player));assertNull(combat.combatTarget(player));
+        assertEquals(0,player.getCombatDefinitions().getSpecialAttackPercentage());
+        assertEquals(0,npc.getNextHits().size());assertNotNull(combat.ability(player,14707));
+        combat.detach(player);assertFalse(combat.isBerserkActive(player));
+    }
     @Test public void multiHitAbilitiesPublishTheirFirstHitBeforeTheirScheduledFollowUps(){
         player.getSkills().set(0,21);npc.setHitpoints(1000);combat.attack(player,npc);
         assertNull(combat.ability(player,14701));step();

@@ -61,6 +61,8 @@ public class Native950AbilityFoundationTest {
         assertEquals(-1,Native950Revolution.select(bar,3,id->id!=14682));
         assertEquals(-1,Native950Revolution.select(bar,14,id->false));
         assertEquals(-1,Native950Revolution.select(bar,0,id->true));
+        assertEquals(14707,Native950Revolution.select(new int[]{14726,14707,14682},3,id->true));
+        assertEquals(19251,Native950Revolution.select(new int[]{19251},1,id->true));
     }
     @Test public void effectCadenceIsIndependentOfMissingLegacyAnimationFrames(){
         assertEquals(1,Native950AbilityCatalog.animationTicksForMillis(0));
