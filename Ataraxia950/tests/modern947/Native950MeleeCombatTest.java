@@ -216,6 +216,12 @@ public class Native950MeleeCombatTest {
         access.reachable=false;step();assertEquals(0,combat.pendingHitCount(player));
         for(int i=0;i<6;i++)step();assertEquals(hp,npc.getHitpoints());
     }
+    @Test public void weaponSwitchCancelsOutstandingChannelHitsEvenWithinTheSameStyle(){
+        player.getSkills().set(0,99);npc.setHitpoints(1000);combat.attack(player,npc);
+        combat.ability(player,14701);step();int hp=npc.getHitpoints();
+        player.getEquipment().getItems().set(com.rs.game.player.Equipment.SLOT_WEAPON,new com.rs.game.item.Item(1));
+        step();assertEquals(0,combat.pendingHitCount(player));assertEquals(hp,npc.getHitpoints());
+    }
     @Test public void repeatedClicksRespectBothCadencesAndExchangeRealDamage(){
         assertNull(combat.attack(player,npc));step();
         assertEquals(40,npc.getHitpoints());assertEquals(90,player.getHitpoints());

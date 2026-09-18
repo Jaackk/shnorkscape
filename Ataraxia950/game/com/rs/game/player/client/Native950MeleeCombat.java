@@ -316,8 +316,8 @@ public final class Native950MeleeCombat {
         int level=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(skill),0,0,1);
         int maximum=Rs2CombatFormula.meleeOrRangedMaxHit(level,gear.strengthBonus,1);
         if(gear.profile!=null)maximum=gear.profile.maxHit(player,maximum);
-        // Coefficients come from the paired ability definitions.  This remains a
-        // minimum playable combat model, not a claim of retail EOC parity.
+        // Alpha coefficients are explicit approximations, not values decoded from
+        // the ability cache. The cache verifies identity, requirements and cadence.
         int percent=definition.minPercent+rolls.damage(Math.max(0,definition.maxPercent-definition.minPercent));
         if(definition.effect==Native950AbilityCatalog.Effect.EXECUTE
                 && fighter.npc.getHitpoints()*2<=fighter.profile.hp)percent+=20;
@@ -338,10 +338,10 @@ public final class Native950MeleeCombat {
         for(int hit=0;hit<(definition.effect==Native950AbilityCatalog.Effect.BUFF?0:definition.hits);hit++){
             int rolled=Math.max(1,maximum*percent/100);
             int requested=Rs2CombatFormula.scaleDamageForAtaraxia(rolled);
-            if(hit>0){
+            if(definition.hitDelay(hit)>0){
                 long dueTick=tick+definition.hitDelay(hit);
                 pendingHits.computeIfAbsent(player,p->new ArrayList<>()).add(new PendingHit(fighter,requested,dueTick,gear,-1,
-                        definition.channelled()?structure:-1));
+                        definition.channelled()?structure:-1,player));
                 followUps.add(dueTick);
                 continue;
             }
@@ -363,7 +363,7 @@ public final class Native950MeleeCombat {
                 "animationLockEndMillis",player.getLastAnimationEnd(),"graphic",effect<0?"none":effect,
                 "targetGraphic",targetGraphic>0?targetGraphic:"none","cooldownDuration",definition.cooldown,
                 "gcdEndTick",tick+3,"channelEndTick",channelUntil.getOrDefault(player,0L),
-                "hitTimingSource","effect-cadence","firstHitTick",definition.effect==Native950AbilityCatalog.Effect.BUFF?"none":tick,
+                "hitTimingSource","effect-cadence","firstHitTick",definition.effect==Native950AbilityCatalog.Effect.BUFF?"none":tick+definition.hitDelay(0),
                 "followUpHitTicks",followUps.toString());
         if(definition.adrenalineCost()>0)player.getCombatDefinitions().decreaseSpecialAttack(definition.adrenalineCost());
         else if(definition.adrenalineGain()>0)player.getCombatDefinitions().setSpecialAttackPercentage(
@@ -578,7 +578,8 @@ public final class Native950MeleeCombat {
         Iterator<PendingHit> iterator=scheduled.iterator();
         while(iterator.hasNext()){
             PendingHit hit=iterator.next();
-            if(hit.channelStructure>=0&&!validChannel(player,fighter,hit.channelStructure)){
+            if(hit.channelStructure>=0&&(!validChannel(player,fighter,hit.channelStructure)
+                    ||player.getEquipment().getWeaponId()!=hit.weapon||player.getEquipment().getShieldId()!=hit.offhand)){
                 iterator.remove();channelUntil.remove(player);
                 Native950BugTest.event(player,"combat","channel-hit-cancelled","structure",hit.channelStructure,
                         "dueTick",hit.dueTick,"reason","target-range-style-or-interruption");
@@ -793,9 +794,12 @@ public final class Native950MeleeCombat {
         DamageOverTime(Fighter fighter,int damage,int remaining,long nextTick,Loadout gear){this.fighter=fighter;this.damage=damage;this.remaining=remaining;this.nextTick=nextTick;this.gear=gear;}
     }
     private static final class PendingHit {
-        final Fighter fighter;final int damage;final long dueTick;final Loadout gear;final int impactGraphic,channelStructure;
+        final Fighter fighter;final int damage;final long dueTick;final Loadout gear;final int impactGraphic,channelStructure,weapon,offhand;
         PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear){this(fighter,damage,dueTick,gear,-1);}
-        PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear,int impactGraphic){this(fighter,damage,dueTick,gear,impactGraphic,-1);}
-        PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear,int impactGraphic,int channelStructure){this.fighter=fighter;this.damage=damage;this.dueTick=dueTick;this.gear=gear;this.impactGraphic=impactGraphic;this.channelStructure=channelStructure;}
+        PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear,int impactGraphic){this(fighter,damage,dueTick,gear,impactGraphic,-1,null);}
+        PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear,int impactGraphic,int channelStructure,Player caster){
+            this.fighter=fighter;this.damage=damage;this.dueTick=dueTick;this.gear=gear;this.impactGraphic=impactGraphic;this.channelStructure=channelStructure;
+            weapon=caster==null?-1:caster.getEquipment().getWeaponId();offhand=caster==null?-1:caster.getEquipment().getShieldId();
+        }
     }
 }

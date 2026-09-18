@@ -89,6 +89,20 @@ public class Native950AbilityFoundationTest {
             Native950AutoSpells.clear(p);
         }finally{c.finishAndReleaseAll();}
     }
+    @Test public void pairedChannelsHaveExplicitCadenceAndBaseUltimatesDoNotAssumeAnIgneousCape(){
+        for(int id:new int[]{14684,14670}){
+            Native950AbilityCatalog.Definition d=Native950AbilityCatalog.get(id);
+            assertEquals(8,d.hits);assertEquals(8,d.channelTicks());
+            for(int hit=0;hit<8;hit++)assertEquals(hit,d.hitDelay(hit));
+        }
+        Native950AbilityCatalog.Definition concentrated=Native950AbilityCatalog.get(19343);
+        assertEquals(3,concentrated.hits);assertEquals(3,concentrated.channelTicks());
+        assertEquals(2,Native950AbilityCatalog.get(14666).hitDelay(0));
+        assertEquals(3,Native950AbilityCatalog.get(14666).channelTicks());
+        assertEquals(Native950AbilityCatalog.Effect.DIRECT,Native950AbilityCatalog.get(14674).effect);
+        assertEquals(4,Native950AbilityCatalog.get(14674).hits);
+        assertEquals(1,Native950AbilityCatalog.get(14736).hits);
+    }
     @Test public void overloadFlaskRoutesOnlyThroughTheEstablishedDrinkOwner(){
         assertTrue(Native950Potions.handles(23531,"Drink"));
         assertTrue(Native950Potions.handles(15332,"Drink"));

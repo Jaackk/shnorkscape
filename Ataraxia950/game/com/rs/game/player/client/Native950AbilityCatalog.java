@@ -32,12 +32,14 @@ final class Native950AbilityCatalog {
         }
         int adrenalineRequired(){return adrenalineCost();}
         int adrenalineGain(){return struct==14679?12:tier==1?9:0;}
-        boolean channelled(){return struct==14684||struct==14701||struct==14704||struct==14670||struct==14731||struct==19343;}
+        boolean channelled(){return struct==14684||struct==14701||struct==14704||struct==14666||struct==14670||struct==14731||struct==19343;}
+        int hitSpacing(){return struct==14684||struct==14670||struct==19343?1:2;}
         /** EOC effect cadence, never inferred from a sequence's optional legacy frame table. */
         int hitDelay(int hit){
             if(hit<0||hit>=hits)throw new IllegalArgumentException("Invalid hit index");
+            if(struct==14666)return 2; // Paired channel interval plus the 1.8-second wind-up.
             if(struct==14701)return hit==2?5:hit*2;
-            if(channelled())return hit*(struct==14670?1:2);
+            if(channelled())return hit*hitSpacing();
             return hit;
         }
         int channelTicks(){return channelled()?hitDelay(hits-1)+1:0;}
@@ -48,7 +50,7 @@ final class Native950AbilityCatalog {
         d(14678,1,1,"Barge",0,65,34,100,120,1,1,Effect.DIRECT),
         d(14679,1,2,"Adaptive Strike",0,7,9,90,110,1,1,Effect.DIRECT),
         d(14682,1,3,"Backhand",0,31,25,95,105,1,1,Effect.STUN),
-        d(14684,1,4,"Flurry",0,45,34,45,55,2,3,Effect.DIRECT,true,false),
+        d(14684,1,4,"Flurry",0,45,34,45,55,2,8,Effect.DIRECT,true,false),
         d(14686,1,5,"Overpower",0,15,50,180,220,4,1,Effect.DIRECT),
         d(14688,1,6,"Meteor Strike",0,90,100,240,280,4,1,Effect.DIRECT),
         d(44244,1,8,"Dismember",0,50,40,70,85,2,1,Effect.BLEED),
@@ -63,8 +65,8 @@ final class Native950AbilityCatalog {
         d(14666,5,4,"Snipe",4,7,100,150,180,2,1,Effect.DIRECT),
         d(14668,5,5,"Ricochet",4,67,17,85,105,1,1,Effect.DIRECT),
         d(14669,5,6,"Snap Shot",4,2,0,70,90,2,2,Effect.DIRECT),
-        d(14670,5,7,"Rapid Fire",4,62,34,45,55,2,4,Effect.DIRECT),
-        d(14674,5,9,"Deadshot",4,21,50,210,250,4,1,Effect.BLEED),
+        d(14670,5,7,"Rapid Fire",4,62,34,45,55,2,8,Effect.DIRECT),
+        d(14674,5,9,"Deadshot",4,21,50,115,115,4,4,Effect.DIRECT),
         d(19251,5,10,"Death's Swiftness",4,76,100,220,260,4,1,Effect.DIRECT),
 
         d(14727,6,3,"Impact",6,31,25,65,75,1,1,Effect.STUN),
@@ -74,7 +76,7 @@ final class Native950AbilityCatalog {
         d(14731,6,7,"Asphyxiate",6,59,34,45,55,2,4,Effect.DIRECT),
         d(14733,6,9,"Wild Magic",6,3,9,75,95,2,2,Effect.DIRECT),
         d(14735,6,10,"Tsunami",6,90,100,230,270,4,1,Effect.DIRECT),
-        d(14736,6,11,"Omnipower",6,12,50,65,80,4,4,Effect.DIRECT),
+        d(14736,6,11,"Omnipower",6,12,50,460,460,4,1,Effect.DIRECT),
         d(19342,6,165,"Sonic Wave",6,6,25,90,110,1,1,Effect.FLOW),
         d(19343,6,166,"Concentrated Blast",6,66,9,70,90,1,3,Effect.DIRECT),
         d(14726,6,2,"Surge",16,5,34,0,0,7,0,Effect.MOVEMENT)));
@@ -96,6 +98,9 @@ final class Native950AbilityCatalog {
                 ||(s.getIntValue(2812)==1)!=d.twoHandedRequired
                 ||Native950ActionBar.struct(Native950ActionBar.pack(d.book,d.key))!=d.struct)
                 throw new IllegalStateException("Changed950 ability definition: "+d.name);
+            if(d.channelled()&&d.struct!=14701&&d.struct!=14666
+                    &&(s.getIntValue(8884)!=d.hitSpacing()||s.getIntValue(8885)!=d.hits-1))
+                throw new IllegalStateException("Changed950 channel cadence: "+d.name);
         }
     }
     static final class AnimationResolution {
