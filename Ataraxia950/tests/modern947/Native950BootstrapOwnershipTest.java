@@ -23,6 +23,24 @@ public final class Native950BootstrapOwnershipTest {
             assertEquals(-1,p.getInterfaceManager().getInterfaceParentId(1433));
         } finally { ch.finishAndReleaseAll(); }
     }
+    @Test public void nativeAbilityBookMountsBecomeValidInputOwners() {
+        EmbeddedChannel ch=new EmbeddedChannel();
+        try {
+            Player p=Player.createNative950("bootstrap-books",new WorldTile(3222,3222,0),ch);
+            // These are the concrete 950 cache slots selected by the login handoff:
+            // 6=Melee, 7=Ranged and 39=Defence.  Mirroring the exact mounts is what
+            // lets the action-bar input path accept a drag from a visible book.
+            Native950World.mirrorBootstrapInterfaces(p,Arrays.asList(
+                Native950Packets.openTop(1477),Native950Packets.openSub(1477,147,1460,true),
+                Native950Packets.openSub(1477,158,1452,true),Native950Packets.openSub(1477,268,1880,true)));
+            assertTrue(p.getInterfaceManager().containsInterface(1460));
+            assertTrue(p.getInterfaceManager().containsInterface(1452));
+            assertTrue(p.getInterfaceManager().containsInterface(1880));
+            assertEquals((1477<<16)|147,p.getInterfaceManager().getInterfaceParentId(1460));
+            assertEquals((1477<<16)|158,p.getInterfaceManager().getInterfaceParentId(1452));
+            assertEquals((1477<<16)|268,p.getInterfaceManager().getInterfaceParentId(1880));
+        } finally { ch.finishAndReleaseAll(); }
+    }
     @Test public void replacementAndCloseRetireNestedPagesButPreserveUnrelatedHud() {
         Map<Integer,Integer> state=Native950World.bootstrapInterfaceParents(Arrays.asList(
             Native950Packets.openSub(1477,114,1462,true),Native950Packets.openSub(1477,715,1448,true),
