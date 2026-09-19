@@ -13,6 +13,12 @@ class RestoreSchemaTests(unittest.TestCase):
         self.assertEqual(schema(),self.s)
         self.assertEqual(len(self.s['ids']),912)
         self.assertEqual({v['id'] for v in self.s['slotMetadata'].values()},{3295,3380,5215,5352,2912})
+    def test_v4_generated_artifacts(self):
+        from generate_v4_schema import artifacts
+        from snapshot_schema import HERE
+        data,header=artifacts()
+        self.assertEqual((HERE/'snapshot-schema-v4.json').read_bytes(),data)
+        self.assertEqual((HERE/'snapshot-schema-v4.h').read_text(),header)
     def test_plan_is_not_executable_and_masks_sibling_flags(self):
         e=self.fixture()
         next(i for i in e['items'] if i['id']==3295)['int32']=-1

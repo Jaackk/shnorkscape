@@ -15,6 +15,13 @@ class ImageTest(unittest.TestCase):
         self.assertEqual(sha(self.raw),INPUT_HASH);self.assertEqual(build(self.raw),(self.out,self.info))
     def test_wrong_input_rejected(self):
         with self.assertRaisesRegex(ValueError,'Unapproved'):build(self.raw[:-1])
+    def test_v4_import_and_determinism(self):
+        out,info=build(self.raw,b'shnork_workspace_probe_v4.dll')
+        self.assertEqual(build(self.raw,b'shnork_workspace_probe_v4.dll'),(out,info))
+        p=pefile.PE(data=out)
+        self.assertEqual(p.DIRECTORY_ENTRY_IMPORT[-1].dll,b'shnork_workspace_probe_v4.dll')
+        for at,n,h in info['critical_spans']:self.assertEqual(sha(p.get_data(at,n)),h)
+        with self.assertRaisesRegex(ValueError,'Unapproved diagnostic import'):build(self.raw,b'other.dll')
     def test_bootstrap_control_provenance(self):
         root=SOURCE.parents[1]
         props=(root/'Ataraxia950/resources/native950/workspace-integer-descriptor-950.properties').read_text()

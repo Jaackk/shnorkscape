@@ -9,7 +9,13 @@
 #include <atomic>
 #include <string>
 #include <vector>
+#ifdef PROBE_FULL_WORKSPACE
+#include "snapshot-schema-v4.h"
+static constexpr int probeVersion=4, expectedCount=912;
+#else
 #include "snapshot-schema.h"
+static constexpr int probeVersion=3, expectedCount=907;
+#endif
 #ifndef PROBE_IMAGE_HASH
 #error Require the deterministic diagnostic image hash
 #endif
@@ -95,7 +101,7 @@ struct Control {int id;int bootstrap;};
 static const Control controls[]={{2852,319951120},{2912,32},{3721,100992003},{4955,16780678},{5139,-2146664148},{6458,8390656},{3296,0}};
 struct Results {Sample items[7]{};bool stable[7]{};};
 static void report(const char* status,const char* phase,const Results& r) {
-    char path[MAX_PATH];sprintf_s(path,"C:\\Games\\950OpenSource\\logs\\workspace-static-v3-%lu-%s-controls.json",GetCurrentProcessId(),phase);
+    char path[MAX_PATH];sprintf_s(path,"C:\\Games\\950OpenSource\\logs\\workspace-static-v%d-%lu-%s-controls.json",probeVersion,GetCurrentProcessId(),phase);
     HANDLE f=CreateFileA(path,GENERIC_WRITE,FILE_SHARE_READ,nullptr,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,nullptr);
     if(f==INVALID_HANDLE_VALUE)return;
     char line[8192];int n=sprintf_s(line,"{\"status\":\"%s\",\"phase\":\"%s\",\"pid\":%lu,\"thread\":%lu,\"nativeWrites\":false,\"controls\":[",status,phase,GetCurrentProcessId(),GetCurrentThreadId());
@@ -113,7 +119,7 @@ static bool equalSample(const Sample& a,const Sample& b) {
 }
 static bool snapshot(uintptr_t domain,const char* phase) {
     constexpr size_t count=sizeof(workspaceIds)/sizeof(workspaceIds[0]);
-    static_assert(count==907,"Unexpected snapshot scope");
+    static_assert(count==expectedCount,"Unexpected snapshot scope");
     std::vector<Sample> first(count),second(count);
     bool valid=true;
     // Two complete passes on the native main-logic thread, never native getters/setters.
@@ -122,8 +128,8 @@ static bool snapshot(uintptr_t domain,const char* phase) {
     for(size_t i=0;i<count;i++)
         if(!equalSample(first[i],second[i])||first[i].bucketCount!=first[0].bucketCount||first[i].elements!=first[0].elements)valid=false;
     char line[1024];
-    sprintf_s(line,"{\"version\":3,\"status\":\"%s\",\"phase\":\"%s\",\"schemaSha256\":\"%s\",\"imageSha256\":\"%s\",\"pid\":%lu,\"thread\":%lu,\"tick\":%llu,\"nativeWrites\":false,\"bucketCount\":%llu,\"elementCount\":%llu,\"items\":[",
-        valid?"snapshot-stable":"snapshot-refused",phase,schemaHash,PROBE_IMAGE_HASH,GetCurrentProcessId(),GetCurrentThreadId(),GetTickCount64(),first[0].bucketCount,first[0].elements);
+    sprintf_s(line,"{\"version\":%d,\"status\":\"%s\",\"phase\":\"%s\",\"schemaSha256\":\"%s\",\"imageSha256\":\"%s\",\"pid\":%lu,\"thread\":%lu,\"tick\":%llu,\"nativeWrites\":false,\"bucketCount\":%llu,\"elementCount\":%llu,\"items\":[",
+        probeVersion,valid?"snapshot-stable":"snapshot-refused",phase,schemaHash,PROBE_IMAGE_HASH,GetCurrentProcessId(),GetCurrentThreadId(),GetTickCount64(),first[0].bucketCount,first[0].elements);
     std::string json=line;
     for(size_t i=0;i<count;i++) {
         const auto& a=first[i];char value[32],tag[16];
@@ -134,7 +140,7 @@ static bool snapshot(uintptr_t domain,const char* phase) {
         json+=line;
     }
     json+="]}\n";
-    char path[MAX_PATH];sprintf_s(path,"C:\\Games\\950OpenSource\\logs\\workspace-static-v3-%lu-%s.json",GetCurrentProcessId(),phase);
+    char path[MAX_PATH];sprintf_s(path,"C:\\Games\\950OpenSource\\logs\\workspace-static-v%d-%lu-%s.json",probeVersion,GetCurrentProcessId(),phase);
     HANDLE f=CreateFileA(path,GENERIC_WRITE,FILE_SHARE_READ,nullptr,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,nullptr);
     if(f==INVALID_HANDLE_VALUE)return false;
     DWORD written=0;bool saved=WriteFile(f,json.data(),(DWORD)json.size(),&written,nullptr)&&written==json.size();

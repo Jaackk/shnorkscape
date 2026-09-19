@@ -43,7 +43,7 @@ def thunk(rva,iat):
     c+=bytes.fromhex('ffb424c0000000 9d 488da424d8000000 c3')
     return bytes(c)
 
-def build(raw):
+def build(raw, dll_name=DLL_NAME):
     require(sha(raw)==INPUT_HASH,'Unapproved input image')
     p=pefile.PE(data=raw)
     for at,n,h in SPANS:require(sha(p.get_data(at,n))==h,f'Signature mismatch {at:x}')
@@ -60,7 +60,8 @@ def build(raw):
     data=bytearray()
     def put(blob,a=1):
         data.extend(b'\0'*(align(len(data),a)-len(data)));at=data_rva+len(data);data.extend(blob);return at
-    dll=put(DLL_NAME+b'\0')
+    require(dll_name in (DLL_NAME,b'shnork_workspace_probe_v4.dll'),'Unapproved diagnostic import')
+    dll=put(dll_name+b'\0')
     name=put(b'\0\0WorkspaceProbe\0',2)
     ilt=put(struct.pack('<QQ',name,0),8)
     iat=put(struct.pack('<QQ',name,0),8)
@@ -96,9 +97,9 @@ def build(raw):
     return result,dict(input_sha256=INPUT_HASH,output_sha256=sha(result),thunk_rva=code_rva,iat_rva=iat,thunk_size=len(code),unwind_rva=unwind,critical_spans=SPANS)
 
 if __name__=='__main__':
-    ap=argparse.ArgumentParser();ap.add_argument('input',type=Path);ap.add_argument('output',type=Path);ap.add_argument('manifest',type=Path);args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('input',type=Path);ap.add_argument('output',type=Path);ap.add_argument('manifest',type=Path);ap.add_argument('--v4',action='store_true');args=ap.parse_args()
     require(args.input.resolve()!=args.output.resolve(),'Never replace production')
-    result,manifest=build(args.input.read_bytes())
+    result,manifest=build(args.input.read_bytes(),b'shnork_workspace_probe_v4.dll' if args.v4 else DLL_NAME)
     require(not args.output.exists(),'Output already exists; do not overwrite')
     args.output.write_bytes(result);args.manifest.write_text(json.dumps(manifest,indent=2)+'\n')
     print(json.dumps(manifest,indent=2))

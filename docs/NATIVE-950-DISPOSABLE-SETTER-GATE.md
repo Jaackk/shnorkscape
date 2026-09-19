@@ -22,15 +22,22 @@ Exact schema-aware changes (A->B; B=C):
 - active8 actor18 argument5, varbit19362/parent2921 bits12..23:
   height144 ->184. Other fields in that parent unchanged.
 
-No other captured IDs changed. B->C changes ONLY3296. The unrelated changes
-look like panel resizing/reflow, but their cause is not established by these
-snapshots. Asked Jack whether a panel was resized/expanded between A and B.
-Do not call the actor a particular named panel without descriptor evidence.
+No other captured IDs changed. B->C changes ONLY3296.
 
-Until that discrepancy is accounted for, the prerequisite for the complete
-application gate is not fully satisfied. No912-ID replay, client patch, production
-deployment, persistence or Jaxa modification followed this result. Preserve the
-successful targeted readback evidence; this does not reopen acquisition research.
+Reviewed disposition: **setter gate PROVEN, with a documented manual-layout
+exception to the strict unchanged-all-fields check**. Jack explicitly confirmed
+he moved chat and the action bar up. The paired-cache bindings identify actor18
+as All Chat (1477:418 wrapper,420 attach) and actor1003 as Main Action Bar
+(1477:67 wrapper,70 attach). The field mappings are exactly Chat height and Action
+Bar vertical position. This matches the user-confirmed movement; no speculative
+automatic chat-resize theory is needed. Their precise geometric coupling is not
+claimed. The checker stays unchanged and still reports its strict failure; do
+not add a permanent ignore-list for2920/2921. All six controls and all other
+captured IDs remain unchanged. Source: `resources/native950/ui-bindings-950.json`
+and its cache-backed bindings tests, plus the pinned V3 matrix schema.
+
+Proceed to full disposable application preparation. Native setter acceptance is
+not yet proof of visible full-layout application or durability. No Jaxa replay.
 
 No server/client changes or restart required. Existing native development command
 `;;varc` calls `Native950Packets.varcLarge` directly after local/native/active-player
