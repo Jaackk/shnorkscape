@@ -272,6 +272,14 @@ public class Native950MeleeCombatTest {
         assertFalse(Native950MeleeCombat.hurricaneArea(origin,new WorldTile(3219,3258,0),1));
         assertFalse(Native950MeleeCombat.hurricaneArea(origin,new WorldTile(3218,3258,1),1));
     }
+    @Test public void meteorStrikeDamagesAdjacentRegisteredTargetsWithoutRetargeting(){
+        player.getSkills().set(Skills.ATTACK,99);player.getCombatDefinitions().setSpecialAttackPercentage(100);npc.setHitpoints(1000);
+        NPC nearby=NPC.createNative950(12353,new WorldTile(3219,3258,0),1);nearby.setIndex(2);nearby.setHitpoints(1000);
+        NPC outside=NPC.createNative950(12353,new WorldTile(3221,3258,0),1);outside.setIndex(3);outside.setHitpoints(1000);
+        for(NPC target:new NPC[]{nearby,outside}){access.npcs.add(target);combat.register(target,profile(1000,10,3));}
+        assertNull(combat.attack(player,npc));assertNull(combat.ability(player,14688));step();
+        assertTrue(nearby.getHitpoints()<1000);assertEquals(1000,outside.getHitpoints());assertSame(npc,combat.combatTarget(player));
+    }
     @Test public void multiHitAbilitiesPublishTheirFirstHitBeforeTheirScheduledFollowUps(){
         player.getSkills().set(0,21);npc.setHitpoints(1000);combat.attack(player,npc);
         assertNull(combat.ability(player,14701));step();

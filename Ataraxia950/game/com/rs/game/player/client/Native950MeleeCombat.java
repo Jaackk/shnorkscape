@@ -337,7 +337,7 @@ public final class Native950MeleeCombat {
             if(type==Native950CombatBuffs.Type.BERSERK)player.getBuffDebuffTimersManager().addTimer(Timer.BERSERK,type.duration*600L);
             Native950BugTest.event(player,"combat","effect-started","effect",definition.name,"durationTicks",type.duration,"endTick",tick+type.duration);
         }
-        int total=0, chainDamage=-1, dragonBreathDamage=-1, tsunamiDamage=-1, hurricaneDamage=-1;
+        int total=0, chainDamage=-1, dragonBreathDamage=-1, tsunamiDamage=-1, hurricaneDamage=-1, meteorDamage=-1;
         for(int hit=0;hit<(definition.effect==Native950AbilityCatalog.Effect.BUFF?0:definition.hits);hit++){
             int rolled=Math.max(1,maximum*percent/100);
             int requested=Rs2CombatFormula.scaleNative950Damage(rolled,rolls.nativeDamageRemainder(rolled));
@@ -345,6 +345,7 @@ public final class Native950MeleeCombat {
             if(structure==14730&&hit==0)dragonBreathDamage=requested;
             if(structure==14735&&hit==0)tsunamiDamage=requested;
             if(structure==14685&&hit==0)hurricaneDamage=requested;
+            if(structure==14688&&hit==0)meteorDamage=requested;
             if(definition.hitDelay(hit)>0){
                 long dueTick=tick+definition.hitDelay(hit);
                 pendingHits.computeIfAbsent(player,p->new ArrayList<>()).add(new PendingHit(fighter,requested,dueTick,gear,-1,
@@ -364,6 +365,8 @@ public final class Native950MeleeCombat {
             tsunamiSecondaryHits(player,fighter,tsunamiDamage,gear);
         if(structure==14685&&hurricaneDamage>0)
             hurricaneSecondaryHits(player,fighter,hurricaneDamage,gear);
+        if(structure==14688&&meteorDamage>0)
+            meteorSecondaryHits(player,fighter,meteorDamage,gear);
         // Param2802 is an icon sprite. Actual sequences come from param2915's weapon-family enum.
         int effect=-1;
         if(animation>=0){
@@ -727,6 +730,25 @@ public final class Native950MeleeCombat {
     }
     static boolean hurricaneArea(WorldTile player,WorldTile candidate,int candidateSize){
         return player.getPlane()==candidate.getPlane()&&distanceToFootprint(player,candidate,candidateSize)<=1;
+    }
+    /** Meteor Strike splashes the primary's adjacent registered NPCs without taking ownership. */
+    private void meteorSecondaryHits(Player player,Fighter primary,int requested,Loadout gear){
+        int affected=0;
+        for(Fighter candidate:new ArrayList<>(fighters.values())){
+            if(affected>=8)break;
+            if(candidate==primary||candidate.target!=null||candidate.returning||candidate.respawnAt>0
+                    ||candidate.npc.isDead()||!access.npc(candidate.npc)
+                    ||distanceBetweenFootprints(primary.npc,primary.profile.size,candidate.npc,candidate.profile.size)>1)
+                continue;
+            int actual=damage(player,candidate.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
+            if(actual>0&&!candidate.training)rewards.hit(player,candidate.npc,actual,gear);
+            if(candidate.training)candidate.npc.setHitpoints(candidate.profile.hp);
+            Native950BugTest.event(player,"combat","meteor-secondary-hit",
+                    "npc",candidate.npc.getId()+":"+candidate.npc.getIndex(),"damage",actual);
+            affected++;
+            if(candidate.npc.isDead())secondaryNpcDied(candidate,player);
+        }
+        Native950BugTest.event(player,"combat","meteor-secondary-summary","count",affected,"limit",8,"range",1);
     }
     private void processPendingHits(Player player,Fighter fighter){
         java.util.List<PendingHit> scheduled=pendingHits.get(player);
