@@ -7,7 +7,7 @@ from pathlib import Path
 import pefile
 
 INPUT_HASH = '36c45c1cf6eed0c6cb0b789ca1672d685c1746def9d65d6f18d72638f0087bc9'
-DLL_NAME = b'shnork_workspace_probe_v2.dll'
+DLL_NAME = b'shnork_workspace_probe_v3.dll'
 SPANS = [
     (0x1c830,0x8b1,'6c051fb5fb9cb2c2b1fc9a38c34ac9ae62a25bfbb5396047c14defd77f0fc4a6'),
     (0x1b070,0x1ab,'e07682c0fa905789eb7a9867be0a73d823a7ed2aaf5312b80c7014f27131991b'),

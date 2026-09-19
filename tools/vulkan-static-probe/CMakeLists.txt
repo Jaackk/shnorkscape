@@ -9,7 +9,7 @@ target_compile_definitions(shnork_workspace_probe PRIVATE PROBE_IMAGE_HASH="${PR
 target_compile_options(shnork_workspace_probe PRIVATE /Brepro /W4)
 target_link_options(shnork_workspace_probe PRIVATE /Brepro /INCREMENTAL:NO)
 target_link_libraries(shnork_workspace_probe PRIVATE bcrypt)
-set_target_properties(shnork_workspace_probe PROPERTIES OUTPUT_NAME shnork_workspace_probe_v2)
+set_target_properties(shnork_workspace_probe PROPERTIES OUTPUT_NAME shnork_workspace_probe_v3)
 add_executable(probe_test probe.cpp)
 target_compile_features(probe_test PRIVATE cxx_std_17)
 target_compile_definitions(probe_test PRIVATE PROBE_TEST PROBE_IMAGE_HASH="${PROBE_IMAGE_HASH}" PROBE_THUNK_RVA=${PROBE_THUNK_RVA})

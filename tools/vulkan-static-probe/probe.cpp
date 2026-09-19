@@ -9,6 +9,7 @@
 #include <atomic>
 #include <string>
 #include <vector>
+#include "snapshot-schema.h"
 #ifndef PROBE_IMAGE_HASH
 #error Require the deterministic diagnostic image hash
 #endif
@@ -94,7 +95,7 @@ struct Control {int id;int bootstrap;};
 static const Control controls[]={{2852,319951120},{2912,32},{3721,100992003},{4955,16780678},{5139,-2146664148},{6458,8390656},{3296,0}};
 struct Results {Sample items[7]{};bool stable[7]{};};
 static void report(const char* status,const char* phase,const Results& r) {
-    char path[MAX_PATH];sprintf_s(path,"C:\\Games\\950OpenSource\\logs\\workspace-static-v2-%lu-%s.json",GetCurrentProcessId(),phase);
+    char path[MAX_PATH];sprintf_s(path,"C:\\Games\\950OpenSource\\logs\\workspace-static-v3-%lu-%s-controls.json",GetCurrentProcessId(),phase);
     HANDLE f=CreateFileA(path,GENERIC_WRITE,FILE_SHARE_READ,nullptr,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,nullptr);
     if(f==INVALID_HANDLE_VALUE)return;
     char line[8192];int n=sprintf_s(line,"{\"status\":\"%s\",\"phase\":\"%s\",\"pid\":%lu,\"thread\":%lu,\"nativeWrites\":false,\"controls\":[",status,phase,GetCurrentProcessId(),GetCurrentThreadId());
@@ -106,6 +107,39 @@ static void report(const char* status,const char* phase,const Results& r) {
     n+=sprintf_s(line+n,sizeof(line)-n,"]}\n");
     DWORD written=0;if(n>0)WriteFile(f,line,(DWORD)n,&written,nullptr);CloseHandle(f);
 }
+static bool equalSample(const Sample& a,const Sample& b) {
+    return a.valid&&b.valid&&a.node==b.node&&a.found==b.found&&a.value==b.value&&a.tag==b.tag&&
+        a.bucketCount==b.bucketCount&&a.elements==b.elements&&strcmp(a.outcome,b.outcome)==0;
+}
+static bool snapshot(uintptr_t domain,const char* phase) {
+    constexpr size_t count=sizeof(workspaceIds)/sizeof(workspaceIds[0]);
+    static_assert(count==907,"Unexpected snapshot scope");
+    std::vector<Sample> first(count),second(count);
+    bool valid=true;
+    // Two complete passes on the native main-logic thread, never native getters/setters.
+    for(size_t i=0;i<count;i++)if(!lookup(domain,workspaceIds[i],first[i]))valid=false;
+    for(size_t i=0;i<count;i++)if(!lookup(domain,workspaceIds[i],second[i]))valid=false;
+    for(size_t i=0;i<count;i++)
+        if(!equalSample(first[i],second[i])||first[i].bucketCount!=first[0].bucketCount||first[i].elements!=first[0].elements)valid=false;
+    char line[1024];
+    sprintf_s(line,"{\"version\":3,\"status\":\"%s\",\"phase\":\"%s\",\"schemaSha256\":\"%s\",\"imageSha256\":\"%s\",\"pid\":%lu,\"thread\":%lu,\"tick\":%llu,\"nativeWrites\":false,\"bucketCount\":%llu,\"elementCount\":%llu,\"items\":[",
+        valid?"snapshot-stable":"snapshot-refused",phase,schemaHash,PROBE_IMAGE_HASH,GetCurrentProcessId(),GetCurrentThreadId(),GetTickCount64(),first[0].bucketCount,first[0].elements);
+    std::string json=line;
+    for(size_t i=0;i<count;i++) {
+        const auto& a=first[i];char value[32],tag[16];
+        if(a.found&&a.valid)sprintf_s(value,"%d",a.value);else strcpy_s(value,"null");
+        if(a.found)sprintf_s(tag,"%u",a.tag);else strcpy_s(tag,"null");
+        sprintf_s(line,"%s{\"id\":%d,\"found\":%s,\"stable\":%s,\"variantTag\":%s,\"int32\":%s,\"outcome\":\"%s\"}",
+            i?",":"",workspaceIds[i],a.found?"true":"false",equalSample(a,second[i])?"true":"false",tag,value,a.outcome);
+        json+=line;
+    }
+    json+="]}\n";
+    char path[MAX_PATH];sprintf_s(path,"C:\\Games\\950OpenSource\\logs\\workspace-static-v3-%lu-%s.json",GetCurrentProcessId(),phase);
+    HANDLE f=CreateFileA(path,GENERIC_WRITE,FILE_SHARE_READ,nullptr,CREATE_NEW,FILE_ATTRIBUTE_NORMAL,nullptr);
+    if(f==INVALID_HANDLE_VALUE)return false;
+    DWORD written=0;bool saved=WriteFile(f,json.data(),(DWORD)json.size(),&written,nullptr)&&written==json.size();
+    CloseHandle(f);return valid&&saved;
+}
 extern "C" __declspec(dllexport) void WorkspaceProbe(void* client) noexcept {
     // Only the image wrapper calls this export. A different caller is refused.
     uintptr_t caller=(uintptr_t)_ReturnAddress(),image=(uintptr_t)GetModuleHandleW(nullptr);
@@ -115,16 +149,20 @@ extern "C" __declspec(dllexport) void WorkspaceProbe(void* client) noexcept {
     base=image;
     try {
         static bool checked=false;
-        static bool sampled=false;static ULONGLONG firstTick=0;static DWORD owner=0;
-        Results results{};const char* phase=sampled?"settled":"entry";
+        static unsigned shots=0;static bool held=false;static DWORD owner=0;
+        const char* phases[]={"A","B","C"};
+        Results results{};const char* phase=phases[shots];
         if(!checked){if(!preflight()){report("preflight-refused",phase,results);state.store(2);return;}checked=true;}
         uintptr_t anchor=0,secondary=0,vt=0,manager=0,stats=0,statHead=0;int mode=0;
         if(!read(base+0xfb8258,anchor)||!read(base+0xdb6088,secondary)||anchor!=(uintptr_t)client||anchor!=secondary||
            !read(anchor,vt)||vt!=base+0xc61bf0){report("client-refused",phase,results);state.store(2);return;}
         // Exact-950 MainLogicManager update checks this state for world ownership.
         if(!read(anchor+0x19fa0,mode)){report("state-unreadable",phase,results);state.store(2);return;}
-        if(mode!=30){state.store(0);return;}
-        if(sampled&&GetTickCount64()-firstTick<3000){state.store(0);return;}
+        DWORD foregroundPid=0;GetWindowThreadProcessId(GetForegroundWindow(),&foregroundPid);
+        bool pressed=foregroundPid==GetCurrentProcessId()&&(GetAsyncKeyState(VK_CONTROL)&0x8000)&&
+            (GetAsyncKeyState(VK_SHIFT)&0x8000)&&(GetAsyncKeyState(VK_F9)&0x8000);
+        bool trigger=pressed&&!held;held=pressed;
+        if(mode!=30||!trigger){state.store(0);return;}
         if(owner&&owner!=GetCurrentThreadId()){report("thread-changed",phase,results);state.store(2);return;}
         owner=GetCurrentThreadId();
         if(!read(anchor+0x19920,manager)||!manager||manager%8||!read(manager+0x7618,stats)||!stats||!read(stats,statHead)) {
@@ -141,8 +179,8 @@ extern "C" __declspec(dllexport) void WorkspaceProbe(void* client) noexcept {
         }
         const char* status=!valid?"reader-invariant-failed":!controlsFound?"bootstrap-controls-missing":results.items[6].found?"controls-and-3296-resolved":"controls-resolved-3296-absent";
         report(status,phase,results);
-        if(!valid||sampled){state.store(2);return;}
-        sampled=true;firstTick=GetTickCount64();state.store(0);
+        if(!valid||!controlsFound||!snapshot(domain,phase)){state.store(2);return;}
+        ++shots;state.store(shots==3?2:0);
     }catch(...){Results r{};report("diagnostic-exception","exception",r);state.store(2);}
 }
 #ifdef PROBE_TEST
