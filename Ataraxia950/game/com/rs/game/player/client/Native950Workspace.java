@@ -3,9 +3,8 @@ package com.rs.game.player.client;
 import com.rs.game.player.Player;
 import com.rs.network.protocol.modern950.Native950Actions;
 
-import java.util.ArrayList;
 import java.util.IdentityHashMap;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -36,13 +35,12 @@ final class Native950Workspace {
     }
 
     /**
-     * Stores complete bytes only for the two fixed-size workspace candidates isolated by the
-     * controlled live trace. This is enabled solely by Bug Test Mode and never accepts chat,
-     * login, credentials, or arbitrary unknown payloads.
+     * Summarises opcode 14 permanent-variable uploads only while Bug Test Mode is on.
+     * Values are retained in memory solely to calculate deltas and are never logged or saved.
      */
     static void inboundFrame(Player player, int opcode, byte[] payload) {
         if (player == null || payload == null || !Native950BugTest.enabled(player)) return;
-        if (!isWorkspaceMutationCandidate(opcode)) return;
+        if (opcode != 14) return;
         synchronized (STATES) {
             State state = state(player);
             state.recordPayload(opcode, payload);
@@ -53,8 +51,7 @@ final class Native950Workspace {
     static void unhandledFrame(Player player, int opcode, byte[] payload) { }
 
     /**
-     * A marker flushes the ordered 54/65 byte sequences from the preceding controlled action.
-     * The session-local JSONL is deliberately the only retention point.
+     * A marker flushes ID-only permanent-variable changes from the preceding controlled action.
      */
     static void marker(Player player, String description) {
         if (player == null) return;
@@ -62,13 +59,13 @@ final class Native950Workspace {
         synchronized (STATES) {
             State state = STATES.get(player);
             if (state == null) return;
-            payloads = state.payloadSummary();
-            state.clearPayloadInterval();
+            payloads = state.uploadSummary();
+            state.clearUploadInterval();
         }
-        Native950BugTest.event(player, "workspace", "mutation-payloads",
+        Native950BugTest.event(player, "workspace", "permanent-variable-upload-summary",
                 "marker", description == null || description.trim().isEmpty() ? "(no description)" : description.trim(),
-                "frames", payloads, "scope", "opcode-54-and-opcode-65-only since-previous-marker-or-start",
-                "disposition", "session-local raw diagnostic; no layout state decoded");
+                "uploads", payloads, "scope", "opcode-14 IDs-only since-previous-marker-or-start",
+                "disposition", "session-local diagnostic; no values, persistence, acknowledgement, or replay");
     }
 
     static String status(Player player) {
@@ -80,7 +77,7 @@ final class Native950Workspace {
             }
             String viewport = state.width + "x" + state.height + " mode " + state.displayMode;
             return "Workspace: native client-owned; viewport " + viewport
-                    + "; 54/65 payload capture is active only while Bug Test Mode is enabled.";
+                    + "; opcode-14 ID-only capture is active only while Bug Test Mode is enabled.";
         }
     }
 
@@ -89,14 +86,14 @@ final class Native950Workspace {
             State state = STATES.get(player);
             if (state == null || state.windowReports == 0) return "workspace=unreported";
             return "workspace=" + state.width + "x" + state.height + "/mode" + state.displayMode
-                    + ";workspacePayloadCapture=54,65-opt-in";
+                    + ";workspacePayloadCapture=14-ids-only-opt-in";
         }
     }
 
     static String pendingPayloads(Player player) {
         synchronized (STATES) {
             State state = STATES.get(player);
-            return state == null ? "none" : state.payloadSummary();
+            return state == null ? "none" : state.uploadSummary();
         }
     }
 
@@ -116,39 +113,29 @@ final class Native950Workspace {
     private static final class State {
         int displayMode, width, height, windowFlag;
         long windowReports;
-        final List<Payload> payloads = new ArrayList<Payload>();
+        final Map<Integer, Integer> lastValues = new LinkedHashMap<Integer, Integer>();
+        final StringBuilder uploads = new StringBuilder();
 
         void recordPayload(int opcode, byte[] payload) {
-            payloads.add(new Payload(opcode, payload));
-        }
-
-        String payloadSummary() {
-            if (payloads.isEmpty()) return "none";
-            StringBuilder result = new StringBuilder();
-            for (Payload payload : payloads) {
-                if (result.length() > 0) result.append(',');
-                result.append(payload.opcode).append('/').append(payload.bytes.length).append('/').append(hex(payload.bytes));
+            if (payload.length < 1 || ((payload.length - 1) % 6) != 0) {
+                append("malformed(length=" + payload.length + ")");
+                return;
             }
-            return result.toString();
-        }
-
-        void clearPayloadInterval() { payloads.clear(); }
-
-        private static String hex(byte[] bytes) {
-            StringBuilder result = new StringBuilder(bytes.length * 2);
-            for (byte value : bytes) result.append(String.format("%02x", value & 255));
-            return result.toString();
-        }
-
-        private static final class Payload {
-            final int opcode;
-            final byte[] bytes;
-            Payload(int opcode, byte[] bytes) {
-                this.opcode = opcode;
-                this.bytes = bytes.clone();
+            int completion = payload[0] & 255;
+            if (completion != 0 && completion != 1) { append("malformed(completion=" + completion + ")"); return; }
+            StringBuilder changed = new StringBuilder(); int records = (payload.length - 1) / 6;
+            for (int offset = 1; offset < payload.length; offset += 6) {
+                int id = ((payload[offset] & 255) << 8) | (payload[offset + 1] & 255);
+                int value = ((payload[offset + 2] & 255) << 24) | ((payload[offset + 3] & 255) << 16) | ((payload[offset + 4] & 255) << 8) | (payload[offset + 5] & 255);
+                Integer previous = lastValues.put(id, value);
+                if (previous != null && previous.intValue() != value) { if (changed.length() > 0) changed.append(','); changed.append(id); }
             }
+            append("records=" + records + ";completion=" + completion + ";changedIds=" + (changed.length() == 0 ? "none" : changed.toString()));
         }
+
+        String uploadSummary() { return uploads.length() == 0 ? "none" : uploads.toString(); }
+        void clearUploadInterval() { uploads.setLength(0); }
+        void append(String value) { if (uploads.length() > 0) uploads.append('|'); uploads.append(value); }
+
     }
-
-    private static boolean isWorkspaceMutationCandidate(int opcode) { return opcode == 54 || opcode == 65; }
 }

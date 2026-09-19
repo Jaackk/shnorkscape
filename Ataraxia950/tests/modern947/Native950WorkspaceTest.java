@@ -33,22 +33,32 @@ public final class Native950WorkspaceTest {
         } finally { Native950Workspace.close(player);channel.finishAndReleaseAll(); }
     }
 
-    @Test public void workspaceDiagnosticsNeverEmitOrDecodeCandidatePayloads() {
+    @Test public void workspaceDiagnosticsCaptureOnlyOpcode14DeltasAndNeverEmit() {
         EmbeddedChannel channel=new EmbeddedChannel();
         Player player=Player.createNative950("workspace-opaque",new WorldTile(3217,3258,0),channel);
         try {
             Native950BugTest.toggle(player);
             Native950Workspace.inboundFrame(player,74,new byte[]{1,2,3,4,5,6,7});
             Native950Workspace.inboundFrame(player,87,new byte[]{9,9,9});
-            Native950Workspace.inboundFrame(player,54,new byte[]{1,2,3,4,5,6,7});
-            Native950Workspace.inboundFrame(player,65,new byte[]{9,10,11,12,13,14});
+            Native950Workspace.inboundFrame(player,14,new byte[]{1,11,36,0,0,0,1});
+            Native950Workspace.inboundFrame(player,14,new byte[]{1,11,36,0,0,0,2});
             String captured=Native950Workspace.pendingPayloads(player);
-            assertTrue(captured.contains("54/7/01020304050607"));
-            assertTrue(captured.contains("65/6/090a0b0c0d0e"));
-            assertFalse("chat must never enter workspace payload capture",captured.contains("87/"));
+            assertTrue(captured.contains("changedIds=2852"));
+            assertFalse("values must never enter Bug Test telemetry",captured.contains("00000002"));
+            assertFalse("chat must never enter workspace payload capture",captured.contains("87"));
             Native950Workspace.marker(player,"candidate");
             assertTrue("diagnostics are observation only",channel.readOutbound()==null);
             Native950BugTest.toggle(player);
         } finally { Native950Workspace.close(player);channel.finishAndReleaseAll(); }
+    }
+
+    @Test public void workspaceIntegerDescriptorIsPinnedAndExcludesUnknowns() {
+        assertTrue(Native950WorkspaceIntegerDescriptor.size() >= 215);
+        assertTrue(Native950WorkspaceIntegerDescriptor.contains(2852));
+        assertTrue("3296 must be derived through cache-backed domain-2 varbits", Native950WorkspaceIntegerDescriptor.contains(3296));
+        assertFalse(Native950WorkspaceIntegerDescriptor.contains(65535));
+        assertTrue(Native950WorkspaceIntegerDescriptor.evidenceFingerprint().matches("[0-9a-f]{64}"));
+        assertTrue(Native950WorkspaceIntegerDescriptor.property("script.ids").contains("8707"));
+        assertTrue(Native950WorkspaceIntegerDescriptor.property("varbit.ids").contains("19037"));
     }
 }
