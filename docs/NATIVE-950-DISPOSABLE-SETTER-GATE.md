@@ -1,5 +1,37 @@
 # Disposable native setter gate
 
+## PID33492 live result
+
+Jack confirms both commands ran on disposable `layoutgate1`, never Jaxa.
+Exact files: `logs/workspace-static-v3-33492-{A,B,C}.json` and their controls.
+
+SHA256:
+- A: `c00a792052d589d73dffdc449a2d463113c4709be4579d4e08d45c5483021857`
+- B: `51c96af4f1da9312895497636c25676d4846c0e031be1e7de68886a5701127c2`
+- C: `9dc0b0be23cbdb5160d22931d3f46c9f91722fe2d7e990b2a18ebdca00f77080`
+
+The existing checker was run unchanged. Same ordered/pinned-image session, all
+six bootstrap controls and absent -> int32 4097 -> present int32 zero PASS.
+This proves the setter reaches the live domain and can instantiate/overwrite3296.
+However the COMPLETE strict gate returns failure for other IDs2920/2921. Do not
+claim an unqualified pass or suppress those differences in the checker.
+
+Exact schema-aware changes (A->B; B=C):
+- active8 actor1003 argument3, varbit19359/parent2920 bits12..23:
+  normalized vertical field3060 ->2833. Other fields in that parent unchanged.
+- active8 actor18 argument5, varbit19362/parent2921 bits12..23:
+  height144 ->184. Other fields in that parent unchanged.
+
+No other captured IDs changed. B->C changes ONLY3296. The unrelated changes
+look like panel resizing/reflow, but their cause is not established by these
+snapshots. Asked Jack whether a panel was resized/expanded between A and B.
+Do not call the actor a particular named panel without descriptor evidence.
+
+Until that discrepancy is accounted for, the prerequisite for the complete
+application gate is not fully satisfied. No912-ID replay, client patch, production
+deployment, persistence or Jaxa modification followed this result. Preserve the
+successful targeted readback evidence; this does not reopen acquisition research.
+
 No server/client changes or restart required. Existing native development command
 `;;varc` calls `Native950Packets.varcLarge` directly after local/native/active-player
 checks (Native950DevelopmentCommands.java:379). Do not add a second command or an
