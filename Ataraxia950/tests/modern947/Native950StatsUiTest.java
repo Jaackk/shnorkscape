@@ -129,21 +129,22 @@ public final class Native950StatsUiTest {
         ui.bootstrap();
 
         List<Frame> frames = drain();
-        assertEquals("skills open, action bar open, state", 3, frames.size());
+        assertEquals("skills open, action bar open and reveal, state", 4, frames.size());
 
         // The content mounts, but wrapper state is owned by the native workspace.
         assertOpenSub(frames.get(0), SKILLS_PANEL, ROOT, SKILLS_ATTACH);
         assertOpenSub(frames.get(1), ACTION_BAR, ROOT, BAR_ATTACH);
-        assertEquals(MESSAGE_GAME, frames.get(2).opcode);
+        assertSetHide(frames.get(2), ROOT, BAR_WRAPPER, false);
+        assertEquals(MESSAGE_GAME, frames.get(3).opcode);
 
         assertEquals(2, ui.panelsOpened());
-        assertEquals(0, ui.wrappersShown());
+        assertEquals(1, ui.wrappersShown());
         assertEquals(0, ui.layoutSteps());
         assertEquals(0, ui.skippedBindings());
         assertEquals(0, ui.stateFailures());
         assertEquals(0, packets.counters().totalDropped());
         assertEquals(0, packets.counters().totalStrictHits());
-        assertEquals(3, packets.counters().totalSent());
+        assertEquals(4, packets.counters().totalSent());
     }
 
     /**
@@ -166,7 +167,7 @@ public final class Native950StatsUiTest {
         ui.bootstrap();
 
         List<Frame> frames = drain();
-        assertEquals("panels only", 2, frames.size());
+        assertEquals("panels only", 3, frames.size());
         for (Frame frame : frames)
             assertTrue("only panel packets", frame.opcode == IF_OPENSUB || frame.opcode == IF_SETHIDE
                     || frame.opcode == RUNCLIENTSCRIPT);
@@ -189,10 +190,11 @@ public final class Native950StatsUiTest {
         ui.bootstrap();
 
         List<Frame> frames = drain();
-        assertEquals("skills open, bar open, state", 3, frames.size());
+        assertEquals("skills open, bar open and reveal, state", 4, frames.size());
         assertOpenSub(frames.get(0), SKILLS_PANEL, ROOT, SKILLS_ATTACH);
         assertOpenSub(frames.get(1), ACTION_BAR, ROOT, BAR_ATTACH);
-        assertEquals(MESSAGE_GAME, frames.get(2).opcode);
+        assertSetHide(frames.get(2), ROOT, BAR_WRAPPER, false);
+        assertEquals(MESSAGE_GAME, frames.get(3).opcode);
         for (Frame frame : frames)
             assertNotEquals("no layout script may be sent by default", RUNCLIENTSCRIPT, frame.opcode);
         assertEquals(0, ui.layoutSteps());
@@ -213,7 +215,7 @@ public final class Native950StatsUiTest {
         int first = drain().size();
         ui.bootstrap();
         assertEquals(0, drain().size());
-        assertEquals(3, first);
+        assertEquals(4, first);
     }
 
     /**

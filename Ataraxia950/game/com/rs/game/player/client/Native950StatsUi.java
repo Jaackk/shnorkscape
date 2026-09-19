@@ -289,7 +289,8 @@ public final class Native950StatsUi {
         sendInitialState();
     }
 
-    /** Attaches HUD content; only the explicit recovery switch changes native visibility. */
+    /** Attaches HUD content. The main action bar is a required gameplay surface; optional panels
+     * retain client-owned visibility, docking, and tab state. */
     public void openPanels() {
         if (bindings == null) {
             skip("binding table", "no validated 947 table is installed");
@@ -313,7 +314,10 @@ public final class Native950StatsUi {
         Native950Bindings.Slot actionBar = slot(ACTION_BAR_NAMES);
         if (actionBar != null) {
             int actionBarId = interfaceId(ACTION_BAR_NAMES);
-            if (actionBarId >= 0) attach(actionBar, actionBarId, reveal);
+            // Regression guard: 7d2d567 stopped revealing every wrapper to preserve workspace
+            // state. Unlike optional panels, the native main bar has no alternate bootstrap and
+            // became inaccessible. Showing its wrapper does not write position, preset, or tabs.
+            if (actionBarId >= 0) attach(actionBar, actionBarId, true);
         }
         Native950Bindings.Slot minimap = slot(MINIMAP_NAMES);
         if (minimap != null && reveal) show(minimap);
