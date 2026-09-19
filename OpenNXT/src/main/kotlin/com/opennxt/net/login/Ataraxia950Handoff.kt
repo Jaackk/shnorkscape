@@ -41,10 +41,6 @@ internal object Ataraxia950Handoff {
     val enabled: Boolean
         get() = System.getenv("OPENNXT_GAME_BACKEND")?.equals("ataraxia950", ignoreCase = true) == true
 
-    /** True only after this channel has passed the native 950 admission gate. */
-    internal fun ownsAuthenticatedNativeSession(channel: Channel): Boolean =
-        channel.attr(authenticated).get() != null
-
     /** Called only after the configured login processor accepts the game request. */
     fun authorize(channel: Channel, build: Build, username: String): GenericResponse? {
         if (!supportsClientBuild(build) || OpenNXT.config.build != 950) {
