@@ -6,9 +6,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CodingErrorAction;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -104,10 +101,6 @@ public final class Native950Actions {
     private static final int ITEM_ON_ITEM_OPCODE = 69;
     /** Selected inventory/UI item targets an object or NPC; native writers cited below. */
     private static final int ITEM_ON_OBJECT_OPCODE = 90, ITEM_ON_NPC_OPCODE = 19;
-    /** Permanent client-variable upload. Native sender 0x1401547b3, descriptor opcode 14. */
-    private static final int SERVERPERM_VARCS_OPCODE = 14;
-    /** Native sender bounds one frame to roughly 1500 bytes: 1 completion byte + 249 records. */
-    private static final int MAX_SERVERPERM_RECORDS = 249;
 
     /**
      * Rows whose framing is known but whose <em>meaning</em> is not derived on 950. They are listed
@@ -171,7 +164,6 @@ public final class Native950Actions {
         if (opcode == ITEM_ON_ITEM_OPCODE) return decodeItemOnItem(payload);
         if (opcode == ITEM_ON_OBJECT_OPCODE) return decodeItemOnObject(payload);
         if (opcode == ITEM_ON_NPC_OPCODE) return decodeItemOnNpc(payload);
-        if (opcode == SERVERPERM_VARCS_OPCODE) return decodeServerpermVarcs(payload);
         int option = option(INTERFACE_OPCODES, opcode);
         if (option != 0) return decodeInterface(option, payload);
         option = option(OBJECT_OPCODES, opcode);
@@ -220,7 +212,7 @@ public final class Native950Actions {
     }
 
     public static boolean isImplemented(int opcode) {
-        return opcode == SERVERPERM_VARCS_OPCODE || opcode == WALK_OPCODE || opcode == MINIMAP_WALK_OPCODE || opcode == DRAG_OPCODE || opcode == ITEM_ON_ITEM_OPCODE
+        return opcode == WALK_OPCODE || opcode == MINIMAP_WALK_OPCODE || opcode == DRAG_OPCODE || opcode == ITEM_ON_ITEM_OPCODE
                 || opcode == ITEM_ON_OBJECT_OPCODE || opcode == ITEM_ON_NPC_OPCODE
                 || option(INTERFACE_OPCODES, opcode) != 0 || option(OBJECT_OPCODES, opcode) != 0
                 || option(NPC_OPCODES, opcode) != 0 || option(PLAYER_OPCODES, opcode) != 0
@@ -249,14 +241,14 @@ public final class Native950Actions {
      */
     public static int[] implementedOpcodes() {
         int[] all = new int[INTERFACE_OPCODES.length + OBJECT_OPCODES.length + NPC_OPCODES.length
-                + PLAYER_OPCODES.length + GROUND_ITEM_OPCODES.length + 20];
+                + PLAYER_OPCODES.length + GROUND_ITEM_OPCODES.length + 19];
         int at = 0;
         for (int opcode : INTERFACE_OPCODES) all[at++] = opcode;
         for (int opcode : OBJECT_OPCODES) all[at++] = opcode;
         for (int opcode : NPC_OPCODES) all[at++] = opcode;
         for (int opcode : PLAYER_OPCODES) all[at++] = opcode;
         for (int opcode : GROUND_ITEM_OPCODES) all[at++] = opcode;
-        int[] singles = {SERVERPERM_VARCS_OPCODE, WALK_OPCODE, MINIMAP_WALK_OPCODE, KEEP_ALIVE_OPCODE, DRAG_OPCODE,
+        int[] singles = {WALK_OPCODE, MINIMAP_WALK_OPCODE, KEEP_ALIVE_OPCODE, DRAG_OPCODE,
                 DIALOGUE_CLICK_OPCODE, COUNT_DIALOGUE_OPCODE, STRING_DIALOGUE_OPCODE,
                 NAME_DIALOGUE_OPCODE, PAUSE_BUTTON_OPCODE, CLOSE_MODAL_OPCODE,
                 MESSAGE_PUBLIC_OPCODE, MESSAGE_PRIVATE_OPCODE, MUSIC_ENDED_OPCODE,
@@ -292,34 +284,6 @@ public final class Native950Actions {
             throw new UnsupportedOperationException("Native 950 client opcode " + opcode
                     + " has no derived meaning; its size is known from the client descriptor table"
                     + " but no sender was traced to a field list.");
-    }
-
-    /** Decodes the proven completion byte followed by big-endian u16/i32 records. */
-    private static ServerpermVarcsAction decodeServerpermVarcs(byte[] payload) {
-        if (payload == null || payload.length < 1 || (payload.length - 1) % 6 != 0) return null;
-        int completion = payload[0] & 255;
-        int count = (payload.length - 1) / 6;
-        if ((completion != 0 && completion != 1) || count > MAX_SERVERPERM_RECORDS) return null;
-        Map<Integer, Integer> values = new LinkedHashMap<Integer, Integer>();
-        for (int offset = 1; offset < payload.length; offset += 6) {
-            int id = ((payload[offset] & 255) << 8) | (payload[offset + 1] & 255);
-            values.put(id, intBE(payload, offset + 2)); // Native changed-id set semantics: last value wins.
-        }
-        return new ServerpermVarcsAction(completion == 1, values);
-    }
-
-    /** Native permanent-variable chunk. Values are validated against the active cache by the session owner. */
-    public static final class ServerpermVarcsAction implements Action {
-        private final boolean complete;
-        private final Map<Integer, Integer> values;
-
-        ServerpermVarcsAction(boolean complete, Map<Integer, Integer> values) {
-            this.complete = complete;
-            this.values = Collections.unmodifiableMap(new LinkedHashMap<Integer, Integer>(values));
-        }
-
-        public boolean complete() { return complete; }
-        public Map<Integer, Integer> values() { return values; }
     }
 
     // ---------------------------------------------------------------------------------------

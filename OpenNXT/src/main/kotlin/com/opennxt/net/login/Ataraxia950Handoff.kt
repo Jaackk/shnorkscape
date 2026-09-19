@@ -2,20 +2,16 @@ package com.opennxt.net.login
 
 import com.opennxt.OpenNXT
 import com.opennxt.model.Build
-import com.opennxt.model.lobby.TODORefactorThisClass
 import com.opennxt.net.GenericResponse
 import com.opennxt.net.RSChannelAttributes
 import com.opennxt.resources.FilesystemResources
 import com.opennxt.resources.config.enums.EnumDefinition
 import com.opennxt.resources.config.structs.StructDefinition
-import com.opennxt.resources.config.vars.BaseVarType
-import com.opennxt.resources.config.vars.impl.VarClientDefinition
 import com.opennxt.resources.defaults.wearpos.WearposDefaults
 import com.rs.game.player.client.Native950World
 import com.rs.game.player.client.Native950SaveStore
 import com.rs.game.player.client.Native950Save
 import com.rs.game.player.client.Native950Appearance
-import com.rs.game.player.client.Native950ServerpermStore
 import com.rs.cache.Cache
 import com.rs.network.protocol.modern950.Native950Packets
 import io.netty.buffer.ByteBuf
@@ -27,7 +23,6 @@ import io.netty.util.AttributeKey
 import io.netty.util.ReferenceCountUtil
 import mu.KotlinLogging
 import java.util.ArrayDeque
-import java.util.TreeSet
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.security.MessageDigest
@@ -41,10 +36,6 @@ internal object Ataraxia950Handoff {
     private const val GATE_NAME = "ataraxia950-handoff-gate"
     private val saveStore: Native950SaveStore by lazy {
         Native950SaveStore(playerSavePath(System.getenv("OPENNXT_PLAYER_SAVE_PATH")))
-    }
-    /** Shared by game-login overlay and attached native-session uploads. */
-    private val serverpermStore: Native950ServerpermStore by lazy {
-        Native950ServerpermStore(playerSavePath(System.getenv("OPENNXT_PLAYER_SAVE_PATH")), serverpermAllowedIds())
     }
 
     val enabled: Boolean
@@ -64,7 +55,6 @@ internal object Ataraxia950Handoff {
             // A configured store is required before accepting a persistent local character.
             // The store creates and validates its directory; legacy player saves are never opened.
             saveStore
-            serverpermStore
         } catch (failure: Exception) {
             logger.error(failure) { "Cannot initialize Ataraxia's 950 world cache or modern player store" }
             return GenericResponse.SERVICE_UNAVAILABLE
@@ -95,23 +85,6 @@ internal object Ataraxia950Handoff {
             "OPENNXT_PLAYER_SAVE_PATH must end in modern950/players; legacy saves cannot be used"
         }
         return normalized
-    }
-
-    /** Keeps every healthy default while letting valid player-owned native state win at login. */
-    fun overlayPersistedServerpermVarcs(username: String, defaults: MutableMap<Int, Int>) {
-        Native950ServerpermStore.overlay(defaults, serverpermStore.loadOrEmpty(username))
-    }
-
-    private fun serverpermAllowedIds(): Set<Int> {
-        val ids = TreeSet<Int>()
-        val bootstrapDefaults = java.util.HashMap<Int, Int>()
-        TODORefactorThisClass.populateServerpermVarcs(bootstrapDefaults)
-        ids.addAll(bootstrapDefaults.keys)
-        FilesystemResources.instance.list(VarClientDefinition::class).forEach { (id, definition) ->
-            if (definition.lifetime != 0 && definition.type.type == BaseVarType.INTEGER) ids.add(id)
-        }
-        check(ids.isNotEmpty()) { "No persistent integer client variables available for native storage" }
-        return ids
     }
 
     @Synchronized
@@ -194,7 +167,7 @@ internal object Ataraxia950Handoff {
                         // would lose any words already consumed by an earlier login stage.
                         world.attach(
                             channel, username, IntSupplier { incoming.nextValue }, IntSupplier { outgoing.nextValue },
-                            appearance, scene, interfaces, content, saveStore, serverpermStore
+                            appearance, scene, interfaces, content, saveStore
                         ).whenComplete { _, failure ->
                             channel.eventLoop().execute {
                                 if (failure != null || !channel.isActive) {

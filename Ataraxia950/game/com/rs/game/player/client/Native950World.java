@@ -715,13 +715,13 @@ public final class Native950World {
     public CompletableFuture<Native950Session> attach(Channel channel, String username,
             IntSupplier incomingCipher, IntSupplier outgoingCipher, byte[] appearance,
             SceneConfig scene, List<Native950Packets.Packet> interfaceBootstrap) {
-        return attach(channel, username, incomingCipher, outgoingCipher, appearance, scene, interfaceBootstrap, null, null, null);
+        return attach(channel, username, incomingCipher, outgoingCipher, appearance, scene, interfaceBootstrap, null);
     }
 
     public CompletableFuture<Native950Session> attach(Channel channel, String username,
             IntSupplier incomingCipher, IntSupplier outgoingCipher, byte[] appearance,
             SceneConfig scene, List<Native950Packets.Packet> interfaceBootstrap, Native950Content content) {
-        return attach(channel, username, incomingCipher, outgoingCipher, appearance, scene, interfaceBootstrap, content, null, null);
+        return attach(channel, username, incomingCipher, outgoingCipher, appearance, scene, interfaceBootstrap, content, null);
     }
 
     /** Persistent local profiles are explicit; standalone probes remain transient. */
@@ -729,22 +729,12 @@ public final class Native950World {
             IntSupplier incomingCipher, IntSupplier outgoingCipher, byte[] appearance,
             SceneConfig scene, List<Native950Packets.Packet> interfaceBootstrap, Native950Content content,
             Native950SaveStore saveStore) {
-        return attach(channel, username, incomingCipher, outgoingCipher, appearance, scene, interfaceBootstrap, content,
-                saveStore, null);
-    }
-
-    /** Persistent native account state: character profile plus client-owned permanent variables. */
-    public CompletableFuture<Native950Session> attach(Channel channel, String username,
-            IntSupplier incomingCipher, IntSupplier outgoingCipher, byte[] appearance,
-            SceneConfig scene, List<Native950Packets.Packet> interfaceBootstrap, Native950Content content,
-            Native950SaveStore saveStore, Native950ServerpermStore serverpermStore) {
         Objects.requireNonNull(channel, "channel");
         Objects.requireNonNull(username, "username");
         Objects.requireNonNull(incomingCipher, "incomingCipher");
         Objects.requireNonNull(outgoingCipher, "outgoingCipher");
         Objects.requireNonNull(scene, "scene");
         if (saveStore != null) Objects.requireNonNull(content, "Persistent profiles require verified item content");
-        if (serverpermStore != null) Objects.requireNonNull(saveStore, "Native serverperm state requires a persistent profile");
         final byte[] initialAppearance = Objects.requireNonNull(appearance, "appearance").clone();
         if (initialAppearance.length < 1 || initialAppearance.length > 255)
             throw new IllegalArgumentException("Appearance requires 1..255 bytes");
@@ -779,7 +769,7 @@ public final class Native950World {
             } else selfReserved = false;
         }
         if (!commands.offer(() -> attachOnWorld(channel, username, incomingCipher, outgoingCipher,
-                initialAppearance, scene, bootstrap, content, saveStore, serverpermStore, selfReserved, result))) {
+                initialAppearance, scene, bootstrap, content, saveStore, selfReserved, result))) {
             if (selfReserved) release(scene.playerIndex, username);
             result.completeExceptionally(new IllegalStateException("Native world command queue is full"));
         }
@@ -831,8 +821,7 @@ public final class Native950World {
 
     private void attachOnWorld(Channel channel, String username, IntSupplier incoming, IntSupplier outgoing,
             byte[] appearance, SceneConfig scene, List<Native950Packets.Packet> bootstrap, Native950Content content,
-            Native950SaveStore saveStore, Native950ServerpermStore serverpermStore, boolean selfReserved,
-            CompletableFuture<Native950Session> result) {
+            Native950SaveStore saveStore, boolean selfReserved, CompletableFuture<Native950Session> result) {
         Player player = null;
         Native950Session attached = null;
         boolean claimed = false;
@@ -872,7 +861,7 @@ public final class Native950World {
             NPC banker = ensureBanker(content);
             Native950GameTransport transport = new Native950GameTransport(incoming, outgoing, thread);
             Native950Session session = new Native950Session(player, channel, transport, configured, content,
-                    saveStore, serverpermStore, saved, banker);
+                    saveStore, saved, banker);
             attached = session;
             combat.attach(player);
             if (!claim(entryScene.playerIndex, username, session))
