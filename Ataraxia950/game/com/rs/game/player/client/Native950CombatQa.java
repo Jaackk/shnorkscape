@@ -292,9 +292,9 @@ final class Native950CombatQa {
                         "ability", value(fields, "name", "unknown")));
                 int style = integer(fields.get("structure"), -1);
                 if (style >= 0) style = Native950MeleeCombat.abilityStyle(style);
-                if (style == 2 && !"self".equals(value(fields, "target", ""))
-                        && "none".equals(value(fields, "graphic", "none"))
-                        && "none".equals(value(fields, "targetGraphic", "none")))
+                if (missingMagicVisual(style, value(fields, "target", ""),
+                        value(fields, "graphic", "none"), value(fields, "targetGraphic", "none"),
+                        value(fields, "presentationEvidence", "unknown")))
                     anomaly("magic-ability-no-visual-effect", map("ability", value(fields, "name", "unknown")));
                 long gcd = number(fields.get("gcdEndTick"), nowTick);
                 if (gcd < nowTick) anomaly("contradictory-gcd", map("gcdEndTick", gcd, "executionTick", nowTick));
@@ -546,6 +546,11 @@ final class Native950CombatQa {
         int count = 0;
         for (String part : cleaned.split(",")) { if (!part.trim().isEmpty()) { count++; distinct.add(part.trim()); } }
         return count > 1 && distinct.size() < count;
+    }
+
+    static boolean missingMagicVisual(int style,String target,String graphic,String targetGraphic,String evidence){
+        return style==2&&!"self".equals(target)&&"none".equals(graphic)&&"none".equals(targetGraphic)
+                &&!"live-verified-animation-integrated".equals(evidence);
     }
 
     static boolean captureIsStale(boolean high,long requestedAt,long startedAt){

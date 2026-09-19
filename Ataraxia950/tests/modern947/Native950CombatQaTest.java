@@ -33,4 +33,22 @@ public class Native950CombatQaTest {
             assertTrue(Native950DevelopmentCommands.preservesGameplay(command));
         }
     }
+
+    @Test public void liveVerifiedIntegratedMagicEffectsAreNotReportedMissing() {
+        assertEquals("live-verified-animation-integrated",
+                Native950AbilityCatalog.presentationEvidence(14730, 12345, -1, -1));
+        assertEquals("live-verified-animation-integrated",
+                Native950AbilityCatalog.presentationEvidence(14733, 12345, -1, -1));
+        assertFalse(Native950CombatQa.missingMagicVisual(2,"npc","none","none",
+                "live-verified-animation-integrated"));
+    }
+
+    @Test public void unknownOrAbsentMagicPresentationRemainsAnAnomaly() {
+        assertEquals("animation-only-unverified",
+                Native950AbilityCatalog.presentationEvidence(14731, 12345, -1, -1));
+        assertEquals("missing",Native950AbilityCatalog.presentationEvidence(14707,-1,-1,-1));
+        assertTrue(Native950CombatQa.missingMagicVisual(2,"npc","none","none",
+                "animation-only-unverified"));
+        assertFalse(Native950CombatQa.missingMagicVisual(2,"npc","none","4321","unknown"));
+    }
 }

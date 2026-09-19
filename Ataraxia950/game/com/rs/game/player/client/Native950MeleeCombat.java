@@ -364,11 +364,13 @@ public final class Native950MeleeCombat {
         }
         int targetGraphic=Native950AbilityCatalog.targetGraphic(structure);
         if(targetGraphic>0&&fighter!=null)fighter.npc.setNextGraphics(new com.rs.game.Graphics(targetGraphic));
+        String presentationEvidence=Native950AbilityCatalog.presentationEvidence(structure,animation,effect,targetGraphic);
         Native950BugTest.event(player,"combat","ability-executed","name",definition.name,"structure",structure,
                 "target",definition.targetRequired()?fighter.npc.getId()+":"+fighter.npc.getIndex():"self","animation",animation<0?"none":animation,
                 "animationResolution",resolution.source,"animationLockEndTick",tick+animationTicks,
                 "animationLockEndMillis",player.getLastAnimationEnd(),"graphic",effect<0?"none":effect,
-                "targetGraphic",targetGraphic>0?targetGraphic:"none","cooldownDuration",definition.cooldown,
+                "targetGraphic",targetGraphic>0?targetGraphic:"none","presentationEvidence",presentationEvidence,
+                "cooldownDuration",definition.cooldown,
                 "gcdEndTick",tick+3,"channelEndTick",channelUntil.getOrDefault(player,0L),
                 "hitTimingSource","effect-cadence","firstHitTick",definition.effect==Native950AbilityCatalog.Effect.BUFF?"none":tick+definition.hitDelay(0),
                 "followUpHitTicks",followUps.toString());

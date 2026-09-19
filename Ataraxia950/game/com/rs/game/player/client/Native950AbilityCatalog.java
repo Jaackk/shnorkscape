@@ -126,6 +126,17 @@ final class Native950AbilityCatalog {
                 :new AnimationResolution(-1,"none:sequence-"+id+"-decode-failed");
     }
     static int animation(Player p,int struct){return animationResolution(p,struct).id;}
+    /**
+     * Describes what the paired cache and live QA establish about an ability's
+     * visual effect. Some 950 sequences own their effect internally and therefore
+     * correctly have no separate graphic parameter.
+     */
+    static String presentationEvidence(int struct,int animation,int graphic,int targetGraphic){
+        if(graphic>=0||targetGraphic>0)return "cache-separate-graphic";
+        if((struct==14730||struct==14733)&&animation>=0)return "live-verified-animation-integrated";
+        if(animation>=0)return "animation-only-unverified";
+        return "missing";
+    }
     static int sequenceParam(int animation,int param){
         Map<Integer,Object> values=AnimationDefinitions.getAnimationDefinitions(animation).clientScriptData;
         Object value=values==null?null:values.get(param);return value instanceof Integer?(Integer)value:-1;
