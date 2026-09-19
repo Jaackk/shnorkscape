@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -33,6 +34,7 @@ import com.rs.utils.Utils;
  *
  * Run with:
  *   java -cp <project-classpath> com.rs.tools.InterfaceFullDumper [id ...]
+ *   java -cp <project-classpath> com.rs.tools.InterfaceFullDumper --flat-cache=C:\path\to\cache [id ...]
  *
  * If no ids are supplied, dumps the XP-counter-suspect set:
  *   137, 228, 1213, 1214, 1215, 1216, 1465, 1466, 1467, 1920
@@ -47,9 +49,15 @@ public class InterfaceFullDumper {
     };
 
     public static void main(String[] args) throws IOException {
-        Cache.init();
+        int firstInterface = 0;
+        if (args != null && args.length > 0 && args[0].startsWith("--flat-cache=")) {
+            Cache.initFlatReadOnly(Paths.get(args[0].substring("--flat-cache=".length())));
+            firstInterface = 1;
+        } else {
+            Cache.init();
+        }
 
-        int[] ids = parseIds(args);
+        int[] ids = parseIds(args, firstInterface);
         File outFile = new File("info/interface-full-dump.txt");
         outFile.getParentFile().mkdirs();
 
@@ -64,10 +72,10 @@ public class InterfaceFullDumper {
         System.out.println("Wrote " + outFile.getAbsolutePath());
     }
 
-    private static int[] parseIds(String[] args) {
-        if (args == null || args.length == 0) return DEFAULT_IDS;
-        int[] ids = new int[args.length];
-        for (int i = 0; i < args.length; i++) ids[i] = Integer.parseInt(args[i]);
+    private static int[] parseIds(String[] args, int firstInterface) {
+        if (args == null || args.length == firstInterface) return DEFAULT_IDS;
+        int[] ids = new int[args.length - firstInterface];
+        for (int i = 0; i < ids.length; i++) ids[i] = Integer.parseInt(args[i + firstInterface]);
         return ids;
     }
 

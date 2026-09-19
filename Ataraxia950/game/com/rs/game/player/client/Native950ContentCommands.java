@@ -81,12 +81,17 @@ final class Native950ContentCommands {
         final int id; final String name, variant;
         ItemSearchEntry(int id,String name,String variant){this.id=id;this.name=name;this.variant=variant;}
         String label(){return name+" (ID "+id+")"+(variant.isEmpty()?"":" ["+variant+"]");}
+        @Override public boolean equals(Object other){
+            if(this==other)return true;if(!(other instanceof ItemSearchEntry))return false;
+            ItemSearchEntry entry=(ItemSearchEntry)other;return id==entry.id&&variant.equals(entry.variant);
+        }
+        @Override public int hashCode(){return 31*id+variant.hashCode();}
     }
     static List<ItemSearchEntry> itemMatches(String query,int limit) {
         String needle=query==null?"":query.trim().toLowerCase(Locale.ROOT);
         if(needle.isEmpty()||limit<1)return Collections.emptyList();
         Integer exactId=null;try{exactId=Integer.valueOf(needle);}catch(NumberFormatException ignored){ }
-        List<ItemSearchEntry> exact=new ArrayList<>(),other=new ArrayList<>();
+        List<ItemSearchEntry> exact=new ArrayList<>(),prefix=new ArrayList<>(),other=new ArrayList<>();
         Set<String> seen=new HashSet<>();
         for(String[] row:Names.ITEMS){
             int id;try{id=Integer.parseInt(row[0]);}catch(NumberFormatException invalid){continue;}
@@ -94,11 +99,36 @@ final class Native950ContentCommands {
             if(!idMatch&&!row[3].contains(needle))continue;
             String key=id+":"+row[2];if(!seen.add(key))continue;
             ItemSearchEntry entry=new ItemSearchEntry(id,row[1],row[2]);
-            if(idMatch||row[3].equals(needle))exact.add(entry);else other.add(entry);
+            if(idMatch||row[3].equals(needle))exact.add(entry);
+            else if(row[3].startsWith(needle)||row[3].contains(" "+needle))prefix.add(entry);
+            else other.add(entry);
         }
-        exact.addAll(other);
+        Comparator<ItemSearchEntry> usefulFirst=Comparator.comparingInt(Native950ContentCommands::variantRank)
+                .thenComparingInt(entry->entry.id);
+        exact.sort(usefulFirst);prefix.sort(usefulFirst);other.sort(usefulFirst);
+        exact.addAll(prefix);exact.addAll(other);
         return exact.size()<=limit?Collections.unmodifiableList(exact)
                 :Collections.unmodifiableList(new ArrayList<ItemSearchEntry>(exact.subList(0,limit)));
+    }
+    static List<ItemSearchEntry> featuredItemBrowserEntries(){
+        int[] ids={20135,20139,20143,20159,20163,20167,20147,20151,20155,31725,31729,31733,26579,26583};
+        List<ItemSearchEntry> result=new ArrayList<ItemSearchEntry>();
+        for(int id:ids){ItemSearchEntry entry=itemById(id);if(entry!=null)result.add(entry);}
+        return Collections.unmodifiableList(result);
+    }
+    private static ItemSearchEntry itemById(int wanted){
+        for(String[] row:Names.ITEMS){
+            int id;try{id=Integer.parseInt(row[0]);}catch(NumberFormatException invalid){continue;}
+            if(id==wanted&&row[2].isEmpty())return new ItemSearchEntry(id,row[1],row[2]);
+        }
+        return null;
+    }
+    private static int variantRank(ItemSearchEntry entry){
+        String value=(entry.name+" "+entry.variant).toLowerCase(Locale.ROOT);
+        if(entry.variant.isEmpty()&&!value.contains("(broken)")&&!value.contains(" shard"))return 0;
+        if(value.contains("noted"))return 3;
+        if(value.contains("broken")||value.contains("shard")||value.contains("lent"))return 4;
+        return 1;
     }
     static List<String> search(boolean npc,String query) {
         String needle=query.toLowerCase(Locale.ROOT);List<String> result=new ArrayList<>();

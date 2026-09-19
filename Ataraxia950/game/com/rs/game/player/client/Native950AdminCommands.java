@@ -32,7 +32,7 @@ public final class Native950AdminCommands {
                     entry(";;meleegear, ;;magegear, ;;rangegear, ;;weapons", "add a complete combat kit"),
                     entry(";;gear melee|mage|range|weapons, ;;gearhelp", "choose a kit or show its contents"),
                     entry(";;item <id> [amount]", "add an item by cache ID"),
-                    entry(";;items", "open the developer item search and backpack browser"),
+                    entry(";;items", "open the paged Developer Item Browser; search, recent, and quantity controls"),
                     entry(";;search / ;;find / ;;si / ;;itemid / ;;finditem <name> [page]", "find item IDs"),
                     entry(";;findnpc / ;;snpc <name> [page]", "find NPC IDs")),
             group("NPCS & TRAVEL", "fda4af", "fecdd3",

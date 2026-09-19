@@ -46,7 +46,17 @@ public class Native950ContentCommandsTest {
         assertTrue(Native950ContentCommands.itemMatches("20135",60).stream().anyMatch(e->e.id==20135));
         assertTrue(Native950ContentCommands.itemMatches("TORVA",3).size()<=3);
         assertTrue(Native950ContentCommands.itemMatches("torva full helm",60).stream().anyMatch(e->e.label().contains("ID 20135")));
+        assertEquals(20135,Native950ContentCommands.itemMatches("torva full helm",60).get(0).id);
+        assertFalse(Native950ContentCommands.featuredItemBrowserEntries().isEmpty());
         run(";;search torva 2");run(";;findnpc goblin 1");run(";;gearhelp");
+    }
+    @Test public void itemBrowserPagesAreBoundedAndComplete() {
+        List<Integer> values=new ArrayList<>();for(int i=0;i<95;i++)values.add(i);
+        assertEquals(3,Native950ItemBrowser.pageCount(values.size()));
+        assertEquals(40,Native950ItemBrowser.page(values,0,40).size());
+        assertEquals(Integer.valueOf(40),Native950ItemBrowser.page(values,1,40).get(0));
+        assertEquals(15,Native950ItemBrowser.page(values,2,40).size());
+        assertTrue(Native950ItemBrowser.page(values,3,40).isEmpty());
     }
     @Test public void aliasesAndPermissionAndMalformedRequests() {
         for(String name:new String[]{"search","find","si","itemid","finditem","findnpc","snpc"})assertTrue(Native950DevelopmentCommands.isCommand(";;"+name+" name"));
