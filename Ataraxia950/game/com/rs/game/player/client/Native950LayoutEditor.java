@@ -2,7 +2,6 @@ package com.rs.game.player.client;
 
 import com.rs.cache.Cache;
 import com.rs.game.player.Player;
-import com.rs.network.protocol.modern950.Native950Actions;
 import com.rs.network.protocol.modern950.Native950Packets;
 import io.netty.channel.Channel;
 import java.io.InputStream;
@@ -29,16 +28,6 @@ final class Native950LayoutEditor {
     }
 
     boolean isOpen(){return open;}
-
-    boolean handle(Native950Actions.InterfaceAction action){
-        if(!open||action.option()!=1||action.slot()!=-1||action.itemId()!=-1)return false;
-        if((action.interfaceId()==INTERFACE&&action.componentId()==20)
-                ||(action.interfaceId()==ROOT&&(action.componentId()==8||action.componentId()==809))){
-            close();
-            return true;
-        }
-        return false;
-    }
 
     void open(){
         if(open)return;
