@@ -40,10 +40,12 @@ Components 46 and 47 are the cache-authored list/grid display-mode controls, not
 pagination. Live revision-950 testing established that this fixed-size surface is
 visually safe at 40 entries. Larger dynamic row counts make item models overlap,
 so broad searches retain their ranked 40 best matches and ask for a narrower query.
-The browser does not invoke script 150: that script owns grid geometry together
-with option strings, so using it only to extend the context menu also changes the
-layout. The native cache-authored Info/Buy-1 wording is retained rather than
-regressing the clean grid. Left-click/Buy-1 both remain safe Give-1 paths.
+Script 150 owns grid geometry together with option strings. The first menu attempt
+incorrectly supplied eight columns and a dynamic row count, which made the native
+10-by-4 shop grid overlap. It is now invoked only with the live-verified fixed
+10-column, four-row geometry and the result set remains capped at 40. Native
+cache-authored Info/Buy-1/Examine entries remain; left-click and Buy-1 are both
+safe Give-1 paths.
 
 Each render creates one immutable snapshot and publishes that exact sequence to
 container 139. Clicks resolve only against the snapshot: slot is authoritative
@@ -52,9 +54,8 @@ recover a stale slot. A claim outside the snapshot is rejected and remounted.
 Every view change and grant remounts the V1 surface so the client's stock hooks
 cannot retain the previous view while displaying new icons.
 
-Left-click gives one immediately. The server retains bounded quantity handlers for
-verified input actions, but does not override the native grid's context menu or
-geometry. Grants revalidate the item against the cache-backed
+Left-click gives one immediately. The fixed-geometry menu adds Give 5, Give 10,
+Give 100 and Give X; Recent additionally adds Remove from Recent. Grants revalidate the item against the cache-backed
 container catalog and use `Native950Skilling.giveItem`, preserving controller,
 stack-overflow and backpack-capacity rules. Bug Test and Combat QA record the
 view, query, complete displayed ID order, incoming slot/item/option, resolved ID
