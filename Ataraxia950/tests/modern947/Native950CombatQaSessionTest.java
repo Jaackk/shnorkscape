@@ -45,6 +45,9 @@ public class Native950CombatQaSessionTest {
         Native950CombatQa.event(player,"combat","ability-executed","name","Backhand","structure",14708,
                 "animation",18023,"graphic","none","targetGraphic","none","gcdEndTick",3,
                 "channelEndTick",0,"followUpHitTicks","[]");
+        Native950CombatQa.event(player,"combat","ability-executed","name","Backhand","structure",14708,
+                "animation",18023,"graphic","none","targetGraphic","none","gcdEndTick",3,
+                "channelEndTick",0,"followUpHitTicks","[]");
         Native950CombatQa.marker(player,"animation looked late");
         assertTrue(Native950CombatQa.status(player).contains("active"));
         assertTrue(Native950CombatQa.stop(player,"command").contains("stopped"));
@@ -56,6 +59,7 @@ public class Native950CombatQaSessionTest {
         String timeline=new String(Files.readAllBytes(new File(session,"timeline.jsonl").toPath()),StandardCharsets.UTF_8);
         assertTrue(index.contains("\"persistentStateChanged\":false"));
         assertTrue(index.contains("\"Backhand\""));assertTrue(index.contains("\"manualBugMarkers\":1"));
+        assertTrue("repeated executions should share one presentation storyboard",index.contains("\"storyboardGroups\":1"));
         assertTrue(timeline.contains("\"correlationId\""));assertTrue(timeline.contains("manual-bug"));
         assertTrue(new File(session,"evidence-lifecycle.tsv").isFile());
         assertEquals("UNREVIEWED",new String(Files.readAllBytes(new File(session,"session-state.txt").toPath()),StandardCharsets.UTF_8).trim());

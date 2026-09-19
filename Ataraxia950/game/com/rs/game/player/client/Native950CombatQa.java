@@ -129,7 +129,7 @@ final class Native950CombatQa {
             Native950Actions.InterfaceAction a = (Native950Actions.InterfaceAction) action;
             session.observe("input", "interface", map("interface", a.interfaceId(), "component", a.componentId(),
                     "slot", a.slot(), "option", a.option(), "item", a.itemId()));
-            if (combatInterface(a.interfaceId())) session.storyboard("combat-interface", session.correlation, false, 100L);
+            if (combatInterface(a.interfaceId())) session.combatControlStoryboard(a.interfaceId(), a.componentId());
         } else if (action instanceof Native950Actions.DragAction) {
             Native950Actions.DragAction a = (Native950Actions.DragAction) action;
             session.newCorrelation("drag");
@@ -190,6 +190,7 @@ final class Native950CombatQa {
         final AtomicLong sequence = new AtomicLong();
         final AtomicLong manualBugs = new AtomicLong();
         final Set<String> abilities = new LinkedHashSet<String>(), channels = new LinkedHashSet<String>();
+        final Set<String> abilityStoryboards = new LinkedHashSet<String>(), combatControlStoryboards = new LinkedHashSet<String>();
         final Set<String> buffs = new LinkedHashSet<String>(), prayerActions = new LinkedHashSet<String>();
         final Set<String> magicActions = new LinkedHashSet<String>(), potionActions = new LinkedHashSet<String>();
         final Set<String> anomalyKinds = new LinkedHashSet<String>();
@@ -222,6 +223,7 @@ final class Native950CombatQa {
         synchronized void resetRecorder() {
             anomalyDebounce.clear(); queuedAt = -1L; queuedStructure = "none";
             pendingEffect = null; pendingEffectTick = -1L;
+            abilityStoryboards.clear(); combatControlStoryboards.clear();
             newCorrelation("reset");
             observe("session", "recorder-reset", map("gameplayStateChanged", false));
             storyboard("reset-baseline", correlation, true, 0L);
@@ -325,11 +327,9 @@ final class Native950CombatQa {
 
         private void scheduleFor(String category, String name, Map<String, Object> fields) {
             if (stopping) return;
-            if ("ability-request".equals(name) || "ability-queued".equals(name)
-                    || "ability-queue-replaced".equals(name) || "attack-request".equals(name)) {
-                storyboard(name, correlation, false, 0L); return;
-            }
             if ("ability-executed".equals(name)) {
+                String ability = value(fields, "name", value(fields, "structure", "unknown"));
+                if (!abilityStoryboards.add(ability)) return;
                 storyboardGroups++;
                 storyboard(name, correlation, false, 150L);
                 long channelEnd = number(fields.get("channelEndTick"), 0L), now = tick();
@@ -345,6 +345,11 @@ final class Native950CombatQa {
                     || name.startsWith("effect-") || name.contains("potion") || name.contains("overload")
                     || name.contains("channel");
             if (transition) storyboard(category + "-" + name, correlation, false, 120L);
+        }
+
+        synchronized void combatControlStoryboard(int interfaceId,int componentId) {
+            String control=interfaceId+":"+componentId;
+            if(combatControlStoryboards.add(control))storyboard("combat-interface",correlation,false,100L);
         }
 
         void storyboard(String event, String correlationId, boolean high, long delayMillis) {
