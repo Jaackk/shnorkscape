@@ -80,7 +80,7 @@ public final class Native950ExitUiAcceptance {
         int mountIndex=packetIndex(packets,mount),modeIndex=packetIndex(packets,mode);
         check(mountIndex>=0&&modeIndex>=0,"Native layout editor omitted its mount or edit-mode state");
         if(opening)check(mountIndex<modeIndex,"Native layout editor entered edit mode before mounting its UI");
-        else check(modeIndex<mountIndex,"Native layout editor closed its UI before leaving edit mode");
+        else check(mountIndex<modeIndex,"Native layout editor cleared edit mode before its unload lifecycle completed");
     }
     public static void main(String[] args)throws Exception{
         if(args.length!=1)throw new IllegalArgumentException("Usage: Native950ExitUiAcceptance <paired950-cache>");
