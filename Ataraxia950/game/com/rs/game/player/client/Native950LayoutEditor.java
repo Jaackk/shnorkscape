@@ -62,14 +62,10 @@ final class Native950LayoutEditor {
     void close(){
         if(!open)return;
         open=false;
-        if(player.getInterfaceManager().getInterfaceParentId(INTERFACE)==(ROOT<<16|HOST)){
-            channel.write(Native950Packets.closeSub(ROOT,HOST));
-            player.getInterfaceManager().unregisterNativeOpen(INTERFACE);
-        }
-        // Clear the mode after the interface unload lifecycle. The native editor's
-        // close hooks run with the mount still present and can otherwise leave the
-        // scene-dimming/input shield active after the visible window disappears.
         channel.write(Native950Packets.varcSmall(EDIT_MODE_VARC,0));
+        if(player.getInterfaceManager().getInterfaceParentId(INTERFACE)!=(ROOT<<16|HOST))return;
+        channel.write(Native950Packets.closeSub(ROOT,HOST));
+        player.getInterfaceManager().unregisterNativeOpen(INTERFACE);
     }
 
     static synchronized void verify(){
