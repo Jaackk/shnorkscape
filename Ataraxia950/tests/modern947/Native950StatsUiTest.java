@@ -121,54 +121,29 @@ public final class Native950StatsUiTest {
     public void loginBootstrapEmitsThePanelsInOrderAndThenTheState() {
         Native950Bindings bindings = load(fullTable());
         installAllowList(bindings);
-        // The layout recipe is opt-in (its geometry is invented and script 8708
-        // writes it into the client's persistent preset), so the full ordered
-        // sequence only exists with the flag on. theLayoutRecipeIsOffByDefault
-        // pins what an ordinary login sends.
+        // Geometry is a recovery-only seed. Even when its separate switch is set,
+        // ordinary login must leave native workspace position and visibility alone.
         Native950StatsUi.setSkillsLayoutEnabled(true);
         Native950StatsUi ui = new Native950StatsUi(player, bindings, marker());
 
         ui.bootstrap();
 
         List<Frame> frames = drain();
-        assertEquals("skills open, skills unhide, 5 layout scripts, bar open, bar unhide, minimap unhide, state",
-                11, frames.size());
+        assertEquals("skills open, action bar open, state", 3, frames.size());
 
-        // 1-2: the skills slot is attached and its wrapper becomes visible.
+        // The content mounts, but wrapper state is owned by the native workspace.
         assertOpenSub(frames.get(0), SKILLS_PANEL, ROOT, SKILLS_ATTACH);
-        assertSetHide(frames.get(1), ROOT, SKILLS_WRAPPER, false);
-
-        // 3-7: the equipment-slot layout recipe applied to slot key 0. Every
-        // argument is asserted in natural (script-parameter) order, because the
-        // values - the box, the wrapper hash, the slot key and the preset number -
-        // are the only invented content in this area and the writer sends them
-        // reversed, so a swapped pair would otherwise be invisible.
-        assertScript(frames.get(2), SIZE, "iiiii", WIDTH, HEIGHT, 0, 0, SKILLS_WRAPPER_HASH);
-        assertScript(frames.get(3), POSITION, "iiiii", X, Y, X_MODE, Y_MODE, SKILLS_WRAPPER_HASH);
-        assertScript(frames.get(4), SHOW, "i", SKILLS_WRAPPER_HASH);
-        assertScript(frames.get(5), SAVE_WORKING, "i", SKILLS_SLOT_KEY);
-        assertScript(frames.get(6), SAVE_PRESET, "ii", SKILLS_SLOT_KEY, PRESET);
-
-        // 8-9: the action bar. 1430:0's onLoad 8109(1003) does its own layout,
-        // so no geometry scripts are sent for this slot.
-        assertOpenSub(frames.get(7), ACTION_BAR, ROOT, BAR_ATTACH);
-        assertSetHide(frames.get(8), ROOT, BAR_WRAPPER, false);
-
-        // 10: the minimap panel is already attached by the Kotlin handoff; only
-        // its wrapper has to be shown for the run orb and the energy bar.
-        assertSetHide(frames.get(9), ROOT, MINIMAP_WRAPPER, false);
-
-        // 11: the state, strictly after every panel packet.
-        assertEquals(MESSAGE_GAME, frames.get(10).opcode);
+        assertOpenSub(frames.get(1), ACTION_BAR, ROOT, BAR_ATTACH);
+        assertEquals(MESSAGE_GAME, frames.get(2).opcode);
 
         assertEquals(2, ui.panelsOpened());
-        assertEquals(3, ui.wrappersShown());
-        assertEquals(5, ui.layoutSteps());
+        assertEquals(0, ui.wrappersShown());
+        assertEquals(0, ui.layoutSteps());
         assertEquals(0, ui.skippedBindings());
         assertEquals(0, ui.stateFailures());
         assertEquals(0, packets.counters().totalDropped());
         assertEquals(0, packets.counters().totalStrictHits());
-        assertEquals(11, packets.counters().totalSent());
+        assertEquals(3, packets.counters().totalSent());
     }
 
     /**
@@ -186,13 +161,12 @@ public final class Native950StatsUiTest {
     public void theDefaultEmitterLeavesTheStateToTheSession() {
         Native950Bindings bindings = load(fullTable());
         installAllowList(bindings);
-        Native950StatsUi.setSkillsLayoutEnabled(true);
         Native950StatsUi ui = new Native950StatsUi(player, bindings);
 
         ui.bootstrap();
 
         List<Frame> frames = drain();
-        assertEquals("panels only", 10, frames.size());
+        assertEquals("panels only", 2, frames.size());
         for (Frame frame : frames)
             assertTrue("only panel packets", frame.opcode == IF_OPENSUB || frame.opcode == IF_SETHIDE
                     || frame.opcode == RUNCLIENTSCRIPT);
@@ -201,13 +175,9 @@ public final class Native950StatsUiTest {
     }
 
     /**
-     * What an ordinary login sends: the two CONFIRMED halves of the skills recipe
-     * (IF_OPENSUB, IF_SETHIDE) and nothing else. Whether slot 0 needs the
-     * equipment-style layout sequence at all is a CANDIDATE row
-     * ({@code SKILLS_TAB.md} section 8) and the geometry it would carry is
-     * invented, so it stays off until a live login settles both - script 8708
-     * writes the box into the client's persistent layout preset 8, which is not
-     * something a guess may do on a first login.
+     * What an ordinary login sends: only the two required content attachments.
+     * Visibility and geometry are native workspace state and must not be replaced
+     * with a server-side default at login.
      */
     @Test
     public void theLayoutRecipeIsOffByDefault() {
@@ -219,14 +189,10 @@ public final class Native950StatsUiTest {
         ui.bootstrap();
 
         List<Frame> frames = drain();
-        assertEquals("skills open, skills unhide, bar open, bar unhide, minimap unhide, state",
-                6, frames.size());
+        assertEquals("skills open, bar open, state", 3, frames.size());
         assertOpenSub(frames.get(0), SKILLS_PANEL, ROOT, SKILLS_ATTACH);
-        assertSetHide(frames.get(1), ROOT, SKILLS_WRAPPER, false);
-        assertOpenSub(frames.get(2), ACTION_BAR, ROOT, BAR_ATTACH);
-        assertSetHide(frames.get(3), ROOT, BAR_WRAPPER, false);
-        assertSetHide(frames.get(4), ROOT, MINIMAP_WRAPPER, false);
-        assertEquals(MESSAGE_GAME, frames.get(5).opcode);
+        assertOpenSub(frames.get(1), ACTION_BAR, ROOT, BAR_ATTACH);
+        assertEquals(MESSAGE_GAME, frames.get(2).opcode);
         for (Frame frame : frames)
             assertNotEquals("no layout script may be sent by default", RUNCLIENTSCRIPT, frame.opcode);
         assertEquals(0, ui.layoutSteps());
@@ -247,7 +213,7 @@ public final class Native950StatsUiTest {
         int first = drain().size();
         ui.bootstrap();
         assertEquals(0, drain().size());
-        assertEquals(11, first);
+        assertEquals(3, first);
     }
 
     /**
@@ -263,8 +229,7 @@ public final class Native950StatsUiTest {
         ui.openPanels();
 
         List<Frame> frames = drain();
-        assertEquals(1, frames.size());
-        assertSetHide(frames.get(0), ROOT, MINIMAP_WRAPPER, false);
+        assertEquals(0, frames.size());
         assertEquals("the skills slot and the action bar slot", 2, ui.skippedBindings());
         assertEquals(0, ui.panelsOpened());
         assertEquals(0, packets.counters().totalDropped());
@@ -764,16 +729,16 @@ public final class Native950StatsUiTest {
      * enough that a restart is sufficient to change it.
      */
     @Test
-    public void forceOpenPanelsDefaultsToTodaysBehaviourAndIsReadLate() {
+    public void workspaceVisibilityDefaultsToClientOwnershipAndIsReadLate() {
         String previous = System.getProperty(Native950StatsUi.FORCE_OPEN_PROPERTY);
         try {
             System.clearProperty(Native950StatsUi.FORCE_OPEN_PROPERTY);
-            assertTrue("the default must be what the server does today",
+            assertFalse("ordinary login must not force a saved panel visible",
                     Native950StatsUi.forceOpenPanels());
             System.setProperty(Native950StatsUi.FORCE_OPEN_PROPERTY, "false");
             assertFalse(Native950StatsUi.forceOpenPanels());
             System.setProperty(Native950StatsUi.FORCE_OPEN_PROPERTY, "true");
-            assertTrue("flipping back must not need a rebuild", Native950StatsUi.forceOpenPanels());
+            assertTrue("the explicit recovery switch is read late", Native950StatsUi.forceOpenPanels());
             System.setProperty(Native950StatsUi.FORCE_OPEN_PROPERTY, "nonsense");
             assertFalse("an unparseable value must fail closed, not open panels",
                     Native950StatsUi.forceOpenPanels());

@@ -115,24 +115,17 @@ class Native947RibbonTest {
     }
 
     @Test
-    fun `bottom right ribbon is sized positioned and saved before its dynamic icon tree is rebuilt`() {
+    fun `ordinary login rebuilds ribbon controls without overwriting its saved workspace layout`() {
         val packets = Native947Ribbon.initialization()
-        assertEquals(67, packets.size)
-        val wrapper = (1477 shl 16) or 61
-        assertEquals(listOf(
-            11145 to listOf(224, 48, 0, 0, wrapper),
-            13268 to listOf(8, 8, 2, 2, wrapper),
-            2330 to listOf(wrapper),
-            8707 to listOf(1002),
-            8708 to listOf(1002, 8)
-        ), afterSelection(packets).take(5).map(::script))
+        val layoutScripts = packets.filter { it.type().opcode() == 121 }.map(::script)
+            .filter { it.first in setOf(11145, 13268, 2330, 8361, 8707, 8708) }
+        assertTrue(layoutScripts.isEmpty(), "position, tab links, and presets belong to the client workspace")
         assertEquals(13833 to listOf(1431 shl 16, (1431 shl 16) or 12), script(packets[packets.lastIndex - 1]))
     }
 
     @Test
     fun `login clears live tab chains and saves standalone links before creating ribbon buttons`() {
-        // Eight selection writes, five ribbon layout steps, then sixteen inactive-panel preparations.
-        val scripts = afterSelection(Native947Ribbon.initialization()).drop(5 + 16).dropLast(2).map(::script)
+        val scripts = afterSelection(withRecoverySeed { Native947Ribbon.initialization() }).drop(5 + 16).dropLast(2).map(::script)
         // Clear every live bar first: hiding a wrapper alone leaves actors in the other bar.
         // Inactive chat slots must also lose their reciprocal links, while remaining hidden.
         val slots = listOf(0, 2, 3, 18, 9, 19, 20, 21, 22, 23, 25, 46)
@@ -153,7 +146,7 @@ class Native947RibbonTest {
 
     @Test
     fun `inactive panel saves cannot match the cache uninitialized layout sentinel`() {
-        val preparation = afterSelection(Native947Ribbon.initialization()).drop(5).take(16)
+        val preparation = afterSelection(withRecoverySeed { Native947Ribbon.initialization() }).drop(5).take(16)
         val wrappers = listOf(407, 429, 439, 449, 459, 469, 479, 489)
         assertEquals(wrappers, preparation.take(8).map { packet ->
             assertEquals(103, packet.type().opcode())
@@ -210,10 +203,25 @@ class Native947RibbonTest {
         assertEquals(listOf("070000070000970500000200"), events.map { hex(it.payload()) })
         assertEquals(35, Native947Ribbon.initialization().last().type().opcode(),
             "The dynamic actor event override follows the native icon rebuild")
-        // Only the ribbon gets a position change; implemented panels retain their accepted geometry.
+        // Ordinary login preserves the saved ribbon position. Recovery can re-seed the known
+        // fallback rectangle without making it the normal workspace owner.
         val positionChanges = Native947Ribbon.initialization().filter { it.type().opcode() == 121 }
             .map(::script).filter { it.first == 13268 }
-        assertEquals(listOf(13268 to listOf(8, 8, 2, 2, (1477 shl 16) or 61)), positionChanges)
+        assertTrue(positionChanges.isEmpty())
+        val recoveryPositionChanges = withRecoverySeed { Native947Ribbon.initialization() }
+            .filter { it.type().opcode() == 121 }.map(::script).filter { it.first == 13268 }
+        assertEquals(listOf(13268 to listOf(8, 8, 2, 2, (1477 shl 16) or 61)), recoveryPositionChanges)
+    }
+
+    private fun <T> withRecoverySeed(block: () -> T): T {
+        val key = "ataraxia950.workspace.forceOpenPanels"
+        val previous = System.getProperty(key)
+        return try {
+            System.setProperty(key, "true")
+            block()
+        } finally {
+            if (previous == null) System.clearProperty(key) else System.setProperty(key, previous)
+        }
     }
 
     private fun afterSelection(packets: List<Native947Packets.Packet>) =

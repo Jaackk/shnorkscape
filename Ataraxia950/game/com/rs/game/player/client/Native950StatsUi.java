@@ -93,24 +93,22 @@ public final class Native950StatsUi {
     public static final String SKILLS_LAYOUT_PROPERTY = "ataraxia947.skillsLayout";
 
     /**
-     * {@code -Dataraxia947.forceOpenPanels=false} stops the server opening panels the player did
-     * not ask for.
+     * {@code -Dataraxia950.workspace.forceOpenPanels=true} enables the old recovery seed that
+     * explicitly reveals native panels after mounting them.
      *
-     * <p>Default <b>true</b>, which is exactly today's behaviour, and that default is the point.
-     * The interface plan retires the login force-open one panel at a time as the ribbon takes
-     * over placement, and there is no way to recover a half-wired interface from inside the
-     * client except by relogging against a build that still opens things. So every retirement in
-     * that plan is a flip of this flag rather than a deletion of the code, and the previous
-     * build's HUD is always one property away.
+     * <p>Default <b>false</b>. Normal login still mounts the content required by the client, but
+     * leaves visibility, position, docking, and tab state to the native workspace manager.
+     * The recovery seed is intentionally JVM-wide and is reserved for repairing an empty or
+     * corrupt client workspace without changing ordinary player sessions.
      *
      * <p>It is read per call rather than cached, so a restart changes behaviour without a
      * rebuild. It is still JVM-wide: making panel policy per-session is its own piece of work.
      */
-    public static final String FORCE_OPEN_PROPERTY = "ataraxia947.forceOpenPanels";
+    public static final String FORCE_OPEN_PROPERTY = "ataraxia950.workspace.forceOpenPanels";
 
-    /** Whether the server still opens panels on the player's behalf. See {@link #FORCE_OPEN_PROPERTY}. */
+    /** Whether the recovery seed explicitly reveals mounted panels. See {@link #FORCE_OPEN_PROPERTY}. */
     public static boolean forceOpenPanels() {
-        return Boolean.parseBoolean(System.getProperty(FORCE_OPEN_PROPERTY, "true"));
+        return Boolean.parseBoolean(System.getProperty(FORCE_OPEN_PROPERTY, "false"));
     }
 
     /** Property prefix for the six geometry numbers, e.g. {@code ataraxia947.skillsLayout.x}. */
@@ -291,19 +289,13 @@ public final class Native950StatsUi {
         sendInitialState();
     }
 
-    /** Attaches the skills panel and the action bar and shows the minimap wrapper. */
+    /** Attaches HUD content; only the explicit recovery switch changes native visibility. */
     public void openPanels() {
-        if (!forceOpenPanels()) {
-            // Not a skip() - nothing is missing or unverified. The operator asked for this, and
-            // recording it as a binding failure would poison the skippedBindings acceptance gate.
-            log("[Ataraxia950] " + FORCE_OPEN_PROPERTY + "=false; the server opens no panels."
-                    + " The player must open them, or relog without the flag.");
-            return;
-        }
         if (bindings == null) {
             skip("binding table", "no validated 947 table is installed");
             return;
         }
+        boolean reveal = forceOpenPanels();
         Native950Bindings.Slot skills = slot(SKILLS_NAMES);
         if (skills != null) {
             int skillsPanelId = skillsPanelId();
@@ -315,16 +307,16 @@ public final class Native950StatsUi {
                 // The skills panel is the only M3 slot with no onLoad hook of its
                 // own, so its wrapper geometry may have to be set and saved
                 // explicitly - see layout(), which is opt-in until a live check.
-                if (attach(skills, skillsPanelId) && skillsLayout) layout(skills);
+                if (attach(skills, skillsPanelId, reveal) && skillsLayout && reveal) layout(skills);
             }
         }
         Native950Bindings.Slot actionBar = slot(ACTION_BAR_NAMES);
         if (actionBar != null) {
             int actionBarId = interfaceId(ACTION_BAR_NAMES);
-            if (actionBarId >= 0) attach(actionBar, actionBarId);
+            if (actionBarId >= 0) attach(actionBar, actionBarId, reveal);
         }
         Native950Bindings.Slot minimap = slot(MINIMAP_NAMES);
-        if (minimap != null) show(minimap);
+        if (minimap != null && reveal) show(minimap);
     }
 
     /** The stat and vital burst; must follow {@link #openPanels()}. */
@@ -358,7 +350,7 @@ public final class Native950StatsUi {
      *
      * @return true when IF_OPENSUB actually reached the transport
      */
-    private boolean attach(Native950Bindings.Slot slot, int interfaceId) {
+    private boolean attach(Native950Bindings.Slot slot, int interfaceId, boolean reveal) {
         // The 910 clickThrough flag is the 947 walkable flag; the handoff opens
         // every HUD slot walkable so the scene keeps receiving map clicks.
         long before = sendInterfaceCount();
@@ -366,13 +358,13 @@ public final class Native950StatsUi {
         if (sendInterfaceCount() == before) {
             skip("interface " + interfaceId + " in slot key " + slot.enumKey,
                     "the packet facade did not send IF_OPENSUB for it (unbound id, or no transport)");
-            show(slot);
+            if (reveal) show(slot);
             return false;
         }
         panelsOpened++;
         InterfaceManager manager = player.getInterfaceManager();
         if (manager != null) manager.registerNativeOpen(interfaceId, slot.attach >>> 16, slot.attach & 0xffff);
-        show(slot);
+        if (reveal) show(slot);
         return true;
     }
 

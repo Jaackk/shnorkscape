@@ -33,16 +33,18 @@ class Native947InterfaceBootstrapTest {
 
     @Test
     fun `pure extraction reproduces every pre-policy opcode and payload in order`() {
-        val packets = Native947InterfaceBootstrap.packets(
-            inspectedSlots(), Native947InterfaceBootstrap.baselineHiddenSlots, assertModernMode = false
-        )
+        val packets = withRecoverySeed {
+            Native947InterfaceBootstrap.packets(
+                inspectedSlots(), Native947InterfaceBootstrap.baselineHiddenSlots, assertModernMode = false
+            )
+        }
         assertEquals(85, packets.size)
         assertEquals(golden("baseline"), wire(packets))
     }
 
     @Test
     fun `modern policy adds mode and onboarding assertions inert wrappers and the supported run action`() {
-        val packets = Native947InterfaceBootstrap.packets(inspectedSlots())
+        val packets = withRecoverySeed { Native947InterfaceBootstrap.packets(inspectedSlots()) }
         assertEquals(100, packets.size)
         assertEquals(golden("modern"), wire(packets))
         assertEquals(listOf(94, 50, 50, 50, 50, 50, 50, 8), packets.take(8).map { it.type().opcode() },
@@ -138,9 +140,34 @@ class Native947InterfaceBootstrapTest {
         val attach = wire(listOf(Native947Packets.openSub(1477, 64, 1431, true))).single()
         assertTrue(hide in disabled)
         assertFalse(hide in enabled)
-        assertTrue(show in enabled)
+        assertFalse(show in enabled, "ordinary login attaches content without forcing workspace visibility")
         assertTrue(attach in enabled)
-        assertEquals(disabled.filterNot { it == hide }, enabled.filterNot { it == show || it == attach })
+        assertEquals(disabled.filterNot { it == hide }, enabled.filterNot { it == attach })
+        val recovery = wire(withRecoverySeed { Native947InterfaceBootstrap.packets(slots, ribbonEnabled = true) })
+        assertTrue(show in recovery, "the explicit recovery seed remains available")
+    }
+
+    @Test
+    fun `ordinary bootstrap never sends a panel-visible override`() {
+        val slots = inspectedSlots()
+        val packets = Native947InterfaceBootstrap.packets(slots, ribbonEnabled = true)
+        val forcedVisible = listOf(2, 3, 4, 5, 6, 7, 18, 33, 34, 35, 36, 39, 1002).map { key ->
+            val wrapper = requireNotNull(slots[key]).wrapper and 65535
+            wire(listOf(Native947Packets.hideInterface(1477, wrapper, false))).single()
+        }
+        assertTrue(forcedVisible.none(wire(packets)::contains),
+            "visibility is restored by the native workspace, not overwritten at login")
+    }
+
+    private fun <T> withRecoverySeed(block: () -> T): T {
+        val key = "ataraxia950.workspace.forceOpenPanels"
+        val previous = System.getProperty(key)
+        return try {
+            System.setProperty(key, "true")
+            block()
+        } finally {
+            if (previous == null) System.clearProperty(key) else System.setProperty(key, previous)
+        }
     }
 
     private fun golden(name: String): List<String> = requireNotNull(javaClass.getResource(

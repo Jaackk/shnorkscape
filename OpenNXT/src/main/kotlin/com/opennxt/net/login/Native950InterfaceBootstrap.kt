@@ -6,6 +6,7 @@ import com.rs.game.player.client.Native950InventoryMenu
 /** Packet policy for the Ataraxia backend, independent of cache lookup and the old slot enum. */
 internal object Native950InterfaceBootstrap {
     const val ROOT = 1477
+    private const val FORCE_OPEN_PANELS_PROPERTY = "ataraxia950.workspace.forceOpenPanels"
 
     data class Slot(val attach: Int, val wrapper: Int)
 
@@ -24,7 +25,11 @@ internal object Native950InterfaceBootstrap {
     val inertHiddenSlots: List<Int> = listOf(45, 46, 1049, 1050, 1051, 1052, 1053)
     val hiddenSlots: List<Int> = baselineHiddenSlots + inertHiddenSlots
 
-    private data class Panel(val slot: Int, val interfaceId: Int, val showWrapper: Boolean)
+    /**
+     * Native content still has to be mounted for its saved workspace slot to render. Visibility,
+     * however, is workspace state and must not be overwritten at every login.
+     */
+    private data class Panel(val slot: Int, val interfaceId: Int, val canForceShow: Boolean)
     private val panels = listOf(
         Panel(1000, 1482, false), Panel(1004, 1465, false), Panel(2, 1473, true),
         Panel(3, 1462, true), Panel(4, 1458, true), Panel(5, 1461, true),
@@ -42,6 +47,7 @@ internal object Native950InterfaceBootstrap {
         assertModernMode: Boolean = true,
         ribbonEnabled: Boolean = false
     ): List<Native950Packets.Packet> {
+        val forceOpenPanels = System.getProperty(FORCE_OPEN_PANELS_PROPERTY, "false").toBoolean()
         val opened = if (ribbonEnabled) panels + Panel(1002, 1431, true) else panels
         val retained = mutableSetOf(hash(0), hash(27), hash(60))
         val output = mutableListOf(Native950Packets.openTop(ROOT))
@@ -64,7 +70,7 @@ internal object Native950InterfaceBootstrap {
             requireRoot(slot.wrapper, "slot ${panel.slot} wrapper")
             retained += slot.wrapper
             output += Native950Packets.openSub(ROOT, slot.attach and 65535, panel.interfaceId, true)
-            if (panel.showWrapper) {
+            if (forceOpenPanels && panel.canForceShow) {
                 output += Native950Packets.hideInterface(ROOT, slot.wrapper and 65535, false)
             }
         }

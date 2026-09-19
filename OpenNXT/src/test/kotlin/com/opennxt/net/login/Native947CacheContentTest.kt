@@ -46,7 +46,14 @@ class Native947CacheContentTest {
 
     @Test
     fun `equipment metadata binds the modern actor layer and rejects stale attachments`() {
-        val equipment = Native947CacheContent.equipmentUi((1477 shl 16) or 114, (1477 shl 16) or 112)
+        val ordinary = Native947CacheContent.equipmentUi((1477 shl 16) or 114, (1477 shl 16) or 112)
+        assertEquals(2, ordinary.bootstrap.size, "ordinary login must not overwrite saved workspace geometry")
+        assertEquals(8471, ByteBuffer.wrap(ordinary.bootstrap[0].payload()).let { bytes ->
+            bytes.position(bytes.limit() - 4); bytes.int
+        })
+        val equipment = withRecoverySeed {
+            Native947CacheContent.equipmentUi((1477 shl 16) or 114, (1477 shl 16) or 112)
+        }
         assertEquals(1462, equipment.interfaceId)
         assertEquals(31, equipment.itemComponent)
         assertEquals(94, equipment.containerId)
@@ -101,6 +108,17 @@ class Native947CacheContentTest {
         assertFalse(savePreset.hasRemaining())
         assertFailsWith<IllegalStateException> {
             Native947CacheContent.equipmentUi((1477 shl 16) or 115, (1477 shl 16) or 112)
+        }
+    }
+
+    private fun <T> withRecoverySeed(block: () -> T): T {
+        val key = "ataraxia950.workspace.forceOpenPanels"
+        val previous = System.getProperty(key)
+        return try {
+            System.setProperty(key, "true")
+            block()
+        } finally {
+            if (previous == null) System.clearProperty(key) else System.setProperty(key, previous)
         }
     }
 

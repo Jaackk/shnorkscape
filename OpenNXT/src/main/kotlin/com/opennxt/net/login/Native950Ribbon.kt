@@ -6,9 +6,11 @@ import java.security.MessageDigest
 
 /** Native management menus plus the existing direct HUD-panel shortcuts. */
 internal object Native950Ribbon {
+    private const val FORCE_OPEN_PANELS_PROPERTY = "ataraxia950.workspace.forceOpenPanels"
     fun enabled(): Boolean = System.getProperty("ataraxia947.ribbon", "true").toBoolean()
 
     fun initialization(): List<Native950Packets.Packet> {
+        val recoverySeed = System.getProperty(FORCE_OPEN_PANELS_PROPERTY, "false").toBoolean()
         val wrapper = (1477 shl 16) or 61
         // Enum13319 actor IDs stay fixed even when their display order changes.
         // Eight management destinations and four direct HUD toggles; zero ends the list.
@@ -18,19 +20,21 @@ internal object Native950Ribbon {
             if (value > 127) Native950Packets.varcBitLarge(21788 + index, value)
             else Native950Packets.varcBitSmall(21788 + index, value)
         }
-        return selection + listOf(
-            // Native checkbox 2755 toggles this preference, then copies it to 42113.
-            // Keep the forced login selection and its next-toggle source in sync.
-            Native950Packets.varcBitSmall(21816, 1),
-            Native950Packets.varcBitSmall(42113, 1),
-            // Native40px icons plus24px edit controls. Keep the cache minimum48px height.
-            // Position modes 2/2 anchor right/bottom, clear of the lower-left chat panel.
+        val ribbonLayout = if (recoverySeed) listOf(
+            // These scripts establish the old fallback location and save preset 8. They must
+            // not run during an ordinary login because the client owns a saved workspace.
             Native950Packets.runClientScript(11145, buttons.size * 40 + 24, 48, 0, 0, wrapper),
             Native950Packets.runClientScript(13268, 8, 8, 2, 2, wrapper),
             Native950Packets.runClientScript(2330, wrapper),
             Native950Packets.runClientScript(8707, 1002),
             Native950Packets.runClientScript(8708, 1002, 8)
-        ) + standalonePanels() + listOf(
+        ) else emptyList()
+        return selection + listOf(
+            // Native checkbox 2755 toggles this preference, then copies it to 42113.
+            // Keep the forced login selection and its next-toggle source in sync.
+            Native950Packets.varcBitSmall(21816, 1),
+            Native950Packets.varcBitSmall(42113, 1)
+        ) + ribbonLayout + if (recoverySeed) standalonePanels() else emptyList<Native950Packets.Packet>() + listOf(
             Native950Packets.runClientScript(13833, 1431 shl 16, (1431 shl 16) or 12),
             // All eight management actors notify the server. Direct HUD toggles retain
             // their own cache scripts and do not need duplicate server operations.
@@ -38,7 +42,10 @@ internal object Native950Ribbon {
         )
     }
 
-    /** Run after root/chat initialization, before the ribbon can close a linked panel. */
+    /**
+     * Legacy recovery seed for an empty layout only. It clears tab links and writes preset 8,
+     * so ordinary login must never call it: doing so destroys a player's saved tab groups.
+     */
     private fun standalonePanels(): List<Native950Packets.Packet> {
         // 8701 treats a hidden rectangle of zero size/position with no neighbors as
         // uninitialized and restores preset 1, including its unwanted chat links.

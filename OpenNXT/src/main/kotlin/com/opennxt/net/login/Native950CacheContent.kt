@@ -39,19 +39,24 @@ internal object Native950CacheContent {
         check(parent == ((1477 shl 16) or 114) && wrapper == ((1477 shl 16) or 112)) {
             "The selected cache has an unverified equipment attachment"
         }
-        return Native950Content.EquipmentUi(1462, 31, 94, listOf(
-            // The initial interface phase attaches the panel before its container arrives.
-            // Initialize its geometry explicitly: unused native layout slots begin at zero size.
-            Native950Packets.runClientScript(11145, 224, 360, 0, 0, wrapper),
-            Native950Packets.runClientScript(13268, 232, 80, 2, 2, wrapper),
-            Native950Packets.runClientScript(2330, wrapper),
+        val recoverySeed = System.getProperty("ataraxia950.workspace.forceOpenPanels", "false").toBoolean()
+        val bootstrap = mutableListOf<Native950Packets.Packet>()
+        if (recoverySeed) {
+            // Explicit recovery only. These scripts overwrite user geometry and preset 8.
+            bootstrap += Native950Packets.runClientScript(11145, 224, 360, 0, 0, wrapper)
+            bootstrap += Native950Packets.runClientScript(13268, 232, 80, 2, 2, wrapper)
+            bootstrap += Native950Packets.runClientScript(2330, wrapper)
+        }
+        bootstrap += listOf(
             Native950Packets.runClientScript(8471, (1462 shl 16) or 3, 94),
-            // Save this slot to both the current layout and the selected custom preset.
-            // Otherwise a window resize restores preset 8's hidden, zero-size slot.
-            Native950Packets.runClientScript(8707, 3),
-            Native950Packets.runClientScript(8708, 3, 8),
             Native950Packets.interfaceEvents(1462, 31, 0, 18, 2 or 1024)
-        ), listOf(Native950Packets.runClientScript(8471, (1462 shl 16) or 3, 94)))
+        )
+        if (recoverySeed) {
+            bootstrap += Native950Packets.runClientScript(8707, 3)
+            bootstrap += Native950Packets.runClientScript(8708, 3, 8)
+        }
+        return Native950Content.EquipmentUi(1462, 31, 94, bootstrap,
+            listOf(Native950Packets.runClientScript(8471, (1462 shl 16) or 3, 94)))
     }
 
     internal fun appearance(readFile: (Int, Int, Int) -> ByteArray = ::readCacheFile): Native950Appearance {
