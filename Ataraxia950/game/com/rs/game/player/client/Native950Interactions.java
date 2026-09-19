@@ -368,6 +368,7 @@ public final class Native950Interactions {
         // server state even if the player died or became inactive before this tick.
         if (action instanceof Native950Actions.CloseModalAction) {
             if(exitUi.consumeOpeningCloseAcknowledgement())return;
+            exitUi.consumeLayoutEditorClose();
             closeModal();return;
         }
         if(exitUi.isOpen()&&(action instanceof Native950Actions.ObjectAction

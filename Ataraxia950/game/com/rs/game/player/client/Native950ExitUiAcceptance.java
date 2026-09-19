@@ -68,6 +68,20 @@ public final class Native950ExitUiAcceptance {
             &&packetIndex(packets,Native950Packets.hideInterface(1477,809,true))<0,
             "Exit hid unowned sibling input layers");
     }
+    private static void checkLayoutRecipe(EmbeddedChannel ch,boolean opening){
+        ch.flush();Object o;List<Native950Packets.Packet> packets=new ArrayList<>();
+        while((o=ch.readOutbound())!=null){
+            if(o instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)o);
+            ReferenceCountUtil.release(o);
+        }
+        Native950Packets.Packet mount=opening?Native950Packets.openSub(1477,692,1475,true)
+            :Native950Packets.closeSub(1477,692);
+        Native950Packets.Packet mode=Native950Packets.varcSmall(3477,opening?1:0);
+        int mountIndex=packetIndex(packets,mount),modeIndex=packetIndex(packets,mode);
+        check(mountIndex>=0&&modeIndex>=0,"Native layout editor omitted its mount or edit-mode state");
+        if(opening)check(mountIndex<modeIndex,"Native layout editor entered edit mode before mounting its UI");
+        else check(modeIndex<mountIndex,"Native layout editor closed its UI before leaving edit mode");
+    }
     public static void main(String[] args)throws Exception{
         if(args.length!=1)throw new IllegalArgumentException("Usage: Native950ExitUiAcceptance <paired950-cache>");
         System.setProperty(Native950World.SPAWNS_PROPERTY,"false");
@@ -102,6 +116,20 @@ public final class Native950ExitUiAcceptance {
             check(ui.consumeOpeningCloseAcknowledgement(),"Opening acknowledgement was not fenced");
             check(ui.consumeOpeningCloseAcknowledgement(),"Repeated opening acknowledgement closed the exit overlay");
             check(ui.isOpen(),"Repeated opening acknowledgement did not retain the exit overlay");
+            ui.handle(click(22));
+            check(!ui.isOpen()&&ui.isLayoutEditing(),"Edit Layout did not replace Options with the native editor");
+            checkLayoutRecipe(ch,true);
+            check(p.getInterfaceManager().getInterfaceParentId(1475)==(1477<<16|692),"Native layout editor ownership was not registered");
+            check(ui.consumeLayoutEditorClose()&&!ui.isLayoutEditing(),"Native layout editor close was not reconciled");
+            check(packet(ch,Native950Packets.varcSmall(3477,0)),"Native layout editor close did not leave edit mode");
+            check(!p.getInterfaceManager().containsInterface(1475),"Native layout editor ownership survived client close");
+            check(!ui.consumeLayoutEditorClose(),"Stale native layout editor close was consumed twice");
+            ui.handle(entry());
+            ui.handle(click(22));
+            ui.close();
+            check(!ui.isLayoutEditing(),"Server close did not retire the native layout editor");
+            checkLayoutRecipe(ch,false);
+            ui.handle(entry());
             ui.handle(click(86));check(calls[0]==0,"Unarmed confirmation logged out");
             ui.handle(click(72));check(packet(ch,Native950Packets.hideInterface(1433,62,false)),"Logout does not show native confirmation");
             ui.handle(click(89));ui.handle(click(86));check(calls[0]==0&&p.isActive(),"Cancel did not retire confirmation");
@@ -121,7 +149,7 @@ public final class Native950ExitUiAcceptance {
             p.getControlerManager().forceStop();
             ui.handle(click(69));check(calls[0]==0&&p.isActive(),"Unimplemented lobby entry silently logged out");
             check(!ui.handle(click(15)),"Exit helper swallowed another menu owner's entry");
-            for(int local:new int[]{22,43,66}){ui.handle(click(local));check(!ui.isOpen()&&p.isActive()&&calls[0]==0,"Local menu explanation failed or disconnected: "+local);ui.handle(entry());}
+            for(int local:new int[]{43,66}){ui.handle(click(local));check(!ui.isOpen()&&p.isActive()&&calls[0]==0,"Local menu explanation failed or disconnected: "+local);ui.handle(entry());}
             ui.handle(click(1477,8,-1,-1,1));
             check(!ui.isOpen()&&!p.getInterfaceManager().containsInterface(1433),"Escape did not close owned options");
             check(packet(ch,Native950Packets.closeSub(1477,806)),"Close used wrong mount");
