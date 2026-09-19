@@ -248,13 +248,14 @@ public class Native950MeleeCombatTest {
         player.getSkills().set(0,99);player.setDevelopmentGodMode(true);npc.setHitpoints(10000);
         combat.attack(player,npc);combat.ability(player,14701);step();
         assertEquals(1,npc.getNextHits().size());
+        assertTrue(combat.channelEndTick(player)>0);
         assertEquals("Backhand queued.",combat.ability(player,14682));
         step();assertEquals(0,npc.getNextHits().size());
         step();assertEquals(1,npc.getNextHits().size());
         step();assertEquals(0,npc.getNextHits().size());
         step();assertEquals(0,npc.getNextHits().size());
         step();assertEquals(1,npc.getNextHits().size());assertEquals(0,combat.pendingHitCount(player));
-        step();assertEquals(1,npc.getNextHits().size());
+        step();assertEquals(1,npc.getNextHits().size());assertEquals(0,combat.channelEndTick(player));
         assertTrue(combat.ability(player,14682).contains("25 ticks remaining"));
     }
     @Test public void losingRangeCancelsChannelFollowUpsRatherThanLandingThroughWalls(){

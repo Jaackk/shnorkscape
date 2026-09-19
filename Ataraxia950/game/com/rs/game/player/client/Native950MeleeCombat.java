@@ -497,6 +497,11 @@ public final class Native950MeleeCombat {
             if(npc.isDead())continue;
             processPendingHits(player,fighter);
             if(npc.isDead())continue;
+            Long channelEnd=channelUntil.get(player);
+            if(channelEnd!=null&&tick>=channelEnd){
+                channelUntil.remove(player);
+                Native950BugTest.event(player,"combat","channel-completed","endTick",channelEnd,"completedTick",tick);
+            }
             Loadout gear;
             try {gear=loadouts.get(player);}catch(IllegalArgumentException unsupported){player.getPackets().sendGameMessage(unsupported.getMessage());stop(player);continue;}
             String slayerRefusal=Native950Slayer.attackRefusal(player,npc);
@@ -753,6 +758,7 @@ public final class Native950MeleeCombat {
     }
     public String status() {owned();return "fighters="+fighters.size()+", unavailableTypes="+unavailableDefinitions.size()+", engaged="+targets.size()+", swings="+swings+", damagingHits="+hits+", kills="+kills+", respawns="+respawns;}
     int pendingHitCount(Player player) {owned();java.util.List<PendingHit> hits=pendingHits.get(player);return hits==null?0:hits.size();}
+    long channelEndTick(Player player){owned();return channelUntil.getOrDefault(player,0L);}
     int dotCount(Player player){owned();Map<Integer,DamageOverTime> effects=damageOverTime.get(player);return effects==null?0:effects.size();}
     static boolean matchingOffhand(Player player,int style){
         Item item=player.getEquipment().getItem(Equipment.SLOT_SHIELD);
