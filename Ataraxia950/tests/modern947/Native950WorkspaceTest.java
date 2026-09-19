@@ -52,6 +52,31 @@ public final class Native950WorkspaceTest {
         } finally { Native950Workspace.close(player);channel.finishAndReleaseAll(); }
     }
 
+    @Test public void customLayoutDiagnosticComparesSaveFramesToAnExplicitMarkerBaselineWithoutLoggingValues() {
+        EmbeddedChannel channel=new EmbeddedChannel();
+        Player player=Player.createNative950("workspace-custom1",new WorldTile(3217,3258,0),channel);
+        try {
+            Native950BugTest.toggle(player);
+            Native950Workspace.inboundFrame(player,14,new byte[]{1,11,36,0,0,0,1});
+            Native950Workspace.marker(player,"baseline");
+            Native950Workspace.inboundFrame(player,14,new byte[]{1,
+                    11,36,0,0,0,2,       // 2852 changed from the marker baseline
+                    12,(byte)224,0,0,0,6, // 3296 is a local slot-6 candidate
+                    16,12,0,0,0,8});     // 4108 is a local slot-8 candidate
+            String captured=Native950Workspace.pendingPayloads(player);
+            assertTrue(captured.contains("records=3;completion=1"));
+            assertTrue(captured.contains("ids=2852,3296,4108"));
+            assertTrue(captured.contains("changedFromMarkerBaselineIds=2852,3296,4108"));
+            assertTrue(captured.contains("valueEquals6CandidateIds=3296"));
+            assertTrue(captured.contains("valueEquals8CandidateIds=4108"));
+            assertTrue(captured.contains("descriptorCoveredIds=2852,3296"));
+            assertTrue(captured.contains("outsideDescriptorIds=4108"));
+            assertFalse("raw permanent-variable values must never enter telemetry",captured.contains("00000006"));
+            assertTrue("diagnostics are observation only",channel.readOutbound()==null);
+            Native950BugTest.toggle(player);
+        } finally { Native950Workspace.close(player);channel.finishAndReleaseAll(); }
+    }
+
     @Test public void workspaceIntegerDescriptorIsPinnedAndExcludesUnknowns() {
         assertTrue(Native950WorkspaceIntegerDescriptor.size() >= 215);
         assertTrue(Native950WorkspaceIntegerDescriptor.contains(2852));

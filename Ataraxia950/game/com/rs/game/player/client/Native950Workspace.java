@@ -5,7 +5,9 @@ import com.rs.network.protocol.modern950.Native950Actions;
 
 import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Observational workspace diagnostics for the native client.
@@ -52,19 +54,25 @@ final class Native950Workspace {
 
     /**
      * A marker flushes ID-only permanent-variable changes from the preceding controlled action.
+     * The literal {@code baseline} marker additionally snapshots the in-memory values, so a
+     * real native preset save can be compared with the state immediately before it. Values
+     * never leave this process; the timeline contains IDs and classifications only.
      */
     static void marker(Player player, String description) {
         if (player == null) return;
+        String marker = description == null || description.trim().isEmpty() ? "(no description)" : description.trim();
         String payloads;
         synchronized (STATES) {
             State state = STATES.get(player);
             if (state == null) return;
             payloads = state.uploadSummary();
+            if ("baseline".equalsIgnoreCase(marker)) state.captureMarkerBaseline();
             state.clearUploadInterval();
         }
         Native950BugTest.event(player, "workspace", "permanent-variable-upload-summary",
-                "marker", description == null || description.trim().isEmpty() ? "(no description)" : description.trim(),
+                "marker", marker,
                 "uploads", payloads, "scope", "opcode-14 IDs-only since-previous-marker-or-start",
+                "anchors", "Custom1=slot6;activeLayout=slot8;nativePresetScripts=8372,8373,8374",
                 "disposition", "session-local diagnostic; no values, persistence, acknowledgement, or replay");
     }
 
@@ -114,8 +122,10 @@ final class Native950Workspace {
         int displayMode, width, height, windowFlag;
         long windowReports;
         final Map<Integer, Integer> lastValues = new LinkedHashMap<Integer, Integer>();
+        final Map<Integer, Integer> markerBaseline = new LinkedHashMap<Integer, Integer>();
         final StringBuilder uploads = new StringBuilder();
         boolean hasBaseline;
+        boolean hasMarkerBaseline;
 
         void recordPayload(int opcode, byte[] payload) {
             if (payload.length < 1 || ((payload.length - 1) % 6) != 0) {
@@ -124,23 +134,50 @@ final class Native950Workspace {
             }
             int completion = payload[0] & 255;
             if (completion != 0 && completion != 1) { append("malformed(completion=" + completion + ")"); return; }
-            StringBuilder changed = new StringBuilder(); StringBuilder initial = new StringBuilder(); int records = (payload.length - 1) / 6;
+            Set<Integer> ids = new LinkedHashSet<Integer>();
+            Set<Integer> changed = new LinkedHashSet<Integer>();
+            Set<Integer> changedFromMarkerBaseline = new LinkedHashSet<Integer>();
+            Set<Integer> valueEqualsSix = new LinkedHashSet<Integer>();
+            Set<Integer> valueEqualsEight = new LinkedHashSet<Integer>();
+            Set<Integer> covered = new LinkedHashSet<Integer>();
+            Set<Integer> outsideDescriptor = new LinkedHashSet<Integer>();
+            Set<Integer> initial = new LinkedHashSet<Integer>();
+            int records = (payload.length - 1) / 6;
             for (int offset = 1; offset < payload.length; offset += 6) {
                 int id = ((payload[offset] & 255) << 8) | (payload[offset + 1] & 255);
                 int value = ((payload[offset + 2] & 255) << 24) | ((payload[offset + 3] & 255) << 16) | ((payload[offset + 4] & 255) << 8) | (payload[offset + 5] & 255);
                 Integer previous = lastValues.put(id, value);
-                if (!hasBaseline) { if (initial.length() > 0) initial.append(','); initial.append(id); }
-                if (previous != null && previous.intValue() != value) { if (changed.length() > 0) changed.append(','); changed.append(id); }
+                ids.add(id);
+                if (!hasBaseline) initial.add(id);
+                if (previous != null && previous.intValue() != value) changed.add(id);
+                if (hasMarkerBaseline && (!markerBaseline.containsKey(id) || markerBaseline.get(id).intValue() != value)) changedFromMarkerBaseline.add(id);
+                // The save target is known to be slot 6 and the active layout is known to use
+                // slot 8. These are candidate correlations only, not a claim that an ID's type
+                // has been decoded. Values remain local and are never included in telemetry.
+                if (value == 6) valueEqualsSix.add(id);
+                if (value == 8) valueEqualsEight.add(id);
+                if (Native950WorkspaceIntegerDescriptor.contains(id)) covered.add(id); else outsideDescriptor.add(id);
             }
             append("records=" + records + ";completion=" + completion + ";"
-                    + (hasBaseline ? "changedIds=" + (changed.length() == 0 ? "none" : changed.toString())
-                    : "baselineIds=" + initial.toString()));
+                    + "ids=" + ids(ids) + ";"
+                    + (hasBaseline ? "changedIds=" + ids(changed) : "baselineIds=" + ids(initial)) + ";"
+                    + "changedFromMarkerBaselineIds=" + (hasMarkerBaseline ? ids(changedFromMarkerBaseline) : "not-captured") + ";"
+                    + "valueEquals6CandidateIds=" + ids(valueEqualsSix) + ";"
+                    + "valueEquals8CandidateIds=" + ids(valueEqualsEight) + ";"
+                    + "descriptorCoveredIds=" + ids(covered) + ";outsideDescriptorIds=" + ids(outsideDescriptor));
             hasBaseline = true;
         }
 
         String uploadSummary() { return uploads.length() == 0 ? "none" : uploads.toString(); }
         void clearUploadInterval() { uploads.setLength(0); }
+        void captureMarkerBaseline() { markerBaseline.clear(); markerBaseline.putAll(lastValues); hasMarkerBaseline = true; }
         void append(String value) { if (uploads.length() > 0) uploads.append('|'); uploads.append(value); }
+        private static String ids(Set<Integer> ids) {
+            if (ids.isEmpty()) return "none";
+            StringBuilder value = new StringBuilder();
+            for (Integer id : ids) { if (value.length() > 0) value.append(','); value.append(id); }
+            return value.toString();
+        }
 
     }
 }
