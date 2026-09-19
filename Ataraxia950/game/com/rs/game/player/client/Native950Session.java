@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.EnumSet;
+import java.util.IdentityHashMap;
 import java.util.Map;
 
 /**
@@ -42,6 +43,8 @@ import java.util.Map;
  * per-viewer MD5 cache.
  */
 public final class Native950Session {
+    private static final Map<Player, Native950Session> BY_PLAYER =
+            Collections.synchronizedMap(new IdentityHashMap<Player, Native950Session>());
     private final Player player;
     private final int playerIndex;
     private final Channel channel;
@@ -85,6 +88,7 @@ public final class Native950Session {
         this.objects = new Native950ObjectsView(Thread.currentThread(), packet -> channel.write(packet));
         this.transport = transport;
         transport.setUnhandledFrameObserver(frame -> Native950BugTest.unhandledFrame(player, frame.opcode(), frame.payload()));
+        BY_PLAYER.put(player, this);
         this.scene = scene;
         this.publishedAreaType=Native950MapAreas.areaTypeFor(player.getX(),player.getY(),scene.areaType);
         this.saveStore = saveStore;
@@ -316,7 +320,9 @@ public final class Native950Session {
     void close() {
         if (closed) return;
         Native950BugTest.close(player,"session-close");
+        transport.setInboundFrameObserver(null);
         Native950Workspace.close(player);
+        BY_PLAYER.remove(player);
         closed = true;
         ready = false;
         music.close();
@@ -342,6 +348,14 @@ public final class Native950Session {
     boolean isClosed() { return closed; }
 
     Player player() { return player; }
+
+    static void setWorkspaceFrameCapture(Player player, boolean enabled) {
+        Native950Session session = BY_PLAYER.get(player);
+        if (session == null || session.closed) return;
+        session.transport.setInboundFrameObserver(enabled
+                ? frame -> Native950BugTest.inboundFrame(player, frame.opcode(), frame.payload())
+                : null);
+    }
 
     /** The slot reserved before the login response was written; stable across close. */
     int playerIndex() { return playerIndex; }

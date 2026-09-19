@@ -26,15 +26,20 @@ public final class Native950BugTest {
 
     static synchronized boolean toggle(Player player) {
         Session prior = SESSIONS.remove(player);
-        if (prior != null) { prior.flushUnknownFrames(); prior.event("session", "disabled", "reason", "command"); prior.close(); return false; }
+        if (prior != null) {
+            Native950Session.setWorkspaceFrameCapture(player, false);
+            prior.flushUnknownFrames(); prior.event("session", "disabled", "reason", "command"); prior.close(); return false;
+        }
         Session next = new Session(player);
         SESSIONS.put(player, next);
+        Native950Session.setWorkspaceFrameCapture(player, true);
         next.event("session", "enabled", "player", player.getUsername(), "tile", tile(player));
         return true;
     }
 
     static synchronized void close(Player player, String reason) {
         Session session = SESSIONS.remove(player);
+        Native950Session.setWorkspaceFrameCapture(player, false);
         if (session != null) {
             session.flushUnknownFrames();
             session.event("session", "closed", "reason", reason, "state", state(player));
@@ -123,6 +128,11 @@ public final class Native950BugTest {
         int length=payload==null?0:payload.length;
         if(session.unknownFrames.record(opcode,length))
             session.event("input","unhandled-frame","opcode",opcode,"bytes",length,"payload","redacted");
+    }
+
+    /** Complete framed traffic is observed only for the opt-in workspace recorder. */
+    static void inboundFrame(Player player, int opcode, byte[] payload) {
+        Native950Workspace.inboundFrame(player, opcode, payload);
     }
 
     /** Unknown traffic can contain keyboard/chat input. Retain counts, never payload bytes. */

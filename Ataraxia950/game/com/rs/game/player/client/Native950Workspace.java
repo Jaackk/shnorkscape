@@ -14,7 +14,7 @@ import java.util.Map;
  * <p>The client owns window geometry, docking and tab links. This class deliberately
  * does not invent a second layout model: it records the small amount of workspace
  * traffic we can prove, and makes candidate layout frames visible to Bug Test without
- * retaining their raw bytes.
+ * retaining their raw bytes. It never parses, saves, acknowledges, or replays a frame.
  */
 final class Native950Workspace {
     private static final Map<Player, State> STATES = new IdentityHashMap<Player, State>();
@@ -37,59 +37,40 @@ final class Native950Workspace {
     }
 
     /**
-     * A legacy NIS-layout update is a one-byte header followed by six-byte entries.
-     * The 950 opcode has not yet been derived, so this only labels a candidate and
-     * never parses, saves, acknowledges, or replays it.
+     * Records only frame-family counts for all non-chat game input while Bug Test is
+     * explicitly active. Potential workspace-upload families retain a short hash, never bytes.
      */
-    static void unhandledFrame(Player player, int opcode, byte[] payload) {
+    static void inboundFrame(Player player, int opcode, byte[] payload) {
         if (player == null || payload == null || !Native950BugTest.enabled(player)) return;
-        int length = payload.length;
         synchronized (STATES) {
             State state = state(player);
-            state.recordSignature(opcode, length, fingerprint(payload));
+            state.recordFrame(opcode, payload);
         }
-        boolean tupleShape = length >= 7 && (length - 1) % 6 == 0 && (payload[0] == 0 || payload[0] == 1);
-        if (!tupleShape) return;
-        int entries = (length - 1) / 6;
-        int minimum = Integer.MAX_VALUE, maximum = Integer.MIN_VALUE;
-        for (int offset = 1; offset < length; offset += 6) {
-            int id = ((payload[offset] & 255) << 8) | (payload[offset + 1] & 255);
-            minimum = Math.min(minimum, id);
-            maximum = Math.max(maximum, id);
-        }
-        String fingerprint = fingerprint(payload);
-        synchronized (STATES) {
-            State state = state(player);
-            state.layoutCandidateFrames++;
-            state.lastCandidateOpcode = opcode;
-            state.lastCandidateEntries = entries;
-            state.lastCandidateMinimumId = minimum;
-            state.lastCandidateMaximumId = maximum;
-            state.lastCandidateFingerprint = fingerprint;
-        }
-        Native950BugTest.event(player, "workspace", "layout-frame-candidate",
-                "opcode", opcode, "bytes", length, "entries", entries, "minimumId", minimum,
-                "maximumId", maximum, "fingerprint", fingerprint,
-                "disposition", "observed-only; native-950 contract not yet derived");
     }
 
+    /** Retained as the unhandled-frame hook; all recording now occurs at the frame boundary. */
+    static void unhandledFrame(Player player, int opcode, byte[] payload) { }
+
     /**
-     * A marker flushes only bounded opaque frame signatures observed since the previous marker.
-     * This lets a live move/resize/tab test identify the relevant client packet family without
-     * retaining chat, authentication, or arbitrary UI payload bytes.
+     * A marker flushes counts since the previous marker. Candidate signatures are bounded and
+     * opaque, allowing a controlled live test to distinguish frame families without retaining
+     * chat, authentication, or arbitrary UI payload bytes.
      */
     static void marker(Player player, String description) {
         if (player == null) return;
-        String summary;
+        String counts, candidates;
         synchronized (STATES) {
             State state = STATES.get(player);
-            if (state == null || state.frameSignatures.isEmpty()) return;
-            summary = state.signatureSummary();
-            state.frameSignatures.clear();
+            if (state == null) return;
+            counts = state.countSummary();
+            candidates = state.candidateSummary();
+            state.clearFrameInterval();
         }
-        Native950BugTest.event(player, "workspace", "frame-signatures",
+        Native950BugTest.event(player, "workspace", "inbound-frame-summary",
                 "marker", description == null || description.trim().isEmpty() ? "(no description)" : description.trim(),
-                "frames", summary, "disposition", "opaque-observation-only");
+                "frames", counts, "candidates", candidates,
+                "scope", "non-chat game frames since-previous-marker-or-start",
+                "disposition", "opaque-observation-only; no layout state decoded");
     }
 
     static String status(Player player) {
@@ -100,13 +81,8 @@ final class Native950Workspace {
                         + "Enable ;;bugtest, move or dock a panel, then run ;;uilayout status.";
             }
             String viewport = state.width + "x" + state.height + " mode " + state.displayMode;
-            if (state.layoutCandidateFrames == 0)
-                return "Workspace: native client-owned; viewport " + viewport
-                        + "; no layout-frame candidate captured this session.";
-            return "Workspace: native client-owned; viewport " + viewport + "; layout candidates "
-                    + state.layoutCandidateFrames + " (latest opcode " + state.lastCandidateOpcode
-                    + ", entries " + state.lastCandidateEntries + ", ids " + state.lastCandidateMinimumId
-                    + "-" + state.lastCandidateMaximumId + ", fingerprint " + state.lastCandidateFingerprint + ").";
+            return "Workspace: native client-owned; viewport " + viewport
+                    + "; frame capture is active only while Bug Test Mode is enabled.";
         }
     }
 
@@ -115,7 +91,7 @@ final class Native950Workspace {
             State state = STATES.get(player);
             if (state == null || state.windowReports == 0) return "workspace=unreported";
             return "workspace=" + state.width + "x" + state.height + "/mode" + state.displayMode
-                    + ";layoutCandidates=" + state.layoutCandidateFrames;
+                    + ";workspaceFrameCapture=opt-in";
         }
     }
 
@@ -145,27 +121,51 @@ final class Native950Workspace {
 
     private static final class State {
         int displayMode, width, height, windowFlag;
-        long windowReports, layoutCandidateFrames;
-        int lastCandidateOpcode = -1, lastCandidateEntries, lastCandidateMinimumId, lastCandidateMaximumId;
-        String lastCandidateFingerprint = "none";
-        final Map<String, Integer> frameSignatures = new LinkedHashMap<String, Integer>();
+        long windowReports;
+        final long[] frameCounts = new long[256];
+        final long[] frameBytes = new long[256];
+        final Map<String, Integer> candidateSignatures = new LinkedHashMap<String, Integer>();
 
-        void recordSignature(int opcode, int bytes, String fingerprint) {
-            String key = opcode + "/" + bytes + "/" + fingerprint;
-            Integer count = frameSignatures.get(key);
-            if (count != null) { frameSignatures.put(key, count + 1); return; }
-            // A short live workspace action should yield only a few signatures. Bound the
-            // diagnostic anyway so unrelated client chatter can never become a log flood.
-            if (frameSignatures.size() < 32) frameSignatures.put(key, 1);
+        void recordFrame(int opcode, byte[] payload) {
+            if (opcode < 0 || opcode >= frameCounts.length || isChat(opcode)) return;
+            frameCounts[opcode]++;
+            frameBytes[opcode] += payload.length;
+            if (!isWorkspaceCandidate(opcode)) return;
+            String key = opcode + "/" + payload.length + "/" + fingerprint(payload);
+            Integer count = candidateSignatures.get(key);
+            if (count != null) { candidateSignatures.put(key, count + 1); return; }
+            // Four candidate families in one short controlled test should not need more than
+            // this. The bound protects the diagnostic from unrelated client activity.
+            if (candidateSignatures.size() < 24) candidateSignatures.put(key, 1);
         }
 
-        String signatureSummary() {
+        String countSummary() {
             StringBuilder result = new StringBuilder();
-            for (Map.Entry<String, Integer> entry : frameSignatures.entrySet()) {
+            for (int opcode = 0; opcode < frameCounts.length; opcode++) {
+                if (frameCounts[opcode] == 0) continue;
+                if (result.length() > 0) result.append(',');
+                result.append(opcode).append('x').append(frameCounts[opcode]).append('/').append(frameBytes[opcode]);
+            }
+            return result.length() == 0 ? "none" : result.toString();
+        }
+
+        String candidateSummary() {
+            StringBuilder result = new StringBuilder();
+            for (Map.Entry<String, Integer> entry : candidateSignatures.entrySet()) {
                 if (result.length() > 0) result.append(',');
                 result.append(entry.getKey()).append('x').append(entry.getValue());
             }
-            return result.toString();
+            return result.length() == 0 ? "none" : result.toString();
+        }
+
+        void clearFrameInterval() {
+            java.util.Arrays.fill(frameCounts, 0);
+            java.util.Arrays.fill(frameBytes, 0);
+            candidateSignatures.clear();
         }
     }
+
+    private static boolean isChat(int opcode) { return opcode == 68 || opcode == 69; }
+    // Variable-length opaque families retained from 950 static and prior live evidence only.
+    private static boolean isWorkspaceCandidate(int opcode) { return opcode == 14 || opcode == 33 || opcode == 74 || opcode == 125; }
 }

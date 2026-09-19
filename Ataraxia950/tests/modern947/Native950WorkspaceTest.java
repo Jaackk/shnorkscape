@@ -7,6 +7,7 @@ import io.netty.channel.embedded.EmbeddedChannel;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 /** Regression coverage for passive workspace diagnostics: no packet is emitted or replayed. */
 public final class Native950WorkspaceTest {
@@ -29,6 +30,20 @@ public final class Native950WorkspaceTest {
             Native950Workspace.unhandledFrame(player,33,new byte[]{1,2,3,4});
             Native950Workspace.marker(player,"quiet");
             assertTrue("passive diagnostics must never emit packets",channel.readOutbound()==null);
+        } finally { Native950Workspace.close(player);channel.finishAndReleaseAll(); }
+    }
+
+    @Test public void workspaceDiagnosticsNeverEmitOrDecodeCandidatePayloads() {
+        EmbeddedChannel channel=new EmbeddedChannel();
+        Player player=Player.createNative950("workspace-opaque",new WorldTile(3217,3258,0),channel);
+        try {
+            Native950BugTest.toggle(player);
+            Native950Workspace.inboundFrame(player,74,new byte[]{1,2,3,4,5,6,7});
+            Native950Workspace.inboundFrame(player,69,new byte[]{9,9,9});
+            Native950Workspace.marker(player,"candidate");
+            assertTrue("diagnostics are observation only",channel.readOutbound()==null);
+            assertFalse("chat must not become a workspace candidate",Native950Workspace.status(player).contains("chat"));
+            Native950BugTest.toggle(player);
         } finally { Native950Workspace.close(player);channel.finishAndReleaseAll(); }
     }
 }

@@ -60,6 +60,11 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
     private volatile int lastUnhandledOpcode = -1;
     /** Installed only by the owning native session for opt-in diagnostics. */
     private volatile Consumer<UnhandledFrame> unhandledFrameObserver;
+    /**
+     * Installed only while an explicitly enabled diagnostic needs packet-family counts.
+     * It observes already-framed game traffic and must never affect decoding or routing.
+     */
+    private volatile Consumer<InboundFrame> inboundFrameObserver;
     private volatile Throwable terminalFailure;
     private volatile ChannelHandlerContext context;
 
@@ -115,6 +120,8 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
                 byte[] bytes = new byte[Math.min(input.readableBytes(), READ_SLICE_BYTES)];
                 input.readBytes(bytes);
                 for (Native950InboundDecoder.Frame frame : decoder.feed(bytes)) {
+                    Consumer<InboundFrame> inboundObserver = inboundFrameObserver;
+                    if (inboundObserver != null) inboundObserver.accept(new InboundFrame(frame.opcode(), frame.payload()));
                     Action action = Native950Actions.decode(frame);
                     if (action instanceof Native950Actions.KeepAliveAction) {
                         // Telemetry lane: NO_TIMEOUT is a timer-driven liveness signal with no
@@ -265,6 +272,8 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
      * gameplay semantics. The observer runs on Netty's event loop and must return quickly.
      */
     public void setUnhandledFrameObserver(Consumer<UnhandledFrame> observer) { unhandledFrameObserver = observer; }
+    /** Enables or removes the opt-in complete-frame observer. */
+    public void setInboundFrameObserver(Consumer<InboundFrame> observer) { inboundFrameObserver = observer; }
     /** NO_TIMEOUT frames observed. They are liveness only and never become actions. */
     public long keepAliveFrameCount() { return keepAliveFrames.get(); }
     /**
@@ -287,6 +296,18 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
         public byte[] payload() { return payload.clone(); }
     }
 
+    /** Immutable diagnostic-only view of an already framed inbound game packet. */
+    public static final class InboundFrame {
+        private final int opcode;
+        private final byte[] payload;
+        InboundFrame(int opcode, byte[] payload) {
+            this.opcode = opcode;
+            this.payload = payload == null ? new byte[0] : payload.clone();
+        }
+        public int opcode() { return opcode; }
+        public byte[] payload() { return payload.clone(); }
+    }
+
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         actions.clear();
@@ -297,6 +318,7 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
     public void handlerRemoved(ChannelHandlerContext ctx) {
         context = null;
         unhandledFrameObserver = null;
+        inboundFrameObserver = null;
         actions.clear();
     }
 
