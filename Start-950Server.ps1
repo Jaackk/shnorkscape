@@ -6,7 +6,8 @@ param(
  [switch]$NoWalk,[switch]$NoRibbon,[switch]$NoSettings,[switch]$NoRegions,
  [switch]$Collision,[switch]$Minimal,[switch]$Ataraxia,[switch]$LumbridgeNpcs,
  [switch]$AllNpcs,[switch]$DevTools,[switch]$UnverifiedCacheBindings,
- [switch]$Walk,[switch]$Ribbon,[switch]$Settings,[switch]$Regions
+ [switch]$Walk,[switch]$Ribbon,[switch]$Settings,[switch]$Regions,
+ [switch]$WorkspaceDurabilityGate
 )
 $ErrorActionPreference = 'Stop'
 if (-not $JavaPath) { $JavaPath = (Join-Path $PSScriptRoot 'runtime\java25\bin\java.exe') }
@@ -63,6 +64,7 @@ try {
  # One complete, verified gameplay profile. No feature switches are required.
  $features = ' -Dopennxt.950.walk=true -Dopennxt.950.ribbon=true -Dopennxt.950.settings=true -Dopennxt.950.regions=true -Dopennxt.950.collision=true -Dataraxia950.npcSpawns=true -Dataraxia950.npcRegions= -Dataraxia950.devTools=true -Dataraxia950.worldMap=true -Dataraxia.native.verifyCache=true'
  $features += ' -Dataraxia950.devAccounts=jaxa'
+ if ($WorkspaceDurabilityGate) { $features += ' -Dataraxia950.layoutDurabilityGate=true' }
  $dataRoot = Join-Path $root 'Ataraxia950\data'
  if (!(Test-Path -LiteralPath (Join-Path $dataRoot 'npcs\spawns.json'))) {
    throw "The Ataraxia backend needs its data root; $dataRoot has no npcs\spawns.json."

@@ -479,6 +479,7 @@ public final class Native950Interactions {
      */
     private void mapBuildReport(Native950Actions.MapBuildReportAction action) {
         mapBuilds++;
+        if(mapBuilds==1)workspaceRestore=Native950DisposableWorkspaceRestore.sceneReady(player,channel);
         System.out.println("[Ataraxia950] Client finished a scene build in " + action.elapsed()
                 + " client timer units; player " + player.getIndex() + " is at "
                 + player.getX() + "," + player.getY() + "," + player.getPlane()
@@ -488,6 +489,7 @@ public final class Native950Interactions {
 
     /** Scene builds the client has reported completing this session. */
     private long mapBuilds;
+    private Native950DisposableWorkspaceRestore workspaceRestore;
 
     /** Counts one decoded action that no branch above claims, and names it once in the log. */
     private void unhandled(Native950Actions.Action action) {
@@ -706,6 +708,7 @@ public final class Native950Interactions {
     }
 
     void afterMovement() {
+        if(workspaceRestore!=null&&workspaceRestore.finishOnWorldThread(player,channel))workspaceRestore=null;
         skillGuide.tick();
         observeInventory();
         processSkillApproach();

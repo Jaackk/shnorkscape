@@ -19,6 +19,7 @@
 # Local distributions, downloaded game assets, generated files and private state.
 /.gradle-ataraxia/
 /backups/
+/workspace-state950/
 /flat-file.tar.gz
 /BIT*.tmp
 /runtime/

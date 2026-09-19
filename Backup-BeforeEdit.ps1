@@ -21,7 +21,7 @@ try {
     $backup = Join-Path $PSScriptRoot ('backups\pre-edit-' + (Get-Date -Format 'yyyyMMdd-HHmmss-fff'))
     New-Item -ItemType Directory -Path $backup | Out-Null
     # These private/runtime files deliberately never enter GitHub history.
-    foreach ($relative in @('players', 'OpenNXT\runtime\lib\ataraxia-950-1.0-UNTRACKED.jar', 'patches\classes')) {
+    foreach ($relative in @('players', 'workspace-state950', 'OpenNXT\runtime\lib\ataraxia-950-1.0-UNTRACKED.jar', 'patches\classes')) {
         $source = Join-Path $PSScriptRoot $relative
         if (Test-Path -LiteralPath $source) {
             $target = Join-Path $backup $relative

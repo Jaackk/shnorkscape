@@ -61,8 +61,13 @@ final class Native950LayoutFixture {
     static Native950Packets.Packet application() { return Native950Packets.runClientScript(8741, 6); }
 
     static Plan load(Path root) throws Exception {
-        JsonObject schema = json(readPinned(root.resolve("tools/vulkan-static-probe/snapshot-schema-v4.json"),SCHEMA_SHA,256000));
+        JsonObject schema = loadSchema(root);
         JsonObject fixture = json(readPinned(root.resolve("logs/workspace-static-v4-35192-A.json"),FIXTURE_SHA,256000));
+        return plan(schema,fixture);
+    }
+
+    static JsonObject loadSchema(Path root) throws Exception {
+        JsonObject schema = json(readPinned(root.resolve("tools/vulkan-static-probe/snapshot-schema-v4.json"),SCHEMA_SHA,256000));
         Properties pins = new Properties();
         try (InputStream in = Native950LayoutFixture.class.getResourceAsStream("/native950/layout-fixture-950.properties")) {
             if (in == null) throw new IOException("Missing application evidence pins");
@@ -70,7 +75,7 @@ final class Native950LayoutFixture {
         }
         if (pins.size() != 11) throw new IOException("Incomplete application evidence pins");
         for (String path : pins.stringPropertyNames()) readPinned(root.resolve(path),pins.getProperty(path),16000000);
-        return plan(schema,fixture);
+        return schema;
     }
 
     static byte[] readPinned(Path path, String expected, int limit) throws Exception {
@@ -92,12 +97,20 @@ final class Native950LayoutFixture {
     static void require(boolean ok,String message) { if(!ok) throw new IllegalArgumentException(message); }
 
     static final class Plan {
+        int selected;
         final List<Native950Packets.Packet> packets = new ArrayList<>();
         final Set<Integer> integerIds = new TreeSet<>();
         final Map<Integer,Integer> bitValues = new TreeMap<>();
     }
 
     static Plan plan(JsonObject schema,JsonObject fixture) {
+        require(fixture.getAsJsonArray("items").size()==912,"Incomplete fixture");
+        Plan plan=workspacePlan(schema,fixture);
+        require(plan.selected==6,"Fixed fixture must select Custom1");
+        return plan;
+    }
+
+    static Plan workspacePlan(JsonObject schema,JsonObject fixture) {
         require(fixture.get("version").getAsInt()==4 && fixture.get("status").getAsString().equals("snapshot-stable")
                 && !fixture.get("nativeWrites").getAsBoolean() && fixture.get("schemaSha256").getAsString().equals(SCHEMA_SHA),"Invalid V4 fixture");
         Set<Integer> allowed=new TreeSet<>();
@@ -115,9 +128,16 @@ final class Native950LayoutFixture {
             values.put(id,value);
         }
         require(values.keySet().equals(allowed),"Incomplete fixture");
-        require(Integer.valueOf(6).equals(values.get(8372))&&Integer.valueOf(6).equals(values.get(8373)),"Custom1 must be selected");
-        require(values.get(3296)!=null&&values.get(3295)!=null,"Custom1 missing");
+        Integer selected=values.get(8372);
+        require(selected!=null&&Arrays.asList(6,7,12,13).contains(selected),"Invalid selected Custom slot");
+        require(values.get(8373)!=null&&Arrays.asList(6,7,12,13).contains(values.get(8373)),"Invalid editor target");
+        require(values.get(schema.getAsJsonObject("slotMetadata").getAsJsonObject(selected.toString()).get("id").getAsInt())!=null,"Selected metadata absent");
+        boolean contents=false;
+        for(Map.Entry<String,JsonElement> row:schema.getAsJsonObject("slots").getAsJsonObject(selected.toString()).entrySet())
+            for(JsonElement ref:row.getValue().getAsJsonArray()) contents|=values.get(ref.getAsJsonArray().get(1).getAsInt())!=null;
+        require(contents,"Selected Custom has no contents");
         Plan plan=new Plan();
+        plan.selected=selected;
         for(String slot:new String[]{"6","7","12","13"}) {
             Set<Integer> ids=new TreeSet<>();
             for(Map.Entry<String,JsonElement> row:schema.getAsJsonObject("slots").getAsJsonObject(slot).entrySet())

@@ -2,6 +2,13 @@
 
 ## Start here
 
+**Latest:** PID37768 application gate is PROVEN (708 raw-equal fields plus four
+pinned native8701 literal visibility fields). Account-bound sidecar and an opt-in
+layoutgate2-only automatic restore gate are implemented; see
+[Disposable durability gate](NATIVE-950-DISPOSABLE-DURABILITY-GATE.md).
+This imports the explicitly reviewed target capture once. Automatic capture of new
+Save actions is NOT yet connected; never substitute newest-file/account inference.
+
 **2026-09-20 disposable application gate:** PID35192 V4 source fixture validated
 against the pinned912-ID schema and six bootstrap controls. See
 [Disposable application gate](NATIVE-950-DISPOSABLE-APPLICATION-GATE.md).
