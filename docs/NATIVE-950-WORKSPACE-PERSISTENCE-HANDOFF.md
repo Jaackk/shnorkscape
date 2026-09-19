@@ -8,6 +8,12 @@ Status: protocol and ownership model proven; production implementation intention
 
 This note records the evidence needed to implement native revision-950 workspace persistence without another layout guess. It supersedes the earlier packet-family hypotheses and the blanket ServerpermVarc omission experiment.
 
+## Lineage constraint
+
+SHNORKSCAPE descends from the Rune-Server release described as a **"950 revision client and cache running on a converted 910 server"**; its gameplay source is Ataraxia 910. Workspace failures must therefore be compared across three states: the original Ataraxia 910 server implementation, the current SHNORKSCAPE conversion, and the actual revision-950 client/cache contract. Do not assume a missing or broken feature necessarily implies an undocumented 950 mechanism when it may instead be an incomplete 910-to-950 adaptation.
+
+Project Undercut 949.1 is the preferred near-revision reference after the exact 950 evidence. Elveron876, Vernox, and other older projects remain behavioural clues only. Revision-specific IDs, scripts, variables, packet formats, and lifecycle ordering must still be proven against 950.
+
 ## Proven native owner
 
 The revision-950 client already owns the workspace model. Cache scripts `8707`, `8708` and `8709` operate on native panel state rather than server-authored coordinates:

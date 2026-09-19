@@ -4,6 +4,18 @@
 
 SHNORKSCAPE is a local, revision-950 RuneScape 3 private-server development project. It combines the original 950 native Vulkan/OpenGL client with OpenNXT's login/cache/JS5 service and an Ataraxia Java gameplay world. The target is a smooth, usable EOC combat sandbox that retains native revision-950 UI behaviour instead of replacing the client with imitation interfaces or speculative server-side geometry.
 
+## Project lineage: 950 client on a converted 910 server
+
+The Rune-Server release from which this project descends explicitly describes itself as a **"950 revision client and cache running on a converted 910 server."** The gameplay source is originally Ataraxia 910. SHNORKSCAPE must therefore not be treated as a clean native-950 server implementation: many surviving defects can be 910-era server behaviour that was only partially adapted to the 950 client.
+
+For every UI, protocol, settings, or combat-presentation defect, explicitly ask: **Is SHNORKSCAPE still carrying a 910-era implementation that conflicts with the revision-950 client?** Prefer this three-way comparison:
+
+1. Original Ataraxia 910 behaviour and ownership.
+2. The current SHNORKSCAPE conversion and its compatibility changes.
+3. The actual revision-950 client/cache contract.
+
+Use this model especially for workspace/login/logout, ServerpermVarcs, action bars, Prayer, Magic, Revolution, settings, interfaces, combat presentation, varps/varbits, and native session lifecycle. A working 910 mechanism is valuable evidence of what SHNORKSCAPE inherited, but it is not authority for revision-950 IDs or protocol details.
+
 Jack's priorities are, in order: client smoothness, authentic native UI behaviour, stable sessions and saves, polished EOC combat, and evidence that matches what he can see in the Vulkan client. Passing unit tests alone are never proof of visible client success.
 
 **Current safe source and deployed baseline:** `f4179f84bfff748c783ed07ad5c3e38ea5c718d1` (`f4179f8`). It is the rollback of the rejected workspace implementation `baf38f3`. Treat `baf38f3` as a failed experiment, not current behaviour. The full healthy 215-entry ServerpermVarc bootstrap, action bar, bindings, tested keybinds, yellow manual-press feedback, combat work, Bug Test/Combat QA, and Item Browser are present in the safe baseline.
@@ -67,7 +79,16 @@ Strict state validation exists because a prior Overload path created legacy Torv
 
 ## Sources of authority
 
-Before expensive native reverse engineering, search Jack's existing RSPS projects and relevant public RSPS/Rune-Server implementations for the same subsystem. Use those sources only as architectural and behavioural references; verify every revision-specific interface, component, script, variable and packet against revision 950 before implementation.
+Use this research order before expensive native reverse engineering:
+
+1. Exact current revision-950 client/cache behaviour.
+2. Original Ataraxia 910 implementation, to identify inherited or partially converted server behaviour.
+3. Project Undercut 949.1 as a near-revision native-client/server reference.
+4. Elveron876, Vernox, and other working local RSPS implementations as behavioural or architectural references.
+5. Public Rune-Server and RSPS source references.
+6. Targeted binary reverse engineering only for the remaining concrete gap.
+
+Use reference projects as architectural and behavioural evidence only; verify every revision-specific interface, component, script, variable and packet against revision 950 before implementation. For bugs inherited from the conversion, document the three-way diff: **Ataraxia 910 -> current SHNORKSCAPE -> revision-950 expectation.**
 
 For 950-specific claims, use the actual 950 cache, the original native 950 client, OpenNXT descriptors, verified packet traces, cache scripts/configs/varbits/animations, and current protocol tests. The pinned original WIN64 client hash cited in the workspace handoff is `fc7492548627a4068e88a7a45ba4f0be93004adf246bb4b174b24ae588768b36`.
 
