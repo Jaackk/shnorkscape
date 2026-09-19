@@ -231,6 +231,30 @@ public class Native950MeleeCombatTest {
         assertTrue(nearbyOne.getHitpoints()<1000);assertTrue(nearbyTwo.getHitpoints()<1000);
         assertEquals(1000,outsideRange.getHitpoints());
     }
+    @Test public void lethalChainPrimaryStillReachesItsSecondaryTargets(){
+        styleProfile=new Native950CombatStyles.Profile(Native950CombatStyles.MAGIC,Skills.MAGIC,99,4,6,-1,-1,0,true);
+        player.getSkills().set(Skills.MAGIC,99);npc.setHitpoints(1);
+        NPC nearby=NPC.createNative950(12353,new WorldTile(3219,3258,0),1);nearby.setIndex(2);nearby.setHitpoints(1000);
+        access.npcs.add(nearby);combat.register(nearby,profile(1000,10,3));
+        assertNull(combat.attack(player,npc));assertNull(combat.ability(player,14728));step();
+        assertTrue(npc.isDead());assertTrue(nearby.getHitpoints()<1000);
+    }
+    @Test public void dragonBreathHitsAtMostFourRegisteredTargetsInItsDirectionalArea(){
+        styleProfile=new Native950CombatStyles.Profile(Native950CombatStyles.MAGIC,Skills.MAGIC,99,4,6,-1,-1,0,true);
+        player.getSkills().set(Skills.MAGIC,99);npc.setHitpoints(1000);
+        NPC[] nearby=new NPC[5];
+        int[][] tiles={{3219,3258},{3218,3259},{3218,3257},{3219,3259},{3219,3257}};
+        for(int i=0;i<nearby.length;i++){
+            nearby[i]=NPC.createNative950(12353,new WorldTile(tiles[i][0],tiles[i][1],0),1);
+            nearby[i].setIndex(i+2);nearby[i].setHitpoints(1000);access.npcs.add(nearby[i]);
+            combat.register(nearby[i],profile(1000,10,3));
+        }
+        NPC outside=NPC.createNative950(12353,new WorldTile(3217,3263,0),1);outside.setIndex(8);outside.setHitpoints(1000);
+        access.npcs.add(outside);combat.register(outside,profile(1000,10,3));
+        assertNull(combat.attack(player,npc));assertNull(combat.ability(player,14730));step();
+        int affected=0;for(NPC target:nearby)if(target.getHitpoints()<1000)affected++;
+        assertEquals(4,affected);assertEquals(1000,outside.getHitpoints());assertSame(npc,combat.combatTarget(player));
+    }
     @Test public void multiHitAbilitiesPublishTheirFirstHitBeforeTheirScheduledFollowUps(){
         player.getSkills().set(0,21);npc.setHitpoints(1000);combat.attack(player,npc);
         assertNull(combat.ability(player,14701));step();

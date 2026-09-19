@@ -337,11 +337,12 @@ public final class Native950MeleeCombat {
             if(type==Native950CombatBuffs.Type.BERSERK)player.getBuffDebuffTimersManager().addTimer(Timer.BERSERK,type.duration*600L);
             Native950BugTest.event(player,"combat","effect-started","effect",definition.name,"durationTicks",type.duration,"endTick",tick+type.duration);
         }
-        int total=0, chainDamage=-1;
+        int total=0, chainDamage=-1, dragonBreathDamage=-1;
         for(int hit=0;hit<(definition.effect==Native950AbilityCatalog.Effect.BUFF?0:definition.hits);hit++){
             int rolled=Math.max(1,maximum*percent/100);
             int requested=Rs2CombatFormula.scaleNative950Damage(rolled,rolls.nativeDamageRemainder(rolled));
             if(structure==14728&&hit==0)chainDamage=requested;
+            if(structure==14730&&hit==0)dragonBreathDamage=requested;
             if(definition.hitDelay(hit)>0){
                 long dueTick=tick+definition.hitDelay(hit);
                 pendingHits.computeIfAbsent(player,p->new ArrayList<>()).add(new PendingHit(fighter,requested,dueTick,gear,-1,
@@ -353,8 +354,10 @@ public final class Native950MeleeCombat {
                     definition.effect!=Native950AbilityCatalog.Effect.BLEED);
             if(fighter.npc.isDead())break;
         }
-        if(structure==14728&&chainDamage>0&&!fighter.npc.isDead())
+        if(structure==14728&&chainDamage>0)
             chainSecondaryHits(player,fighter,chainDamage,gear);
+        if(structure==14730&&dragonBreathDamage>0)
+            dragonBreathSecondaryHits(player,fighter,dragonBreathDamage,gear);
         // Param2802 is an icon sprite. Actual sequences come from param2915's weapon-family enum.
         int effect=-1;
         if(animation>=0){
@@ -639,6 +642,36 @@ public final class Native950MeleeCombat {
         }
         Native950BugTest.event(player,"combat","chain-secondary-summary","count",chained,"limit",CHAIN_SECONDARY_TARGET_LIMIT,
                 "range",CHAIN_SECONDARY_RANGE);
+    }
+    /** Primary plus at most four registered NPCs in the paired ability's directional area. */
+    private void dragonBreathSecondaryHits(Player player,Fighter primary,int requested,Loadout gear){
+        int affected=0;
+        for(Fighter candidate:new ArrayList<>(fighters.values())){
+            if(affected>=4)break;
+            if(candidate==primary||candidate.target!=null||candidate.returning||candidate.respawnAt>0
+                    ||candidate.npc.isDead()||!access.npc(candidate.npc)||!dragonBreathArea(player,primary,candidate))
+                continue;
+            int actual=damage(player,candidate.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
+            if(actual>0&&!candidate.training)rewards.hit(player,candidate.npc,actual,gear);
+            if(candidate.training)candidate.npc.setHitpoints(candidate.profile.hp);
+            Native950BugTest.event(player,"combat","dragon-breath-secondary-hit",
+                    "npc",candidate.npc.getId()+":"+candidate.npc.getIndex(),"damage",actual);
+            affected++;
+            if(candidate.npc.isDead())secondaryNpcDied(candidate,player);
+        }
+        Native950BugTest.event(player,"combat","dragon-breath-secondary-summary","count",affected,"limit",4);
+    }
+
+    static boolean dragonBreathArea(Player player,Fighter primary,Fighter candidate){
+        if(player.getPlane()!=candidate.npc.getPlane())return false;
+        if(distanceBetweenFootprints(primary.npc,primary.profile.size,candidate.npc,candidate.profile.size)<=1)return true;
+        int primaryDistance=distanceToFootprint(player,primary.npc,primary.profile.size);
+        int candidateDistance=distanceToFootprint(player,candidate.npc,candidate.profile.size);
+        int primaryDx=Integer.signum(primary.npc.getX()-player.getX());
+        int primaryDy=Integer.signum(primary.npc.getY()-player.getY());
+        int candidateDx=Integer.signum(candidate.npc.getX()-player.getX());
+        int candidateDy=Integer.signum(candidate.npc.getY()-player.getY());
+        return candidateDistance<=primaryDistance&&primaryDx==candidateDx&&primaryDy==candidateDy;
     }
     private void processPendingHits(Player player,Fighter fighter){
         java.util.List<PendingHit> scheduled=pendingHits.get(player);
