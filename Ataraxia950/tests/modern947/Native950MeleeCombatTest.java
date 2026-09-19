@@ -255,6 +255,17 @@ public class Native950MeleeCombatTest {
         int affected=0;for(NPC target:nearby)if(target.getHitpoints()<1000)affected++;
         assertEquals(4,affected);assertEquals(1000,outside.getHitpoints());assertSame(npc,combat.combatTarget(player));
     }
+    @Test public void tsunamiHitsOnlyItsBoundedForwardArea(){
+        styleProfile=new Native950CombatStyles.Profile(Native950CombatStyles.MAGIC,Skills.MAGIC,99,4,8,-1,-1,0,true);
+        player.getSkills().set(Skills.MAGIC,99);player.getCombatDefinitions().setSpecialAttackPercentage(100);npc.setHitpoints(1000);
+        NPC forward=NPC.createNative950(12353,new WorldTile(3220,3259,0),1);forward.setIndex(2);forward.setHitpoints(1000);
+        NPC behind=NPC.createNative950(12353,new WorldTile(3216,3258,0),1);behind.setIndex(3);behind.setHitpoints(1000);
+        NPC tooFar=NPC.createNative950(12353,new WorldTile(3222,3258,0),1);tooFar.setIndex(4);tooFar.setHitpoints(1000);
+        for(NPC target:new NPC[]{forward,behind,tooFar}){access.npcs.add(target);combat.register(target,profile(1000,10,3));}
+        assertNull(combat.attack(player,npc));assertNull(combat.ability(player,14735));step();
+        assertTrue(forward.getHitpoints()<1000);assertEquals(1000,behind.getHitpoints());assertEquals(1000,tooFar.getHitpoints());
+        assertSame(npc,combat.combatTarget(player));
+    }
     @Test public void multiHitAbilitiesPublishTheirFirstHitBeforeTheirScheduledFollowUps(){
         player.getSkills().set(0,21);npc.setHitpoints(1000);combat.attack(player,npc);
         assertNull(combat.ability(player,14701));step();
