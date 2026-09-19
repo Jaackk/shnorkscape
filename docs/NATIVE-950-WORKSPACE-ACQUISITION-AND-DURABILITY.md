@@ -63,12 +63,24 @@ Argument7 is NOT one of those coordinate-transform arguments. Do not label its
 19->0 change coordinate rounding. Also, a pure source->active copy is insufficient
 to explain changes to the Custom6 source itself. A subsequent native commit or
 another native update between snapshots could explain the paired source changes.
-Jack subsequently recalled clicking Save & Exit, trying to close, then Save &
-Exit again, but was unsure of the exact sequence.8754's save branch copies9 into
-both the selected Custom slot and active8. Recommit therefore provides a concrete
-explanation for the paired changes, but the uncertain sequence cannot establish
-which individual operation caused each change. This was not an isolated pure-Load
-trace. No additional broad trace or reader investigation is justified.
+Jack corrected his recollection: subsequent editor testing was AFTER C. Treat C
+as the intended post-Load snapshot. Nothing in the ordered timestamps or captured
+state contradicts that account. The tentative repeated-save explanation is
+withdrawn. Do not request a repeat capture on that basis.
+
+Further exact script analysis:8741 dispatches the native Load through8884/8885.
+8884 calls8885 then8781.8781 reads8701, handles visibility, clamps actor sizes,
+converts positions with8711, rebuilds tab/link relationships through8350, and
+schedules8782 follow-up callbacks for positioning/collision handling.8784 tracks
+completion work. This is not a byte-preserving matrix copy.
+
+The fifth difference (argument7) is the forward link field consumed by8728,
+which8350 follows while rebuilding relationships; it is not a coordinate.
+Four normalized-coordinate changes plus one link change are consistent with this
+native application path. The exact instruction updating each Custom6 source
+parent and the numeric rounding inputs were not captured, so do not claim that
+the precise five transitions were individually replayed/proven. The mirrored
+field changes do not show dropped IDs or reader coverage failure.
 
 Conclusion: the reader and sampled native Save/Load relationship are proven,
 with visual restoration and two internally matching saved/active matrices.
@@ -182,7 +194,10 @@ Then validate a complete captured Custom1 with the five metadata parents include
 3. Send only present Custom1-4 matrix values through verified native setters.
 4. Apply evidenced masked slot metadata and integer tokens after matrix contents.
 5. Restore the selected/active relationship through the native load path.8702
-   supports source Custom -> target8 with native conversion and8700 application.
+   supports source Custom -> target8 with native conversion, but8700 ONLY sets a
+   per-slot bit5 flag. It does not apply actor layout.8741/8884/8885/8781 form the
+   observed Load/application path, including asynchronous callbacks; their guards
+   and completion must be retained rather than replaced with a bare8702 call.
    Verify this invocation can run outside editor mode before adopting it. Do NOT
    use8743/8754 or mount the editor on login; they commit staging and tear down UI.
 6. Apply the selected-layout metadata at its verified phase, take a post-application
@@ -222,3 +237,24 @@ Acquisition is closed as a solved prerequisite. Remaining gates are safe native
 application, bounded metadata completion, and durable/session ordering, not another
 search for a native upload opcode. No production files, client binaries or saves
 were changed by this review; only offline comparison/tests and this checkpoint.
+
+## Schema-aware restore preparation checkpoint
+
+`tools/vulkan-static-probe/restore_schema.py` now derives a separate912-ID schema
+from the unchanged pinned V3 schema and8703/8700/2:69. It proves that per-slot
+metadata is bits0..4 and the neighbouring flag is bit5 of the same parent. Masked
+restore intentions exclude that flag and all unknown sibling bits. No V3 binary,
+907-ID schema or1694-ID descriptor was changed.
+
+The offline planner validates exact account/session/schema/ID/type/presence
+membership, rejects incomplete907-only input, and emits NON-EXECUTABLE ordered
+intentions: Custom matrices -> masked slot metadata -> integer metadata. Active8
+is retained but not independently replayed, avoiding a competing layout owner.
+Absent values are skipped, never synthesized. Native application and post-bootstrap
+readback remain mandatory gates. The planner does not send packets, call native
+code, implement storage, or prove authenticated session binding by comparing
+caller-provided strings. Runtime binding must supply those independently.
+
+Six new offline tests cover deterministic912 coverage, masked sibling protection,
+absence, wrong account/session, duplicates/unknown IDs/types/ranges, schema/version
+and selected-slot rejection. This is restore preparation, not a deployed restore.

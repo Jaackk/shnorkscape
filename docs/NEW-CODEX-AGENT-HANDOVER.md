@@ -6,7 +6,8 @@
 [Native acquisition proof and durability design](NATIVE-950-WORKSPACE-ACQUISITION-AND-DURABILITY.md).
 V3 acquisition is live-proven; Custom1 and active8 match on all712 readable fields
 after Save and after Load. Strict B-to-C equality is not claimed: five paired
-fields changed, with possible repeated Save & Exit in the live sequence. Native
+fields changed. Jack clarified C is post-Load; later editor testing happened after
+C. Do not attribute those changes to a repeated save without new evidence. Native
 editor `20258e4` remains protected. No durability/replay has been deployed. The
 older baseline and opcode-persistence discussion below are historical, not the
 current implementation instruction. Do not redo reader or opcode investigations.
