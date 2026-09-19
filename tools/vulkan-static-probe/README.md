@@ -45,6 +45,8 @@ change the normal launcher. No server restart is required.
 
 Generated EXE SHA-256:
 `361a86d1b7d69634e84e30dd98f1c21c742386d276cd7c39df778949e3d7f581`.
+Diagnostic DLL SHA-256:
+`cfd559413b174dfa0fd7919d15d6671c7a7c97fc421b11887c22286ab8d95a1d`.
 The build manifest records the wrapper/IAT/unwind RVAs and code-span hashes.
 
 Rollback is a normal client exit followed by launching the unchanged production
@@ -60,3 +62,15 @@ not provide these unreported native values. The prior injector never ran.
 Passing offline tests proves image construction and bounded synthetic reads only.
 The first live result must precede any wider workspace snapshot. No Custom-slot
 Save/Load equality, label typing, durability or restoration is claimed by this gate.
+
+## Execution result: 2026-09-19
+
+Five image tests and the native bounded-lookup test passed. The EXE generation
+was byte-identical across two builds. The DLL used reproducible compiler/linker
+flags. Source checkpoint 61bee76 was pushed before attempting a live launch.
+
+The execution tool rejected the diagnostic Start-Process request as "blocked by
+policy" before process creation. This is not evidence of a native failure or an
+antivirus diagnosis. No alternate launch route was attempted. The unchanged
+production client was reopened through Start-950Client.ps1 (PID 44560).
+No live 3296 read, Custom-slot snapshot, or Save/Load comparison was obtained.
