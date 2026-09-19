@@ -11,6 +11,27 @@ IMAGE = '3d4e432e8cb81d5b83cd3cb2064669228d24231779ae997fe78335a81e43364d'
 SCHEMA = '53c06c70b12ba0f68ff71a3e46db4c46fdc7f3a3792e3ce6c2656066e692119d'
 FIXTURE = '958508114f036246a433060ab0b02e6afccbd964e52e567e9efd8dac4efec1e0'
 CONTROL_SHA = 'dc61ee972be3a91cdd328aeed7102f3e1fec188d6270c472ac0e815dc0616881'
+LOAD_READ_SHA = '84067abe35df0656aac05fa9cc12e719a652f8a1db5c429c55ef2d309adc88d3'
+
+def custom_visibility_constants():
+    # Unlike the raw storage schema, native8701 returns literal1 for these fields.
+    import snapshot_schema as s
+    from unittest.mock import patch
+    path='cache/12/8701.dat'
+    require(hashlib.sha256((ROOT/path).read_bytes()).hexdigest()==LOAD_READ_SHA,'Changed native Load reader')
+    inverse={int(v['opcode950'],16):int(k,16) for k,v in json.loads(s.pinned('protocol-analysis/ui-scripts-950-evidence.json'))['opcodeMap947to950'].items()}
+    with patch.dict(s.PINS,{path:LOAD_READ_SHA}): ins,switches=s.script(8701,inverse)
+    result=[]
+    for actor in (1032,1033,1034,1035):
+        for slot in (6,7,12,13):
+            start=32+switches[0][slot]
+            require(ins[start]==(0x35e,1) and ins[start+1][0]==0x51a,'Native actor dispatch changed')
+            at=start+2+switches[ins[start+1][1]][actor]
+            require(all(op==0x30 for op,arg in ins[at:at+6]) and ins[at+6]==(0x511,1)
+                and ins[at+7][0]==0x30 and ins[at+8]==(0x511,1)
+                and ins[at+9:at+18]==[(0x592,i) for i in range(10,1,-1)],'Custom visibility is no longer literal1')
+        result.append([actor,8])
+    return result
 
 def require(ok, message):
     if not ok:
@@ -76,10 +97,21 @@ def compare(paths):
             ok=state(b[i])==state(a[i])
         if not ok: stage_errors.append(i)
     custom_changes=[i for i in sorted(matrix_ids) if state(b[i])!=state(c[i])]
+    relationship=matrix_compare(fixture,c,schema['slots']['6'],schema['slots']['8'])
+    constants=custom_visibility_constants()
+    from compare_snapshots import field
+    explained=[pair for pair in relationship['differentFields'] if pair in constants
+        and field(c,schema['slots']['8'][str(pair[0])][6])==1]
+    unexplained=[pair for pair in relationship['differentFields'] if pair not in explained]
+    for pair in constants:
+        if field(c,schema['slots']['8'][str(pair[0])][6])!=1 and pair not in unexplained:
+            unexplained.append(pair)
     report.update({'targetAccount':'must separately confirm layoutgate2','stageMismatchIds':stage_errors,
         'metadataSiblingBaselineAbsent':unknown_sibling_baselines,
         'customMatrixChangedDuringApply':custom_changes,
-        'sourceCustom1VsAppliedActive':matrix_compare(fixture,c,schema['slots']['6'],schema['slots']['8']),
+        'sourceCustom1VsAppliedActive':relationship,
+        'native8701LiteralVisibilityFields':explained,'unexplainedApplicationFields':unexplained,
+        'structuralApplicationPassed':not stage_errors and not custom_changes and not unexplained and not unknown_sibling_baselines,
         'appliedCustom1VsAppliedActive':matrix_compare(c,c,schema['slots']['6'],schema['slots']['8']),
         'application':'requires visual confirmation and review of any native transformation; never auto-waive mismatches'})
     return report

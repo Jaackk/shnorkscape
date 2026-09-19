@@ -1,5 +1,28 @@
 # Complete disposable fixture/application gate
 
+## PROVEN: PID37768 on layoutgate2 (2026-09-20)
+
+Jack confirmed native8741 application visibly reconstructed the distinctive saved
+layout, without dimming/freeze. Exact local V4 A/B/C session37768 is stable.
+Schema-aware readback: zero staging mismatches, zero masked-sibling mismatches,
+zero Custom matrix changes during application. All readable fields are accounted
+for:708 raw-equal plus four native-defined visibility constants. Eight fields of
+absent actor1039 remain unknown, not fabricated.
+
+The four active-slot differences are actors1032/1033/1034/1035, argument8.
+Exact950 script8701 reads Custom slots6/7/12/13 using **literal1** for this field,
+not their stored bit. Its active8 branch reads the actual active bit instead.
+8702 consumes8701 and writes active8 through8709. Thus captured Custom zero to
+active one is the native operation, not lost coverage. These active bits were
+already1 in targetA and remain1 inB/C. The checker pins8701 container SHA256
+`84067abe35df0656aac05fa9cc12e719a652f8a1db5c429c55ef2d309adc88d3`
+and validates all four Custom branches before recognizing these exact constants;
+there is no general ignored-ID list. Custom stored bits remain untouched.
+
+Acquisition and native reconstruction are independently live-proven. Durability,
+automatic capture/session binding and automatic login application are separate
+remaining work; no claim that those passed follows from this gate.
+
 Prerequisite: PID33492 setter readback passed by reviewed evidence; the two
 non-target changes were confirmed manual Chat/Action Bar movement with matching
 cache mappings. Keep the original strict checker result, not a global ignore rule.

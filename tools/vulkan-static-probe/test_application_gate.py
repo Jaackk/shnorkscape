@@ -4,6 +4,18 @@ from unittest.mock import patch
 import check_application_gate as gate
 
 class ApplicationTests(unittest.TestCase):
+    def test_native_load_visibility_is_proven_not_a_blanket_ignore(self):
+        self.assertEqual(gate.custom_visibility_constants(),[[1032,8],[1033,8],[1034,8],[1035,8]])
+
+    def test_live_application_37768(self):
+        paths=[gate.ROOT/('logs/workspace-static-v4-37768-'+p+'.json') for p in 'ABC']
+        if not all(p.exists() for p in paths):self.skipTest('Local private runtime evidence')
+        report=gate.compare(paths)
+        self.assertTrue(report['structuralApplicationPassed'])
+        self.assertEqual(report['stageMismatchIds'],[])
+        self.assertEqual(report['customMatrixChangedDuringApply'],[])
+        self.assertEqual(report['unexplainedApplicationFields'],[])
+
     def test_approved_local_source(self):
         if not (gate.ROOT/'logs/workspace-static-v4-35192-A.json').exists():
             self.skipTest('Private fixture is local only')
