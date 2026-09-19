@@ -67,6 +67,7 @@ final class Native950LayoutEditor {
         channel.write(Native950Packets.runClientScript(SAVE_WRAPPER,UNUSED_SAVE_CALLBACK_ARGUMENT));
         Native950BugTest.event(player,"workspace-editor","wrapper-invoked","script",SAVE_WRAPPER,
                 "argument",UNUSED_SAVE_CALLBACK_ARGUMENT,"argumentUse","ignored-by-pinned-8754");
+        closeServerMount("save-wrapper-complete");
     }
 
     void requestCancel(){
@@ -75,23 +76,31 @@ final class Native950LayoutEditor {
         channel.write(Native950Packets.runClientScript(CANCEL_WRAPPER));
         Native950BugTest.event(player,"workspace-editor","wrapper-invoked","script",CANCEL_WRAPPER,
                 "confirmationOwner","native-8746");
+        closeServerMount("cancel-wrapper-complete");
     }
 
-    /** CLOSE_MODAL reports that the native wrapper has completed its own teardown. */
-    boolean consumeNativeClose(){
-        if(!open)return false;
+    private void closeServerMount(String reason){
         int parent=player.getInterfaceManager().getInterfaceParentId(INTERFACE);
         Native950BugTest.event(player,"workspace-editor","native-close","pending",pending,
-                "parent",parent,"expectedParent",ROOT+":"+HOST);
+                "parent",parent,"expectedParent",ROOT+":"+HOST,"reason",reason);
         open=false;
         if(parent==(ROOT<<16|HOST)){
+            // The wrapper owns native Edit Mode teardown, but the server opened this
+            // subinterface and must retire that mount after the ordered script call.
+            channel.write(Native950Packets.closeSub(ROOT,HOST));
             player.getInterfaceManager().unregisterNativeOpen(INTERFACE);
             Native950BugTest.event(player,"workspace-editor","mount-removed","mount",ROOT+":"+HOST,
-                    "method","reconcile-client-close");
+                    "method","wrapper-then-close-sub");
         }
         Native950BugTest.event(player,"workspace-editor","edit-state-final",
                 "varc",3477,"state","native-2464->0","serverWrite",false);
         pending=Exit.NONE;
+    }
+
+    /** A trailing CLOSE_MODAL is only an acknowledgement after the mount was retired. */
+    boolean consumeNativeClose(){
+        if(!open)return false;
+        closeServerMount("client-close-modal");
         return true;
     }
 
