@@ -18,6 +18,7 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.IdentityHashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -53,6 +54,9 @@ public final class Native950Session {
     private final Native950Interactions interactions;
     private final Native950NpcView npcView;
     private final Native950SaveStore saveStore;
+    private final Native950ServerpermStore serverpermStore;
+    private final Map<Integer, Integer> serverpermValues = new LinkedHashMap<Integer, Integer>();
+    private final Map<Integer, Integer> pendingServerpermValues = new LinkedHashMap<Integer, Integer>();
     private final Native950RegionMusic music;
     private final Native950GroundItemsView groundItems;
     private final Native950ObjectsView objects;
@@ -77,9 +81,17 @@ public final class Native950Session {
     private long checkpoints;
     private final EnumMap<Native950Save.Section, Long> sectionWrites = new EnumMap<Native950Save.Section, Long>(Native950Save.Section.class);
 
+    /** Cache/test-only sessions remain transient and therefore have no native variable store. */
     Native950Session(Player player, Channel channel, Native950GameTransport transport,
                      Native950World.SceneConfig scene, Native950Content content,
                      Native950SaveStore saveStore, Native950Save saved,
+                     com.rs.game.npc.NPC banker) {
+        this(player, channel, transport, scene, content, saveStore, null, saved, banker);
+    }
+
+    Native950Session(Player player, Channel channel, Native950GameTransport transport,
+                     Native950World.SceneConfig scene, Native950Content content,
+                     Native950SaveStore saveStore, Native950ServerpermStore serverpermStore, Native950Save saved,
                      com.rs.game.npc.NPC banker) {
         this.player = player;
         this.playerIndex = player.getIndex();
@@ -92,6 +104,8 @@ public final class Native950Session {
         this.scene = scene;
         this.publishedAreaType=Native950MapAreas.areaTypeFor(player.getX(),player.getY(),scene.areaType);
         this.saveStore = saveStore;
+        this.serverpermStore = serverpermStore;
+        if (serverpermStore != null) this.serverpermValues.putAll(serverpermStore.loadOrEmpty(player.getUsername()));
         this.lastSaved = saved;
         Native950RegionMusicCatalog musicCatalog = new Native950RegionMusicCatalog();
         this.music = new Native950RegionMusic(musicCatalog::lookup,
@@ -182,7 +196,9 @@ public final class Native950Session {
         int drained = transport.drainActions(action -> {
             // Logout marks inactivity before asynchronous close. Reject later actions in this batch.
             if (closed || !channel.isActive() || !player.isActive()) return;
-            if (action instanceof Native950Actions.MusicEndedAction) {
+            if (action instanceof Native950Actions.ServerpermVarcsAction) {
+                acceptServerperm((Native950Actions.ServerpermVarcsAction) action);
+            } else if (action instanceof Native950Actions.MusicEndedAction) {
                 music.requestReplay(((Native950Actions.MusicEndedAction) action).archiveId());
             } else if (action instanceof WalkRequest) {
                 route((WalkRequest) action);
@@ -192,6 +208,27 @@ public final class Native950Session {
             actionsDrained += drained;
             player.setLastPacketReceivedTime(Utils.currentTimeMillis());
         }
+    }
+
+    /** Commits only completed native opcode-14 batches, then performs the proven opcode-136 acknowledgement. */
+    private void acceptServerperm(Native950Actions.ServerpermVarcsAction action) {
+        if (serverpermStore == null)
+            throw new IllegalStateException("Persistent native session has no serverperm store");
+        pendingServerpermValues.putAll(action.values());
+        if (pendingServerpermValues.size() > Native950ServerpermStore.MAX_ENTRIES)
+            throw new IllegalStateException("Native serverperm batch exceeds its bounded store");
+        if (!action.complete()) return;
+        Map<Integer, Integer> next = new LinkedHashMap<Integer, Integer>(serverpermValues);
+        next.putAll(pendingServerpermValues);
+        try {
+            serverpermStore.save(player.getUsername(), next);
+        } catch (java.io.IOException failure) {
+            throw new java.io.UncheckedIOException("Could not persist native serverperm values", failure);
+        }
+        serverpermValues.clear();
+        serverpermValues.putAll(next);
+        pendingServerpermValues.clear();
+        channel.write(Native950Packets.storeServerPermVarcs());
     }
 
     /**
@@ -319,6 +356,7 @@ public final class Native950Session {
 
     void close() {
         if (closed) return;
+        pendingServerpermValues.clear();
         Native950BugTest.close(player,"session-close");
         transport.setInboundFrameObserver(null);
         Native950Workspace.close(player);

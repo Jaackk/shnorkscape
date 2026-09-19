@@ -102,6 +102,8 @@ public final class Native950Protocol {
         CLIENT_SETVARC_LARGE(119, 6),
         /** 947 opcode 1. registration table base + 126*80 + 0x10 */
         CLIENT_SETVARC_SMALL(126, 3),
+        /** Native permanent-variable upload completion acknowledgement; handler 0x140141630. */
+        STORE_SERVERPERM_VARCS(136, 0),
         /** 947 opcode 159. BE checksum; live-verified in the lobby */
         WORLDLIST_FETCH_REPLY(129, -2),
         /** 947 opcode 195. empty body; writes the loading-gate byte at 0x14010ae5d */

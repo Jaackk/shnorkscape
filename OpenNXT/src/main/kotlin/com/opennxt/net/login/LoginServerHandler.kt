@@ -62,6 +62,7 @@ class LoginServerHandler : SimpleChannelInboundHandler<LoginPacket>() {
 
                         val map = Int2IntOpenHashMap()
                         TODORefactorThisClass.populateServerpermVarcs(map)
+                        Ataraxia950Handoff.overlayPersistedServerpermVarcs(it.username, map)
                         val response = LoginPacket.ServerpermVarcChunk(true, map)
                         ctx.channel().writeAndFlush(response)
 

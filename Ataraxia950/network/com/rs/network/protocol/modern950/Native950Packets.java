@@ -30,6 +30,8 @@ public final class Native950Packets {
 
     public static Packet tickEnd() { return packet(ServerPacket.SERVER_TICK_END, new byte[0]); }
     public static Packet keepAlive() { return packet(ServerPacket.NO_TIMEOUT, new byte[0]); }
+    /** Acknowledges a durably persisted native client opcode-14 permanent-variable batch. */
+    public static Packet storeServerPermVarcs() { return packet(ServerPacket.STORE_SERVERPERM_VARCS, new byte[0]); }
 
     /**
      * Native 107 (947: 87): replace current streamed music with an index-40 resource, or stop
