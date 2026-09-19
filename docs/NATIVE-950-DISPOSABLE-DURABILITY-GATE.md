@@ -35,6 +35,16 @@ live gate, not yet a generally proven native readiness fence.
 
 ## Live test after gated deployment
 
+Deployment2026-09-20: implementation `fc1aa4a75d5e5fdbca1ac1617795c25dc55cd668`.
+JAR SHA256 `f57d1df30e191909a1c29aa2a29f7b826de7666d8f7800cd6b759bb9a6647d58`.
+Server PID15300 with explicit durability-gate flag.112 focused Java tests:
+111 passed,1 existing skipped;30 Python tests passed. Exact229-byte8741 JS5
+payload and HTTP200 verified, paired-cache startup preflight passed.
+Backup `backups/pre-edit-20260920-003516-108` includes saves/runtime/sidecar.
+All player saves hash-identical after restart, including Jaxa. The layoutgate2
+sidecar SHA256 is `a118ba984a9e12c87872933b220d7a40820baf5d3114f8547f169fd4004f90c3`.
+Automatic application timing/relog/full-client-restart are pending Jack's test.
+
 Use the unchanged V4 executable and layoutgate2 only. Do not run stage/apply.
 Do not save a different layout during this gate: it intentionally uses the exact
 previously reviewed C capture. Automatic capture of NEW saves is not connected yet.
