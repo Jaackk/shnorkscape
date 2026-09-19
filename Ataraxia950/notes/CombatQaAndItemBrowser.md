@@ -30,13 +30,19 @@ review report are eligible for `;;combatqa cleanup`. `ACTIVE`, `UNREVIEWED`,
 
 ## Item Browser
 
-`;;items` opens the native text input, searches the cached revision-950 TSV index,
-then presents up to 60 matches through interface 1265's item-container grid. The
-grid is read-only and uses container 139 only as a client presentation source; it
-does not create a server Shop or alter bank/equipment state.
+`;;items` immediately opens interface 1265's native item-container grid with a
+small featured catalogue. Its live revision-950 Search owner is component 41 and
+Recent is component 32; their visible text children are not input owners. Search
+temporarily closes the grid, opens the verified native text input, and restores
+the same browser with every ranked cache-index match split into 40-result pages.
+The grid is read-only and uses container 139 only as a client presentation source;
+it does not create a server Shop or alter bank/equipment state.
 
-A result click opens quantity choices for 1, 5, 10, 100 or the verified native
-count input. The final grant revalidates the item against the active cache-backed
+A result click temporarily closes the grid before opening quantity choices for
+1, 5, 10, 100 or the verified native count input. This ordering is required: the
+shared dialogue host is otherwise hidden behind the large shop surface. Submit,
+cancel and grant all restore the same results/page, while Recent records successful
+grants. The final grant revalidates the item against the active cache-backed
 container catalog and uses `Native950Skilling.giveItem`, so controller rules,
 stack overflow and backpack capacity remain authoritative and atomic.
 

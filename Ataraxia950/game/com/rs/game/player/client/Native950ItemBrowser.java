@@ -16,7 +16,8 @@ import java.util.Map;
 /** Session-owned developer item catalogue. Interface 1265 is an icon surface, never a real Shop. */
 final class Native950ItemBrowser {
     private static final int ROOT=1477, MAIN_HOST=735, MAIN_WRAPPER=732, SHOP=1265, SHOP_ITEMS=20;
-    private static final int SEARCH_TEXT=44, SEARCH_CONTROL=45, RECENT_TEXT=35, RECENT_CONTROL=36;
+    // Live 950 input identifies the clickable parents (41/32), not their text children (44/35).
+    private static final int SEARCH_TEXT=44, SEARCH_CONTROL=41, RECENT_TEXT=35, RECENT_CONTROL=32;
     private static final int PREVIOUS=46, NEXT=47, PAGE_LABEL=49, VIEW_LABEL=52, SELECTION_LABEL=58;
     private static final int TRANSACTION_LABEL=66, OWNED_LABEL=128, PRICE_LABEL=133, PRICE_VALUE=137, COIN_ICON=136;
     private static final int INPUT_FRAME_HOST=749, INPUT_FRAME=1418, INPUT_HOST=2, INPUT=1469;
@@ -29,7 +30,7 @@ final class Native950ItemBrowser {
     private final Channel channel;
     private final Native950Dialogues dialogues;
     private final Runnable verifier;
-    private final Native950QuantityInput countInput=new Native950QuantityInput();
+    private final Native950QuantityInput countInput;
     private final Deque<Native950ContentCommands.ItemSearchEntry> recent=new ArrayDeque<Native950ContentCommands.ItemSearchEntry>();
     private Phase phase=Phase.CLOSED;
     private boolean shopOpen;
@@ -39,12 +40,17 @@ final class Native950ItemBrowser {
     private Native950ContentCommands.ItemSearchEntry selected;
 
     Native950ItemBrowser(Player player,Channel channel,Native950Dialogues dialogues){
-        this(player,channel,dialogues,Native950ItemBrowser::verifyCacheBindings);
+        this(player,channel,dialogues,Native950ItemBrowser::verifyCacheBindings,new Native950QuantityInput());
     }
 
     Native950ItemBrowser(Player player,Channel channel,Native950Dialogues dialogues,Runnable verifier){
+        this(player,channel,dialogues,verifier,new Native950QuantityInput());
+    }
+
+    Native950ItemBrowser(Player player,Channel channel,Native950Dialogues dialogues,Runnable verifier,
+                         Native950QuantityInput countInput){
         this.player=player;this.channel=channel;this.dialogues=dialogues;
-        this.verifier=verifier;
+        this.verifier=verifier;this.countInput=countInput;
         synchronized(OWNERS){OWNERS.put(player,this);}
     }
 
@@ -79,7 +85,7 @@ final class Native950ItemBrowser {
     }
 
     private void searchPrompt(){
-        if(!shopOpen)showPage();
+        closeShop();
         phase=Phase.SEARCH;
         channel.write(Native950Packets.openSub(ROOT,INPUT_FRAME_HOST,INPUT_FRAME,true));
         channel.write(Native950Packets.openSub(INPUT_FRAME,INPUT_HOST,INPUT,true));
@@ -118,12 +124,13 @@ final class Native950ItemBrowser {
             shopOpen=true;
         }
         channel.write(Native950Packets.interfaceEvents(SHOP,SHOP_ITEMS,0,Math.max(0,ids.length-1),SHOP_OPTION_MASK));
-        for(int control:new int[]{SEARCH_CONTROL,SEARCH_TEXT,RECENT_CONTROL,RECENT_TEXT,PREVIOUS,NEXT})
+        for(int control:new int[]{SEARCH_CONTROL,RECENT_CONTROL,PREVIOUS,NEXT})
             channel.write(Native950Packets.interfaceEvents(SHOP,control,-1,-1,2));
         channel.write(Native950Packets.runClientScript(8420,82903048,82903256,82903049,82903257,
                 "DEVELOPER ITEM BROWSER",21218,1007));
-        decorate(visible.size());
         channel.write(Native950Packets.runClientScript(1364));
+        // The native refresh restores shop defaults, so developer wording must be applied last.
+        decorate(visible.size());
     }
 
     private void decorate(int visible){
@@ -152,12 +159,14 @@ final class Native950ItemBrowser {
         if(action.itemId()!=-1&&action.itemId()!=entry.id){player.sendMessage("That Item Browser result changed; refresh the page.");showPage();return true;}
         selected=entry;decorate(visible.size());
         switch(action.option()){
-            case 1: phase=Phase.QUANTITY;dialogues.options(entry.label(),"Give 1","Give 5","Give 10","Give 100","Give X...");break;
+            case 1:
+                closeShop();phase=Phase.QUANTITY;
+                dialogues.options(entry.label(),"Give 1","Give 5","Give 10","Give 100","Give X...");break;
             case 2: give(1);break;
             case 3: give(5);break;
             case 4: give(10);break;
             case 5: give(100);break;
-            case 6: openCustomQuantity();break;
+            case 6: closeShop();openCustomQuantity();break;
             default: break;
         }
         return true;
@@ -175,15 +184,15 @@ final class Native950ItemBrowser {
         int row=(action.componentId()-8)/5;
         if(row>=0&&row<4){int[] amounts={1,5,10,100};dialogues.close();phase=Phase.RESULTS;give(amounts[row]);return true;}
         if(row==4){dialogues.close();openCustomQuantity();return true;}
-        dialogues.close();phase=Phase.RESULTS;return true;
+        dialogues.close();phase=Phase.RESULTS;showPage();return true;
     }
 
     private void openCustomQuantity(){
-        if(selected==null){phase=Phase.RESULTS;return;}
+        if(selected==null){phase=Phase.RESULTS;showPage();return;}
         Native950Containers containers=Native950Skilling.containers(player);
-        if(containers==null){player.sendMessage("The native backpack is unavailable.");phase=Phase.RESULTS;return;}
+        if(containers==null){player.sendMessage("The native backpack is unavailable.");phase=Phase.RESULTS;showPage();return;}
         Native950Containers.Snapshot snapshot=containers.inventorySnapshot();
-        if(!countInput.beginDefault(0L,snapshot)){player.sendMessage("Another quantity request is already active.");phase=Phase.RESULTS;return;}
+        if(!countInput.beginDefault(0L,snapshot)){player.sendMessage("Another quantity request is already active.");phase=Phase.RESULTS;showPage();return;}
         phase=Phase.CUSTOM;
         for(Native950Packets.Packet packet:countInput.promptPackets("How many "+selected.name+" would you like?"))channel.write(packet);
         player.getInterfaceManager().registerNativeOpen(INPUT_FRAME,ROOT,INPUT_FRAME_HOST);
@@ -196,19 +205,19 @@ final class Native950ItemBrowser {
         Native950Containers.Snapshot current=containers==null?null:containers.inventorySnapshot();
         Native950QuantityInput.Accepted accepted=countInput.consume(action.count(),0L,current,(slot,amount)->amount);
         closeCountInput();phase=Phase.RESULTS;
-        if(accepted==null||accepted.amount<1){player.sendMessage("That quantity was invalid or your backpack changed.");return true;}
+        if(accepted==null||accepted.amount<1){player.sendMessage("That quantity was invalid or your backpack changed.");showPage();return true;}
         give(accepted.amount);return true;
     }
 
     boolean cancelInput(){
-        if(phase==Phase.SEARCH){closeTextInput();phase=Phase.RESULTS;player.sendMessage("Item Browser search cancelled.");return true;}
-        if(phase==Phase.CUSTOM){countInput.cancel();closeCountInput();phase=Phase.RESULTS;player.sendMessage("Item Browser quantity cancelled.");return true;}
+        if(phase==Phase.SEARCH){closeTextInput();phase=Phase.RESULTS;showPage();player.sendMessage("Item Browser search cancelled.");return true;}
+        if(phase==Phase.CUSTOM){countInput.cancel();closeCountInput();phase=Phase.RESULTS;showPage();player.sendMessage("Item Browser quantity cancelled.");return true;}
         return false;
     }
 
     private void give(int amount){
         Native950ContentCommands.ItemSearchEntry entry=selected;
-        if(entry==null||amount<1||Native950Skilling.itemType(player,entry.id)==null){player.sendMessage("That item is not valid in the paired revision-950 cache.");return;}
+        if(entry==null||amount<1||Native950Skilling.itemType(player,entry.id)==null){player.sendMessage("That item is not valid in the paired revision-950 cache.");phase=Phase.RESULTS;showPage();return;}
         if(!Native950Skilling.giveItem(player,entry.id,amount))
             player.sendMessage("Could not add "+amount+" x "+entry.name+": the backpack is full, the stack would overflow, or your activity refused it.");
         else {player.sendMessage("Added "+amount+" x "+entry.name+" (ID "+entry.id+") to your backpack.");remember(entry);}
@@ -242,6 +251,14 @@ final class Native950ItemBrowser {
         channel.write(Native950Packets.hideInterface(ROOT,MAIN_WRAPPER,true));channel.write(Native950Packets.runClientScript(1364));shopOpen=false;
     }
     private void text(int component,String value){channel.write(Native950Packets.interfaceText(SHOP,component,value));}
+
+    int pageForTests(){return page;}
+    String viewForTests(){return view;}
+    int selectedIdForTests(){return selected==null?-1:selected.id;}
+    int visibleResultIdForTests(int slot){
+        List<Native950ContentCommands.ItemSearchEntry> visible=page(results,page,PAGE_SIZE);
+        return slot<0||slot>=visible.size()?-1:visible.get(slot).id;
+    }
 
     static int pageCount(int size){return Math.max(1,(Math.max(0,size)+PAGE_SIZE-1)/PAGE_SIZE);}
     static <T> List<T> page(List<T> values,int page,int pageSize){

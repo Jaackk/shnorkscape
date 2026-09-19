@@ -9,7 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -18,17 +20,19 @@ public class Native950ItemBrowserTest {
     private Player player;
     private Native950Containers containers;
     private Native950ItemBrowser browser;
+    private Native950Dialogues dialogues;
 
     @Before public void setup() {
         channel=new EmbeddedChannel();
         player=Player.createNative950("item-browser-test",new WorldTile(3217,3258,0),channel);
         player.setActive(true);player.setRights(2);
         containers=new Native950Containers(player,new Native950ItemCatalog(Arrays.asList(
+                new Native950ItemCatalog.Entry(995,"Coins",true,new String[5]),
                 new Native950ItemCatalog.Entry(20135,"Torva full helm",false,new String[5]))));
         Native950Skilling.attach(player,containers);
-        Native950Dialogues dialogues=new Native950Dialogues(player,channel,()->{},()->{});
+        dialogues=new Native950Dialogues(player,channel,()->{},()->{});
         player.setNative950Dialogues(dialogues);
-        browser=new Native950ItemBrowser(player,channel,dialogues,()->{});
+        browser=new Native950ItemBrowser(player,channel,dialogues,()->{},new Native950QuantityInput(()->{}));
     }
 
     @After public void cleanup(){browser.dispose();Native950Skilling.detach(player);channel.finishAndReleaseAll();}
@@ -36,22 +40,54 @@ public class Native950ItemBrowserTest {
     @Test public void openSearchGrantAndRepeatRemainInOneBrowserSession() throws Exception {
         Native950ItemBrowser.open(player);
         assertTrue(browser.isOpen());
-        assertTrue(browser.handle(interfaceAction(1,1265,45,-1,-1)));
+        assertTrue(player.getInterfaceManager().containsInterface(1265));
+        assertTrue(browser.handle(interfaceAction(1,1265,41,-1,-1)));
+        assertFalse(player.getInterfaceManager().containsInterface(1265));
+        assertTrue(player.getInterfaceManager().containsInterface(1469));
         assertTrue(browser.handle(stringAction("torva full helm")));
+        assertTrue(player.getInterfaceManager().containsInterface(1265));
+        assertFalse(player.getInterfaceManager().containsInterface(1469));
 
-        assertTrue(browser.handle(interfaceAction(1,1265,20,0,20135)));
+        // Live 950 grid input reports item=-1; the authoritative result remains slot-based.
+        assertTrue(browser.handle(interfaceAction(1,1265,20,0,-1)));
+        assertEquals(20135,browser.selectedIdForTests());
+        assertFalse(player.getInterfaceManager().containsInterface(1265));
+        assertTrue(dialogues.isOpen(1188));
         assertTrue(browser.handle(dialogueAction(1188,8)));
         assertEquals(1,player.getInventory().getAmountOf(20135));
         assertTrue(browser.isOpen());
+        assertTrue(player.getInterfaceManager().containsInterface(1265));
 
         assertTrue(browser.handle(interfaceAction(2,1265,20,0,20135)));
         assertEquals(2,player.getInventory().getAmountOf(20135));
+        assertTrue(browser.isOpen());
+
+        assertTrue(browser.handle(interfaceAction(1,1265,41,-1,-1)));
+        assertTrue(browser.handle(stringAction("995")));
+        assertTrue(browser.handle(interfaceAction(4,1265,20,0,995)));
+        assertEquals(10,player.getInventory().getAmountOf(995));
+
+        assertTrue(browser.handle(interfaceAction(1,1265,32,-1,-1)));
+        assertEquals("Recent",browser.viewForTests());
+        assertEquals(995,browser.visibleResultIdForTests(0));
+    }
+
+    @Test public void giveXRestoresTheSameBrowserAfterNativeCountInput() throws Exception {
+        Native950ItemBrowser.open(player);
+        browser.handle(interfaceAction(1,1265,41,-1,-1));
+        browser.handle(stringAction("torva full helm"));
+        browser.handle(interfaceAction(1,1265,20,0,-1));
+        assertTrue(browser.handle(dialogueAction(1188,28)));
+        assertTrue(player.getInterfaceManager().containsInterface(1469));
+        assertTrue(browser.handle(countAction(3)));
+        assertEquals(3,player.getInventory().getAmountOf(20135));
+        assertTrue(player.getInterfaceManager().containsInterface(1265));
         assertTrue(browser.isOpen());
     }
 
     @Test public void staleClientItemClaimCannotGrantAnotherItem() throws Exception {
         Native950ItemBrowser.open(player);
-        browser.handle(interfaceAction(1,1265,45,-1,-1));
+        browser.handle(interfaceAction(1,1265,41,-1,-1));
         browser.handle(stringAction("torva full helm"));
         assertTrue(browser.handle(interfaceAction(2,1265,20,0,995)));
         assertEquals(0,player.getInventory().getAmountOf(20135));
@@ -61,11 +97,20 @@ public class Native950ItemBrowserTest {
     @Test public void fullInventoryRefusesGrantWithoutClosingBrowser() throws Exception {
         assertTrue(Native950Skilling.giveItem(player,20135,28));
         Native950ItemBrowser.open(player);
-        browser.handle(interfaceAction(1,1265,45,-1,-1));
+        browser.handle(interfaceAction(1,1265,41,-1,-1));
         browser.handle(stringAction("torva full helm"));
         assertTrue(browser.handle(interfaceAction(2,1265,20,0,20135)));
         assertEquals(28,player.getInventory().getAmountOf(20135));
         assertTrue(browser.isOpen());
+    }
+
+    @Test public void paginationRetainsEveryResultWithoutTruncation() {
+        List<Integer> values=new ArrayList<Integer>();
+        for(int i=0;i<95;i++)values.add(i);
+        assertEquals(3,Native950ItemBrowser.pageCount(values.size()));
+        assertEquals(40,Native950ItemBrowser.page(values,0,40).size());
+        assertEquals(Integer.valueOf(40),Native950ItemBrowser.page(values,1,40).get(0));
+        assertEquals(15,Native950ItemBrowser.page(values,2,40).size());
     }
 
     private static Native950Actions.InterfaceAction interfaceAction(int option,int interfaceId,int component,int slot,int itemId) throws Exception {
@@ -75,6 +120,10 @@ public class Native950ItemBrowserTest {
 
     private static Native950Actions.StringDialogueAction stringAction(String text) throws Exception {
         return construct(Native950Actions.StringDialogueAction.class,new Class<?>[]{boolean.class,String.class},false,text);
+    }
+
+    private static Native950Actions.CountDialogueAction countAction(long count) throws Exception {
+        return construct(Native950Actions.CountDialogueAction.class,new Class<?>[]{long.class},count);
     }
 
     private static Native950Actions.DialogueClickAction dialogueAction(int interfaceId,int component) throws Exception {
