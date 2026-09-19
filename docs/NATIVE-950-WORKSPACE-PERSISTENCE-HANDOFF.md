@@ -1,5 +1,9 @@
 # Native 950 Workspace Persistence Handoff
 
+## Status update: evidence-blocked
+
+The documented opcode-14/136 relationship remains native-client evidence, but its proposed causal role in SHNORKSCAPE workspace persistence was disproven by a controlled live proof at commit `5c2f40d`. The server acknowledged the exact initial 1291-byte, 215-record opcode-14 upload using empty opcode `136`; after a visually confirmed Backpack move, no smaller opcode-14 upload occurred. The proof implementation was removed. Do not resend `136`, implement opcode-14 persistence, or treat the initial upload as the blocker without new evidence that explains this result.
+
 Status: protocol and ownership model proven; production implementation intentionally not started.
 
 This note records the evidence needed to implement native revision-950 workspace persistence without another layout guess. It supersedes the earlier packet-family hypotheses and the blanket ServerpermVarc omission experiment.

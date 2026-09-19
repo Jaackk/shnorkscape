@@ -133,6 +133,10 @@ Every newly added player/admin/development command must be added to `;;commands`
 
 ## Workspace persistence: the critical unresolved work
 
+### Current status: evidence-blocked
+
+The opcode-14/136 acknowledgement hypothesis was tested in production at commit `5c2f40d`: the server acknowledged the exact initial 1291-byte, 215-record upload with empty opcode `136`, then Jack moved Backpack under Bug Test. The move was visually confirmed, but no subsequent opcode-14 delta arrived. The acknowledgement did not unlock workspace uploads on this lifecycle. The temporary proof implementation was removed; do not retry it or infer persistence from it. Native workspace persistence remains unresolved pending genuinely new evidence.
+
 Jack can move, resize, dock, tab, select and close native panels during a session. After logout/relogin or client restart, the arrangement resets and default windows stack/overlap. The desired result is native persistence of positions, resize state, docking, tab groups, active tabs and visibility, not hard-coded coordinates.
 
 Read `docs/NATIVE-950-WORKSPACE-PERSISTENCE-HANDOFF.md` before changing anything. It is the authoritative reverse-engineering handoff.

@@ -6,18 +6,8 @@ import com.rs.network.protocol.modern950.Native950Actions;
 import io.netty.channel.embedded.EmbeddedChannel;
 import org.junit.Test;
 
-import java.lang.reflect.Field;
-import java.util.Set;
-
-import com.rs.network.modern.Native950GameTransport;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
-
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 /** Regression coverage for passive workspace diagnostics: no packet is emitted or replayed. */
 public final class Native950WorkspaceTest {
@@ -70,48 +60,5 @@ public final class Native950WorkspaceTest {
         assertTrue(Native950WorkspaceIntegerDescriptor.evidenceFingerprint().matches("[0-9a-f]{64}"));
         assertTrue(Native950WorkspaceIntegerDescriptor.property("script.ids").contains("8707"));
         assertTrue(Native950WorkspaceIntegerDescriptor.property("varbit.ids").contains("19037"));
-        assertEquals(215, Native950WorkspaceIntegerDescriptor.bootstrapIds().size());
-        assertTrue(Native950WorkspaceIntegerDescriptor.ids().containsAll(
-                Native950WorkspaceIntegerDescriptor.bootstrapIds()));
-    }
-
-    @Test public void exactInitialUploadRequiresPinnedIdsCompletionAndShape() {
-        byte[] exact=initialUpload();
-        assertEquals(1291,exact.length);
-        assertTrue(Native950Workspace.isExactInitialPermanentVariablesUpload(exact));
-        byte[] incomplete=exact.clone(); incomplete[0]=0;
-        assertFalse(Native950Workspace.isExactInitialPermanentVariablesUpload(incomplete));
-        byte[] duplicate=exact.clone(); duplicate[7]=duplicate[1]; duplicate[8]=duplicate[2];
-        assertFalse(Native950Workspace.isExactInitialPermanentVariablesUpload(duplicate));
-        assertFalse(Native950Workspace.isExactInitialPermanentVariablesUpload(new byte[7]));
-    }
-
-    @Test public void attachedSessionAcknowledgesExactInitialUploadOnceAndPersistsNothing() throws Exception {
-        Native950GameTransport transport=new Native950GameTransport(()->0,()->0,Thread.currentThread());
-        EmbeddedChannel channel=new EmbeddedChannel(transport);
-        Player player=Player.createNative950("workspace-ack",new WorldTile(3217,3258,0),channel);
-        Native950Session session=new Native950Session(player,channel,transport,
-                new Native950World.SceneConfig(3200,3200,0,1,5,0,0,0),null,null,null,null);
-        try {
-            Field ready=Native950Session.class.getDeclaredField("ready"); ready.setAccessible(true); ready.setBoolean(session,true);
-            byte[] payload=initialUpload();
-            byte[] frame=new byte[3+payload.length]; frame[0]=14; frame[1]=(byte)(payload.length>>>8); frame[2]=(byte)payload.length;
-            System.arraycopy(payload,0,frame,3,payload.length);
-            channel.writeInbound(Unpooled.wrappedBuffer(frame));
-            ByteBuf acknowledgement=channel.readOutbound();
-            byte[] raw=new byte[acknowledgement.readableBytes()]; acknowledgement.readBytes(raw); acknowledgement.release();
-            assertArrayEquals(new byte[]{(byte)128,(byte)136},raw);
-            assertEquals(1,transport.unhandledFrameCount());
-            channel.writeInbound(Unpooled.wrappedBuffer(frame.clone()));
-            assertNull("the same session must acknowledge the bootstrap only once",channel.readOutbound());
-        } finally { session.close(); channel.finishAndReleaseAll(); }
-    }
-
-    private static byte[] initialUpload() {
-        Set<Integer> ids=Native950WorkspaceIntegerDescriptor.bootstrapIds();
-        byte[] payload=new byte[1+ids.size()*6]; payload[0]=1; int offset=1;
-        for(int id:ids){payload[offset++]=(byte)(id>>>8);payload[offset++]=(byte)id;
-            payload[offset++]=0;payload[offset++]=0;payload[offset++]=0;payload[offset++]=0;}
-        return payload;
     }
 }
