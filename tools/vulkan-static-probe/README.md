@@ -1,5 +1,53 @@
 # Static Vulkan first-read diagnostic
 
+## Current build: v2 lookup controls
+
+Manual v1 runtime result `workspace-static-25488.json`: world entry worked,
+409 buckets / 219 elements, 3296 not found. This does not distinguish absence
+from a bad reader. It does prove the static wrapper executed in the real client.
+
+Exact Vulkan follow-up:
+- Domain primary vtable 0xc6dbb8 delegates from getter 0x153a60 via domain+8.
+- Secondary vtable 0xc6d818 slot+8 is getter 0x2eb480. It takes the descriptor's
+  integer ID directly, uses id modulo bucketCount, compares node+0, follows
+  node+0x28, and returns node+8. No domain packing occurs in this lookup.
+- Its absent-key path compares with bucket[count], then delegates to the
+  definition's default provider. A valid native value need not have a stored node.
+  The diagnostic deliberately does not invoke this getter or default provider.
+- Native integer accessor 0x1501d0 checks tag zero at value+0x18 (node+0x20).
+- Setter 0x10dff0 uses the same descriptor ID directly. These three functions
+  are now separately hash-pinned in the image builder and runtime preflight.
+- 3296 is a legitimate domain-2 parent (for example varbits 19038/19039), but
+  is absent from the 215 bootstrap IDs. The descriptor is not an instantiated-node
+  inventory. 219 elements being close to 215 is suggestive, not proof of contents.
+
+V2 adds direct, typed bootstrap controls 2852, 2912, 3721, 4955, 5139, 6458.
+Their identities/initial values are tested against both the descriptor and
+TODORefactorThisClass.populateServerpermVarcs. Values may subsequently change;
+matching the static value is reported but is not required for a valid read.
+V2 distinguishes found-zero, absent-null, absent-sentinel, type mismatch,
+cycle/bounds and bucket/key inconsistency. It checks both domain vtables.
+
+It records entry and settled (three seconds later) samples on the same callback
+thread, then disables itself. Malformed traversal stops immediately. Files:
+`logs/workspace-static-v2-PID-entry.json` and `...-settled.json`.
+`controls-resolved-3296-absent` would establish direct-key control reads while
+3296 has no stored node at those observations. That result has NOT yet been
+observed; do not claim that v1 alone proved non-instantiation.
+
+Separate executable: `client/rs2client-vulkan-workspace-diag-v2.exe`
+SHA-256: `fb96d190afcba769ca7983d2f76d45a4955cf7919d19e8ff4584a5e265e59b67`
+Separate DLL: `client/shnork_workspace_probe_v2.dll`
+SHA-256: `9c8d09346594671fe44f0b6242987104d4b3b47f5ee1e7ec92b488ca470803b7`
+
+Manual v2 test: close the other client normally, launch this EXE with the same
+config URL as v1, login and wait 10 seconds. Do not open Edit Mode or Save/Load.
+Return both result files. No tool-driven launch or alternative execution route
+is part of this task. Production and the v1 diagnostic files remain untouched.
+
+The remainder documents the original v1 construction and execution history;
+current source builds v2 and must use a fresh v2 output/manifest path.
+
 This is a separate pre-launch diagnostic client, not a persistence implementation.
 No injection, Funchook, runtime detour installation, security changes, server changes,
 or RuneScape variable writes. Production remains `client/rs2client-vulkan.exe`.

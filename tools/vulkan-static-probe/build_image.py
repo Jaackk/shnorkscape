@@ -7,6 +7,7 @@ from pathlib import Path
 import pefile
 
 INPUT_HASH = '36c45c1cf6eed0c6cb0b789ca1672d685c1746def9d65d6f18d72638f0087bc9'
+DLL_NAME = b'shnork_workspace_probe_v2.dll'
 SPANS = [
     (0x1c830,0x8b1,'6c051fb5fb9cb2c2b1fc9a38c34ac9ae62a25bfbb5396047c14defd77f0fc4a6'),
     (0x1b070,0x1ab,'e07682c0fa905789eb7a9867be0a73d823a7ed2aaf5312b80c7014f27131991b'),
@@ -14,6 +15,9 @@ SPANS = [
     (0x1471e0,0x5dc,'b0318cf9af6e400158fd23f9ae8329b9a7b305b429d8b0adebcb40fdc086245e'),
     (0x147c40,0x94,'ffd0f52280cbe972b26b619d94611e6f4509573873b7af225c7a95907986c8c7'),
     (0x25550,0x1c4,'4da9e9691d5aac059f9c1c61b17545450daf077267dc9c111707a6f4c7fc74ae'),
+    (0x2eb480,0x8f,'fd3bbc7aa8c049def62da0d0738a95ea9cdaaf1bc65a18eada8f16c5a64c509b'),
+    (0x1501d0,0x43,'8312f51437d3248a22845ec728983d767b6ca16c7df3713e21aabbc3ec080e15'),
+    (0x10dff0,0x42,'0f794d5143bea4b5f54a839b5b8c0096862842bc9e0861b0d3fc6524bb6f3931'),
 ]
 def sha(data): return hashlib.sha256(data).hexdigest()
 def align(n,a): return (n+a-1)//a*a
@@ -56,7 +60,7 @@ def build(raw):
     data=bytearray()
     def put(blob,a=1):
         data.extend(b'\0'*(align(len(data),a)-len(data)));at=data_rva+len(data);data.extend(blob);return at
-    dll=put(b'shnork_workspace_probe.dll\0')
+    dll=put(DLL_NAME+b'\0')
     name=put(b'\0\0WorkspaceProbe\0',2)
     ilt=put(struct.pack('<QQ',name,0),8)
     iat=put(struct.pack('<QQ',name,0),8)

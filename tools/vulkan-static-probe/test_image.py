@@ -1,9 +1,10 @@
 import unittest
 import struct
+import re
 from pathlib import Path
 import capstone
 import pefile
-from build_image import build,thunk,INPUT_HASH,sha
+from build_image import build,thunk,INPUT_HASH,sha,DLL_NAME
 
 SOURCE=Path(r'C:\Games\950OpenSource\client\rs2client-vulkan.exe')
 class ImageTest(unittest.TestCase):
@@ -14,8 +15,20 @@ class ImageTest(unittest.TestCase):
         self.assertEqual(sha(self.raw),INPUT_HASH);self.assertEqual(build(self.raw),(self.out,self.info))
     def test_wrong_input_rejected(self):
         with self.assertRaisesRegex(ValueError,'Unapproved'):build(self.raw[:-1])
+    def test_bootstrap_control_provenance(self):
+        root=SOURCE.parents[1]
+        props=(root/'Ataraxia950/resources/native950/workspace-integer-descriptor-950.properties').read_text()
+        ids=set(map(int,re.search(r'^bootstrap.ids=(.*)$',props,re.M)[1].split(',')))
+        self.assertEqual(len(ids),215);self.assertNotIn(3296,ids)
+        expected={2852:319951120,2912:32,3721:100992003,4955:16780678,5139:-2146664148,6458:8390656}
+        source=(root/'OpenNXT/src/main/kotlin/com/opennxt/model/lobby/TODORefactorThisClass.kt').read_text()
+        probe=(root/'tools/vulkan-static-probe/probe.cpp').read_text()
+        for key,value in expected.items():
+            self.assertIn(key,ids)
+            self.assertRegex(source,rf'values\[{key}\]\s*=\s*{value}\b')
+            self.assertIn(f'{{{key},{value}}}',probe)
     def test_import_unwind_and_relocation(self):
-        d=self.p.DIRECTORY_ENTRY_IMPORT[-1];self.assertEqual(d.dll,b'shnork_workspace_probe.dll');self.assertEqual(d.imports[0].name,b'WorkspaceProbe')
+        d=self.p.DIRECTORY_ENTRY_IMPORT[-1];self.assertEqual(d.dll,DLL_NAME);self.assertEqual(d.imports[0].name,b'WorkspaceProbe')
         t=self.info['thunk_rva'];e=self.p.DIRECTORY_ENTRY_EXCEPTION[-1].struct
         self.assertEqual(e.BeginAddress,t);self.assertEqual(e.EndAddress,t+self.info['thunk_size'])
         self.assertEqual(self.p.get_data(e.UnwindData,8),bytes([1,7,2,0,7,1,27,0]))
