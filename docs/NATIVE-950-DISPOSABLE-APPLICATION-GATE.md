@@ -99,6 +99,20 @@ the explicit server commands DO set client variables through the native protocol
 
 ## Application acceptance (pending live target test)
 
+### Deployment checkpoint (2026-09-20)
+
+Implementation `2c50a8fb0cfb7f619b72e731df0493963da9c274`, pushed; exact JAR SHA256
+`05187c6bb483f944401a0c4f1387ad258fec255896355bd3cb2626719fcc7dda`.
+79 focused Java tests:78 passed,1 existing skipped; includes bootstrap/action bar,
+command wire/guards, fixture and variable wire tests.28 Python tests passed.
+Lobby overrides rebuilt, server PID17992. HTTP200; JS5/ms script8741 returned
+the exact229-byte cache container. Paired950 startup preflight passed.
+Backup: `backups/pre-edit-20260920-001409-201`. All saved files hash-identical
+after restart. Jaxa SHA256 `7c1de323f5fc63f54b7fc2d717385b4c2cc9e9b738338b6ed3078cddfce928e6`.
+Production and V4 EXE hashes unchanged. layoutgate2 had no existing save before
+deployment. No visual world/application success is claimed; target A/B/C and
+Jack's visual confirmation remain required. No production durability enabled.
+
 After validating the exact912 fixture, prepare a narrowly scoped server fixture
 action restricted to a separate fresh disposable target session/account. Do not
 paste hundreds of commands, add a native-memory writer, or replay on Jaxa.
