@@ -3,7 +3,6 @@ package com.rs.game.player.client;
 import com.rs.game.WorldTile;
 import com.rs.game.player.Player;
 import com.rs.network.protocol.modern950.Native950Actions;
-import com.rs.network.protocol.modern950.Native950Packets;
 import io.netty.channel.embedded.EmbeddedChannel;
 import org.junit.After;
 import org.junit.Before;
@@ -11,7 +10,6 @@ import org.junit.Test;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -133,17 +131,6 @@ public class Native950ItemBrowserTest {
         assertEquals(40,browser.visibleResultCountForTests());
         for(int slot=0;slot<expected.size();slot++)
             assertEquals("ranked slot "+slot+" changed identity",expected.get(slot).id,browser.visibleResultIdForTests(slot));
-        assertTrue(contains(packets(),itemOptions(false)));
-    }
-
-    @Test public void testingKitAndRecentKeepFixedGeometryWhilePublishingTheirMenus() throws Exception {
-        Native950ItemBrowser.open(player);
-        assertEquals(19,browser.visibleResultCountForTests());
-        assertTrue(contains(packets(),itemOptions(false)));
-        search("995");browser.handle(interfaceAction(1,1265,20,0,995));
-        browser.handle(interfaceAction(1,1265,32,-1,-1));
-        assertEquals(995,browser.visibleResultIdForTests(0));
-        assertTrue(contains(packets(),itemOptions(true)));
     }
 
     @Test public void fullInventoryRefusesGrantWithoutClosingBrowser() throws Exception {
@@ -171,24 +158,6 @@ public class Native950ItemBrowserTest {
         assertTrue(browser.handle(interfaceAction(1,1265,41,-1,-1)));
         assertTrue(browser.handle(stringAction(query)));
         assertTrue(player.getInterfaceManager().containsInterface(1265));
-    }
-
-    private static Native950Packets.Packet itemOptions(boolean recent){
-        return Native950Packets.runClientScript(150,(1265<<16)|20,139,10,4,0,-1,
-                "Give 1","","Give 5","Give 10","Give 100","Give X",recent?"Remove from Recent":"","","",0);
-    }
-
-    private List<Native950Packets.Packet> packets(){
-        List<Native950Packets.Packet> packets=new ArrayList<Native950Packets.Packet>();Object value;
-        channel.flushOutbound();
-        while((value=channel.readOutbound())!=null)if(value instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)value);
-        return packets;
-    }
-
-    private static boolean contains(List<Native950Packets.Packet> packets,Native950Packets.Packet expected){
-        for(Native950Packets.Packet packet:packets)if(packet.type()==expected.type()
-                &&Arrays.equals(packet.payload(),expected.payload()))return true;
-        return false;
     }
 
     private static Native950Actions.InterfaceAction interfaceAction(int option,int interfaceId,int component,int slot,int itemId) throws Exception {

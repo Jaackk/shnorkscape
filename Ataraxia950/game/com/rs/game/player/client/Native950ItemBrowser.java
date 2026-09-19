@@ -21,7 +21,6 @@ final class Native950ItemBrowser {
     private static final int TRANSACTION_LABEL=66, OWNED_LABEL=128, PRICE_LABEL=133, PRICE_VALUE=137, COIN_ICON=136;
     private static final int INPUT_FRAME_HOST=749, INPUT_FRAME=1418, INPUT_HOST=2, INPUT=1469;
     private static final int RESULTS_CONTAINER=139, RECENT_LIMIT=12, MAX_RENDERED_RESULTS=40;
-    private static final int GRID_COLUMNS=10, GRID_ROWS=4;
     private static final int SHOP_OPTION_MASK=2097406;
     private static final Map<Player,Native950ItemBrowser> OWNERS=new IdentityHashMap<Player,Native950ItemBrowser>();
     private enum Phase { CLOSED, RESULTS, SEARCH, CUSTOM }
@@ -67,23 +66,10 @@ final class Native950ItemBrowser {
     static void verifyCacheBindings(){
         if(Cache.STORE==null||!Cache.isFlatReadOnly())throw new IllegalStateException("Item Browser requires the paired revision-950 cache");
         Native950QuantityInput.verify();
-        byte[] itemOptions=Cache.STORE.getIndexes()[12].getFile(150,0);
         if(Cache.STORE.getIndexes()[3].getFile(SHOP,0)==null||Cache.STORE.getIndexes()[12].getFile(110,0)==null
-                ||itemOptions==null||Cache.STORE.getIndexes()[12].getFile(8420,0)==null)
+                ||Cache.STORE.getIndexes()[12].getFile(8420,0)==null)
             throw new IllegalStateException("The paired cache does not contain the native Item Browser surfaces");
-        verifyItemOptionsSignature(itemOptions);
     }
-
-    private static void verifyItemOptionsSignature(byte[] script){
-        if(script.length<20)throw new IllegalStateException("Revision-950 item-option script is truncated");
-        int trailer=((script[script.length-2]&255)<<8)|(script[script.length-1]&255);
-        int header=script.length-2-trailer-16;
-        if(header<0||unsignedShort(script,header+10)!=7||unsignedShort(script,header+12)!=9
-                ||unsignedShort(script,header+14)!=0)
-            throw new IllegalStateException("Revision-950 item-option script no longer has its verified 7-int/9-string signature");
-    }
-
-    private static int unsignedShort(byte[] bytes,int offset){return ((bytes[offset]&255)<<8)|(bytes[offset+1]&255);}
 
     private void openBrowser(){
         verifier.run();closeInput();
@@ -153,20 +139,8 @@ final class Native950ItemBrowser {
         channel.write(Native950Packets.runClientScript(8420,82903048,82903256,82903049,82903257,
                 "DEVELOPER ITEM BROWSER",21218,1007));
         channel.write(Native950Packets.runClientScript(1364));
-        publishNativeGridOptions();
         decorate();
         telemetry("rendered","view",viewName(),"query",query,"count",rendered.size(),"ids",ids(rendered));
-    }
-
-    /** Script 150 owns both item options and geometry, so always use the live-verified 40-slot grid. */
-    private void publishNativeGridOptions(){
-        channel.write(Native950Packets.runClientScript(150,
-                (SHOP<<16)|SHOP_ITEMS,RESULTS_CONTAINER,GRID_COLUMNS,GRID_ROWS,0,-1,
-                "Give 1","","Give 5","Give 10","Give 100","Give X",
-                view==View.RECENT?"Remove from Recent":"","","",0));
-        telemetry("native-grid-options","view",viewName(),"items",rendered.size(),
-                "columns",GRID_COLUMNS,"rows",GRID_ROWS,"fixedGeometry",true,
-                "options",view==View.RECENT?"1,3,4,5,6,7":"1,3,4,5,6");
     }
 
     private void decorate(){
