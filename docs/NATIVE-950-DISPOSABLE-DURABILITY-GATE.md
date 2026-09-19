@@ -1,5 +1,29 @@
 # Disposable account-bound durability gate
 
+## Full client restart: PROVEN on layoutgate2 (2026-09-20)
+
+Jack confirmed automatic visible restoration without commands/Edit Mode on initial
+login, then normal full client close/reopen and login. Same client dimensions.
+Initial PID3800 A SHA256
+`d61d86ace873445955b5770b0afc9a876bb310223045ae50b9e3eca5cacd558f`;
+restarted PID41956 A SHA256
+`00cb165a12229a5aed6e4962c1069db7f60e46c2cd3350b23cfc2f72811139af`.
+`tools/vulkan-static-probe/check_restart_gate.py` verifies stable typed V4 captures,
+controls, different processes and exact equality of all912 entries. All720 active
+fields match across these two automatic restores. All four Custom matrices match
+the pinned source fixture, including absence. User-visible restoration takes about
+1-2 seconds after world entry; it is not claimed to be pre-scene or flicker-free.
+
+Do not conflate this with raw source-Custom versus automatic-active equality:
+that comparison has45 different fields and8 absent fields. No new transformation
+exemption is inferred. The proven result is repeatable exact state across the two
+automatic sessions plus Jack's visible confirmation, with saved Custom data intact.
+
+Same-process relog is NOT TESTED because the existing Logout path reconnects rather
+than providing a genuine relog. Track that separately, not as a durability failure.
+Automatic capture/update of a NEW Save is still unimplemented. The seeded fixture
+does not prove that final loop. Jaxa remains excluded; no production rollout.
+
 Prerequisite: application PID37768 is PROVEN, including all native8701 visibility
 constants and Jack's positive visual confirmation. See the application gate note.
 

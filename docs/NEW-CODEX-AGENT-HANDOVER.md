@@ -2,6 +2,13 @@
 
 ## Start here
 
+**2026-09-20 restart proof:** automatic restoration on layoutgate2 now passes
+full client close/reopen visually and structurally: PID3800 A and PID41956 A match
+on all912 entries, including all720 active fields; Custom matrices match source.
+See the durability gate below and `check_restart_gate.py`. Same-process relog was
+NOT tested (separate broken Logout). NEW Save-to-store capture remains unimplemented.
+Do not confuse the seeded restore proof with a complete automatic saving loop.
+
 **Latest:** PID37768 application gate is PROVEN (708 raw-equal fields plus four
 pinned native8701 literal visibility fields). Account-bound sidecar and an opt-in
 layoutgate2-only automatic restore gate are implemented; see
