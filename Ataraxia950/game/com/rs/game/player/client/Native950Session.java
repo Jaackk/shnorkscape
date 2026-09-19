@@ -63,6 +63,7 @@ public final class Native950Session {
     private boolean ready;
     private boolean closed;
     private boolean rebuiltThisTick;
+    private boolean initialPermanentVariablesAcknowledged;
     private int publishedAreaType;
     private int preMoveX, preMoveY, preMovePlane;
     private long sessionStarted;
@@ -88,6 +89,7 @@ public final class Native950Session {
         this.objects = new Native950ObjectsView(Thread.currentThread(), packet -> channel.write(packet));
         this.transport = transport;
         transport.setUnhandledFrameObserver(frame -> Native950BugTest.unhandledFrame(player, frame.opcode(), frame.payload()));
+        transport.setPermanentVariablesFrameObserver(frame -> initialPermanentVariablesUpload(frame.payload()));
         BY_PLAYER.put(player, this);
         this.scene = scene;
         this.publishedAreaType=Native950MapAreas.areaTypeFor(player.getX(),player.getY(),scene.areaType);
@@ -321,6 +323,7 @@ public final class Native950Session {
         if (closed) return;
         Native950BugTest.close(player,"session-close");
         transport.setInboundFrameObserver(null);
+        transport.setPermanentVariablesFrameObserver(null);
         Native950Workspace.close(player);
         BY_PLAYER.remove(player);
         closed = true;
@@ -346,6 +349,15 @@ public final class Native950Session {
     }
 
     boolean isClosed() { return closed; }
+
+    private void initialPermanentVariablesUpload(byte[] payload) {
+        if (!ready || closed || initialPermanentVariablesAcknowledged || !channel.isActive()) return;
+        if (!Native950Workspace.isExactInitialPermanentVariablesUpload(payload)) return;
+        initialPermanentVariablesAcknowledged = true;
+        channel.writeAndFlush(Native950Packets.permanentVariablesAcknowledgement());
+        System.out.println("[Ataraxia950] Acknowledged initial native permanent-variable synchronization "
+                + "(215 records); persistence remains disabled for proof candidate");
+    }
 
     Player player() { return player; }
 

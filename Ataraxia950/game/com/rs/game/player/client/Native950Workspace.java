@@ -6,15 +6,20 @@ import com.rs.network.protocol.modern950.Native950Actions;
 import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Observational workspace diagnostics for the native client.
  *
  * <p>The client owns window geometry, docking and tab links. This class deliberately
  * does not invent a second layout model: it records the small amount of workspace
- * traffic we can prove. It never parses, saves, acknowledges, or replays a frame.
+ * traffic we can prove. It never saves or replays a frame. The proof-stage parser below
+ * recognizes only the exact initial synchronization so its owning session can acknowledge it.
  */
 final class Native950Workspace {
+    static final int INITIAL_UPLOAD_BYTES = 1291;
+    static final int INITIAL_UPLOAD_RECORDS = 215;
     private static final Map<Player, State> STATES = new IdentityHashMap<Player, State>();
 
     private Native950Workspace() { }
@@ -49,6 +54,22 @@ final class Native950Workspace {
 
     /** Retained as the unhandled-frame hook; all recording now occurs at the frame boundary. */
     static void unhandledFrame(Player player, int opcode, byte[] payload) { }
+
+    /**
+     * Exact proof-stage gate for the initial native upload. Later deltas, partial batches and
+     * malformed data deliberately do not match and receive no acknowledgement here.
+     */
+    static boolean isExactInitialPermanentVariablesUpload(byte[] payload) {
+        if (payload == null || payload.length != INITIAL_UPLOAD_BYTES || (payload[0] & 255) != 1)
+            return false;
+        Set<Integer> expected = Native950WorkspaceIntegerDescriptor.bootstrapIds();
+        Set<Integer> observed = new HashSet<Integer>(INITIAL_UPLOAD_RECORDS);
+        for (int offset = 1; offset < payload.length; offset += 6) {
+            int id = ((payload[offset] & 255) << 8) | (payload[offset + 1] & 255);
+            if (!expected.contains(id) || !observed.add(id)) return false;
+        }
+        return observed.size() == INITIAL_UPLOAD_RECORDS && observed.equals(expected);
+    }
 
     /**
      * A marker flushes ID-only permanent-variable changes from the preceding controlled action.

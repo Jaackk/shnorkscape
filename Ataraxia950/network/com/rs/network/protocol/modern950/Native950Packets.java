@@ -31,6 +31,11 @@ public final class Native950Packets {
     public static Packet tickEnd() { return packet(ServerPacket.SERVER_TICK_END, new byte[0]); }
     public static Packet keepAlive() { return packet(ServerPacket.NO_TIMEOUT, new byte[0]); }
 
+    /** Completes one native permanent-client-variable upload batch. */
+    public static Packet permanentVariablesAcknowledgement() {
+        return packet(ServerPacket.PERMANENT_VARIABLES_ACKNOWLEDGEMENT, new byte[0]);
+    }
+
     /**
      * Native 107 (947: 87): replace current streamed music with an index-40 resource, or stop
      * with -1. The resource is the paired cache's enum-1351 value, not its music-track key.

@@ -104,6 +104,8 @@ public final class Native950Protocol {
         CLIENT_SETVARC_SMALL(126, 3),
         /** 947 opcode 159. BE checksum; live-verified in the lobby */
         WORLDLIST_FETCH_REPLY(129, -2),
+        /** Native permanent-client-variable upload completion acknowledgement; empty body. */
+        PERMANENT_VARIABLES_ACKNOWLEDGEMENT(136, 0),
         /** 947 opcode 195. empty body; writes the loading-gate byte at 0x14010ae5d */
         SERVER_TICK_END(160, 0),
         /** 950 descriptor140e98e10, dispatch1401052f0 ->1400fe2b0: no payload, full session reset. */

@@ -65,6 +65,8 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
      * It observes already-framed game traffic and must never affect decoding or routing.
      */
     private volatile Consumer<InboundFrame> inboundFrameObserver;
+    /** Narrow protocol observer for the permanent-variable upload lifecycle only. */
+    private volatile Consumer<InboundFrame> permanentVariablesFrameObserver;
     private volatile Throwable terminalFailure;
     private volatile ChannelHandlerContext context;
 
@@ -122,6 +124,11 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
                 for (Native950InboundDecoder.Frame frame : decoder.feed(bytes)) {
                     Consumer<InboundFrame> inboundObserver = inboundFrameObserver;
                     if (inboundObserver != null) inboundObserver.accept(new InboundFrame(frame.opcode(), frame.payload()));
+                    if (frame.opcode() == 14) {
+                        Consumer<InboundFrame> permanentObserver = permanentVariablesFrameObserver;
+                        if (permanentObserver != null)
+                            permanentObserver.accept(new InboundFrame(frame.opcode(), frame.payload()));
+                    }
                     Action action = Native950Actions.decode(frame);
                     if (action instanceof Native950Actions.KeepAliveAction) {
                         // Telemetry lane: NO_TIMEOUT is a timer-driven liveness signal with no
@@ -274,6 +281,10 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
     public void setUnhandledFrameObserver(Consumer<UnhandledFrame> observer) { unhandledFrameObserver = observer; }
     /** Enables or removes the opt-in complete-frame observer. */
     public void setInboundFrameObserver(Consumer<InboundFrame> observer) { inboundFrameObserver = observer; }
+    /** Installs the session-owned opcode-14 lifecycle observer without widening packet capture. */
+    public void setPermanentVariablesFrameObserver(Consumer<InboundFrame> observer) {
+        permanentVariablesFrameObserver = observer;
+    }
     /** NO_TIMEOUT frames observed. They are liveness only and never become actions. */
     public long keepAliveFrameCount() { return keepAliveFrames.get(); }
     /**
@@ -319,6 +330,7 @@ public final class Native950GameTransport extends ChannelDuplexHandler {
         context = null;
         unhandledFrameObserver = null;
         inboundFrameObserver = null;
+        permanentVariablesFrameObserver = null;
         actions.clear();
     }
 

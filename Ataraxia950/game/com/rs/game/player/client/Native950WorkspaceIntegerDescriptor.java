@@ -17,12 +17,14 @@ public final class Native950WorkspaceIntegerDescriptor {
     private static final String RESOURCE = "native950/workspace-integer-descriptor-950.properties";
     private static final Properties DATA = load();
     private static final Set<Integer> IDS = ids(DATA.getProperty("ids"));
+    private static final Set<Integer> BOOTSTRAP_IDS = loadBootstrapIds();
 
     private Native950WorkspaceIntegerDescriptor() { }
 
     public static int version() { return integer("version"); }
     public static int size() { return IDS.size(); }
     public static Set<Integer> ids() { return IDS; }
+    public static Set<Integer> bootstrapIds() { return BOOTSTRAP_IDS; }
     public static boolean contains(int id) { return IDS.contains(id); }
     public static String evidenceFingerprint() { return required("fingerprint.sha256"); }
     public static String property(String key) { return required(key); }
@@ -70,6 +72,16 @@ public final class Native950WorkspaceIntegerDescriptor {
             if (id < 0 || id > 65535 || !ids.add(id)) throw new IllegalStateException("Invalid or duplicate workspace permanent variable " + id);
         }
         return Collections.unmodifiableSet(ids);
+    }
+
+    private static Set<Integer> loadBootstrapIds() {
+        Set<Integer> bootstrap = ids(required("bootstrap.ids"));
+        int expected = integer("bootstrap.count");
+        if (bootstrap.size() != expected || expected != 215)
+            throw new IllegalStateException("Native-950 bootstrap descriptor must contain exactly 215 IDs");
+        if (!IDS.containsAll(bootstrap))
+            throw new IllegalStateException("Native-950 bootstrap IDs must be covered by the workspace descriptor");
+        return bootstrap;
     }
 
     private static int integer(String key) { return integer(DATA, key); }
