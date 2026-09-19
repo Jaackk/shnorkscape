@@ -110,16 +110,17 @@ final class Native950ContentCommands {
         return exact.size()<=limit?Collections.unmodifiableList(exact)
                 :Collections.unmodifiableList(new ArrayList<ItemSearchEntry>(exact.subList(0,limit)));
     }
-    /**
-     * Small, cache-derived Combat Alpha loadout. The first three groups mirror Jaxa's known-good
-     * melee equipment and the magic/ranged equipment already used during live combat testing.
-     */
+    /** Cache-derived Combat Alpha loadouts followed by shared supplies; keep exactly 40 entries. */
     static List<ItemSearchEntry> testingKitItemBrowserEntries(){
         int[] ids={
-                36294,36297,36300,38350,7462,21787,6737,
-                42991,43119,43121,38300,
-                55045,55051,55056,55145,63284,
-                23531,385,556
+                // Melee: Blood malevolent, specialist gloves/boots, 2H, dual wield and ring.
+                36294,38240,38242,52028,51090,52533,52081,52083,51470,
+                // Magic: Shadow elite tectonic, specialist gloves/boots, staff, dual wield and ring.
+                42991,43119,43121,52036,51092,51848,42574,42582,51467,
+                // Ranged: Soul elite sirenic, specialist gloves/boots, 2H, dual wield and ammunition.
+                55045,55051,55056,52032,51088,55145,55109,55114,9244,
+                // Shared six-dose supplies, food, elemental/combat runes and general amulet.
+                23531,23399,23609,39230,28227,42254,556,555,557,554,565,566,50465
         };
         List<ItemSearchEntry> result=new ArrayList<ItemSearchEntry>();
         for(int id:ids){ItemSearchEntry entry=itemById(id);if(entry!=null)result.add(entry);}

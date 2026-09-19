@@ -47,12 +47,12 @@ public class Native950ContentCommandsTest {
         assertTrue(Native950ContentCommands.itemMatches("TORVA",3).size()<=3);
         assertTrue(Native950ContentCommands.itemMatches("torva full helm",60).stream().anyMatch(e->e.label().contains("ID 20135")));
         assertEquals(20135,Native950ContentCommands.itemMatches("torva full helm",60).get(0).id);
-        assertEquals(19,Native950ContentCommands.testingKitItemBrowserEntries().size());
+        assertEquals(40,Native950ContentCommands.testingKitItemBrowserEntries().size());
         run(";;search torva 2");run(";;findnpc goblin 1");run(";;gearhelp");
     }
     @Test public void itemBrowserSearchDoesNotInventADeadPagerOrTruncateMatches() {
         assertTrue(Native950ContentCommands.itemMatches("torva",Integer.MAX_VALUE).size()>5);
-        assertEquals(19,Native950ContentCommands.testingKitItemBrowserEntries().size());
+        assertEquals(40,Native950ContentCommands.testingKitItemBrowserEntries().size());
     }
     @Test public void aliasesAndPermissionAndMalformedRequests() {
         for(String name:new String[]{"search","find","si","itemid","finditem","findnpc","snpc"})assertTrue(Native950DevelopmentCommands.isCommand(";;"+name+" name"));

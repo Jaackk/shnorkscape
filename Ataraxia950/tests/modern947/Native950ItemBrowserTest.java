@@ -146,11 +146,11 @@ public class Native950ItemBrowserTest {
     @Test public void openingAlwaysReturnsToUsefulTestingKit() throws Exception {
         Native950ItemBrowser.open(player);
         assertEquals("TESTING KIT",browser.viewForTests());
-        assertEquals(19,browser.visibleResultCountForTests());
+        assertEquals(40,browser.visibleResultCountForTests());
         search("torva");
         Native950ItemBrowser.open(player);
         assertEquals("TESTING KIT",browser.viewForTests());
-        assertEquals(19,browser.visibleResultCountForTests());
+        assertEquals(40,browser.visibleResultCountForTests());
     }
 
     private void search(String query) throws Exception {
