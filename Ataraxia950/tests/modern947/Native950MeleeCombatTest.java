@@ -266,6 +266,12 @@ public class Native950MeleeCombatTest {
         assertTrue(forward.getHitpoints()<1000);assertEquals(1000,behind.getHitpoints());assertEquals(1000,tooFar.getHitpoints());
         assertSame(npc,combat.combatTarget(player));
     }
+    @Test public void hurricaneAreaIsAdjacentAndPlaneBound(){
+        WorldTile origin=new WorldTile(3217,3258,0);
+        assertTrue(Native950MeleeCombat.hurricaneArea(origin,new WorldTile(3218,3259,0),1));
+        assertFalse(Native950MeleeCombat.hurricaneArea(origin,new WorldTile(3219,3258,0),1));
+        assertFalse(Native950MeleeCombat.hurricaneArea(origin,new WorldTile(3218,3258,1),1));
+    }
     @Test public void multiHitAbilitiesPublishTheirFirstHitBeforeTheirScheduledFollowUps(){
         player.getSkills().set(0,21);npc.setHitpoints(1000);combat.attack(player,npc);
         assertNull(combat.ability(player,14701));step();

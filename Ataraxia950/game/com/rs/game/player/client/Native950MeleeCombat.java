@@ -337,17 +337,18 @@ public final class Native950MeleeCombat {
             if(type==Native950CombatBuffs.Type.BERSERK)player.getBuffDebuffTimersManager().addTimer(Timer.BERSERK,type.duration*600L);
             Native950BugTest.event(player,"combat","effect-started","effect",definition.name,"durationTicks",type.duration,"endTick",tick+type.duration);
         }
-        int total=0, chainDamage=-1, dragonBreathDamage=-1, tsunamiDamage=-1;
+        int total=0, chainDamage=-1, dragonBreathDamage=-1, tsunamiDamage=-1, hurricaneDamage=-1;
         for(int hit=0;hit<(definition.effect==Native950AbilityCatalog.Effect.BUFF?0:definition.hits);hit++){
             int rolled=Math.max(1,maximum*percent/100);
             int requested=Rs2CombatFormula.scaleNative950Damage(rolled,rolls.nativeDamageRemainder(rolled));
             if(structure==14728&&hit==0)chainDamage=requested;
             if(structure==14730&&hit==0)dragonBreathDamage=requested;
             if(structure==14735&&hit==0)tsunamiDamage=requested;
+            if(structure==14685&&hit==0)hurricaneDamage=requested;
             if(definition.hitDelay(hit)>0){
                 long dueTick=tick+definition.hitDelay(hit);
                 pendingHits.computeIfAbsent(player,p->new ArrayList<>()).add(new PendingHit(fighter,requested,dueTick,gear,-1,
-                        definition.channelled()?structure:-1,player));
+                        definition.channelled()?structure:-1,player,structure));
                 followUps.add(dueTick);
                 continue;
             }
@@ -361,6 +362,8 @@ public final class Native950MeleeCombat {
             dragonBreathSecondaryHits(player,fighter,dragonBreathDamage,gear);
         if(structure==14735&&tsunamiDamage>0)
             tsunamiSecondaryHits(player,fighter,tsunamiDamage,gear);
+        if(structure==14685&&hurricaneDamage>0)
+            hurricaneSecondaryHits(player,fighter,hurricaneDamage,gear);
         // Param2802 is an icon sprite. Actual sequences come from param2915's weapon-family enum.
         int effect=-1;
         if(animation>=0){
@@ -703,6 +706,28 @@ public final class Native950MeleeCombat {
         long cross=primaryX*candidateY-primaryY*candidateX;
         return dot>0&&Math.abs(cross)<=dot;
     }
+    /** Both Hurricane hits affect the primary plus up to nine adjacent registered NPCs. */
+    private void hurricaneSecondaryHits(Player player,Fighter primary,int requested,Loadout gear){
+        int affected=0;
+        for(Fighter candidate:new ArrayList<>(fighters.values())){
+            if(affected>=9)break;
+            if(candidate==primary||candidate.target!=null||candidate.returning||candidate.respawnAt>0
+                    ||candidate.npc.isDead()||!access.npc(candidate.npc)
+                    ||!hurricaneArea(player,candidate.npc,candidate.profile.size))
+                continue;
+            int actual=damage(player,candidate.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
+            if(actual>0&&!candidate.training)rewards.hit(player,candidate.npc,actual,gear);
+            if(candidate.training)candidate.npc.setHitpoints(candidate.profile.hp);
+            Native950BugTest.event(player,"combat","hurricane-secondary-hit",
+                    "npc",candidate.npc.getId()+":"+candidate.npc.getIndex(),"damage",actual);
+            affected++;
+            if(candidate.npc.isDead())secondaryNpcDied(candidate,player);
+        }
+        Native950BugTest.event(player,"combat","hurricane-secondary-summary","count",affected,"limit",9,"range",1);
+    }
+    static boolean hurricaneArea(WorldTile player,WorldTile candidate,int candidateSize){
+        return player.getPlane()==candidate.getPlane()&&distanceToFootprint(player,candidate,candidateSize)<=1;
+    }
     private void processPendingHits(Player player,Fighter fighter){
         java.util.List<PendingHit> scheduled=pendingHits.get(player);
         if(scheduled==null)return;
@@ -726,6 +751,7 @@ public final class Native950MeleeCombat {
             if(hit.impactGraphic>=0)fighter.npc.setNextGraphics(new com.rs.game.Graphics(hit.impactGraphic));
             int actual=damage(player,fighter.npc,hit.damage,hit.gear.profile==null?Hit.HitLook.MELEE_DAMAGE:hit.gear.profile.look());
             if(actual>0&&!fighter.training)rewards.hit(player,fighter.npc,actual,hit.gear);
+            if(hit.abilityStructure==14685)hurricaneSecondaryHits(player,fighter,hit.damage,hit.gear);
             if(fighter.training)fighter.npc.setHitpoints(fighter.profile.hp);
             else if(fighter.npc.isDead()){
                 pendingHits.remove(player);npcDied(fighter,player);return;
@@ -946,11 +972,15 @@ public final class Native950MeleeCombat {
         DamageOverTime(Fighter fighter,int damage,int remaining,long nextTick,Loadout gear){this.fighter=fighter;this.damage=damage;this.remaining=remaining;this.nextTick=nextTick;this.gear=gear;}
     }
     private static final class PendingHit {
-        final Fighter fighter;final int damage;final long dueTick;final Loadout gear;final int impactGraphic,channelStructure,weapon,offhand;
+        final Fighter fighter;final int damage;final long dueTick;final Loadout gear;final int impactGraphic,channelStructure,abilityStructure,weapon,offhand;
         PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear){this(fighter,damage,dueTick,gear,-1);}
-        PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear,int impactGraphic){this(fighter,damage,dueTick,gear,impactGraphic,-1,null);}
+        PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear,int impactGraphic){this(fighter,damage,dueTick,gear,impactGraphic,-1,null,-1);}
         PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear,int impactGraphic,int channelStructure,Player caster){
+            this(fighter,damage,dueTick,gear,impactGraphic,channelStructure,caster,-1);
+        }
+        PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear,int impactGraphic,int channelStructure,Player caster,int abilityStructure){
             this.fighter=fighter;this.damage=damage;this.dueTick=dueTick;this.gear=gear;this.impactGraphic=impactGraphic;this.channelStructure=channelStructure;
+            this.abilityStructure=abilityStructure;
             weapon=caster==null?-1:caster.getEquipment().getWeaponId();offhand=caster==null?-1:caster.getEquipment().getShieldId();
         }
     }
