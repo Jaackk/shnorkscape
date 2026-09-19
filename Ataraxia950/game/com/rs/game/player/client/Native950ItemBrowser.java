@@ -16,27 +16,28 @@ import java.util.Map;
 /** Session-owned developer item catalogue. Interface 1265 is an icon surface, never a real Shop. */
 final class Native950ItemBrowser {
     private static final int ROOT=1477, MAIN_HOST=735, MAIN_WRAPPER=732, SHOP=1265, SHOP_ITEMS=20;
-    // Live 950 input identifies the clickable parents (41/32), not their text children (44/35).
     private static final int SEARCH_TEXT=44, SEARCH_CONTROL=41, RECENT_TEXT=35, RECENT_CONTROL=32;
-    private static final int PREVIOUS=46, NEXT=47, PAGE_LABEL=49, VIEW_LABEL=52, SELECTION_LABEL=58;
+    private static final int VIEW_LABEL=52, SELECTION_LABEL=58;
     private static final int TRANSACTION_LABEL=66, OWNED_LABEL=128, PRICE_LABEL=133, PRICE_VALUE=137, COIN_ICON=136;
     private static final int INPUT_FRAME_HOST=749, INPUT_FRAME=1418, INPUT_HOST=2, INPUT=1469;
-    private static final int RESULTS_CONTAINER=139, PAGE_SIZE=40, RECENT_LIMIT=12;
+    private static final int RESULTS_CONTAINER=139, RECENT_LIMIT=12;
     private static final int SHOP_OPTION_MASK=2097406;
     private static final Map<Player,Native950ItemBrowser> OWNERS=new IdentityHashMap<Player,Native950ItemBrowser>();
-    private enum Phase { CLOSED, RESULTS, SEARCH, QUANTITY, CUSTOM }
+    private enum Phase { CLOSED, RESULTS, SEARCH, CUSTOM }
+    private enum View { TESTING_KIT, SEARCH, RECENT }
 
     private final Player player;
     private final Channel channel;
-    private final Native950Dialogues dialogues;
     private final Runnable verifier;
     private final Native950QuantityInput countInput;
     private final Deque<Native950ContentCommands.ItemSearchEntry> recent=new ArrayDeque<Native950ContentCommands.ItemSearchEntry>();
     private Phase phase=Phase.CLOSED;
+    private View view=View.TESTING_KIT;
     private boolean shopOpen;
-    private int page;
-    private String view="Featured";
+    private String query="";
     private List<Native950ContentCommands.ItemSearchEntry> results=Collections.emptyList();
+    /** Exact immutable sequence most recently published to container 139. */
+    private List<Native950ContentCommands.ItemSearchEntry> rendered=Collections.emptyList();
     private Native950ContentCommands.ItemSearchEntry selected;
 
     Native950ItemBrowser(Player player,Channel channel,Native950Dialogues dialogues){
@@ -49,8 +50,7 @@ final class Native950ItemBrowser {
 
     Native950ItemBrowser(Player player,Channel channel,Native950Dialogues dialogues,Runnable verifier,
                          Native950QuantityInput countInput){
-        this.player=player;this.channel=channel;this.dialogues=dialogues;
-        this.verifier=verifier;this.countInput=countInput;
+        this.player=player;this.channel=channel;this.verifier=verifier;this.countInput=countInput;
         synchronized(OWNERS){OWNERS.put(player,this);}
     }
 
@@ -72,21 +72,16 @@ final class Native950ItemBrowser {
     }
 
     private void openBrowser(){
-        verifier.run();
-        if(phase==Phase.CLOSED){
-            results=Native950ContentCommands.featuredItemBrowserEntries();
-            view="Featured";page=0;selected=null;phase=Phase.RESULTS;
-        }else if(phase==Phase.SEARCH)closeTextInput();
-        else if(phase==Phase.QUANTITY)dialogues.close();
-        else if(phase==Phase.CUSTOM){countInput.cancel();closeCountInput();}
-        phase=Phase.RESULTS;
-        showPage();
-        player.sendMessage("Developer Item Browser opened. Search, Recent and page controls are inside the window.");
+        verifier.run();closeInput();
+        view=View.TESTING_KIT;query="";selected=null;
+        results=Native950ContentCommands.testingKitItemBrowserEntries();phase=Phase.RESULTS;
+        render();
+        player.sendMessage("Developer Item Browser opened. Left-click gives 1; Search and Recent stay inside this window.");
     }
 
     private void searchPrompt(){
-        closeShop();
-        phase=Phase.SEARCH;
+        closeShop();selected=null;phase=Phase.SEARCH;
+        telemetry("search-opened","view",viewName(),"displayed",rendered.size());
         channel.write(Native950Packets.openSub(ROOT,INPUT_FRAME_HOST,INPUT_FRAME,true));
         channel.write(Native950Packets.openSub(INPUT_FRAME,INPUT_HOST,INPUT,true));
         player.getInterfaceManager().registerNativeOpen(INPUT_FRAME,ROOT,INPUT_FRAME_HOST);
@@ -98,48 +93,57 @@ final class Native950ItemBrowser {
     boolean handle(Native950Actions.StringDialogueAction action){
         if(phase!=Phase.SEARCH)return false;
         closeTextInput();phase=Phase.RESULTS;
-        String query=action.text()==null?"":action.text().trim();
-        if(query.length()<1||query.length()>80){player.sendMessage("Enter an item name or exact numeric ID (1-80 characters).");showPage();return true;}
-        List<Native950ContentCommands.ItemSearchEntry> matches=Native950ContentCommands.itemMatches(query,Integer.MAX_VALUE);
-        if(matches.isEmpty()){player.sendMessage("No revision-950 items matched '"+query+"'.");showPage();return true;}
-        results=matches;view="Search: "+query;page=0;selected=null;
-        player.sendMessage("Item Browser found "+results.size()+" result(s) for '"+query+"'.");
-        showPage();return true;
+        String value=action.text()==null?"":action.text().trim();
+        if(value.length()<1||value.length()>80){
+            player.sendMessage("Enter an item name or exact numeric ID (1-80 characters).");render();return true;
+        }
+        List<Native950ContentCommands.ItemSearchEntry> matches=Native950ContentCommands.itemMatches(value,Integer.MAX_VALUE);
+        if(matches.isEmpty()){
+            player.sendMessage("No revision-950 items matched '"+value+"'.");render();return true;
+        }
+        view=View.SEARCH;query=value;results=matches;selected=null;
+        telemetry("search-results","query",value,"results",results.size());
+        player.sendMessage("Item Browser found "+results.size()+" result(s) for '"+value+"'. Left-click an icon to give 1.");
+        render();return true;
     }
 
-    private void showPage(){
-        if(results.isEmpty())results=Native950ContentCommands.featuredItemBrowserEntries();
-        page=Math.max(0,Math.min(page,pageCount(results.size())-1));
-        List<Native950ContentCommands.ItemSearchEntry> visible=page(results,page,PAGE_SIZE);
-        int[] ids=new int[visible.size()],amounts=new int[visible.size()];
-        for(int i=0;i<visible.size();i++){ids[i]=visible.get(i).id;amounts[i]=1;}
+    /**
+     * Rebuild the same native surface used by V1. Remounting is intentional: changing container
+     * 139 under an existing shop left rendered icons and clickable stock out of step in Recent.
+     */
+    private void render(){
+        if(results.isEmpty()){
+            view=View.TESTING_KIT;query="";results=Native950ContentCommands.testingKitItemBrowserEntries();
+        }
+        closeShop();
+        rendered=Collections.unmodifiableList(new ArrayList<Native950ContentCommands.ItemSearchEntry>(results));
+        int[] ids=new int[rendered.size()],amounts=new int[rendered.size()];
+        for(int i=0;i<rendered.size();i++){ids[i]=rendered.get(i).id;amounts[i]=1;}
         channel.write(Native950Packets.varp(304,RESULTS_CONTAINER));
-        channel.write(Native950Packets.varp(305,-1));channel.write(Native950Packets.varp(306,-1));
+        channel.write(Native950Packets.varp(305,-1));
+        // V1 used normal shop currency identity. -1 switched the cache-authored menu into Sell mode.
+        channel.write(Native950Packets.varp(306,995));
         channel.write(Native950Packets.varcString(2360,"DEVELOPER ITEM BROWSER"));
         channel.write(Native950Packets.inventoryFull(RESULTS_CONTAINER,false,ids,amounts));
-        if(!shopOpen){
-            channel.write(Native950Packets.openSub(ROOT,MAIN_HOST,SHOP,false));
-            player.getInterfaceManager().registerNativeOpen(SHOP,ROOT,MAIN_HOST);
-            channel.write(Native950Packets.hideInterface(ROOT,MAIN_WRAPPER,false));
-            shopOpen=true;
-        }
+        channel.write(Native950Packets.openSub(ROOT,MAIN_HOST,SHOP,false));
+        player.getInterfaceManager().registerNativeOpen(SHOP,ROOT,MAIN_HOST);
+        channel.write(Native950Packets.hideInterface(ROOT,MAIN_WRAPPER,false));shopOpen=true;
         channel.write(Native950Packets.interfaceEvents(SHOP,SHOP_ITEMS,0,Math.max(0,ids.length-1),SHOP_OPTION_MASK));
-        for(int control:new int[]{SEARCH_CONTROL,RECENT_CONTROL,PREVIOUS,NEXT})
+        for(int control:new int[]{SEARCH_CONTROL,RECENT_CONTROL})
             channel.write(Native950Packets.interfaceEvents(SHOP,control,-1,-1,2));
         channel.write(Native950Packets.runClientScript(8420,82903048,82903256,82903049,82903257,
                 "DEVELOPER ITEM BROWSER",21218,1007));
         channel.write(Native950Packets.runClientScript(1364));
-        // The native refresh restores shop defaults, so developer wording must be applied last.
-        decorate(visible.size());
+        decorate();
+        telemetry("rendered","view",viewName(),"query",query,"count",rendered.size(),"ids",ids(rendered));
     }
 
-    private void decorate(int visible){
-        text(SEARCH_TEXT,"Search");text(RECENT_TEXT,"Recent");
-        text(PAGE_LABEL,"Page "+(page+1)+" / "+pageCount(results.size()));
-        text(VIEW_LABEL,view+" - "+results.size()+" result"+(results.size()==1?"":"s"));
+    private void decorate(){
+        text(SEARCH_TEXT,"SEARCH ITEMS");text(RECENT_TEXT,"RECENT");
+        text(VIEW_LABEL,viewName()+" - "+rendered.size()+" ITEM"+(rendered.size()==1?"":"S"));
         text(TRANSACTION_LABEL,"Give:");text(OWNED_LABEL,"");text(PRICE_LABEL,"Item ID:");
         text(PRICE_VALUE,selected==null?"-":String.valueOf(selected.id));
-        text(SELECTION_LABEL,selected==null?"Select an item ("+visible+" on this page)":selected.label());
+        text(SELECTION_LABEL,selected==null?"Left-click an item to give 1":selected.label());
         channel.write(Native950Packets.hideInterface(SHOP,COIN_ICON,true));
     }
 
@@ -150,50 +154,67 @@ final class Native950ItemBrowser {
         int component=action.componentId();
         if(component==SEARCH_CONTROL||component==SEARCH_TEXT){searchPrompt();return true;}
         if(component==RECENT_CONTROL||component==RECENT_TEXT){showRecent();return true;}
-        if(component==PREVIOUS){if(page>0){page--;selected=null;showPage();}return true;}
-        if(component==NEXT){if(page+1<pageCount(results.size())){page++;selected=null;showPage();}return true;}
         if(component!=SHOP_ITEMS)return true;
-        List<Native950ContentCommands.ItemSearchEntry> visible=page(results,page,PAGE_SIZE);
-        if(action.slot()<0||action.slot()>=visible.size())return true;
-        Native950ContentCommands.ItemSearchEntry entry=visible.get(action.slot());
-        if(action.itemId()!=-1&&action.itemId()!=entry.id){player.sendMessage("That Item Browser result changed; refresh the page.");showPage();return true;}
-        selected=entry;decorate(visible.size());
+        Native950ContentCommands.ItemSearchEntry entry=resolve(action);
+        if(entry==null)return true;
+        selected=entry;decorate();
+        telemetry("item-action","view",viewName(),"query",query,"displaySlot",action.slot(),
+                "clientItem",action.itemId(),"resolvedItem",entry.id,"option",action.option());
         switch(action.option()){
-            case 1:
-                closeShop();phase=Phase.QUANTITY;
-                dialogues.options(entry.label(),"Give 1","Give 5","Give 10","Give 100","Give X...");break;
+            case 1: give(1);break;
             case 2: give(1);break;
             case 3: give(5);break;
             case 4: give(10);break;
             case 5: give(100);break;
             case 6: closeShop();openCustomQuantity();break;
-            default: break;
+            case 7: removeFromRecent(entry);break;
+            default: telemetry("item-action-rejected","reason","unsupported-option","option",action.option());break;
         }
         return true;
     }
 
-    private void showRecent(){
-        results=recent.isEmpty()?Native950ContentCommands.featuredItemBrowserEntries()
-                :Collections.unmodifiableList(new ArrayList<Native950ContentCommands.ItemSearchEntry>(recent));
-        view=recent.isEmpty()?"Featured (no recent items yet)":"Recent";page=0;selected=null;phase=Phase.RESULTS;showPage();
+    /** Resolve only against the immutable sequence actually sent to the client. */
+    private Native950ContentCommands.ItemSearchEntry resolve(Native950Actions.InterfaceAction action){
+        Native950ContentCommands.ItemSearchEntry bySlot=action.slot()>=0&&action.slot()<rendered.size()
+                ?rendered.get(action.slot()):null;
+        Native950ContentCommands.ItemSearchEntry byItem=action.itemId()<0?null:uniqueRenderedItem(action.itemId());
+        if(bySlot!=null&&(byItem==null||byItem.id==bySlot.id))return bySlot;
+        if(byItem!=null){
+            telemetry("mapping-recovered","view",viewName(),"displaySlot",action.slot(),"slotItem",bySlot==null?-1:bySlot.id,
+                    "clientItem",action.itemId(),"resolvedItem",byItem.id);
+            return byItem;
+        }
+        telemetry("item-action-rejected","reason","not-in-rendered-snapshot","view",viewName(),"displaySlot",action.slot(),
+                "clientItem",action.itemId(),"displayed",rendered.size());
+        player.sendMessage("That Item Browser view changed; it has been refreshed without granting anything.");
+        selected=null;render();return null;
     }
 
-    boolean handle(Native950Actions.DialogueClickAction action){
-        if(phase!=Phase.QUANTITY)return false;
-        if(!dialogues.consumeResponse(action.interfaceId(),action.componentId(),action.slot()))return true;
-        int row=(action.componentId()-8)/5;
-        if(row>=0&&row<4){int[] amounts={1,5,10,100};dialogues.close();phase=Phase.RESULTS;give(amounts[row]);return true;}
-        if(row==4){dialogues.close();openCustomQuantity();return true;}
-        dialogues.close();phase=Phase.RESULTS;showPage();return true;
+    private Native950ContentCommands.ItemSearchEntry uniqueRenderedItem(int id){
+        Native950ContentCommands.ItemSearchEntry found=null;
+        for(Native950ContentCommands.ItemSearchEntry entry:rendered)if(entry.id==id){if(found!=null)return null;found=entry;}
+        return found;
+    }
+
+    private void showRecent(){
+        if(recent.isEmpty()){
+            player.sendMessage("No recent Item Browser grants yet. Left-click something in Testing Kit or Search first.");
+            view=View.TESTING_KIT;query="";results=Native950ContentCommands.testingKitItemBrowserEntries();
+        }else{
+            view=View.RECENT;query="";
+            results=Collections.unmodifiableList(new ArrayList<Native950ContentCommands.ItemSearchEntry>(recent));
+        }
+        selected=null;phase=Phase.RESULTS;render();
     }
 
     private void openCustomQuantity(){
-        if(selected==null){phase=Phase.RESULTS;showPage();return;}
+        if(selected==null){phase=Phase.RESULTS;render();return;}
         Native950Containers containers=Native950Skilling.containers(player);
-        if(containers==null){player.sendMessage("The native backpack is unavailable.");phase=Phase.RESULTS;showPage();return;}
+        if(containers==null){player.sendMessage("The native backpack is unavailable.");phase=Phase.RESULTS;render();return;}
         Native950Containers.Snapshot snapshot=containers.inventorySnapshot();
-        if(!countInput.beginDefault(0L,snapshot)){player.sendMessage("Another quantity request is already active.");phase=Phase.RESULTS;showPage();return;}
+        if(!countInput.beginDefault(0L,snapshot)){player.sendMessage("Another quantity request is already active.");phase=Phase.RESULTS;render();return;}
         phase=Phase.CUSTOM;
+        telemetry("quantity-opened","item",selected.id,"view",viewName());
         for(Native950Packets.Packet packet:countInput.promptPackets("How many "+selected.name+" would you like?"))channel.write(packet);
         player.getInterfaceManager().registerNativeOpen(INPUT_FRAME,ROOT,INPUT_FRAME_HOST);
         player.getInterfaceManager().registerNativeOpen(INPUT,INPUT_FRAME,INPUT_HOST);
@@ -205,37 +226,67 @@ final class Native950ItemBrowser {
         Native950Containers.Snapshot current=containers==null?null:containers.inventorySnapshot();
         Native950QuantityInput.Accepted accepted=countInput.consume(action.count(),0L,current,(slot,amount)->amount);
         closeCountInput();phase=Phase.RESULTS;
-        if(accepted==null||accepted.amount<1){player.sendMessage("That quantity was invalid or your backpack changed.");showPage();return true;}
+        if(accepted==null||accepted.amount<1){
+            telemetry("grant-rejected","reason","invalid-quantity-or-backpack-changed","requested",action.count());
+            player.sendMessage("That quantity was invalid or your backpack changed.");render();return true;
+        }
         give(accepted.amount);return true;
     }
 
+    boolean handle(Native950Actions.DialogueClickAction action){return false;}
+
     boolean cancelInput(){
-        if(phase==Phase.SEARCH){closeTextInput();phase=Phase.RESULTS;showPage();player.sendMessage("Item Browser search cancelled.");return true;}
-        if(phase==Phase.CUSTOM){countInput.cancel();closeCountInput();phase=Phase.RESULTS;showPage();player.sendMessage("Item Browser quantity cancelled.");return true;}
+        if(phase==Phase.SEARCH){closeTextInput();phase=Phase.RESULTS;render();player.sendMessage("Item Browser search cancelled.");return true;}
+        if(phase==Phase.CUSTOM){countInput.cancel();closeCountInput();phase=Phase.RESULTS;render();player.sendMessage("Item Browser quantity cancelled.");return true;}
         return false;
     }
 
     private void give(int amount){
         Native950ContentCommands.ItemSearchEntry entry=selected;
-        if(entry==null||amount<1||Native950Skilling.itemType(player,entry.id)==null){player.sendMessage("That item is not valid in the paired revision-950 cache.");phase=Phase.RESULTS;showPage();return;}
-        if(!Native950Skilling.giveItem(player,entry.id,amount))
+        if(entry==null||amount<1||Native950Skilling.itemType(player,entry.id)==null){
+            telemetry("grant-rejected","reason","invalid-item","item",entry==null?-1:entry.id,"amount",amount);
+            player.sendMessage("That item is not valid in the paired revision-950 cache.");phase=Phase.RESULTS;render();return;
+        }
+        boolean granted=Native950Skilling.giveItem(player,entry.id,amount);
+        if(!granted)
             player.sendMessage("Could not add "+amount+" x "+entry.name+": the backpack is full, the stack would overflow, or your activity refused it.");
-        else {player.sendMessage("Added "+amount+" x "+entry.name+" (ID "+entry.id+") to your backpack.");remember(entry);}
-        phase=Phase.RESULTS;showPage();
+        else{
+            player.sendMessage("Added "+amount+" x "+entry.name+" (ID "+entry.id+") to your backpack.");remember(entry);
+        }
+        telemetry(granted?"grant-succeeded":"grant-rejected","view",viewName(),"displaySlot",indexOf(rendered,entry.id),
+                "resolvedItem",entry.id,"amount",amount,"reason",granted?"added":"backpack-or-activity-refused");
+        phase=Phase.RESULTS;
+        if(view==View.RECENT)results=Collections.unmodifiableList(new ArrayList<Native950ContentCommands.ItemSearchEntry>(recent));
+        render();
     }
 
     private void remember(Native950ContentCommands.ItemSearchEntry entry){
-        recent.remove(entry);recent.addFirst(entry);while(recent.size()>RECENT_LIMIT)recent.removeLast();
+        removeRecentId(entry.id);recent.addFirst(entry);while(recent.size()>RECENT_LIMIT)recent.removeLast();
     }
 
-    void close(){
-        if(phase==Phase.SEARCH)closeTextInput();
-        else if(phase==Phase.QUANTITY)dialogues.close();
-        else if(phase==Phase.CUSTOM){countInput.cancel();closeCountInput();}
-        closeShop();phase=Phase.CLOSED;selected=null;results=Collections.emptyList();page=0;
+    private void removeFromRecent(Native950ContentCommands.ItemSearchEntry entry){
+        if(view!=View.RECENT){player.sendMessage("Remove from Recent is available in the Recent view.");render();return;}
+        boolean removed=removeRecentId(entry.id);selected=null;
+        telemetry("recent-removed","item",entry.id,"removed",removed,"remaining",recent.size());
+        player.sendMessage(removed?entry.name+" removed from Item Browser history.":"That item was not in Recent.");
+        if(recent.isEmpty()){view=View.TESTING_KIT;results=Native950ContentCommands.testingKitItemBrowserEntries();}
+        else results=Collections.unmodifiableList(new ArrayList<Native950ContentCommands.ItemSearchEntry>(recent));
+        render();
     }
+
+    private boolean removeRecentId(int id){
+        for(java.util.Iterator<Native950ContentCommands.ItemSearchEntry> it=recent.iterator();it.hasNext();)
+            if(it.next().id==id){it.remove();return true;}
+        return false;
+    }
+
+    void close(){closeInput();closeShop();phase=Phase.CLOSED;selected=null;results=Collections.emptyList();rendered=Collections.emptyList();}
     void dispose(){close();synchronized(OWNERS){if(OWNERS.get(player)==this)OWNERS.remove(player);}}
 
+    private void closeInput(){
+        if(phase==Phase.SEARCH)closeTextInput();
+        else if(phase==Phase.CUSTOM){countInput.cancel();closeCountInput();}
+    }
     private void closeTextInput(){
         channel.write(Native950Packets.closeSub(INPUT_FRAME,INPUT_HOST));channel.write(Native950Packets.closeSub(ROOT,INPUT_FRAME_HOST));
         player.getInterfaceManager().unregisterNativeOpen(INPUT);player.getInterfaceManager().unregisterNativeOpen(INPUT_FRAME);
@@ -251,19 +302,19 @@ final class Native950ItemBrowser {
         channel.write(Native950Packets.hideInterface(ROOT,MAIN_WRAPPER,true));channel.write(Native950Packets.runClientScript(1364));shopOpen=false;
     }
     private void text(int component,String value){channel.write(Native950Packets.interfaceText(SHOP,component,value));}
+    private String viewName(){return view==View.TESTING_KIT?"TESTING KIT":view==View.RECENT?"RECENT":"SEARCH: "+query;}
+    private void telemetry(String event,Object... fields){Native950BugTest.event(player,"item-browser",event,fields);}
+    private static int indexOf(List<Native950ContentCommands.ItemSearchEntry> values,int id){
+        for(int i=0;i<values.size();i++)if(values.get(i).id==id)return i;return -1;
+    }
+    private static String ids(List<Native950ContentCommands.ItemSearchEntry> values){
+        StringBuilder out=new StringBuilder();for(Native950ContentCommands.ItemSearchEntry entry:values){if(out.length()>0)out.append(',');out.append(entry.id);}return out.toString();
+    }
 
-    int pageForTests(){return page;}
-    String viewForTests(){return view;}
+    String viewForTests(){return viewName();}
     int selectedIdForTests(){return selected==null?-1:selected.id;}
-    int visibleResultIdForTests(int slot){
-        List<Native950ContentCommands.ItemSearchEntry> visible=page(results,page,PAGE_SIZE);
-        return slot<0||slot>=visible.size()?-1:visible.get(slot).id;
-    }
-
-    static int pageCount(int size){return Math.max(1,(Math.max(0,size)+PAGE_SIZE-1)/PAGE_SIZE);}
-    static <T> List<T> page(List<T> values,int page,int pageSize){
-        if(values==null||values.isEmpty()||page<0||pageSize<1)return Collections.emptyList();
-        int from=page*pageSize;if(from>=values.size())return Collections.emptyList();
-        return Collections.unmodifiableList(new ArrayList<T>(values.subList(from,Math.min(values.size(),from+pageSize))));
-    }
+    int visibleResultIdForTests(int slot){return slot<0||slot>=rendered.size()?-1:rendered.get(slot).id;}
+    int visibleSlotForTests(int id){return indexOf(rendered,id);}
+    int visibleResultCountForTests(){return rendered.size();}
+    int recentCountForTests(){return recent.size();}
 }

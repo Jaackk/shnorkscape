@@ -110,8 +110,17 @@ final class Native950ContentCommands {
         return exact.size()<=limit?Collections.unmodifiableList(exact)
                 :Collections.unmodifiableList(new ArrayList<ItemSearchEntry>(exact.subList(0,limit)));
     }
-    static List<ItemSearchEntry> featuredItemBrowserEntries(){
-        int[] ids={20135,20139,20143,20159,20163,20167,20147,20151,20155,31725,31729,31733,26579,26583};
+    /**
+     * Small, cache-derived Combat Alpha loadout. The first three groups mirror Jaxa's known-good
+     * melee equipment and the magic/ranged equipment already used during live combat testing.
+     */
+    static List<ItemSearchEntry> testingKitItemBrowserEntries(){
+        int[] ids={
+                36294,36297,36300,38350,7462,21787,6737,
+                42991,43119,43121,38300,
+                55045,55051,55056,55145,63284,
+                23531,385,556
+        };
         List<ItemSearchEntry> result=new ArrayList<ItemSearchEntry>();
         for(int id:ids){ItemSearchEntry entry=itemById(id);if(entry!=null)result.add(entry);}
         return Collections.unmodifiableList(result);

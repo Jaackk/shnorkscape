@@ -31,20 +31,31 @@ review report are eligible for `;;combatqa cleanup`. `ACTIVE`, `UNREVIEWED`,
 ## Item Browser
 
 `;;items` immediately opens interface 1265's native item-container grid with a
-small featured catalogue. Its live revision-950 Search owner is component 41 and
-Recent is component 32; their visible text children are not input owners. Search
-temporarily closes the grid, opens the verified native text input, and restores
-the same browser with every ranked cache-index match split into 40-result pages.
-The grid is read-only and uses container 139 only as a client presentation source;
-it does not create a server Shop or alter bank/equipment state.
+small cache-backed Combat Alpha Testing Kit. Its live revision-950 Search owner
+is component 41 and Recent is component 32; their visible text children are not
+input owners. Search temporarily closes the grid, opens the verified native text
+input, and restores the browser with every ranked cache-index match.
 
-A result click temporarily closes the grid before opening quantity choices for
-1, 5, 10, 100 or the verified native count input. This ordering is required: the
-shared dialogue host is otherwise hidden behind the large shop surface. Submit,
-cancel and grant all restore the same results/page, while Recent records successful
-grants. The final grant revalidates the item against the active cache-backed
-container catalog and uses `Native950Skilling.giveItem`, so controller rules,
-stack overflow and backpack capacity remain authoritative and atomic.
+Components 46 and 47 are the cache-authored list/grid display-mode controls, not
+pagination. The browser therefore uses the interface's native scrolling and sends
+the complete result set instead of displaying a page count it cannot navigate.
+The interface is fixed-size and is not resized by server-side geometry guesses.
+
+Each render creates one immutable snapshot and publishes that exact sequence to
+container 139. Clicks resolve only against the snapshot: slot is authoritative
+when the client omits an item ID, while a unique visible client item claim can
+recover a stale slot. A claim outside the snapshot is rejected and remounted.
+Every view change and grant remounts the V1 surface so the client's stock hooks
+cannot retain the previous view while displaying new icons.
+
+Left-click gives one immediately. The native right-click options route quantities
+1, 5, 10, 100 and the verified count input; option 7 removes an entry only from
+Recent. Cache-authored shop captions cannot currently be replaced safely, so a
+few shop labels may remain. Grants revalidate the item against the cache-backed
+container catalog and use `Native950Skilling.giveItem`, preserving controller,
+stack-overflow and backpack-capacity rules. Bug Test and Combat QA record the
+view, query, complete displayed ID order, incoming slot/item/option, resolved ID
+and grant result for future live correlation.
 
 `Native950ContentCommands.itemMatches` is deliberately UI-independent so a future
 NPC or object browser can reuse the same indexed-search pattern without sharing
