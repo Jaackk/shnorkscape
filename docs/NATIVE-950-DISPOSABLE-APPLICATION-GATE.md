@@ -47,7 +47,57 @@ them or combine values from different sessions/accounts. This is completing the
 fixture for application, not re-proving acquisition. Save generates a legitimate
 matrix rather than using the deliberately incomplete3296-only setter fixture.
 
-## Subsequent application (not yet enabled)
+## Approved source fixture: PID35192
+
+V4 A and A-controls were captured on layoutgate1 (Jack confirmed account), after
+Save Custom1 and settling. Both are local-only, not committed to Git.
+Fixture SHA256: `958508114f036246a433060ab0b02e6afccbd964e52e567e9efd8dac4efec1e0`.
+Controls SHA256: `dc61ee972be3a91cdd328aeed7102f3e1fec188d6270c472ac0e815dc0616881`.
+All912 records stable and correctly typed/presence-preserving. Six bootstrap
+controls exact. Custom1 has178 present parents;712 readable fields equal active8.
+6056/6057 (actor1039's eight fields) are absent, not zero. Other Custom matrices
+are absent. Active8 has180 present parents. Metadata8372/8373=6,8374/8269=0;
+other token entries absent. This is a complete capture scope, NOT912 present values.
+
+Validate with `tools/vulkan-static-probe/check_application_gate.py`.
+
+## Disposable application command
+
+`;;layoutfixture stage` and `;;layoutfixture apply` are strictly limited to
+local native950 **layoutgate2**, with existing developer tools enabled. Jaxa and
+layoutgate1 are refused. No file path, ID, value or target argument is accepted.
+The source fixture and schema hashes are pinned in Native950LayoutFixture;
+raw paired-cache Load/matrix helper and varbit evidence is pinned separately.
+All inputs are checked before writes. Missing/changed files fail closed.
+The two actions are ordered and one-shot per channel. Nothing runs on login.
+
+Stage sends only present Custom parents, low-five-bit metadata via native CLIENT
+varbit setters (not PLAYER varbits), and present integer metadata. It skips absent
+entries and retains active8 for comparison, not blind replay. Apply invokes
+native8741(6), retaining its8884/8885/8781 guards, callbacks and normalization.
+This is a gate for that wrapper outside Edit Mode, not a claim of visible success.
+It never calls8743/8754 or modifies the working editor lifecycle. Partial send
+failure requires a fresh session, not repeated staging. No durable state is stored.
+
+### Manual target test after deployment
+
+1. Close V4 normally. Launch the same V4 build; use a **fresh layoutgate2** account.
+   Never use Jaxa or layoutgate1. Keep the same client dimensions as source capture.
+2. Wait for the normal world/workspace, then Ctrl+Shift+F9 once: target A.
+   Do not enter Edit Mode or create a Custom preset in the target session.
+3. Enter `;;layoutfixture stage`. Wait for the queued response and settle. Capture B.
+4. Enter `;;layoutfixture apply`. Allow native callbacks to settle. Capture C.
+5. Report the new PID and whether the distinctive saved layout visibly returned.
+   Stop on any error/dimming/stuck UI; do not try additional setter/script commands.
+
+Compare with `check_application_gate.py <target-A> <target-B> <target-C>`.
+It checks exact V4 scope/session/order, staging readback, absent-vs-zero and masked
+sibling preservation. It reports Custom changes during native application and
+Custom/active semantic correspondence; it does not silently waive normalization
+or infer visual success. Native snapshot nativeWrites:false refers to the reader;
+the explicit server commands DO set client variables through the native protocol.
+
+## Application acceptance (pending live target test)
 
 After validating the exact912 fixture, prepare a narrowly scoped server fixture
 action restricted to a separate fresh disposable target session/account. Do not

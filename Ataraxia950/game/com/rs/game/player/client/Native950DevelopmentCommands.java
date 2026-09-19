@@ -22,7 +22,7 @@ public final class Native950DevelopmentCommands {
         String command = text.substring(2).trim().toLowerCase(Locale.ROOT).split("\\s+",2)[0];
         return Native950AdminCommands.recognizes(command) || command.equals("nxt") || command.equals("item") || command.equals("npc")
                 || command.equals("obj") || command.equals("tele") || command.equals("area")
-                || command.equals("areascan") || command.equals("areastop")
+                || command.equals("areascan") || command.equals("areastop") || command.equals("layoutfixture")
                 || command.equals("open") || command.equals("unhide") || command.equals("events") || command.equals("guideclose") || command.equals("cs") || command.equals("varbit") || command.equals("varc");
     }
     /** Bug Test controls are observational and must never interrupt an active manual test. */
@@ -79,6 +79,7 @@ public final class Native950DevelopmentCommands {
         if (!player.isActive() || player.hasFinished() || player.isDead() || player.isLocked()) {
             reply(channel, "Wait until your character can act."); return;
         }
+        if (parts[0].equals("layoutfixture")) { Native950LayoutFixture.handle(player, channel, parts); return; }
         if (parts[0].equals("item")) { item(player, channel, parts); return; }
         if (parts[0].equals("npc") || parts[0].equals("obj")) { spawn(player,channel,parts,spawns); return; }
         if (parts[0].equals("tele")) { teleport(player, channel, parts); return; }

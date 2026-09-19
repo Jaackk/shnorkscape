@@ -45,6 +45,7 @@ public final class Native950AdminCommands {
             group("DEVELOPMENT", "f9a8d4", "fbcfe8",
                     entry(";;devstatus, ;;commands / ;;devhelp", "show resource modes; show this directory"),
                     entry(";;uilayout status", "show native workspace diagnostic state"),
+                    entry(";;layoutfixture stage|apply", "pinned layout application gate; layoutgate2 only"),
                     entry(";;nxt status|level|banker|cook|combat|skilling|agility|barbarian|wilderness|slayer", "native world and combat tools"),
                     entry(";;nxt effects|clear|bar|force", "player-effect and hit-bar diagnostics"),
                     entry(";;area, ;;areascan, ;;areastop", "scene-area debugging"),

@@ -2,6 +2,14 @@
 
 ## Start here
 
+**2026-09-20 disposable application gate:** PID35192 V4 source fixture validated
+against the pinned912-ID schema and six bootstrap controls. See
+[Disposable application gate](NATIVE-950-DISPOSABLE-APPLICATION-GATE.md).
+The new `layoutfixture stage|apply` command is hard-restricted to layoutgate2,
+uses native protocol setters plus8741(6), and never runs on login. Source fixture
+stays local. Application/readback and visual acceptance are still pending; this
+is NOT production durability. Preserve editor20258e4 and Jaxa.
+
 **Latest workspace checkpoint (2026-09-19):** read
 [Native acquisition proof and durability design](NATIVE-950-WORKSPACE-ACQUISITION-AND-DURABILITY.md).
 V3 acquisition is live-proven; Custom1 and active8 match on all712 readable fields
