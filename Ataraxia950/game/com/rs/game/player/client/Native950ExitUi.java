@@ -68,6 +68,7 @@ public final class Native950ExitUi {
 
     public boolean handle(Native950Actions.InterfaceAction a){
         if(signingOut)return isOpenRequest(a)||a.interfaceId()==INTERFACE;
+        if(layoutEditor.handle(a))return true;
         if(isOpenRequest(a)){
             verifyBeforeOpen();
             if(!player.isActive()||player.hasFinished()||player.isDead())return true;

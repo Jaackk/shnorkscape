@@ -120,6 +120,16 @@ public final class Native950ExitUiAcceptance {
             check(!ui.isOpen()&&ui.isLayoutEditing(),"Edit Layout did not replace Options with the native editor");
             checkLayoutRecipe(ch,true);
             check(p.getInterfaceManager().getInterfaceParentId(1475)==(1477<<16|692),"Native layout editor ownership was not registered");
+            check(ui.handle(click(1475,20,-1,-1,1))&&!ui.isLayoutEditing(),"Native layout editor X did not close the editor");
+            checkLayoutRecipe(ch,false);
+            check(!p.getInterfaceManager().containsInterface(1475),"Native layout editor X retained interface ownership");
+            check(!ui.handle(click(1475,20,-1,-1,1)),"Stale native layout editor X was consumed");
+            ui.handle(entry());
+            ui.handle(click(22));
+            check(ui.handle(click(1477,8,-1,-1,1))&&!ui.isLayoutEditing(),"Escape did not close the native layout editor");
+            checkLayoutRecipe(ch,false);
+            ui.handle(entry());
+            ui.handle(click(22));
             check(ui.consumeLayoutEditorClose()&&!ui.isLayoutEditing(),"Native layout editor close was not reconciled");
             check(packet(ch,Native950Packets.varcSmall(3477,0)),"Native layout editor close did not leave edit mode");
             check(!p.getInterfaceManager().containsInterface(1475),"Native layout editor ownership survived client close");
