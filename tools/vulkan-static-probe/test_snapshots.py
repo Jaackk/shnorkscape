@@ -44,6 +44,34 @@ class SnapshotTests(unittest.TestCase):
         self.assertIn(ref[1],result['changedIdsAtoB'])
     def test_signed_parent_fields(self):
         self.assertEqual(field({1:dict(found=True,int32=-1)},[0,1,20,31]),4095)
+    def test_paired_change_does_not_weaken_strict_comparison(self):
+        a=self.make_items();b=copy.deepcopy(a);c=copy.deepcopy(a)
+        for slot in ('6','8'):
+            ref=self.schema['slots'][slot]['1015'][1]
+            c[ref[1]]['int32']=5<<ref[2]
+        result=compare(a,b,c,self.schema)
+        self.assertFalse(result['custom1RetainedBtoC'])
+        self.assertFalse(result['custom1BvsActiveC']['completeEquality'])
+        self.assertTrue(result['custom1CvsActiveC']['completeEquality'])
+        self.assertEqual(len(result['pairedCustomActiveChanges']),1)
+        self.assertTrue(result['pairedCustomActiveChanges'][0]['sameChangeInActive'])
+    def test_durability_metadata_requirement_from_exact_copy_helper(self):
+        # Evidence test only: do not silently change the V3 capture or old descriptor.
+        pin={'cache/12/8703.dat':'20fbc3c6f541d6dc77bbd2338f641415d98f50095c4b2200a3cbb61ef8cf4541'}
+        mapping=json.loads(generator.pinned('protocol-analysis/ui-scripts-950-evidence.json'))
+        inverse={int(v['opcode950'],16):int(k,16) for k,v in mapping['opcodeMap947to950'].items()}
+        with patch.dict(generator.PINS,pin):
+            ins,switches=generator.script(8703,inverse)
+        bits=generator.varbits()
+        expected={6:(19035,3295),7:(19627,3380),12:(31442,5215),13:(31920,5352),8:(19331,2912)}
+        self.assertEqual(ins[6],(0x51a,0))
+        for slot,(bit,parent) in expected.items():
+            at=7+switches[0][slot]
+            self.assertEqual(ins[at],(0x35e,2))
+            self.assertEqual(ins[at+1],(0xa2,bit<<8))
+            r=generator.Reader(bits[bit])
+            self.assertEqual((r.num(1),r.num(1),r.smart(),r.num(1),r.num(1),r.num(1),r.num(1)),(1,2,parent,2,0,4,0))
+            self.assertNotIn(parent,self.schema['ids'])
     def test_type_scope_and_stability_refusal(self):
         items=self.make_items()
         data=dict(status='snapshot-stable',phase='A',nativeWrites=False,

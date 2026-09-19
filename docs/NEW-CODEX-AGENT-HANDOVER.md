@@ -2,6 +2,15 @@
 
 ## Start here
 
+**Latest workspace checkpoint (2026-09-19):** read
+[Native acquisition proof and durability design](NATIVE-950-WORKSPACE-ACQUISITION-AND-DURABILITY.md).
+V3 acquisition is live-proven; Custom1 and active8 match on all712 readable fields
+after Save and after Load. Strict B-to-C equality is not claimed: five paired
+fields changed, with possible repeated Save & Exit in the live sequence. Native
+editor `20258e4` remains protected. No durability/replay has been deployed. The
+older baseline and opcode-persistence discussion below are historical, not the
+current implementation instruction. Do not redo reader or opcode investigations.
+
 SHNORKSCAPE is a local, revision-950 RuneScape 3 private-server development project. It combines the original 950 native Vulkan/OpenGL client with OpenNXT's login/cache/JS5 service and an Ataraxia Java gameplay world. The target is a smooth, usable EOC combat sandbox that retains native revision-950 UI behaviour instead of replacing the client with imitation interfaces or speculative server-side geometry.
 
 ## Project lineage: 950 client on a converted 910 server

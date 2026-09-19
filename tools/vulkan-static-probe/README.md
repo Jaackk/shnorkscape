@@ -1,7 +1,8 @@
 # Static Vulkan read-only diagnostic
 
-Current: **V3 manual Save/Load diagnostic**, documented below. V2 runtime reader
-validation passed; Save/Load endpoint equality is awaiting the V3 manual test.
+Current: **V3 manual Save/Load diagnostic**, documented below. V2 and V3 acquisition
+are live validated. See `docs/NATIVE-950-WORKSPACE-ACQUISITION-AND-DURABILITY.md`
+for exact A/B/C results, paired field differences and the durability design.
 
 ## Historical V2 lookup controls
 
@@ -197,7 +198,10 @@ indeterminate, not equal-to-zero. It reports differences rather than forcing
 equality: native Load can transform fields, especially across viewport sizes.
 Metadata changes are reported separately. The three snapshots prove endpoints;
 the deliberate intermediate alteration is Jack's visual control, not a fourth
-captured state. Actual Save/Load equality is still pending Jack's live files.
+captured state. Live results now show712 readable fields matching saved/active
+within B and within C, but five paired B-to-C field changes. The comparator keeps
+strict equality false and reports those paired changes separately. See the linked
+acquisition document; do not claim full720-field equality or immutable B6=C6.
 
 ### V3 build checkpoint
 
