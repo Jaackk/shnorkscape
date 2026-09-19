@@ -18,7 +18,7 @@ public final class Native950AdminCommands {
                     entry(";;almighty, ;;god", "all six infinite combat resources; damage immunity"),
                     entry(";;infprayer, ;;infadren, ;;infrunes", "infinite prayer, adrenaline, or combat runes"),
                     entry(";;infrun, ;;infammo, ;;adrenaline [0-100]", "infinite run or ammo; set adrenaline"),
-                    entry(";;heal / ;;refill, ;;max", "restore resources and drained levels; max skills"),
+                    entry(";;heal / ;;refill, ;;max, ;;comp", "restore resources; max skills; or grant local completion state"),
                     entry(";;spell [strike|bolt|blast|wave|surge]", "view or choose an Air auto-spell")),
             group("ACTION BARS", "7dd3fc", "bae6fd",
                     entry(";;bar [1-3]", "view or select a saved action bar"),
@@ -44,6 +44,7 @@ public final class Native950AdminCommands {
                     entry(";;disengage, ;;obj <id> [type] [rotation]", "stop combat/movement; spawn a diagnostic object")),
             group("DEVELOPMENT", "f9a8d4", "fbcfe8",
                     entry(";;devstatus, ;;commands / ;;devhelp", "show resource modes; show this directory"),
+                    entry(";;uilayout status", "show native workspace diagnostic state"),
                     entry(";;nxt status|level|banker|cook|combat|skilling|agility|barbarian|wilderness|slayer", "native world and combat tools"),
                     entry(";;nxt effects|clear|bar|force", "player-effect and hit-bar diagnostics"),
                     entry(";;area, ;;areascan, ;;areastop", "scene-area debugging"),
@@ -57,7 +58,7 @@ public final class Native950AdminCommands {
         if (Native950ContentCommands.recognizes(command)) return true;
         switch (command) {
             case "god": case "infprayer": case "infadren": case "adrenaline":
-            case "almighty": case "infrunes": case "infrun": case "infammo": case "commands": case "spell": case "bugtest": case "bug": case "combatqa": case "items":
+            case "almighty": case "infrunes": case "infrun": case "infammo": case "commands": case "spell": case "bugtest": case "bug": case "combatqa": case "items": case "uilayout": case "comp":
             case "wars": case "warsretreat": case "death": case "deathsoffice": case "vorago": case "dummy": case "testbar": case "clearbar": case "bar":
             case "revo": case "revolution":
             case "heal": case "refill": case "max": case "coords": case "disengage": case "devhelp": case "devstatus":
@@ -115,15 +116,22 @@ public final class Native950AdminCommands {
             if (!p.isActive() || p.hasFinished() || p.isDead() || p.isLocked()) { reply(channel,"Wait until your character can act."); return; }
             Native950ItemBrowser.open(p);return;
         }
-        if (args.length > (command.equals("adrenaline") || command.equals("bar") || command.equals("spell") || command.equals("dummy") ? 2 : 1)) {
+        if (args.length > (command.equals("adrenaline") || command.equals("bar") || command.equals("spell") || command.equals("dummy") || command.equals("uilayout") ? 2 : 1)) {
             String usage=command.equals("adrenaline") ? " [0-100]" : command.equals("bar") ? " [1-3]"
-                    : command.equals("spell") ? " [strike|bolt|blast|wave|surge]" : command.equals("dummy") ? " [1-5]" : "";
+                    : command.equals("spell") ? " [strike|bolt|blast|wave|surge]" : command.equals("dummy") ? " [1-5]" : command.equals("uilayout") ? " status" : "";
             reply(channel, "Usage: ;;" + command + usage); return;
         }
         if (!p.isActive() || p.hasFinished() || p.isDead() || p.isLocked()) {
             reply(channel, "Wait until your character can act."); return;
         }
         switch (command) {
+            case "uilayout":
+                if(args.length!=2||!args[1].equals("status")){reply(channel,"Use ;;uilayout status.");break;}
+                reply(channel,Native950Workspace.status(p));break;
+            case "comp":
+                Native950Completionist.grant(p);
+                reply(channel,"Completionist development state granted: 200m XP, all local skill caps, tracked quests, achievements and cape flags. Saved with this local profile.");
+                break;
             case "wars": case "warsretreat":reply(channel,Native950WarsRetreat.teleport(p,true));break;
             case "death": case "deathsoffice":reply(channel,Native950WarsRetreat.deathsOffice(p));break;
             case "vorago":reply(channel,Native950WarsRetreat.voragoEntrance(p));break;

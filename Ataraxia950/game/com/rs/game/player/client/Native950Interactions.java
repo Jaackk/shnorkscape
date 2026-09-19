@@ -413,6 +413,8 @@ public final class Native950Interactions {
         else if (action instanceof Native950Actions.DragAction) drag((Native950Actions.DragAction) action);
         else if (action instanceof Native950Actions.NpcAction) npc((Native950Actions.NpcAction) action);
         else if (action instanceof Native950Actions.PublicChatAction) typed((Native950Actions.PublicChatAction) action);
+        else if (action instanceof Native950Actions.WindowReportAction)
+            Native950Workspace.windowReport(player,(Native950Actions.WindowReportAction) action);
         else if (action instanceof Native950Actions.MapBuildReportAction)
             mapBuildReport((Native950Actions.MapBuildReportAction) action);
         else unhandled(action);

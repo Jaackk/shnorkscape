@@ -103,6 +103,13 @@ public class Native950AdminCommandsTest {
         assertEquals(Skills.MAXIMUM_EXP,p.getSkills().getXp(Skills.ATTACK),0);
         assertEquals(p.getMaxHitpoints(),p.getHitpoints());
     }
+    @Test public void completionistCommandPersistsTheSupportedLocalCompletionState() {
+        run(";;comp");
+        assertTrue(p.isMax());assertTrue(p.isComp());assertTrue(p.isCompT());
+        for(int skill=0;skill<Skills.SKILL_COUNT;skill++)assertEquals(Skills.MAXIMUM_EXP,p.getSkills().getXp(skill),0);
+        assertEquals(Integer.valueOf(1),p.nativeSettingsSnapshot().get(Native950Completionist.SETTING));
+        run(";;uilayout status");
+    }
     @Test public void deadAndLockedPlayersCannotUseCommandsToEscapeRecovery() {
         p.lock();run(";;god");assertFalse(p.isDevelopmentGodMode());p.unlock();
         p.setHitpoints(0);run(";;heal");run(";;god");assertTrue(p.isDead());assertFalse(p.isDevelopmentGodMode());

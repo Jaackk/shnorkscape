@@ -150,6 +150,10 @@ final class Native950CombatQa {
                     "characters",a.text()==null?0:a.text().length(),"content","redacted"));
         } else if (action instanceof Native950Actions.CountDialogueAction) {
             session.observe("input","count-dialogue",map("value",((Native950Actions.CountDialogueAction)action).count()));
+        } else if (action instanceof Native950Actions.WindowReportAction) {
+            Native950Actions.WindowReportAction a=(Native950Actions.WindowReportAction)action;
+            session.observe("input","workspace-window",map("displayMode",a.displayMode(),"width",a.width(),
+                    "height",a.height(),"flag",a.flag()));
         }
     }
 

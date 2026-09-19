@@ -1937,6 +1937,7 @@ public class Player extends Entity {
         if(isNative950())getNative950Slayer().writeSettings(settings);
         if(isNative950())getNative950ActionBar().writeSettings(settings);
         if(isNative950())com.rs.game.player.client.Native950AutoSpells.writeSettings(this,settings);
+        if(isNative950()&&isCompT())settings.put(com.rs.game.player.client.Native950Completionist.SETTING,1);
         return settings;
     }
 
@@ -1945,6 +1946,8 @@ public class Player extends Entity {
         if(isNative950())getNative950Slayer().restore(settings);
         if(isNative950())getNative950ActionBar().restore(settings);
         if(isNative950())com.rs.game.player.client.Native950AutoSpells.restore(this,settings);
+        if(isNative950()&&Integer.valueOf(1).equals(settings.get(com.rs.game.player.client.Native950Completionist.SETTING)))
+            com.rs.game.player.client.Native950Completionist.grant(this);
         Integer value;
         if ((value = settings.get(SETTING_CHAT_EFFECTS)) != null) allowChatEffects = value != 0;
         if ((value = settings.get(SETTING_PROFANITY_FILTER)) != null) profanityFilter = value != 0;

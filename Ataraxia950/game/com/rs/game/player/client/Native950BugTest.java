@@ -83,6 +83,10 @@ public final class Native950BugTest {
             session.event("input","string-dialogue","kind",a.isNameDialogue()?"name":"text","characters",a.text()==null?0:a.text().length(),"content","redacted");
         } else if (action instanceof Native950Actions.CountDialogueAction) {
             session.event("input","count-dialogue","value",((Native950Actions.CountDialogueAction)action).count());
+        } else if (action instanceof Native950Actions.WindowReportAction) {
+            Native950Actions.WindowReportAction a=(Native950Actions.WindowReportAction)action;
+            session.event("input","workspace-window","displayMode",a.displayMode(),"width",a.width(),
+                    "height",a.height(),"flag",a.flag());
         }
     }
 
@@ -111,6 +115,7 @@ public final class Native950BugTest {
 
     /** Framed-but-unimplemented client traffic, captured only while this diagnostic is enabled. */
     static void unhandledFrame(Player player, int opcode, byte[] payload) {
+        Native950Workspace.unhandledFrame(player, opcode, payload);
         Native950CombatQa.unhandledFrame(player, opcode, payload == null ? 0 : payload.length);
         Session session = session(player);
         if (session == null) return;
@@ -142,7 +147,8 @@ public final class Native950BugTest {
     private static String tile(Player p) { return p.getX()+","+p.getY()+","+p.getPlane(); }
     private static String state(Player p) {
         return "tile="+tile(p)+";bar="+(p.getNative950ActionBar().activeBar()+1)+";revolution="+p.getNative950ActionBar().isRevolutionEnabled()
-                +";prayer="+(p.getPrayer()==null?-1:p.getPrayer().getPrayerpoints())+";adrenaline="+p.getCombatDefinitions().getSpecialAttackPercentage();
+                +";prayer="+(p.getPrayer()==null?-1:p.getPrayer().getPrayerpoints())+";adrenaline="+p.getCombatDefinitions().getSpecialAttackPercentage()
+                +";"+Native950Workspace.compactState(p);
     }
     private static String stamp() { return new SimpleDateFormat("yyyyMMdd-HHmmss-SSS", Locale.ROOT).format(new Date()); }
     private static ThreadFactory daemon(final String name) { return new ThreadFactory() { public Thread newThread(Runnable run) { Thread thread=new Thread(run,name);thread.setDaemon(true);return thread; } }; }

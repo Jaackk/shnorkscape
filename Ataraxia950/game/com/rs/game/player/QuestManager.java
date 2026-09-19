@@ -99,6 +99,18 @@ public final class QuestManager implements Serializable {
 		completedQuests.add(quest);
 	}
 
+	/**
+	 * Local-development completion grant. Unlike {@link #completeQuest2(Quests)},
+	 * this performs no legacy interface/configuration writes; the native 950
+	 * session owns its own UI transport.
+	 */
+	public void completeAllForLocalDevelopment() {
+		for (Quests quest : Quests.values()) {
+			if (!completedQuests.contains(quest)) completedQuests.add(quest);
+			questStages.remove(quest);
+		}
+	}
+
 	public void sendCompletedQuestsData(Quests quest) {
 		switch (quest) {
 		case PERIL_OF_ICE_MONTAINS:
