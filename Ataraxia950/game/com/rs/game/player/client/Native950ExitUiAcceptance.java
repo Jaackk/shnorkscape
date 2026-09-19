@@ -79,7 +79,8 @@ public final class Native950ExitUiAcceptance {
         check(packetIndex(packets,Native950Packets.varcSmall(3477,1))<0,
                 "Server took ownership of native Edit Mode entry varc");
     }
-    private static void checkLayoutCloseRecipe(EmbeddedChannel ch,Native950Packets.Packet wrapper){
+    private static void checkLayoutCloseRecipe(EmbeddedChannel ch,Native950Packets.Packet wrapper,
+            Native950Packets.Packet forbidden){
         ch.flush();Object o;List<Native950Packets.Packet> packets=new ArrayList<>();
         while((o=ch.readOutbound())!=null){
             if(o instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)o);
@@ -89,6 +90,8 @@ public final class Native950ExitUiAcceptance {
         int closeIndex=packetIndex(packets,Native950Packets.closeSub(1477,692));
         check(wrapperIndex>=0,"Native editor close omitted its wrapper");
         check(closeIndex>wrapperIndex,"Owned editor mount was not closed after native teardown");
+        if(forbidden!=null)check(packetIndex(packets,forbidden)<0,
+                "Native editor close used a forbidden wrapper");
         check(packetIndex(packets,Native950Packets.varcSmall(3477,0))<0,
                 "Server manually cleared native Edit Mode");
     }
@@ -133,12 +136,13 @@ public final class Native950ExitUiAcceptance {
                     "Native layout editor ownership was not registered");
             check(ui.handle(click(1475,43,-1,-1,1))&&!ui.isLayoutEditing(),
                     "Save & Exit retained the server-owned editor mount");
-            checkLayoutCloseRecipe(ch,Native950Packets.runClientScript(8743,0));
+            checkLayoutCloseRecipe(ch,Native950Packets.runClientScript(8743,0),null);
             check(!p.getInterfaceManager().containsInterface(1475),"Native save close retained server mount ownership");
             ui.handle(entry());ui.handle(click(22));checkLayoutOpeningRecipe(ch);
             check(ui.handle(click(1475,20,-1,-1,1))&&!ui.isLayoutEditing(),
                     "Native X retained the server-owned editor mount");
-            checkLayoutCloseRecipe(ch,Native950Packets.runClientScript(8746));
+            checkLayoutCloseRecipe(ch,Native950Packets.runClientScript(8745,0),
+                    Native950Packets.runClientScript(8746));
             check(!ui.consumeLayoutEditorClose(),"Stale native editor close was consumed twice");
             ui.handle(entry());
             ui.handle(click(86));check(calls[0]==0,"Unarmed confirmation logged out");

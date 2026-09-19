@@ -14,9 +14,10 @@ import java.util.Properties;
 final class Native950LayoutEditor {
     static final int ROOT=1477,HOST=692,INTERFACE=1475;
     static final int SAVE_COMPONENT=43,CANCEL_COMPONENT=20;
-    static final int SAVE_WRAPPER=8743,CANCEL_WRAPPER=8746;
+    static final int SAVE_WRAPPER=8743,DISCARD_WRAPPER=8745;
     static final int SELECTED_SAVE_TARGET_VARC=139445;
     private static final int UNUSED_SAVE_CALLBACK_ARGUMENT=0;
+    private static final int CLOSE_WITHOUT_SAVING=0;
     private static volatile boolean verified;
     private final Player player;
     private final Channel channel;
@@ -73,9 +74,12 @@ final class Native950LayoutEditor {
     void requestCancel(){
         if(!open||pending!=Exit.NONE)return;
         pending=Exit.CANCEL;
-        channel.write(Native950Packets.runClientScript(CANCEL_WRAPPER));
-        Native950BugTest.event(player,"workspace-editor","wrapper-invoked","script",CANCEL_WRAPPER,
-                "confirmationOwner","native-8746");
+        // CS8746 re-enters component1475:20 when the layout is dirty. A server-owned
+        // mount cannot keep that client-only confirmation hook alive after IF_CLOSESUB,
+        // so an explicit X request uses the native direct-discard wrapper instead.
+        channel.write(Native950Packets.runClientScript(DISCARD_WRAPPER,CLOSE_WITHOUT_SAVING));
+        Native950BugTest.event(player,"workspace-editor","wrapper-invoked","script",DISCARD_WRAPPER,
+                "argument",CLOSE_WITHOUT_SAVING,"meaning","close-without-saving");
         closeServerMount("cancel-wrapper-complete");
     }
 
