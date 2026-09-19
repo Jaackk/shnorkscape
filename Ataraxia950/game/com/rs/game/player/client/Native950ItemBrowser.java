@@ -20,10 +20,7 @@ final class Native950ItemBrowser {
     private static final int VIEW_LABEL=52, SELECTION_LABEL=58;
     private static final int TRANSACTION_LABEL=66, OWNED_LABEL=128, PRICE_LABEL=133, PRICE_VALUE=137, COIN_ICON=136;
     private static final int INPUT_FRAME_HOST=749, INPUT_FRAME=1418, INPUT_HOST=2, INPUT=1469;
-    private static final int RESULTS_CONTAINER=139, RECENT_LIMIT=12;
-    private static final int GRID_WIDTH=8;
-    // UPDATE_INV_FULL has a u16 payload length. Browser entries are four bytes each plus five bytes of header.
-    private static final int MAX_RENDERED_RESULTS=(65535-5)/4;
+    private static final int RESULTS_CONTAINER=139, RECENT_LIMIT=12, MAX_RENDERED_RESULTS=40;
     private static final int SHOP_OPTION_MASK=2097406;
     private static final Map<Player,Native950ItemBrowser> OWNERS=new IdentityHashMap<Player,Native950ItemBrowser>();
     private enum Phase { CLOSED, RESULTS, SEARCH, CUSTOM }
@@ -69,24 +66,10 @@ final class Native950ItemBrowser {
     static void verifyCacheBindings(){
         if(Cache.STORE==null||!Cache.isFlatReadOnly())throw new IllegalStateException("Item Browser requires the paired revision-950 cache");
         Native950QuantityInput.verify();
-        byte[] itemOptions=Cache.STORE.getIndexes()[12].getFile(150,0);
         if(Cache.STORE.getIndexes()[3].getFile(SHOP,0)==null||Cache.STORE.getIndexes()[12].getFile(110,0)==null
-                ||itemOptions==null||Cache.STORE.getIndexes()[12].getFile(8420,0)==null)
+                ||Cache.STORE.getIndexes()[12].getFile(8420,0)==null)
             throw new IllegalStateException("The paired cache does not contain the native Item Browser surfaces");
-        verifyItemOptionsSignature(itemOptions);
     }
-
-    private static void verifyItemOptionsSignature(byte[] script){
-        if(script.length<20)throw new IllegalStateException("Revision-950 item-option script is truncated");
-        int trailer=((script[script.length-2]&255)<<8)|(script[script.length-1]&255);
-        // The trailer length includes its switch-count byte; the fixed header is four bytes plus six u16 counts.
-        int header=script.length-2-trailer-16;
-        if(header<0||unsignedShort(script,header+10)!=7||unsignedShort(script,header+12)!=9
-                ||unsignedShort(script,header+14)!=0)
-            throw new IllegalStateException("Revision-950 item-option script no longer has its verified 7-int/9-string signature");
-    }
-
-    private static int unsignedShort(byte[] bytes,int offset){return ((bytes[offset]&255)<<8)|(bytes[offset+1]&255);}
 
     private void openBrowser(){
         verifier.run();closeInput();
@@ -118,13 +101,13 @@ final class Native950ItemBrowser {
         if(matches.isEmpty()){
             player.sendMessage("No revision-950 items matched '"+value+"'.");render();return true;
         }
-        boolean wireLimited=matches.size()>MAX_RENDERED_RESULTS;
-        if(wireLimited)matches=Collections.unmodifiableList(new ArrayList<Native950ContentCommands.ItemSearchEntry>(
+        boolean truncated=matches.size()>MAX_RENDERED_RESULTS;
+        if(truncated)matches=Collections.unmodifiableList(new ArrayList<Native950ContentCommands.ItemSearchEntry>(
                 matches.subList(0,MAX_RENDERED_RESULTS)));
         view=View.SEARCH;query=value;results=matches;selected=null;
-        telemetry("search-results","query",value,"results",results.size());
-        player.sendMessage(wireLimited
-                ?"Item Browser reached the safe native limit of "+MAX_RENDERED_RESULTS+" results. Refine '"+value+"' for the remaining matches."
+        telemetry("search-results","query",value,"results",results.size(),"truncated",truncated);
+        player.sendMessage(truncated
+                ?"Item Browser is showing the "+MAX_RENDERED_RESULTS+" best matches for '"+value+"'. Refine the search for more specific results."
                 :"Item Browser found "+results.size()+" result(s) for '"+value+"'. Left-click an icon to give 1.");
         render();return true;
     }
@@ -156,25 +139,8 @@ final class Native950ItemBrowser {
         channel.write(Native950Packets.runClientScript(8420,82903048,82903256,82903049,82903257,
                 "DEVELOPER ITEM BROWSER",21218,1007));
         channel.write(Native950Packets.runClientScript(1364));
-        publishNativeGridOptions(ids.length);
         decorate();
         telemetry("rendered","view",viewName(),"query",query,"count",rendered.size(),"ids",ids(rendered));
-    }
-
-    /**
-     * Script 150 is the cache-authored item-grid option owner. In revision 950 its signature is
-     * seven integers and nine strings; the final zero is the new 950 mode argument forwarded to
-     * script 153. Option 2 remains blank because shop 1265 historically uses it for Buy-1. The
-     * handler retains option 2 as a Give-1 fallback if the shop's own hook wins an ordering race.
-     */
-    private void publishNativeGridOptions(int itemCount){
-        int rows=Math.max(1,(itemCount+GRID_WIDTH-1)/GRID_WIDTH);
-        channel.write(Native950Packets.runClientScript(150,
-                (SHOP<<16)|SHOP_ITEMS,RESULTS_CONTAINER,GRID_WIDTH,rows,0,-1,
-                "Give 1","","Give 5","Give 10","Give 100","Give X",
-                view==View.RECENT?"Remove from Recent":"","","",0));
-        telemetry("native-grid-options","view",viewName(),"items",itemCount,"columns",GRID_WIDTH,"rows",rows,
-                "options",view==View.RECENT?"1,3,4,5,6,7":"1,3,4,5,6");
     }
 
     private void decorate(){

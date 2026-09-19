@@ -34,19 +34,16 @@ review report are eligible for `;;combatqa cleanup`. `ACTIVE`, `UNREVIEWED`,
 small cache-backed Combat Alpha Testing Kit. Its live revision-950 Search owner
 is component 41 and Recent is component 32; their visible text children are not
 input owners. Search temporarily closes the grid, opens the verified native text
-input, and restores the browser with every ranked cache-index match.
+input, and restores the browser with up to the 40 best ranked cache-index matches.
 
 Components 46 and 47 are the cache-authored list/grid display-mode controls, not
-pagination. The browser therefore uses the interface's native scrolling and sends
-the complete result set instead of displaying a page count it cannot navigate.
-The interface is fixed-size and is not resized by server-side geometry guesses.
-Each render invokes revision-950 script 150 after the shop bootstrap with eight
-columns and enough rows for the exact rendered snapshot. This is the native
-grid-option/scroll contract; 950 added a seventh integer mode argument compared
-with the inherited 910 helper. The browser supplies zero for that mode and all
-nine option-string positions. The real transport ceiling is 16,382 entries:
-container 139 uses a 65,535-byte variable-short frame, with a five-byte header and
-four bytes per one-count item. Results below that limit are never server-paged.
+pagination. Live revision-950 testing established that this fixed-size surface is
+visually safe at 40 entries. Larger dynamic row counts make item models overlap,
+so broad searches retain their ranked 40 best matches and ask for a narrower query.
+The browser does not invoke script 150: that script owns grid geometry together
+with option strings, so using it only to extend the context menu also changes the
+layout. The native cache-authored Info/Buy-1 wording is retained rather than
+regressing the clean grid. Left-click/Buy-1 both remain safe Give-1 paths.
 
 Each render creates one immutable snapshot and publishes that exact sequence to
 container 139. Clicks resolve only against the snapshot: slot is authoritative
@@ -55,10 +52,9 @@ recover a stale slot. A claim outside the snapshot is rejected and remounted.
 Every view change and grant remounts the V1 surface so the client's stock hooks
 cannot retain the previous view while displaying new icons.
 
-Left-click gives one immediately. Script 150 publishes Give 1, Give 5, Give 10,
-Give 100 and Give X directly on the native grid; Recent additionally publishes
-Remove from Recent as option 7. Option 2 is intentionally blank while its handler
-remains a Give-1 fallback for the shop's original Buy-1 action. Grants revalidate the item against the cache-backed
+Left-click gives one immediately. The server retains bounded quantity handlers for
+verified input actions, but does not override the native grid's context menu or
+geometry. Grants revalidate the item against the cache-backed
 container catalog and use `Native950Skilling.giveItem`, preserving controller,
 stack-overflow and backpack-capacity rules. Bug Test and Combat QA record the
 view, query, complete displayed ID order, incoming slot/item/option, resolved ID
