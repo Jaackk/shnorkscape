@@ -62,6 +62,13 @@ class LoginServerHandler : SimpleChannelInboundHandler<LoginPacket>() {
 
                         val map = Int2IntOpenHashMap()
                         TODORefactorThisClass.populateServerpermVarcs(map)
+                        // Ataraxia owns this authenticated native-950 game session.  The
+                        // shared legacy layout words are client workspace state, not server
+                        // gameplay state, so replaying them here resets docks/tabs on login.
+                        if (Ataraxia950Handoff.ownsAuthenticatedNativeSession(ctx.channel())) {
+                            val removed = Native950ServerpermVarcs.removeLegacyWorkspaceDefaults(map)
+                            logger.info { "Omitting legacy workspace serverperm varcs for native 950 login (count=${removed.size})" }
+                        }
                         val response = LoginPacket.ServerpermVarcChunk(true, map)
                         ctx.channel().writeAndFlush(response)
 

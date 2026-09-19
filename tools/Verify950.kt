@@ -2,6 +2,10 @@ import com.opennxt.net.login.Native950Ribbon
 import com.opennxt.net.login.Native950CacheContent
 import com.opennxt.net.game.serverprot.RebuildNormal
 import com.opennxt.net.login.Native950InterfaceBootstrap
+import com.opennxt.net.login.Native950ServerpermVarcs
+import com.opennxt.model.lobby.TODORefactorThisClass
+import com.rs.utils.ILayoutDefaults
+import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap
 import com.rs.game.player.client.Native950InventoryMenu
 import com.opennxt.model.world.Native950WorldBootstrap
 import com.opennxt.model.world.Native947WorldBootstrap
@@ -18,6 +22,17 @@ fun main() {
  fun verify(name:String,expected:String,write:(GamePacketBuilder)->Unit) {
   val b=GamePacketBuilder();try {write(b);val actual=ByteBufUtil.hexDump(b.buffer);check(actual==expected){"$name: $actual != $expected"};println("PASS $name (${b.length} bytes)")}finally{b.buffer.release()}
  }
+ // A native 950 session must retain the client's saved workspace. The legacy serverperm
+ // bootstrap contains the old packed layout defaults, so only that proven subset is omitted.
+ val serverperm=Int2IntOpenHashMap()
+ TODORefactorThisClass.populateServerpermVarcs(serverperm)
+ val originalServerperm=serverperm.toMap()
+ val removedWorkspace=Native950ServerpermVarcs.removeLegacyWorkspaceDefaults(serverperm)
+ val expectedWorkspace=originalServerperm.keys.intersect(ILayoutDefaults.INTERFACE_LAYOUT_VARS.keys)
+ check(removedWorkspace==expectedWorkspace && removedWorkspace.size==92) { "native workspace filter must omit exactly the legacy layout subset" }
+ check(serverperm.size==123 && serverperm.keys.none(Native950ServerpermVarcs::isLegacyWorkspaceKey)) { "native serverperm bootstrap retained a legacy layout key" }
+ check(serverperm[5139]==originalServerperm[5139] && serverperm[6119]==originalServerperm[6119]) { "native serverperm bootstrap lost required non-layout values" }
+ println("PASS native950 serverperm filter preserves 123 non-layout entries and omits 92 workspace defaults")
  // Independent wire vectors derived from the950native receive code, not codec round trips.
  verify("IF_OPENTOP", "8a0300"+"00".repeat(16)){IfOpenTop.Codec(fields("IF_OPENTOP")).encode(IfOpenTop(906),it)}
  verify("IF_OPENSUB", "038a0025"+"00".repeat(12)+"ae037f"+"00".repeat(4)){IfOpenSub.Codec(fields("IF_OPENSUB")).encode(IfOpenSub(814,true,InterfaceHash((906 shl 16) or 37)),it)}
