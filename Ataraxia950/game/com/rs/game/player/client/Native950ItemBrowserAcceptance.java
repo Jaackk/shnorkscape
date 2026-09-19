@@ -15,12 +15,16 @@ public final class Native950ItemBrowserAcceptance {
         require(Native950ContentCommands.itemMatches("torva full helm",60).get(0).id==20135,"Useful base item was not ranked first");
         require(Native950ContentCommands.itemMatches("torva",Integer.MAX_VALUE).size()>5,
                 "Broad search was silently truncated");
+        require(Native950ContentCommands.itemMatches("blood",Native950ItemBrowser.nativeCapacityForTests()).size()>40,
+                "Blood search still has the retired 40-result ceiling");
+        require(Native950ContentCommands.itemMatches("soul",Native950ItemBrowser.nativeCapacityForTests()).size()>40,
+                "Soul search still has the retired 40-result ceiling");
         require(Native950ContentCommands.testingKitItemBrowserEntries().size()==19,
                 "Testing Kit lost a cache-derived Combat Alpha item");
         for(Native950ContentCommands.ItemSearchEntry entry:Native950ContentCommands.testingKitItemBrowserEntries())
             require(Cache.STORE.getIndexes()[19].getFile(entry.id>>>8,entry.id&255)!=null,
                     "Testing Kit item is absent from paired cache: "+entry.id);
-        System.out.println("PASS Item Browser: native grid/input surfaces exist; search is untruncated and the 19-item Combat Alpha kit is cache-backed.");
+        System.out.println("PASS Item Browser: native grid/input/option surfaces exist; broad search exceeds 40 and the 19-item Combat Alpha kit is cache-backed.");
     }
     private static void require(boolean value,String message){if(!value)throw new AssertionError(message);}
 }

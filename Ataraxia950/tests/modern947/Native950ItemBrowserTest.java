@@ -3,6 +3,7 @@ package com.rs.game.player.client;
 import com.rs.game.WorldTile;
 import com.rs.game.player.Player;
 import com.rs.network.protocol.modern950.Native950Actions;
+import com.rs.network.protocol.modern950.Native950Packets;
 import io.netty.channel.embedded.EmbeddedChannel;
 import org.junit.After;
 import org.junit.Before;
@@ -10,6 +11,7 @@ import org.junit.Test;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -30,7 +32,10 @@ public class Native950ItemBrowserTest {
         for(Native950ContentCommands.ItemSearchEntry entry:Native950ContentCommands.testingKitItemBrowserEntries())ids.add(entry.id);
         for(Native950ContentCommands.ItemSearchEntry entry:Native950ContentCommands.itemMatches("torva",5))ids.add(entry.id);
         ids.add(995);
-        for(int id:ids)entries.add(new Native950ItemCatalog.Entry(id,"Fixture "+id,id==995||id==556||id==63284,new String[5]));
+        Set<Integer> torvaIds=new LinkedHashSet<Integer>();
+        for(Native950ContentCommands.ItemSearchEntry entry:Native950ContentCommands.itemMatches("torva",5))torvaIds.add(entry.id);
+        for(int id:ids)entries.add(new Native950ItemCatalog.Entry(id,"Fixture "+id,
+                id==995||id==556||id==63284||torvaIds.contains(id),new String[5]));
         Native950Skilling.attach(player,new Native950Containers(player,new Native950ItemCatalog(entries)));
         Native950Dialogues dialogues=new Native950Dialogues(player,channel,()->{},()->{});
         player.setNative950Dialogues(dialogues);
@@ -100,6 +105,18 @@ public class Native950ItemBrowserTest {
         assertTrue(browser.viewForTests().startsWith("SEARCH: torva"));
     }
 
+    @Test public void differentQuantityOptionsRetainTheClickedSlotIdentity() throws Exception {
+        search("torva");
+        int[] options={1,3,4,5,6},amounts={1,5,10,100,37};
+        for(int slot=0;slot<options.length;slot++){
+            int id=browser.visibleResultIdForTests(slot);
+            browser.handle(interfaceAction(options[slot],1265,20,slot,id));
+            assertEquals("option "+options[slot]+" selected the wrong rendered item",id,browser.selectedIdForTests());
+            if(options[slot]==6)browser.handle(countAction(amounts[slot]));
+            assertEquals("option "+options[slot]+" granted the wrong rendered item",amounts[slot],player.getInventory().getAmountOf(id));
+        }
+    }
+
     @Test public void removeRecentOnlyChangesHistory() throws Exception {
         search("995");browser.handle(interfaceAction(1,1265,20,0,995));
         assertEquals(1,player.getInventory().getAmountOf(995));
@@ -115,11 +132,20 @@ public class Native950ItemBrowserTest {
         assertEquals(Native950ContentCommands.itemMatches("rune",Integer.MAX_VALUE).size(),browser.visibleResultCountForTests());
         assertTrue(browser.visibleResultCountForTests()>40);
         assertNotEquals(browser.visibleResultIdForTests(0),browser.visibleResultIdForTests(40));
+        int rows=(browser.visibleResultCountForTests()+7)/8;
+        assertTrue(contains(packets(),itemOptions(rows,false)));
+    }
+
+    @Test public void recentPublishesRemoveOptionWithoutChangingSnapshotIdentity() throws Exception {
+        search("995");browser.handle(interfaceAction(1,1265,20,0,995));
+        browser.handle(interfaceAction(1,1265,32,-1,-1));
+        assertTrue(contains(packets(),itemOptions(1,true)));
+        assertEquals(995,browser.visibleResultIdForTests(0));
     }
 
     @Test public void fullInventoryRefusesGrantWithoutClosingBrowser() throws Exception {
-        int torva=Native950ContentCommands.itemMatches("torva",5).get(0).id;
-        assertTrue(Native950Skilling.giveItem(player,torva,28));
+        int nonStackable=Native950ContentCommands.testingKitItemBrowserEntries().get(0).id;
+        assertTrue(Native950Skilling.giveItem(player,nonStackable,28));
         search("995");
         browser.handle(interfaceAction(1,1265,20,0,995));
         assertEquals(0,player.getInventory().getAmountOf(995));
@@ -142,6 +168,24 @@ public class Native950ItemBrowserTest {
         assertTrue(browser.handle(interfaceAction(1,1265,41,-1,-1)));
         assertTrue(browser.handle(stringAction(query)));
         assertTrue(player.getInterfaceManager().containsInterface(1265));
+    }
+
+    private static Native950Packets.Packet itemOptions(int rows,boolean recent){
+        return Native950Packets.runClientScript(150,(1265<<16)|20,139,8,rows,0,-1,
+                "Give 1","","Give 5","Give 10","Give 100","Give X",recent?"Remove from Recent":"","","",0);
+    }
+
+    private List<Native950Packets.Packet> packets(){
+        List<Native950Packets.Packet> packets=new ArrayList<Native950Packets.Packet>();Object value;
+        channel.flushOutbound();
+        while((value=channel.readOutbound())!=null)if(value instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)value);
+        return packets;
+    }
+
+    private static boolean contains(List<Native950Packets.Packet> packets,Native950Packets.Packet expected){
+        for(Native950Packets.Packet packet:packets)if(packet.type()==expected.type()
+                &&Arrays.equals(packet.payload(),expected.payload()))return true;
+        return false;
     }
 
     private static Native950Actions.InterfaceAction interfaceAction(int option,int interfaceId,int component,int slot,int itemId) throws Exception {

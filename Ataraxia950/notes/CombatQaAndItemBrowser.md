@@ -40,6 +40,13 @@ Components 46 and 47 are the cache-authored list/grid display-mode controls, not
 pagination. The browser therefore uses the interface's native scrolling and sends
 the complete result set instead of displaying a page count it cannot navigate.
 The interface is fixed-size and is not resized by server-side geometry guesses.
+Each render invokes revision-950 script 150 after the shop bootstrap with eight
+columns and enough rows for the exact rendered snapshot. This is the native
+grid-option/scroll contract; 950 added a seventh integer mode argument compared
+with the inherited 910 helper. The browser supplies zero for that mode and all
+nine option-string positions. The real transport ceiling is 16,382 entries:
+container 139 uses a 65,535-byte variable-short frame, with a five-byte header and
+four bytes per one-count item. Results below that limit are never server-paged.
 
 Each render creates one immutable snapshot and publishes that exact sequence to
 container 139. Clicks resolve only against the snapshot: slot is authoritative
@@ -48,10 +55,10 @@ recover a stale slot. A claim outside the snapshot is rejected and remounted.
 Every view change and grant remounts the V1 surface so the client's stock hooks
 cannot retain the previous view while displaying new icons.
 
-Left-click gives one immediately. The native right-click options route quantities
-1, 5, 10, 100 and the verified count input; option 7 removes an entry only from
-Recent. Cache-authored shop captions cannot currently be replaced safely, so a
-few shop labels may remain. Grants revalidate the item against the cache-backed
+Left-click gives one immediately. Script 150 publishes Give 1, Give 5, Give 10,
+Give 100 and Give X directly on the native grid; Recent additionally publishes
+Remove from Recent as option 7. Option 2 is intentionally blank while its handler
+remains a Give-1 fallback for the shop's original Buy-1 action. Grants revalidate the item against the cache-backed
 container catalog and use `Native950Skilling.giveItem`, preserving controller,
 stack-overflow and backpack-capacity rules. Bug Test and Combat QA record the
 view, query, complete displayed ID order, incoming slot/item/option, resolved ID
