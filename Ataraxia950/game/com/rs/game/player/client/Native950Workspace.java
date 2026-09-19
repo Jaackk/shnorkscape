@@ -115,6 +115,7 @@ final class Native950Workspace {
         long windowReports;
         final Map<Integer, Integer> lastValues = new LinkedHashMap<Integer, Integer>();
         final StringBuilder uploads = new StringBuilder();
+        boolean hasBaseline;
 
         void recordPayload(int opcode, byte[] payload) {
             if (payload.length < 1 || ((payload.length - 1) % 6) != 0) {
@@ -123,14 +124,18 @@ final class Native950Workspace {
             }
             int completion = payload[0] & 255;
             if (completion != 0 && completion != 1) { append("malformed(completion=" + completion + ")"); return; }
-            StringBuilder changed = new StringBuilder(); int records = (payload.length - 1) / 6;
+            StringBuilder changed = new StringBuilder(); StringBuilder initial = new StringBuilder(); int records = (payload.length - 1) / 6;
             for (int offset = 1; offset < payload.length; offset += 6) {
                 int id = ((payload[offset] & 255) << 8) | (payload[offset + 1] & 255);
                 int value = ((payload[offset + 2] & 255) << 24) | ((payload[offset + 3] & 255) << 16) | ((payload[offset + 4] & 255) << 8) | (payload[offset + 5] & 255);
                 Integer previous = lastValues.put(id, value);
+                if (!hasBaseline) { if (initial.length() > 0) initial.append(','); initial.append(id); }
                 if (previous != null && previous.intValue() != value) { if (changed.length() > 0) changed.append(','); changed.append(id); }
             }
-            append("records=" + records + ";completion=" + completion + ";changedIds=" + (changed.length() == 0 ? "none" : changed.toString()));
+            append("records=" + records + ";completion=" + completion + ";"
+                    + (hasBaseline ? "changedIds=" + (changed.length() == 0 ? "none" : changed.toString())
+                    : "baselineIds=" + initial.toString()));
+            hasBaseline = true;
         }
 
         String uploadSummary() { return uploads.length() == 0 ? "none" : uploads.toString(); }
