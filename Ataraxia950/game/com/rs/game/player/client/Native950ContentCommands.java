@@ -77,6 +77,29 @@ final class Native950ContentCommands {
     private static final class Names {
         static final List<String[]> ITEMS=load("items"),NPCS=load("npcs");
     }
+    static final class ItemSearchEntry {
+        final int id; final String name, variant;
+        ItemSearchEntry(int id,String name,String variant){this.id=id;this.name=name;this.variant=variant;}
+        String label(){return name+" (ID "+id+")"+(variant.isEmpty()?"":" ["+variant+"]");}
+    }
+    static List<ItemSearchEntry> itemMatches(String query,int limit) {
+        String needle=query==null?"":query.trim().toLowerCase(Locale.ROOT);
+        if(needle.isEmpty()||limit<1)return Collections.emptyList();
+        Integer exactId=null;try{exactId=Integer.valueOf(needle);}catch(NumberFormatException ignored){ }
+        List<ItemSearchEntry> exact=new ArrayList<>(),other=new ArrayList<>();
+        Set<String> seen=new HashSet<>();
+        for(String[] row:Names.ITEMS){
+            int id;try{id=Integer.parseInt(row[0]);}catch(NumberFormatException invalid){continue;}
+            boolean idMatch=exactId!=null&&id==exactId.intValue();
+            if(!idMatch&&!row[3].contains(needle))continue;
+            String key=id+":"+row[2];if(!seen.add(key))continue;
+            ItemSearchEntry entry=new ItemSearchEntry(id,row[1],row[2]);
+            if(idMatch||row[3].equals(needle))exact.add(entry);else other.add(entry);
+        }
+        exact.addAll(other);
+        return exact.size()<=limit?Collections.unmodifiableList(exact)
+                :Collections.unmodifiableList(new ArrayList<ItemSearchEntry>(exact.subList(0,limit)));
+    }
     static List<String> search(boolean npc,String query) {
         String needle=query.toLowerCase(Locale.ROOT);List<String> result=new ArrayList<>();
         for(String[] row:npc?Names.NPCS:Names.ITEMS)if(row[3].contains(needle))

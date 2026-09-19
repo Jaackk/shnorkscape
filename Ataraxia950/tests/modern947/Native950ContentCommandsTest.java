@@ -43,10 +43,14 @@ public class Native950ContentCommandsTest {
         assertTrue(Native950ContentCommands.search(false,"torva full helm").stream().anyMatch(s->s.contains("noted; base=20135")));
         assertFalse(Native950ContentCommands.search(true,"goblin").isEmpty());
         assertEquals(Native950ContentCommands.search(true,"GOBLIN"),Native950ContentCommands.search(true,"goblin"));
+        assertTrue(Native950ContentCommands.itemMatches("20135",60).stream().anyMatch(e->e.id==20135));
+        assertTrue(Native950ContentCommands.itemMatches("TORVA",3).size()<=3);
+        assertTrue(Native950ContentCommands.itemMatches("torva full helm",60).stream().anyMatch(e->e.label().contains("ID 20135")));
         run(";;search torva 2");run(";;findnpc goblin 1");run(";;gearhelp");
     }
     @Test public void aliasesAndPermissionAndMalformedRequests() {
         for(String name:new String[]{"search","find","si","itemid","finditem","findnpc","snpc"})assertTrue(Native950DevelopmentCommands.isCommand(";;"+name+" name"));
+        assertTrue(Native950DevelopmentCommands.isCommand(";;items"));
         p.setRights(0);run(";;weapons");assertEquals(28,p.getInventory().getFreeSlots());p.setRights(2);
         run(";;gear unknown");run(";;meleegear extra");run(";;search torva -1");run(";;removenpc bad");
         assertEquals(28,p.getInventory().getFreeSlots());run(";;gear range");assertEquals(10000,p.getInventory().getAmountOf(9244));

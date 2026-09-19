@@ -5,7 +5,6 @@ import com.rs.network.protocol.modern950.Native950Actions;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
@@ -36,13 +35,16 @@ public final class Native950BugTest {
 
     static synchronized void close(Player player, String reason) {
         Session session = SESSIONS.remove(player);
-        if (session == null) return;
-        session.flushUnknownFrames();
-        session.event("session", "closed", "reason", reason, "state", state(player));
-        session.close();
+        if (session != null) {
+            session.flushUnknownFrames();
+            session.event("session", "closed", "reason", reason, "state", state(player));
+            session.close();
+        }
+        Native950CombatQa.close(player, reason);
     }
 
     static void marker(Player player, String description) {
+        Native950CombatQa.marker(player, description);
         Session session = session(player);
         if (session == null) return;
         session.flushUnknownFrames();
@@ -54,12 +56,14 @@ public final class Native950BugTest {
     }
 
     static void command(Player player, String command, String argument) {
+        Native950CombatQa.command(player, command, argument);
         Session session = session(player);
         if (session != null) session.event("command", "development", "command", command,
                 "argument", argument == null ? "" : argument, "state", state(player));
     }
 
     static void action(Player player, Native950Actions.Action action) {
+        Native950CombatQa.action(player, action);
         Session session = session(player);
         if (session == null) return;
         if (action instanceof Native950Actions.InterfaceAction) {
@@ -74,10 +78,16 @@ public final class Native950BugTest {
             session.event("input", "npc", "index", a.index(), "option", a.option());
         } else if (action instanceof Native950Actions.CloseModalAction) {
             session.event("interface", "close-modal");
+        } else if (action instanceof Native950Actions.StringDialogueAction) {
+            Native950Actions.StringDialogueAction a=(Native950Actions.StringDialogueAction)action;
+            session.event("input","string-dialogue","kind",a.isNameDialogue()?"name":"text","characters",a.text()==null?0:a.text().length(),"content","redacted");
+        } else if (action instanceof Native950Actions.CountDialogueAction) {
+            session.event("input","count-dialogue","value",((Native950Actions.CountDialogueAction)action).count());
         }
     }
 
     static void event(Player player, String category, String name, Object... fields) {
+        Native950CombatQa.event(player, category, name, fields);
         Session session = session(player);
         if (session != null) session.event(category, name, fields);
     }
@@ -87,6 +97,10 @@ public final class Native950BugTest {
      * This remains a no-op unless the player explicitly enabled Bug Test Mode.
      */
     public static void statusTimer(Player player, String transition, int mapId, int ticks, boolean visible) {
+        Native950CombatQa.event(player, "status", "timer-" + transition, "mapId", mapId, "ticks", ticks,
+                "visible", visible, "scripts", ticks >= 0
+                        ? "4252(" + mapId + "," + ticks + ");10624(" + mapId + "," + (visible ? 1 : 0) + ")"
+                        : "10624(" + mapId + "," + (visible ? 1 : 0) + ")");
         Session session = session(player);
         if (session == null) return;
         session.event("status", "timer-" + transition, "mapId", mapId, "ticks", ticks,
@@ -97,6 +111,7 @@ public final class Native950BugTest {
 
     /** Framed-but-unimplemented client traffic, captured only while this diagnostic is enabled. */
     static void unhandledFrame(Player player, int opcode, byte[] payload) {
+        Native950CombatQa.unhandledFrame(player, opcode, payload == null ? 0 : payload.length);
         Session session = session(player);
         if (session == null) return;
         int length=payload==null?0:payload.length;
@@ -135,30 +150,12 @@ public final class Native950BugTest {
     private static void capture(final Session session, final String image) {
         WRITER.execute(new Runnable() { public void run() {
             File output=new File(session.directory,image);
-            String executable=powershell();
-            String script="$ErrorActionPreference='Stop'; $p=Get-Process -Name rs2client-vulkan -ErrorAction Stop | Where-Object {$_.MainWindowHandle -ne 0} | Select-Object -First 1; if($null -eq $p){throw 'RuneTek window was not found'}; Add-Type -AssemblyName System.Drawing; Add-Type @'\nusing System; using System.Runtime.InteropServices; public static class BugTestWindow { [DllImport(\"user32.dll\")] public static extern bool GetWindowRect(IntPtr h,out RECT r); public struct RECT { public int Left,Top,Right,Bottom; } }\n'@; $r=New-Object BugTestWindow+RECT; if(-not [BugTestWindow]::GetWindowRect($p.MainWindowHandle,[ref]$r)){throw 'GetWindowRect failed'}; $w=$r.Right-$r.Left; $h=$r.Bottom-$r.Top; if($w -le 0 -or $h -le 0){throw 'window is not visible'}; Write-Output ('windowHandle=0x{0:X};bounds={1},{2},{3},{4}' -f $p.MainWindowHandle,$r.Left,$r.Top,$r.Right,$r.Bottom); $b=New-Object System.Drawing.Bitmap $w,$h; $g=[System.Drawing.Graphics]::FromImage($b); try {$g.CopyFromScreen($r.Left,$r.Top,0,0,$b.Size); $b.Save('"+ps(output.getAbsolutePath())+"',[System.Drawing.Imaging.ImageFormat]::Png)} finally {$g.Dispose(); $b.Dispose()}";
-            try {
-                String encoded=java.util.Base64.getEncoder().encodeToString(script.getBytes(StandardCharsets.UTF_16LE));
-                Process process=new ProcessBuilder(executable,"-NoProfile","-NonInteractive","-ExecutionPolicy","Bypass","-EncodedCommand",encoded).redirectErrorStream(true).start();
-                int exit=process.waitFor();
-                String outputText=read(process.getInputStream());
-                session.event("screenshot",exit==0&&output.isFile()&&output.length()>0?"saved":"failed","file",image,"exit",exit,
-                        "helper",executable,"output",outputText,"bytes",output.isFile()?output.length():0);
-            } catch(Throwable failure) { session.event("screenshot","failed","file",image,"helper",executable,
-                    "error",failure.getClass().getSimpleName(),"message",safeMessage(failure)); }
+            Native950WindowCapture.Result result=Native950WindowCapture.capture(output);
+            session.event("screenshot",result.saved?"saved":"failed","file",image,"exit",result.exitCode,
+                    "helper",result.helper,"command",result.command,"output",result.output,"bytes",result.bytes,
+                    "error",result.errorType,"message",result.errorMessage);
         }});
     }
-    private static String powershell() {
-        String root=System.getenv("SystemRoot"); if(root==null||root.trim().isEmpty())root="C:\\Windows";
-        return new File(root,"System32\\WindowsPowerShell\\v1.0\\powershell.exe").getAbsolutePath();
-    }
-    private static String read(InputStream input) throws java.io.IOException {
-        byte[] buffer=new byte[1024]; int total=0,read; StringBuilder out=new StringBuilder();
-        while(total<8192&&(read=input.read(buffer,0,Math.min(buffer.length,8192-total)))>=0){out.append(new String(buffer,0,read,StandardCharsets.UTF_8));total+=read;}
-        return out.toString().trim();
-    }
-    private static String safeMessage(Throwable failure) { String value=failure.getMessage(); return value==null?"":value.length()>1024?value.substring(0,1024):value; }
-    private static String ps(String path) { return path.replace("'", "''"); }
 
     private static final class Session {
         final File directory, log;

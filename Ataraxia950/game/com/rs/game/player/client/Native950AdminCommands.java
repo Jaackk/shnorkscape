@@ -26,11 +26,13 @@ public final class Native950AdminCommands {
                     entry(";;testbar, ;;clearbar", "add the test abilities; empty the selected bar")),
             group("BUG TEST", "c4b5fd", "e9d5ff",
                     entry(";;bugtest", "start or stop local UI/combat telemetry"),
-                    entry(";;bug <description>", "record a marked state snapshot and queue a game-window screenshot")),
+                    entry(";;bug <description>", "record a marked state snapshot and queue a game-window screenshot"),
+                    entry(";;combatqa [stop|status|reset|cleanup]", "record and manage an automatic combat flight-recorder session")),
             group("GEAR & ITEMS", "86efac", "d9f99d",
                     entry(";;meleegear, ;;magegear, ;;rangegear, ;;weapons", "add a complete combat kit"),
                     entry(";;gear melee|mage|range|weapons, ;;gearhelp", "choose a kit or show its contents"),
                     entry(";;item <id> [amount]", "add an item by cache ID"),
+                    entry(";;items", "open the developer item search and backpack browser"),
                     entry(";;search / ;;find / ;;si / ;;itemid / ;;finditem <name> [page]", "find item IDs"),
                     entry(";;findnpc / ;;snpc <name> [page]", "find NPC IDs")),
             group("NPCS & TRAVEL", "fda4af", "fecdd3",
@@ -55,7 +57,7 @@ public final class Native950AdminCommands {
         if (Native950ContentCommands.recognizes(command)) return true;
         switch (command) {
             case "god": case "infprayer": case "infadren": case "adrenaline":
-            case "almighty": case "infrunes": case "infrun": case "infammo": case "commands": case "spell": case "bugtest": case "bug":
+            case "almighty": case "infrunes": case "infrun": case "infammo": case "commands": case "spell": case "bugtest": case "bug": case "combatqa": case "items":
             case "wars": case "warsretreat": case "death": case "deathsoffice": case "vorago": case "dummy": case "testbar": case "clearbar": case "bar":
             case "revo": case "revolution":
             case "heal": case "refill": case "max": case "coords": case "disengage": case "devhelp": case "devstatus":
@@ -96,6 +98,22 @@ public final class Native950AdminCommands {
             String summary=description.toString().trim();
             Native950BugTest.marker(p,summary);
             reply(channel,summary.isEmpty()?"Bug marker recorded. Screenshot capture queued.":"Bug marker recorded: "+summary);return;
+        }
+        if(command.equals("combatqa")) {
+            if(args.length>2){reply(channel,"Use ;;combatqa [stop|status|reset|cleanup].");return;}
+            String action=args.length==1?"start":args[1];
+            if(action.equals("start"))reply(channel,Native950CombatQa.start(p));
+            else if(action.equals("stop"))reply(channel,Native950CombatQa.stop(p,"command"));
+            else if(action.equals("status"))reply(channel,Native950CombatQa.status(p));
+            else if(action.equals("reset"))reply(channel,Native950CombatQa.reset(p));
+            else if(action.equals("cleanup"))reply(channel,Native950CombatQa.cleanup());
+            else reply(channel,"Use ;;combatqa [stop|status|reset|cleanup].");
+            return;
+        }
+        if(command.equals("items")) {
+            if(args.length!=1){reply(channel,"Use ;;items.");return;}
+            if (!p.isActive() || p.hasFinished() || p.isDead() || p.isLocked()) { reply(channel,"Wait until your character can act."); return; }
+            Native950ItemBrowser.open(p);return;
         }
         if (args.length > (command.equals("adrenaline") || command.equals("bar") || command.equals("spell") || command.equals("dummy") ? 2 : 1)) {
             String usage=command.equals("adrenaline") ? " [0-100]" : command.equals("bar") ? " [1-3]"

@@ -105,6 +105,7 @@ public final class Native950Interactions {
     private final Native950ExitUi exitUi;
     private final Native950Dialogues dialogues;
     private final Native950ProductionMenu productionMenu;
+    private final Native950ItemBrowser itemBrowser;
     private final Native950ToolbeltUi toolbeltUi;
     private final Native950ForgeUi forgeUi;
     private final Native950QuantityInput quantityInput;
@@ -195,6 +196,7 @@ public final class Native950Interactions {
         this.dialogues = new Native950Dialogues(player, channel, this::cancelQuantity, dialogueVerifier);
         player.setNative950Dialogues(dialogues);
         this.productionMenu = new Native950ProductionMenu(player, dialogues);
+        this.itemBrowser = new Native950ItemBrowser(player, channel, dialogues);
         this.toolbeltUi = new Native950ToolbeltUi(player, channel);
         player.getInterfaceManager().setNative950ToolbeltUi(toolbeltUi);
         this.forgeUi = new Native950ForgeUi(player,channel);
@@ -385,7 +387,12 @@ public final class Native950Interactions {
                 && (player.isLocked() || player.isNative950ForceMovementActive())) {
             reject("You cannot move to that interaction right now"); return;
         }
+        if (action instanceof Native950Actions.StringDialogueAction) {
+            if (!itemBrowser.handle((Native950Actions.StringDialogueAction) action)) unhandled(action);
+            return;
+        }
         if (action instanceof Native950Actions.CountDialogueAction) {
+            if (itemBrowser.handle((Native950Actions.CountDialogueAction) action)) return;
             quantity((Native950Actions.CountDialogueAction) action); return;
         }
         if (action instanceof Native950Actions.DialogueClickAction) {
@@ -395,6 +402,7 @@ public final class Native950Interactions {
             // Numeric mode 17 Escape sends950 opcode11; unlike CLOSE_MODAL it leaves the bank open.
             cancelQuantity(); return;
         }
+        if (action instanceof Native950Actions.PauseButtonAction && itemBrowser.cancelInput()) return;
         if (!(action instanceof Native950Actions.GroundItemAction)) pendingGroundItem=null;
         if (action instanceof Native950Actions.GroundItemAction) groundItem((Native950Actions.GroundItemAction)action);
         else if (action instanceof Native950Actions.ObjectAction) object((Native950Actions.ObjectAction) action);
@@ -506,7 +514,7 @@ public final class Native950Interactions {
     void walking() { cancelSkill(); pendingGroundItem=null; combatActions.cancelAttack(player); cancelConversations(); pendingBank = null; pendingNpcOption = 0; closeBank(); worldMap.close(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); }
 
     /** Retire all pending responses before the session leaves the world. */
-    void close() { Native950Familiars.onLogout(player); cancelSkill(); Native950Skilling.detach(player); pendingGroundItem=null; combatActions.stop(player); cancelConversations(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); }
+    void close() { Native950Familiars.onLogout(player); cancelSkill(); itemBrowser.dispose(); Native950Skilling.detach(player); pendingGroundItem=null; combatActions.stop(player); cancelConversations(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); }
 
     private void cancelQuantity() {
         quantityInput.cancel();
@@ -520,6 +528,7 @@ public final class Native950Interactions {
     }
 
     private void cancelDialogue() {
+        itemBrowser.close();
         productionMenu.close(); forgeUi.close();
         dialogueNpc = null;
         try {
@@ -543,6 +552,7 @@ public final class Native950Interactions {
     }
 
     private void dialogue(Native950Actions.DialogueClickAction action) {
+        if (itemBrowser.handle(action)) return;
         if (productionMenu.handle(action)) return;
         if (player.isLocked() || player.closeInterfaceLocked || !dialogueNpcAvailable()) {
             cancelDialogue(); rejectedActions++; return;
@@ -1115,6 +1125,7 @@ public final class Native950Interactions {
 
     private void button(Native950Actions.InterfaceAction action) {
         Native950BugTest.event(player,"interface","button-dispatch","interface",action.interfaceId(),"component",action.componentId(),"slot",action.slot(),"option",action.option());
+        if(itemBrowser.handle(action))return;
         if(Native950Prayer.button(player,action))return;
         if(player.getNative950ActionBar().button(player,channel,action))return;
         System.out.println("[Ataraxia950] Interface action " + action.interfaceId() + ":" + action.componentId()

@@ -508,7 +508,13 @@ public final class Native950MeleeCombat {
             // treated as an attack.
             if(queuedAbilities.get(player)==null&&player.getNative950ActionBar().isRevolutionEnabled()){
                 int candidate=revolutionCandidate(player,9);
-                if(candidate>=0)queuedAbilities.put(player,candidate);
+                if(candidate>=0){
+                    queuedAbilities.put(player,candidate);
+                    Native950AbilityCatalog.Definition selected=Native950AbilityCatalog.get(candidate);
+                    Native950BugTest.event(player,"combat","revolution-selected","structure",candidate,
+                            "name",selected==null?"unknown":selected.name,"source","revolution",
+                            "activeBar",player.getNative950ActionBar().activeBar()+1);
+                }
             }
             boolean abilityTurn=performAbility(player,fighter);
             if(npc.isDead())continue;

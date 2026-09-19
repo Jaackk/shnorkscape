@@ -73,14 +73,20 @@ public final class Native950QuantityInput {
 
     /** Native input mode 17 emits the verified eight-byte COUNT_DIALOGUE packet. */
     public List<Native950Packets.Packet> promptPackets() {
+        return promptPackets(pending != null && pending.kind==Kind.DEPOSIT ? "How many would you like to deposit?"
+                : pending != null && pending.kind==Kind.DEFAULT ? "Set the default bank quantity:"
+                : "How many would you like to withdraw?");
+    }
+
+    /** Same verified count-dialogue surface with caller-owned wording. */
+    public List<Native950Packets.Packet> promptPackets(String prompt) {
         checkOwner();
         if (pending == null) throw new IllegalStateException("Quantity prompt requires an owned request");
         return Arrays.asList(
                 Native950Packets.openSub(1477, FRAME_HOST, FRAME, true),
                 Native950Packets.openSub(FRAME, INPUT_HOST, INPUT, true),
                 Native950Packets.hideInterface(1477, 747, false),
-                Native950Packets.runClientScript(17396, pending.kind==Kind.DEPOSIT ? "How many would you like to deposit?"
-                        : pending.kind==Kind.DEFAULT ? "Set the default bank quantity:" : "How many would you like to withdraw?"));
+                Native950Packets.runClientScript(17396, Objects.requireNonNull(prompt,"prompt")));
     }
 
     /** Use after cancel or consume, while this adapter still owns the visible input frame. */

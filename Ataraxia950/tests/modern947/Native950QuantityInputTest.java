@@ -311,6 +311,8 @@ public class Native950QuantityInputTest {
         packet(Native950Packets.runClientScript(17396,"How many would you like to deposit?"),input.promptPackets().get(3));
         input.cancel();assertTrue(input.beginDefault(1,containers.bankSnapshot()));
         packet(Native950Packets.runClientScript(17396,"Set the default bank quantity:"),input.promptPackets().get(3));
+        packet(Native950Packets.runClientScript(17396,"How many Torva full helms would you like?"),
+                input.promptPackets("How many Torva full helms would you like?").get(3));
         assertEquals(2,verifications);
     }
     private static byte[] bytes(JsonObject files, String key) { return Base64.getDecoder().decode(files.getAsJsonObject(key).get("base64").getAsString()); }
