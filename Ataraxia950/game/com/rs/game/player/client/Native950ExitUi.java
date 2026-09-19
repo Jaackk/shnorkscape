@@ -19,6 +19,7 @@ public final class Native950ExitUi {
     private final Channel channel;
     private final Runnable verifier;
     private final LogoutTransport logoutTransport;
+    private final Native950LayoutEditor layoutEditor;
     private boolean open,cacheVerified,confirmation,signingOut,openingCloseAcknowledgement;
 
     /** The world session owns persistence; implementations must never call legacy realFinish(). */
@@ -32,8 +33,10 @@ public final class Native950ExitUi {
         this.channel=Objects.requireNonNull(channel,"channel");
         this.verifier=Objects.requireNonNull(verifier,"verifier");
         this.logoutTransport=Objects.requireNonNull(transport,"transport");
+        this.layoutEditor=new Native950LayoutEditor(player,channel);
     }
     public boolean isOpen(){return open;}
+    public boolean isLayoutEditing(){return layoutEditor.isOpen();}
     public boolean isSigningOut(){return signingOut;}
     /**
      * The paired client emits CLOSE_MODAL while it swaps quick-options state for
@@ -46,6 +49,7 @@ public final class Native950ExitUi {
         if(!open||confirmation)return false;
         openingCloseAcknowledgement=false;return true;
     }
+    boolean consumeLayoutEditorClose(){return layoutEditor.consumeNativeClose();}
     public static boolean isOpenRequest(Native950Actions.InterfaceAction a){
         // enum7716[1004] ->21278 param3507 is the minimap frame's exit actor layer.
         return a.interfaceId()==ROOT&&a.componentId()==ENTRY&&a.slot()==1
@@ -64,6 +68,7 @@ public final class Native950ExitUi {
 
     public boolean handle(Native950Actions.InterfaceAction a){
         if(signingOut)return isOpenRequest(a)||a.interfaceId()==INTERFACE;
+        if(layoutEditor.handle(a))return true;
         if(isOpenRequest(a)){
             verifyBeforeOpen();
             if(!player.isActive()||player.hasFinished()||player.isDead())return true;
@@ -78,7 +83,7 @@ public final class Native950ExitUi {
         }
         if(a.interfaceId()!=INTERFACE)return false;
         switch(a.componentId()){
-            case 22: close();player.sendMessage("Saved layout editing is not available yet on this local server.");return true;
+            case 22: close();layoutEditor.open();return true;
             case 43: close();player.sendMessage("For local-server issues, describe what happened and the steps to reproduce it to the server developer.");return true;
             case 66: close();player.sendMessage("World 1 is the only local world currently available.");return true;
             case 69: player.sendMessage("Returning to the lobby is not available yet.");return true;
@@ -158,6 +163,7 @@ public final class Native950ExitUi {
     }
 
     public void close(){
+        layoutEditor.requestCancel();
         if(!open)return;
         open=false;confirmation=false;openingCloseAcknowledgement=false;
         int parent=player.getInterfaceManager().getInterfaceParentId(INTERFACE);

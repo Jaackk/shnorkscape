@@ -68,6 +68,17 @@ public final class Native950ExitUiAcceptance {
             &&packetIndex(packets,Native950Packets.hideInterface(1477,809,true))<0,
             "Exit hid unowned sibling input layers");
     }
+    private static void checkLayoutOpeningRecipe(EmbeddedChannel ch){
+        ch.flush();Object o;List<Native950Packets.Packet> packets=new ArrayList<>();
+        while((o=ch.readOutbound())!=null){
+            if(o instanceof Native950Packets.Packet)packets.add((Native950Packets.Packet)o);
+            ReferenceCountUtil.release(o);
+        }
+        check(packetIndex(packets,Native950Packets.openSub(1477,692,1475,true))>=0,
+                "Native layout editor omitted its proven mount");
+        check(packetIndex(packets,Native950Packets.varcSmall(3477,1))<0,
+                "Server took ownership of native Edit Mode entry varc");
+    }
     public static void main(String[] args)throws Exception{
         if(args.length!=1)throw new IllegalArgumentException("Usage: Native950ExitUiAcceptance <paired950-cache>");
         System.setProperty(Native950World.SPAWNS_PROPERTY,"false");
@@ -102,6 +113,25 @@ public final class Native950ExitUiAcceptance {
             check(ui.consumeOpeningCloseAcknowledgement(),"Opening acknowledgement was not fenced");
             check(ui.consumeOpeningCloseAcknowledgement(),"Repeated opening acknowledgement closed the exit overlay");
             check(ui.isOpen(),"Repeated opening acknowledgement did not retain the exit overlay");
+            ui.handle(click(22));
+            check(!ui.isOpen()&&ui.isLayoutEditing(),"Edit Layout did not replace Options with the native editor");
+            checkLayoutOpeningRecipe(ch);
+            check(p.getInterfaceManager().getInterfaceParentId(1475)==(1477<<16|692),
+                    "Native layout editor ownership was not registered");
+            check(ui.handle(click(1475,43,-1,-1,1))&&ui.isLayoutEditing(),
+                    "Save & Exit did not retain the mount for native teardown");
+            check(packet(ch,Native950Packets.runClientScript(8743,0)),"Save & Exit omitted native wrapper8743");
+            check(ui.consumeLayoutEditorClose()&&!ui.isLayoutEditing(),"Native save close was not reconciled");
+            check(!p.getInterfaceManager().containsInterface(1475),"Native save close retained server mount ownership");
+            check(!packet(ch,Native950Packets.varcSmall(3477,0)),"Server manually cleared Edit Mode after native save");
+            ui.handle(entry());ui.handle(click(22));checkLayoutOpeningRecipe(ch);
+            check(ui.handle(click(1475,20,-1,-1,1))&&ui.isLayoutEditing(),
+                    "Native X did not retain the mount for cancel/confirmation");
+            check(packet(ch,Native950Packets.runClientScript(8746)),"Native X omitted cancel wrapper8746");
+            check(ui.consumeLayoutEditorClose()&&!ui.isLayoutEditing(),"Native cancel close was not reconciled");
+            check(!packet(ch,Native950Packets.varcSmall(3477,0)),"Server manually cleared Edit Mode after native cancel");
+            check(!ui.consumeLayoutEditorClose(),"Stale native editor close was consumed twice");
+            ui.handle(entry());
             ui.handle(click(86));check(calls[0]==0,"Unarmed confirmation logged out");
             ui.handle(click(72));check(packet(ch,Native950Packets.hideInterface(1433,62,false)),"Logout does not show native confirmation");
             ui.handle(click(89));ui.handle(click(86));check(calls[0]==0&&p.isActive(),"Cancel did not retire confirmation");
@@ -121,7 +151,7 @@ public final class Native950ExitUiAcceptance {
             p.getControlerManager().forceStop();
             ui.handle(click(69));check(calls[0]==0&&p.isActive(),"Unimplemented lobby entry silently logged out");
             check(!ui.handle(click(15)),"Exit helper swallowed another menu owner's entry");
-            for(int local:new int[]{22,43,66}){ui.handle(click(local));check(!ui.isOpen()&&p.isActive()&&calls[0]==0,"Local menu explanation failed or disconnected: "+local);ui.handle(entry());}
+            for(int local:new int[]{43,66}){ui.handle(click(local));check(!ui.isOpen()&&p.isActive()&&calls[0]==0,"Local menu explanation failed or disconnected: "+local);ui.handle(entry());}
             ui.handle(click(1477,8,-1,-1,1));
             check(!ui.isOpen()&&!p.getInterfaceManager().containsInterface(1433),"Escape did not close owned options");
             check(packet(ch,Native950Packets.closeSub(1477,806)),"Close used wrong mount");

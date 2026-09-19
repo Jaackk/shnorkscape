@@ -67,6 +67,8 @@ Strict state validation exists because a prior Overload path created legacy Torv
 
 ## Sources of authority
 
+Before expensive native reverse engineering, search Jack's existing RSPS projects and relevant public RSPS/Rune-Server implementations for the same subsystem. Use those sources only as architectural and behavioural references; verify every revision-specific interface, component, script, variable and packet against revision 950 before implementation.
+
 For 950-specific claims, use the actual 950 cache, the original native 950 client, OpenNXT descriptors, verified packet traces, cache scripts/configs/varbits/animations, and current protocol tests. The pinned original WIN64 client hash cited in the workspace handoff is `fc7492548627a4068e88a7a45ba4f0be93004adf246bb4b174b24ae588768b36`.
 
 `Documents/RSPS/NocturneServer/Elveron876` is valuable as a behavioural/architecture reference: EOC target ownership, ability lifecycle, queues, cooldown groups, effects and combat feel. It is **not** authority for 950 packet/component/interface IDs, scripts, varps/varbits, animations, workspace protocol, or shortcut encodings. Earlier failures came from copying older assumptions: old shortcut packing, old interface components, sprites mistaken for animations, and guessed scripts/redraw calls. Use Elveron to ask “what should this mechanic do?” and 950 evidence to answer “how does this client contract express it?”
