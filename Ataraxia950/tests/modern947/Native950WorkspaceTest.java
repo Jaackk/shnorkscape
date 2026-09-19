@@ -40,11 +40,11 @@ public final class Native950WorkspaceTest {
             Native950BugTest.toggle(player);
             Native950Workspace.inboundFrame(player,74,new byte[]{1,2,3,4,5,6,7});
             Native950Workspace.inboundFrame(player,87,new byte[]{9,9,9});
-            Native950Workspace.inboundFrame(player,33,new byte[]{1,2,3,4,5,6,7,8});
-            Native950Workspace.inboundFrame(player,125,new byte[]{9,10});
+            Native950Workspace.inboundFrame(player,54,new byte[]{1,2,3,4,5,6,7});
+            Native950Workspace.inboundFrame(player,65,new byte[]{9,10,11,12,13,14});
             String captured=Native950Workspace.pendingPayloads(player);
-            assertTrue(captured.contains("33/8/0102030405060708"));
-            assertTrue(captured.contains("125/2/090a"));
+            assertTrue(captured.contains("54/7/01020304050607"));
+            assertTrue(captured.contains("65/6/090a0b0c0d0e"));
             assertFalse("chat must never enter workspace payload capture",captured.contains("87/"));
             Native950Workspace.marker(player,"candidate");
             assertTrue("diagnostics are observation only",channel.readOutbound()==null);

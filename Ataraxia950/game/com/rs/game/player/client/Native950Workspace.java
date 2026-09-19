@@ -36,7 +36,7 @@ final class Native950Workspace {
     }
 
     /**
-     * Stores complete bytes only for the two workspace-mutation candidates proven by the
+     * Stores complete bytes only for the two fixed-size workspace candidates isolated by the
      * controlled live trace. This is enabled solely by Bug Test Mode and never accepts chat,
      * login, credentials, or arbitrary unknown payloads.
      */
@@ -53,7 +53,7 @@ final class Native950Workspace {
     static void unhandledFrame(Player player, int opcode, byte[] payload) { }
 
     /**
-     * A marker flushes the ordered 33/125 byte sequences from the preceding controlled action.
+     * A marker flushes the ordered 54/65 byte sequences from the preceding controlled action.
      * The session-local JSONL is deliberately the only retention point.
      */
     static void marker(Player player, String description) {
@@ -67,7 +67,7 @@ final class Native950Workspace {
         }
         Native950BugTest.event(player, "workspace", "mutation-payloads",
                 "marker", description == null || description.trim().isEmpty() ? "(no description)" : description.trim(),
-                "frames", payloads, "scope", "opcode-33-and-opcode-125-only since-previous-marker-or-start",
+                "frames", payloads, "scope", "opcode-54-and-opcode-65-only since-previous-marker-or-start",
                 "disposition", "session-local raw diagnostic; no layout state decoded");
     }
 
@@ -80,7 +80,7 @@ final class Native950Workspace {
             }
             String viewport = state.width + "x" + state.height + " mode " + state.displayMode;
             return "Workspace: native client-owned; viewport " + viewport
-                    + "; 33/125 payload capture is active only while Bug Test Mode is enabled.";
+                    + "; 54/65 payload capture is active only while Bug Test Mode is enabled.";
         }
     }
 
@@ -89,7 +89,7 @@ final class Native950Workspace {
             State state = STATES.get(player);
             if (state == null || state.windowReports == 0) return "workspace=unreported";
             return "workspace=" + state.width + "x" + state.height + "/mode" + state.displayMode
-                    + ";workspacePayloadCapture=33,125-opt-in";
+                    + ";workspacePayloadCapture=54,65-opt-in";
         }
     }
 
@@ -150,5 +150,5 @@ final class Native950Workspace {
         }
     }
 
-    private static boolean isWorkspaceMutationCandidate(int opcode) { return opcode == 33 || opcode == 125; }
+    private static boolean isWorkspaceMutationCandidate(int opcode) { return opcode == 54 || opcode == 65; }
 }
