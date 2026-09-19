@@ -20,6 +20,13 @@ public class Native950CombatQaTest {
         assertTrue(Native950CombatQa.collapsedTicks("[101, 101, 103]"));
     }
 
+    @Test public void staleVisualEvidenceIsDroppedBeforeCapture() {
+        assertFalse(Native950CombatQa.captureIsStale(false,1000L,3500L));
+        assertTrue(Native950CombatQa.captureIsStale(false,1000L,3501L));
+        assertFalse(Native950CombatQa.captureIsStale(true,1000L,8000L));
+        assertTrue(Native950CombatQa.captureIsStale(true,1000L,8001L));
+    }
+
     @Test public void combatQaCommandsArePassiveAndRegistered() {
         for(String command:new String[]{";;combatqa",";;combatqa stop",";;combatqa status",";;combatqa reset",";;combatqa cleanup"}) {
             assertTrue(Native950DevelopmentCommands.isCommand(command));

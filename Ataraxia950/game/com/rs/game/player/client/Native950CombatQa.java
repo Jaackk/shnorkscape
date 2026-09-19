@@ -37,11 +37,13 @@ import java.util.concurrent.atomic.AtomicLong;
 /** Passive, bounded combat flight recorder. No method in this class mutates gameplay state. */
 final class Native950CombatQa {
     interface WindowCapturer { Native950WindowCapture.Result capture(File output); }
-    private static final int MAX_DELAYED = 160;
+    private static final int MAX_DELAYED = 32;
+    private static final long NORMAL_CAPTURE_MAX_AGE_MS = 2500L;
+    private static final long HIGH_CAPTURE_MAX_AGE_MS = 7000L;
     private static final ThreadPoolExecutor LOG = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS,
             new ArrayBlockingQueue<Runnable>(4096), daemon("native950-combatqa-log"), new ThreadPoolExecutor.AbortPolicy());
     private static final ThreadPoolExecutor CAPTURE = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS,
-            new ArrayBlockingQueue<Runnable>(96), daemon("native950-combatqa-capture"), new ThreadPoolExecutor.AbortPolicy());
+            new ArrayBlockingQueue<Runnable>(3), daemon("native950-combatqa-capture"), new ThreadPoolExecutor.AbortPolicy());
     private static final ScheduledThreadPoolExecutor TIMER = new ScheduledThreadPoolExecutor(1, daemon("native950-combatqa-timer"));
     private static final AtomicInteger DELAYED = new AtomicInteger();
     private static final Map<Player, Session> SESSIONS = new IdentityHashMap<Player, Session>();
@@ -194,6 +196,7 @@ final class Native950CombatQa {
         final Map<String, Long> anomalyDebounce = new LinkedHashMap<String, Long>();
         String correlation = "qa-000000";
         String pendingSource = "unknown";
+        String lastSafeQaState = "not-sampled";
         long correlationNumber, queuedAt = -1L, lastCombatTick = -100L;
         String queuedStructure = "none";
         boolean stopping, finalized;
@@ -254,7 +257,7 @@ final class Native950CombatQa {
             complete.put("tick", nowTick);
             complete.put("correlationId", correlation);
             complete.putAll(fields);
-            complete.put("qaState", state(player));
+            complete.put("qaState", qaState());
             enqueue(json(category, name, complete));
             events.incrementAndGet();
             detect(category, name, fields, nowTick);
@@ -301,7 +304,7 @@ final class Native950CombatQa {
             }
             if ("visual-write-failed".equals(name) || "phase-failure".equals(name))
                 anomaly("strict-or-client-write-failure", map("event", name, "detail", fields));
-            if (("unhandled-action".equals(name) || "unhandled-frame".equals(name)) && nowTick - lastCombatTick <= 6L)
+            if ("unhandled-action".equals(name) && "combat".equals(category) && nowTick - lastCombatTick <= 6L)
                 anomaly("unhandled-combat-context-input", map("event", name, "detail", fields));
         }
 
@@ -313,7 +316,7 @@ final class Native950CombatQa {
             anomalies.incrementAndGet(); anomalyKinds.add(kind);
             Map<String, Object> fields = new LinkedHashMap<String, Object>();
             fields.put("tick", now); fields.put("correlationId", correlation); fields.put("kind", kind);
-            fields.putAll(detail); fields.put("qaState", state(player));
+            fields.putAll(detail); fields.put("qaState", qaState());
             enqueue(json("anomaly", "automatic-marker", fields));
             storyBoardForAnomaly(kind);
         }
@@ -328,36 +331,37 @@ final class Native950CombatQa {
             }
             if ("ability-executed".equals(name)) {
                 storyboardGroups++;
-                storyboard(name, correlation, false, 0L);
-                storyboard(name, correlation, false, 250L);
-                storyboard(name, correlation, false, 500L);
-                storyboard(name, correlation, false, 1000L);
+                storyboard(name, correlation, false, 150L);
                 long channelEnd = number(fields.get("channelEndTick"), 0L), now = tick();
                 if (channelEnd > now + 2L) storyboard("channel-end", correlation, false,
                         Math.min(8000L, (channelEnd - now) * 600L));
                 return;
             }
+            boolean meaningfulActionBar = "bound".equals(name) || "cleared".equals(name)
+                    || "rearranged".equals(name) || "preset-selection".equals(name)
+                    || "visual-write-failed".equals(name);
             boolean transition = "prayer".equals(category) || "magic".equals(category)
-                    || "action-bar".equals(category) || "status".equals(category)
+                    || meaningfulActionBar || "status".equals(category)
                     || name.startsWith("effect-") || name.contains("potion") || name.contains("overload")
-                    || name.contains("channel") || "unhandled-action".equals(name);
+                    || name.contains("channel");
             if (transition) storyboard(category + "-" + name, correlation, false, 120L);
         }
 
         void storyboard(String event, String correlationId, boolean high, long delayMillis) {
             if (finalized) return;
+            final long requestedAt = System.currentTimeMillis();
             final String file = String.format(Locale.ROOT, "%06d-%s-%s-%dms.png", sequence.incrementAndGet(),
                     safe(correlationId), safe(event), delayMillis);
             outstandingCaptures.incrementAndGet();
             appendLifecycle(file + "\tACTIVE\t" + correlationId + "\t" + event + "\n");
             Map<String, Object> planned = map("file", file, "delayMs", delayMillis, "priority", high ? "high" : "normal",
-                    "correlationId", correlationId, "event", event);
+                    "correlationId", correlationId, "event", event, "requestedAt", iso(requestedAt));
             enqueue(json("screenshot", "planned", planned));
-            if (delayMillis <= 0L) { submitCapture(new CaptureJob(this, file, event, correlationId, high)); return; }
+            if (delayMillis <= 0L) { submitCapture(new CaptureJob(this, file, event, correlationId, high, requestedAt)); return; }
             if (!reserveDelayed()) { dropCapture(file, "delayed-queue-full"); return; }
             TIMER.schedule(new Runnable() { public void run() {
                 DELAYED.decrementAndGet();
-                submitCapture(new CaptureJob(Session.this, file, event, correlationId, high));
+                submitCapture(new CaptureJob(Session.this, file, event, correlationId, high, requestedAt));
             }}, delayMillis, TimeUnit.MILLISECONDS);
         }
 
@@ -367,17 +371,29 @@ final class Native950CombatQa {
             maybeFinalize();
         }
 
-        void captureFinished(String file, String event, String correlationId, boolean high,
+        void captureFinished(String file, String event, String correlationId, boolean high, long requestedAt,
+                             long startedAt,
                              Native950WindowCapture.Result result) {
             if (result.saved) screenshotsSaved.incrementAndGet(); else screenshotFailures.incrementAndGet();
             String life = high ? "UNRESOLVED_EVIDENCE" : "UNREVIEWED";
             appendLifecycle(file + "\t" + life + "\t" + correlationId + "\t" + event + "\n");
             enqueue(json("screenshot", result.saved ? "saved" : "failed", map("file", file,
                     "event", event, "correlationId", correlationId, "exit", result.exitCode,
-                    "helper", result.helper, "command", result.command, "output", result.output,
-                    "windowEvidence", result.output, "bytes", result.bytes,
-                    "errorType", result.errorType, "message", result.errorMessage, "lifecycle", life)));
+                     "helper", result.helper, "command", result.command, "output", result.output,
+                     "windowEvidence", result.output, "bytes", result.bytes,
+                     "errorType", result.errorType, "message", result.errorMessage, "lifecycle", life,
+                     "requestedAt", iso(requestedAt), "captureStartedAt", iso(startedAt),
+                     "queueLagMs", Math.max(0L, startedAt-requestedAt),
+                     "completedAt", iso(System.currentTimeMillis()))));
             outstandingCaptures.decrementAndGet(); maybeFinalize();
+        }
+
+        private String qaState() {
+            String sampled=state(player);
+            if(!sampled.startsWith("state-unavailable:"))lastSafeQaState=sampled;
+            return sampled.startsWith("state-unavailable:")
+                    ?lastSafeQaState+";sample=last-safe;reason="+sampled.substring("state-unavailable:".length())
+                    :sampled;
         }
 
         synchronized void stop(String reason) {
@@ -442,13 +458,19 @@ final class Native950CombatQa {
     }
 
     private static final class CaptureJob implements Runnable {
-        final Session session; final String file, event, correlation; final boolean high;
-        CaptureJob(Session session, String file, String event, String correlation, boolean high) {
-            this.session = session; this.file = file; this.event = event; this.correlation = correlation; this.high = high;
+        final Session session; final String file, event, correlation; final boolean high; final long requestedAt;
+        CaptureJob(Session session, String file, String event, String correlation, boolean high, long requestedAt) {
+            this.session = session; this.file = file; this.event = event; this.correlation = correlation;
+            this.high = high; this.requestedAt=requestedAt;
         }
         public void run() {
+            long startedAt=System.currentTimeMillis();
+            if(captureIsStale(high,requestedAt,startedAt)){
+                session.dropCapture(file,"stale-before-capture:"+(startedAt-requestedAt)+"ms");
+                return;
+            }
             Native950WindowCapture.Result result = windowCapturer.capture(new File(session.directory, file));
-            session.captureFinished(file, event, correlation, high, result);
+            session.captureFinished(file, event, correlation, high, requestedAt, startedAt, result);
         }
     }
 
@@ -524,6 +546,10 @@ final class Native950CombatQa {
         int count = 0;
         for (String part : cleaned.split(",")) { if (!part.trim().isEmpty()) { count++; distinct.add(part.trim()); } }
         return count > 1 && distinct.size() < count;
+    }
+
+    static boolean captureIsStale(boolean high,long requestedAt,long startedAt){
+        return startedAt-requestedAt>(high?HIGH_CAPTURE_MAX_AGE_MS:NORMAL_CAPTURE_MAX_AGE_MS);
     }
 
     private static String state(Player player) {
