@@ -21,4 +21,14 @@ public final class Native950WorkspaceTest {
             assertTrue("diagnostic capture must not write gameplay packets",channel.readOutbound()==null);
         } finally { Native950Workspace.close(player);channel.finishAndReleaseAll(); }
     }
+
+    @Test public void workspaceFrameCaptureIsDisabledUntilBugTestModeIsExplicitlyEnabled() {
+        EmbeddedChannel channel=new EmbeddedChannel();
+        Player player=Player.createNative950("workspace-quiet",new WorldTile(3217,3258,0),channel);
+        try {
+            Native950Workspace.unhandledFrame(player,33,new byte[]{1,2,3,4});
+            Native950Workspace.marker(player,"quiet");
+            assertTrue("passive diagnostics must never emit packets",channel.readOutbound()==null);
+        } finally { Native950Workspace.close(player);channel.finishAndReleaseAll(); }
+    }
 }

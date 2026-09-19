@@ -48,6 +48,7 @@ public final class Native950BugTest {
         Session session = session(player);
         if (session == null) return;
         session.flushUnknownFrames();
+        Native950Workspace.marker(player, description);
         String stamp = stamp();
         String image = "bug-" + stamp + ".png";
         session.event("marker", "bug", "description", description == null || description.trim().isEmpty() ? "(no description)" : description.trim(),
@@ -143,6 +144,7 @@ public final class Native950BugTest {
     }
 
     private static synchronized Session session(Player player) { return SESSIONS.get(player); }
+    static synchronized boolean enabled(Player player) { return SESSIONS.containsKey(player); }
     private static String component(int face,int child) { return face+":"+child; }
     private static String tile(Player p) { return p.getX()+","+p.getY()+","+p.getPlane(); }
     private static String state(Player p) {
