@@ -82,9 +82,13 @@ public final class Native950CombatStyles {
             com.rs.game.player.combat.rs2.ClassicBonuses classic=com.rs.game.player.combat.rs2.RS2BonusDatabase.lookup2009scape(
                     Native950MeleeEquipment.classicName(item.getId(),definition.name));
             if(classic!=null)defence+=classic.crushDef;
-            else if(type.slot!=Equipment.SLOT_WEAPON&&type.requirements.containsKey(Skills.DEFENCE))
-                defence+=com.rs.game.player.combat.rs2.ClassicItemBonusResolver.armourFromTier(type.slot,definition.getType(),0,
-                        type.requirements.get(Skills.DEFENCE),false).crushDef;
+            else {
+                Integer armour=nativeArmourBonus(definition.clientScriptData);
+                if(armour!=null)defence+=armour;
+                else if(type.slot!=Equipment.SLOT_WEAPON&&type.requirements.containsKey(Skills.DEFENCE))
+                    defence+=com.rs.game.player.combat.rs2.ClassicItemBonusResolver.armourFromTier(type.slot,definition.getType(),0,
+                            type.requirements.get(Skills.DEFENCE),false).crushDef;
+            }
             for(Map.Entry<Integer,Integer> requirement:type.requirements.entrySet())
                 if(p.getSkills().getLevelForXp(requirement.getKey())<requirement.getValue())
                     throw new IllegalArgumentException("You need "+Skills.SKILL_NAME[requirement.getKey()]+" "+requirement.getValue()+" to use "+type.name+".");
@@ -97,6 +101,15 @@ public final class Native950CombatStyles {
             if(matchesAmmo(d,profile.ammoFamily))damageTier=ammunitionDamageTier(profile.tier,d);
         }
         return new Native950MeleeCombat.Loadout(4+profile.tier,4+damageTier,defence,profile.speed,profile.animation,profile.block,profile);
+    }
+    /** Param2870 is tenths of EoC armour; retain the existing rating-to-classic scale. */
+    static Integer nativeArmourBonus(Map<Integer,Object> params) {
+        if(params==null||!params.containsKey(2870))return null;
+        Object value=params.get(2870);
+        if(!(value instanceof Integer)||((Integer)value)<0)
+            throw new IllegalArgumentException("Invalid current-cache armour rating.");
+        int rating=((Integer)value)/10;
+        return (int)Math.round(rating/com.rs.game.player.combat.rs2.Rs2AtaraxiaCacheBonuses.PLAYER_ARMOUR_RATING_DIVISOR);
     }
     public static final class Profile {
         public final int style,skill,tier,speed,range,animation,block,ammoFamily;

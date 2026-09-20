@@ -17,6 +17,14 @@ public class Native950CombatStylesTest {
  }
  @After public void close(){combat.clear();channel.finishAndReleaseAll();}
  void tick(){combat.beforeMovement();combat.afterMovement();}
+ @Test public void nativeArmourIsNotDiscardedByTheClassicMagicStyleFallback(){
+  assertEquals(Integer.valueOf(123),Native950CombatStyles.nativeArmourBonus(Collections.<Integer,Object>singletonMap(2870,12345)));
+  assertEquals(Integer.valueOf(0),Native950CombatStyles.nativeArmourBonus(Collections.<Integer,Object>singletonMap(2870,0)));
+  assertNull(Native950CombatStyles.nativeArmourBonus(Collections.emptyMap()));
+  for(Object bad:new Object[]{"12345",-1})try{
+   Native950CombatStyles.nativeArmourBonus(Collections.singletonMap(2870,bad));fail("Malformed armour must not use fallback");
+  }catch(IllegalArgumentException expected){}
+ }
  @Test public void infiniteRunesPermitCastingWithoutRunesAndResumeRealCosts(){
   Native950CombatStyles.Profile magic=new Native950CombatStyles.Profile(Native950CombatStyles.MAGIC,Skills.MAGIC,1,4,6,-1,-1,0,false);
   Native950Containers items=new Native950Containers(p,new Native950ItemCatalog(Arrays.asList(new Native950ItemCatalog.Entry(556,"Air rune",true,new String[5]))));

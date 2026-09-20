@@ -35,8 +35,8 @@ public final class Native950MeleeAcceptance {
     private Native950MeleeAcceptance() { }
 
     public static void main(String[] args) throws Exception {
-        require(args.length==1 || (args.length==2 && "--bosses".equals(args[1])),
-                "Usage: Native950MeleeAcceptance <950-flat-cache-directory> [--bosses]");
+        require(args.length==1 || (args.length==2 && ("--bosses".equals(args[1]) || "--boss-stress".equals(args[1]))),
+                "Usage: Native950MeleeAcceptance <950-flat-cache-directory> [--bosses|--boss-stress]");
         require(NativeCacheVerification.isEnforced(),"Cache verification must remain enabled");
         System.setProperty(Native950World.SPAWNS_PROPERTY,"false");
         System.setProperty(Native950World.LEGACY_SPAWNS_PROPERTY,"false");
@@ -68,7 +68,8 @@ public final class Native950MeleeAcceptance {
                 for(int boss:new int[]{2883,5666}) {
                     Native950NpcCombatProfile profile=Native950NpcCombatCatalog.fromRunningCache(boss);
                     require(profile!=null,"Boss profile is not admitted: "+boss);
-                    fightAndRespawn(boss,clearHome(profile.size),45445,false,true);
+                    boolean stress="--boss-stress".equals(args[1]);
+                    fightAndRespawn(boss,clearHome(profile.size),!stress&&boss==2883?58486:45445,false,true,!stress);
                 }
             }
             playerRecovery();
@@ -84,28 +85,48 @@ public final class Native950MeleeAcceptance {
     }
 
     private static void fightAndRespawn(int id,WorldTile home,int weapon,boolean bankerKit) {
-        fightAndRespawn(id,home,weapon,bankerKit,false);
+        fightAndRespawn(id,home,weapon,bankerKit,false,false);
     }
 
-    private static void fightAndRespawn(int id,WorldTile home,int weapon,boolean bankerKit,boolean boss) {
-        try(Fixture f=new Fixture(id,home,null,weapon,bankerKit)) {
+    private static void fightAndRespawn(int id,WorldTile home,int weapon,boolean bankerKit,boolean boss,boolean supplied) {
+        try(Fixture f=new Fixture(id,home,null,weapon,bankerKit,supplied)) {
             int originalIndex=f.npc.getIndex(),originalHp=f.npc.getHitpoints();
             // Test-only strength avoids an intentionally guaranteed-accuracy cow winning
             // before the lifecycle assertion. No authenticated account or server stats change.
             if(originalHp>100) f.player.getSkills().setLevelWithoutRefresh(Skills.STRENGTH,20);
             if(boss) {
-                for(int skill:new int[]{Skills.ATTACK,Skills.STRENGTH,Skills.DEFENCE,Skills.HITPOINTS}) {
+                for(int skill:new int[]{Skills.ATTACK,Skills.STRENGTH,Skills.DEFENCE,Skills.HITPOINTS,Skills.MAGIC,Skills.PRAYER}) {
                     f.player.getSkills().setXpWithoutRefresh(skill,Skills.getXPForLevel(skill,99));
                     f.player.getSkills().setLevelWithoutRefresh(skill,99);
                 }
                 f.player.setHitpoints(f.player.getMaxHitpoints());f.player.refreshHitPoints();f.resetMasks();
+                if(supplied) {
+                    int[] armour=id==2883?new int[]{42991,43119,43121,52036,51092}:new int[]{36294,38240,38242,52028,51090};
+                    for(int item:armour) {
+                        Native950EquipmentTypes.Type type=Native950EquipmentTypes.resolve(item);
+                        require(type!=null,"Unverified boss fixture armour "+item);
+                        f.player.getEquipment().getItems().set(type.slot,new Item(item,1));
+                    }
+                    f.player.getInventory().items.set(0,new Item(556,2000));
+                    for(int slot=1;slot<28;slot++)f.player.getInventory().items.set(slot,new Item(385,1));
+                    f.player.getPrayer().restorePrayer(990);
+                    f.player.getPrayer().switchPrayer(13,false);
+                    require(f.player.getPrayer().usingPrayer(0,13),"Native Protect from Melee did not activate");
+                }
             }
             String refusal=f.combat.attack(f.player,f.npc);
             require(refusal==null,"Actual melee target was rejected: "+refusal+"; "+f.npcState());
             int deathTick=-1,hiddenTick=-1;boolean respawned=false,retaliated=false;
             for(int step=1;step<=(boss?600:105);step++) {
+                if(supplied && !f.npc.isDead() && f.player.getHitpoints()<f.player.getMaxHitpoints()*3/5
+                        && f.player.getFoodDelay()<=com.rs.utils.Utils.currentTimeMillis()) {
+                    for(int slot=1;slot<28;slot++)if(f.player.getInventory().getItem(slot)!=null) {
+                        Native950Food.Result eaten=Native950Food.eat(f.player,f.containers,slot,385);
+                        require(eaten.accepted,"Boss food transaction refused: "+eaten.reason);break;
+                    }
+                }
                 Tick state=f.tick();
-                require(!f.player.isDead(),"Basic encounter unexpectedly killed full-health player");
+                require(!f.player.isDead(),"Encounter killed player: npc="+id+", tick="+step+", npcHp="+f.npc.getHitpoints());
                 if(state.playerHit)retaliated=true;
                 if(deathTick<0 && f.npc.isDead()) {
                     deathTick=step;
@@ -148,6 +169,11 @@ public final class Native950MeleeAcceptance {
                 f.resetMasks();
             }
             require(deathTick>0&&hiddenTick>deathTick&&respawned&&retaliated,"Incomplete melee/retaliation/death/respawn loop for "+id);
+            if(supplied) {
+                require(!f.player.isInvulnerable()&&!f.player.isInfiniteCombatRunes(),"Boss gate used infinite survival/resources");
+                if(id==2883)require(f.player.getInventory().getAmountOf(556)<2000,"Rex magic gate consumed no runes");
+                System.out.println("BOSS resources: id="+id+", foodRemaining="+f.player.getInventory().getAmountOf(385)+", airRunes="+f.player.getInventory().getAmountOf(556)+", finalHp="+f.player.getHitpoints());
+            }
             System.out.println("PASS: NPC"+id+" weapon"+weapon+(bankerKit?" shield1173 helm1139":"")+" HP"+originalHp+" -> lethal mask -> visible corpse -> removal -> full-HP respawn -> next-frame same-index addition");
         }
     }
@@ -288,10 +314,8 @@ public final class Native950MeleeAcceptance {
         final Native950EntityFrames frames=new Native950EntityFrames();
         final Native950NpcViewport view=new Native950NpcViewport();
         final List<Frame> output=new ArrayList<Frame>();
-        final Native950MeleeCombat combat=new Native950MeleeCombat(Thread.currentThread(),new Native950MeleeCombat.Rolls(){
-            public boolean accurate(long attack,long defence){return true;}
-            public int damage(int maximum){return maximum;}
-        });
+        final Native950MeleeCombat combat;
+        final Native950Containers containers;
         final NPC npc;final Player player;
         final java.util.Set<com.rs.game.item.floor.FloorItem> initialFloor=java.util.Collections.newSetFromMap(new java.util.IdentityHashMap<>());
         int preX,preY,prePlane;byte[] lastAppearanceHash;
@@ -299,6 +323,14 @@ public final class Native950MeleeAcceptance {
             this(id,home,explicitPlayerTile,weapon,false);
         }
         Fixture(int id,WorldTile home,WorldTile explicitPlayerTile,int weapon,boolean bankerKit) {
+            this(id,home,explicitPlayerTile,weapon,bankerKit,false);
+        }
+        Fixture(int id,WorldTile home,WorldTile explicitPlayerTile,int weapon,boolean bankerKit,boolean seeded) {
+            final java.util.Random random=new java.util.Random(950L+id);
+            combat=new Native950MeleeCombat(Thread.currentThread(),new Native950MeleeCombat.Rolls(){
+                public boolean accurate(long attack,long defence){return !seeded || random.nextDouble()<com.rs.game.player.combat.rs2.Rs2CombatFormula.hitChance(attack,defence);}
+                public int damage(int maximum){return !seeded?maximum:maximum<=0?0:random.nextInt(maximum+1);}
+            });
             World.getRegion(home.getRegionId(),true);require(World.isFloorFree(home.getPlane(),home.getX(),home.getY(),1),"NPC fixture home is blocked: "+id);
             Native950NpcCombatProfile profile=Native950NpcCombatCatalog.fromRunningCache(id);
             require(profile!=null,"Missing generic profile for fixture "+id);
@@ -308,6 +340,8 @@ public final class Native950MeleeAcceptance {
             WorldTile start=explicitPlayerTile==null?adjacent(home,npc.getSize()):explicitPlayerTile;
             require(World.isFloorFree(start.getPlane(),start.getX(),start.getY(),1),"Player fixture floor is blocked");
             player=Player.createNative950("meleeprobe",start,channel);player.setActive(true);player.setRunning(true);
+            containers=new Native950Containers(player,new Native950ItemCatalog(Collections.emptyList()).withLegacyDrops());
+            Native950Skilling.attach(player,containers);
             Native950World.installVarpSink(player); // same health-varp path as production attachment
             World.addNative950Player(player,1);World.updateEntityRegion(player);player.loadMapRegions();
             player.getEquipment().getItems().set(Equipment.SLOT_WEAPON,new Item(weapon,1));
@@ -335,6 +369,14 @@ public final class Native950MeleeAcceptance {
                 deadline.setLong(player,Math.max(0,deadline.getLong(player)-600));
             } catch(ReflectiveOperationException failure){throw new AssertionError(failure);}
             ticks++;preX=player.getX();preY=player.getY();prePlane=player.getPlane();
+            // Advance this fixture's food deadline with the same accelerated 600ms tick.
+            player.addFoodDelay(player.getFoodDelay()-com.rs.utils.Utils.currentTimeMillis()-600);
+            try {
+                java.lang.reflect.Field field=com.rs.game.player.Prayer.class.getDeclaredField("nextDrain");
+                field.setAccessible(true);long[] deadlines=(long[])field.get(player.getPrayer());
+                if(deadlines!=null)for(int i=0;i<deadlines.length;i++)if(deadlines[i]!=0)deadlines[i]-=600;
+            }catch(ReflectiveOperationException failure){throw new AssertionError(failure);}
+            player.getPrayer().processPrayerDrain();
             combat.beforeMovement();player.processMovement();npc.processNative950Movement();combat.afterMovement();
             Tick state=new Tick(!npc.getNextHits().isEmpty(),!player.getNextHits().isEmpty());
             if(state.npcHit) {
@@ -405,6 +447,7 @@ public final class Native950MeleeAcceptance {
             channel.checkException();require(channel.isActive()&&transport.terminalFailure()==null,"950 transport disconnected or failed");
         }
         public void close(){
+            Native950Skilling.detach(player);
             combat.detach(player);combat.clear();frames.release(player);view.close();
             World.removeNative950Player(player);World.removeNative950Npc(npc);channel.finishAndReleaseAll();
         }
