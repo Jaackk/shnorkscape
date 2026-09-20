@@ -2,6 +2,16 @@
 
 ## Start here
 
+**Jaxa workspace durability is PROVEN (2026-09-20).** Native Save automatically
+committed Jaxa revision1 in V5 PID38656; fresh PID21760 loaded that same revision
+and visibly restored Jack's real fullscreen/maximised layout. All912 stored values
+match post-save; restored Custom matrices and masked metadata match exactly.
+Active8 is native-reconstructed, with51 raw field differences retained in evidence.
+See [finished Jaxa verification](NATIVE-950-JAXA-WORKSPACE-ROLLOUT.md).
+Preserve runtime3ea2da1 and the explicit Jaxa-only scope. Workspace work is stopped;
+broken same-process Logout remains separate. Do not start the next hosting audit
+without the user's next task. Older pending-live statements below are superseded.
+
 **Automatic NEW Save gate:** see
 [V5 automatic Save gate](NATIVE-950-AUTOMATIC-SAVE-GATE.md).
 The complete automatic NEW Save -> account revision2 -> fresh-process restore

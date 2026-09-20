@@ -1,5 +1,52 @@
 # Guarded Jaxa workspace rollout
 
+## Final live acceptance: PROVEN, 2026-09-20
+
+Jaxa automatic native Save -> account storage -> full client close/reopen ->
+automatic restoration passed visually and structurally in Jack's intended
+maximised/fullscreen setup. This completes the scoped Jaxa durability acceptance.
+Do not reopen workspace research. Same-process Logout remains separately untested.
+
+Exact evidence (local/ignored): post-save V5 PID38656 A at01:56:30; fresh-process
+PID21760 A at01:57:36, with their companion controls files. Both validate the
+pinned V5 image, stable912-ID schema, typed absence/presence and six controls.
+`check_automatic_save.py <38656-A> <21760-A> jaxa` accepts only the explicitly
+selected account's checksummed record; no filename-derived account ownership.
+
+Server log132 authenticates jaxa/PID38656,144 commits revision1; fresh login162
+loads jaxa revision1,163 authenticates PID21760,164 queues native application.
+Client log records native-exit-snapshot-sent then durable-receipt before the manual
+post-save verification. No hotkey-triggered storage, seed import or operator action.
+Jaxa sidecar revision1 SHA256:
+`e7d26985180928636a6fd3846c5133e660ad9ce3a3955297de28a72aa95d426a`.
+All912 stored entries equal post-save; all Custom matrices/presence and integer /
+masked per-slot metadata equal fresh-process readback. Jaxa's record differs from
+the disposable record in114 IDs. This is Jaxa's own Save, not the disposable seed.
+
+Active8 is reconstructed by native Load, not verbatim replayed:669/720 raw fields
+match post-save,51 differ, none are missing. These differences remain explicitly
+reported; this proves exact persisted Custom data plus user-confirmed visible
+restoration, NOT raw equality of every active field or a newly inferred universal
+normalization rule. No new investigation or behavior changes were warranted.
+
+Finished runtime remains source3ea2da1 / JARafc580f8...0a54c461 with the explicit
+Jaxa-only switches. Capture/restore excludes disposable accounts in that mode;
+fixture commands cannot run on Jaxa. Normal launch without gates still starts no
+capture endpoint. Retain dormant disposable tooling for regression/recovery, not
+as part of Jaxa's workflow. Manual snapshot hotkeys are verification-only and
+unnecessary for normal saving. No client/server restart or production edit was
+performed during this final verification checkpoint.
+
+Fresh save/profile/sidecar backup and retained local logs/captures:
+`backups/pre-edit-20260920-015905-063`. Live player saves can legitimately change
+through gameplay; do not compare them to pre-login hashes and call that corruption.
+This verification does not write player profiles or workspace state.
+Verifier checks:36 Python tests pass, including explicit account mismatch rejection;
+the existing disposable revision2 comparison also still passes. Runtime JAR hash
+was rechecked unchanged. Only offline verifier/tests and handover documentation
+changed in this final checkpoint; no rebuild/deployment was needed.
+Earlier pending-live instructions below are historical and now superseded.
+
 ## Proven baseline and limits
 
 Disposable automatic NEW Save -> durable revision2 -> fresh V5 process automatic

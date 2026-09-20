@@ -8,6 +8,27 @@ import check_automatic_save as gate
 
 
 class AutomaticSaveTests(unittest.TestCase):
+    def test_record_requires_explicit_matching_account(self):
+        schema = json.loads((gate.HERE/'snapshot-schema-v4.json').read_bytes())
+        def utf(text):
+            raw = text.encode('ascii')
+            return struct.pack('>H', len(raw)) + raw
+        body = struct.pack('>III', 0x57533935, 1, 950)
+        body += utf(gate.SCHEMA) + utf(gate.IMAGE) + utf('jaxa')
+        body += struct.pack('>qH', 1, 912)
+        body += b''.join(struct.pack('>HB', i, 0) for i in schema['ids'])
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory)/'record'
+            path.write_bytes(body + hashlib.sha256(body).digest())
+            revision, values, image = gate.record(path, schema, 'jaxa')
+            self.assertEqual(revision, 1)
+            self.assertEqual(len(values), 912)
+            self.assertEqual(image, gate.IMAGE)
+            with self.assertRaises(ValueError):
+                gate.record(path, schema, 'layoutgate2')
+        with self.assertRaises(ValueError):
+            gate.compare('unused', 'unused', 'unreviewed')
+
     def test_fence_is_domain2_integer_and_save_precedes_native_exit(self):
         import snapshot_schema as s
         from unittest.mock import patch
