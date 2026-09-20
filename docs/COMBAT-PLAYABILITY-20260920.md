@@ -101,3 +101,33 @@ Result: 171 ability-shaped structures, 31 partial implementations, 140 missing.
 This deliberately includes alternate/obsolete/unmounted definitions: it is not
 a claim that the native UI exposes 171 distinct usable abilities. No ability is
 labelled fully working merely because an execution branch exists.
+
+## Boss stress gate and multiplayer regression boundary
+
+`Native950MeleeAcceptance cache --bosses` adds optional Dagannoth Rex (2883)
+and Barrelchest (5666) profile lifecycle witnesses at isolated clear footprints.
+This mode equips an ephemeral level-99 unarmoured player with weapon45445 and
+retains the ordinary probe's guaranteed-accuracy, maximum-damage rolls for BOTH
+sides. It does not alter boss definitions or any saved character.
+
+The first run FAILED on Rex: the player died before completing the boss loop.
+Barrelchest was consequently not reached. This adversarial fixture is not proof
+that ordinary player-geared/food-supported boss combat is impossible, but it
+does not meet the boss acceptance criterion. No damage values or assertions
+were weakened to produce a pass. The five ordinary NPC witnesses passed first.
+Boss-area access, full mechanics, and a realistic equipped encounter remain open.
+
+Existing green regressions already cover manual queue/GCD revalidation, channel
+interruption, Revolution order/availability, single-combat ownership, disconnect
+cleanup, and original damage-ledger drop attribution. They do not establish live
+native settings behavior or shared multi-combat boss support. No new ability,
+Revolution, prayer or ranged hit-timing implementation is claimed by this pass.
+
+## Candidate safety
+
+Combat changes are staged in source/build output only. The normal Play server
+and open client were not restarted; the live runtime remains the prior protected
+build. No workspace/client/launcher or saved-player files were edited.
+Before the final diagnostic edit, saves, workspace sidecars, runtime JAR and
+overrides were snapshotted under `backups/pre-edit-20260920-030022-394`.
+Vulkan stance/projectile verification is pending a controlled candidate launch.

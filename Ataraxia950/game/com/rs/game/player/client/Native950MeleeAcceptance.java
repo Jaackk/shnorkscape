@@ -35,7 +35,8 @@ public final class Native950MeleeAcceptance {
     private Native950MeleeAcceptance() { }
 
     public static void main(String[] args) throws Exception {
-        require(args.length==1,"Usage: Native950MeleeAcceptance <950-flat-cache-directory>; run from Ataraxia950");
+        require(args.length==1 || (args.length==2 && "--bosses".equals(args[1])),
+                "Usage: Native950MeleeAcceptance <950-flat-cache-directory> [--bosses]");
         require(NativeCacheVerification.isEnforced(),"Cache verification must remain enabled");
         System.setProperty(Native950World.SPAWNS_PROPERTY,"false");
         System.setProperty(Native950World.LEGACY_SPAWNS_PROPERTY,"false");
@@ -62,6 +63,14 @@ public final class Native950MeleeAcceptance {
             fightAndRespawn(7873,clearHome(1),1277,false);
             fightAndRespawn(81,clearHome(2),1277,false);
             fightAndRespawn(86,clearHome(2),1277,false);
+            if(args.length==2) {
+                // Existing profiles at an isolated clear footprint, not a claim of boss-area access or mechanics.
+                for(int boss:new int[]{2883,5666}) {
+                    Native950NpcCombatProfile profile=Native950NpcCombatCatalog.fromRunningCache(boss);
+                    require(profile!=null,"Boss profile is not admitted: "+boss);
+                    fightAndRespawn(boss,clearHome(profile.size),45445,false,true);
+                }
+            }
             playerRecovery();
             approachTarget();
             pursueAfterWalking();
@@ -75,15 +84,26 @@ public final class Native950MeleeAcceptance {
     }
 
     private static void fightAndRespawn(int id,WorldTile home,int weapon,boolean bankerKit) {
+        fightAndRespawn(id,home,weapon,bankerKit,false);
+    }
+
+    private static void fightAndRespawn(int id,WorldTile home,int weapon,boolean bankerKit,boolean boss) {
         try(Fixture f=new Fixture(id,home,null,weapon,bankerKit)) {
             int originalIndex=f.npc.getIndex(),originalHp=f.npc.getHitpoints();
             // Test-only strength avoids an intentionally guaranteed-accuracy cow winning
             // before the lifecycle assertion. No authenticated account or server stats change.
             if(originalHp>100) f.player.getSkills().setLevelWithoutRefresh(Skills.STRENGTH,20);
+            if(boss) {
+                for(int skill:new int[]{Skills.ATTACK,Skills.STRENGTH,Skills.DEFENCE,Skills.HITPOINTS}) {
+                    f.player.getSkills().setXpWithoutRefresh(skill,Skills.getXPForLevel(skill,99));
+                    f.player.getSkills().setLevelWithoutRefresh(skill,99);
+                }
+                f.player.setHitpoints(f.player.getMaxHitpoints());f.player.refreshHitPoints();f.resetMasks();
+            }
             String refusal=f.combat.attack(f.player,f.npc);
             require(refusal==null,"Actual melee target was rejected: "+refusal+"; "+f.npcState());
             int deathTick=-1,hiddenTick=-1;boolean respawned=false,retaliated=false;
-            for(int step=1;step<=105;step++) {
+            for(int step=1;step<=(boss?600:105);step++) {
                 Tick state=f.tick();
                 require(!f.player.isDead(),"Basic encounter unexpectedly killed full-health player");
                 if(state.playerHit)retaliated=true;
