@@ -1,5 +1,23 @@
 # Normal Play launch of proven workspace client
 
+## Acceptance completed: 2026-09-20
+
+Jack completed the instructed Play -> NEW Save -> close/Stop -> Play -> restore
+test. Post-savePID31896 A (02:14:11), freshPID45192 A (02:15:14) validate against
+Jaxa revision2. All912 stored entries match post-save; restored Custom matrices
+and masked metadata match exactly. Thirty Custom parents changed from revision1.
+Client31896 records native-exit-snapshot-sent then durable-receipt. Fresh server
+PID30404 started02:14:43, loaded Jaxa revision2 and queued native Load; the normal
+launcher PID record identifies V5 PID45192. This covers fresh server flag startup,
+not merely reuse of the manually configured server.
+
+Raw active8 is native-reconstructed:681/720 fields equal,39 differ, none missing;
+no raw whole-active equality is claimed. The account-bound comparison passed.
+No production behavior changed during verification. This Play productionisation
+gate is complete; preserve bd1d56f together with proven workspace baseline1ded397.
+Resume combat work, not workspace investigation. The earlier pending instructions
+below are retained as the reproducible test procedure.
+
 Protected acquisition/save/restore baseline:1ded397. No native client, engine,
 editor, account policy, storage or application behavior changed here.
 
