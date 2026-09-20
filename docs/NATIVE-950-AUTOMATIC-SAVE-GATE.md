@@ -22,6 +22,8 @@ number bind responses to this session. Open arms a bounded read request; Save ma
 that request eligible; X/native-close cancels it. A new editor cycle cancels any
 unconsumed previous request. Cancel, stale or malformed responses cannot publish.
 Same-value re-saves have separate request identities, not content-hash deduplication.
+Native session cleanup explicitly revokes the capability and retires its worker,
+even if the TCP channel remains active; channel liveness alone is insufficient.
 
 The V5 static adapter uses the proven post-main-logic boundary and reader. While
 armed, it observes the evidenced logical3477 native Edit Mode variable. It must
@@ -83,7 +85,7 @@ checks remain mandatory. Build pins are checked before the server accepts data.
 ## Manual acceptance
 
 Automated checks: focused bootstrap/action-bar/bindings/save/protocol/workspace
-JUnit suite passed (one existing skip); final capture/pipe/store rerun11 passed.
+JUnit suite passed (one existing skip); final capture/pipe/store rerun12 passed.
 The Windows ABI test uses a separate test pipe and test-JVM TCP socket, not a
 game account. Native editor acceptance passed63 checks with an isolated temp
 profile and explicit staged data root. C++ lookup/fence tests both passed. Python

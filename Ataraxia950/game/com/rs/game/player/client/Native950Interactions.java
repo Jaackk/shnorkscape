@@ -520,7 +520,7 @@ public final class Native950Interactions {
     void walking() { cancelSkill(); pendingGroundItem=null; combatActions.cancelAttack(player); cancelConversations(); pendingBank = null; pendingNpcOption = 0; closeBank(); worldMap.close(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); }
 
     /** Retire all pending responses before the session leaves the world. */
-    void close() { Native950Familiars.onLogout(player); cancelSkill(); itemBrowser.dispose(); Native950Skilling.detach(player); pendingGroundItem=null; combatActions.stop(player); cancelConversations(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); }
+    void close() { Native950WorkspaceCapture.closed(channel); Native950Familiars.onLogout(player); cancelSkill(); itemBrowser.dispose(); Native950Skilling.detach(player); pendingGroundItem=null; combatActions.stop(player); cancelConversations(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); }
 
     private void cancelQuantity() {
         quantityInput.cancel();

@@ -10,6 +10,17 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class Native950WorkspaceCaptureTest {
+    @Test public void nativeSessionCloseRevokesCapabilityEvenIfTcpStaysActive() {
+        io.netty.channel.embedded.EmbeddedChannel ch=new io.netty.channel.embedded.EmbeddedChannel();
+        try {
+            Native950WorkspaceCapture capture=new Native950WorkspaceCapture("layoutgate2",ch);
+            ch.attr(io.netty.util.AttributeKey.<Native950WorkspaceCapture>valueOf("workspace-capture-v5")).set(capture);
+            assertTrue(capture.live());Native950WorkspaceCapture.closed(ch);
+            assertTrue(ch.isActive());assertFalse(capture.live());
+            assertNull(ch.attr(io.netty.util.AttributeKey.<Native950WorkspaceCapture>valueOf("workspace-capture-v5")).get());
+            try{new Native950WorkspaceCapture("jaxa",ch);fail();}catch(IllegalArgumentException expected){}
+        }finally{ch.finishAndReleaseAll();}
+    }
     @Test public void captureRequiresBothExplicitFlagsAndExcludesJaxa() {
         String[] keys={Native950WorkspaceCapture.PROPERTY,Native950DisposableWorkspaceRestore.PROPERTY,Native950DevelopmentCommands.PROPERTY};
         String[] old=Arrays.stream(keys).map(System::getProperty).toArray(String[]::new);

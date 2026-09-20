@@ -25,6 +25,7 @@ final class Native950WorkspaceCapture {
     private final AtomicReference<String> notice=new AtomicReference<>();
     private Request current;
     private long sequence;
+    private volatile boolean stopped;
     static final class Request {
         final long sequence;
         private int state; // 0 editor open, 1 Save queued, 2 canceled, 3 consumed
@@ -33,7 +34,15 @@ final class Native950WorkspaceCapture {
         synchronized void cancel(){if(state!=3)state=2;}
         synchronized boolean claim(){if(state!=1)return false;state=3;return true;}
     }
-    private Native950WorkspaceCapture(String account,Channel channel){this.account=account;this.channel=channel;}
+    Native950WorkspaceCapture(String account,Channel channel){
+        if(!Native950LayoutFixture.target(account))throw new IllegalArgumentException("Disposable account required");
+        this.account=account;this.channel=channel;
+    }
+    boolean live(){return !stopped&&channel.isActive();}
+    static void closed(Channel ch) {
+        Native950WorkspaceCapture c=ch.attr(KEY).getAndSet(null);if(c==null)return;
+        c.stopped=true;if(c.current!=null)c.current.cancel();c.requests.clear();
+    }
     static boolean allowed(Player player,Channel ch){return Boolean.getBoolean(PROPERTY)&&Native950DisposableWorkspaceRestore.allowed(player,ch);}
     static void sceneReady(Player player,Channel ch) {
         if(!allowed(player,ch)||ch.attr(KEY).get()!=null)return;
@@ -57,10 +66,10 @@ final class Native950WorkspaceCapture {
         try {
             JsonObject schema=Native950LayoutFixture.loadSchema(Native950DisposableWorkspaceRestore.ROOT);
             Native950WorkspaceStore store=new Native950WorkspaceStore(Native950DisposableWorkspaceRestore.ROOT.resolve("workspace-state950"),schema);
-            while(channel.isActive()) {
+            while(live()) {
                 try(Native950WorkspacePipe pipe=new Native950WorkspacePipe()) {
-                    while(channel.isActive()&&!pipe.connect())Thread.sleep(100);
-                    if(!channel.isActive())return;
+                    while(live()&&!pipe.connect())Thread.sleep(100);
+                    if(!live())return;
                     int pid=pipe.peerPid();
                     InetSocketAddress remote=(InetSocketAddress)channel.remoteAddress(),local=(InetSocketAddress)channel.localAddress();
                     if(!pipe.ownsGameSocket(pid,remote,local))throw new IOException("Peer does not own authenticated game connection");
@@ -68,18 +77,18 @@ final class Native950WorkspaceCapture {
                     byte[] nonce=new byte[16];new SecureRandom().nextBytes(nonce);
                     System.out.println("[WorkspaceCaptureGate] authenticated disposable peer pid="+pid);
                     notice.set("Workspace automatic capture ready (disposable gate).");
-                    while(channel.isActive()) {
+                    while(live()) {
                         Request r=requests.poll(250,TimeUnit.MILLISECONDS);if(r==null)continue;
                         pipe.write(header(nonce,r.sequence,1));
                         long deadline=System.nanoTime()+TimeUnit.MINUTES.toNanos(3);
-                        DataInputStream response=response(pipe.read(36,deadline,channel::isActive),nonce,r.sequence);
+                        DataInputStream response=response(pipe.read(36,deadline,this::live),nonce,r.sequence);
                         int status=response.readInt(),length=response.readInt();
                         if(length<0||length>7000)throw new IOException("Oversized capture");
-                        byte[] body=pipe.read(length,deadline,channel::isActive);
+                        byte[] body=pipe.read(length,deadline,this::live);
                         if(status!=1){r.cancel();notice.set("Automatic capture failed; previous durable layout retained.");continue;}
                         Map<Integer,Integer> values=decode(body,schema);
                         if(!r.claim())continue; // X/Escape/open-only snapshots never reach storage.
-                        if(!channel.isActive()||!pipe.ownsGameSocket(pid,remote,local))throw new IOException("Game session ended before storage");
+                        if(!live()||!pipe.ownsGameSocket(pid,remote,local))throw new IOException("Game session ended before storage");
                         Native950WorkspaceStore.Record previous=store.load(account);
                         long revision=previous==null?1:Math.addExact(previous.revision,1);
                         store.save(new Native950WorkspaceStore.Record(account,revision,values,IMAGE));
@@ -88,7 +97,7 @@ final class Native950WorkspaceCapture {
                         pipe.write(header(nonce,r.sequence,2)); // Receipt only after forced atomic replacement.
                     }
                 }catch(IOException failure) {
-                    if(channel.isActive()){notice.set("Workspace capture disconnected/refused; no new durable-save confirmation.");System.err.println("[WorkspaceCaptureGate] "+failure.getMessage());Thread.sleep(500);}
+                    if(live()){notice.set("Workspace capture disconnected/refused; no new durable-save confirmation.");System.err.println("[WorkspaceCaptureGate] "+failure.getMessage());Thread.sleep(500);}
                 }
             }
         }catch(Exception failure){notice.set("Workspace capture unavailable; existing stored layout retained.");System.err.println("[WorkspaceCaptureGate] stopped: "+failure);}
