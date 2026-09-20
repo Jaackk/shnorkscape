@@ -35,6 +35,10 @@ public final class Native950NpcCombatCatalog {
     /** Pure resolution: no NPC-ID branches, mutable loader defaults or invented health/levels. */
     static Resolution resolve(int npcId,byte[] raw,boolean identitySafe,NPCCombatDefinition combat,
             NPCStats stats,IntUnaryOperator sequenceCycles) {
+        return resolve(npcId,raw,identitySafe,combat,stats,sequenceCycles,Native950PlayerEffects::isVerifiedGraphic);
+    }
+    static Resolution resolve(int npcId,byte[] raw,boolean identitySafe,NPCCombatDefinition combat,
+            NPCStats stats,IntUnaryOperator sequenceCycles,IntPredicate graphicVerified) {
         if(!identitySafe) return refused("unverified legacy NPC identity");
         if(raw==null) return refused("missing NPC definition");
         final NPCDefinitions definition;
@@ -47,14 +51,22 @@ public final class Native950NpcCombatCatalog {
             return refused("invalid NPC combat metadata");
         if(combat==null) return refused("missing authored combat row");
         if(stats==null) return refused("missing authored stat row");
-        if(!"MELEE".equalsIgnoreCase(combat.attackStyle)) return refused("non-melee attack style is not ported");
-        if(!positive(combat.getHitpoints(),100000000) || !positive(stats.getAttackLevel(),10000)
+        int style="MELEE".equalsIgnoreCase(combat.attackStyle)?0:"RANGE".equalsIgnoreCase(combat.attackStyle)?1:
+                ("MAGE".equalsIgnoreCase(combat.attackStyle)||"MAGIC".equalsIgnoreCase(combat.attackStyle))?2:-1;
+        if(style<0)return refused("special attack style requires its own mechanics");
+        int level=style==0?stats.getAttackLevel():style==1?stats.getRangeLevel():stats.getMagicLevel();
+        if(style!=0 && (combat.getAttackProjectile() < -1 || combat.getAttackGfx() < -1
+                || (combat.getAttackProjectile()>=0&&!graphicVerified.test(combat.getAttackProjectile()))
+                || (combat.getAttackGfx()>=0&&!graphicVerified.test(combat.getAttackGfx()))))
+            return refused("unverified ranged or magic effect binding");
+        if(!positive(combat.getHitpoints(),100000000) || !positive(level,10000)
                 || !positive(stats.getDefenceLevel(),10000) || combat.getMaxHit()<0 || combat.getMaxHit()>10000000
                 || !positive(combat.getDeathDelay(),1000) || !positive(combat.getRespawnDelay(),100000))
             return refused("invalid authored combat stats");
-        Integer speed=parameter(definition,14),accuracy=parameter(definition,29),armour=parameter(definition,2865);
+        int accuracyKey=style==0?29:style==1?4:3;
+        Integer speed=parameter(definition,14),accuracy=parameter(definition,accuracyKey),armour=parameter(definition,2865);
         // Present but malformed values must not silently select the fallback.
-        if(invalidParameter(definition,14,speed) || invalidParameter(definition,29,accuracy)
+        if(invalidParameter(definition,14,speed) || invalidParameter(definition,accuracyKey,accuracy)
                 || invalidParameter(definition,2865,armour)) return refused("invalid cache combat parameter");
         int attackSpeed=speed==null?combat.getAttackDelay():speed;
         if(!positive(attackSpeed,100) || (accuracy!=null && (accuracy<0 || accuracy>10000000))
@@ -73,12 +85,12 @@ public final class Native950NpcCombatCatalog {
         // Ordinary animations get their actual duration, bounded to ten display ticks.
         int deathAnimationTicks=deathCycles>0?(int)Math.min(10,((long)deathCycles+29)/30):0;
         Native950NpcCombatProfile profile=new Native950NpcCombatProfile(npcId,definition.size,definition.combatLevel,
-                combat.getHitpoints(),stats.getAttackLevel(),stats.getDefenceLevel(),combat.getMaxHit(),
+                combat.getHitpoints(),level,stats.getDefenceLevel(),combat.getMaxHit(),
                 attackSpeed,combat.getDeathDelay(),combat.getRespawnDelay(),attack,block,death,
                 accuracy==null?0:(int)Math.round(accuracy/Rs2AtaraxiaCacheBonuses.NPC_ACCURACY_RATING_DIVISOR),
                 armour==null?0:(int)Math.round(armour/Rs2AtaraxiaCacheBonuses.NPC_ARMOUR_RATING_DIVISOR),
                 definition.name,speed!=null,accuracy!=null,armour!=null,deathAnimationTicks);
-        return new Resolution(profile,null);
+        return new Resolution(style==0?profile:profile.withAttackStyle(style,combat.getAttackProjectile(),combat.getAttackGfx()),null);
     }
     /** Compatibility seam for existing entity-state tests. Pure conversion grants no runtime admission. */
     static Native950NpcCombatProfile fromDefinitions(int id,byte[] raw,NPCCombatDefinition combat,

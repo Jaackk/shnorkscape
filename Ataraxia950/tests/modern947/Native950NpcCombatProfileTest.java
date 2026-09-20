@@ -130,10 +130,31 @@ public final class Native950NpcCombatProfileTest {
         rejected(resolve(9001,hex(CHICKEN),true,zeroRespawn,stats(1)),"invalid authored combat stats");
     }
 
-    @Test public void nonMeleeRowsStayExplicitlyRefused() {
-        for(String style:new String[]{"MAGE","RANGE","SPECIAL"}) {
+    @Test public void specialRowsStayExplicitlyRefused() {
+        for(String style:new String[]{"SPECIAL","SPECIAL2","UNKNOWN"}) {
             NPCCombatDefinition row=new NPCCombatDefinition(30,5387,5388,5389,5,1,60,15,style,-1,-1,"PASSIVE");
-            rejected(resolve(41,hex(CHICKEN),true,row,stats(1)),"non-melee attack style is not ported");
+            rejected(resolve(41,hex(CHICKEN),true,row,stats(1)),"special attack style requires its own mechanics");
+        }
+    }
+
+    @Test public void rangedAndMagicUseAuthoredStyleLevelsAndVerifiedEffects() {
+        for(String style:new String[]{"RANGE","MAGE","MAGIC"}) {
+            NPCCombatDefinition row=new NPCCombatDefinition(30,5387,5388,5389,5,1,60,15,style,99,100,"PASSIVE");
+            NPCStats levels=new NPCStats(2,31,47,5,90,55,45,65);
+            Native950NpcCombatProfile p=Native950NpcCombatCatalog.resolve(41,hex(CHICKEN),true,row,levels,id->60,id->id==99||id==100).profile;
+            assertNotNull(p);assertEquals(style.equals("RANGE")?1:2,p.attackStyle);
+            assertEquals(style.equals("RANGE")?levels.getRangeLevel():levels.getMagicLevel(),p.attackLevel);
+            assertEquals(100,p.attackProjectile);assertEquals(99,p.attackGraphic);
+            rejected(Native950NpcCombatCatalog.resolve(41,hex(CHICKEN),true,row,levels,id->60,id->false),"unverified ranged or magic effect binding");
+        }
+    }
+
+    @Test public void nonMeleeAccuracyDoesNotReuseTheMeleeCacheRating() {
+        for(String style:new String[]{"RANGE","MAGE"}) {
+            NPCCombatDefinition row=new NPCCombatDefinition(30,-1,-1,-1,5,1,60,15,style,-1,-1,"PASSIVE");
+            byte[] raw=definition("Creature",1,1,1,params(29,10,4,270,3,430),false);
+            Native950NpcCombatProfile p=resolve(9001,raw,true,row,stats(1)).profile;
+            assertNotNull(p);assertEquals(style.equals("RANGE")?27:43,p.meleeAttackBonus);
         }
     }
 

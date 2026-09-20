@@ -51,13 +51,15 @@ public final class Native950NpcCombatCoverage {
                 row.put("hpEngine",p.hp);row.put("attackLevel",p.attackLevel);row.put("defenceLevel",p.defenceLevel);
                 row.put("maxHitEngine",p.maxHit);row.put("attackTicks",p.attackSpeed);
                 row.put("meleeAttackBonus",p.meleeAttackBonus);row.put("meleeDefenceBonus",p.meleeDefenceBonus);
+                row.put("attackStyle",p.attackStyle==0?"MELEE":p.attackStyle==1?"RANGE":"MAGIC");
+                row.put("attackProjectile",p.attackProjectile);row.put("attackGraphic",p.attackGraphic);
                 row.put("attackAnimation",p.attackAnim);row.put("blockAnimation",p.blockAnim);row.put("deathAnimation",p.deathAnim);
                 row.put("deathAnimationTicks",p.deathAnimationTicks);row.put("deathTicks",p.deathTicks);row.put("respawnTicks",p.respawnTicks);
                 Map<String,String> provenance=new LinkedHashMap<>();
                 provenance.put("nameSizeLevelAttackMenu","950 NPC definition");
                 provenance.put("hpMaxHitLevelsDeathRespawn","authored server tables");
                 provenance.put("attackSpeed",p.cacheAttackSpeed?"950 param14":"authored server table");
-                provenance.put("attackBonus",p.cacheAttackBonus?"950 param29 converted through RS2 rating adapter":"neutral zero fallback");
+                provenance.put("attackBonus",p.cacheAttackBonus?"950 param"+(p.attackStyle==0?29:p.attackStyle==1?4:3)+" converted through RS2 rating adapter":"neutral zero fallback");
                 provenance.put("defenceBonus",p.cacheDefenceBonus?"950 param2865 converted through RS2 rating adapter":"neutral zero fallback");
                 provenance.put("animations","authored role bindings, verified against paired cache sequence definitions");
                 row.put("provenance",provenance);accepted.add(row);

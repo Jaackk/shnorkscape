@@ -175,6 +175,7 @@ public final class Native950MeleeCombat {
         player.resetWalkSteps();player.setNextFaceEntity(null);player.setAttackedBy(null);
         if(player.getTarget()==fighter.npc)player.setTarget(null);
         damageOverTime.remove(player);pendingHits.remove(player);fighter.target=null;fighter.attacking=false;fighter.retaliating=false;fighter.outOfSupplies=false;fighter.approachTicks=0;fighter.followFailures=0;
+        fighter.strikes.clear();
         fighter.npc.resetWalkSteps();fighter.npc.setNextFaceEntity(null);fighter.npc.setAttackedBy(null);
         fighter.returning=!fighter.npc.isDead() && distance(fighter.npc,fighter.home)>0;
         fighter.npc.setNative950CombatEngaged(fighter.returning);
@@ -461,7 +462,8 @@ public final class Native950MeleeCombat {
                     || player.getNextWorldTile()!=null) {stop(player);continue;}
             Loadout gear;
             try{gear=loadouts.get(player);}catch(IllegalArgumentException unsupported){player.sendMessage(unsupported.getMessage());stop(player);continue;}
-            boolean npcInReach=access.reach(player,npc),inReach=playerReach(player,npc,gear);
+            boolean npcInReach=npcReach(fighter,player),inReach=playerReach(player,npc,gear);
+            if(npcInReach)npc.resetWalkSteps();
             if(inReach) {
                 fighter.approachTicks=0;
                 if(npcInReach){npc.resetWalkSteps();fighter.followFailures=0;}
@@ -469,7 +471,7 @@ public final class Native950MeleeCombat {
                 if(fighter.attacking)player.resetWalkSteps();
             } else {
                 // Same shared Entity.calcFollow path used by the ordinary910 NPCCombat.checkAll.
-                if(fighter.retaliating&&tick>=fighter.stunnedUntil) {
+                if(fighter.retaliating&&!npcInReach&&tick>=fighter.stunnedUntil) {
                     if(access.follow(npc,player))fighter.followFailures=0;
                     else if(++fighter.followFailures>APPROACH_TIMEOUT){stop(player);continue;}
                 }
@@ -509,6 +511,8 @@ public final class Native950MeleeCombat {
             if(npc.isDead())continue;
             processPendingHits(player,fighter);
             if(npc.isDead())continue;
+            processNpcStrikes(fighter,player);
+            if(player.isDead()||fighter.target!=player)continue;
             Long channelEnd=channelUntil.get(player);
             if(channelEnd!=null&&tick>=channelEnd){
                 channelUntil.remove(player);
@@ -577,7 +581,7 @@ public final class Native950MeleeCombat {
                 }
             }
             }
-            if(fighter.retaliating && tick>=fighter.stunnedUntil && access.reach(npc,player) && tick>=fighter.nextAttack && !player.isDead()) {
+            if(fighter.retaliating && tick>=fighter.stunnedUntil && npcReach(fighter,player) && tick>=fighter.nextAttack && !player.isDead()) {
                 fighter.nextAttack=tick+fighter.profile.attackSpeed;
                 npc.setNextFaceEntity(player);
                 if(fighter.profile.attackAnim>=0)npc.setNextAnimation(new Animation(fighter.profile.attackAnim));
@@ -586,10 +590,23 @@ public final class Native950MeleeCombat {
                 int damage=rolls.accurate(Rs2CombatFormula.roll(Rs2CombatFormula.npcEffectiveLevel(fighter.profile.attackLevel),fighter.profile.meleeAttackBonus),
                         Rs2CombatFormula.roll(defence,gear.defenceBonus))
                         ? nativeDamage(rolls.damage(fighter.profile.maxHit/10)) : 0;
-                damage(npc,player,damage);swings++;
+                if(fighter.profile.attackStyle==0)damage(npc,player,damage);
+                else {
+                    int delay=2;
+                    if(fighter.profile.attackGraphic>=0)npc.setNextGraphics(new com.rs.game.Graphics(fighter.profile.attackGraphic));
+                    if(fighter.profile.attackProjectile>=0) {
+                        int end=35+Utils.getDistance(npc.getX(),npc.getY(),player.getX(),player.getY())*30/4;
+                        access.projectile(new com.rs.game.Projectile(npc,player,false,false,0,
+                                fighter.profile.attackProjectile,41,16,35,end,npc.getSize()*64,16));
+                        delay=Math.max(1,Utils.projectileTimeToCycles(end));
+                    }
+                    if(fighter.strikes.size()>=32)throw new IllegalStateException("NPC strike queue exceeded bound");
+                    fighter.strikes.add(new NpcStrike(tick+delay,damage));
+                }
+                swings++;
                 if(player.isDead())playerDied(player);
                 else {
-                    if(damage>0 && player.getNextAnimation()==null&&tick>=channelUntil.getOrDefault(player,0L)
+                    if(fighter.profile.attackStyle==0 && damage>0 && player.getNextAnimation()==null&&tick>=channelUntil.getOrDefault(player,0L)
                             &&player.getLastAnimationEnd()<=Utils.currentTimeMillis())player.setNextAnimation(new Animation(gear.blockAnimation));
                     //910 CombatScript auto-retaliation gate; never interrupt an explicit walk/skill/route.
                     if(!fighter.attacking && !fighter.outOfSupplies && player.getCombatDefinitions().isAutoRetaliate()
@@ -750,6 +767,22 @@ public final class Native950MeleeCombat {
         }
         Native950BugTest.event(player,"combat","meteor-secondary-summary","count",affected,"limit",8,"range",1);
     }
+    private boolean npcReach(Fighter fighter,Player player) {
+        return fighter.profile.attackStyle==0?access.reach(fighter.npc,player):access.npcRangedReach(fighter.npc,player,7);
+    }
+    private void processNpcStrikes(Fighter fighter,Player player) {
+        for(int i=0;i<fighter.strikes.size();) {
+            NpcStrike strike=fighter.strikes.get(i);
+            if(strike.due>tick){i++;continue;}
+            fighter.strikes.remove(i);
+            Hit.HitLook look=fighter.profile.attackStyle==1?Hit.HitLook.RANGE_DAMAGE:Hit.HitLook.MAGIC_DAMAGE;
+            int actual=damage(fighter.npc,player,strike.damage,look);
+            if(player.isDead()){playerDied(player);return;}
+            if(actual>0 && player.getNextAnimation()==null && tick>=channelUntil.getOrDefault(player,0L)
+                    && player.getLastAnimationEnd()<=Utils.currentTimeMillis())
+                player.setNextAnimation(new Animation(loadouts.get(player).blockAnimation));
+        }
+    }
     private void processPendingHits(Player player,Fighter fighter){
         java.util.List<PendingHit> scheduled=pendingHits.get(player);
         if(scheduled==null)return;
@@ -835,6 +868,7 @@ public final class Native950MeleeCombat {
         retireNpc(fighter,player);
     }
     private void retireNpc(Fighter fighter,Player player) {
+        fighter.strikes.clear();
         NPC npc=fighter.npc;npc.resetWalkSteps();npc.setNative950CombatEngaged(true);
         npc.setNative950DeathVisible(true);npc.setNextAnimation(new Animation(fighter.profile.deathAnim));
         fighter.hideAt=tick+Math.max(fighter.profile.deathTicks,fighter.profile.deathAnimationTicks);
@@ -943,7 +977,7 @@ public final class Native950MeleeCombat {
     interface Rewards {void hit(Player player,NPC npc,int damage);default void hit(Player player,NPC npc,int damage,Loadout gear){hit(player,npc,damage);}void death(NPC npc,Player owner);}
     interface Loadouts {Loadout get(Player player);}
     interface Rolls {boolean accurate(long attack,long defence);int damage(int maximum);default int nativeDamageRemainder(int rawDamage){return 0;}}
-    interface Access {void activate(NPC npc);boolean player(Player player);boolean npc(NPC npc);boolean clear(WorldTile tile);default boolean clear(WorldTile tile,int size){return clear(tile);}boolean reach(Entity from,Entity to);default boolean rangedReach(Player from,NPC to,int range){return reach(from,to);}boolean approach(Player player,NPC npc);default boolean follow(NPC npc,WorldTile target){return false;}}
+    interface Access {void activate(NPC npc);boolean player(Player player);boolean npc(NPC npc);boolean clear(WorldTile tile);default boolean clear(WorldTile tile,int size){return clear(tile);}boolean reach(Entity from,Entity to);default boolean rangedReach(Player from,NPC to,int range){return reach(from,to);}default boolean npcRangedReach(NPC from,Player to,int range){return reach(from,to);}default void projectile(com.rs.game.Projectile projectile){}boolean approach(Player player,NPC npc);default boolean follow(NPC npc,WorldTile target){return false;}}
     private static final class LiveRolls implements Rolls {
         public boolean accurate(long a,long d){return ThreadLocalRandom.current().nextDouble()<Rs2CombatFormula.hitChance(a,d);}
         public int damage(int maximum){return maximum<=0?0:ThreadLocalRandom.current().nextInt(maximum+1);}
@@ -959,6 +993,9 @@ public final class Native950MeleeCombat {
         public boolean rangedReach(Player p,NPC n,int range){return p.getPlane()==n.getPlane()
                 &&distanceToFootprint(p,n,n.getSize())>0&&distanceToFootprint(p,n,n.getSize())<=range
                 &&p.clipedProjectile(n,false);}
+        public boolean npcRangedReach(NPC n,Player p,int range){return p.getPlane()==n.getPlane()
+                &&distanceToFootprint(p,n,n.getSize())>0&&distanceToFootprint(p,n,n.getSize())<=range&&n.clipedProjectile(p,false);}
+        public void projectile(com.rs.game.Projectile projectile){Native950World.getInstance().queueProjectile(projectile);}
         public boolean follow(NPC npc,WorldTile target){
             npc.resetWalkSteps();
             if(npc.getFreezeDelay()>=Utils.currentTimeMillis() || npc.isCantFollowUnderCombat())return true;
@@ -986,8 +1023,13 @@ public final class Native950MeleeCombat {
     }
     private static final class Fighter {
         final NPC npc;final Native950NpcCombatProfile profile;final WorldTile home;
+        final java.util.List<NpcStrike> strikes=new ArrayList<>();
         Player target;boolean attacking,retaliating,returning,outOfSupplies,training;int approachTicks,followFailures;long nextAttack,hideAt,respawnAt,stunnedUntil;
         Fighter(NPC npc,Native950NpcCombatProfile profile){this.npc=npc;this.profile=profile;home=new WorldTile(npc);}
+    }
+    private static final class NpcStrike {
+        final long due;final int damage;
+        NpcStrike(long due,int damage){this.due=due;this.damage=damage;}
     }
     private static final class DamageOverTime {
         final Fighter fighter;final int damage;int remaining;long nextTick;final Loadout gear;
