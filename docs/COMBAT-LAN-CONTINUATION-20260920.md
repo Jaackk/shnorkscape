@@ -61,6 +61,32 @@ the supplied Rex/Barrelchest acceptance run pass. Vulkan presentation is pending
 
 ## LAN reference direction (continued)
 
+## Native ability membership
+
+The expanded offline inventory uses the exact950 script6995 dispatcher and
+8247 conditional transformer, pinned respectively to
+`b371951bd526283bf7d8560faa153a032239bd3db069a47fecbf71bd45e9e274` and
+`0fb25f13c1de3cb06d670cc25c20c751cfffc7e03e07a94b8c49631f9dc63b56`.
+The repository's existing independently derived opcode map decodes their full
+instruction boundaries/counts. Native book enums are10147/6738/6740/6736/6737/
+16973 (melee/ranged/magic/defence/constitution/necromancy).
+
+Of171 ability-shaped structures,120 are native book entries,20 additional
+structures occur in the conditional native transformer, and31 are not reached
+by these reviewed paths. The latter are NOT automatically declared obsolete;
+other surfaces could still reference them. The canonical visible set is
+player-dependent (unlocks, weapon modes, recast state), not171 independent buttons.
+Current execution coverage remains31 partial,140 missing. The JSON now retains
+typed parameters and visibility classifications for systematic implementation.
+
+Undercut AbilityBooks/AbilityTransform supplies the architectural comparison;
+950's8247 also substitutes modern melee and upgraded abilities beyond that
+reference. Surge/Escape/Dive have no direct2914/2915 animation binding in their
+950 structures. Existing910 ActionBar provides18358/18527 and3537/3526 as
+historical candidates, not authorization to publish unverified950 effects.
+Movement completion and live presentation therefore remain open; no generic
+animation was inserted to inflate coverage.
+
 Darkan WorldLoginDecoder delegates to LobbyCommunicator.authWorldLogin.
 Vernox Login.doLogin checks the account's password before admission (its old
 SHA1/master-password options are not a design to copy). SHNORKSCAPE needs the

@@ -20,6 +20,10 @@ public final class Native950AbilityCoverage {
         if (!NativeCacheVerification.isEnforced()) throw new IllegalStateException("Cache verification must remain enabled");
         Cache.initFlatReadOnly(Paths.get(args[0]));
         Native950AbilityAssets.verify();
+        if(Boolean.getBoolean("ability.dumpBookScript")) {
+            scriptConstants(Paths.get("protocol-analysis/ui-scripts-950-evidence.json"),Integer.getInteger("ability.script",6995),true);
+            return;
+        }
         Map<Integer, Map<String, Object>> rows = new TreeMap<>();
         Index structures = Cache.STORE.getIndexes()[22];
         for (int id : ids(structures, 5)) {
@@ -36,6 +40,7 @@ public final class Native950AbilityCoverage {
             row.put("enumMembership", new ArrayList<Map<String, Object>>());
             row.put("animationEnum", definition.getValue(2915));
             row.put("targetGraphic", definition.getValue(2933));
+            row.put("typedParameters", new TreeMap<>(definition.getValues()));
             Native950AbilityCatalog.Definition implemented = Native950AbilityCatalog.get(id);
             row.put("status", implemented == null ? "missing" : "partial");
             row.put("serverRoutedBook", implemented == null ? null : implemented.book);
@@ -61,6 +66,23 @@ public final class Native950AbilityCoverage {
                 memberships.add(membership);
             }
         }
+        java.nio.file.Path opcodeEvidence=Paths.get("protocol-analysis/ui-scripts-950-evidence.json");
+        Set<Integer> bookConstants=scriptConstants(opcodeEvidence,6995,false);
+        Set<Integer> transformed=scriptConstants(opcodeEvidence,8247,false);
+        Map<Integer,String> books=new LinkedHashMap<>();
+        books.put(10147,"melee");books.put(6738,"ranged");books.put(6740,"magic");
+        books.put(6736,"defence");books.put(6737,"constitution");books.put(16973,"necromancy");
+        for(int id:books.keySet())if(!bookConstants.contains(id))throw new IllegalStateException("Missing native book anchor "+id);
+        Map<String,Integer> visibilityCounts=new TreeMap<>();
+        for(Map<String,Object> row:rows.values()) {
+            @SuppressWarnings("unchecked") List<Map<String,Object>> memberships=(List<Map<String,Object>>)row.get("enumMembership");
+            List<String> nativeBooks=new ArrayList<>();
+            for(Map<String,Object> membership:memberships)if(books.containsKey(membership.get("enum")))nativeBooks.add(books.get(membership.get("enum")));
+            String visibility=!nativeBooks.isEmpty()?"native-book-entry":transformed.contains((Integer)row.get("struct"))?"conditional-native-transform":"not-reached-by-reviewed-books";
+            row.put("nativeBooks",nativeBooks);row.put("visibilityClass",visibility);
+            row.put("visibilityLimit","Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete");
+            visibilityCounts.merge(visibility,1,Integer::sum);
+        }
         for (Native950AbilityCatalog.Definition d : Native950AbilityCatalog.DEFINITIONS) {
             if (!rows.containsKey(d.struct)) throw new IllegalStateException("Inventory missed implemented ability " + d.struct);
             @SuppressWarnings("unchecked") List<Map<String,Object>> memberships=(List<Map<String,Object>>) rows.get(d.struct).get("enumMembership");
@@ -71,7 +93,9 @@ public final class Native950AbilityCoverage {
         Map<String, Integer> counts = new TreeMap<>();
         for (Map<String, Object> row : rows.values()) counts.merge((String) row.get("status"), 1, Integer::sum);
         Map<String, Object> report = new LinkedHashMap<>();
-        report.put("revision", 950); report.put("schemaVersion", 1);
+        report.put("revision", 950); report.put("schemaVersion", 2);
+        report.put("nativeBookEnums",books);report.put("visibilityCounts",visibilityCounts);
+        report.put("visibilityEvidence","Exact950 script6995 book dispatch and script8247 conditional transformation; both hash-pinned. Mirrors Undercut AbilityBooks/AbilityTransform architecture without copying its numeric IDs.");
         report.put("scope", "All cache index-22 structures with typed name/key/tier/cooldown ability parameters; includes unmounted, alternate and potentially obsolete definitions, not just visible player books");
         report.put("membershipRule", "All index-17 struct-reference enums: legacy opcode 2 character J=74 or modern opcode 102 ScriptVarType=73; membership is evidence, not executable admission");
         report.put("nativeWrites", false); report.put("playerSavesAccessed", false);
@@ -84,6 +108,38 @@ public final class Native950AbilityCoverage {
         return values != null && values.get(2794L) instanceof String && !((String) values.get(2794L)).trim().isEmpty()
                 && values.get(2793L) instanceof Integer && values.get(2799L) instanceof Integer
                 && values.get(2796L) instanceof Integer;
+    }
+
+    /** Reuses the repository's independently proven opcode map; never infers new opcodes. */
+    private static Set<Integer> scriptConstants(java.nio.file.Path evidence,int script,boolean print) throws Exception {
+        com.google.gson.JsonObject map=new com.google.gson.JsonParser().parse(new String(Files.readAllBytes(evidence),StandardCharsets.UTF_8))
+                .getAsJsonObject().getAsJsonObject("opcodeMap947to950");
+        Map<Integer,Integer> inverse=new HashMap<>();
+        for(Map.Entry<String,com.google.gson.JsonElement> entry:map.entrySet())
+            inverse.put(Integer.decode(entry.getValue().getAsJsonObject().get("opcode950").getAsString()),Integer.decode(entry.getKey()));
+        byte[] raw=Cache.STORE.getIndexes()[12].getFile(script,0);
+        String expected=script==6995?"b371951bd526283bf7d8560faa153a032239bd3db069a47fecbf71bd45e9e274":script==8247?"0fb25f13c1de3cb06d670cc25c20c751cfffc7e03e07a94b8c49631f9dc63b56":null;
+        if(!print&&(expected==null||!expected.equals(hash(raw))))throw new IllegalStateException("Changed canonical ability script "+script);
+        Set<Integer> constants=new TreeSet<>();
+        java.nio.ByteBuffer b=java.nio.ByteBuffer.wrap(raw);
+        int end=raw.length-(b.getShort(raw.length-2)&65535)-18;
+        while(b.get()!=0){}
+        Set<Integer> wide=new HashSet<>(Arrays.asList(0x35e,0x592,0x713,0x647,0x412,0xab,0x454,0x73d,0x3f2,0x25a,0x717,0x895,0x267,0x51a,0x56,0x96,0x639,0x1ca,0x195,0x30,0xa2));
+        int count=0;
+        while(b.position()<end){
+            int offset=b.position(),nativeOp=b.getShort()&65535;
+            Integer op=inverse.get(nativeOp);if(op==null)throw new IllegalStateException("Unmapped950 opcode "+nativeOp);
+            Object operand;
+            if(op==0x511){int kind=b.get()&255;if(kind==0)operand=b.getInt();else if(kind==1)operand=b.getLong();
+                else if(kind==2){StringBuilder s=new StringBuilder();byte c;while((c=b.get())!=0)s.append((char)(c&255));operand=s.toString();}
+                else throw new IllegalStateException("Unexpected constant kind");
+            }else operand=wide.contains(op)?b.getInt():b.get()&255;
+            if(op==0x511&&operand instanceof Integer)constants.add((Integer)operand);
+            if(print)System.out.println(offset+" op947="+Integer.toHexString(op)+" arg="+operand);count++;
+        }
+        if(b.position()!=end||count!=b.getInt(end))throw new IllegalStateException("Script boundary/count mismatch");
+        if(print)System.out.println("SCRIPT"+script+" SHA256="+hash(raw));
+        return constants;
     }
 
     private static List<Integer> ids(Index index, int shift) {
