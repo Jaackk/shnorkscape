@@ -114,3 +114,25 @@ was created during build/package validation. Real second-machine lobby/world
 handoff still requires live verification; token-phase incompatibility must fail
 closed, never reintroduce IP-only recall. See LAN-GUEST-CANDIDATE.md. Combat
 visual confirmation and movement-ability completion remain separate gates.
+
+## Native ranged auto presentation
+
+Ordinary ranged autos now resolve projectile2940 from the exact950 weapon or
+equipped ammunition before consuming the final item. Ataraxia PlayerCombat's
+arrow/bolt/thrown launch timings feed the native world projectile publisher;
+damage is scheduled against the absolute end cycle, not applied on launch.
+The exact-cache Shortbow841/Bronze arrow882 witness verifies projectile10,
+one-arrow depletion, no premature damage, and a range hit at end cycle50.
+
+Native item references use nonempty definitions in the pinned950 cache, not the
+910/950 identical-effect list: projectile10 legitimately differs from910.
+The existing legacy graphic safety boundary is not relaxed. Missing native
+projectile evidence remains absent rather than substituted with a generic arrow.
+Delayed player-hit block animations now occur at impact. The last thrown item
+does not cancel its own launched hit; explicit stop/logout still cancels it.
+
+Ability animation resolution also accepts typed flat2914 bindings, with weapon
+family enum/default precedence as in Undercut. Absent/mistyped parameters do not
+silently become sequence0. No missing ability is marked implemented by this.
+Rex/Barrelchest gates still pass:1149 ticks/5538 parsed frames including the new
+arrow witness. Actual Vulkan projectile visibility remains a live test.

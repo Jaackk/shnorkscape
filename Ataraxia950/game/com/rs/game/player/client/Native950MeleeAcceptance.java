@@ -63,6 +63,7 @@ public final class Native950MeleeAcceptance {
             fightAndRespawn(7873,clearHome(1),1277,false);
             fightAndRespawn(81,clearHome(2),1277,false);
             fightAndRespawn(86,clearHome(2),1277,false);
+            rangedAutoWitness();
             if(args.length==2) {
                 // Existing profiles at an isolated clear footprint, not a claim of boss-area access or mechanics.
                 for(int boss:new int[]{2883,5666}) {
@@ -86,6 +87,24 @@ public final class Native950MeleeAcceptance {
 
     private static void fightAndRespawn(int id,WorldTile home,int weapon,boolean bankerKit) {
         fightAndRespawn(id,home,weapon,bankerKit,false,false);
+    }
+
+    private static void rangedAutoWitness(){
+        require("Shortbow".equals(Native950CacheItems.definition(841).name)
+                &&"Bronze arrow".equals(Native950CacheItems.definition(882).name),"Ranged fixture identity changed");
+        try(Fixture f=new Fixture(81,clearHome(2),null,841)){
+            f.player.getEquipment().getItems().set(Equipment.SLOT_ARROWS,new Item(882,1));
+            Native950CombatStyles.Profile profile=Native950CombatStyles.profile(841);
+            Native950RangedPresentation visual=Native950RangedPresentation.resolve(f.player,profile);
+            require(visual!=null&&visual.hitDelay()==2,"Paired950 arrow projectile/timing not verified");
+            int hp=f.npc.getHitpoints();require(f.combat.attack(f.player,f.npc)==null,"Ranged target refused");
+            f.tick();require(f.npc.getHitpoints()==hp,"Ranged hit arrived at launch");
+            require(f.player.getEquipment().getItem(Equipment.SLOT_ARROWS)==null,"Final arrow was not consumed");
+            f.resetMasks();f.tick();require(f.npc.getHitpoints()==hp,"Ranged hit arrived before projectile end");
+            f.resetMasks();f.tick();require(f.npc.getHitpoints()<hp,"Final arrow failed to land at projectile end");
+            require(f.npc.getNextHits().get(0).getLook()==Hit.HitLook.RANGE_DAMAGE,"Arrow used wrong hit style");
+            System.out.println("PASS: exact950 Shortbow/Bronze arrow projectile="+visual.graphic+", final ammunition consumed, delayed range hit at end cycle50");
+        }
     }
 
     private static void fightAndRespawn(int id,WorldTile home,int weapon,boolean bankerKit,boolean boss,boolean supplied) {

@@ -116,14 +116,22 @@ final class Native950AbilityCatalog {
         if(com.rs.cache.Cache.STORE==null)return new AnimationResolution(-1,"none:cache-unavailable");
         RS3GeneralRequirementMap d=RS3GeneralRequirementMap.getMap(struct);
         int enumId=d.getIntValue(2915);
-        if(enumId<=0)return new AnimationResolution(-1,"none:ability-has-no-animation-enum");
         ItemDefinitions weapon=p.getEquipment().getWeaponId()<0?null:Native950CacheItems.definition(p.getEquipment().getWeaponId());
         int family=weapon==null?0:weapon.getCSOpcode(686);
-        int id=RS3ClientScriptMap.getMap(enumId).getIntValue(family);
+        RS3ClientScriptMap table=enumId>0?RS3ClientScriptMap.getMap(enumId):null;
+        Object flat=d.getValues()==null?null:d.getValues().get(2914L);
+        int id=keyedAnimation(flat,table==null?null:table.getValues(),table==null?-1:table.getDefaultIntValue(),family);
         if(id<0)return new AnimationResolution(-1,"none:weapon-family-"+family+"-has-no-entry");
         AnimationDefinitions seq=AnimationDefinitions.getAnimationDefinitions(id);
-        return seq.decodeFailure==null?new AnimationResolution(id,"cache:enum-"+enumId+"-weapon-family-"+family)
+        return seq.decodeFailure==null?new AnimationResolution(id,enumId>0?"cache:enum-"+enumId+"-weapon-family-"+family:"cache:struct-"+struct+"-param2914")
                 :new AnimationResolution(-1,"none:sequence-"+id+"-decode-failed");
+    }
+    /** Exact typed absence is not sequence zero. Enum family/default precedes a flat binding. */
+    static int keyedAnimation(Object flat,Map<Long,Object> entries,int fallback,int family){
+        Object entry=entries==null?null:entries.get((long)family);
+        if(entry instanceof Integer&&((Integer)entry)>=0)return (Integer)entry;
+        if(fallback>=0)return fallback;
+        return flat instanceof Integer&&((Integer)flat)>=0?(Integer)flat:-1;
     }
     static int animation(Player p,int struct){return animationResolution(p,struct).id;}
     /**

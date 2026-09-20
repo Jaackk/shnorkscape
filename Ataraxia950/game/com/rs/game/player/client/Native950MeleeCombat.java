@@ -543,6 +543,8 @@ public final class Native950MeleeCombat {
             if(npc.isDead())continue;
             Long next=nextAttack.get(player);
             if(!abilityTurn && fighter.attacking && playerReach(player,npc,gear) && (next==null||tick>=next) && player.getFoodDelay()<=Utils.currentTimeMillis()) {
+                // Resolve before consuming the final arrow/bolt/thrown item.
+                Native950RangedPresentation ranged=Native950RangedPresentation.resolve(player,gear.profile);
                 if(gear.profile!=null&&!gear.profile.consume(player)){player.sendMessage("You cannot supply the ammunition or runes for that attack.");fighter.outOfSupplies=true;cancelAttack(player);}
                 else {
                 nextAttack.put(player,tick+gear.speed);
@@ -567,17 +569,24 @@ public final class Native950MeleeCombat {
                     pendingHits.computeIfAbsent(player,p->new ArrayList<>()).add(new PendingHit(fighter,damage,dueTick,gear,spell.impact));
                     Native950BugTest.event(player,"magic","spell-auto-cast","spell",Native950AutoSpells.select(player).name,
                             "animation",spell.animation,"projectile",spell.projectile,"impact",spell.impact,"hitTick",dueTick);
+                } else if(ranged!=null){
+                    access.projectile(ranged.projectile(player,npc));
+                    long dueTick=tick+ranged.hitDelay();
+                    pendingHits.computeIfAbsent(player,p->new ArrayList<>()).add(new PendingHit(fighter,damage,dueTick,gear,-1));
+                    Native950BugTest.event(player,"combat","ranged-auto-fired","projectile",ranged.graphic,
+                            "startCycle",ranged.start,"endCycle",ranged.end,"hitTick",dueTick);
                 } else {
                     int actual=damage(player,npc,damage,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
                     if(actual>0&&!fighter.training)rewards.hit(player,npc,actual,gear);
                     if(fighter.training)npc.setHitpoints(fighter.profile.hp);
+                    if(actual>0&&fighter.profile.blockAnim>=0)npc.setNextAnimation(new Animation(fighter.profile.blockAnim));
                 }
                 swings++;
                 if(gear.profile!=null&&gear.profile.ammoFamily==3&&player.getEquipment().getItem(Equipment.SLOT_WEAPON)==null){
-                    fighter.outOfSupplies=true;cancelAttack(player);player.sendMessage("You have run out of thrown weapons.");
+                    // The last launched item still lands; explicit cancel/logout clears pending hits.
+                    fighter.outOfSupplies=true;fighter.attacking=false;player.sendMessage("You have run out of thrown weapons.");
                 }
                 if(npc.isDead()) {npcDied(fighter,player);continue;}
-                if(damage>0 && fighter.profile.blockAnim>=0)npc.setNextAnimation(new Animation(fighter.profile.blockAnim));
                 }
             }
             }
@@ -802,9 +811,11 @@ public final class Native950MeleeCombat {
             }
             if(hit.dueTick>tick)continue;
             iterator.remove();
-            if(hit.fighter!=fighter||!fighter.attacking||fighter.npc.isDead())continue;
+            if(hit.fighter!=fighter||(!fighter.attacking&&hit.abilityStructure>=0)||fighter.npc.isDead())continue;
             if(hit.impactGraphic>=0)fighter.npc.setNextGraphics(new com.rs.game.Graphics(hit.impactGraphic));
             int actual=damage(player,fighter.npc,hit.damage,hit.gear.profile==null?Hit.HitLook.MELEE_DAMAGE:hit.gear.profile.look());
+            if(actual>0&&!fighter.npc.isDead()&&fighter.profile.blockAnim>=0)
+                fighter.npc.setNextAnimation(new Animation(fighter.profile.blockAnim));
             if(actual>0&&!fighter.training)rewards.hit(player,fighter.npc,actual,hit.gear);
             if(hit.abilityStructure==14685)hurricaneSecondaryHits(player,fighter,hit.damage,hit.gear);
             if(fighter.training)fighter.npc.setHitpoints(fighter.profile.hp);
