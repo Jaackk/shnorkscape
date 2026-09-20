@@ -83,13 +83,19 @@ public final class Native950AutoSpells {
         if(Cache.STORE==null)return new Presentation(-1,-1,-1);
         int structure=RS3ClientScriptMap.getMap(6740).getIntValue(select(player).key);
         if(structure<0)return new Presentation(-1,-1,-1);
-        int animation=RS3GeneralRequirementMap.getMap(structure).getIntValue(player.getEquipment().hasTwoHandedWeapon()?2919:2914);
+        Object cast=RS3GeneralRequirementMap.getMap(structure).getValue(player.getEquipment().hasTwoHandedWeapon()?2919:2914);
+        int animation=cast instanceof Integer?(Integer)cast:-1;
         if(animation<0)return new Presentation(-1,-1,-1);
         AnimationDefinitions sequence=AnimationDefinitions.getAnimationDefinitions(animation);
-        if(sequence.decodeFailure!=null||sequence.clientScriptData==null)return new Presentation(-1,-1,-1);
-        Object projectile=sequence.clientScriptData.get(2940),impact=sequence.clientScriptData.get(2933);
-        return projectile instanceof Integer&&impact instanceof Integer
-                ?new Presentation(animation,(Integer)projectile,(Integer)impact):new Presentation(-1,-1,-1);
+        if(sequence.decodeFailure!=null)return new Presentation(-1,-1,-1);
+        return presentation(animation,sequence.clientScriptData);
+    }
+    // Each presentation layer has independent evidence. A missing impact must not
+    // erase a valid casting sequence or manufacture sequence zero from a default.
+    static Presentation presentation(int animation,Map<Integer,Object> params) {
+        Object projectile=params==null?null:params.get(2940),impact=params==null?null:params.get(2933);
+        return new Presentation(animation,projectile instanceof Integer?(Integer)projectile:-1,
+                impact instanceof Integer?(Integer)impact:-1);
     }
     static synchronized void clear(Player player){SELECTED.remove(player);}
     static int damageTier(int playerLevel,int weaponTier,Spell spell) {

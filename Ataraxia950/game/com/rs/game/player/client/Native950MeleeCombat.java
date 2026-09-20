@@ -544,7 +544,7 @@ public final class Native950MeleeCombat {
                 nextAttack.put(player,tick+gear.speed);
                 Native950AutoSpells.Presentation spell=gear.profile!=null&&gear.profile.style==Native950CombatStyles.MAGIC
                         ?Native950AutoSpells.presentation(player):null;
-                int animation=spell!=null&&spell.available()?spell.animation:-1;
+                int animation=spell!=null?spell.animation:-1;
                 player.setNextFaceEntity(npc);player.setNextAnimation(new Animation(animation>=0?animation:gear.attackAnimation));
                 int skill=gear.profile==null?Skills.ATTACK:gear.profile.skill;
                 int attack=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(skill)+player.getPrayer().getStatBonuses(skill),0,3,1);
