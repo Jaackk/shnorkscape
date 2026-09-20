@@ -171,6 +171,16 @@ public class Native950MeleeCombatTest {
         try {
             assertNull(combat.attack(player,npc));
             player.getCombatDefinitions().processCombatStance();
+            assertTrue("Native target must enter stance before the post-movement attack mask exists",
+                    player.getCombatDefinitions().isCombatStance());
+            assertNull("Stance entry must not force an attack animation",player.getNextAnimation());
+            player.setAttackingDelay(0);player.setAttackedByDelay(0);
+            for(int i=0;i<5;i++) {
+                player.resetMasks();
+                player.getCombatDefinitions().processCombatStance();
+                assertTrue("Target retains stance between attacks and during approach",player.getCombatDefinitions().isCombatStance());
+                assertNull(player.getNextAnimation());
+            }
             assertSame(npc,player.getTarget());assertSame(npc,combat.combatTarget(player));
             assertNull(player.getCombatDefinitions().getCurrentTarget());
         } finally {Native950PacketDispatcher.setStrict(strict);}

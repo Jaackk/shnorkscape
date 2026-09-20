@@ -452,9 +452,11 @@ public final class CombatDefinitions implements Serializable {
             }
         }
         if (underCombat != combatStance) {
-            // Wait until the defence emote performs because render animations
-            // cannot be delayed. Native combat has no verified stance handshake.
-            if (underCombat && player.getNextAnimation() == null) {
+            // Legacy actions produce their emote during Player.processEntity.
+            // Native attacks run after movement, then their mask is reset before
+            // the next stance check. Target ownership, not that transient mask,
+            // therefore drives native BAS entry (without forcing an animation).
+            if (underCombat && nativeCombat == null && player.getNextAnimation() == null) {
                 return;
             }
             combatStance = underCombat;
