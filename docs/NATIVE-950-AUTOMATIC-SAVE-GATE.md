@@ -84,6 +84,16 @@ checks remain mandatory. Build pins are checked before the server accepts data.
 
 ## Manual acceptance
 
+Deployment2026-09-20: implementation `1ef3bdb`, session-revocation checkpoint
+`6999ef87f3d984c71ad5484d535c8c8bf8d3a48f`. Exact deployed JAR SHA256:
+`1c1ec7b57c21dab4d96f7acd1205c4bd6bbf07537e789924697122910ee0deb0`.
+Server PID2452 started after override compilation completed, with both gate flags.
+HTTP200 and exact229-byte8741 JS5 container verified. All player files match backup
+`backups/pre-edit-20260920-013034-561`, including Jaxa. Original/V4 client hashes
+unchanged. The reviewed sidecar remains revision1/hash
+`a118ba984a9e12c87872933b220d7a40820baf5d3114f8547f169fd4004f90c3`.
+No V5 client was launched by the agent; all NEW-save live outcomes remain pending.
+
 Automated checks: focused bootstrap/action-bar/bindings/save/protocol/workspace
 JUnit suite passed (one existing skip); final capture/pipe/store rerun12 passed.
 The Windows ABI test uses a separate test pipe and test-JVM TCP socket, not a
@@ -96,6 +106,12 @@ completion, visual restoration or production readiness.
 Start server with `-WorkspaceDurabilityGate -WorkspaceCaptureGate`. Jack launches
 V5 normally from Windows, never by injector or security bypass. Use layoutgate2
 only. Keep the same client dimensions. If security software blocks V5, stop.
+
+Windows Run command (ordinary manual launch):
+
+```text
+"C:\Games\950OpenSource\client\rs2client-vulkan-workspace-diag-v5.exe" "http://127.0.0.2:8950/jav_config.ws?binaryType=2&baseConfigSource=patched&localRewrite=1&hostRewrite=0&lobbyHostRewrite=1&gameHostOverride=127.0.0.2&gamePortOverride=43650&contentRouteRewrite=0&worldUrlRewrite=0&codebaseRewrite=0&downloadMetadataSource=patched"
+```
 
 1. Login; allow the existing stored layout to restore. Wait for the chat notice
    "Workspace automatic capture ready (disposable gate)."
