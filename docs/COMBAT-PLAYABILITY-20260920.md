@@ -131,3 +131,14 @@ build. No workspace/client/launcher or saved-player files were edited.
 Before the final diagnostic edit, saves, workspace sidecars, runtime JAR and
 overrides were snapshotted under `backups/pre-edit-20260920-030022-394`.
 Vulkan stance/projectile verification is pending a controlled candidate launch.
+
+Final candidate source checkpoint: `541e9cb` (this manifest addition is documentation only).
+Built with `Build-Ataraxia950.ps1 -Tasks @('test','jar')`: 1,428 tests, zero
+failures/errors, two skips. Optional `--bosses` stress gate remains FAILED as above.
+Candidate `Ataraxia950/build/libs/ataraxia-950-1.0-UNTRACKED.jar` SHA-256:
+`44ebdef2864b256ac44608f27cb46c48745dec21da19e6320cccdef7a2b418f8`.
+It has NOT replaced the live runtime JAR, whose SHA-256 remains:
+`afc580f8de6bcf86414fed37923e5a6cc1c1ee14fc94ddf980a25dee0a54c461`.
+Final read-only checks: HTTP/JS5 returned200/229 bytes for script8741; all seven
+backed-up player/workspace files matched current files byte-for-byte. Server30404
+and client45192 remained running. No claim of candidate visual acceptance.
