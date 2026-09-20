@@ -2,6 +2,13 @@
 
 ## Start here
 
+**Normal Play integration:** the existing pinned V5 client is now selected by
+Play.cmd and fresh startup requests the unchanged Jaxa-only workspace flags.
+See [Play launch gate](NATIVE-950-PLAY-WORKSPACE-LAUNCH.md). Launcher preflight tests
+pass; Jack's Play -> Save -> full restart via Play -> restore test is pending.
+The workspace semantics proven at1ded397 remain untouched. Combat work resumes
+only after this requested production launch verification.
+
 **Jaxa workspace durability is PROVEN (2026-09-20).** Native Save automatically
 committed Jaxa revision1 in V5 PID38656; fresh PID21760 loaded that same revision
 and visibly restored Jack's real fullscreen/maximised layout. All912 stored values

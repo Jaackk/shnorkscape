@@ -4,11 +4,18 @@ This Windows x64 bundle contains the current 950 server, both Windows client ren
 
 ## Current update
 
+2026-09-20: normal **Play.cmd** now selects the unchanged, live-proven V5 Vulkan
+workspace client and starts/requires the explicit Jaxa-only capture/restore
+server profile. No separate manual diagnostic launch is needed. This build is
+hash/path pinned to `C:\Games\950OpenSource`; it must not silently regenerate or
+fall back if assets differ. See [production launch verification](docs/NATIVE-950-PLAY-WORKSPACE-LAUNCH.md).
+OpenGL remains explicit and does not support V5 automatic workspace capture.
+
 Updated from the main project on 12 September 2026. See [update notes](docs/UPDATE-2026-09-12.md) for included work and known UI issues. The older archive was moved outside this folder during the privacy cleanup. Read [the privacy check](PRIVACY-CHECK.md), then create a fresh archive before launching again.
 
 ## Play
 
-1. Keep the complete folder together on a local drive. Use a short path such as `C:\Games\950OpenSource`. The default Vulkan renderer needs the project folder path to be at most 78 characters; the initializer checks this before writing.
+1. Keep this proven V5 production build at `C:\Games\950OpenSource`. Moving it requires a separately validated build; the normal launcher fails closed on another path.
 2. Download **Cache (Flat file)** from [OpenRS2 cache 2691 — English 950.1, September 7, 2026](https://archive.openrs2.org/caches/runescape/2691). [Direct download](https://archive.openrs2.org/caches/runescape/2691/flat-file.tar.gz).
 3. Extract the archive **into this project folder**. It already contains `cache`. The result must include `cache\255\12.dat`, not `cache\cache\255\12.dat`. Allow about 24 GB for the extracted server cache, plus space for the download and the client's own local cache.
 4. Double-click **Play.cmd**. No Java, Python, database, IDE or build-tool installation is required. If your graphics hardware lacks Vulkan support, use **Play-OpenGL.cmd**. A suitable installed graphics driver is required.
@@ -36,7 +43,9 @@ Later launches use a completion marker and skip the import. Existing valid asset
 
 ## Move and back up
 
-Use Stop.cmd before moving or zipping. Copy the whole folder to another Windows x64 computer, extract it, and use Play.cmd. The first launch automatically regenerates client storage paths for its new location.
+Use Stop.cmd before backing up or zipping. The current pinned V5 production path
+is not automatically relocatable; do not apply the older portable-client recipe
+to it. Keep `workspace-state950` alongside character and client-state backups.
 
 Characters live in `players\modern950\players`; client preferences and its local cache live in `client-state`. Keep these when backing up your own game. This initial bundle contains no existing characters or client state. Logs and temporary files also stay here.
 
