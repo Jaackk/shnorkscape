@@ -12,6 +12,10 @@ public final class RS3ClientScriptMap {
 
     public int keyType;
     public int valueType;
+    private boolean valueTypeUsesId;
+
+    /** Opcode 2 uses the legacy character; opcode 102 uses ScriptVarType's numeric ID. */
+    public boolean hasStructValues() { return valueType == (valueTypeUsesId ? 73 : 74); }
     private String defaultStringValue;
     private int defaultIntValue;
     private HashMap<Long, Object> values;
@@ -134,6 +138,7 @@ public final class RS3ClientScriptMap {
                                         // stream.readByte());
         } else if (opcode == 2) {
             valueType = stream.readByte();// /Utils.method2782((byte)
+            valueTypeUsesId = false;
                                           // stream.readByte());
         } else if (opcode == 3)
             defaultStringValue = stream.readString();
@@ -153,6 +158,7 @@ public final class RS3ClientScriptMap {
             keyType = stream.readSmart();
         } else if (opcode == 102) {
             valueType = stream.readSmart();
+            valueTypeUsesId = true;
         } else {
             System.err.println("Missing Opcode: " + opcode);
         }
