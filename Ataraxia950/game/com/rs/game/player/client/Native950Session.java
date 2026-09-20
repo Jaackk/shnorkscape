@@ -260,6 +260,11 @@ public final class Native950Session {
         }
     }
 
+    void tickProjectiles(Native950Projectiles projectiles) {
+        if (!ready || closed || !channel.isActive() || !player.isActive()) return;
+        projectiles.publish(player, packet -> channel.write(packet));
+    }
+
     /**
      * World phase 3: masks reset after every viewer's frame has read them; the Player
      * override skips refreshSpawnedObjects/Items for native players. The tickEnd packet

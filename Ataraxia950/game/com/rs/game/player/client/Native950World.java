@@ -61,6 +61,7 @@ public final class Native950World {
     private final List<NPC> npcs = new ArrayList<NPC>();
     private final Thread thread;
     private final Native950MeleeCombat combat;
+    private final Native950Projectiles projectiles;
     private volatile Native950Frames frames = new Native950EntityFrames();
 
     /** A reserved, and later claimed, player index. */
@@ -81,6 +82,7 @@ public final class Native950World {
         // that provider is a tick wheel drained by this thread (see Native950TickScheduler).
         thread = new Thread(this::run, "Ataraxia-950-world");
         thread.setDaemon(true);
+        projectiles = new Native950Projectiles(thread);
         combat = new Native950MeleeCombat(thread);
         bindTickWheel(thread);
         thread.start();
@@ -1059,6 +1061,9 @@ public final class Native950World {
         final Native950Frames encoder = frames;
         encoder.beginFrames(characters);
         phase("frame", session -> session.tickFrame(encoder, roster, characters));
+        // Newly visible actors must be installed before entity-locked projectiles reference them.
+        phase("projectiles", session -> session.tickProjectiles(projectiles));
+        projectiles.clear();
         // Phase 3: masks reset only after every frame has read them. The session keeps
         // ownership of its own tickEnd packet and its flush.
         phase("end", Native950Session::tickEnd);
@@ -1092,6 +1097,9 @@ public final class Native950World {
         for (Native950Session session : sessions()) if (!session.isClosed()) characters.add(session.player());
         return Collections.unmodifiableList(characters);
     }
+
+    /** Called by native combat on the owner thread; never retained in the undrained legacy Region queue. */
+    public void queueProjectile(com.rs.game.Projectile projectile) { projectiles.add(projectile); }
 
     /**
      * Same order as the legacy WorldThread.run() head (WorldThread.java:26-32): advance the

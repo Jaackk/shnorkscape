@@ -31,6 +31,29 @@ public final class Native950Packets {
     public static Packet tickEnd() { return packet(ServerPacket.SERVER_TICK_END, new byte[0]); }
     public static Packet keepAlive() { return packet(ServerPacket.NO_TIMEOUT, new byte[0]); }
 
+    /** 950 0x140114a40..0x140114d31. Heights use the default flags=0 units (16 fine units). */
+    public static Packet projectileHalfSquare(int packed, int dx, int dy, int source, int target,
+            int graphic, int startHeight, int endHeight, int start, int end, int angle, int distance) {
+        if (packed < 0 || packed > 255 || dx < -128 || dx > 127 || dy < -128 || dy > 127
+                || !projectileReference(source) || !projectileReference(target)
+                || graphic < 0 || graphic >= 65535 || startHeight < 0 || startHeight > 255
+                || endHeight < 0 || endHeight > 255 || start < 0 || end < start || end > 65535
+                || angle < 0 || angle > 255 || distance < 0 || distance > 65535)
+            throw new IllegalArgumentException("Invalid950 half-square projectile");
+        ByteBuffer b=ByteBuffer.allocate(21);
+        b.put((byte)packed).put((byte)0).put((byte)dx).put((byte)dy);
+        b.put((byte)(source>>16)).putShort((short)source);
+        b.put((byte)(target>>16)).putShort((short)target);
+        b.putShort((short)graphic).put((byte)startHeight).put((byte)endHeight);
+        b.putShort((short)start).putShort((short)end).put((byte)angle).putShort((short)distance);
+        return packet(ServerPacket.MAP_PROJANIM_HALFSQ,b.array());
+    }
+
+    private static boolean projectileReference(int value) {
+        // Native resolver 0x140133fb0: high byte 1 => NPC manager, 2 => player array.
+        return value==0 || (value>=0 && (value>>>16)==1) || (value>=0 && (value>>>16)==2);
+    }
+
     /**
      * Native 107 (947: 87): replace current streamed music with an index-40 resource, or stop
      * with -1. The resource is the paired cache's enum-1351 value, not its music-track key.

@@ -2890,7 +2890,10 @@ public final class World {
         }
 
         final Projectile projectile = new Projectile(from, to, adjustFlyingHeight, adjustSenderHeight, senderBodyPartId, graphicId, startHeight, endHeight, startTime, startTime + (speed == -1 ? Utils.getProjectileTimeSoulsplit(from, fromSizeX, fromSizeY, to, toSizeX, toSizeY) : Utils.getProjectileTimeNew(from, fromSizeX, fromSizeY, to, toSizeX, toSizeY, speed)), slope, angle);
-        getRegion(from.getRegionId()).addProjectile(projectile);
+        if (CoresManager.isNative950() && !adjustFlyingHeight && !adjustSenderHeight && senderBodyPartId == 0
+                && !(from instanceof WorldObject) && !(to instanceof WorldObject))
+            com.rs.game.player.client.Native950World.getInstance().queueProjectile(projectile);
+        else getRegion(from.getRegionId()).addProjectile(projectile);
         return projectile;
     }
 

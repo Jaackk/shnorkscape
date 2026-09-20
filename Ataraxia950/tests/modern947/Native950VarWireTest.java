@@ -268,6 +268,8 @@ public final class Native950VarWireTest {
         expected.put("CLIENT_SETVARC_LARGE", new int[] {119, 6});
         expected.put("CLIENT_SETVARCBIT_SMALL", new int[] {48, 3});
         expected.put("UPDATE_RUNENERGY", new int[] {21, 1});
+        // Newly derived from exact950 parser 0x140114a40; not the old speculative var-wire use.
+        expected.put("MAP_PROJANIM_HALFSQ", new int[] {154, 21});
         return expected;
     }
 
@@ -279,7 +281,7 @@ public final class Native950VarWireTest {
             assertEquals(row.getKey() + " size", row.getValue()[1], packet.size());
         }
         // No two entries may claim one opcode, and no CANDIDATE or REFUTED opcode may appear.
-        int[] forbidden = {175, 215, 170, 161, 99, 120, 25, 154, 213, 185, 163, 191};
+        int[] forbidden = {175, 215, 170, 161, 99, 120, 25, 213, 185, 163, 191};
         for (ServerPacket packet : ServerPacket.values()) {
             // An underived row has no opcode at all - both accessors throw by design, so that it
             // can never be framed onto a client that parses opcodes positionally - and therefore
