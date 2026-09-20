@@ -45,6 +45,19 @@ separately; never copy layoutgate2 state into Jaxa.
 
 ## Final Jaxa verification (pending)
 
+Deployment2026-09-20: source3ea2da1044612a7c7c013dec46f8c72906d768af,
+serverPID40312, all three explicit switches verified in the running command line.
+Exact candidate/runtime JAR SHA256:
+`afc580f8de6bcf86414fed37923e5a6cc1c1ee14fc94ddf980a25dee0a54c461`.
+68 focused tests passed (capture/store/pipe/fixture/bootstrap/bindings/actionbar).
+Override compilation completed before restart; HTTP200 and exact229-byte native8741
+JS5 payload verified. Production/V5 EXE and V5 DLL pins unchanged.
+Fresh pre-deploy backup:`backups/pre-edit-20260920-014759-308`.
+All backed-up player/profile files are byte-identical after deployment. Jaxa SHA256:
+`7c1de323f5fc63f54b7fc2d717385b4c2cc9e9b738338b6ed3078cddfce928e6`.
+No Jaxa client was launched and no Jaxa workspace was seeded. Its live result is
+still PENDING; disposable success does not substitute for that verification.
+
 Only after guarded deployment/readiness is confirmed, launch the existing pinned
 V5 executable normally using the same localhost configuration as the disposable
 test. No injector/security bypass. Use the same client dimensions throughout.
