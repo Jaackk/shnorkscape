@@ -41,6 +41,25 @@ class HttpRequestHandler : SimpleChannelInboundHandler<FullHttpRequest>() {
         val uri = msg.uri()
         val query = QueryStringDecoder(uri)
         val path = canonicalizePath(query.path())
+        val remote = ctx.channel().remoteAddress()
+        if (!com.opennxt.security.NativeLanAccess.loopback(remote)) {
+            if (!com.opennxt.security.NativeLanAccess.allowedPeer(remote) || msg.method() != HttpMethod.GET
+                || path !in setOf("/jav_config.ws", "/ms", "/client", "/opennxt-local-root.crl")) {
+                ctx.sendHttpError(HttpResponseStatus.FORBIDDEN)
+                return
+            }
+            if (path == "/jav_config.ws") {
+                // Remote users cannot select filesystem snapshots, upstream URLs or diagnostic rewrites.
+                msg.headers().remove(JavConfigWsEndpoint.ORIGINAL_HOST_HEADER)
+                msg.headers().set("Host", com.opennxt.security.NativeLanAccess.address())
+                JavConfigWsEndpoint.handle(ctx, msg, QueryStringDecoder("/jav_config.ws?binaryType=2&baseConfigSource=patched&localRewrite=1&hostRewrite=0&lobbyHostRewrite=1&contentRouteRewrite=0&worldUrlRewrite=0&codebaseRewrite=0&downloadMetadataSource=patched"))
+                return
+            }
+            if (path == "/client" && query.parameters()["fileName"]?.singleOrNull()?.matches(Regex("[A-Za-z0-9_.-]{1,80}")) != true) {
+                ctx.sendHttpError(HttpResponseStatus.BAD_REQUEST)
+                return
+            }
+        }
 
         if (msg.method() == HttpMethod.POST && path == "/nxtclienterror.ws") {
             logger.info { "HTTP POST $path from ${ctx.channel().remoteAddress()}: uri=$uri" }

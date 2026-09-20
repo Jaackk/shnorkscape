@@ -33,7 +33,7 @@ abstract class BasePlayer(var client: ConnectedClient, val name: String): Comman
     }
 
     override fun hasPermissions(node: String): Boolean {
-        return true
+        return com.opennxt.security.NativeLanAccess.loopback(client.channel.remoteAddress())
     }
 
     override fun tick() {

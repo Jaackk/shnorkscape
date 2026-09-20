@@ -206,7 +206,7 @@ class LobbyPlayer(client: ConnectedClient, name: String) : BasePlayer(client, na
     override val interfaces: InterfaceManager = InterfaceManager(this)
     override val stats: StatContainer = PlayerStatContainer(this)
 
-    private fun worldHost(): String = OpenNXT.config.gameHostname
+    private fun worldHost(): String = com.opennxt.security.NativeLanAccess.hostFor(client.channel.remoteAddress(), OpenNXT.config.gameHostname)
 
     val worldList = if (OpenNXT.config.build == 950) WorldList(arrayOf(
         WorldListEntry(id = 1, location = WorldListLocation(161, "Local"),

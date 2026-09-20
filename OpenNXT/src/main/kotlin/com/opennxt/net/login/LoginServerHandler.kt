@@ -56,6 +56,10 @@ class LoginServerHandler : SimpleChannelInboundHandler<LoginPacket>() {
                 } else {
                     if (msg is LoginPacket.LobbyLoginRequest) {
                         LoginHandoffStore.remember(ctx.channel().remoteAddress(), msg)
+                    } else if (msg is LoginPacket.GameLoginRequest && !com.opennxt.security.NativeLanAccess.loopback(ctx.channel().remoteAddress())) {
+                        val remaining = ByteArray(msg.remaining.readableBytes())
+                        msg.remaining.getBytes(msg.remaining.readerIndex(), remaining)
+                        LoginHandoffStore.rememberGuest(ctx.channel().remoteAddress(), msg.build, it.username, it.password, header.seeds, remaining)
                     }
 
                     if (ctx.channel().attr(RSChannelAttributes.LOGIN_TYPE).get() in setOf(LoginType.GAME, LoginType.GAME_ALT)){
@@ -97,7 +101,7 @@ class LoginServerHandler : SimpleChannelInboundHandler<LoginPacket>() {
                         byte22 = 0,
                         int23 = 0,
                         short24 = 1,
-                        defaultWorld = OpenNXT.config.gameHostname,
+                        defaultWorld = com.opennxt.security.NativeLanAccess.hostFor(ctx.channel().remoteAddress(), OpenNXT.config.gameHostname),
                         defaultWorldPort1 = OpenNXT.config.ports.game,
                         defaultWorldPort2 = OpenNXT.config.lobbyLoginResponse.defaultWorldPort2,
                     )

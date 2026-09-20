@@ -21,7 +21,9 @@ fun interface LoginProcessor {
 
 object AuthoritativeLoginProcessor : LoginProcessor {
     override fun process(context: LoginContext) {
-        context.result = LoginResult.SUCCESS
+        context.result = if ((context.build.major == 950 || com.opennxt.security.NativeLanAccess.loopback(context.channel.remoteAddress()))
+            && com.opennxt.security.NativeLanAccess.authenticate(context.channel.remoteAddress(), context.username, context.password))
+            LoginResult.SUCCESS else LoginResult.INVALID_USERNAME_PASS
         context.callback(context)
     }
 }

@@ -67,6 +67,7 @@ object OpenNXT : CliktCommand(name = "run-server") {
     private val bootstrap = ServerBootstrap()
     private var networkGroup: NioEventLoopGroup? = null
     private var networkChannel: Channel? = null
+    private var lanNetworkChannel: Channel? = null
     private val startupProbeEnabled by lazy {
         System.getenv("OPENNXT_STARTUP_PROBE")
             ?.trim()
@@ -454,6 +455,8 @@ object OpenNXT : CliktCommand(name = "run-server") {
     }
 
     private fun cleanupStartupFailure() {
+        lanNetworkChannel?.close()?.syncUninterruptibly()
+        lanNetworkChannel = null
         networkChannel?.close()?.syncUninterruptibly()
         networkChannel = null
 
@@ -490,6 +493,7 @@ object OpenNXT : CliktCommand(name = "run-server") {
             protocol.load()
             startupProbe("after-protocol-load")
 
+            com.opennxt.security.NativeLanAccess.initialize(config.bindAddress)
             logger.info { "Setting up HTTP server" }
             startupProbe("before-http-init")
             http = HttpServer(config)
@@ -612,6 +616,12 @@ object OpenNXT : CliktCommand(name = "run-server") {
 
             startupProbe("after-game-bind")
             logger.info { "Game server bound to ${config.bindAddress}:${config.ports.gameBackend}" }
+            com.opennxt.security.NativeLanAccess.address()?.let { lan ->
+                val binding = bootstrap.bind(lan, config.ports.gameBackend).sync()
+                lanNetworkChannel = binding.channel()
+                check(binding.isSuccess) { "Failed to bind authenticated LAN game listener" }
+                logger.info { "Authenticated LAN game listener bound to $lan:${config.ports.gameBackend}" }
+            }
         } catch (e: Exception) {
             startupProbe("startup-exception:${e::class.simpleName}")
             logger.error(e) { "Server startup failed" }

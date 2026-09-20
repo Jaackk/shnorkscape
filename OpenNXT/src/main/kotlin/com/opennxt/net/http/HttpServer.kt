@@ -55,6 +55,13 @@ class HttpServer(val config: ServerConfig) : AutoCloseable {
             channels += result.channel()
             logger.info { "Http server bound to ${config.bindAddress}:$port" }
         }
+        com.opennxt.security.NativeLanAccess.address()?.let { lan ->
+            ports.forEach { port ->
+                val result = httpBootstrap.bind(lan, port).sync()
+                check(result.isSuccess) { "Failed to bind LAN cache HTTP listener" }
+                channels += result.channel()
+            }
+        }
     }
 
     override fun close() {

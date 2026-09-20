@@ -92,3 +92,25 @@ Vernox Login.doLogin checks the account's password before admission (its old
 SHA1/master-password options are not a design to copy). SHNORKSCAPE needs the
 account-bound verification, not unconditional SUCCESS or a shared LAN password.
 No listener/firewall/router change has been enabled by this checkpoint.
+
+## Optional LAN candidate
+
+The opt-in LAN candidate now verifies individually provisioned guest passwords
+with salted PBKDF2-SHA256, bounded attempts and reserved-account rejection.
+Existing host-only reconnect recall was unsafe for two clients on one address:
+remote handoff now requires authenticated prior session keys, matching peer,
+expiry and single consumption. It never falls back to address-only identity.
+Local admission and normal Play.cmd remain unchanged. Remote OpenNXT developer
+permissions are denied; native engine rights remain separately guarded.
+
+The complete OpenNXT build, candidate override build, credential tests and
+handoff acceptance tests pass. Overrides are tested ahead of the candidate JAR,
+matching production classpath precedence. PowerShell scripts parse cleanly.
+The guest ZIP contains only the existing hash-pinned non-diagnostic client,
+launch scripts and instructions, not accounts, credentials or server content.
+
+LAN is OFF by default. No credentials, listener, firewall rule or router change
+was created during build/package validation. Real second-machine lobby/world
+handoff still requires live verification; token-phase incompatibility must fail
+closed, never reintroduce IP-only recall. See LAN-GUEST-CANDIDATE.md. Combat
+visual confirmation and movement-ability completion remain separate gates.

@@ -7,7 +7,8 @@ param(
  [switch]$Collision,[switch]$Minimal,[switch]$Ataraxia,[switch]$LumbridgeNpcs,
  [switch]$AllNpcs,[switch]$DevTools,[switch]$UnverifiedCacheBindings,
  [switch]$Walk,[switch]$Ribbon,[switch]$Settings,[switch]$Regions,
- [switch]$WorkspaceDurabilityGate,[switch]$WorkspaceCaptureGate,[switch]$WorkspaceJaxaRollout
+ [switch]$WorkspaceDurabilityGate,[switch]$WorkspaceCaptureGate,[switch]$WorkspaceJaxaRollout,
+ [string]$LanAddress = ''
 )
 $ErrorActionPreference = 'Stop'
 if ($WorkspaceJaxaRollout -and (-not $WorkspaceDurabilityGate -or -not $WorkspaceCaptureGate)) {
@@ -19,6 +20,11 @@ $server = Join-Path $root 'OpenNXT'
 $log = Join-Path $root 'logs'
 $classPath = (Join-Path $root 'patches\classes')+';'+(Join-Path $server 'runtime\lib\*')
 $ports = @(80,8950,43650)
+if ($LanAddress) {
+ if ($LanAddress -notmatch '^(10\.(\d{1,3}\.){2}\d{1,3}|172\.(1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3})$') { throw 'LAN mode requires an explicit private IPv4 address.' }
+ if (!(Get-NetIPAddress -AddressFamily IPv4 -IPAddress $LanAddress -ErrorAction SilentlyContinue)) { throw 'LAN address is not assigned to this PC.' }
+ if (!(Test-Path -LiteralPath (Join-Path $root 'server-home\lan-credentials.properties'))) { throw 'Provision an invited guest with New-LAN-Guest.cmd before starting LAN mode.' }
+}
 if (!(Test-Path -LiteralPath $JavaPath) -or !(Test-Path -LiteralPath (Join-Path $root 'cache\255'))) { throw 'Bundled Java or the cache is missing. Read README.md: download OpenRS2 cache 2691 (Flat file) and extract its cache folder here.' }
 $reference=Join-Path $root 'cache\255\12.dat'
 if (!(Test-Path -LiteralPath $reference) -or (Get-FileHash -LiteralPath $reference -Algorithm SHA256).Hash -ne '8A45E12B3D5B3BF35CDB02CDEC9DDEDBD46200B4FEF086ADC0679FB0D020EF8C') {
@@ -67,6 +73,10 @@ try {
  # One complete, verified gameplay profile. No feature switches are required.
  $features = ' -Dopennxt.950.walk=true -Dopennxt.950.ribbon=true -Dopennxt.950.settings=true -Dopennxt.950.regions=true -Dopennxt.950.collision=true -Dataraxia950.npcSpawns=true -Dataraxia950.npcRegions= -Dataraxia950.devTools=true -Dataraxia950.worldMap=true -Dataraxia.native.verifyCache=true'
  $features += ' -Dataraxia950.devAccounts=jaxa'
+ if ($LanAddress) {
+  $features += ' -Dopennxt.lan.address=' + $LanAddress
+  $features += ' "-Dopennxt.lan.credentials=' + (Join-Path $root 'server-home\lan-credentials.properties') + '"'
+ }
  if ($WorkspaceDurabilityGate) { $features += ' -Dataraxia950.layoutDurabilityGate=true' }
  if ($WorkspaceJaxaRollout) { $features += ' -Dataraxia950.workspaceJaxaRollout=true' }
  if ($WorkspaceCaptureGate) {

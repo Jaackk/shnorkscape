@@ -988,6 +988,15 @@ object JavConfigWsEndpoint {
         if (requestedWorldHost != null) {
             applyRequestedWorldHostRewrite(config, requestedWorldHost)
         }
+        if (!com.opennxt.security.NativeLanAccess.loopback(ctx.channel().remoteAddress())) {
+            val lan = requireNotNull(com.opennxt.security.NativeLanAccess.address())
+            applyGameHostOverride(config, lan)
+            applyLocalPortRewrite(config, OpenNXT.config.ports.game)
+            config["param=37"] = lan
+            config["param=49"] = lan
+            for (param in WORLD_ROUTE_PARAMS) config["param=$param"] = rewriteBaseUrlPreservingPath(config["param=$param"], false, "http", lan, OpenNXT.config.ports.http)
+            config["codebase"] = "http://$lan:${OpenNXT.config.ports.http}/"
+        }
         logger.info {
                 "Serving /jav_config.ws to ${ctx.channel().remoteAddress()}: " +
                 "binaryType=$type source=${prepared.source} localRewrite=${prepared.localRewrite} " +

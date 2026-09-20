@@ -24,6 +24,7 @@ class LoginServerDecoder(val rsaPair: RsaConfig.RsaKeyPair) : ByteToMessageDecod
     private val logger = KotlinLogging.logger { }
 
     private fun logGameAltDiagnostics(remote: Any, bytes: ByteArray, cause: Exception? = null) {
+        if (remote !is java.net.SocketAddress || !com.opennxt.security.NativeLanAccess.loopback(remote)) return
         val fullHex = bytes.joinToString(" ") { "%02x".format(it.toInt() and 0xff) }
         logger.warn { "GAME_ALT diagnostic for $remote: payloadLength=${bytes.size}, payload=$fullHex" }
         if (cause != null) {
@@ -117,7 +118,10 @@ class LoginServerDecoder(val rsaPair: RsaConfig.RsaKeyPair) : ByteToMessageDecod
                 syntheticHeader.release()
             }
 
-            val snapshot = LoginHandoffStore.recall(ctx.channel().remoteAddress())
+            if (!com.opennxt.security.NativeLanAccess.loopback(ctx.channel().remoteAddress())
+                && header.uniqueId != ctx.channel().attr(RSChannelAttributes.LOGIN_UNIQUE_ID).get())
+                throw IllegalStateException("Guest handoff challenge mismatch")
+            val snapshot = LoginHandoffStore.recall(ctx.channel().remoteAddress(), header)
                 ?: throw IllegalStateException("No stored lobby login snapshot for ${ctx.channel().remoteAddress()}")
 
             if (header.uniqueId != ctx.channel().attr(RSChannelAttributes.LOGIN_UNIQUE_ID).get()) {
@@ -165,7 +169,7 @@ class LoginServerDecoder(val rsaPair: RsaConfig.RsaKeyPair) : ByteToMessageDecod
         val entryPreviewLength = minOf(buf.readableBytes(), 32)
         val entryPreview = ByteArray(entryPreviewLength)
         buf.getBytes(buf.readerIndex(), entryPreview)
-        val entryPreviewHex = entryPreview.joinToString(" ") { "%02x".format(it.toInt() and 0xff) }
+        val entryPreviewHex = if (com.opennxt.security.NativeLanAccess.loopback(ctx.channel().remoteAddress())) entryPreview.joinToString(" ") { "%02x".format(it.toInt() and 0xff) } else "redacted"
         logger.info {
             "Login decoder entry from ${ctx.channel().remoteAddress()}: readable=${buf.readableBytes()}, " +
                 "preview=$entryPreviewHex"
@@ -177,7 +181,7 @@ class LoginServerDecoder(val rsaPair: RsaConfig.RsaKeyPair) : ByteToMessageDecod
             val previewLength = minOf(buf.readableBytes(), 32)
             val preview = ByteArray(previewLength)
             buf.getBytes(buf.readerIndex(), preview)
-            val previewHex = preview.joinToString(" ") { "%02x".format(it.toInt() and 0xff) }
+            val previewHex = if (com.opennxt.security.NativeLanAccess.loopback(ctx.channel().remoteAddress())) preview.joinToString(" ") { "%02x".format(it.toInt() and 0xff) } else "redacted"
             logger.warn(
                 "Client from ${ctx.channel().remoteAddress()} attempted to login with unknown id: $id " +
                     "(remaining=${buf.readableBytes()}, preview=$previewHex)"
@@ -263,7 +267,10 @@ class LoginServerDecoder(val rsaPair: RsaConfig.RsaKeyPair) : ByteToMessageDecod
             payload.decipherXtea(header.seeds)
 
             if ((type == LoginType.GAME || type == LoginType.GAME_ALT) && header is LoginRSAHeader.Reconnecting) {
-                val snapshot = LoginHandoffStore.recall(ctx.channel().remoteAddress())
+                if (!com.opennxt.security.NativeLanAccess.loopback(ctx.channel().remoteAddress())
+                    && header.uniqueId != ctx.channel().attr(RSChannelAttributes.LOGIN_UNIQUE_ID).get())
+                    throw IllegalStateException("Guest handoff challenge mismatch")
+                val snapshot = LoginHandoffStore.recall(ctx.channel().remoteAddress(), header)
                 if (snapshot == null) {
                     logger.warn {
                         "Reconnect-style game login from ${ctx.channel().remoteAddress()} had no stored lobby snapshot"

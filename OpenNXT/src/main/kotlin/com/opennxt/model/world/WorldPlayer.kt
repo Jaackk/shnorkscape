@@ -113,7 +113,7 @@ class WorldPlayer(
     private var native950SettingsPage = 0
     override val interfaces: InterfaceManager = InterfaceManager(this)
     override val stats: StatContainer = PlayerStatContainer(this)
-    private fun worldHost(): String = OpenNXT.config.gameHostname
+    private fun worldHost(): String = com.opennxt.security.NativeLanAccess.hostFor(client.channel.remoteAddress(), OpenNXT.config.gameHostname)
     private val worldList = WorldList(
         arrayOf(
             WorldListEntry(
