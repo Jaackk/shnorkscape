@@ -26,6 +26,8 @@
 /compiler/
 /client/
 /dependencies/
+/dist/lan-guest-*/
+/dist/lan-guest-*.zip
 /OpenNXT/runtime/
 /OpenNXT/data/clients/
 /OpenNXT/data/debug/
