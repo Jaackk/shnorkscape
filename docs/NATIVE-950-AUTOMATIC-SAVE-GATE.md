@@ -1,5 +1,36 @@
 # Automatic native Save capture: disposable V5 gate
 
+## Live proof checkpoint: 2026-09-20
+
+PROVEN on layoutgate2: automatic native NEW Save -> durable account revision2 ->
+fresh-process automatic restoration. Jack independently confirmed the NEW layout
+visually, without manual staging/loading or an operator import. Same-process
+Logout remains broken/separate and was NOT tested.
+
+Post-save `workspace-static-v5-39788-A.json` (01:35:41) and fresh-process
+`workspace-static-v5-26564-A.json` (01:36:49) passed `check_automatic_save.py`.
+Both complete912-ID snapshots/schema/image/controls validate. Server log binds
+PID39788 to the authenticated disposable connection and records durable revision2;
+the client receipt precedes its verification hotkey. PID26564 independently pairs
+and receives automatic restore. The checksummed account-bound revision2 sidecar
+differs from retained revision1 in21 Custom parents. Both readbacks match all
+stored Custom matrices exactly, preserving absence/type; integer and masked
+per-slot metadata have ZERO mismatches. This was not the old seeded fixture.
+
+Raw active8 after Save versus restart is NOT byte-identical:693/720 fields match,
+27 differ, none are missing. The checker reports those differences without
+waiving them. Native8741 reconstructs active state from the exact preserved Custom
+matrices; active8 is not replayed verbatim. Accordingly this proves Custom-state
+durability plus Jack's visible restoration, not raw equality of every active field
+or every possible layout. Retain this distinction for the Jaxa rollout.
+
+Preserved implementation:6999ef8; deployed JAR
+`1c1ec7b57c21dab4d96f7acd1205c4bd6bbf07537e789924697122910ee0deb0`.
+Pre-rollout backup:`backups/pre-edit-20260920-014125-052`, GitHub verifiedc6b9616.
+Raw evidence and account sidecars remain local/ignored. Below is the historical
+pre-test implementation/deployment record; its pending-live statements are now
+superseded by this result, not by an unperformed Jaxa test.
+
 Protected baseline: `11c7c52`. Full client-restart restoration of the reviewed
 layoutgate2 sidecar is already proven. This change connects NEW native Save events
 to that store. It is implemented/tested, but the NEW Save/restart loop needs Jack's
