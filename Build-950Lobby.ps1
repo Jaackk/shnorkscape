@@ -23,7 +23,8 @@ $sources += @('OpenNXT.kt','login\LoginProcessor.kt','model\entity\BasePlayer.kt
 $previousPreference=$ErrorActionPreference
 $ErrorActionPreference='Continue'
 try {
- & (Join-Path $JavaHome 'bin\java.exe') -Xmx2g -cp $compiler org.jetbrains.kotlin.cli.jvm.K2JVMCompiler -no-stdlib -no-reflect -jvm-target 25 -module-name opennxt950 ('-Xfriend-paths='+$OpenNXTJar) -classpath $classpath -d $OutputDirectory @sources (Join-Path $root 'tools\Verify950.kt') *> (Join-Path $root 'logs\build-950-lobby.log')
+ # Internal Kotlin method names must match the complete JAR, including its module suffix.
+ & (Join-Path $JavaHome 'bin\java.exe') -Xmx2g -cp $compiler org.jetbrains.kotlin.cli.jvm.K2JVMCompiler -no-stdlib -no-reflect -jvm-target 25 -module-name OpenNXT ('-Xfriend-paths='+$OpenNXTJar) -classpath $classpath -d $OutputDirectory @sources (Join-Path $root 'tools\Verify950.kt') *> (Join-Path $root 'logs\build-950-lobby.log')
  $code=$LASTEXITCODE
 } finally { $ErrorActionPreference=$previousPreference }
 if ($code -ne 0) {Get-Content -LiteralPath (Join-Path $root 'logs\build-950-lobby.log') -Tail 24;throw '950override compilation failed'}

@@ -136,3 +136,37 @@ family enum/default precedence as in Undercut. Absent/mistyped parameters do not
 silently become sequence0. No missing ability is marked implemented by this.
 Rex/Barrelchest gates still pass:1149 ticks/5538 parsed frames including the new
 arrow witness. Actual Vulkan projectile visibility remains a live test.
+
+## Local deployment, 20 September 2026
+
+After Jack closed the client, the old server confirmed player removal. Backup:
+`backups/pre-edit-20260920-121933-255` (includes both runtime JARs, overrides,
+profiles, workspace state and previous server logs). No client was launched by
+the agent. All seven saved profile/workspace files remain byte-identical after
+deployment. The original workspace flags are preserved and LAN remains OFF.
+
+The first readiness check caught a Kotlin override ABI mismatch: compiling the
+OpenNXT override under module `opennxt950` renamed internal methods referenced by
+the full JAR's `OpenNXT` module. No player logged in during that failed check.
+Build-950Lobby now uses the same `OpenNXT` module name. The new
+NativeOverrideLinkageAcceptance runs with overrides first and verifies both the
+internal offline method and its synthetic default bridge. This is a build fix,
+not a login protocol change.
+
+Final runtime PID6716, loopback-only80/8950/43650. Normal Play.cmd jav_config is
+HTTP200. Live JS5-over-HTTP index255/group12 returns322443 bytes on both HTTP
+ports. Verify950Kt passes;5145 JS5 payload checks pass; remote handoff isolation
+passes on the deployed classpath. The combat candidate's1437 tests had zero
+failures/errors and two skips. Vulkan combat presentation still requires Jack.
+
+Deployed engine SHA256:
+`b1c85a08f48bc3b38b1cb50edefda6a93213789176f62702476f8d05c5f00d85`
+
+Deployed OpenNXT SHA256:
+`e557c6e2d6b1433a891d72863a9427f779794ce4874b2086c05c91438ed8f4f4`
+
+Live checklist: normal Play.cmd login; attack an ordinary combat NPC using
+melee, a bow with compatible ammo, and a staff with air runes; observe sustained
+targeting, launch/cast, projectile arrival and hits. Then test Rex using Magic
+and supplies, including death/drop/respawn. Automated boss witnesses are not
+proof of rendered behaviour, area access or complete bespoke boss mechanics.
