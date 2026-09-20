@@ -9,6 +9,13 @@ import java.util.concurrent.*;
 /** Explicit disposable restart gate, disabled in the normal launch profile. */
 final class Native950DisposableWorkspaceRestore {
     static final String PROPERTY="ataraxia950.layoutDurabilityGate";
+    static final String JAXA_PROPERTY="ataraxia950.workspaceJaxaRollout";
+    // One reviewed account per launch, never a global capture allowlist.
+    static boolean target(String account) {
+        return Boolean.getBoolean(JAXA_PROPERTY)
+            ? "jaxa".equals(Native950Save.canonicalUsername(account))
+            : Native950LayoutFixture.target(account);
+    }
     static final Path ROOT=Paths.get("C:/Games/950OpenSource");
     private static final ExecutorService IO=new ThreadPoolExecutor(1,1,0L,TimeUnit.MILLISECONDS,
             new ArrayBlockingQueue<Runnable>(4),r->{Thread t=new Thread(r,"workspace-gate-io");t.setDaemon(true);return t;},new ThreadPoolExecutor.AbortPolicy());
@@ -16,7 +23,7 @@ final class Native950DisposableWorkspaceRestore {
     private boolean consumed;
     Native950DisposableWorkspaceRestore(Future<Native950LayoutFixture.Plan> pending){this.pending=pending;}
     static boolean allowed(Player p,Channel ch) {
-        return Boolean.getBoolean(PROPERTY)&&Native950LayoutFixture.target(p.getUsername())
+        return Boolean.getBoolean(PROPERTY)&&target(p.getUsername())
             &&Native950DevelopmentCommands.allowed(Boolean.getBoolean(Native950DevelopmentCommands.PROPERTY),p.getClientProfile(),ch.remoteAddress());
     }
     static Native950DisposableWorkspaceRestore sceneReady(Player p,Channel ch) {
@@ -26,6 +33,7 @@ final class Native950DisposableWorkspaceRestore {
             com.google.gson.JsonObject schema=Native950LayoutFixture.loadSchema(ROOT);
             Native950WorkspaceStore store=new Native950WorkspaceStore(ROOT.resolve("workspace-state950"),schema);
             Native950WorkspaceStore.Record record=store.load(account);
+            if(record!=null)System.out.println("[WorkspaceDurabilityGate] account="+account+" loaded revision="+record.revision);
             return record==null?null:Native950LayoutFixture.workspacePlan(schema,record.snapshot());
         })); } catch(RejectedExecutionException full) {
             System.err.println("[WorkspaceDurabilityGate] bounded IO queue full; no restore queued");return null;
@@ -43,10 +51,10 @@ final class Native950DisposableWorkspaceRestore {
             if(p.getInterfaceManager().containsInterface(1475))throw new IllegalStateException("Editor opened before restore");
             for(Native950Packets.Packet packet:plan.packets)ch.write(packet);
             ch.write(Native950Packets.runClientScript(8741,plan.selected));
-            System.out.println("[WorkspaceDurabilityGate] account=layoutgate2 restored-setters-and-native-load-queued; visual/readback pending");
+            System.out.println("[WorkspaceDurabilityGate] account="+Native950Save.canonicalUsername(p.getUsername())+" restored-setters-and-native-load-queued; visual/readback pending");
         } catch(Exception failure) {
             System.err.println("[WorkspaceDurabilityGate] refused: "+failure);
-            ch.write(Native950Packets.gameMessage(0,"Disposable workspace restore refused; healthy defaults retained where no setters were sent."));
+            ch.write(Native950Packets.gameMessage(0,"Workspace restore refused; healthy defaults retained where no setters were sent."));
         }
         return true;
     }

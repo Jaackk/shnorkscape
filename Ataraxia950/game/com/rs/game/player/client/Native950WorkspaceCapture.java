@@ -12,7 +12,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
 
-/** Disposable-only native Save capture; the normal launch profile cannot start this endpoint. */
+/** Explicit single-account native Save capture; disabled in the normal launch profile. */
 final class Native950WorkspaceCapture {
     static final String PROPERTY="ataraxia950.workspaceCaptureGate";
     static final String IMAGE="19323515092bbccd0090033badbc56177d0ca599216e4d702be27432cf693a13";
@@ -35,7 +35,7 @@ final class Native950WorkspaceCapture {
         synchronized boolean claim(){if(state!=1)return false;state=3;return true;}
     }
     Native950WorkspaceCapture(String account,Channel channel){
-        if(!Native950LayoutFixture.target(account))throw new IllegalArgumentException("Disposable account required");
+        if(!Native950DisposableWorkspaceRestore.target(account))throw new IllegalArgumentException("Reviewed workspace account required");
         this.account=account;this.channel=channel;
     }
     boolean live(){return !stopped&&channel.isActive();}
@@ -48,7 +48,7 @@ final class Native950WorkspaceCapture {
         if(!allowed(player,ch)||ch.attr(KEY).get()!=null)return;
         Native950WorkspaceCapture capture=new Native950WorkspaceCapture(Native950Save.canonicalUsername(player.getUsername()),ch);
         ch.attr(KEY).set(capture);
-        Thread worker=new Thread(capture::run,"workspace-capture-layoutgate2");worker.setDaemon(true);worker.start();
+        Thread worker=new Thread(capture::run,"workspace-capture-worker");worker.setDaemon(true);worker.start();
     }
     static void opened(Channel ch) {
         Native950WorkspaceCapture c=ch.attr(KEY).get();if(c==null)return;
@@ -75,8 +75,8 @@ final class Native950WorkspaceCapture {
                     if(!pipe.ownsGameSocket(pid,remote,local))throw new IOException("Peer does not own authenticated game connection");
                     pipe.verifyImage(pid,Native950DisposableWorkspaceRestore.ROOT.resolve("client/rs2client-vulkan-workspace-diag-v5.exe"),IMAGE,DLL);
                     byte[] nonce=new byte[16];new SecureRandom().nextBytes(nonce);
-                    System.out.println("[WorkspaceCaptureGate] authenticated disposable peer pid="+pid);
-                    notice.set("Workspace automatic capture ready (disposable gate).");
+                    System.out.println("[WorkspaceCaptureGate] account="+account+" authenticated peer pid="+pid);
+                    notice.set("Workspace automatic capture ready.");
                     while(live()) {
                         Request r=requests.poll(250,TimeUnit.MILLISECONDS);if(r==null)continue;
                         pipe.write(header(nonce,r.sequence,1));
@@ -92,8 +92,8 @@ final class Native950WorkspaceCapture {
                         Native950WorkspaceStore.Record previous=store.load(account);
                         long revision=previous==null?1:Math.addExact(previous.revision,1);
                         store.save(new Native950WorkspaceStore.Record(account,revision,values,IMAGE));
-                        notice.set("Workspace saved durably (disposable gate, revision "+revision+").");
-                        System.out.println("[WorkspaceCaptureGate] account=layoutgate2 durable revision="+revision+" pid="+pid);
+                        notice.set("Workspace saved durably (revision "+revision+").");
+                        System.out.println("[WorkspaceCaptureGate] account="+account+" durable revision="+revision+" pid="+pid);
                         pipe.write(header(nonce,r.sequence,2)); // Receipt only after forced atomic replacement.
                     }
                 }catch(IOException failure) {

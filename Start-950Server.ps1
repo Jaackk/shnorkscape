@@ -7,9 +7,12 @@ param(
  [switch]$Collision,[switch]$Minimal,[switch]$Ataraxia,[switch]$LumbridgeNpcs,
  [switch]$AllNpcs,[switch]$DevTools,[switch]$UnverifiedCacheBindings,
  [switch]$Walk,[switch]$Ribbon,[switch]$Settings,[switch]$Regions,
- [switch]$WorkspaceDurabilityGate,[switch]$WorkspaceCaptureGate
+ [switch]$WorkspaceDurabilityGate,[switch]$WorkspaceCaptureGate,[switch]$WorkspaceJaxaRollout
 )
 $ErrorActionPreference = 'Stop'
+if ($WorkspaceJaxaRollout -and (-not $WorkspaceDurabilityGate -or -not $WorkspaceCaptureGate)) {
+ throw 'Jaxa rollout requires both explicit workspace gates. Normal startup remains unchanged.'
+}
 if (-not $JavaPath) { $JavaPath = (Join-Path $PSScriptRoot 'runtime\java25\bin\java.exe') }
 $root = [IO.Path]::GetFullPath($PSScriptRoot)
 $server = Join-Path $root 'OpenNXT'
@@ -65,6 +68,7 @@ try {
  $features = ' -Dopennxt.950.walk=true -Dopennxt.950.ribbon=true -Dopennxt.950.settings=true -Dopennxt.950.regions=true -Dopennxt.950.collision=true -Dataraxia950.npcSpawns=true -Dataraxia950.npcRegions= -Dataraxia950.devTools=true -Dataraxia950.worldMap=true -Dataraxia.native.verifyCache=true'
  $features += ' -Dataraxia950.devAccounts=jaxa'
  if ($WorkspaceDurabilityGate) { $features += ' -Dataraxia950.layoutDurabilityGate=true' }
+ if ($WorkspaceJaxaRollout) { $features += ' -Dataraxia950.workspaceJaxaRollout=true' }
  if ($WorkspaceCaptureGate) {
   if (-not $WorkspaceDurabilityGate) { throw 'Capture gate requires the disposable durability gate.' }
   $features += ' -Dataraxia950.workspaceCaptureGate=true'

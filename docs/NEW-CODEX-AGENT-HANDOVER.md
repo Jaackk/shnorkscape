@@ -4,10 +4,16 @@
 
 **Automatic NEW Save gate:** see
 [V5 automatic Save gate](NATIVE-950-AUTOMATIC-SAVE-GATE.md).
-Session-bound local capture/store integration is implemented behind disposable-only
-flags; live NEW Save -> fresh-process restore is pending. Keep11c7c52 as the proven
-restore baseline and Jaxa excluded. Do not mistake the new gate for a completed
-production rollout.
+The complete automatic NEW Save -> account revision2 -> fresh-process restore
+passed on layoutgate2 (PIDs39788/26564), checkpointd54534d. All912 stored entries
+match post-Save; restored Custom matrices/metadata match exactly; Jack visually
+confirmed the NEW layout. Raw active8 differs in27/720 fields and is not claimed
+byte-identical. See [guarded Jaxa rollout](NATIVE-950-JAXA-WORKSPACE-ROLLOUT.md).
+Jaxa has a separate explicit opt-in, not global capture. Keep11c7c52 andd54534d
+as rollback checkpoints. Jaxa live acceptance is still required.
+
+The following older chronological progress notes are historical, superseded by
+the automatic Save proof above where they describe capture as missing.
 
 **2026-09-20 restart proof:** automatic restoration on layoutgate2 now passes
 full client close/reopen visually and structurally: PID3800 A and PID41956 A match

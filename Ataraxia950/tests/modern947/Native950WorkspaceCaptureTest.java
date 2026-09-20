@@ -10,6 +10,39 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class Native950WorkspaceCaptureTest {
+    @Test public void jaxaRolloutIsExclusiveAndStillRequiresBothGatesAndLoopback() {
+        String[] keys={Native950WorkspaceCapture.PROPERTY,Native950DisposableWorkspaceRestore.PROPERTY,
+            Native950DevelopmentCommands.PROPERTY,Native950DisposableWorkspaceRestore.JAXA_PROPERTY};
+        String[] old=Arrays.stream(keys).map(System::getProperty).toArray(String[]::new);
+        io.netty.channel.embedded.EmbeddedChannel local=new io.netty.channel.embedded.EmbeddedChannel(){
+            @Override protected SocketAddress remoteAddress0(){return new InetSocketAddress("127.0.0.1",1234);}
+        };
+        io.netty.channel.embedded.EmbeddedChannel remote=new io.netty.channel.embedded.EmbeddedChannel(){
+            @Override protected SocketAddress remoteAddress0(){return new InetSocketAddress("192.0.2.1",1234);}
+        };
+        try {
+            for(String key:keys)System.setProperty(key,"true");
+            com.rs.game.player.Player jaxa=com.rs.game.player.Player.createNative950("jaxa",new com.rs.game.WorldTile(3217,3258,0),local);
+            com.rs.game.player.Player disposable=com.rs.game.player.Player.createNative950("layoutgate2",new com.rs.game.WorldTile(3217,3258,0),local);
+            assertTrue(Native950WorkspaceCapture.allowed(jaxa,local));
+            assertFalse(Native950WorkspaceCapture.allowed(jaxa,remote));
+            assertFalse(Native950WorkspaceCapture.allowed(disposable,local));
+            assertFalse(Native950DisposableWorkspaceRestore.target("otheruser"));
+            assertFalse(Native950LayoutFixture.target("jaxa")); // Fixture command remains disposable-only.
+            new Native950WorkspaceCapture("jaxa",local);
+            try{new Native950WorkspaceCapture("layoutgate2",local);fail();}catch(IllegalArgumentException expected){}
+            for(int i=0;i<3;i++) {
+                System.clearProperty(keys[i]);assertFalse(Native950WorkspaceCapture.allowed(jaxa,local));
+                System.setProperty(keys[i],"true");
+            }
+            System.clearProperty(keys[3]);
+            assertFalse(Native950WorkspaceCapture.allowed(jaxa,local));
+            assertTrue(Native950WorkspaceCapture.allowed(disposable,local));
+        }finally{
+            local.finishAndReleaseAll();remote.finishAndReleaseAll();
+            for(int i=0;i<keys.length;i++){if(old[i]==null)System.clearProperty(keys[i]);else System.setProperty(keys[i],old[i]);}
+        }
+    }
     @Test public void nativeSessionCloseRevokesCapabilityEvenIfTcpStaysActive() {
         io.netty.channel.embedded.EmbeddedChannel ch=new io.netty.channel.embedded.EmbeddedChannel();
         try {
