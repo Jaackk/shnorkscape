@@ -2,6 +2,13 @@
 
 ## Start here
 
+**Automatic NEW Save gate:** see
+[V5 automatic Save gate](NATIVE-950-AUTOMATIC-SAVE-GATE.md).
+Session-bound local capture/store integration is implemented behind disposable-only
+flags; live NEW Save -> fresh-process restore is pending. Keep11c7c52 as the proven
+restore baseline and Jaxa excluded. Do not mistake the new gate for a completed
+production rollout.
+
 **2026-09-20 restart proof:** automatic restoration on layoutgate2 now passes
 full client close/reopen visually and structurally: PID3800 A and PID41956 A match
 on all912 entries, including all720 active fields; Custom matrices match source.

@@ -60,7 +60,7 @@ def build(raw, dll_name=DLL_NAME):
     data=bytearray()
     def put(blob,a=1):
         data.extend(b'\0'*(align(len(data),a)-len(data)));at=data_rva+len(data);data.extend(blob);return at
-    require(dll_name in (DLL_NAME,b'shnork_workspace_probe_v4.dll'),'Unapproved diagnostic import')
+    require(dll_name in (DLL_NAME,b'shnork_workspace_probe_v4.dll',b'shnork_workspace_probe_v5.dll'),'Unapproved diagnostic import')
     dll=put(dll_name+b'\0')
     name=put(b'\0\0WorkspaceProbe\0',2)
     ilt=put(struct.pack('<QQ',name,0),8)
@@ -97,9 +97,10 @@ def build(raw, dll_name=DLL_NAME):
     return result,dict(input_sha256=INPUT_HASH,output_sha256=sha(result),thunk_rva=code_rva,iat_rva=iat,thunk_size=len(code),unwind_rva=unwind,critical_spans=SPANS)
 
 if __name__=='__main__':
-    ap=argparse.ArgumentParser();ap.add_argument('input',type=Path);ap.add_argument('output',type=Path);ap.add_argument('manifest',type=Path);ap.add_argument('--v4',action='store_true');args=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('input',type=Path);ap.add_argument('output',type=Path);ap.add_argument('manifest',type=Path);ap.add_argument('--v4',action='store_true');ap.add_argument('--v5',action='store_true');args=ap.parse_args()
+    require(not (args.v4 and args.v5),'Choose one diagnostic version')
     require(args.input.resolve()!=args.output.resolve(),'Never replace production')
-    result,manifest=build(args.input.read_bytes(),b'shnork_workspace_probe_v4.dll' if args.v4 else DLL_NAME)
+    result,manifest=build(args.input.read_bytes(),b'shnork_workspace_probe_v5.dll' if args.v5 else b'shnork_workspace_probe_v4.dll' if args.v4 else DLL_NAME)
     require(not args.output.exists(),'Output already exists; do not overwrite')
     args.output.write_bytes(result);args.manifest.write_text(json.dumps(manifest,indent=2)+'\n')
     print(json.dumps(manifest,indent=2))

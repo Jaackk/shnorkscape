@@ -57,6 +57,8 @@ dependencies {
     compile files('data/libs/HikariCP-3.4.5.jar')
     compile files('data/libs/annotations-13.0.jar')
     compile files('data/libs/clojure-1.10.3.jar')
+    // Already pinned in the local OpenNXT runtime; used only by the opt-in Windows capture gate.
+    compile files('../OpenNXT/runtime/lib/jna-5.14.0.jar')
 
     compile group: 'it.unimi.dsi', name: 'fastutil', version: '8.1.1'
     compile group: 'io.github.lukehutch', name: 'fast-classpath-scanner', version: '3.0.3'

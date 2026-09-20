@@ -480,6 +480,7 @@ public final class Native950Interactions {
     private void mapBuildReport(Native950Actions.MapBuildReportAction action) {
         mapBuilds++;
         if(mapBuilds==1)workspaceRestore=Native950DisposableWorkspaceRestore.sceneReady(player,channel);
+        if(mapBuilds==1)Native950WorkspaceCapture.sceneReady(player,channel);
         System.out.println("[Ataraxia950] Client finished a scene build in " + action.elapsed()
                 + " client timer units; player " + player.getIndex() + " is at "
                 + player.getX() + "," + player.getY() + "," + player.getPlane()
@@ -708,6 +709,7 @@ public final class Native950Interactions {
     }
 
     void afterMovement() {
+        Native950WorkspaceCapture.drain(channel);
         if(workspaceRestore!=null&&workspaceRestore.finishOnWorldThread(player,channel))workspaceRestore=null;
         skillGuide.tick();
         observeInventory();

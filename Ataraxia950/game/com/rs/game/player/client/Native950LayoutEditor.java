@@ -44,6 +44,7 @@ final class Native950LayoutEditor {
         channel.write(Native950Packets.openSub(ROOT,HOST,INTERFACE,true));
         player.getInterfaceManager().registerNativeOpen(INTERFACE,ROOT,HOST);
         open=true;pending=Exit.NONE;
+        Native950WorkspaceCapture.opened(channel);
         Native950BugTest.event(player,"workspace-editor","opened","mount",ROOT+":"+HOST,
                 "interface",INTERFACE,"entryOwner","8748->2462","manual3477",false);
     }
@@ -59,6 +60,7 @@ final class Native950LayoutEditor {
     private void requestSave(){
         if(pending!=Exit.NONE)return;
         pending=Exit.SAVE;
+        Native950WorkspaceCapture.saveQueued(channel);
         // CS8743 forwards one callback integer to CS8754. The pinned 950 CS8754
         // never reads that first argument; it reads the selected target directly
         // from client varc139445. Zero is therefore a neutral callback placeholder,
@@ -74,6 +76,7 @@ final class Native950LayoutEditor {
     void requestCancel(){
         if(!open||pending!=Exit.NONE)return;
         pending=Exit.CANCEL;
+        Native950WorkspaceCapture.canceled(channel);
         // CS8746 re-enters component1475:20 when the layout is dirty. A server-owned
         // mount cannot keep that client-only confirmation hook alive after IF_CLOSESUB,
         // so an explicit X request uses the native direct-discard wrapper instead.
@@ -104,6 +107,7 @@ final class Native950LayoutEditor {
     /** A trailing CLOSE_MODAL is only an acknowledgement after the mount was retired. */
     boolean consumeNativeClose(){
         if(!open)return false;
+        Native950WorkspaceCapture.canceled(channel);
         closeServerMount("client-close-modal");
         return true;
     }

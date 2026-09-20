@@ -1,5 +1,8 @@
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX
+#ifdef PROBE_AUTO_CAPTURE
+#include <winsock2.h>
+#endif
 #include <windows.h>
 #include <bcrypt.h>
 #include <intrin.h>
@@ -11,7 +14,11 @@
 #include <vector>
 #ifdef PROBE_FULL_WORKSPACE
 #include "snapshot-schema-v4.h"
+#ifdef PROBE_AUTO_CAPTURE
+static constexpr int probeVersion=5, expectedCount=912;
+#else
 static constexpr int probeVersion=4, expectedCount=912;
+#endif
 #else
 #include "snapshot-schema.h"
 static constexpr int probeVersion=3, expectedCount=907;
@@ -23,7 +30,8 @@ static constexpr int probeVersion=3, expectedCount=907;
 #error Require the diagnostic wrapper RVA
 #endif
 
-// A normal, statically imported DLL. No DllMain worker, hooks, setters or IPC.
+// A normal, statically imported DLL. No DllMain worker, hooks or native setters.
+// Only the separate V5 opt-in build includes the fixed-purpose local capture pipe.
 static std::atomic<int> state{0};
 static uintptr_t base;
 static bool copyRead(uintptr_t p,void* out,size_t n) {
@@ -117,6 +125,9 @@ static bool equalSample(const Sample& a,const Sample& b) {
     return a.valid&&b.valid&&a.node==b.node&&a.found==b.found&&a.value==b.value&&a.tag==b.tag&&
         a.bucketCount==b.bucketCount&&a.elements==b.elements&&strcmp(a.outcome,b.outcome)==0;
 }
+#ifdef PROBE_AUTO_CAPTURE
+#include "auto_capture.h"
+#endif
 static bool snapshot(uintptr_t domain,const char* phase) {
     constexpr size_t count=sizeof(workspaceIds)/sizeof(workspaceIds[0]);
     static_assert(count==expectedCount,"Unexpected snapshot scope");
@@ -150,14 +161,19 @@ extern "C" __declspec(dllexport) void WorkspaceProbe(void* client) noexcept {
     // Only the image wrapper calls this export. A different caller is refused.
     uintptr_t caller=(uintptr_t)_ReturnAddress(),image=(uintptr_t)GetModuleHandleW(nullptr);
     if(caller<image+PROBE_THUNK_RVA||caller>=image+PROBE_THUNK_RVA+512)return;
-    if(state.load()!=0)return;
+    if(state.load()!=0){
+#ifdef PROBE_AUTO_CAPTURE
+        if(state.load()==2)autoDisabled.store(true);
+#endif
+        return;
+    }
     int expected=0;if(!state.compare_exchange_strong(expected,1))return;
     base=image;
     try {
         static bool checked=false;
         static unsigned shots=0;static bool held=false;static DWORD owner=0;
         const char* phases[]={"A","B","C"};
-        Results results{};const char* phase=phases[shots];
+        Results results{};const char* phase=phases[shots%3];
         if(!checked){if(!preflight()){report("preflight-refused",phase,results);state.store(2);return;}checked=true;}
         uintptr_t anchor=0,secondary=0,vt=0,manager=0,stats=0,statHead=0;int mode=0;
         if(!read(base+0xfb8258,anchor)||!read(base+0xdb6088,secondary)||anchor!=(uintptr_t)client||anchor!=secondary||
@@ -168,7 +184,13 @@ extern "C" __declspec(dllexport) void WorkspaceProbe(void* client) noexcept {
         bool pressed=foregroundPid==GetCurrentProcessId()&&(GetAsyncKeyState(VK_CONTROL)&0x8000)&&
             (GetAsyncKeyState(VK_SHIFT)&0x8000)&&(GetAsyncKeyState(VK_F9)&0x8000);
         bool trigger=pressed&&!held;held=pressed;
+#ifdef PROBE_AUTO_CAPTURE
+        if(mode!=30){autoCommand.store(0);state.store(0);return;}
+        autoStart();
+        if(!trigger&&!autoCommand.load(std::memory_order_acquire)){state.store(0);return;}
+#else
         if(mode!=30||!trigger){state.store(0);return;}
+#endif
         if(owner&&owner!=GetCurrentThreadId()){report("thread-changed",phase,results);state.store(2);return;}
         owner=GetCurrentThreadId();
         if(!read(anchor+0x19920,manager)||!manager||manager%8||!read(manager+0x7618,stats)||!stats||!read(stats,statHead)) {
@@ -176,6 +198,10 @@ extern "C" __declspec(dllexport) void WorkspaceProbe(void* client) noexcept {
         }
         uintptr_t domain=manager+0x7620,dvt=0,basevt=0;
         if(!read(domain,dvt)||dvt!=base+0xc6dbb8||!read(domain+8,basevt)||basevt!=base+0xc6d818){report("domain-vtable-refused",phase,results);state.store(2);return;}
+#ifdef PROBE_AUTO_CAPTURE
+        autoTick(domain);
+        if(!trigger||shots>=3){state.store(0);return;}
+#endif
         bool valid=true,controlsFound=true;
         for(int i=0;i<7;i++) {
             auto& a=results.items[i];Sample b{};
@@ -186,7 +212,12 @@ extern "C" __declspec(dllexport) void WorkspaceProbe(void* client) noexcept {
         const char* status=!valid?"reader-invariant-failed":!controlsFound?"bootstrap-controls-missing":results.items[6].found?"controls-and-3296-resolved":"controls-resolved-3296-absent";
         report(status,phase,results);
         if(!valid||!controlsFound||!snapshot(domain,phase)){state.store(2);return;}
-        ++shots;state.store(shots==3?2:0);
+        ++shots;
+#ifdef PROBE_AUTO_CAPTURE
+        state.store(0);
+#else
+        state.store(shots==3?2:0);
+#endif
     }catch(...){Results r{};report("diagnostic-exception","exception",r);state.store(2);}
 }
 #ifdef PROBE_TEST
@@ -207,6 +238,24 @@ int main() {
     buckets[0]=(uintptr_t)node;buckets[1]=(uintptr_t)node;s={};if(!lookup((uintptr_t)domain,3296,s)||s.found)return 8;
     buckets[1]=0;*(int*)node=3296;node[0x20]=2;s={};if(lookup((uintptr_t)domain,3296,s))return 9;
     node[0x20]=0;*(int*)(node+8)=0;s={};if(!lookup((uintptr_t)domain,3296,s)||!s.found||s.value!=0)return 10;
+#ifdef PROBE_AUTO_CAPTURE
+    struct alignas(8) TestNode {unsigned char bytes[48]{};};
+    std::vector<int> ids(workspaceIds,workspaceIds+expectedCount);
+    ids.push_back(3477);for(auto c:controls){bool found=false;for(int id:ids)if(id==c.id)found=true;if(!found)ids.push_back(c.id);}
+    std::vector<TestNode> nodes(ids.size());std::vector<uintptr_t> table(410,0);uintptr_t editNode=0;
+    for(size_t i=0;i<ids.size();i++) {
+        auto p=(uintptr_t)nodes[i].bytes;*(int*)p=ids[i];*(uintptr_t*)(p+0x28)=table[ids[i]%409];table[ids[i]%409]=p;
+        if(ids[i]==3477)editNode=p;
+    }
+    *(uintptr_t*)(domain+0x18)=(uintptr_t)table.data();*(uint64_t*)(domain+0x20)=409;*(uint64_t*)(domain+0x28)=ids.size();
+    autoCommand.store(1);autoTick((uintptr_t)domain);if(autoResult.load()!=0)return 11;
+    *(int*)(editNode+8)=1;autoTick((uintptr_t)domain);Sleep(20);*(int*)(editNode+8)=0;autoTick((uintptr_t)domain);
+    if(autoResult.load()!=1||autoStatus!=1||autoBody.size()!=26+7*expectedCount)return 12;
+    autoCommand.store(2);autoTick((uintptr_t)domain);if(autoResult.load()!=1)return 13;
+    *(int*)(editNode+8)=1;autoTick((uintptr_t)domain);Sleep(20);*(int*)(editNode+8)=0;nodes[0].bytes[0x20]=2;autoTick((uintptr_t)domain);
+    if(autoResult.load()!=2||autoStatus!=2||!autoBody.empty())return 14;
+    puts("PASS: automatic capture requires observed native entry/exit, full scope and stable int32 types");
+#endif
     puts("PASS: typed direct-key lookup, zero versus absent, sentinel, bounds, cycles and wrong-image refusal");return 0;
 }
 #endif
