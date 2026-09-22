@@ -29,6 +29,7 @@
 /dist/lan-guest-*/
 /dist/lan-guest-*.zip
 /OpenNXT/runtime/
+/OpenNXT/server-home/
 /OpenNXT/data/clients/
 /OpenNXT/data/debug/
 /OpenNXT/data/playersaves/

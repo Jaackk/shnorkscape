@@ -1,0 +1,370 @@
+SHNORKSCAPE - NEXT AGENT ENGINEERING CONTINUATION
+Snapshot: 2026-09-22. Read this before changing combat, client UI, LAN or saves.
+
+0. THE P0 FACT, NOT AN INFERENCE
+Ability keybinds have LIVE-FAILED again. They may activate at login/early combat,
+then cease after continued play or state changes. Click activation and the native
+yellow press square have also been intermittent. The precise transition is NOT
+proven. Do not call keybind longevity fixed because a fresh-login test passes or
+because c05df9d implemented immediate manual execution. First reproduce:
+WORKING keybind -> one controlled state change -> DEAD keybind. Record the first
+failed boundary: did the client emit no IF_BUTTON, did transport drop it, did
+dispatch reject it, or did combat refuse execution? These are different bugs.
+The current source includes useful Bug Test action-bar events. Do not compensate
+with a cosmetic yellow overlay or an unverified 950 script.
+
+1. REPOSITORY, RUNTIME AND PROTECTION
+Repository: C:\Games\950OpenSource; branch main; remote
+https://github.com/Jaackk/shnorkscape.git. Combat implementation checkpoint
+c05df9d (Restore immediate ability input and shared combat; fix remote bank and
+diagnostic spawns). The pre-edit backup for this handoff advanced HEAD to
+9aeaa7daacb1102d34dded40cc0ba1095fd28b14; check HEAD again after this
+document's own commit. Earlier protected checkpoints: 1df667c combat rollback,
+1ded397 Jaxa native workspace durability, 6115b21 normal Play.cmd workspace
+restart proof, 20258e4 native Edit Mode. 9cf04a1 restored action-bar input and
+started Necromancy. Do not reset/rewrite published history or discard user work.
+
+At handoff preflight, staged JAR dist\staged-update\ataraxia-950-1.0-UNTRACKED.jar
+SHA-256 92E32A56D3C2BC05190CF3EE9E97FAA3CB0462A02C673753643B7F6F0CD6FD7F.
+The deployed file OpenNXT\runtime\lib\ataraxia-950-1.0-UNTRACKED.jar had the
+SAME hash and timestamp 2026-09-22 20:45:56. Running Java PID 25372 began
+2026-09-22 20:49:44 with that runtime/lib classpath. Thus c05df9d's JAR appears
+installed and launched in this observed process; do not rely on the older
+docs/COMBAT-INPUT-SPAWNS-20260922.md statement that it is merely staged.
+The file hash plus process start time are strong provenance but not a live
+keybind acceptance result. Recheck PID/hash/status on takeover. Runtime flags
+include devAccounts=jaxa,nooby; lanDevAccounts=nooby; LAN address 192.168.0.91;
+workspace durability/Jaxa rollout flags. Never print or commit credential values.
+
+Play.cmd invokes Launch.ps1 (normal production launcher); Stop.cmd invokes
+Stop-950Test.ps1; Apply Staged Update.cmd checks the pinned JAR hash, refuses
+Java/client processes, snapshots old engine, players and workspace, then
+installs the candidate. Do not replace the running JAR while Java is active.
+Both clients must close before Stop.cmd / installer / Play.cmd. Local JDK8 builds
+the Ataraxia engine; runtime server uses bundled Java25. Installer --check-only
+does not deploy or restart. Do not silently infer live version from build output.
+
+AGENTS.md requires successful .\Backup-BeforeEdit.ps1 -Task 'description'
+before edits, GitHub push verification, and local save/runtime snapshots. The
+backup created for this handoff is backups\pre-edit-20260922-211055-095.
+Protect Jaxa: snapshot/hash players\modern950\players and workspace-state950
+before and after deployment; never mutate a profile to run an automated test;
+never commit profiles, LAN credentials, logs or ignored runtime assets. During
+this handoff backup, the script accidentally tracked a 66-byte runtime
+OpenNXT/server-home/saved-locations950.bin. The live file must remain in place;
+this handoff untracks it and ignores /OpenNXT/server-home/ going forward. The
+already-pushed backup commit contains that file; audit backup-script staging
+rules before its next use. Do not reveal private account data in reports.
+
+2. MANDATORY LINEAGE / AUTHORITY
+The upstream release explicitly said '950 revision client and cache running on
+a converted 910 server'. Debug with a THREE-WAY comparison:
+Ataraxia 910 -> SHNORKSCAPE conversion -> exact revision-950 client/cache.
+910 explains inherited server architecture and partially converted assumptions.
+Project Undercut 949.1, Elveron876, Vernox830, Darkan, Matrix and Nocturne
+explain behaviour and design. They NEVER authorize 950 packet IDs, components,
+varbits, animations, icons or scripts. Exact local 950 cache/client, pinned
+definitions and real Vulkan evidence win. Old mistakes: four-bit shortcut type,
+older interface IDs, sprite IDs treated as animation IDs, guessed redraws.
+
+Reference roots verified locally:
+  C:\Games\950OpenSource\Ataraxia950 (converted 910 engine; locate original 910
+    revision/history before attributing a behavior to it)
+  C:\Users\Jacko\Documents\RSPS\engine-dev\engine-dev (Undercut 949.1)
+  C:\Users\Jacko\Documents\RSPS\Darkan Server\world-server
+  C:\Users\Jacko\Documents\RSPS\Vernox830\Vernox RS3 - Trikru
+  C:\Users\Jacko\Documents\RSPS\830 Vernox and Cache - NOT TRIED YET
+  C:\Users\Jacko\Documents\RSPS\NocturneServer\Elveron876
+  C:\Users\Jacko\Documents\RSPS\MATRIX
+  C:\Users\Jacko\Documents\RSPS\NocturneServer
+  C:\Users\Jacko\Documents\RSPS\LATEST SERVER\950OpenSourceBackup is an
+    older project snapshot, NOT the current source of truth.
+The exact original Ataraxia 910 separate checkout was not confirmed at this
+preflight; use repository ancestry/known original, do not invent its path.
+Read docs/NEW-CODEX-AGENT-HANDOVER.md for lineage, but its runtime/HEAD status
+is old. Read current docs/ABILITY-ROUGH-PASS-20260922.md,
+docs/COMBAT-INPUT-SPAWNS-20260922.md,
+docs/COMBAT-LAN-CONTINUATION-20260920.md and protocol-analysis/ability-coverage-950.json.
+
+3. P0 INPUT PATH: EXACT CURRENT OWNERS
+Inbound exact-950 IF_BUTTON options 1..10 have opcodes
+18,122,89,100,81,126,49,66,31,59 (in option order). Native950Actions.java
+decodes their 9-byte payload to InterfaceAction; DRAG opcode 12 decodes to
+DragAction. No 947 opcode substitution. Native950GameTransport.java frames,
+decodes and queues actions, then Native950Session.tickInput drains them in world
+phase 1a. Session routes through Native950Interactions.handle(action), which
+routes interface/drag to Native950ActionBar.button/drag and other UI owners.
+Native950Session.tickMove runs manager/entity/movement phases; Native950World
+owns shared combat, session roster and tick scheduler. Check this entire chain
+with bounded Bug Test events at the first failed keypress, not only ability().
+The transport can evict queued chat to admit actions; a queue full of non-chat
+is a different failure. Do not assume a keypress necessarily became IF_BUTTON.
+
+Native950ActionBar.java owns 4 saved bars, 14 slots each. Persistent settings:
+actionBar.<bar>.<pair> (7 packed pairs/bar), actionBar.active,
+actionBar.revolution. It migrates the original bar-one keys. Packed native
+shortcut = (type << 17) | (enumKey << 4); varbits 1747 type (varp739 bits17..23)
+and 1748 key (bits4..16). Type -> enum:
+1 melee 10147; 3 defence 6736; 4 constitution 6737; 5 ranged 6738;
+6 magic 6740; 7 necromancy 16973. Do not repack with old four-bit type.
+Main bar interface1430 slot children64..238 in groups of13; Powers mirror1436
+uses children19/20 +13*n. Source books have their own mounts and masks.
+Book source validation is in bookType; struct(packed) resolves enum key to
+cache structure. ActionBar.button expects option1 for ability activation;
+validates mounted child 1430 OR workspace wrapper1477 (corrected in 9cf04a1),
+player active/unlocked/not dead, slot binding, then combat.ability(structure).
+Spell selection on 1461:1 option2 is separate. Native preset selector is
+1430:261 (also accepts254); action bar root is1477.
+
+;;bar <1-4> calls setActiveBar on the SAME player's Native950ActionBar. This
+selects one of four stored arrays and syncs native visible state; it does NOT
+copy equipment, inventory, target, animation or another player's bar. sync()
+sends varbits1893 (bar index+1),1892=0, display mode27893=2, manual41598,
+Revolution41599; per-slot native type/shortcut varps; scripts6992 and7964
+(7964 args 1436,0,0,1,-1). It restamps still-active cooldowns. It is
+event-driven, not every-tick. Actual config formulas typeConfig/shortcutConfig
+are in Native950ActionBar.java; bar<5 branches start823/739 for slots0..11,
+4429/4415 for slots12..13. Inspect those exact formulas before any patch.
+;;copy nooby calls copyLoadout: deep-copies ONLY inventory Item[] and worn
+equipment Item[] from online Nooby to recipient, then refreshes inventory,
+equipment and appearance. It does NOT copy binds/bars/active bar, cooldowns,
+target, queue, channel, session ownership or player state. ;;copybar is
+different: copies ONLY 14 packed shortcut values from the selected or current
+source bar into recipient's CURRENT bar, then syncs; source remains unchanged.
+Never copy transient input/transport ownership between players. Equipment
+change may indirectly alter admission/style and native bar presentation.
+
+Native950MeleeCombat.java: ability() revalidates structural/equipment/skill,
+target, distance, adrenaline, force movement/stun/lock; a ready legal manual
+ability now queues then performs IMMEDIATELY, even if old animation is still
+finishing. A genuine GCD, own cooldown <=3 ticks, or channel block queues one
+request; long cooldown is refused. performAbility revalidates at execution,
+sets target-facing mask, applies 3-tick GCD and individual cooldown, sends
+script6570 via ActionBar.cooldown(structure,worldCycle,endCycle,1,1), and also
+global cooldown indicator structure14881. The path is per-player maps for
+queuedAbilities, globalCooldown, channelUntil, abilityCooldowns. stop/death
+and target transitions clear or retain different maps; inspect before editing.
+Revolution uses saved action-bar candidate selection (first 9 slots), not a
+native settings-complete implementation. ;;revo toggles server-side flag and
+41598/41599; the Combat Settings checkbox still awaits client acknowledgement.
+c05df9d repaired secondary-attacker processing, DoT/channel cleanup and the
+same Revolution path; this has automated coverage, not a two-person live pass.
+
+ACTIVATION feedback: native yellow press square was previously live-confirmed
+but now intermittent alongside input. Current server does not own a fake square.
+First distinguish missing client input from server refusal from missing visual
+ack. Do not overwrite it with unproven 950 script. QUEUE: visual queued ability
+indicator is NOT implemented; chat text is not an acceptable substitute, and
+exact 950 native state mapping is still needed. COOLDOWN: 6570 is implemented
+and script/cycle packets tested; visible sweep/timer on all bar and Powers
+surfaces remains a Vulkan live gate. sync() restamps cooling abilities after
+bar/slot rebuild. A sent script does not prove the client displayed its sweep.
+
+P0 TEST MATRIX (run BEFORE claiming reliability): first establish keybind +
+mouse click + yellow square in a stable login session, then test each isolated
+transition and repeat for long enough to expose deterioration: repeated ability
+activation; ;;bar switching; native bar selector; ;;copy nooby; ;;copybar;
+drag/drop and rearrange; Powers open/close; target changes/death; leave/re-enter
+combat; weapon/equipment change; cooldown completion; channel complete and
+interrupt; queued execution; Revolution on/off and manual->Revo->manual; two
+players same NPC with second-attacker ownership; NPC death/respawn. Timestamp
+the FIRST transition from good to bad; capture Bug Test action-bar visual-sync,
+bound/rearranged, ability-click/request/queued/rejected/performed, transport
+action and native screen state. Hypotheses ONLY (not causes): stale bar/slot
+generation, component identity/child-vs-wrapper mount, cached bar state,
+client/server config desynchronization, combat target ownership after transitions,
+full input queue. Rule out each at its boundary, not by another broad rewrite.
+
+4. EXACT-950 ABILITY AND NECROMANCY MAP
+protocol-analysis/ability-coverage-950.json is the generated machine-readable
+inventory with typed parameters/visibility. 171 ability-shaped index22 structs:
+120 native book entries, 20 additionally reached by conditional transformer,
+31 not reached by reviewed books. This is NOT 171 simultaneously visible
+buttons. Script6995 dispatches native shortcut/book enum; script8247 applies
+conditional transforms/upgrades/unlocks/weapon/recast state. Their pinned
+SHA-256 are in docs/COMBAT-LAN-CONTINUATION-20260920.md. An earlier inventory
+count was 31 partially executing/140 missing; docs/ABILITY-ROUGH-PASS-20260922.md
+then grew the explicit executable catalogue to 54. Do not conflate that count
+with 120 native book entries or claim 54 retail-complete. Read the JSON/source
+for current exact definition membership before updating numbers.
+
+Native950AbilityCatalog.java is execution admission and cache-backed metadata.
+Touch of Death, Finger of Death, Soul Sap, Bloat, Spectral Scythe, Death Skulls
+are the first SIX server-supported Necromancy entries, using shared target,
+queue, cooldown, adrenaline, impact and Necro XP paths. Many other Necro
+mechanics (conjures, souls, Blood Siphon, Life Transfer, Threads of Fate,
+Invoke Death, Darkness, Split Soul, Living Death) are still missing. The user
+has LIVE-CONFIRMED drag from Powers, but icons are WRONG, many effects partial,
+and small movable/tabbable Necromancy book EMPTY. Do not solve with fake
+per-structure sprite assignments; fix shared identity/category/enum/transform
+path. Distinguish Powers display, movable book builder and bar shortcut builder.
+
+Exact 950 Necro book enum16973, action-bar type7. Powers pages1207:1 and
+1215:1; movable 1887:1. 1887:6 onLoad -> script8422 category10; 1887:7
+category selector/masks. Earlier claim 1459 was Necro was WRONG (Magic page).
+ActionBar.enableBooks sends event masks for1207/1215/1887. Drag payload uses
+source face/component/slot -> bookType -> pack(type,key) -> struct enum lookup;
+then sync/6992/7964 builds bar icon. Compare exact 950 scripts8422,8423,
+8426,8437,6995,8247,11797 and enum16973, widget sprites/params and the
+Powers-vs-1887 category state. Source documentation is
+docs/ABILITY-ROUGH-PASS-20260922.md and protocol-analysis/ability-coverage-950.json.
+Undercut AbilityBooks/AbilityTransform is architectural, not numeric authority.
+No exact-950 Necromancy shortcut sprite/icon mapping has been accepted as
+proven in this handoff; the wrong live icons are evidence of that gap. Inspect
+the native 6995/8247 transformation result and widget sprite parameter chain,
+not arbitrary sprite candidates or hard-coded replacement icons.
+Tests: Native950ActionBarTest, Native950AbilityCatalogTest (where present),
+Native950AbilityPassAcceptance and Native950AbilityCoverage. Validate icons
+visually in Vulkan, not only the packed values. Exact cache structs currently
+admitted for Necro are 48296,48297,48298,48308,48311,48314; confirm names
+against the pinned catalog rather than remapping by enumeration order.
+
+Defence book1449 and Constitution1882; combined1880/1883 category varbits
+36453/36454 (domain0 varp3705 bits24..31), not ranged. Ranged1452/1456;
+Magic1459/1461/1884/1885/1886; Melee1450/1460/1881/1888. Cache script564
+and 8426/8437 establish defensive routing. Filters44637/27344 are cleared
+for inspection, not as an unlock grant. Surge currently targetless with
+collision-checked force movement; Escape has reverse collision movement;
+Dive/Bladed Dive tile targeting, collision, exact 950 animation/effects remain
+open. Old 910 candidate sequence IDs are not 950 proof. Queue and native
+Revolution settings are likewise incomplete.
+
+5. COMBAT PRESENTATION, NPCs, BOSSES
+docs/COMBAT-PLAYABILITY-20260920.md and
+docs/COMBAT-LAN-CONTINUATION-20260920.md preserve the stance/tick-order,
+target ownership and projectile findings. The session input phase precedes
+movement and frame publication; attacks must keep target-facing entity masks.
+Native950CombatStyles/Native950MeleeCombat/Native950Frames publish melee,
+ranged and magic hits; projectile publisher sends native zone opcode154 for
+NPC-to-player attacks. Ranged auto ammo/weapon projectile comes from exact950
+item param2940; a shortbow841 + bronze arrow882 witness uses projectile10,
+depletes final arrow but still lands the delayed hit. Magic cast animation
+preservation and delayed block animation were repaired in prior checkpoints;
+the whole animation -> projectile -> impact -> hit pipeline still needs Vulkan
+inspection for representative styles/NPCs. Never substitute 910 numeric FX.
+
+Native950Hits.java pins hitmark cache archive 2/46 wrappers. Viewer-involved /
+uninvolved: melee normal133/150, critical134/151; ranged136/153,
+critical137/154; magic139/156, critical140/157; zero458/464. Player and NPC
+masks both consume the wrapper. Native950MeleeCombat.LiveRolls.critical()
+currently rolls 1/10 for player->NPC and increases requested damage 5/4;
+Combat Alpha value, NOT retail 950 balance. Necromancy currently uses magic
+hitmarker identity; exact distinct Necro wrapper is UNPROVEN. Do not guess one.
+Native950MeleeRenderingTest and exact-cache verification cover this structurally.
+
+Profile catalog: 1,500 melee (489 multi-tile), 143 ranged, 224 magic = 1,867
+authored ordinary profiles. This is eligibility, not 1,867 live visual fights.
+232 SPECIAL/SPECIAL2 require bespoke mechanics; two effect identities remain
+unverified. Attack option needs cache identity and real server combat profile,
+not blanket 'every NPC attackable'. Ordinary NPC acceptance covers attack,
+damage, retaliation, HP, death, loot and respawn structurally. Supplied boss
+fixtures: Dagannoth Rex2883 HP3500 and Barrelchest5666 HP2500 each through
+death, owned loot, corpse removal, same-index full-HP respawn. Rex Magic and
+Barrelchest Melee with supplies pass; old --boss-stress fails and must not be
+relabeled. Rex's inherited style restriction (expects Magic) is NOT fully
+ported through native combat, nor are all boss specials/arena access. Two-player
+same-target ability/Revolution bug got c05df9d code/tests but needs Jack+Nooby
+live recheck. Single NPC retaliation target is distinct from multiple player
+attack ownership. Preserve death/drop/respawn and other players' hit attribution.
+
+6. DIAGNOSTIC SPAWNS: NEXT FIX SHOULD BE SMALL
+Original ;;npc amount loop existed but all NPCs spawned on one tile and
+collided. c05df9d Native950DiagnosticSpawns.spawnNpcs added footprint-aware
+positions, amount <=50, World.canMoveNPC, player/NPC clearance, pitch=size+2,
+front rows and side columns. This passes isolated tests but is LIVE-UNSATISFACTORY:
+large bosses may refuse and placement is too far apart/restrictive for a
+permissive developer command. Do not over-engineer it. Desired: first NPC
+immediately ahead of player; others packed directly beside it with actual
+footprints nonoverlapping and minimal (not size+2) spacing. Bypass ordinary
+gameplay spawn checks when safe for developer diagnostics, but reject invalid
+IDs/out-of-world/actual footprint overlap. Large bosses should be spawnable.
+;;npc <id> [amount] = one-life/no respawn. ;;npcrepeat <id> [amount] and
+;;npc repeat <id> [amount] = repeat after death. ;;clearnpcs removes only
+diagnostic NPCs, including others' diagnostics, and cancels repeat lifecycle;
+never map/static NPCs. ;;npc nex lists concrete cache matching IDs for a
+chosen ID, rather than guessing a single Nex. Source: Native950AdminCommands,
+Native950DiagnosticSpawns, Native950World; tests Native950SpawnCommandsTest and
+Native950DiagnosticSpawnsAcceptance. Add user-facing commands to ;;commands.
+
+7. BANK, LAN, WORKSPACE: REGRESSION BOUNDARIES
+;;bank: Native950AdminCommands calls Bank.openBank() FIRST, then
+Native950Session.allowRemoteBank(player); Native950Interactions.bankAvailable()
+requires bankOpen and permits remoteBank OR reachable chest/NPC. Close retires
+remote scope. Never set remoteBank before bank actually opens, or allow stale
+scope after close. Source Native950Interactions, Native950Session,
+Native950AdminCommands; probes Native950BankAcceptance and bank-related tests.
+
+LAN physical setup: host Ethernet observed 192.168.0.91 (DHCP, NOT a forever
+constant); Nooby Wi-Fi same trusted home router. Private-profile LocalSubnet
+firewall scope only; TCP 80/8950 HTTP/JS5, 43650 lobby/world; NO public
+port-forwarding. Guest package is portable CMD-based Play SHNORKSCAPE.cmd,
+not a PowerShell launcher; do not ask Nooby to change execution policy or
+disable security. A past package had an absolute C:\Games\950OpenSource client
+state dependency; inspect current Build-LAN-Guest.ps1/guest README rather than
+assuming arbitrary extraction works. Separate guest ZIP has no passwords,
+profiles or server files. Local Play.cmd and LAN guest launches must coexist.
+
+LAN admission uses individually provisioned salted PBKDF2-SHA256 credentials,
+bounded attempts and account separation. Remote lobby->world handoff uses
+single-use authenticated session tokens, peer binding and expiry; never restore
+old IP-only recall. Nooby has an existing provisioned account and physically
+connected/played with Jack; earlier guest password-length/invalid-login issues
+were addressed, but do not disclose his password or weaken auth to accept any
+password. Nooby-specific authenticated LAN developer permission was added at
+e7d5f03, not a global remote dev grant. Preserve private/local firewall scope,
+credentials under ignored server-home and Jaxa account isolation. Read
+docs/LAN-GUEST-CANDIDATE.md for architecture, but its initial physical-test
+status is old; users have since done two-PC combat testing.
+
+Workspace is CLOSED/PROVEN. 1ded397 and 6115b21 established Jaxa native
+Custom Save & Exit durability and normal Play.cmd -> full client restart ->
+automatic restoration. Do not reopen opcode14/Settings.jcache investigations,
+filter 215 ServerpermVarcs, or break the Jaxa-only workspace safeguards while
+working on combat. Jaxa saved character and workspace state are precious.
+
+8. COPY-PASTEABLE VERIFIED OPERATIONS (PowerShell from repo root)
+  cd C:\Games\950OpenSource
+  git status --short --branch
+  .\Backup-BeforeEdit.ps1 -Task 'focused task'
+  .\Build-Ataraxia950.ps1 -Tasks @('test','--tests','com.rs.game.player.client.Native950ActionBarTest')
+  .\Build-Ataraxia950.ps1 -Tasks @('test','--tests','com.rs.game.player.client.Native950MeleeCombatTest','--tests','com.rs.game.player.client.Native950SpawnCommandsTest')
+  .\Build-Ataraxia950.ps1 -Tasks @('test','jar')
+  & .\runtime\java8\bin\java.exe '-Dataraxia950.data=C:\Games\950OpenSource\Ataraxia950\data' -cp 'Ataraxia950\build\classes\java\main;OpenNXT\runtime\lib\*' com.rs.game.player.client.Native950MeleeAcceptance cache --bosses
+  & .\runtime\java8\bin\java.exe '-Dataraxia950.data=C:\Games\950OpenSource\Ataraxia950\data' -cp 'Ataraxia950\build\classes\java\main;OpenNXT\runtime\lib\*' com.rs.game.player.client.Native950BankAcceptance cache
+  & .\runtime\java8\bin\java.exe '-Dataraxia950.data=C:\Games\950OpenSource\Ataraxia950\data' -cp 'Ataraxia950\build\classes\java\main;OpenNXT\runtime\lib\*' com.rs.game.player.client.Native950DiagnosticSpawnsAcceptance cache
+  & '.\Apply Staged Update.cmd' --check-only
+These are source-verified commands; full Java test is test/jar. Cache probe
+classes are actual source files; keep the paired cache available. If a probe
+requires a different argument after code changes, read its main() usage first.
+For OpenNXT/LAN: inspect Build-950Lobby.ps1 and OpenNXT tests before running;
+Build-LAN-Guest.ps1 -LanAddress <current-private-ip> packages the guest, but
+does NOT prove a physical second-PC login. Do not claim JS5 or Vulkan ready
+from Java test output. Read Launch.ps1 / Start-LAN.cmd for actual startup args.
+
+Deployment: close both clients (operator confirms), Stop.cmd, verify Java/client
+have exited, snapshot/hash Jaxa profile/workspace + runtime JAR, run installer
+only after --check-only, Play.cmd, verify exact process start and JAR SHA,
+HTTP/JS5 readiness, login/world, save hashes and both players' input. A JAR
+file replaced after process start is NOT proof the current JVM loaded it.
+Rollback: restore the verified pre-edit runtime JAR + profile/workspace snapshot
+only after stopping processes; do not use git reset --hard. Keep failed candidate
+and logs for diagnosis; commit/push a rollback if one is necessary.
+
+9. NEXT AGENT PRIORITY ORDER / DEFINITION OF DONE
+P0: Intermittent keybind/click action-bar death. Reproduce good->bad transition
+and repair first proven failing boundary. Require sustained Vulkan test, not only
+fresh login or tests. At this handoff P0 is LIVE-FAILED / UNRESOLVED.
+P1: Native activation yellow press, queued visual indicator, cooldown sweep
+and timer reliability. Distinguish three independent client presentations.
+P2: Necromancy correct icons/shared identity mapping and populated movable1887.
+P3: Permissive compact ;;npc footprint placement incl. large bosses.
+P4: Shared Necromancy execution and exact hitmarker evidence.
+P5: Surge/Escape/Dive target/collision/effects + canonical ability coverage.
+P6: Native Revolution/settings and remaining combat polish/boss specifics.
+
+Status words must remain separate: IMPLEMENTED in source; AUTOMATED-TESTED;
+LIVE-CONFIRMED by Jack/Nooby; LIVE-FAILED; NOT TESTED. c05df9d's immediate
+manual input and shared-attacker changes are implemented/automated-tested;
+they did NOT establish lasting keybind/yellow-feedback reliability. The first
+hand-off action should be a bounded P0 reproduction, not another sweeping
+ability rewrite or unrelated workspace investigation.
