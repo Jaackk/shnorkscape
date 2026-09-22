@@ -88,6 +88,11 @@ public final class Native950DevelopmentCommands {
             // in the JSONL timeline while the command name remains case-insensitive.
             if(parts[0].equals("bug")&&commandText.length()>3)
                 parts=new String[]{"bug",commandText.substring(3).trim()};
+            if(parts[0].equals("savecoords")){
+                String[] original=commandText.split("\\s+");
+                original[0]="savecoords";
+                parts=original;
+            }
             Native950AdminCommands.handle(player, channel, parts); return;
         }
         if (!player.isActive() || player.hasFinished() || player.isDead() || player.isLocked()) {

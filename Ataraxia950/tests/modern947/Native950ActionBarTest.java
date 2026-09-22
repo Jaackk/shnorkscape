@@ -34,7 +34,9 @@ public class Native950ActionBarTest {
         assertEquals(1,Native950ActionBar.bookType(1450,3));
         assertEquals(5,Native950ActionBar.bookType(1452,1));
         assertEquals(6,Native950ActionBar.bookType(1461,1));
-        assertEquals(7,Native950ActionBar.bookType(1459,1));
+        assertEquals(6,Native950ActionBar.bookType(1459,1));
+        assertEquals(7,Native950ActionBar.bookType(1207,1));
+        assertEquals(7,Native950ActionBar.bookType(1215,1));
         assertEquals(16973,Native950ActionBar.enumFor(7));
         assertEquals(-1,Native950ActionBar.bookType(1461,2));
     }
@@ -83,6 +85,21 @@ public class Native950ActionBarTest {
         assertTrue(Native950ActionBar.actionBarMounted(true,true));
         assertFalse(Native950ActionBar.actionBarMounted(false,false));
     }
+    @Test public void copyingAnotherSavedBarChangesOnlyTheRecipientsCurrentBar(){
+        Native950ActionBar source=new Native950ActionBar(),recipient=new Native950ActionBar();
+        EmbeddedChannel channel=new EmbeddedChannel();
+        try{
+            source.setActiveBar(channel,2);source.testBar(channel);
+            recipient.setActiveBar(channel,1);
+            Player player=Player.createNative950("copy-bar",new WorldTile(3217,3258,0),channel);
+            player.getNative950ActionBar().setActiveBar(channel,1);
+            player.getNative950ActionBar().copyCurrentBarFrom(player,channel,source,2);
+            assertEquals(Native950ActionBar.pack(1,3),player.getNative950ActionBar().slot(1,0));
+            assertEquals(Native950ActionBar.pack(5,2),player.getNative950ActionBar().slot(1,1));
+            assertEquals(0,player.getNative950ActionBar().slot(0,0));
+            assertEquals(2,source.activeBar());
+        }finally{channel.finishAndReleaseAll();}
+    }
     @Test public void revolutionStatePersistsAndUsesTheVerifiedClientVarbits(){
         EmbeddedChannel c=new EmbeddedChannel();
         try{
@@ -130,7 +147,10 @@ public class Native950ActionBarTest {
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1882,1,0,264,Native950ActionBar.ABILITY_EVENTS)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1461,1,0,264,8617038)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1886,1,0,264,8617038)));
-            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1459,1,0,264,Native950ActionBar.ABILITY_EVENTS)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1459,1,0,264,Native950ActionBar.MAGIC_BOOK_EVENTS)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1207,1,0,264,Native950ActionBar.ABILITY_EVENTS)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1215,1,0,264,Native950ActionBar.ABILITY_EVENTS)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1887,7,7,10,10319874)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1887,1,0,264,Native950ActionBar.ABILITY_EVENTS)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1450,3,0,264,Native950ActionBar.ABILITY_EVENTS)));
             assertEquals(1,Native950ActionBar.bookType(1881,1));

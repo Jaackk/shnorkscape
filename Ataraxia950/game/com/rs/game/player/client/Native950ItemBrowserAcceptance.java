@@ -42,18 +42,20 @@ public final class Native950ItemBrowserAcceptance {
                     "Testing Kit item requires unsupported spawn metadata: "+entry.id);
             require(unique.add(entry.id),"Testing Kit repeats item "+entry.id);
         }
-        for(int id:new int[]{52533,52081,51848,42574,55145,55109})
+        for(int id:new int[]{16403,51848,42574,55145,55109,56429})
             require(supportedCombatProfile(id),
                     "Testing Kit weapon is not recognized by Combat Alpha: "+id);
-        require(Native950CombatStyles.classify(Native950CacheItems.definition(52083))==Native950CombatStyles.MELEE,
+        require(Native950CombatStyles.classify(Native950CacheItems.definition(27913))==Native950CombatStyles.MELEE,
                 "Testing Kit melee off-hand is not recognized by Combat Alpha");
         require(Native950CombatStyles.classify(Native950CacheItems.definition(42582))==Native950CombatStyles.MAGIC,
                 "Testing Kit magic off-hand is not recognized by Combat Alpha");
         require(Native950CombatStyles.classify(Native950CacheItems.definition(55114))==Native950CombatStyles.RANGED,
                 "Testing Kit ranged off-hand is not recognized by Combat Alpha");
-        for(int id:new int[]{36294,38240,38242,52028,51090,51470,
-                52083,42991,43119,43121,52036,51092,51467,42582,
-                55045,55051,55056,52032,51088,9244,50465,55114})
+        for(int id:new int[]{53375,53378,53381,52028,53384,16403,27913,51470,50465,
+                42991,43119,43121,52036,51092,51467,42582,
+                55045,55051,55056,52032,51088,9244,55114,
+                56483,56450,56513,56476,56469,56429,56492,51469,59928,
+                52504,55678})
             require(Native950EquipmentTypes.resolve(id)!=null,
                     "Testing Kit equipment is not recognized by the paired cache: "+id);
         System.out.println("PASS Item Browser: native grid/input surfaces exist; broad searches use the safe 40-result visual cap and all 40 Combat Alpha kit entries are cache-backed, safely spawnable and combat-compatible.");

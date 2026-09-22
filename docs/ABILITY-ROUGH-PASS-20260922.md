@@ -73,7 +73,9 @@ for the defence/constitution/category architecture. Numeric mappings come from95
 ## Necromancy and Fourth Bar Follow-up
 
 The exact 950 cache's Necromancy book is enum `16973`, exposed by interfaces
-`1459:1` and `1887:1`. Its first safe Combat Alpha slice is now cache-verified:
+`1207:1`/`1215:1` (cache-pinned Powers page) and `1887:1` (movable book). The earlier identification of
+`1459:1` as Necromancy was incorrect; cache-pinned Powers page 3 mounts it for
+Magic, while page 4 mounts `1207`. Its first safe Combat Alpha slice is now cache-verified:
 
 - Touch of Death, Finger of Death, Soul Sap, Bloat, Spectral Scythe and Death
   Skulls route through the existing target, queue, cooldown, adrenaline, hit,

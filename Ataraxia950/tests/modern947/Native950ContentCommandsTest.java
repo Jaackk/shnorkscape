@@ -16,7 +16,7 @@ public class Native950ContentCommandsTest {
         channel=new EmbeddedChannel(){@Override protected SocketAddress remoteAddress0(){return new InetSocketAddress("127.0.0.1",43650);}};
         p=Player.createNative950("gear-test",new WorldTile(3217,3258,0),channel);p.setActive(true);p.setRights(2);
         List<Native950ItemCatalog.Entry> entries=new ArrayList<>();Set<Integer> ids=new HashSet<>();
-        for(String kit:new String[]{"melee","mage","range","weapons"})for(Item item:Native950ContentCommands.kit(kit))
+        for(String kit:new String[]{"melee","mage","range","necro","weapons"})for(Item item:Native950ContentCommands.kit(kit))
             if(ids.add(item.getId()))entries.add(new Native950ItemCatalog.Entry(item.getId(),"Test item",item.getId()==9244,new String[5]));
         Native950Skilling.attach(p,new Native950Containers(p,new Native950ItemCatalog(entries)));
     }
@@ -29,13 +29,14 @@ public class Native950ContentCommandsTest {
         assertTrue(Native950World.removeExactNpc(roster,second));assertEquals(1,roster.size());assertSame(first,roster.get(0));
         assertFalse(Native950World.removeExactNpc(roster,second));assertSame(first,roster.get(0));
     }
-    @Test public void gearMatchesOldKitsWithoutReplacingExistingInventoryOrEquipment() {
-        p.getInventory().items.set(0,new Item(6570,1));run(";;meleegear");
-        assertEquals(2,p.getInventory().getAmountOf(6570));assertEquals(1,p.getInventory().getAmountOf(20135));
+    @Test public void upgradedGearAddsTheSavedPlayerStyleWithoutReplacingExistingEquipment() {
+        p.getInventory().items.set(0,new Item(51848,1));run(";;meleegear");
+        assertEquals(1,p.getInventory().getAmountOf(51848));assertEquals(1,p.getInventory().getAmountOf(53375));
+        assertEquals(1,p.getInventory().getAmountOf(16403));
         assertEquals(0,p.getEquipment().getItems().getUsedSlots());
     }
     @Test public void fullInventoryNeverGrantsPartialKit() {
-        for(int i=0;i<25;i++)p.getInventory().items.set(i,new Item(6570,1));
+        for(int i=0;i<25;i++)p.getInventory().items.set(i,new Item(51848,1));
         run(";;rangegear");assertEquals(25,p.getInventory().getItems().getUsedSlots());assertEquals(0,p.getInventory().getAmountOf(9244));
     }
     @Test public void searchUsesActual950NamesAndIncludesVariantIdentity() {

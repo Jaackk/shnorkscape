@@ -203,6 +203,20 @@ public final class Native950MeleeCombat {
         buffs.clear(this::buffRemoved);
         pendingHits.clear();
     }
+    void refreshBarCooldowns(Player player,int[] slots) {
+        owned();
+        Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
+        if(cooldowns==null||cooldowns.isEmpty())return;
+        int cycle=(int)Utils.currentWorldCycle();
+        java.util.Set<Integer> sent=new java.util.HashSet<>();
+        for(int packed:slots){
+            int structure=Native950ActionBar.struct(packed);
+            if(structure<0||!sent.add(structure))continue;
+            long remaining=cooldowns.getOrDefault(structure,0L)-tick;
+            if(remaining>0)player.getNative950ActionBar().cooldown(player.getRealChannel(),structure,cycle,
+                    (int)Math.min(Integer.MAX_VALUE,remaining));
+        }
+    }
     /** A deliberately small native basic-ability slice; legacy ability callbacks never run. */
     public String ability(Player player,int structure) {
         owned();

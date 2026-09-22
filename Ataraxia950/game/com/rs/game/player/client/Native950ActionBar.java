@@ -84,8 +84,8 @@ public final class Native950ActionBar {
         // Exact950 scripts564 -> 8426 -> 8437: book12=defence, book13=constitution.
         if(face==1449)return 3;
         if(face==1882)return 4;
-        if(face==1459||face==1887)return 7;
-        return face==1461||face==1884||face==1885||face==1886?6:-1;
+        if(face==1207||face==1215||face==1887)return 7;
+        return face==1459||face==1461||face==1884||face==1885||face==1886?6:-1;
     }
     static int bookType(Player p,int face,int component){
         // Combined defensive books use native category 0/1; these are not ranged books.
@@ -121,10 +121,13 @@ public final class Native950ActionBar {
         for(int face:new int[]{1452,1456})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,RANGED_BOOK_EVENTS));
         for(int face:new int[]{1449,1882,1880,1883})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
         for(int face:new int[]{1880,1883})c.write(Native950Packets.interfaceEvents(face,7,7,8,2));
-        for(int face:new int[]{1461,1884,1885,1886})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,MAGIC_BOOK_EVENTS));
-        // Cache script 6995 resolves this book to enum 16973. The generic ability
-        // mask admits click/drag without inheriting Magic's spell-only operations.
-        for(int face:new int[]{1459,1887})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
+        for(int face:new int[]{1459,1461,1884,1885,1886})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,MAGIC_BOOK_EVENTS));
+        // The cache-pinned Powers Necromancy page is 1207, while 1887 is the HUD book.
+        for(int face:new int[]{1207,1215,1887})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
+        // 1887:6 onLoad runs 8422 for native Necromancy category 10. Keep its
+        // category selector interactable like the sibling native ability books.
+        c.write(Native950Packets.interfaceEvents(1887,7,7,16,2));
+        c.write(Native950Packets.interfaceEvents(1887,7,7,10,10319874));
         for(int face:new int[]{1430,1436})for(int i=0;i<SLOTS;i++)for(int component:new int[]{(face==1430?65:19)+i*13,(face==1430?66:20)+i*13})
             c.write(Native950Packets.interfaceEvents(face,component,-1,1,ABILITY_EVENTS|(1<<21)));
         for(int slot=0;slot<SLOTS;slot++)for(int component:NATIVE_SLOT_EVENT_COMPONENTS[slot])
@@ -159,6 +162,15 @@ public final class Native950ActionBar {
         }
         visualWrite(p,c,Native950Packets.runClientScript(6992),"script",6992,"");
         visualWrite(p,c,Native950Packets.runClientScript(7964,1436,0,0,1,-1),"script",7964,"1436,0,0,1,-1");
+        // Slot rebuilds can clear the native cooldown sweep. Restamp only the
+        // selected bar's still-cooling abilities when a binding/bar changes.
+        if(p!=null&&p.getNative950Combat()!=null)p.getNative950Combat().refreshBarCooldowns(p,slots());
+    }
+    void copyCurrentBarFrom(Player recipient,Channel channel,Native950ActionBar source,int sourceBar){
+        if(source==null||sourceBar<0||sourceBar>=BARS)throw new IllegalArgumentException("Invalid source bar");
+        String before=barSnapshot();
+        System.arraycopy(source.bars[sourceBar],0,slots(),0,SLOTS);
+        sync(recipient,channel,"copybar",before);
     }
     public void testBar(Player p,Channel c){String before=barSnapshot();slots()[0]=pack(1,3);slots()[1]=pack(5,2);slots()[2]=pack(6,3);sync(p,c,"testbar",before);reply(c,"Test slots 1-3: Backhand (melee), Binding Shot (ranged), Impact (magic). Equip the matching weapon and attack a target first.");}
     public void testBar(Channel c){testBar(null,c);}

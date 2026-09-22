@@ -7,6 +7,9 @@ import com.rs.game.WorldTile;
 import com.rs.game.item.Item;
 import com.rs.network.protocol.modern950.Native950Packets;
 import io.netty.channel.Channel;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 /** Session-only tools, behind the native local-development gate and an explicit account grant. */
 public final class Native950AdminCommands {
@@ -25,6 +28,7 @@ public final class Native950AdminCommands {
                     entry(";;spell [strike|bolt|blast|wave|surge]", "view or choose an Air auto-spell")),
             group("ACTION BARS", "7dd3fc", "bae6fd",
                     entry(";;bar [1-4]", "view or select a saved action bar"),
+                    entry(";;copybar <player> [1-4]", "copy their chosen or active bar to your current bar"),
                     entry(";;revo / ;;revolution", "toggle server-side Revolution for the saved bar"),
                     entry(";;testbar, ;;clearbar", "add the test abilities; empty the selected bar")),
             group("BUG TEST", "c4b5fd", "e9d5ff",
@@ -32,8 +36,8 @@ public final class Native950AdminCommands {
                     entry(";;bug <description>", "record a marked state snapshot and queue a game-window screenshot"),
                     entry(";;combatqa [stop|status|reset|cleanup]", "record and manage an automatic combat flight-recorder session")),
             group("GEAR & ITEMS", "86efac", "d9f99d",
-                    entry(";;meleegear, ;;magegear, ;;rangegear, ;;weapons", "add a complete combat kit"),
-                    entry(";;gear melee|mage|range|weapons, ;;gearhelp", "choose a kit or show its contents"),
+                    entry(";;meleegear, ;;magegear, ;;rangegear / ;;ragegear, ;;necrogear", "add a high-tier combat kit"),
+                    entry(";;weapons, ;;gear melee|mage|range|necro|weapons, ;;gearhelp", "choose a kit or show its contents"),
                     entry(";;item <id> [amount]", "add an item by cache ID"),
                     entry(";;bank", "open your bank"),
                     entry(";;copy <player>", "replace your inventory and worn gear with an online player's"),
@@ -46,6 +50,8 @@ public final class Native950AdminCommands {
                     entry(";;dummy [1-5]", "spawn up to five owned training dummies"),
                     entry(";;wars / ;;warsretreat, ;;death / ;;deathsoffice, ;;vorago", "travel to combat destinations"),
                     entry(";;tele <x> <y> [plane], ;;coords", "teleport by coordinates; report your current tile"),
+                    entry(";;savecoords [x y plane] <name>", "save a named location for all players"),
+                    entry(";;locs / ;;locations [page]", "list shared saved locations and coordinates"),
                     entry(";;teleto / ;;tpto <player>", "teleport to an online player"),
                     entry(";;disengage, ;;obj <id> [type] [rotation]", "stop combat/movement; spawn a diagnostic object")),
             group("DEVELOPMENT", "f9a8d4", "fbcfe8",
@@ -64,7 +70,8 @@ public final class Native950AdminCommands {
     static boolean recognizes(String command) {
         if (Native950ContentCommands.recognizes(command)) return true;
         switch (command) {
-            case "god": case "infprayer": case "infadren": case "adrenaline": case "bank": case "copy": case "teleto": case "tpto":
+            case "god": case "infprayer": case "infadren": case "adrenaline": case "bank": case "copy": case "copybar": case "teleto": case "tpto":
+            case "savecoords": case "locs": case "locations":
             case "almighty": case "infrunes": case "infrun": case "infammo": case "commands": case "spell": case "bugtest": case "bug": case "combatqa": case "items": case "uilayout": case "comp":
             case "wars": case "warsretreat": case "death": case "deathsoffice": case "vorago": case "dummy": case "testbar": case "clearbar": case "bar":
             case "revo": case "revolution":
@@ -122,8 +129,10 @@ public final class Native950AdminCommands {
             if (!p.isActive() || p.hasFinished() || p.isDead() || p.isLocked()) { reply(channel,"Wait until your character can act."); return; }
             Native950ItemBrowser.open(p);return;
         }
-        if (args.length > (command.equals("adrenaline") || command.equals("bar") || command.equals("spell") || command.equals("dummy") || command.equals("uilayout")
-                || command.equals("copy") || command.equals("teleto") || command.equals("tpto") ? 2 : 1)) {
+        int maxArgs=command.equals("copybar")||command.equals("savecoords")?Integer.MAX_VALUE
+                :command.equals("adrenaline")||command.equals("bar")||command.equals("spell")||command.equals("dummy")||command.equals("uilayout")
+                ||command.equals("locs")||command.equals("locations")||command.equals("copy")||command.equals("teleto")||command.equals("tpto")?2:1;
+        if (args.length > maxArgs) {
             String usage=command.equals("adrenaline") ? " [0-100]" : command.equals("bar") ? " [1-4]"
                     : command.equals("spell") ? " [strike|bolt|blast|wave|surge]" : command.equals("dummy") ? " [1-5]" : command.equals("uilayout") ? " status" : "";
             reply(channel, "Usage: ;;" + command + usage); return;
@@ -132,6 +141,12 @@ public final class Native950AdminCommands {
             reply(channel, "Wait until your character can act."); return;
         }
         switch (command) {
+            case "savecoords":
+                saveCoords(p,channel,args);break;
+            case "locs": case "locations":
+                listLocations(channel,args);break;
+            case "copybar":
+                copyBar(p,channel,args);break;
             case "bank":
                 if(args.length!=1){reply(channel,"Use ;;bank.");break;}
                 p.getBank().openBank();
@@ -260,6 +275,51 @@ public final class Native950AdminCommands {
 
     private static String join(String[] args,int from) {
         StringBuilder value=new StringBuilder();for(int i=from;i<args.length;i++){if(i>from)value.append(' ');value.append(args[i]);}return value.toString();
+    }
+
+    private static void copyBar(Player player,Channel channel,String[] args) {
+        if(args.length<2){reply(channel,"Use ;;copybar <player> [1-4].");return;}
+        int requested=-1,end=args.length;
+        if(args.length>2 && args[args.length-1].matches("[0-9]+")){
+            try{requested=Integer.parseInt(args[args.length-1]);}catch(NumberFormatException invalid){requested=0;}
+            end--;
+            if(requested<1||requested>Native950ActionBar.BARS){reply(channel,"Use ;;copybar <player> [1-4].");return;}
+        }
+        String name=join(Arrays.copyOf(args,end),1);
+        Player source=World.getPlayerByDisplayName(name);
+        if(source==null||source.hasFinished()||!source.isActive()){reply(channel,"That player is not online.");return;}
+        int sourceBar=requested<0?source.getNative950ActionBar().activeBar():requested-1;
+        player.getNative950ActionBar().copyCurrentBarFrom(player,channel,source.getNative950ActionBar(),sourceBar);
+        reply(channel,"Copied "+source.getDisplayName()+"'s bar "+(sourceBar+1)+" into your current bar "+(player.getNative950ActionBar().activeBar()+1)+".");
+    }
+
+    private static void saveCoords(Player player,Channel channel,String[] args) {
+        if(args.length<2){reply(channel,"Use ;;savecoords [x y plane] <name>.");return;}
+        int x=player.getX(),y=player.getY(),plane=player.getPlane(),start=1;
+        if(args[1].matches("-?[0-9]+")){
+            if(args.length<5){reply(channel,"Use ;;savecoords <x> <y> <plane> <name>.");return;}
+            try{x=Integer.parseInt(args[1]);y=Integer.parseInt(args[2]);plane=Integer.parseInt(args[3]);}
+            catch(NumberFormatException invalid){reply(channel,"Coordinates must be numbers.");return;}
+            start=4;
+        }
+        String name=join(args,start);
+        try{reply(channel,"Saved "+Native950SavedLocations.save(player.getUsername(),name,x,y,plane).line()+".");}
+        catch(IllegalArgumentException invalid){reply(channel,"Use a 2-40 character name and coordinates within the game world.");}
+        catch(IOException failure){reply(channel,"Location was not saved: "+failure.getMessage());}
+    }
+
+    private static void listLocations(Channel channel,String[] args) {
+        int page=1;
+        try{if(args.length==2)page=Integer.parseInt(args[1]);}
+        catch(NumberFormatException invalid){reply(channel,"Use ;;locs [page].");return;}
+        if(page<1){reply(channel,"Use ;;locs [page].");return;}
+        try{
+            List<Native950SavedLocations.Place> places=Native950SavedLocations.list();
+            int pages=Math.max(1,(places.size()+9)/10);
+            if(page>pages){reply(channel,"Only "+pages+" saved location page(s).");return;}
+            reply(channel,"Saved locations: "+places.size()+"; page "+page+"/"+pages+". Use ;;tele <x> <y> <plane>.");
+            for(int i=(page-1)*10;i<Math.min(page*10,places.size());i++)reply(channel,places.get(i).line());
+        }catch(IOException failure){reply(channel,"Cannot list saved locations: "+failure.getMessage());}
     }
 
     private static void teleportToPlayer(Player player,Player target) {

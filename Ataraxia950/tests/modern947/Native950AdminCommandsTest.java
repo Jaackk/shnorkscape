@@ -72,6 +72,24 @@ public class Native950AdminCommandsTest {
         run(";;revo");assertTrue(p.getNative950ActionBar().isRevolutionEnabled());
         run(";;revolution");assertFalse(p.getNative950ActionBar().isRevolutionEnabled());
     }
+    @Test public void locationAndBarCommandsAreRoutedThroughTheDeveloperDirectory() throws Exception {
+        assertTrue(Native950AdminCommands.recognizes("savecoords"));
+        assertTrue(Native950AdminCommands.recognizes("locs"));
+        assertTrue(Native950AdminCommands.recognizes("locations"));
+        assertTrue(Native950AdminCommands.recognizes("copybar"));
+        java.nio.file.Path folder=java.nio.file.Files.createTempDirectory("native950-locations-test-");
+        String previous=System.getProperty("ataraxia950.locationsFile");
+        System.setProperty("ataraxia950.locationsFile",folder.resolve("places.bin").toString());
+        try {
+            run(";;savecoords 2276 3315 1 Max Guild");
+            run(";;savecoords My Current Tile");
+            run(";;locs");run(";;locations 1");
+            assertEquals(2,Native950SavedLocations.list().size());
+        } finally {
+            if(previous==null)System.clearProperty("ataraxia950.locationsFile");else System.setProperty("ataraxia950.locationsFile",previous);
+            java.nio.file.Files.deleteIfExists(folder.resolve("places.bin"));java.nio.file.Files.deleteIfExists(folder);
+        }
+    }
     @Test public void spellAndRefillCommandsUseTheNativeCombatState() {
         run(";;spell");run(";;spell strike");assertSame(Native950AutoSpells.Spell.STRIKE,Native950AutoSpells.select(p));
         p.getSkills().set(Skills.MAGIC,81);run(";;spell surge");assertSame(Native950AutoSpells.Spell.SURGE,Native950AutoSpells.select(p));

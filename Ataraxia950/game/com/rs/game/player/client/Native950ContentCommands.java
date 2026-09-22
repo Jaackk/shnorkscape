@@ -13,7 +13,7 @@ final class Native950ContentCommands {
     private Native950ContentCommands() { }
     static boolean recognizes(String command) {
         switch(command) {
-            case "meleegear": case "magegear": case "rangegear": case "weapons": case "gear": case "gearhelp":
+            case "meleegear": case "magegear": case "rangegear": case "ragegear": case "necrogear": case "weapons": case "gear": case "gearhelp":
             case "search": case "find": case "si": case "itemid": case "finditem":
             case "findnpc": case "snpc": case "clearnpcs": case "removenpc": case "delnpc": case "npcs": return true;
             default: return false;
@@ -22,10 +22,11 @@ final class Native950ContentCommands {
     static Item[] kit(String name) {
         int[] ids;
         switch(name) {
-            case "melee": case "meleegear": ids=new int[]{20135,6570,6585,18349,20139,20143,7462,11732,6737};break;
-            case "mage": case "magegear": ids=new int[]{20159,6570,6585,18355,20163,20167,7462,6920,6737};break;
-            case "range": case "rangegear": ids=new int[]{20147,6570,6585,18357,20151,20155,7462,11732,6737,9244};break;
-            case "weapons": ids=new int[]{31725,31729,31733,26579,26583};break;
+            case "melee": case "meleegear": ids=new int[]{53375,53378,53381,52028,53384,16403,27913,51470,50465};break;
+            case "mage": case "magegear": ids=new int[]{42991,43119,43121,52036,51092,51848,42574,42582,51467};break;
+            case "range": case "rangegear": case "ragegear": ids=new int[]{55045,55051,55056,52032,51088,55145,55109,55114,9244};break;
+            case "necro": case "necromancy": case "necrogear": ids=new int[]{56483,56450,56513,56476,56469,56429,56492,51469,59928};break;
+            case "weapons": ids=new int[]{52533,16403,27913,51848,42574,42582,55145,55109,55114,56429,56492};break;
             default: return null;
         }
         Item[] result=new Item[ids.length];
@@ -35,8 +36,9 @@ final class Native950ContentCommands {
     static void handle(Player p,Channel c,String[] args) {
         String command=args[0];
         if(command.equals("gearhelp")) {
-            reply(c,";;meleegear (Torva), ;;magegear (Virtus), ;;rangegear (Pernix): armour + Chaotic weapon into backpack.");
-            reply(c,";;weapons: Noxious scythe/staff/longbow and Drygore rapiers. ;;gear melee|mage|range|weapons.");
+            reply(c,";;meleegear: Vestments/primal dual wield. ;;necrogear: First Necromancer/Omni Guard/Lantern.");
+            reply(c,";;magegear: elite tectonic/Praesul/Armadyl. ;;rangegear: elite sirenic/Last Guardian/blightbounds.");
+            reply(c,";;weapons: high-tier weapons for all four styles. ;;gear melee|mage|range|necro|weapons.");
             reply(c,";;search <item name> [page]; ;;findnpc <NPC name> [page]. Pages show 10 IDs.");
             reply(c,";;npc <id> [1-50]; ;;npcs lists your nearby test spawns; ;;removenpc <index>; ;;clearnpcs [radius].");return;
         }
@@ -68,7 +70,7 @@ final class Native950ContentCommands {
         }
         String name=command.equals("gear")?(args.length==2?args[1]:""):command;
         Item[] items=kit(name);
-        if(items==null||(!command.equals("gear")&&args.length!=1)){reply(c,"Use ;;gear melee|mage|range|weapons or ;;gearhelp.");return;}
+        if(items==null||(!command.equals("gear")&&args.length!=1)){reply(c,"Use ;;gear melee|mage|range|necro|weapons or ;;gearhelp.");return;}
         for(Item item:items)if(Native950Skilling.itemType(p,item.getId())==null){reply(c,"This cache cannot supply kit item "+item.getId()+". Nothing added.");return;}
         if(!Native950Skilling.giveItems(p,items)){reply(c,"Not enough backpack space, stack capacity, or your current activity forbids receiving gear. Nothing added.");return;}
         reply(c,"Added "+name+" kit to your backpack. Equip it normally; skill requirements still apply.");
@@ -110,17 +112,19 @@ final class Native950ContentCommands {
         return exact.size()<=limit?Collections.unmodifiableList(exact)
                 :Collections.unmodifiableList(new ArrayList<ItemSearchEntry>(exact.subList(0,limit)));
     }
-    /** Cache-derived Combat Alpha loadouts followed by shared supplies; keep exactly 40 entries. */
+    /** Four cache-derived style loadouts and four shared items; keep the native 40-slot grid. */
     static List<ItemSearchEntry> testingKitItemBrowserEntries(){
         int[] ids={
-                // Melee: Blood malevolent, specialist gloves/boots, 2H, dual wield and ring.
-                36294,38240,38242,52028,51090,52533,52081,52083,51470,
+                // Melee: Nooby's saved Vestments/Primal dual-wield setup.
+                53375,53378,53381,52028,53384,16403,27913,51470,50465,
                 // Magic: Shadow elite tectonic, specialist gloves/boots, staff, dual wield and ring.
                 42991,43119,43121,52036,51092,51848,42574,42582,51467,
                 // Ranged: Soul elite sirenic, specialist gloves/boots, 2H, dual wield and ammunition.
                 55045,55051,55056,52032,51088,55145,55109,55114,9244,
-                // Shared six-dose supplies, food, elemental/combat runes and general amulet.
-                23531,23399,23609,39230,28227,42254,556,555,557,554,565,566,50465
+                // Necromancy: Jaxa's saved First Necromancer/Omni Guard setup.
+                56483,56450,56513,56476,56469,56429,56492,51469,59928,
+                // Shared high-tier extras and a combat supply.
+                52504,55678,23531,39230
         };
         List<ItemSearchEntry> result=new ArrayList<ItemSearchEntry>();
         for(int id:ids){ItemSearchEntry entry=itemById(id);if(entry!=null)result.add(entry);}
