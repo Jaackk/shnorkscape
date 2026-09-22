@@ -1,8 +1,15 @@
 [CmdletBinding()]
-param([string]$InterfaceAlias='Ethernet',[string]$LanAddress='192.168.0.91')
+param([string]$InterfaceAlias='Ethernet',[string]$LanAddress='192.168.0.91',[switch]$RequestElevation)
 $ErrorActionPreference='Stop'
 $principal=[Security.Principal.WindowsPrincipal]::new([Security.Principal.WindowsIdentity]::GetCurrent())
-if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) { throw 'Run this script as administrator using Windows approval. Do not disable firewall/security.' }
+if (-not $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+ if (-not $RequestElevation) { throw 'Run Enable-Home-LAN.cmd for normal Windows administrator approval.' }
+ $shell=Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe'
+ $arguments='-NoProfile -NoExit -File "'+$PSCommandPath+'" -InterfaceAlias "'+$InterfaceAlias+'" -LanAddress "'+$LanAddress+'"'
+ Write-Host 'Requesting Windows administrator approval. The setup window will stay open to show its result.'
+ Start-Process -FilePath $shell -Verb RunAs -ArgumentList $arguments -Wait
+ return
+}
 $root=$PSScriptRoot
 $java=Join-Path $root 'runtime\java25\bin\java.exe'
 if (-not (Test-Path -LiteralPath $java)) { throw 'Bundled server Java missing.' }
