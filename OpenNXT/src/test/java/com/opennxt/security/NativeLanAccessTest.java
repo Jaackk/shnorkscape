@@ -26,11 +26,16 @@ public final class NativeLanAccessTest {
             Files.write(file,valid.getBytes(StandardCharsets.US_ASCII));
             NativeLanAccess p=NativeLanAccess.load("192.168.1.2",file);
             check(p.verify("192.168.1.3","Nooby","disposable-test-password"));
+            check(p.verifyReason("192.168.1.9","nooby","wrong-password").equals("password-mismatch"));
+            check(p.verifyReason("192.168.1.9","nooby1","wrong-password").equals("not-invited"));
+            check(p.verifyReason("192.168.1.9","nooby","tiny").equals("invalid-input-bounds"));
+            check(p.verifyReason("192.168.1.9","jaxa","wrong-password").equals("invalid-or-protected-name"));
             check(!p.verify("192.168.1.3","nooby","wrong-password"));
             check(!p.verify("192.168.1.3","other","disposable-test-password"));
             check(!p.verify("192.168.1.3","jaxa","disposable-test-password"));
             for(int i=0;i<13;i++)p.verify("192.168.1.3","nooby","bad-password");
             check(!p.verify("192.168.1.3","nooby","disposable-test-password"));
+            check(p.verifyReason("192.168.1.3","nooby","disposable-test-password").equals("attempt-limit"));
             check(p.verify("192.168.1.4","nooby","disposable-test-password"));
             for(String malformed:new String[]{valid+"nooby="+record+"\n",valid.replace("nooby=","jaxa="),valid.replace("600000","1"),valid.replace(record,"bad:bad")}){
                 Files.write(file,malformed.getBytes(StandardCharsets.US_ASCII));

@@ -20,10 +20,14 @@ fun interface LoginProcessor {
 }
 
 object AuthoritativeLoginProcessor : LoginProcessor {
+    private val logger = KotlinLogging.logger {}
     override fun process(context: LoginContext) {
-        context.result = if ((context.build.major == 950 || com.opennxt.security.NativeLanAccess.loopback(context.channel.remoteAddress()))
-            && com.opennxt.security.NativeLanAccess.authenticate(context.channel.remoteAddress(), context.username, context.password))
+        val local = com.opennxt.security.NativeLanAccess.loopback(context.channel.remoteAddress())
+        val reason = if (context.build.major != 950 && !local) "unsupported-build"
+            else com.opennxt.security.NativeLanAccess.authenticateReason(context.channel.remoteAddress(), context.username, context.password)
+        context.result = if (reason == "accepted")
             LoginResult.SUCCESS else LoginResult.INVALID_USERNAME_PASS
+        if (!local) logger.info { "LAN admission from ${context.channel.remoteAddress()}: build=${context.build.major}.${context.build.minor} result=$reason" }
         context.callback(context)
     }
 }

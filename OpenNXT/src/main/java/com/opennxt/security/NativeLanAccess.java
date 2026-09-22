@@ -58,23 +58,32 @@ public final class NativeLanAccess {
     }
     public static String hostFor(SocketAddress remote,String local){return loopback(remote)?local:address();}
     public static boolean authenticate(SocketAddress remote,String username,String password){
-        if(loopback(remote))return true;
+        return "accepted".equals(authenticateReason(remote,username,password));
+    }
+    /** Local diagnostic only: never contains a password, verifier, token or raw input. */
+    public static String authenticateReason(SocketAddress remote,String username,String password){
+        if(loopback(remote))return "accepted";
         NativeLanAccess p=active;
-        return p!=null&&allowedPeer(remote)&&p.verify(((InetSocketAddress)remote).getAddress().getHostAddress(),username,password);
+        if(p==null)return "lan-disabled";
+        if(!allowedPeer(remote))return "peer-denied";
+        return p.verifyReason(((InetSocketAddress)remote).getAddress().getHostAddress(),username,password);
     }
     synchronized boolean verify(String peer,String username,String password){
+        return "accepted".equals(verifyReason(peer,username,password));
+    }
+    synchronized String verifyReason(String peer,String username,String password){
         long now=System.nanoTime();
         long[] window=attempts.get(peer);
-        if(window==null){if(attempts.size()>=64)return false;window=new long[]{now,0};attempts.put(peer,window);}
+        if(window==null){if(attempts.size()>=64)return "peer-limit";window=new long[]{now,0};attempts.put(peer,window);}
         if(now-window[0]>60000000000L){window[0]=now;window[1]=0;}
-        if(++window[1]>12)return false;
-        if(username==null||password==null||password.length()<8||password.length()>128)return false;
+        if(++window[1]>12)return "attempt-limit";
+        if(username==null||password==null||password.length()<8||password.length()>128)return "invalid-input-bounds";
         String canonical=username.toLowerCase(Locale.ROOT);
-        if(!validName(canonical))return false;
-        byte[][] credential=accounts.get(canonical);if(credential==null)return false;
+        if(!validName(canonical))return "invalid-or-protected-name";
+        byte[][] credential=accounts.get(canonical);if(credential==null)return "not-invited";
         char[] secret=password.toCharArray();
-        try{return MessageDigest.isEqual(credential[1],derive(secret,credential[0]));}
-        catch(GeneralSecurityException failure){return false;}
+        try{return MessageDigest.isEqual(credential[1],derive(secret,credential[0]))?"accepted":"password-mismatch";}
+        catch(GeneralSecurityException failure){return "verification-error";}
         finally{Arrays.fill(secret,'\0');}
     }
     static boolean privateIpv4(String text){
