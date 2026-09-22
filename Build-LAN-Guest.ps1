@@ -1,4 +1,7 @@
+param([Parameter(Mandatory=$true)][string]$LanAddress)
 $ErrorActionPreference='Stop'
+$parsed=$null
+if (-not [Net.IPAddress]::TryParse($LanAddress,[ref]$parsed) -or $parsed.AddressFamily -ne 'InterNetwork' -or $LanAddress -notmatch '^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)') { throw 'A private IPv4 host address is required.' }
 $source=Join-Path $PSScriptRoot 'client\rs2client-vulkan.exe'
 $hash='36c45c1cf6eed0c6cb0b789ca1672d685c1746def9d65d6f18d72638f0087bc9'
 if ((Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash -ne $hash) { throw 'Known guest Vulkan seed changed.' }
@@ -9,6 +12,8 @@ Copy-Item -LiteralPath $source -Destination (Join-Path $out 'client\rs2client-vu
 foreach($name in @('Play-LAN-Guest.cmd','Play-LAN-Guest.ps1')) {
  Copy-Item -LiteralPath (Join-Path $PSScriptRoot ('tools\lan-guest\'+$name)) -Destination (Join-Path $out $name)
 }
-Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'docs\LAN-GUEST-CANDIDATE.md') -Destination (Join-Path $out 'README.md')
+Copy-Item -LiteralPath (Join-Path $out 'Play-LAN-Guest.cmd') -Destination (Join-Path $out 'Play SHNORKSCAPE.cmd')
+Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'tools\lan-guest\README-FIRST.txt') -Destination (Join-Path $out 'README-FIRST.txt')
+[IO.File]::WriteAllText((Join-Path $out 'LAN-HOST.txt'),$LanAddress+[Environment]::NewLine)
 Compress-Archive -Path (Join-Path $out '*') -DestinationPath ($out+'.zip')
 Write-Host "Guest bundle: $out.zip (no accounts, credentials, saves, cache, workspace snapshots or diagnostic DLLs)."

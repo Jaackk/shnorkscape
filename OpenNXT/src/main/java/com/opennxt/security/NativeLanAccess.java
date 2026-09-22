@@ -104,32 +104,44 @@ public final class NativeLanAccess {
     }
     /** Operator-only console provisioning; never receives passwords in argv, chat or logs. */
     public static void main(String[] args)throws Exception {
-        if(args.length!=2)throw new IllegalArgumentException("Usage: NativeLanAccess <absolute credential file> <absolute player directory>");
-        Console console=System.console();if(console==null)throw new IllegalStateException("Use a normal Windows console for hidden password input");
+        boolean generated=args.length==5&&args[2].equals("--generate");
+        if(args.length!=2&&!generated)throw new IllegalArgumentException("Usage: NativeLanAccess <absolute credential file> <absolute player directory> [--generate <name> <absolute private handoff file>]");
+        Console console=System.console();if(console==null&&!generated)throw new IllegalStateException("Use a normal Windows console for hidden password input");
         Path file=Paths.get(args[0]),players=Paths.get(args[1]);
         if(!file.isAbsolute()||!players.isAbsolute())throw new IllegalArgumentException("Absolute paths required");
-        String name=console.readLine("New guest account (3-12 letters/digits): ").toLowerCase(Locale.ROOT);
+        Path handoff=generated?Paths.get(args[4]):null;
+        if(generated&&(!handoff.isAbsolute()||Files.exists(handoff)||!handoff.getParent().equals(file.getParent())))
+            throw new IllegalArgumentException("Generated handoff must be a new file beside the private credential store");
+        String name=(generated?args[3]:console.readLine("New guest account (3-12 letters/digits): ")).toLowerCase(Locale.ROOT);
         if(!validName(name))throw new IllegalArgumentException("Invalid or protected guest account");
         byte[] identity=MessageDigest.getInstance("SHA-256").digest(name.getBytes(StandardCharsets.US_ASCII));
         StringBuilder hex=new StringBuilder();for(byte b:identity)hex.append(String.format("%02x",b&255));
         if(Files.exists(players.resolve(hex+".950")))throw new IllegalStateException("Existing player profile: provisioning may not claim it");
         Properties p=new Properties();if(Files.exists(file))p.putAll(read(file));
         if(p.containsKey(name)||p.size()>MAX_ACCOUNTS)throw new IllegalStateException("Account exists or invitation limit reached");
-        char[] secret=console.readPassword("Guest password (8-128 characters; use a unique test password): ");
-        char[] confirm=console.readPassword("Repeat password: ");
+        byte[] random=new byte[18];new SecureRandom().nextBytes(random);
+        char[] secret=generated?Base64.getUrlEncoder().withoutPadding().encodeToString(random).toCharArray():console.readPassword("Guest password (8-128 characters; use a unique test password): ");
+        Arrays.fill(random,(byte)0);
+        char[] confirm=generated?secret.clone():console.readPassword("Repeat password: ");
         try {
             if(secret.length<8||secret.length>128||!Arrays.equals(secret,confirm))throw new IllegalArgumentException("Invalid/mismatched password");
             byte[] salt=new byte[16];new SecureRandom().nextBytes(salt);
             p.setProperty("schema","1-pbkdf2-sha256-600000");
             p.setProperty(name,Base64.getEncoder().encodeToString(salt)+":"+Base64.getEncoder().encodeToString(derive(secret,salt)));
             Files.createDirectories(file.getParent());
+            if(generated) {
+                try(Writer out=Files.newBufferedWriter(handoff,StandardCharsets.UTF_8,StandardOpenOption.CREATE_NEW)) {
+                    out.write("SHNORKSCAPE private LAN invitation\nUsername: "+name+"\nPassword: ");
+                    out.write(secret);out.write("\nShare privately with this guest only. Never include in the client ZIP.\n");
+                }
+            }
             Path temporary=Files.createTempFile(file.getParent(),"lan-credentials-",".tmp");
             try {
                 ByteArrayOutputStream bytes=new ByteArrayOutputStream();p.store(bytes,"Local invited guests; never commit");
                 try(FileChannel out=FileChannel.open(temporary,StandardOpenOption.WRITE)){ByteBuffer data=ByteBuffer.wrap(bytes.toByteArray());while(data.hasRemaining())out.write(data);out.force(true);}
                 Files.move(temporary,file,StandardCopyOption.ATOMIC_MOVE,StandardCopyOption.REPLACE_EXISTING);
             }finally{Files.deleteIfExists(temporary);}
-            console.printf("Guest provisioned. Restart optional LAN server to load credentials.%n");
+            System.out.println("Guest provisioned. Restart optional LAN server to load credentials.");
         }finally{Arrays.fill(secret,'\0');Arrays.fill(confirm,'\0');}
     }
 }

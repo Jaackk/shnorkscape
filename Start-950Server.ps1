@@ -20,6 +20,21 @@ $server = Join-Path $root 'OpenNXT'
 $log = Join-Path $root 'logs'
 $classPath = (Join-Path $root 'patches\classes')+';'+(Join-Path $server 'runtime\lib\*')
 $ports = @(80,8950,43650)
+# Optional local configuration survives normal Play.cmd server restarts. If the
+# approved home interface is unavailable, retain loopback operation only.
+$lanConfig=Join-Path $root 'server-home\lan-host.json'
+if (-not $LanAddress -and (Test-Path -LiteralPath $lanConfig)) {
+ try {
+  $lan=Get-Content -LiteralPath $lanConfig -Raw | ConvertFrom-Json
+  if ($lan.enabled -eq $true) {
+   $adapter=Get-NetAdapter -Name $lan.interfaceAlias -ErrorAction Stop
+   $profile=Get-NetConnectionProfile -InterfaceIndex $adapter.ifIndex -ErrorAction Stop
+   $assigned=@(Get-NetIPAddress -InterfaceIndex $adapter.ifIndex -AddressFamily IPv4 -ErrorAction Stop | Where-Object {$_.IPAddress -eq $lan.address})
+   if ($adapter.Status -ne 'Up' -or $profile.NetworkCategory -ne 'Private' -or $assigned.Count -ne 1) { throw 'Approved Private LAN interface/address is not available.' }
+   $LanAddress=[string]$lan.address
+  }
+ } catch { Write-Warning "LAN disabled; local Play.cmd remains available: $($_.Exception.Message)" }
+}
 if ($LanAddress) {
  if ($LanAddress -notmatch '^(10\.(\d{1,3}\.){2}\d{1,3}|172\.(1[6-9]|2\d|3[01])\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3})$') { throw 'LAN mode requires an explicit private IPv4 address.' }
  if (!(Get-NetIPAddress -AddressFamily IPv4 -IPAddress $LanAddress -ErrorAction SilentlyContinue)) { throw 'LAN address is not assigned to this PC.' }
