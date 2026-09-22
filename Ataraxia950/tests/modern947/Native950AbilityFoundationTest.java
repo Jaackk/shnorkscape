@@ -12,11 +12,11 @@ import static org.junit.Assert.*;
 
 public class Native950AbilityFoundationTest {
     @Test public void verifiedRotationSeparatesUtilityDamageAndAdrenalineTiers(){
-        assertEquals(31,Native950AbilityCatalog.DEFINITIONS.size());
+        assertEquals(54,Native950AbilityCatalog.DEFINITIONS.size());
         long melee=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==1).count();
         long ranged=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==5).count();
         long magic=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==6&&d.targetRequired()).count();
-        assertEquals(12,melee);assertEquals(8,ranged);assertEquals(10,magic);
+        assertEquals(15,melee);assertEquals(11,ranged);assertEquals(11,magic);
         Native950AbilityCatalog.Definition surge=Native950AbilityCatalog.get(14726);
         assertFalse(surge.targetRequired());assertEquals(34,surge.cooldown);assertEquals(16,surge.skill);assertEquals(5,surge.level);
         assertEquals(0,Native950AbilityCatalog.get(14682).adrenalineCost());
@@ -27,7 +27,7 @@ public class Native950AbilityFoundationTest {
     }
     @Test public void pairedModernisedAdrenalineDefinitionsAreNotLegacyThresholdRules(){
         for(Native950AbilityCatalog.Definition d:Native950AbilityCatalog.DEFINITIONS){
-            assertEquals(d.name,d.adrenalineCost(),d.adrenalineRequired());
+            assertEquals(d.name,d.tier==3?50:d.adrenalineCost(),d.adrenalineRequired());
             if(d.tier==1)assertEquals(d.name,d.struct==14679?12:9,d.adrenalineGain());
             else assertEquals(d.name,0,d.adrenalineGain());
         }
@@ -161,6 +161,8 @@ public class Native950AbilityFoundationTest {
             List<Native950Packets.Packet> packets=packets(c);
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1458,39,0,44,8388610)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1885,1,0,Native950ActionBar.BOOK_LAST_SLOT,8617038)));
+            assertTrue(hasPacket(packets,Native950Packets.varbitSmall(44637,0)));
+            assertTrue(hasPacket(packets,Native950Packets.varbitSmall(27344,0)));
         }finally{c.finishAndReleaseAll();}
     }
     @Test public void nativePrayerRoutesOnlyThe950ClickableGridChild(){

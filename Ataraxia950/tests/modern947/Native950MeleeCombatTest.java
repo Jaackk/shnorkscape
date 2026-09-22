@@ -37,6 +37,63 @@ public class Native950MeleeCombatTest {
         combat.attach(player);combat.register(npc,profile(50,10,3));
     }
     @After public void cleanup(){combat.clear();channel.finishAndReleaseAll();}
+    @Test public void anticipationNeedsNoTargetAndFreedomClearsStunAndFreeze(){
+        player.getSkills().set(Skills.DEFENCE,99);
+        player.getCombatDefinitions().setSpecialAttackPercentage(0);
+        assertNull(combat.ability(player,14710));step();assertTrue(player.isStunImmune());
+        assertEquals(9,player.getCombatDefinitions().getSpecialAttackPercentage());
+        for(int i=0;i<16;i++)step();assertFalse(player.isStunImmune());
+        player.setStunDelay(com.rs.utils.Utils.currentTimeMillis()+10000);
+        player.addFreezeDelay(10000);
+        assertNull(combat.ability(player,14711));step();
+        assertFalse(player.isStunned());assertFalse(player.isFrozen());
+        assertTrue(player.isStunImmune());assertTrue(player.isFreezeImmune());
+        for(int i=0;i<10;i++)step();assertFalse(player.isStunImmune());assertFalse(player.isFreezeImmune());
+    }
+    @Test public void defensiveThresholdAdmissionAndShieldRequirementsAreNotBypassed(){
+        player.getSkills().set(Skills.DEFENCE,99);
+        assertTrue(combat.ability(player,14719).contains("shield"));
+        player.getCombatDefinitions().setSpecialAttackPercentage(49);
+        assertTrue(combat.ability(player,25028).contains("50%"));
+        player.getCombatDefinitions().setSpecialAttackPercentage(50);
+        assertNull(combat.ability(player,25028));step();
+        assertEquals(35,player.getCombatDefinitions().getSpecialAttackPercentage());
+    }
+    @Test public void sunshineCanBeCastWithoutTargetAndConsumesUltimateAdrenaline(){
+        player.getSkills().set(Skills.MAGIC,99);
+        styleProfile=new Native950CombatStyles.Profile(2,6,99,4,8,-1,-1,0,true);
+        player.getCombatDefinitions().setSpecialAttackPercentage(100);
+        assertNull(combat.ability(player,19254));step();
+        assertEquals(0,player.getCombatDefinitions().getSpecialAttackPercentage());
+        player.getCombatDefinitions().setSpecialAttackPercentage(100);
+        assertTrue(combat.ability(player,19254).contains("cooling"));
+    }
+    @Test public void nextHitDefensivesBlockHealAndReviveThroughTheRealDamagePipeline()throws Exception{
+        java.lang.reflect.Field field=Native950MeleeCombat.class.getDeclaredField("buffs");field.setAccessible(true);
+        Native950CombatBuffs b=(Native950CombatBuffs)field.get(combat);
+        java.lang.reflect.Method hit=Native950MeleeCombat.class.getDeclaredMethod("damage",Entity.class,Entity.class,int.class,
+                com.rs.game.Hit.HitLook.class,boolean.class,boolean.class);hit.setAccessible(true);
+        player.setHitpoints(40);
+        b.apply(player,Native950CombatBuffs.Type.RESONANCE,0);
+        assertEquals(0,hit.invoke(combat,npc,player,20,com.rs.game.Hit.HitLook.MELEE_DAMAGE,true,false));
+        assertEquals(50,player.getHitpoints());
+        assertEquals(20,hit.invoke(combat,npc,player,20,com.rs.game.Hit.HitLook.MELEE_DAMAGE,true,false));
+        assertEquals(30,player.getHitpoints());
+        b.apply(player,Native950CombatBuffs.Type.IMMORTALITY,0);
+        hit.invoke(combat,npc,player,100,com.rs.game.Hit.HitLook.MELEE_DAMAGE,true,false);
+        assertEquals(player.getMaxHitpoints()*40/100,player.getHitpoints());
+        assertFalse(b.active(player,Native950CombatBuffs.Type.IMMORTALITY,0));
+        b.apply(player,Native950CombatBuffs.Type.BARRICADE,0);
+        int before=player.getHitpoints();
+        assertEquals(0,hit.invoke(combat,npc,player,1000,com.rs.game.Hit.HitLook.MELEE_DAMAGE,true,false));
+        assertEquals(before,player.getHitpoints());
+        b.consume(player,Native950CombatBuffs.Type.BARRICADE,0);
+        player.getCombatDefinitions().setSpecialAttackPercentage(0);
+        b.apply(player,Native950CombatBuffs.Type.DIVERT,0);
+        assertEquals(0,hit.invoke(combat,npc,player,1000,com.rs.game.Hit.HitLook.MELEE_DAMAGE,true,false));
+        assertEquals(4,player.getCombatDefinitions().getSpecialAttackPercentage());
+        assertEquals(before,player.getHitpoints());
+    }
     @Test public void nativePotionHitsPreserveEquipmentWithoutLegacyDegradation() {
         com.rs.game.item.Item helm=new com.rs.game.item.Item(20137);
         player.getEquipment().getItems().set(0,helm);

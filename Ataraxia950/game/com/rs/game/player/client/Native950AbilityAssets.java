@@ -21,7 +21,14 @@ final class Native950AbilityAssets {
                 if(!pins.getProperty(key).equals(hash.toString()))throw new IllegalStateException("Changed ability asset "+key);
             }
             Native950AbilityCatalog.verify();
+            verifyBookBit(36453,3705,24,27);verifyBookBit(36454,3705,28,31);
+            verifyBookBit(44637,3706,8,8);verifyBookBit(27344,3706,5,5);
             verified=Cache.STORE;
         }catch(java.io.IOException|java.security.NoSuchAlgorithmException e){throw new IllegalStateException("Cannot verify ability assets",e);}
+    }
+    private static void verifyBookBit(int id,int parent,int low,int high){
+        com.rs.cache.loaders.VarBitDefinitions v=com.rs.cache.loaders.VarBitDefinitions.getClientVarpBitDefinitions(id);
+        if(v.varDomain!=0||v.baseVar!=parent||v.startBit!=low||v.endBit!=high)
+            throw new IllegalStateException("Changed950 ability-book varbit "+id);
     }
 }

@@ -73,15 +73,26 @@ public final class Native950ActionBar {
      * which the client renders as an empty shortcut.
      */
     static int clientShortcut(int packed){return packed;}
-    static int enumFor(int type){return type==1?10147:type==5?6738:type==6?6740:-1;}
+    static int enumFor(int type){return type==1?10147:type==3?6736:type==4?6737:type==5?6738:type==6?6740:-1;}
     static int bookType(int face,int component){
         // Recorded in the live 950 Bug Test session while dragging Flurry and Dismember.
         // Preserve this native melee-page source until its cache owner is fully decoded.
         if(face==1450&&component==3)return 1;
         if(component!=1)return -1;
         if(face==1460||face==1881||face==1888)return 1;
-        if(face==1452||face==1883||face==1449||face==1882)return 5;
+        if(face==1452||face==1456)return 5;
+        // Exact950 scripts564 -> 8426 -> 8437: book12=defence, book13=constitution.
+        if(face==1449)return 3;
+        if(face==1882)return 4;
         return face==1461||face==1884||face==1885||face==1886?6:-1;
+    }
+    static int bookType(Player p,int face,int component){
+        // Combined defensive books use native category 0/1; these are not ranged books.
+        if(component==1&&(face==1880||face==1883)){
+            int category=p.getVarsManager().getBitValue(face==1880?36453:36454);
+            return category==0?3:category==1?4:-1;
+        }
+        return bookType(face,component);
     }
     // The native 1430 shortcut children form fourteen consecutive thirteen-component
     // groups. Bug Test captured 1430:66; the local bootstrap additionally proves the
@@ -95,6 +106,9 @@ public final class Native950ActionBar {
     static String name(int packed){int id=struct(packed);return id<0?null:RS3GeneralRequirementMap.getMap(id).getStringValue(2794);}
     public void bootstrap(Player p,Channel c){
         enableBooks(c);
+        // Native8426 hide-unavailable filters: expose entries, without granting unlocks
+        // or weakening the server's equipment/level/execution validation.
+        c.write(Native950Packets.varbitSmall(44637,0));c.write(Native950Packets.varbitSmall(27344,0));
         Native950Prayer.enableInterface(c);
         Native950AutoSpells.syncSelection(p,c);
         sync(p,c,"bootstrap",barSnapshot());
@@ -103,7 +117,9 @@ public final class Native950ActionBar {
     void enableBooks(Channel c){
         c.write(Native950Packets.interfaceEvents(1450,3,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
         for(int face:new int[]{1460,1881,1888})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,MELEE_BOOK_EVENTS));
-        for(int face:new int[]{1452,1883,1449,1882})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,RANGED_BOOK_EVENTS));
+        for(int face:new int[]{1452,1456})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,RANGED_BOOK_EVENTS));
+        for(int face:new int[]{1449,1882,1880,1883})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
+        for(int face:new int[]{1880,1883})c.write(Native950Packets.interfaceEvents(face,7,7,8,2));
         for(int face:new int[]{1461,1884,1885,1886})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,MAGIC_BOOK_EVENTS));
         for(int face:new int[]{1430,1436})for(int i=0;i<SLOTS;i++)for(int component:new int[]{(face==1430?65:19)+i*13,(face==1430?66:20)+i*13})
             c.write(Native950Packets.interfaceEvents(face,component,-1,1,ABILITY_EVENTS|(1<<21)));
@@ -156,8 +172,8 @@ public final class Native950ActionBar {
             }
             String before=barSnapshot();int old=slots()[to];slots()[to]=slots()[from];slots()[from]=old;sync(p,c,"rearrange",before);Native950BugTest.event(p,"action-bar","rearranged","bar",activeBar+1,"from",from+1,"to",to+1);return true;
         }
-        int type=bookType(a.sourceInterfaceId(),a.sourceComponentId());
-        if(type<0||!p.getInterfaceManager().containsInterface(a.sourceInterfaceId())||a.sourceSlot()<1||a.sourceSlot()>BOOK_LAST_SLOT){reply(c,"Drag an ability from the melee, ranged or magic ability book.");return true;}
+        int type=bookType(p,a.sourceInterfaceId(),a.sourceComponentId());
+        if(type<0||!p.getInterfaceManager().containsInterface(a.sourceInterfaceId())||a.sourceSlot()<1||a.sourceSlot()>BOOK_LAST_SLOT){reply(c,"Drag an ability from a supported combat ability book.");return true;}
         int packed=pack(type,a.sourceSlot());String name=name(packed);
         if(name==null||name.isEmpty()){reply(c,"That ability is not in the current cache.");return true;}
         String before=barSnapshot();slots()[to]=packed;sync(p,c,"bind",before);Native950BugTest.event(p,"action-bar","bound","bar",activeBar+1,"slot",to+1,"packed",packed,"structure",struct(packed),"name",name,"sync","varps+6992+7964");reply(c,name+" bound to slot "+(to+1)+".");return true;
@@ -165,6 +181,13 @@ public final class Native950ActionBar {
     static boolean isTrashTarget(Native950Actions.DragAction action){return action.targetInterfaceId()==ROOT_INTERFACE&&action.targetComponentId()==TRASH_COMPONENT;}
     static boolean isNoOpRearrangement(int from,int to){return from==to;}
     public boolean button(Player p,Channel c,Native950Actions.InterfaceAction a){
+        if((a.interfaceId()==1880||a.interfaceId()==1883)&&a.componentId()==7&&a.slot()>=7&&a.slot()<=8){
+            if(a.option()==1&&p.getInterfaceManager().containsInterface(a.interfaceId())&&!p.isLocked()&&!p.isDead()){
+                int bit=a.interfaceId()==1880?36453:36454;
+                p.getVarsManager().setVarBit(bit,a.slot()-7);c.write(Native950Packets.varbitSmall(bit,a.slot()-7));
+            }
+            return true;
+        }
         // Actual 950 input from the native preset menu uses 1430:261. Keep 254 for
         // layouts that still route through the sibling selector component.
         if(a.interfaceId()==1430&&(a.componentId()==254||a.componentId()==261)){
@@ -180,7 +203,7 @@ public final class Native950ActionBar {
             return true;
         }
         int slot=barSlot(a.interfaceId(),a.componentId());
-        int type=bookType(a.interfaceId(),a.componentId());
+        int type=bookType(p,a.interfaceId(),a.componentId());
         if(slot<0&&type<0)return false;
         int value=slot>=0?slots()[slot]:a.slot()>0&&a.slot()<=BOOK_LAST_SLOT?pack(type,a.slot()):0;
         int key=(value>>>4)&8191;
@@ -216,7 +239,7 @@ public final class Native950ActionBar {
     }
     int selectedStructure(Player p,int face,int component,int slot){
         if(!p.getInterfaceManager().containsInterface(face))return -1;
-        int index=barSlot(face,component),type=bookType(face,component);
+        int index=barSlot(face,component),type=bookType(p,face,component);
         return index>=0?struct(slots()[index]):type>0&&slot>0&&slot<=BOOK_LAST_SLOT?struct(pack(type,slot)):-1;
     }
     int revolutionCandidate(int enabledSlots,java.util.function.IntPredicate canExecute){

@@ -22,16 +22,19 @@ final class Native950AbilityCatalog {
             this.offhandRequired=offhandRequired;this.twoHandedRequired=twoHandedRequired;
         }
         boolean targetRequired(){return effect!=Effect.MOVEMENT&&effect!=Effect.BUFF;}
-        boolean revolutionEligible(){return effect!=Effect.MOVEMENT;}
-        int style(){return book==1?0:book==5?1:2;}
+        boolean revolutionEligible(){return effect!=Effect.MOVEMENT&&book!=3&&book!=4;}
+        int style(){return book==1?0:book==5?1:book==6?2:-1;}
+        boolean shieldRequired(){return struct==14713||struct==14714||struct==14715||struct==14716
+                ||struct==14718||struct==14719||struct==14720||struct==14721||struct==45045;}
         // Paired 950 params 2798/2800 use tenths of one percent. Tier 2 is
         // enhanced, not the pre-modernisation 50%-admission/15%-cost threshold.
         int adrenalineCost(){
             if(struct==44244||struct==14666)return 0;
-            if(struct==14686||struct==14688||struct==14674||struct==14736)return 60;
-            return tier==2?25:tier==4?100:0;
+            if(struct==31985||struct==31986)return 20;
+            if(struct==14686||struct==14688||struct==14674||struct==14736||struct==14709)return 60;
+            return tier==2?25:tier==3?15:tier==4?100:0;
         }
-        int adrenalineRequired(){return adrenalineCost();}
+        int adrenalineRequired(){return tier==3?50:adrenalineCost();}
         int adrenalineGain(){return struct==14679?12:tier==1?9:0;}
         boolean channelled(){return struct==14684||struct==14701||struct==14704||struct==14666||struct==14670||struct==14731||struct==19343;}
         int hitSpacing(){return struct==14684||struct==14670||struct==19343?1:2;}
@@ -80,7 +83,30 @@ final class Native950AbilityCatalog {
         d(14736,6,11,"Omnipower",6,12,50,460,460,4,1,Effect.DIRECT),
         d(19342,6,165,"Sonic Wave",6,6,25,90,110,1,1,Effect.FLOW),
         d(19343,6,166,"Concentrated Blast",6,66,9,70,90,1,3,Effect.DIRECT),
-        d(14726,6,2,"Surge",16,5,34,0,0,7,0,Effect.MOVEMENT)));
+        d(14726,6,2,"Surge",16,5,34,0,0,7,0,Effect.MOVEMENT),
+        d(14665,5,3,"Escape",16,5,34,0,0,7,0,Effect.MOVEMENT),
+        d(19254,6,164,"Sunshine",6,76,100,0,0,4,0,Effect.BUFF),
+        d(14709,1,14,"Pulverise",0,71,100,240,280,4,1,Effect.DIRECT,false,true),
+        d(14671,5,8,"Bombardment",4,36,0,100,120,2,1,Effect.DIRECT),
+        d(31985,6,172,"Corruption Blast",6,70,25,70,90,2,1,Effect.BLEED),
+        d(31986,5,13,"Corruption Shot",4,70,25,70,90,2,1,Effect.BLEED),
+        d(52781,1,16,"Rend",0,18,17,90,110,1,1,Effect.DIRECT),
+        d(14710,3,1,"Anticipation",1,3,41,0,0,1,0,Effect.BUFF),
+        d(14711,3,2,"Freedom",1,34,50,0,0,1,0,Effect.BUFF),
+        d(14713,3,4,"Resonance",1,48,50,0,0,1,0,Effect.BUFF),
+        d(14714,3,5,"Preparation",1,67,34,0,0,1,0,Effect.BUFF),
+        d(14715,3,6,"Bash",1,8,25,80,100,1,1,Effect.DIRECT),
+        d(14716,3,7,"Reflect",1,37,50,0,0,3,0,Effect.BUFF),
+        d(14717,3,8,"Debilitate",1,55,50,20,100,3,1,Effect.DIRECT),
+        d(14719,3,10,"Barricade",1,81,100,0,0,4,0,Effect.BUFF),
+        d(14720,3,11,"Rejuvenate",1,52,500,0,0,4,0,Effect.BUFF),
+        d(14721,3,12,"Immortality",1,29,200,0,0,4,0,Effect.BUFF),
+        d(19252,3,13,"Natural Instinct",1,85,200,0,0,4,0,Effect.BUFF),
+        d(25028,3,14,"Devotion",1,1,100,0,0,3,0,Effect.BUFF),
+        d(24188,4,10,"Sacrifice",3,1,50,80,100,1,1,Effect.DIRECT),
+        d(14718,3,9,"Revenge",1,15,75,0,0,3,0,Effect.BUFF),
+        d(45045,3,17,"Divert",1,48,50,0,0,1,0,Effect.BUFF),
+        d(46279,1,15,"Chaos Roar",0,92,100,0,0,1,0,Effect.BUFF)));
     private static Definition d(int struct,int book,int key,String name,int skill,int level,int cooldown,int min,int max,
                                 int tier,int hits,Effect effect){return d(struct,book,key,name,skill,level,cooldown,min,max,tier,hits,effect,false,false);}
     private static Definition d(int struct,int book,int key,String name,int skill,int level,int cooldown,int min,int max,
@@ -97,7 +123,7 @@ final class Native950AbilityCatalog {
                 ||s.getIntValue(2800)!=10*d.adrenalineGain()
                 ||(s.getIntValue(2811)==1)!=d.offhandRequired
                 ||(s.getIntValue(2812)==1)!=d.twoHandedRequired
-                ||(d.effect==Effect.BUFF)!=(s.getIntValue(2809)==1)
+                ||(s.getIntValue(2813)==1)!=d.shieldRequired()
                 ||Native950ActionBar.struct(Native950ActionBar.pack(d.book,d.key))!=d.struct)
                 throw new IllegalStateException("Changed950 ability definition: "+d.name);
             if(d.channelled()&&d.struct!=14701&&d.struct!=14666
@@ -105,7 +131,7 @@ final class Native950AbilityCatalog {
                 throw new IllegalStateException("Changed950 channel cadence: "+d.name);
         }
         for(Native950CombatBuffs.Type type:Native950CombatBuffs.Type.values())
-            if(RS3GeneralRequirementMap.getMap(type.structure).getIntValue(3740)!=type.duration)
+            if(type!=Native950CombatBuffs.Type.DEBILITATE&&RS3GeneralRequirementMap.getMap(type.structure).getIntValue(3740)!=type.duration)
                 throw new IllegalStateException("Changed950 buff duration: "+type);
     }
     static final class AnimationResolution {

@@ -47,3 +47,4 @@ __pycache__/
 logs/bugtest/
 logs/combatqa/
 /dist/chat-follow-update/
+/dist/staged-update/

@@ -20,8 +20,8 @@
   "nativeWrites": false,
   "playerSavesAccessed": false,
   "counts": {
-    "missing": 140,
-    "partial": 31
+    "missing": 117,
+    "partial": 54
   },
   "total": 171,
   "abilities": [
@@ -512,10 +512,11 @@
         "9061": 1,
         "9408": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 5,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -1097,10 +1098,11 @@
         "8170": 4,
         "9090": 60
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 5,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -3583,10 +3585,11 @@
         "8120": 3406,
         "8170": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 1,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -3689,10 +3692,11 @@
         "8120": 3160,
         "8170": 3
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -3856,10 +3860,11 @@
         "8170": 3,
         "9233": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -4015,10 +4020,11 @@
         "8120": 3165,
         "8170": 3
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -4086,10 +4092,11 @@
         "8120": 3166,
         "8170": 3
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -4164,10 +4171,11 @@
         "8170": 1,
         "8888": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -4241,10 +4249,11 @@
         "8120": 3178,
         "8170": 3
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -4316,10 +4325,11 @@
         "8120": 3179,
         "8170": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -4400,10 +4410,11 @@
         "8170": 3,
         "8888": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -4472,10 +4483,11 @@
         "8120": 3205,
         "8170": 3
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -4554,10 +4566,11 @@
         "8120": 3206,
         "8170": 3
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -4625,10 +4638,11 @@
         "8120": 3207,
         "8170": 3
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -5992,10 +6006,11 @@
         "8120": 3208,
         "8170": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -6125,10 +6140,11 @@
         "8120": 20454,
         "8170": 4
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 6,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -6453,10 +6469,11 @@
         "8120": 3122,
         "8170": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 4,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -7222,10 +7239,11 @@
         "8120": 3210,
         "8170": 3
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -8049,10 +8067,11 @@
         "8170": 2,
         "9410": 7914
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 6,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -8138,10 +8157,11 @@
         "8120": 6462,
         "8170": 2
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 5,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -9589,10 +9609,11 @@
         "8120": 15077,
         "8170": 3
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 3,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -10123,10 +10144,11 @@
         "8120": 35557,
         "8170": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 1,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -11435,10 +11457,11 @@
         "8120": 3104,
         "8170": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 1,
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [

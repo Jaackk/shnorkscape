@@ -15,19 +15,24 @@ final class Native950Surge {
         return end;
     }
     static String use(Player p){
-        if(!p.isActive()||p.hasFinished()||p.isDead()||p.isLocked()||p.isStunned()
+        return use(p,false);
+    }
+    static String use(Player p,boolean backwards){
+        String name=backwards?"Escape":"Surge";
+        if(!p.isActive()||p.hasFinished()||p.isDead()||p.isLocked()||p.isStunned()||p.isFrozen()
                 ||p.getNextWorldTile()!=null||p.isNative950ForceMovementActive()||p.getNextForceMovement()!=null)
-            return "You cannot Surge during that action.";
-        if(p.getSkills().getLevel(Skills.AGILITY)<5)return "Surge requires Agility level 5.";
+            return "You cannot "+name+" during that action.";
+        if(p.getSkills().getLevel(Skills.AGILITY)<5)return name+" requires Agility level 5.";
         // Instanced/controller movement permission has not been ported. Do not bypass it.
-        if(p.getControlerManager().getControler()!=null)return "Surge is not available in this controlled activity yet.";
-        byte[] direction=Utils.getDirection(p.getDirection());
+        if(p.getControlerManager().getControler()!=null)return name+" is not available in this controlled activity yet.";
+        byte[] direction=Utils.getDirection(p.getDirection()).clone();
+        if(backwards){direction[0]=(byte)-direction[0];direction[1]=(byte)-direction[1];}
         WorldTile start=new WorldTile(p),end=destination(start,direction[0],direction[1],(tile,dx,dy)->{
             WorldTile next=new WorldTile(tile.getX()+dx,tile.getY()+dy,tile.getPlane());
             return World.isRegionLoaded(next.getRegionId())&&World.canMoveNPC(next,p.getSize())
                 &&World.checkWalkStep(tile.getPlane(),tile.getX(),tile.getY(),dx,dy,p.getSize());
         });
-        if(start.matches(end))return "There is no clear path to Surge.";
+        if(start.matches(end))return "There is no clear path to "+name+".";
         p.getActionManager().forceStop();p.resetWalkSteps();p.setRouteEvent(null);p.setNextFaceEntity(null);
         // Timing uses the proven950 20ms interpolation adapter. No teleport or second scheduler.
         p.setNextForceMovement(new NewForceMovement(start,0,end,1,Utils.getAngle(end.getX()-start.getX(),end.getY()-start.getY())));

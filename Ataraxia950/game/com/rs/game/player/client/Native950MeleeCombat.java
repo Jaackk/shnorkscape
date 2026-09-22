@@ -191,14 +191,14 @@ public final class Native950MeleeCombat {
     public String ability(Player player,int structure) {
         owned();
         Native950BugTest.event(player,"combat","ability-request","structure",structure);
-        if(structure==14726){
+        if(structure==14726||structure==14665){
             Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
             if(cooldowns!=null&&tick<cooldowns.getOrDefault(structure,0L)){
                 Native950BugTest.event(player,"combat","ability-rejected","structure",structure,"reason","Surge is cooling down.",
                         "source","manual","cooldownEndTick",cooldowns.getOrDefault(structure,0L));
                 return "Surge is cooling down.";
             }
-            String refusal=Native950Surge.use(player);
+            String refusal=Native950Surge.use(player,structure==14665);
             if(refusal==null){
                 abilityCooldowns.computeIfAbsent(player,p->new java.util.HashMap<>()).put(structure,tick+34);
                 player.getNative950ActionBar().cooldown(player.getRealChannel(),structure,(int)Utils.currentWorldCycle(),34);
@@ -247,11 +247,11 @@ public final class Native950MeleeCombat {
         return abilityRefusal(player,structure,false);
     }
     private String abilityRefusal(Player player,int structure,boolean requireGlobalCooldown) {
-        int style=abilityStyle(structure);
-        if(style<0)return "That ability is not available in Combat Alpha yet.";
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
+        if(definition==null)return "That ability is not available in Combat Alpha yet.";
+        int style=definition.style();
         if(!access.player(player)||!player.isActive()||player.hasFinished()||player.isDead()||player.isLocked()
-                ||player.isStunned()||player.isNative950ForceMovementActive()||player.getNextWorldTile()!=null)
+                ||(player.isStunned()&&structure!=14711)||player.isNative950ForceMovementActive()||player.getNextWorldTile()!=null)
             return "You cannot use an ability right now.";
         Fighter fighter=targets.get(player);
         if(definition.targetRequired()&&(fighter==null||!fighter.attacking||!available(player,fighter.npc)||fighter.npc.isDead()))
@@ -261,14 +261,15 @@ public final class Native950MeleeCombat {
         if(requireGlobalCooldown&&tick<abilityCooldownEnd(player,structure))return "That ability is cooling down.";
         Loadout gear;
         try{gear=loadouts.get(player);}catch(IllegalArgumentException e){return e.getMessage();}
-        if((gear.profile==null?0:gear.profile.style)!=style)return "Equip a weapon matching that ability's combat style.";
+        if(style>=0&&(gear.profile==null?0:gear.profile.style)!=style)return "Equip a weapon matching that ability's combat style.";
+        if(definition.shieldRequired()&&!hasNativeShield(player))return definition.name+" requires a shield.";
         int energy=definition.adrenalineRequired();
         if(energy>0&&!player.getCombatDefinitions().isInfiniteAdrenaline()
                 &&player.getCombatDefinitions().getSpecialAttackPercentage()<energy)
             return definition.name+" requires "+energy+"% adrenaline.";
         if(definition.offhandRequired&&!matchingOffhand(player,style))return definition.name+" requires a matching off-hand weapon.";
         if(definition.twoHandedRequired&&!player.getEquipment().hasTwoHandedWeapon())return definition.name+" requires a two-handed weapon.";
-        int skill=style==0?Skills.ATTACK:style==1?Skills.RANGE:Skills.MAGIC;
+        int skill=definition.skill;
         if(player.getSkills().getLevel(skill)<definition.level)
             return "You need level "+definition.level+" in the matching combat skill.";
         if(player.getFoodDelay()>Utils.currentTimeMillis())return "Wait until you have finished eating.";
@@ -305,6 +306,7 @@ public final class Native950MeleeCombat {
         if(tick<globalCooldown.getOrDefault(player,0L)||tick<abilityCooldownEnd(player,structure))return true;
         queuedAbilities.remove(player);
         Loadout gear=loadouts.get(player);int style=abilityStyle(structure);
+        if(style<0)style=gear.profile==null?0:gear.profile.style;
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
         if(definition.targetRequired()&&gear.profile!=null&&!gear.profile.consume(player)){
             Native950BugTest.event(player,"combat","ability-queue-cancelled","structure",structure,
@@ -325,6 +327,8 @@ public final class Native950MeleeCombat {
         // Alpha coefficients are explicit approximations, not values decoded from
         // the ability cache. The cache verifies identity, requirements and cadence.
         int percent=definition.minPercent+rolls.damage(Math.max(0,definition.maxPercent-definition.minPercent));
+        boolean roar=definition.book==1&&definition.targetRequired()&&buffs.consume(player,Native950CombatBuffs.Type.CHAOS_ROAR,tick);
+        if(roar)percent*=2;
         if(definition.effect==Native950AbilityCatalog.Effect.EXECUTE
                 && fighter.npc.getHitpoints()*2<=fighter.profile.hp)percent+=20;
         Native950AbilityCatalog.AnimationResolution resolution=Native950AbilityCatalog.animationResolution(player,structure);
@@ -333,12 +337,26 @@ public final class Native950MeleeCombat {
         if(definition.channelled())channelUntil.put(player,tick+definition.channelTicks());
         java.util.List<Long> followUps=new java.util.ArrayList<Long>();
         if(definition.effect==Native950AbilityCatalog.Effect.BUFF){
-            Native950CombatBuffs.Type type=structure==14707?Native950CombatBuffs.Type.BERSERK:Native950CombatBuffs.Type.DEATHS_SWIFTNESS;
-            buffs.apply(player,type,tick);
+            Native950CombatBuffs.Type type=Native950CombatBuffs.Type.forStructure(structure);
+            if(type==null)throw new IllegalStateException("Missing ability effect "+structure);
+            int duration=type==Native950CombatBuffs.Type.BARRICADE?8+shieldLevel(player)/10:type.duration;
+            buffs.apply(player,type,tick,duration,null);
+            if(type==Native950CombatBuffs.Type.RESONANCE||type==Native950CombatBuffs.Type.DIVERT){
+                Native950CombatBuffs.Type other=type==Native950CombatBuffs.Type.RESONANCE?Native950CombatBuffs.Type.DIVERT:Native950CombatBuffs.Type.RESONANCE;
+                buffs.consume(player,other,tick);
+                abilityCooldowns.get(player).put(other.structure,tick+definition.cooldown);
+                player.getNative950ActionBar().cooldown(player.getRealChannel(),other.structure,cycle,definition.cooldown);
+            }
+            if(type==Native950CombatBuffs.Type.FREEDOM){player.setStunDelay(0);player.setFreezeDelay(-1);}
+            if(type==Native950CombatBuffs.Type.REJUVENATE){
+                player.heal(Math.max(1,player.getMaxHitpoints()/40));
+                for(int stat=0;stat<Skills.SKILL_NAME.length;stat++)if(player.getSkills().getLevel(stat)<player.getSkills().getLevelForXp(stat))
+                    player.getSkills().set(stat,player.getSkills().getLevelForXp(stat));
+            }
             if(type==Native950CombatBuffs.Type.BERSERK)player.getBuffDebuffTimersManager().addTimer(Timer.BERSERK,type.duration*600L);
-            Native950BugTest.event(player,"combat","effect-started","effect",definition.name,"durationTicks",type.duration,"endTick",tick+type.duration);
+            Native950BugTest.event(player,"combat","effect-started","effect",definition.name,"durationTicks",duration,"endTick",tick+duration);
         }
-        int total=0, chainDamage=-1, dragonBreathDamage=-1, tsunamiDamage=-1, hurricaneDamage=-1, meteorDamage=-1;
+        int total=0, chainDamage=-1, dragonBreathDamage=-1, tsunamiDamage=-1, hurricaneDamage=-1, meteorDamage=-1, bombardmentDamage=-1;
         for(int hit=0;hit<(definition.effect==Native950AbilityCatalog.Effect.BUFF?0:definition.hits);hit++){
             int rolled=Math.max(1,maximum*percent/100);
             int requested=Rs2CombatFormula.scaleNative950Damage(rolled,rolls.nativeDamageRemainder(rolled));
@@ -347,6 +365,7 @@ public final class Native950MeleeCombat {
             if(structure==14735&&hit==0)tsunamiDamage=requested;
             if(structure==14685&&hit==0)hurricaneDamage=requested;
             if(structure==14688&&hit==0)meteorDamage=requested;
+            if(structure==14671&&hit==0)bombardmentDamage=requested;
             if(definition.hitDelay(hit)>0){
                 long dueTick=tick+definition.hitDelay(hit);
                 pendingHits.computeIfAbsent(player,p->new ArrayList<>()).add(new PendingHit(fighter,requested,dueTick,gear,-1,
@@ -368,6 +387,9 @@ public final class Native950MeleeCombat {
             hurricaneSecondaryHits(player,fighter,hurricaneDamage,gear);
         if(structure==14688&&meteorDamage>0)
             meteorSecondaryHits(player,fighter,meteorDamage,gear);
+        if(bombardmentDamage>0)secondaryAreaHits(player,fighter,bombardmentDamage,gear,1,8);
+        if(structure==14717&&fighter!=null)buffs.apply(player,Native950CombatBuffs.Type.DEBILITATE,tick,13+shieldLevel(player)/9,fighter.npc);
+        if(structure==24188&&total>0)player.heal(fighter.npc.isDead()?total:total/4);
         // Param2802 is an icon sprite. Actual sequences come from param2915's weapon-family enum.
         int effect=-1;
         if(animation>=0){
@@ -389,12 +411,12 @@ public final class Native950MeleeCombat {
                 "followUpHitTicks",followUps.toString());
         if(definition.adrenalineCost()>0)player.getCombatDefinitions().decreaseSpecialAttack(definition.adrenalineCost());
         else if(definition.adrenalineGain()>0)player.getCombatDefinitions().setSpecialAttackPercentage(
-                Math.min(100,player.getCombatDefinitions().getSpecialAttackPercentage()+definition.adrenalineGain()));
+                Math.min(100,player.getCombatDefinitions().getSpecialAttackPercentage()+buffs.adrenalineGain(player,definition.adrenalineGain(),tick)));
         if(definition.targetRequired()){
         fighter.retaliating=!fighter.training;
         if(definition.effect==Native950AbilityCatalog.Effect.STUN)fighter.stunnedUntil=tick+5;
         if(definition.effect==Native950AbilityCatalog.Effect.BLEED&&!fighter.npc.isDead()){
-            int rawDotDamage=Math.max(1,maximum*15/100);
+            int rawDotDamage=Math.max(1,maximum*(roar?30:15)/100);
             int dotDamage=Rs2CombatFormula.scaleNative950Damage(rawDotDamage,rolls.nativeDamageRemainder(rawDotDamage));
             dotDamage=prayerAdjustedDamage(player,fighter.npc,dotDamage,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
             damageOverTime.computeIfAbsent(player,p->new java.util.HashMap<>()).put(structure,
@@ -411,6 +433,8 @@ public final class Native950MeleeCombat {
     /** Runs after input and before ordinary entity movement, on the same world tick. */
     public void beforeMovement() {
         owned();tick++;
+        buffs.checkEquipment(Native950MeleeCombat::hasNativeShield,this::buffRemoved);
+        buffs.pulse(tick);
         buffs.expire(tick,this::buffRemoved);
         Iterator<Map.Entry<Player,Long>> dead=deadPlayers.entrySet().iterator();
         while(dead.hasNext()) {
@@ -660,12 +684,15 @@ public final class Native950MeleeCombat {
      * the same hit/reward pipeline used by ordinary ability damage.
      */
     private void chainSecondaryHits(Player player,Fighter primary,int requested,Loadout gear){
+        secondaryAreaHits(player,primary,requested,gear,CHAIN_SECONDARY_RANGE,CHAIN_SECONDARY_TARGET_LIMIT);
+    }
+    private void secondaryAreaHits(Player player,Fighter primary,int requested,Loadout gear,int radius,int limit){
         int chained=0;
         for(Fighter candidate:new ArrayList<>(fighters.values())){
-            if(chained>=CHAIN_SECONDARY_TARGET_LIMIT)break;
+            if(chained>=limit)break;
             int range=distanceBetweenFootprints(primary.npc,primary.profile.size,candidate.npc,candidate.profile.size);
             if(candidate==primary||candidate.target!=null||candidate.returning||candidate.respawnAt>0
-                    ||candidate.npc.isDead()||!access.npc(candidate.npc)||range>CHAIN_SECONDARY_RANGE)
+                    ||candidate.npc.isDead()||!access.npc(candidate.npc)||range>radius)
                 continue;
             int actual=damage(player,candidate.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
             if(actual>0&&!candidate.training)rewards.hit(player,candidate.npc,actual,gear);
@@ -675,8 +702,7 @@ public final class Native950MeleeCombat {
             chained++;
             if(candidate.npc.isDead())secondaryNpcDied(candidate,player);
         }
-        Native950BugTest.event(player,"combat","chain-secondary-summary","count",chained,"limit",CHAIN_SECONDARY_TARGET_LIMIT,
-                "range",CHAIN_SECONDARY_RANGE);
+        Native950BugTest.event(player,"combat","chain-secondary-summary","count",chained,"limit",limit,"range",radius);
     }
     /** Primary plus at most four registered NPCs in the paired ability's directional area. */
     private void dragonBreathSecondaryHits(Player player,Fighter primary,int requested,Loadout gear){
@@ -847,10 +873,44 @@ public final class Native950MeleeCombat {
     private int damage(Entity source,Entity target,int requested,Hit.HitLook look,boolean adjusted,boolean buffable){
         if(!adjusted)requested=prayerAdjustedDamage(source,target,requested,look);
         if(buffable&&source instanceof Player)requested=buffs.outgoing((Player)source,look,requested,tick);
-        if(target instanceof Player)requested=buffs.incoming((Player)target,requested,tick);
+        if(target instanceof Player){
+            Player defender=(Player)target;
+            buffs.receivedAttack(defender,tick);
+            if(buffs.active(defender,Native950CombatBuffs.Type.DEVOTION,tick)&&protectedStyle(defender,look))requested=0;
+            if(buffs.active(defender,Native950CombatBuffs.Type.BARRICADE,tick)||defender.isInvulnerable())requested=0;
+            if(requested>0&&buffs.active(defender,Native950CombatBuffs.Type.PREPARATION,tick)){
+                Map<Integer,Long> cooldowns=abilityCooldowns.get(defender);
+                if(cooldowns!=null)for(int shared:new int[]{14713,45045})if(cooldowns.containsKey(shared)){
+                    long end=Math.max(tick,cooldowns.get(shared)-5);cooldowns.put(shared,end);
+                    defender.getNative950ActionBar().cooldown(defender.getRealChannel(),shared,(int)Utils.currentWorldCycle(),(int)(end-tick));
+                }
+            }
+            if(requested>0&&buffs.consume(defender,Native950CombatBuffs.Type.RESONANCE,tick)){
+                defender.heal((int)Math.min(Integer.MAX_VALUE,(long)requested*(50+shieldLevel(defender)/2)/100));requested=0;
+            }
+            if(requested>0&&buffs.consume(defender,Native950CombatBuffs.Type.DIVERT,tick)){
+                defender.getCombatDefinitions().setSpecialAttackPercentage(Math.min(100,
+                        defender.getCombatDefinitions().getSpecialAttackPercentage()+divertAdrenaline(requested,shieldLevel(defender))));
+                requested=0;
+            }
+            int reflected=buffs.active(defender,Native950CombatBuffs.Type.REFLECT,tick)?requested/2:0;
+            requested=buffs.incoming(defender,source,requested,tick);
+            if(reflected>0&&source instanceof NPC&&!source.isDead()){
+                int dealt=damage(defender,source,reflected,look,true,false);
+                Fighter reflectedTarget=fighters.get(source);
+                if(reflectedTarget!=null){
+                    if(dealt>0&&!reflectedTarget.training)rewards.hit(defender,(NPC)source,dealt,loadouts.get(defender));
+                    if(reflectedTarget.training)source.setHitpoints(reflectedTarget.profile.hp);
+                    else if(source.isDead())secondaryNpcDied(reflectedTarget,defender);
+                }
+            }
+        }
         int damage=target instanceof Player && ((Player)target).isInvulnerable()
                 ? 0 : Math.max(0,Math.min(target.getHitpoints(),requested));
+        boolean revive=target instanceof Player&&damage>=target.getHitpoints()
+                &&buffs.consume((Player)target,Native950CombatBuffs.Type.IMMORTALITY,tick);
         target.setHitpoints(target.getHitpoints()-damage);
+        if(revive){target.setHitpoints(Math.max(1,((Player)target).getMaxHitpoints()*40/100));((Player)target).sendMessage("Immortality returns you to life.");}
         target.getNextHits().add(new Hit(source,damage,look,0));target.addHitBars();
         target.setAttackedBy(source);target.setAttackedByDelay(Utils.currentTimeMillis()+6000);source.setAttackingDelay(Utils.currentTimeMillis()+6000);
         if(target instanceof Player)((Player)target).refreshHitPoints();
@@ -879,6 +939,7 @@ public final class Native950MeleeCombat {
         retireNpc(fighter,player);
     }
     private void retireNpc(Fighter fighter,Player player) {
+        buffs.onKill(player,tick);
         fighter.strikes.clear();
         NPC npc=fighter.npc;npc.resetWalkSteps();npc.setNative950CombatEngaged(true);
         npc.setNative950DeathVisible(true);npc.setNextAnimation(new Animation(fighter.profile.deathAnim));
@@ -922,6 +983,21 @@ public final class Native950MeleeCombat {
                 &&Native950CombatStyles.classify(Native950CacheItems.definition(item.getId()))==style;
     }
     boolean isBerserkActive(Player player) {owned();return buffs.active(player,Native950CombatBuffs.Type.BERSERK,tick);}
+    static int shieldLevel(Player player){
+        if(!hasNativeShield(player))return 0;
+        Native950EquipmentTypes.Type type=Native950EquipmentTypes.resolve(player.getEquipment().getShieldId());
+        return type==null?0:Math.max(0,Math.min(99,type.requirements.getOrDefault(Skills.DEFENCE,0)));
+    }
+    static boolean hasNativeShield(Player player){return player.getEquipment().hasShield()&&!player.getEquipment().hasOffHand();}
+    static int divertAdrenaline(int damage,int shieldLevel){
+        double weighted=Math.min(3000,damage)+Math.min(3000,Math.max(0,damage-3000))/2.0
+                +Math.min(3000,Math.max(0,damage-6000))/4.0+Math.max(0L,(long)damage-9000)/8.0;
+        return Math.min(50,(int)(weighted*0.8/(200-Math.max(0,Math.min(99,shieldLevel)))));
+    }
+    private static boolean protectedStyle(Player player,Hit.HitLook look){
+        int id=look==Hit.HitLook.MELEE_DAMAGE?13:look==Hit.HitLook.RANGE_DAMAGE?12:look==Hit.HitLook.MAGIC_DAMAGE?11:-1;
+        return id>=0&&(player.getPrayer().usingPrayer(0,id)||player.getPrayer().usingPrayer(1,id));
+    }
     boolean isDeathsSwiftnessActive(Player player) {owned();return buffs.active(player,Native950CombatBuffs.Type.DEATHS_SWIFTNESS,tick);}
     private void buffRemoved(Player player,Native950CombatBuffs.Type type){
         if(type==Native950CombatBuffs.Type.BERSERK)player.getBuffDebuffTimersManager().removeTimer(Timer.BERSERK);

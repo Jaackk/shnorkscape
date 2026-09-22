@@ -1508,14 +1508,14 @@ public final class Native950Interactions {
 
     private void itemOnNpc(Native950Actions.ItemOnNpcAction action) {
         if(Native950ActionBar.barSlot(action.sourceInterfaceId(),action.sourceComponentId())>=0
-                ||Native950ActionBar.bookType(action.sourceInterfaceId(),action.sourceComponentId())>0){
+                ||Native950ActionBar.bookType(player,action.sourceInterfaceId(),action.sourceComponentId())>0){
             int structure=player.getNative950ActionBar().selectedStructure(player,action.sourceInterfaceId(),action.sourceComponentId(),action.sourceSlot());
             if(structure<0||npcView==null||!npcView.canInteract(player,action.index())||!player.clientHasLoadedMapRegion()){
                 reject("Select an available ability and visible target");return;
             }
             NPC target=World.getNPCs().get(action.index());
             if(target==null||!target.canBeAttacked(player)||!player.getControlerManager().processPlayerOption1(target))return;
-            if(Native950MeleeCombat.abilityStyle(structure)<0){reject("That ability is not implemented yet");return;}
+            if(Native950AbilityCatalog.get(structure)==null){reject("That ability is not implemented yet");return;}
             Native950MeleeCombat combat=player.getNative950Combat();
             String refusal=combat==null?"Combat is not ready":combat.attack(player,target);
             if(refusal==null)refusal=combat.ability(player,structure);
