@@ -67,8 +67,8 @@ public class Native950AdminCommandsTest {
     }
     @Test public void actionBarAndRevolutionControlsUseTheSavedNativeState() {
         run(";;bar");assertEquals(0,p.getNative950ActionBar().activeBar());
-        run(";;bar 3");assertEquals(2,p.getNative950ActionBar().activeBar());
-        run(";;bar 0");run(";;bar nope");assertEquals(2,p.getNative950ActionBar().activeBar());
+        run(";;bar 4");assertEquals(3,p.getNative950ActionBar().activeBar());
+        run(";;bar 0");run(";;bar nope");assertEquals(3,p.getNative950ActionBar().activeBar());
         run(";;revo");assertTrue(p.getNative950ActionBar().isRevolutionEnabled());
         run(";;revolution");assertFalse(p.getNative950ActionBar().isRevolutionEnabled());
     }

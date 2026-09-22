@@ -14,7 +14,7 @@ import java.util.function.Consumer;
 /** Main native bar. Uses 950 script11797's layout, not the legacy four-bit type. */
 public final class Native950ActionBar {
     public static final int SLOTS=14;
-    public static final int BARS=3;
+    public static final int BARS=4;
     // 950 native drag-parent resolver 0x1401ab903: bit23 bypasses parent-depth clipping.
     static final int ABILITY_EVENTS=2|(2<<11)|(1<<18)|(1<<23);
     // Exact paired-950 masks and surfaces from OpenNXT's native world bootstrap.  These
@@ -61,7 +61,7 @@ public final class Native950ActionBar {
     }
     private static int legacyPair(Map<String,Integer> settings,int pair){return savePair(settings.getOrDefault("actionBar."+(pair*2),0),settings.getOrDefault("actionBar."+(pair*2+1),0));}
     private static int savePair(int first,int second){return saveValue(first)|(saveValue(second)<<16);}
-    private static int saveValue(int packed){return packed==0?0:((packed>>>17)<<13)|((packed>>>4)&8191);}
+    private static int saveValue(int packed){return !valid(packed)?0:((packed>>>17)<<13)|((packed>>>4)&8191);}
     private static int loadValue(int value){int type=value>>>13,id=value&8191;return type==0&&id==0?0:(enumFor(type)>=0&&id>0?pack(type,id):0);}
     static int pack(int type,int id){if(enumFor(type)<0||id<1||id>8191)throw new IllegalArgumentException("Invalid ability");return (type<<17)|(id<<4);}
     static boolean valid(int packed){return packed==0||((packed&~0xffffff)==0&&(packed&15)==0&&enumFor(packed>>>17)>=0&&((packed>>>4)&8191)>0);}
@@ -73,7 +73,7 @@ public final class Native950ActionBar {
      * which the client renders as an empty shortcut.
      */
     static int clientShortcut(int packed){return packed;}
-    static int enumFor(int type){return type==1?10147:type==3?6736:type==4?6737:type==5?6738:type==6?6740:-1;}
+    static int enumFor(int type){return type==1?10147:type==3?6736:type==4?6737:type==5?6738:type==6?6740:type==7?16973:-1;}
     static int bookType(int face,int component){
         // Recorded in the live 950 Bug Test session while dragging Flurry and Dismember.
         // Preserve this native melee-page source until its cache owner is fully decoded.
@@ -84,6 +84,7 @@ public final class Native950ActionBar {
         // Exact950 scripts564 -> 8426 -> 8437: book12=defence, book13=constitution.
         if(face==1449)return 3;
         if(face==1882)return 4;
+        if(face==1459||face==1887)return 7;
         return face==1461||face==1884||face==1885||face==1886?6:-1;
     }
     static int bookType(Player p,int face,int component){
@@ -121,6 +122,9 @@ public final class Native950ActionBar {
         for(int face:new int[]{1449,1882,1880,1883})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
         for(int face:new int[]{1880,1883})c.write(Native950Packets.interfaceEvents(face,7,7,8,2));
         for(int face:new int[]{1461,1884,1885,1886})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,MAGIC_BOOK_EVENTS));
+        // Cache script 6995 resolves this book to enum 16973. The generic ability
+        // mask admits click/drag without inheriting Magic's spell-only operations.
+        for(int face:new int[]{1459,1887})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
         for(int face:new int[]{1430,1436})for(int i=0;i<SLOTS;i++)for(int component:new int[]{(face==1430?65:19)+i*13,(face==1430?66:20)+i*13})
             c.write(Native950Packets.interfaceEvents(face,component,-1,1,ABILITY_EVENTS|(1<<21)));
         for(int slot=0;slot<SLOTS;slot++)for(int component:NATIVE_SLOT_EVENT_COMPONENTS[slot])
@@ -223,7 +227,8 @@ public final class Native950ActionBar {
         // a correctly visible native bar reject its own keybinds after a workspace
         // restore.  Keep the source-component validation above; this only recognises
         // the wrapper relationship the 950 client actually uses.
-        boolean mounted=slot>=0 ? p.getInterfaceManager().containsInterface(ROOT_INTERFACE)
+        boolean mounted=slot>=0 ? actionBarMounted(p.getInterfaceManager().containsInterface(a.interfaceId()),
+                p.getInterfaceManager().containsInterface(ROOT_INTERFACE))
                 : p.getInterfaceManager().containsInterface(a.interfaceId());
         if(a.option()!=1||!mounted||p.isLocked()||p.isDead()){
             System.out.println("[Ataraxia950] Ability action ignored iface="+a.interfaceId()+":"+a.componentId()
@@ -244,6 +249,8 @@ public final class Native950ActionBar {
         if(result!=null)reply(c,result);
         return true;
     }
+    /** A 950 shortcut can be delivered through the visible bar child or its workspace owner. */
+    static boolean actionBarMounted(boolean childMounted,boolean workspaceMounted){return childMounted||workspaceMounted;}
     int selectedStructure(Player p,int face,int component,int slot){
         if(!p.getInterfaceManager().containsInterface(face))return -1;
         int index=barSlot(face,component),type=bookType(p,face,component);

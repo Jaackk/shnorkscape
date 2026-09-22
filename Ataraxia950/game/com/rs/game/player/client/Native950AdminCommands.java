@@ -24,7 +24,7 @@ public final class Native950AdminCommands {
                     entry(";;heal / ;;refill, ;;max, ;;comp", "restore resources; max skills; or grant local completion state"),
                     entry(";;spell [strike|bolt|blast|wave|surge]", "view or choose an Air auto-spell")),
             group("ACTION BARS", "7dd3fc", "bae6fd",
-                    entry(";;bar [1-3]", "view or select a saved action bar"),
+                    entry(";;bar [1-4]", "view or select a saved action bar"),
                     entry(";;revo / ;;revolution", "toggle server-side Revolution for the saved bar"),
                     entry(";;testbar, ;;clearbar", "add the test abilities; empty the selected bar")),
             group("BUG TEST", "c4b5fd", "e9d5ff",
@@ -124,7 +124,7 @@ public final class Native950AdminCommands {
         }
         if (args.length > (command.equals("adrenaline") || command.equals("bar") || command.equals("spell") || command.equals("dummy") || command.equals("uilayout")
                 || command.equals("copy") || command.equals("teleto") || command.equals("tpto") ? 2 : 1)) {
-            String usage=command.equals("adrenaline") ? " [0-100]" : command.equals("bar") ? " [1-3]"
+            String usage=command.equals("adrenaline") ? " [0-100]" : command.equals("bar") ? " [1-4]"
                     : command.equals("spell") ? " [strike|bolt|blast|wave|surge]" : command.equals("dummy") ? " [1-5]" : command.equals("uilayout") ? " status" : "";
             reply(channel, "Usage: ;;" + command + usage); return;
         }
@@ -161,10 +161,10 @@ public final class Native950AdminCommands {
             case "testbar":p.getNative950ActionBar().testBar(p,channel);break;
             case "clearbar":p.getNative950ActionBar().clear(p,channel);break;
             case "bar":
-                if(args.length==1){reply(channel,"Active saved action bar: "+(p.getNative950ActionBar().activeBar()+1)+". Use ;;bar <1-3>.");break;}
+                if(args.length==1){reply(channel,"Active saved action bar: "+(p.getNative950ActionBar().activeBar()+1)+". Use ;;bar <1-4>.");break;}
                 int requestedBar;
-                try{requestedBar=Integer.parseInt(args[1]);}catch(NumberFormatException invalid){reply(channel,"Use ;;bar <1-3>.");break;}
-                if(requestedBar<1||requestedBar>Native950ActionBar.BARS){reply(channel,"Use ;;bar <1-3>.");break;}
+                try{requestedBar=Integer.parseInt(args[1]);}catch(NumberFormatException invalid){reply(channel,"Use ;;bar <1-4>.");break;}
+                if(requestedBar<1||requestedBar>Native950ActionBar.BARS){reply(channel,"Use ;;bar <1-4>.");break;}
                 p.getNative950ActionBar().setActiveBar(p,channel,requestedBar-1);
                 reply(channel,"Action bar "+requestedBar+" selected and saved.");break;
             case "revo": case "revolution":

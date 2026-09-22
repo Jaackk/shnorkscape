@@ -340,7 +340,7 @@ public final class Native950MeleeCombat {
         Native950BugTest.event(player,"combat","cooldown","structure",structure,"cycle",cycle,"duration",definition.cooldown);
         player.getNative950ActionBar().cooldown(player.getRealChannel(),14881,cycle,3);
         nextAttack.put(player,tick+3);
-        int skill=style==0?Skills.STRENGTH:style==1?Skills.RANGE:Skills.MAGIC;
+        int skill=style==0?Skills.STRENGTH:style==1?Skills.RANGE:style==Native950CombatStyles.NECROMANCY?Skills.NECROMANCY:Skills.MAGIC;
         int level=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(skill),0,0,1);
         int maximum=Rs2CombatFormula.meleeOrRangedMaxHit(level,gear.strengthBonus,1);
         if(gear.profile!=null)maximum=gear.profile.maxHit(player,maximum);

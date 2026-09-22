@@ -12,11 +12,12 @@ import static org.junit.Assert.*;
 
 public class Native950AbilityFoundationTest {
     @Test public void verifiedRotationSeparatesUtilityDamageAndAdrenalineTiers(){
-        assertEquals(54,Native950AbilityCatalog.DEFINITIONS.size());
+        assertEquals(60,Native950AbilityCatalog.DEFINITIONS.size());
         long melee=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==1).count();
         long ranged=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==5).count();
         long magic=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==6&&d.targetRequired()).count();
-        assertEquals(15,melee);assertEquals(11,ranged);assertEquals(11,magic);
+        long necromancy=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==7&&d.targetRequired()).count();
+        assertEquals(15,melee);assertEquals(11,ranged);assertEquals(11,magic);assertEquals(6,necromancy);
         Native950AbilityCatalog.Definition surge=Native950AbilityCatalog.get(14726);
         assertFalse(surge.targetRequired());assertEquals(34,surge.cooldown);assertEquals(16,surge.skill);assertEquals(5,surge.level);
         assertEquals(0,Native950AbilityCatalog.get(14682).adrenalineCost());
@@ -35,6 +36,11 @@ public class Native950AbilityFoundationTest {
         assertEquals(0,Native950AbilityCatalog.get(14666).adrenalineCost());
         assertEquals(100,Native950AbilityCatalog.get(14707).adrenalineCost());
         assertEquals(7,Native950AbilityCatalog.get(14726).tier);
+        assertEquals(3,Native950AbilityCatalog.get(48296).style());
+        assertEquals(60,Native950AbilityCatalog.get(48297).adrenalineCost());
+        assertEquals(20,Native950AbilityCatalog.get(48308).adrenalineCost());
+        assertEquals(10,Native950AbilityCatalog.get(48311).adrenalineCost());
+        assertEquals(60,Native950AbilityCatalog.get(48314).adrenalineCost());
     }
     @Test public void dragMaskEscapesBookClippingWithoutEnablingOtherOperations(){
         assertTrue((Native950ActionBar.ABILITY_EVENTS&(1<<23))!=0);

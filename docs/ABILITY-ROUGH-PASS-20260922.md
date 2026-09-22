@@ -70,6 +70,28 @@ References: current exact950 cache; inherited Ataraxia effect/combat infrastruct
 Vernox ActionBar defensive lifetimes as behavioural clues; Undercut AbilityBooks
 for the defence/constitution/category architecture. Numeric mappings come from950.
 
+## Necromancy and Fourth Bar Follow-up
+
+The exact 950 cache's Necromancy book is enum `16973`, exposed by interfaces
+`1459:1` and `1887:1`. Its first safe Combat Alpha slice is now cache-verified:
+
+- Touch of Death, Finger of Death, Soul Sap, Bloat, Spectral Scythe and Death
+  Skulls route through the existing target, queue, cooldown, adrenaline, hit,
+  impact-graphic and Necromancy-XP path.
+- Their exact enum key, level, cooldown and adrenaline field values are verified
+  against the local revision-950 cache. Damage remains explicitly Alpha-scaled.
+- Conjures, soul-stack spenders, Blood Siphon, Life Transfer, Threads of Fate,
+  Invoke Death, Darkness, Split Soul and Living Death remain deliberately
+  unavailable until their distinct stateful mechanics are implemented.
+
+The saved action-bar capacity is now four bars (30 compact settings entries,
+within the existing 48-entry/2 KB bound). `;;bar 4` selects the fourth native
+preset. A regression in the recent keybind change had required only the workspace
+wrapper, which rejected direct bar-child input for some native layouts. The action
+bar now accepts either verified native owner: visible child or workspace wrapper.
+Both click and keybind routing remain subject to the existing active/dead/locked
+and combat validation gates.
+
 ## Deliberately Partial / Deferred
 
 This is playable Alpha coverage, NOT a claim of retail-complete abilities:
@@ -124,3 +146,19 @@ Live JAR remains `1fc09938a842432b174fbfea32261bb5f49a856b1f1a294a4631b1b8a6a11f
 No server/client restart was performed. No live saves were modified by this task.
 Both installer names passed `--check-only`. A full invocation with the live Java
 process present correctly refused installation; the deployed JAR hash stayed intact.
+
+## Necromancy And Fourth-Bar Follow-Up
+
+The follow-up candidate restores the direct-click/keybind action-bar mount contract:
+the native bar child and its `1477` workspace owner are both legitimate dispatch
+owners, so either may authorize a slot action. It adds persistent bar 4 (`;;bar 4`)
+and exact-cache Necromancy book support for Touch of Death, Finger of Death, Soul
+Sap, Bloat, Spectral Scythe and Death Skulls. These six reuse the verified shared
+queue, cooldown, adrenaline, equipment-style, damage and bleed paths. Ten further
+cache candidates remain deliberately unavailable pending their missing native
+mechanics (souls, conjures, multi-target effects and persistent buffs).
+
+Follow-up staged JAR SHA256:
+`bcdd7cb52ff80ee48d6ffd45e05256670b9a68f006bfecead5c5a9b54a8e75ae`.
+The full Gradle test suite and exact-cache coverage check passed. This candidate has
+not installed or restarted the live server/client.

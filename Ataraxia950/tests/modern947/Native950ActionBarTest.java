@@ -34,6 +34,8 @@ public class Native950ActionBarTest {
         assertEquals(1,Native950ActionBar.bookType(1450,3));
         assertEquals(5,Native950ActionBar.bookType(1452,1));
         assertEquals(6,Native950ActionBar.bookType(1461,1));
+        assertEquals(7,Native950ActionBar.bookType(1459,1));
+        assertEquals(16973,Native950ActionBar.enumFor(7));
         assertEquals(-1,Native950ActionBar.bookType(1461,2));
     }
     @Test public void sameSlotRearrangementIsRecognisedAsANoOp(){
@@ -58,21 +60,28 @@ public class Native950ActionBarTest {
     @Test public void badAndOldSettingsProduceEmptySlots(){
         Native950ActionBar bar=new Native950ActionBar();
         bar.restore(Collections.singletonMap("actionBar.0",-1));Map<String,Integer> out=new HashMap<>();bar.writeSettings(out);
-        assertEquals(Integer.valueOf(0),out.get("actionBar.0.0"));assertEquals(23,out.size());
+        assertEquals(Integer.valueOf(0),out.get("actionBar.0.0"));assertEquals(30,out.size());
     }
-    @Test public void threeBarsRoundTripIndependentlyWithinTheNativeSettingsCap(){
+    @Test public void fourBarsRoundTripIndependentlyWithinTheNativeSettingsCap(){
         Native950ActionBar bar=new Native950ActionBar();Map<String,Integer> legacy=new HashMap<>();
         legacy.put("actionBar.0",Native950ActionBar.pack(1,3));bar.restore(legacy);
         EmbeddedChannel c=new EmbeddedChannel();try{
-            bar.setActiveBar(c,1);bar.testBar(c);bar.setActiveBar(c,2);bar.testBar(c);
+            bar.setActiveBar(c,1);bar.testBar(c);bar.setActiveBar(c,2);bar.testBar(c);bar.setActiveBar(c,3);bar.testBar(c);
             Map<String,Integer> settings=new HashMap<>();bar.writeSettings(settings);
-            assertEquals(23,settings.size());assertTrue(settings.size()<=Native950Save.MAX_SETTINGS);
+            assertEquals(30,settings.size());assertTrue(settings.size()<=Native950Save.MAX_SETTINGS);
             Native950ActionBar restored=new Native950ActionBar();restored.restore(settings);
             assertEquals(Native950ActionBar.pack(1,3),restored.slot(0,0));
             assertEquals(Native950ActionBar.pack(1,3),restored.slot(1,0));
             assertEquals(Native950ActionBar.pack(6,3),restored.slot(2,2));
-            assertEquals(2,restored.activeBar());
+            assertEquals(Native950ActionBar.pack(6,3),restored.slot(3,2));
+            assertEquals(3,restored.activeBar());
         }finally{c.finishAndReleaseAll();}
+    }
+    @Test public void actionBarInputAcceptsEitherTheVisibleChildOrItsNativeWorkspaceOwner(){
+        assertTrue(Native950ActionBar.actionBarMounted(true,false));
+        assertTrue(Native950ActionBar.actionBarMounted(false,true));
+        assertTrue(Native950ActionBar.actionBarMounted(true,true));
+        assertFalse(Native950ActionBar.actionBarMounted(false,false));
     }
     @Test public void revolutionStatePersistsAndUsesTheVerifiedClientVarbits(){
         EmbeddedChannel c=new EmbeddedChannel();
@@ -121,11 +130,14 @@ public class Native950ActionBarTest {
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1882,1,0,264,Native950ActionBar.ABILITY_EVENTS)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1461,1,0,264,8617038)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1886,1,0,264,8617038)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1459,1,0,264,Native950ActionBar.ABILITY_EVENTS)));
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1887,1,0,264,Native950ActionBar.ABILITY_EVENTS)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1450,3,0,264,Native950ActionBar.ABILITY_EVENTS)));
             assertEquals(1,Native950ActionBar.bookType(1881,1));
             assertEquals(3,Native950ActionBar.bookType(1449,1));
             assertEquals(4,Native950ActionBar.bookType(1882,1));
             assertEquals(6,Native950ActionBar.bookType(1885,1));
+            assertEquals(7,Native950ActionBar.bookType(1887,1));
             assertEquals(5,Native950ActionBar.bookType(1456,1));
         }finally{c.finishAndReleaseAll();}
     }
@@ -170,6 +182,10 @@ public class Native950ActionBarTest {
         assertEquals(763,Native950ActionBar.shortcutConfig(2,0));
         assertEquals(4432,Native950ActionBar.typeConfig(1,13));
         assertEquals(4418,Native950ActionBar.shortcutConfig(1,13));
+        assertEquals(859,Native950ActionBar.typeConfig(3,0));
+        assertEquals(775,Native950ActionBar.shortcutConfig(3,0));
+        assertEquals(4435,Native950ActionBar.typeConfig(3,12));
+        assertEquals(4421,Native950ActionBar.shortcutConfig(3,12));
     }
     private static boolean hasPacket(List<Native950Packets.Packet> packets,Native950Packets.Packet expected){
         for(Native950Packets.Packet actual:packets)if(actual.type()==expected.type()&&Arrays.equals(actual.payload(),expected.payload()))return true;

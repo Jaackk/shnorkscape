@@ -5,6 +5,7 @@ import com.rs.cache.loaders.ItemDefinitions;
 import com.rs.cache.loaders.rs3.RS3ClientScriptMap;
 import com.rs.cache.loaders.rs3.RS3GeneralRequirementMap;
 import com.rs.game.player.Player;
+import com.rs.game.player.Skills;
 import java.util.*;
 
 /** Paired950 definitions. A tooltip coefficient is not a verified server damage formula. */
@@ -23,15 +24,16 @@ final class Native950AbilityCatalog {
         }
         boolean targetRequired(){return effect!=Effect.MOVEMENT&&effect!=Effect.BUFF;}
         boolean revolutionEligible(){return effect!=Effect.MOVEMENT&&book!=3&&book!=4;}
-        int style(){return book==1?0:book==5?1:book==6?2:-1;}
+        int style(){return book==1?0:book==5?1:book==6?2:book==7?3:-1;}
         boolean shieldRequired(){return struct==14713||struct==14714||struct==14715||struct==14716
                 ||struct==14718||struct==14719||struct==14720||struct==14721||struct==45045;}
         // Paired 950 params 2798/2800 use tenths of one percent. Tier 2 is
         // enhanced, not the pre-modernisation 50%-admission/15%-cost threshold.
         int adrenalineCost(){
             if(struct==44244||struct==14666)return 0;
-            if(struct==31985||struct==31986)return 20;
-            if(struct==14686||struct==14688||struct==14674||struct==14736||struct==14709)return 60;
+            if(struct==31985||struct==31986||struct==48308)return 20;
+            if(struct==48311)return 10;
+            if(struct==14686||struct==14688||struct==14674||struct==14736||struct==14709||struct==48297||struct==48314)return 60;
             return tier==2?25:tier==3?15:tier==4?100:0;
         }
         int adrenalineRequired(){return tier==3?50:adrenalineCost();}
@@ -106,7 +108,16 @@ final class Native950AbilityCatalog {
         d(24188,4,10,"Sacrifice",3,1,50,80,100,1,1,Effect.DIRECT),
         d(14718,3,9,"Revenge",1,15,75,0,0,3,0,Effect.BUFF),
         d(45045,3,17,"Divert",1,48,50,0,0,1,0,Effect.BUFF),
-        d(46279,1,15,"Chaos Roar",0,92,100,0,0,1,0,Effect.BUFF)));
+        d(46279,1,15,"Chaos Roar",0,92,100,0,0,1,0,Effect.BUFF),
+
+        // Exact cache 950 enum 16973 entries. These six do not need an
+        // unimplemented soul-stack, conjure, or persistent self-buff subsystem.
+        d(48296,7,2,"Touch of Death",Skills.NECROMANCY,13,24,90,110,1,1,Effect.DIRECT),
+        d(48297,7,3,"Finger of Death",Skills.NECROMANCY,8,0,180,220,2,1,Effect.DIRECT),
+        d(48298,7,5,"Soul Sap",Skills.NECROMANCY,54,9,80,100,1,1,Effect.DIRECT),
+        d(48308,7,10,"Bloat",Skills.NECROMANCY,48,0,60,75,2,1,Effect.BLEED),
+        d(48311,7,12,"Spectral Scythe",Skills.NECROMANCY,62,25,100,120,2,1,Effect.DIRECT),
+        d(48314,7,13,"Death Skulls",Skills.NECROMANCY,28,100,115,140,4,1,Effect.DIRECT)));
     private static Definition d(int struct,int book,int key,String name,int skill,int level,int cooldown,int min,int max,
                                 int tier,int hits,Effect effect){return d(struct,book,key,name,skill,level,cooldown,min,max,tier,hits,effect,false,false);}
     private static Definition d(int struct,int book,int key,String name,int skill,int level,int cooldown,int min,int max,
