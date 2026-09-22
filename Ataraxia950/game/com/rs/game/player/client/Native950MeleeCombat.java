@@ -102,7 +102,13 @@ public final class Native950MeleeCombat {
         if(!access.clear(npc,profile.size)) return;
         npc.setNative950CombatProfile(profile);
         access.activate(npc);
-        fighters.put(npc,new Fighter(npc,profile));
+        Fighter fighter=new Fighter(npc,profile);
+        fighter.respawnAllowed=!npc.isNative950DiagnosticDefinition();
+        fighters.put(npc,fighter);
+    }
+    void setDiagnosticRepeat(NPC npc,boolean repeat) {
+        owned();Fighter fighter=fighters.get(npc);
+        if(fighter!=null)fighter.respawnAllowed=repeat;
     }
     public boolean supports(NPC npc) { owned();return fighters.containsKey(npc); }
     void registerTraining(NPC npc) {
@@ -157,7 +163,7 @@ public final class Native950MeleeCombat {
         player.setRouteEvent(null);player.resetWalkSteps();
         player.setNextFaceEntity(npc);if(!shared)npc.setNextFaceEntity(player);
         player.setTarget(npc);player.setAttackingDelay(Utils.currentTimeMillis()+6000);
-        player.setAttackedBy(npc);npc.setAttackedBy(player);
+        player.setAttackedBy(npc);if(!shared)npc.setAttackedBy(player);
         System.out.println("[Ataraxia950] Melee target player="+player.getIndex()+" npc="+npc.getIndex()+" id="+npc.getId());
         return null;
     }
@@ -251,10 +257,13 @@ public final class Native950MeleeCombat {
             return "That ability is cooling down ("+remaining+" ticks remaining).";
         }
         boolean waiting=tick<globalCooldown.getOrDefault(player,0L)||remaining>0
-                ||tick<channelUntil.getOrDefault(player,0L)||player.getLastAnimationEnd()>Utils.currentTimeMillis();
+                ||tick<channelUntil.getOrDefault(player,0L);
         queueAbility(player,structure,waiting);
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
-        return waiting?definition.name+" queued.":null;
+        if(waiting)return definition.name+" queued.";
+        Fighter fighter=targets.get(player);
+        performAbility(player,fighter!=null&&fighter.attacking?fighter:null);
+        return null;
     }
     static int abilityStyle(int structure){
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
@@ -267,7 +276,7 @@ public final class Native950MeleeCombat {
     /** Native combat has no legacy PlayerCombat action, so expose its live target explicitly. */
     public Entity combatTarget(Player player){
         owned();Fighter fighter=targets.get(player);
-        return fighter!=null&&fighter.attacking&&fighter.target==player&&!fighter.npc.isDead()?fighter.npc:null;
+        return fighter!=null&&fighter.attacking&&!fighter.npc.isDead()?fighter.npc:null;
     }
     private String abilityRefusal(Player player,int structure) {
         return abilityRefusal(player,structure,true);
@@ -333,7 +342,8 @@ public final class Native950MeleeCombat {
             Native950BugTest.event(player,"combat","ability-queue-cancelled","structure",structure,"reason",refusal);
             player.sendMessage(refusal);return false;
         }
-        if(tick<globalCooldown.getOrDefault(player,0L)||tick<abilityCooldownEnd(player,structure))return true;
+        if(tick<globalCooldown.getOrDefault(player,0L)||tick<abilityCooldownEnd(player,structure)
+                ||tick<channelUntil.getOrDefault(player,0L))return true;
         queuedAbilities.remove(player);
         Loadout gear=loadouts.get(player);int style=abilityStyle(structure);
         if(style<0)style=gear.profile==null?0:gear.profile.style;
@@ -488,6 +498,7 @@ public final class Native950MeleeCombat {
                 if(player.getRealChannel()!=null)player.getRealChannel().close();
             }
         }
+        java.util.List<NPC> retiredDiagnostics=new ArrayList<>();
         Iterator<Fighter> iterator=fighters.values().iterator();
         while(iterator.hasNext()) {
             Fighter fighter=iterator.next();NPC npc=fighter.npc;
@@ -495,6 +506,7 @@ public final class Native950MeleeCombat {
             if(!access.npc(npc)){if(fighter.target!=null)stop(fighter.target);iterator.remove();continue;}
             if(fighter.respawnAt>0) {
                 if(tick>=fighter.hideAt)npc.setNative950DeathVisible(false);
+                if(!fighter.respawnAllowed&&tick>=fighter.hideAt){iterator.remove();retiredDiagnostics.add(npc);continue;}
                 if(tick>=fighter.respawnAt && access.clear(fighter.home,fighter.profile.size)) {
                     npc.setHitpoints(fighter.profile.hp);npc.resetReceivedHits();npc.resetReceivedDamage();npc.setNextAnimation(new Animation(-1));
                     npc.setNative950DeathVisible(false);npc.setNative950CombatEngaged(false);
@@ -539,6 +551,7 @@ public final class Native950MeleeCombat {
             }
             } catch(RuntimeException failure) {failEncounter(fighter,failure);}
         }
+        for(NPC npc:retiredDiagnostics)Native950World.getInstance().discardDeadDiagnosticNpc(npc);
     }
     /** Damage is committed only after every actor has moved, before any viewer frame. */
     public void afterMovement() {
@@ -548,8 +561,7 @@ public final class Native950MeleeCombat {
             try{
             Native950AbilityCatalog.Definition queued=Native950AbilityCatalog.get(queuedAbilities.get(player));
             Fighter target=targets.get(player);
-            if(queued!=null&&!queued.targetRequired()&&(target==null||!target.attacking)
-                    &&player.getLastAnimationEnd()<=Utils.currentTimeMillis()&&tick>=channelUntil.getOrDefault(player,0L))
+            if(queued!=null&&!queued.targetRequired()&&(target==null||!target.attacking))
                 performAbility(player,null);
             }catch(RuntimeException failure){
                 stop(player);
@@ -580,8 +592,9 @@ public final class Native950MeleeCombat {
             try {gear=loadouts.get(player);}catch(IllegalArgumentException unsupported){player.getPackets().sendGameMessage(unsupported.getMessage());stop(player);continue;}
             String slayerRefusal=Native950Slayer.attackRefusal(player,npc);
             if(slayerRefusal!=null){player.sendMessage(slayerRefusal);stop(player);continue;}
-            // Entity derives this deadline from the active 950 sequence's frame durations.
-            // Do not let an auto attack, Revolution, or a queued manual ability replace it early.
+            // Ability GCD/channel ownership is separate from the currently displayed
+            // animation. Manual presses may replace its pose once they are ready.
+            boolean abilityTurn=queuedAbilities.get(player)!=null&&performAbility(player,fighter);
             if(player.getLastAnimationEnd()<=Utils.currentTimeMillis()&&tick>=channelUntil.getOrDefault(player,0L)){
             // Revolution follows the first nine main-bar slots, like the older
             // EOC implementation, but activates through this same validated
@@ -597,7 +610,6 @@ public final class Native950MeleeCombat {
                             "activeBar",player.getNative950ActionBar().activeBar()+1);
                 }
             }
-            boolean abilityTurn=performAbility(player,fighter);
             if(npc.isDead())continue;
             Long next=nextAttack.get(player);
             if(!abilityTurn && fighter.attacking && playerReach(player,npc,gear) && (next==null||tick>=next) && player.getFoodDelay()<=Utils.currentTimeMillis()) {
@@ -702,8 +714,16 @@ public final class Native950MeleeCombat {
         if(!playerReach(player,npc,gear)){access.approach(player,npc);return;}
         processPendingHits(player,fighter);
         if(npc.isDead())return;
+        processDamageOverTime(player,fighter);
+        if(npc.isDead())return;
+        Long channelEnd=channelUntil.get(player);
+        if(channelEnd!=null&&tick>=channelEnd)channelUntil.remove(player);
+        boolean abilityTurn=queuedAbilities.get(player)!=null&&performAbility(player,fighter);
         if(player.getLastAnimationEnd()>Utils.currentTimeMillis()||tick<channelUntil.getOrDefault(player,0L))return;
-        boolean abilityTurn=performAbility(player,fighter);
+        if(queuedAbilities.get(player)==null&&player.getNative950ActionBar().isRevolutionEnabled()){
+            int candidate=revolutionCandidate(player,9);
+            if(candidate>=0)queuedAbilities.put(player,candidate);
+        }
         if(npc.isDead())return;
         Long next=nextAttack.get(player);
         if(abilityTurn||next!=null&&tick<next||player.getFoodDelay()>Utils.currentTimeMillis())return;
@@ -978,13 +998,17 @@ public final class Native950MeleeCombat {
                 }
             }
         }
+        boolean critical=requested>0&&source instanceof Player&&target instanceof NPC&&buffable&&rolls.critical();
+        if(critical)requested=(int)Math.min(Integer.MAX_VALUE,((long)requested*5)/4);
         int damage=target instanceof Player && ((Player)target).isInvulnerable()
                 ? 0 : Math.max(0,Math.min(target.getHitpoints(),requested));
         boolean revive=target instanceof Player&&damage>=target.getHitpoints()
                 &&buffs.consume((Player)target,Native950CombatBuffs.Type.IMMORTALITY,tick);
         target.setHitpoints(target.getHitpoints()-damage);
         if(revive){target.setHitpoints(Math.max(1,((Player)target).getMaxHitpoints()*40/100));((Player)target).sendMessage("Immortality returns you to life.");}
-        target.getNextHits().add(new Hit(source,damage,look,0));target.addHitBars();
+        Hit display=new Hit(source,damage,look,0);
+        if(critical&&damage>0)display.setCriticalMark();
+        target.getNextHits().add(display);target.addHitBars();
         target.setAttackedBy(source);target.setAttackedByDelay(Utils.currentTimeMillis()+6000);source.setAttackingDelay(Utils.currentTimeMillis()+6000);
         if(target instanceof Player)((Player)target).refreshHitPoints();
         if(damage>0){hits++;target.addReceivedDamage(source,damage);}
@@ -1137,12 +1161,13 @@ public final class Native950MeleeCombat {
     }
     interface Rewards {void hit(Player player,NPC npc,int damage);default void hit(Player player,NPC npc,int damage,Loadout gear){hit(player,npc,damage);}void death(NPC npc,Player owner);}
     interface Loadouts {Loadout get(Player player);}
-    interface Rolls {boolean accurate(long attack,long defence);int damage(int maximum);default int nativeDamageRemainder(int rawDamage){return 0;}}
+    interface Rolls {boolean accurate(long attack,long defence);int damage(int maximum);default int nativeDamageRemainder(int rawDamage){return 0;}default boolean critical(){return false;}}
     interface Access {void activate(NPC npc);boolean player(Player player);boolean npc(NPC npc);boolean clear(WorldTile tile);default boolean clear(WorldTile tile,int size){return clear(tile);}boolean reach(Entity from,Entity to);default boolean rangedReach(Player from,NPC to,int range){return reach(from,to);}default boolean npcRangedReach(NPC from,Player to,int range){return reach(from,to);}default void projectile(com.rs.game.Projectile projectile){}boolean approach(Player player,NPC npc);default boolean follow(NPC npc,WorldTile target){return false;}}
     private static final class LiveRolls implements Rolls {
         public boolean accurate(long a,long d){return ThreadLocalRandom.current().nextDouble()<Rs2CombatFormula.hitChance(a,d);}
         public int damage(int maximum){return maximum<=0?0:ThreadLocalRandom.current().nextInt(maximum+1);}
         public int nativeDamageRemainder(int rawDamage){return rawDamage<=0?0:ThreadLocalRandom.current().nextInt(Rs2CombatFormula.ATARAXIA_DAMAGE_SCALE);}
+        public boolean critical(){return ThreadLocalRandom.current().nextInt(10)==0;}
     }
     private static final class LiveAccess implements Access {
         public void activate(NPC npc){npc.enableNative950Movement();}
@@ -1185,7 +1210,7 @@ public final class Native950MeleeCombat {
     private static final class Fighter {
         final NPC npc;final Native950NpcCombatProfile profile;final WorldTile home;
         final java.util.List<NpcStrike> strikes=new ArrayList<>();
-        Player target;boolean attacking,retaliating,returning,outOfSupplies,training;int approachTicks,followFailures;long nextAttack,hideAt,respawnAt,stunnedUntil;
+        Player target;boolean attacking,retaliating,returning,outOfSupplies,training,respawnAllowed;int approachTicks,followFailures;long nextAttack,hideAt,respawnAt,stunnedUntil;
         Fighter(NPC npc,Native950NpcCombatProfile profile){this.npc=npc;this.profile=profile;home=new WorldTile(npc);}
     }
     private static final class NpcStrike {

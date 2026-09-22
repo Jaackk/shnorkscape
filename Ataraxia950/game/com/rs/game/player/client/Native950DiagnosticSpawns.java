@@ -11,8 +11,9 @@ import com.rs.game.WorldObject;
 import com.rs.game.WorldTile;
 import com.rs.game.npc.NPC;
 import com.rs.game.player.Player;
+import com.rs.utils.Utils;
 
-/** Actual-cache diagnostic placement at the exact player tile; no legacy spawn subclasses. */
+/** Actual-cache diagnostic placement; no legacy spawn subclasses. */
 public final class Native950DiagnosticSpawns {
     static final int MAX_TRAINING_DUMMIES=5;
     private static final int[][] TRAINING_DUMMY_OFFSETS={{1,0},{-1,0},{0,1},{0,-1},{1,1},{1,-1},{-1,1},{-1,-1}};
@@ -62,18 +63,83 @@ public final class Native950DiagnosticSpawns {
     }
 
     public static String spawnNpc(Player player, int id) {
+        return spawnNpcs(player,id,1,false);
+    }
+
+    public static String spawnNpcs(Player player,int id,int amount,boolean repeat) {
         String refusal = refusal(player);
         if (refusal != null) return refusal;
+        if(amount<1||amount>50)return "Use an NPC amount from 1 to 50.";
         pruneOwners();
+        final int size;
         try {
-            NPC npc = NPC.createNative950Diagnostic(id, new WorldTile(player));
-            Native950World.getInstance().addDiagnosticNpc(npc);
-            OWNERS.put(npc,player.getUsername());
-            return "Spawned " + npc.getName() + " (NPC " + id + ", index " + npc.getIndex() + ") at your tile."
-                    + (npc.getNative950CombatProfile() == null ? " Combat is not available for this NPC." : "");
+            size=NPC.createNative950Diagnostic(id,new WorldTile(player)).getSize();
         } catch (IllegalArgumentException | IllegalStateException unavailable) {
             return "Cannot spawn NPC " + id + ": " + unavailable.getMessage();
         }
+        byte[] facing=Utils.getDirection(player.getDirection());
+        int fx=Integer.signum(facing[0]),fy=Integer.signum(facing[1]);
+        if(fx==0&&fy==0)fy=1;
+        int sx=fy,sy=-fx,pitch=size+2,created=0;
+        String lastFailure=null,name=null;
+        for(int row=1;row<=12&&created<amount;row++)for(int column=0;column<=6&&created<amount;column++){
+            int[] sides=column==0?new int[]{0}:new int[]{-column,column};
+            for(int side:sides){
+                if(created>=amount)break;
+                WorldTile tile=new WorldTile(player.getX()+fx*row*pitch+sx*side*pitch,
+                        player.getY()+fy*row*pitch+sy*side*pitch,player.getPlane());
+                if(!spawnTileAvailable(player,tile,size))continue;
+                NPC npc=null;
+                try {
+                    npc=NPC.createNative950Diagnostic(id,tile);
+                    Native950World.getInstance().addDiagnosticNpc(npc);
+                    Native950World.getInstance().setDiagnosticRepeat(npc,repeat);
+                    OWNERS.put(npc,player.getUsername());name=npc.getName();created++;
+                }catch(IllegalArgumentException|IllegalStateException unavailable){
+                    if(npc!=null&&World.containsNPC(npc))Native950World.getInstance().removeDiagnosticNpc(npc);
+                    lastFailure=unavailable.getMessage();
+                }
+            }
+        }
+        if(created==0)return lastFailure==null?"Move to a larger clear area before spawning this NPC.":"Cannot spawn NPC "+id+": "+lastFailure;
+        return "Spawned "+created+"/"+amount+" "+name+" (NPC "+id+") in clear tiles ahead of you."
+                +(repeat?" These test NPCs respawn after death.":" They do not respawn after death.")
+                +(created<amount?" Some positions were blocked or the diagnostic limit was reached.":"");
+    }
+
+    private static boolean spawnTileAvailable(Player player,WorldTile tile,int size) {
+        if(tile.getX()<0||tile.getY()<0||tile.getX()+size>16384||tile.getY()+size>16384
+                ||!World.canMoveNPC(tile,size))return false;
+        if(overlaps(tile,size,player,1,1))return false;
+        for(Player other:World.getPlayers())if(other!=null&&!other.hasFinished()&&other.getPlane()==tile.getPlane()
+                &&overlaps(tile,size,other,Math.max(1,other.getSize()),1))return false;
+        for(NPC other:World.getNPCs())if(other!=null&&!other.hasFinished()&&other.getPlane()==tile.getPlane()
+                &&overlaps(tile,size,other,Math.max(1,other.getSize()),1))return false;
+        return true;
+    }
+
+    static boolean overlaps(WorldTile first,int firstSize,WorldTile second,int secondSize,int clearance) {
+        return first.getPlane()==second.getPlane()
+                &&first.getX()<second.getX()+secondSize+clearance
+                &&second.getX()<first.getX()+firstSize+clearance
+                &&first.getY()<second.getY()+secondSize+clearance
+                &&second.getY()<first.getY()+firstSize+clearance;
+    }
+
+    static void forget(NPC npc){OWNERS.remove(npc);}
+
+    static java.util.List<String> matchingNpcIds(Player player,String query){
+        java.util.List<String> result=new java.util.ArrayList<>();
+        for(String row:Native950ContentCommands.search(true,query)){
+            int separator=row.indexOf(':');
+            if(separator<1)continue;
+            try {
+                int id=Integer.parseInt(row.substring(0,separator));
+                NPC.createNative950Diagnostic(id,new WorldTile(player));
+                result.add(row);
+            }catch(IllegalArgumentException|IllegalStateException unavailable){/* Not a concrete visible 950 NPC. */}
+        }
+        return result;
     }
 
     static boolean ownedBy(Player player,NPC npc) {

@@ -42,7 +42,7 @@ public final class Native950BankAcceptance {
         Native950World.getInstance().execute(() -> {
             require(World.getPlayers().isEmpty(),"Acceptance requires an isolated ephemeral world");
             try(Fixture f=new Fixture()) {
-                exhaustion(f);capturedCompactionClaims(f);quantities(f);capacity(f);withdrawX(f);bankControls(f);
+                exhaustion(f);capturedCompactionClaims(f);quantities(f);capacity(f);withdrawX(f);bankControls(f);remoteBank(f);
                 Native950Interactions.State state=f.input.snapshot();
                 require(state.handlerFailures==0&&state.unhandledActions==0&&state.unmatchedPairs==0,
                         "Bank action failed or bypassed routing: "+state.routerReport);
@@ -244,6 +244,20 @@ public final class Native950BankAcceptance {
         f.control(106);f.control(114);f.control(317);f.assertBankClosedOnce();f.count(100);
         require(f.player.getBank().getLastX()==37,"Closed default-quantity prompt accepted a stale reply");
         System.out.println("PASS: Close/reopen preserves preferences, equipment deposit uses shared gear/bank, close retires custom input");
+    }
+
+    private static void remoteBank(Fixture f) {
+        f.player.getBank().openBank();
+        f.input.allowRemoteBank();
+        f.nextTick();
+        require(f.input.snapshot().bankOpen,"Remote bank command did not open the native bank");
+        int before=f.bankAmount(199);
+        f.player.getInventory().items.set(0,new Item(199,1));
+        f.nextTick();f.control(39);
+        require(f.amount(199)==0&&f.bankAmount(199)==before+1,
+                "Remote bank rejected a valid deposit because no chest/banker was in reach");
+        f.control(317);f.assertBankClosedOnce();
+        System.out.println("PASS: command-opened remote bank accepts deposits and clears its remote scope on close");
     }
 
     private static boolean sameItems(Native950Containers.Snapshot first,Native950Containers.Snapshot second) {

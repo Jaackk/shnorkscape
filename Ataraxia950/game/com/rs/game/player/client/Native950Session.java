@@ -364,6 +364,13 @@ public final class Native950Session {
                 : null);
     }
 
+    static void allowRemoteBank(Player player) {
+        Native950Session session = BY_PLAYER.get(player);
+        if (session != null && !session.closed && session.interactions != null
+                && session.interactions.router().bankInterfaceOpen())
+            session.interactions.allowRemoteBank();
+    }
+
     /** The slot reserved before the login response was written; stable across close. */
     int playerIndex() { return playerIndex; }
 

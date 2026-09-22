@@ -41,7 +41,7 @@ public final class Native950DiagnosticSpawnsAcceptance {
             return null;
         }).get(120,TimeUnit.SECONDS);
         require(CoresManager.getNative950Scheduler().failed() == 0,"Scheduler recorded a failure");
-        System.out.println("PASS: exact-tile diagnostic NPC/object placement, combat and viewport registration, occupied-slot refusal, "
+        System.out.println("PASS: separated diagnostic NPCs, exact-tile objects, combat and viewport registration, occupied-slot refusal, "
                 + frames + " parsed encrypted 950 frames; no account save or listening socket.");
         System.out.println("LIMIT: client rendering remains a manual check.");
     }
@@ -55,9 +55,9 @@ public final class Native950DiagnosticSpawnsAcceptance {
             require(world.nativeNpcs().size() == before+1,"NPC missing from owner roster");
             NPC npc = world.nativeNpcs().get(before);
             require(npc.getId() == id && npc.isNative950DiagnosticDefinition(),"Wrong diagnostic identity");
-            require(same(npc,tile) && same(f.player,tile),"Diagnostic NPC/player moved away from requested tile");
+            require(!same(npc,tile) && same(f.player,tile),"Diagnostic NPC must not overlap the player");
             require(World.getNPCs().get(npc.getIndex()) == npc
-                    && World.getRegion(tile.getRegionId()).getNPCsIndexes().contains(npc.getIndex()),"NPC registry/region missing");
+                    && World.getRegion(npc.getRegionId()).getNPCsIndexes().contains(npc.getIndex()),"NPC registry/region missing");
             if (id == 12353) require(npc.getNative950CombatProfile() != null,"Existing generic goblin combat was not registered");
             if (id == 42) require(!Native950IdValidity.get().isSafe(Native950IdValidity.Kind.NPC,id),"Repurposed ID witness changed");
             System.out.println("PASS: " + response);
@@ -69,6 +69,17 @@ public final class Native950DiagnosticSpawnsAcceptance {
         int before = world.nativeNpcs().size();
         require(!Native950DiagnosticSpawns.spawnNpc(f.player,65535).startsWith("Spawned "),"Invalid NPC ID accepted");
         require(before == world.nativeNpcs().size(),"Rejected NPC altered roster");
+        String group=Native950DiagnosticSpawns.spawnNpcs(f.player,12353,3,false);
+        require(group.startsWith("Spawned 3/3"),group);
+        require(world.nativeNpcs().size()==before+3,"Amount did not register three distinct NPCs");
+        for(int i=before;i<world.nativeNpcs().size();i++)for(int j=0;j<i;j++)
+            require(!Native950DiagnosticSpawns.overlaps(world.nativeNpcs().get(i),world.nativeNpcs().get(i).getSize(),
+                    world.nativeNpcs().get(j),world.nativeNpcs().get(j).getSize(),1),"Spawned NPCs overlap");
+        String repeat=Native950DiagnosticSpawns.spawnNpcs(f.player,12353,1,true);
+        require(repeat.startsWith("Spawned 1/1"),repeat);
+        require(world.nativeNpcs().size()==before+4,"Repeat NPC was not registered as a distinct encounter");
+        require(!Native950DiagnosticSpawns.matchingNpcIds(f.player,"nex").isEmpty(),
+                ";;npc nex could not resolve any concrete cache NPC choices");
 
         String response = Native950DiagnosticSpawns.spawnObject(f.player,70755);
         require(response.startsWith("Spawned "),response);

@@ -45,7 +45,8 @@ public final class Native950AdminCommands {
                     entry(";;search / ;;find / ;;si / ;;itemid / ;;finditem <name> [page]", "find item IDs"),
                     entry(";;findnpc / ;;snpc <name> [page]", "find NPC IDs")),
             group("NPCS & TRAVEL", "fda4af", "fecdd3",
-                    entry(";;npc <id> [1-50], ;;npcs", "spawn and list your nearby test NPCs"),
+                    entry(";;npc <id> [1-50], ;;npc <name>, ;;npcs", "spawn one-life test NPCs or find spawnable IDs"),
+                    entry(";;npcrepeat <id> [1-50], ;;npc repeat <id> [1-50]", "spawn test NPCs that respawn after death"),
                     entry(";;removenpc / ;;delnpc <index>, ;;clearnpcs [0-128]", "remove one or nearby test NPCs"),
                     entry(";;dummy [1-5]", "spawn up to five owned training dummies"),
                     entry(";;wars / ;;warsretreat, ;;death / ;;deathsoffice, ;;vorago", "travel to combat destinations"),
@@ -150,6 +151,7 @@ public final class Native950AdminCommands {
             case "bank":
                 if(args.length!=1){reply(channel,"Use ;;bank.");break;}
                 p.getBank().openBank();
+                Native950Session.allowRemoteBank(p);
                 reply(channel,"Bank opened.");
                 break;
             case "teleto": case "tpto":

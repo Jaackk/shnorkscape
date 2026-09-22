@@ -122,6 +122,7 @@ public final class Native950Interactions {
     private int pendingSkillOption, skillApproachTicks;
     private int pendingObjectOption;
     private boolean bankOpen;
+    private boolean remoteBank;
     private boolean equipmentUiReady;
     private int pendingNpcOption;
     private boolean activeNpcBank;
@@ -595,8 +596,9 @@ public final class Native950Interactions {
 
     private boolean bankAvailable() {
         return bankOpen && router.bankInterfaceOpen() && !player.isLocked() && !player.closeInterfaceLocked
-                && (activeNpcBank ? validNpc() && canReachNpc() : validBank(activeBank) && canReachNow(activeBank));
+                && (remoteBank || (activeNpcBank ? validNpc() && canReachNpc() : validBank(activeBank) && canReachNow(activeBank)));
     }
+    void allowRemoteBank() { remoteBank = true; activeBank = null; activeNpcBank = false; }
 
     private void beginBankQuantity(Native950Actions.InterfaceAction action, boolean deposit) {
         Native950Containers.Snapshot source = deposit ? containers.inventorySnapshot() : containers.bankSnapshot();
@@ -1805,7 +1807,7 @@ public final class Native950Interactions {
         cancelQuantity();
         bankEpoch++;
         boolean wasOpen = bankOpen;
-        bankOpen = false; activeBank = null; activeNpcBank = false;
+        bankOpen = false; activeBank = null; activeNpcBank = false; remoteBank = false;
         if (router.bankInterfaceOpen()) {
             try {
                 player.closeInterfaces();

@@ -393,7 +393,20 @@ public final class Native950World {
         if(npc==null||!npc.isNative950DiagnosticDefinition()||npcs.stream().noneMatch(existing -> existing==npc))
             throw new IllegalArgumentException("Expected a world-owned diagnostic NPC.");
         combat.unregister(npc);
-        removeExactNpc(npcs,npc);World.removeNative950Npc(npc);
+        removeExactNpc(npcs,npc);World.removeNative950Npc(npc);Native950DiagnosticSpawns.forget(npc);
+    }
+
+    void setDiagnosticRepeat(NPC npc,boolean repeat) {
+        if(Thread.currentThread()!=thread||npc==null||!npc.isNative950DiagnosticDefinition())
+            throw new IllegalArgumentException("Expected a world-owned diagnostic NPC");
+        combat.setDiagnosticRepeat(npc,repeat);
+    }
+
+    /** Combat has already retired this fighter from its iterator. */
+    void discardDeadDiagnosticNpc(NPC npc) {
+        if(Thread.currentThread()!=thread||npc==null||!npc.isNative950DiagnosticDefinition())
+            throw new IllegalArgumentException("Expected a world-owned diagnostic NPC");
+        removeExactNpc(npcs,npc);World.removeNative950Npc(npc);Native950DiagnosticSpawns.forget(npc);
     }
 
     static boolean removeExactNpc(List<NPC> roster,NPC target) {

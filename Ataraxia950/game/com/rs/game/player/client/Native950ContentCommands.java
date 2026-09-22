@@ -40,7 +40,8 @@ final class Native950ContentCommands {
             reply(c,";;magegear: elite tectonic/Praesul/Armadyl. ;;rangegear: elite sirenic/Last Guardian/blightbounds.");
             reply(c,";;weapons: high-tier weapons for all four styles. ;;gear melee|mage|range|necro|weapons.");
             reply(c,";;search <item name> [page]; ;;findnpc <NPC name> [page]. Pages show 10 IDs.");
-            reply(c,";;npc <id> [1-50]; ;;npcs lists your nearby test spawns; ;;removenpc <index>; ;;clearnpcs [radius].");return;
+            reply(c,";;npc <id> [1-50] is one-life; ;;npcrepeat <id> [1-50] respawns; ;;npc <name> lists IDs.");
+            reply(c,";;npcs lists nearby test spawns; ;;removenpc <index>; ;;clearnpcs [radius].");return;
         }
         if(command.equals("search")||command.equals("find")||command.equals("si")||command.equals("itemid")
                 ||command.equals("finditem")||command.equals("findnpc")||command.equals("snpc")) {

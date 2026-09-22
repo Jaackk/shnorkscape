@@ -402,11 +402,15 @@ public final class Native950MeleeAcceptance {
                 require(!npc.getNextHitBars().isEmpty(),"NPC damage omitted its HP bar");
                 Native950Hits.Snapshot hit=Native950Hits.fromRunningCache(npc);
                 require(hit.refusals()==0&&hit.size()==npc.getNextHits().size(),"Live NPC hit snapshot was refused");
-                if(npc.getNextHits().size()==1&&npc.getNextHits().get(0).getDamage()==10) {
+                if(npc.getNextHits().size()==1&&npc.getNextHits().get(0).getDamage()==10
+                        &&!npc.getNextHits().get(0).isCriticalHit()) {
                     Native950NpcMasks.Update involved=new Native950NpcMasks.Update().hits(hit.npcHits(player.getIndex()).toArray(new Native950NpcMasks.Hit[0]),new Native950NpcMasks.Hitbar[0]);
                     Native950NpcMasks.Update observer=new Native950NpcMasks.Update().hits(hit.npcHits(2).toArray(new Native950NpcMasks.Hit[0]),new Native950NpcMasks.Hitbar[0]);
-                    require(Arrays.equals(hex("00 00 20 ff 00 64 00 00"),Native950NpcMasks.maskBlock(involved)),"Involved ordinary100-life-point hit differs from independent950 bytes");
-                    require(Arrays.equals(hex("00 00 20 ff 0e 64 00 00"),Native950NpcMasks.maskBlock(observer)),"Observer hit styling differs from independent950 bytes");
+                    Hit.HitLook look=npc.getNextHits().get(0).getLook();
+                    String ownType=look==Hit.HitLook.RANGE_DAMAGE?"80 88":look==Hit.HitLook.MAGIC_DAMAGE?"80 8b":"80 85";
+                    String observerType=look==Hit.HitLook.RANGE_DAMAGE?"80 99":look==Hit.HitLook.MAGIC_DAMAGE?"80 9c":"80 96";
+                    require(Arrays.equals(hex("00 00 20 ff "+ownType+" 64 00 00"),Native950NpcMasks.maskBlock(involved)),"Involved ordinary100-life-point hit differs from independent950 bytes");
+                    require(Arrays.equals(hex("00 00 20 ff "+observerType+" 64 00 00"),Native950NpcMasks.maskBlock(observer)),"Observer hit styling differs from independent950 bytes");
                 }
             }
             if(state.playerHit)require(!player.getNextHitBars().isEmpty()&&Native950Hits.fromRunningCache(player).refusals()==0,"Player retaliation omitted native hit/bar");

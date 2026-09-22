@@ -20,11 +20,13 @@ public final class Native950SpawnCommandsTest {
         @Override protected SocketAddress remoteAddress0() { return new InetSocketAddress("127.0.0.1",43650); }
     };
     private final Player player = Player.createNative950("spawn-test",new WorldTile(3217,3258,0),channel);
-    private int calls, id, type, rotation;
-    private boolean npc, hadWalk;
+    private int calls, id, type, rotation, amount;
+    private boolean npc, repeat, hadWalk;
     private WorldTile tile;
     private final Native950DevelopmentCommands.SpawnActions spawns = new Native950DevelopmentCommands.SpawnActions() {
-        public String npc(Player actor,int value) { capture(actor,value,true,-1,0);return "Spawned NPC"; }
+        public String npc(Player actor,int value,int count,boolean recurring) {
+            capture(actor,value,true,-1,0);amount=count;repeat=recurring;return "Spawned NPC";
+        }
         public String object(Player actor,int value,int shape,int angle) {
             capture(actor,value,false,shape,angle);return "Spawned object";
         }
@@ -44,11 +46,11 @@ public final class Native950SpawnCommandsTest {
     }
     private void run(String text) { Native950DevelopmentCommands.handle(player,channel,text,spawns); }
 
-    @Test public void npcUsesExactCurrentTileAndStopsQueuedWalking() {
+    @Test public void npcUsesCurrentPositionAsPlacementAnchorAndStopsQueuedWalking() {
         assertTrue(player.addWalkSteps(3218,3258,1,false));
         assertFalse(player.getWalkSteps().isEmpty());
         run(";;npc 42");
-        assertEquals(1,calls);assertTrue(npc);assertEquals(42,id);assertFalse(hadWalk);
+        assertEquals(1,calls);assertTrue(npc);assertEquals(42,id);assertEquals(1,amount);assertFalse(repeat);assertFalse(hadWalk);
         assertEquals(3217,tile.getX());assertEquals(3258,tile.getY());assertEquals(0,tile.getPlane());
         assertNull(player.getNextWorldTile());assertNull(player.getNextForceMovement());
     }
@@ -62,6 +64,7 @@ public final class Native950SpawnCommandsTest {
     }
     @Test public void malformedOrOutOfRangeRequestsNeverReachWorldMutation() {
         for(String text:new String[]{";;npc",";;npc fish",";;npc -1",";;npc 1 0",";;npc 1 51",";;npc 2147483648",
+                ";;npcrepeat",";;npcrepeat 42 0",";;npc repeat",";;npc repeat 42 51",
                 ";;obj",";;obj fish",";;obj -1",";;obj 1 -1",";;obj 1 23",";;obj 1 10 -1",
                 ";;obj 1 10 4",";;obj 1 10 0 7",";;obj 1 1.5",";;obj 1 10 2147483648"})run(text);
         assertEquals(0,calls);
@@ -76,7 +79,9 @@ public final class Native950SpawnCommandsTest {
         assertEquals(0,calls);
     }
     @Test public void npcCountIsBoundedAndRequiresAnAccountGrant() {
-        run(";;npc 42 3");assertEquals(3,calls);
+        run(";;npc 42 3");assertEquals(1,calls);assertEquals(3,amount);assertFalse(repeat);
+        run(";;npcrepeat 42 4");assertEquals(2,calls);assertEquals(4,amount);assertTrue(repeat);
+        run(";;npc repeat 42 2");assertEquals(3,calls);assertEquals(2,amount);assertTrue(repeat);
         player.setRights(0);run(";;npc 42 3");assertEquals(3,calls);
     }
     @Test public void pendingTeleportOrForcedMovementCannotSpawnOnTheWrongTile() throws Exception {

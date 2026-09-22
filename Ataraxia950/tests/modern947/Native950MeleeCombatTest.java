@@ -105,12 +105,12 @@ public class Native950MeleeCombatTest {
         assertNull(helm.getAttributes());
         assertEquals(20137,helm.getId());
     }
-    @Test public void abilityWaitsForWorldPhaseAndHonoursCooldownAcrossTargetChanges(){
+    @Test public void readyManualAbilityExecutesImmediatelyAndHonoursCooldownAcrossTargetChanges(){
         player.getSkills().set(0,31);npc.setHitpoints(1000);
         assertNotNull(combat.ability(player,14682));
         assertNull(combat.attack(player,npc));assertNull(combat.ability(player,14682));
-        assertEquals(1000,npc.getHitpoints());step();
-        assertTrue(npc.getHitpoints()<1000);assertEquals(100,player.getHitpoints());
+        assertEquals(990,npc.getHitpoints());step();
+        assertEquals(990,npc.getHitpoints());assertEquals(100,player.getHitpoints());
         assertNull("No cache means no invented sequence; real-cache acceptance checks the mapping",player.getNextAnimation());
         assertNotNull(combat.ability(player,14682));
         combat.stop(player);combat.attack(player,npc);
@@ -178,7 +178,7 @@ public class Native950MeleeCombatTest {
         assertNull(combat.attack(player,npc));assertNull(combat.ability(player,14682));step();
         assertEquals("Berserk queued.",combat.ability(player,14707));
         step();assertFalse(combat.isBerserkActive(player));assertEquals(990,npc.getHitpoints());
-        step();assertFalse(combat.isBerserkActive(player));assertEquals(990,npc.getHitpoints());
+        step();assertTrue(combat.isBerserkActive(player));assertEquals(990,npc.getHitpoints());
         step();assertTrue(combat.isBerserkActive(player));assertEquals(990,npc.getHitpoints());
         assertEquals(0,player.getCombatDefinitions().getSpecialAttackPercentage());
     }
@@ -203,8 +203,10 @@ public class Native950MeleeCombatTest {
         player.getSkills().set(0,99);npc.setHitpoints(10000);combat.attack(player,npc);
         player.getCombatDefinitions().setSpecialAttackPercentage(0);
         assertNull(combat.ability(player,14682));
-        assertNull(combat.ability(player,14679));step();
-        assertEquals(12,player.getCombatDefinitions().getSpecialAttackPercentage());
+        assertEquals("Adaptive Strike queued.",combat.ability(player,14679));
+        assertEquals(9,player.getCombatDefinitions().getSpecialAttackPercentage());
+        for(int i=0;i<3;i++)step();
+        assertEquals(21,player.getCombatDefinitions().getSpecialAttackPercentage());
     }
     @Test public void queuedUltimateRechecksAdrenalineBeforeExecution(){
         player.getSkills().set(0,99);player.getCombatDefinitions().setSpecialAttackPercentage(100);npc.setHitpoints(1000);
@@ -217,11 +219,10 @@ public class Native950MeleeCombatTest {
     @Test public void ownCooldownCanQueueOnlyWithinOneGlobalCooldownOfReadiness(){
         player.getSkills().set(0,99);player.setDevelopmentGodMode(true);npc.setHitpoints(10000);
         combat.attack(player,npc);combat.ability(player,14682);step();
-        assertTrue(combat.ability(player,14682).contains("25 ticks remaining"));
+        assertTrue(combat.ability(player,14682).contains("24 ticks remaining"));
         for(int i=0;i<22;i++)step();
         assertEquals("Backhand queued.",combat.ability(player,14682));
-        int hp=npc.getHitpoints();step();step();assertEquals(hp,npc.getHitpoints());
-        step();assertTrue(npc.getHitpoints()<hp);
+        int hp=npc.getHitpoints();step();step();assertTrue(npc.getHitpoints()<hp);
     }
     @Test public void nativeTargetDoesNotEnterTheUnverifiedLegacyTargetPanel(){
         boolean strict=Native950PacketDispatcher.isStrict();Native950PacketDispatcher.setStrict(true);
@@ -244,11 +245,12 @@ public class Native950MeleeCombatTest {
     }
     @Test public void abilityRechecksRangeAndStateBeforeDamage(){
         player.getSkills().set(0,31);combat.attack(player,npc);
-        assertNull(combat.ability(player,14682));access.reachable=false;step();
+        access.reachable=false;
+        assertEquals("Move within attack range first.",combat.ability(player,14682));step();
         assertEquals(50,npc.getHitpoints());
         access.reachable=true;
-        assertNull(combat.ability(player,14682));combat.stop(player);step();
-        assertEquals(50,npc.getHitpoints());
+        assertNull(combat.ability(player,14682));assertEquals(40,npc.getHitpoints());
+        combat.stop(player);step();assertEquals(40,npc.getHitpoints());
     }
     @Test public void abilityRejectsWrongWeaponLowLevelAndUnsupportedEffects(){
         combat.attack(player,npc);
@@ -265,7 +267,7 @@ public class Native950MeleeCombatTest {
     }
     @Test public void berserkCanBeQueuedAndExecutedWithoutInventingACombatTarget(){
         player.getSkills().set(0,99);player.getCombatDefinitions().setSpecialAttackPercentage(100);
-        assertNull(combat.ability(player,14707));assertFalse(combat.isBerserkActive(player));
+        assertNull(combat.ability(player,14707));assertTrue(combat.isBerserkActive(player));
         step();assertTrue(combat.isBerserkActive(player));assertNull(combat.combatTarget(player));
         assertEquals(0,player.getCombatDefinitions().getSpecialAttackPercentage());
         assertEquals(0,npc.getNextHits().size());assertNotNull(combat.ability(player,14707));
@@ -349,7 +351,7 @@ public class Native950MeleeCombatTest {
     }
     @Test public void multiHitAbilitiesPublishTheirFirstHitBeforeTheirScheduledFollowUps(){
         player.getSkills().set(0,21);npc.setHitpoints(1000);combat.attack(player,npc);
-        assertNull(combat.ability(player,14701));step();
+        assertNull(combat.ability(player,14701));
         assertEquals("Fury must not publish all three hits on its opening tick",1,npc.getNextHits().size());
         assertEquals("Fury must schedule its other two hits for later world ticks",2,combat.pendingHitCount(player));
     }
@@ -362,7 +364,7 @@ public class Native950MeleeCombatTest {
     }
     @Test public void channelHasDistinctHitTicksAndQueueWaitsUntilItsFinalHit(){
         player.getSkills().set(0,99);player.setDevelopmentGodMode(true);npc.setHitpoints(10000);
-        combat.attack(player,npc);combat.ability(player,14701);step();
+        combat.attack(player,npc);combat.ability(player,14701);
         assertEquals(1,npc.getNextHits().size());
         assertTrue(combat.channelEndTick(player)>0);
         assertEquals("Backhand queued.",combat.ability(player,14682));
@@ -388,7 +390,7 @@ public class Native950MeleeCombatTest {
     }
     @Test public void bleedUsesNativeDamageUnitsAndCancelRemovesItsScheduledTicks(){
         player.getSkills().set(0,99);player.setDevelopmentGodMode(true);npc.setHitpoints(1000);
-        combat.attack(player,npc);assertNull(combat.ability(player,44244));step();
+        combat.attack(player,npc);assertNull(combat.ability(player,44244));
         assertEquals(1,combat.dotCount(player));int hp=npc.getHitpoints();
         step();assertEquals(hp,npc.getHitpoints());step();
         assertEquals("DOT must use the same ten-unit HP scale as direct hits",hp-10,npc.getHitpoints());
@@ -402,7 +404,7 @@ public class Native950MeleeCombatTest {
         combat.ability(player,14707);step();combat.attack(player,npc);
         assertEquals("Dismember queued.",combat.ability(player,44244));
         step();step();step();assertEquals(990,npc.getHitpoints());
-        step();step();assertEquals(980,npc.getHitpoints());
+        step();step();assertEquals(963,npc.getHitpoints());
     }
     @Test public void repeatedClicksRespectBothCadencesAndExchangeRealDamage(){
         assertNull(combat.attack(player,npc));step();
@@ -493,7 +495,20 @@ public class Native950MeleeCombatTest {
         try{Player other=Player.createNative950("other",new WorldTile(3218,3257,0),otherChannel);other.setActive(true);other.setIndex(2);access.players.add(other);combat.attach(other);
             assertNull(combat.attack(player,npc));assertNull(combat.attack(other,npc));step();
             assertTrue("both native player turns damage the shared NPC",npc.getHitpoints()<=30);
+            assertSame("secondary attacker retains a usable ability target",npc,combat.combatTarget(other));
             combat.stop(player);assertSame(npc,combat.combatTarget(other));combat.detach(other);
+        }finally{otherChannel.finishAndReleaseAll();}
+    }
+    @Test public void secondaryAttackerCanActivateManualAbilityOnSharedNpc(){
+        EmbeddedChannel otherChannel=new EmbeddedChannel();
+        try{Player other=Player.createNative950("other",new WorldTile(3218,3257,0),otherChannel);
+            other.setActive(true);other.setIndex(2);other.getSkills().set(Skills.ATTACK,31);
+            access.players.add(other);combat.attach(other);npc.setHitpoints(1000);
+            assertNull(combat.attack(player,npc));assertNull(combat.attack(other,npc));
+            assertNull(combat.ability(other,14682));
+            assertEquals(990,npc.getHitpoints());assertSame(npc,combat.combatTarget(other));
+            assertSame("secondary damage must not cancel the first player's target",npc,combat.combatTarget(player));
+            combat.detach(other);
         }finally{otherChannel.finishAndReleaseAll();}
     }
     @Test public void equipmentChangesCancelBeforeNextSwing(){

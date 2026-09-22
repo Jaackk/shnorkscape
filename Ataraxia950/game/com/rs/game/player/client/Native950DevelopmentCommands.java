@@ -22,7 +22,7 @@ public final class Native950DevelopmentCommands {
     public static boolean isCommand(String text) {
         if (text == null || !(text.startsWith("::") || text.startsWith(";;"))) return false;
         String command = text.substring(2).trim().toLowerCase(Locale.ROOT).split("\\s+",2)[0];
-        return Native950AdminCommands.recognizes(command) || command.equals("nxt") || command.equals("item") || command.equals("npc")
+        return Native950AdminCommands.recognizes(command) || command.equals("nxt") || command.equals("item") || command.equals("npc") || command.equals("npcrepeat")
                 || command.equals("obj") || command.equals("tele") || command.equals("area")
                 || command.equals("areascan") || command.equals("areastop") || command.equals("layoutfixture")
                 || command.equals("open") || command.equals("unhide") || command.equals("events") || command.equals("guideclose") || command.equals("cs") || command.equals("varbit") || command.equals("varc");
@@ -52,11 +52,11 @@ public final class Native950DevelopmentCommands {
     }
 
     interface SpawnActions {
-        String npc(Player player, int id);
+        String npc(Player player, int id,int amount,boolean repeat);
         String object(Player player, int id, int type, int rotation);
     }
     private static final SpawnActions WORLD_SPAWNS = new SpawnActions() {
-        public String npc(Player player, int id) { return Native950DiagnosticSpawns.spawnNpc(player,id); }
+        public String npc(Player player, int id,int amount,boolean repeat) { return Native950DiagnosticSpawns.spawnNpcs(player,id,amount,repeat); }
         public String object(Player player, int id, int type, int rotation) {
             return type < 0 ? Native950DiagnosticSpawns.spawnObject(player,id)
                     : Native950DiagnosticSpawns.spawnObject(player,id,type,rotation);
@@ -100,7 +100,7 @@ public final class Native950DevelopmentCommands {
         }
         if (parts[0].equals("layoutfixture")) { Native950LayoutFixture.handle(player, channel, parts); return; }
         if (parts[0].equals("item")) { item(player, channel, parts); return; }
-        if (parts[0].equals("npc") || parts[0].equals("obj")) { spawn(player,channel,parts,spawns); return; }
+        if (parts[0].equals("npc") || parts[0].equals("npcrepeat") || parts[0].equals("obj")) { spawn(player,channel,parts,spawns); return; }
         if (parts[0].equals("tele")) { teleport(player, channel, parts); return; }
         if (parts[0].equals("area")) { area(player, channel, parts); return; }
         if (parts[0].equals("areascan")) { areaScan(player, channel, parts); return; }
@@ -166,7 +166,7 @@ public final class Native950DevelopmentCommands {
             default:
                 reply(channel, "Local tests: ;;nxt banker | cook | combat | skilling | agility | barbarian | wilderness | slayer.");
                 reply(channel, ";;nxt effects | clear | bar | force | status. ;;nxt level <skill ID> <level>.");
-                reply(channel, ";;item <id> [quantity]; ;;npc <id>; ;;obj <id> [type] [rotation]; ;;devhelp for admin tools.");
+                reply(channel, ";;item <id> [quantity]; ;;npc <id> [amount]; ;;npcrepeat <id> [amount]; ;;obj <id> [type] [rotation].");
         }
         System.out.println("[Ataraxia950] Local development command: " + command + " at "
                 + player.getX() + "," + player.getY() + "," + player.getPlane());
@@ -191,12 +191,13 @@ public final class Native950DevelopmentCommands {
     }
 
     private static void spawn(Player player, Channel channel, String[] parts, SpawnActions spawns) {
-        boolean npc=parts[0].equals("npc");
+        boolean npc=parts[0].equals("npc")||parts[0].equals("npcrepeat");
         if(npc && !Native950AdminCommands.authorized(player)) {
             reply(channel,"Administrator or explicitly granted local developer account required.");return;
         }
-        if (parts.length<2 || parts.length>(npc?3:4)) {
-            reply(channel,npc?"Usage: ;;npc <id> [1-50]":"Usage: ;;obj <id> [type] [rotation]. Rotation defaults to 0.");return;
+        if(npc){spawnNpc(player,channel,parts,spawns);return;}
+        if (parts.length<2 || parts.length>4) {
+            reply(channel,"Usage: ;;obj <id> [type] [rotation]. Rotation defaults to 0.");return;
         }
         final int id,type,rotation;
         try {
@@ -206,10 +207,7 @@ public final class Native950DevelopmentCommands {
         } catch(NumberFormatException invalid) {
             reply(channel,"Use whole numbers for the ID, object type and rotation.");return;
         }
-        if(npc && (id<0||id>0x7fffff||(parts.length>2&&(type<1||type>50)))) {
-            reply(channel,"NPC ID must be 0-8388607 and amount 1-50.");return;
-        }
-        if (!npc && (id<0 || (parts.length>2 && (type<0 || type>22)) || rotation<0 || rotation>3)) {
+        if (id<0 || (parts.length>2 && (type<0 || type>22)) || rotation<0 || rotation>3) {
             reply(channel,"ID must be non-negative; object type must be 0-22 and rotation 0-3.");return;
         }
         if (player.isNative950ForceMovementActive() || player.getNextForceMovement()!=null
@@ -219,16 +217,37 @@ public final class Native950DevelopmentCommands {
         // Spawn exactly where the player is now, not where a retained route would next move them.
         Native950Firemaking.cancelPending(player);
         player.getActionManager().forceStop();player.setRouteEvent(null);player.resetWalkSteps();
-        if(npc) {
-            int amount=parts.length>2?type:1,created=0;String result="";
-            for(int i=0;i<amount;i++) {
-                result=spawns.npc(player,id);
-                if(!result.startsWith("Spawned "))break;
-                created++;
-            }
-            reply(channel,result);
-            if(amount>1)reply(channel,"Created "+created+" of "+amount+" requested test NPCs. Use ;;clearnpcs to remove them.");
-        } else reply(channel,spawns.object(player,id,type,rotation));
+        reply(channel,spawns.object(player,id,type,rotation));
+    }
+
+    private static void spawnNpc(Player player,Channel channel,String[] parts,SpawnActions spawns){
+        boolean repeat=parts[0].equals("npcrepeat")||(parts.length>1&&parts[1].equals("repeat"));
+        int idIndex=parts[0].equals("npc")&&repeat?2:1;
+        if(parts.length<=idIndex){reply(channel,"Use ;;npc [repeat] <id> [1-50] or ;;npcrepeat <id> [1-50].");return;}
+        final int id,amount;
+        try{id=Integer.parseInt(parts[idIndex]);}
+        catch(NumberFormatException name){
+            if(!repeat&&parts.length==2&&parts[idIndex].length()>=2&&parts[idIndex].length()<=40){
+                java.util.List<String> matches=Native950DiagnosticSpawns.matchingNpcIds(player,parts[idIndex]);
+                reply(channel,matches.isEmpty()?"No concrete spawnable 950 NPC matches that name."
+                        :"Choose an NPC ID to spawn ("+matches.size()+" matches; showing up to 10):");
+                for(int i=0;i<Math.min(10,matches.size());i++)reply(channel,matches.get(i));
+                if(matches.size()>10)reply(channel,"Use ;;findnpc "+parts[idIndex]+" [page] to see more IDs.");
+            }else reply(channel,"Use ;;npc [repeat] <id> [1-50] or ;;npcrepeat <id> [1-50].");
+            return;
+        }
+        try{amount=parts.length==idIndex+2?Integer.parseInt(parts[idIndex+1]):1;}
+        catch(NumberFormatException invalid){reply(channel,"NPC amount must be 1-50.");return;}
+        if(parts.length>idIndex+2||id<0||id>65534||amount<1||amount>50){
+            reply(channel,"NPC ID must be 0-65534 and amount 1-50.");return;
+        }
+        if(player.isNative950ForceMovementActive()||player.getNextForceMovement()!=null
+                ||player.getNextWorldTile()!=null||player.hasTeleported()){
+            reply(channel,"Wait until your movement finishes before spawning.");return;
+        }
+        Native950Firemaking.cancelPending(player);
+        player.getActionManager().forceStop();player.setRouteEvent(null);player.resetWalkSteps();
+        reply(channel,spawns.npc(player,id,amount,repeat));
     }
 
     private static void item(Player player, Channel channel, String[] parts) {

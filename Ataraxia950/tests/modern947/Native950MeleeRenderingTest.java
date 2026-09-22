@@ -25,17 +25,17 @@ public final class Native950MeleeRenderingTest {
         victim.getNextHits().add(new Hit(attacker,50,Hit.HitLook.MELEE_DAMAGE));
         Native950Hits.Snapshot hits=Native950Hits.from(victim);
         //50 engineHP =500 displayedLP, smart500 =0x81f4. Count1+128, then type/damage/delay/barcount.
-        assertArrayEquals(hex("40 81 00 81 f4 00 00"),playerBytes(hits,1));
-        assertArrayEquals(hex("40 81 00 81 f4 00 00"),playerBytes(hits,2));
-        assertArrayEquals(hex("40 81 0e 81 f4 00 00"),playerBytes(hits,3));
+        assertArrayEquals(hex("40 81 80 85 81 f4 00 00"),playerBytes(hits,1));
+        assertArrayEquals(hex("40 81 80 85 81 f4 00 00"),playerBytes(hits,2));
+        assertArrayEquals(hex("40 81 80 96 81 f4 00 00"),playerBytes(hits,3));
         assertEquals(0,hits.refusals());
     }
     @Test public void npcDamageUsesTheSameLifePointUnitAndNegatedCount(){
         NPC npc=NPC.createNative950(41,new WorldTile(3200,3201,0),1);
         npc.getNextHits().add(new Hit(attacker,50,Hit.HitLook.MELEE_DAMAGE));
         Native950Hits.Snapshot hits=Native950Hits.from(npc);
-        assertArrayEquals(hex("00 00 20 ff 00 81 f4 00 00"),npcBytes(hits,1));
-        assertArrayEquals(hex("00 00 20 ff 0e 81 f4 00 00"),npcBytes(hits,3));
+        assertArrayEquals(hex("00 00 20 ff 80 85 81 f4 00 00"),npcBytes(hits,1));
+        assertArrayEquals(hex("00 00 20 ff 80 96 81 f4 00 00"),npcBytes(hits,3));
     }
     @Test public void zeroDamageUsesTheNativeBlueNumberForEachRecipient(){
         victim.getNextHits().add(new Hit(attacker,0,Hit.HitLook.MELEE_DAMAGE));
@@ -57,8 +57,8 @@ public final class Native950MeleeRenderingTest {
         victim.getNextHits().add(first);victim.getNextHits().add(second);
         Native950Hits.Snapshot hits=Native950Hits.from(victim);
         first.setDamage(999);first.setSource(observer);second.setCriticalMark();victim.getNextHits().clear();
-        assertArrayEquals(hex("40 82 00 64 00 0e 80 c8 00 00"),playerBytes(hits,1));
-        assertArrayEquals(hex("40 82 00 64 00 00 80 c8 00 00"),playerBytes(hits,2));
+        assertArrayEquals(hex("40 82 80 85 64 00 80 96 80 c8 00 00"),playerBytes(hits,1));
+        assertArrayEquals(hex("40 82 80 85 64 00 80 85 80 c8 00 00"),playerBytes(hits,2));
         try{hits.playerHits(1).clear();fail();}catch(UnsupportedOperationException expected){}
     }
     @Test public void unsupportedDamageShapesAndOverflowAreRefusedWithoutClamping(){
@@ -72,8 +72,8 @@ public final class Native950MeleeRenderingTest {
         Hit special=new Hit(attacker,1,Hit.HitLook.MELEE_DAMAGE);special.setSpecial(true);victim.getNextHits().add(special);
         Hit soaked=new Hit(attacker,1,Hit.HitLook.MELEE_DAMAGE);soaked.setSoaking(new Hit(1,Hit.HitLook.ABSORB_DAMAGE));victim.getNextHits().add(soaked);
         Native950Hits.Snapshot hits=Native950Hits.from(victim);
-        assertEquals(1,hits.size());assertEquals(8,hits.refusals());
-        assertArrayEquals(hex("40 81 00 ff f8 00 00"),playerBytes(hits,1));
+        assertEquals(2,hits.size());assertEquals(7,hits.refusals());
+        assertArrayEquals(hex("40 82 80 85 ff f8 00 80 86 0a 00 00"),playerBytes(hits,1));
     }
     @Test public void hitListLimitAndAbsentRunningCacheRemainBounded(){
         for(int i=0;i<256;i++)victim.getNextHits().add(new Hit(attacker,1,Hit.HitLook.MELEE_DAMAGE));
@@ -98,9 +98,21 @@ public final class Native950MeleeRenderingTest {
             Native950PlayerInfo.initialScene(view,world,7,0,0,0);
             byte[] packet=Native950PlayerInfo.frame(view,world).payload();
             assertEquals(viewer,recipient[0]);
-            byte[] expected=hex(viewer==2?"40 81 00 81 f4 00 00":"40 81 0e 81 f4 00 00");
+            byte[] expected=hex(viewer==2?"40 81 80 85 81 f4 00 00":"40 81 80 96 81 f4 00 00");
             assertArrayEquals(expected,Arrays.copyOfRange(packet,packet.length-expected.length,packet.length));
         }
+    }
+    @Test public void rangedMagicAndCriticalHitsUseDistinctPinned950Wrappers(){
+        Hit range=new Hit(attacker,12,Hit.HitLook.RANGE_DAMAGE);
+        Hit magic=new Hit(attacker,13,Hit.HitLook.MAGIC_DAMAGE);
+        Hit rangeCrit=new Hit(attacker,14,Hit.HitLook.RANGE_DAMAGE);rangeCrit.setCriticalMark();
+        Hit magicCrit=new Hit(attacker,15,Hit.HitLook.MAGIC_DAMAGE);magicCrit.setCriticalMark();
+        victim.getNextHits().add(range);victim.getNextHits().add(magic);
+        victim.getNextHits().add(rangeCrit);victim.getNextHits().add(magicCrit);
+        Native950Hits.Snapshot hits=Native950Hits.from(victim);
+        assertEquals(4,hits.size());assertEquals(0,hits.refusals());
+        assertArrayEquals(hex("40 84 80 88 78 00 80 8b 80 82 00 80 89 80 8c 00 80 8c 80 96 00 00"),playerBytes(hits,1));
+        assertArrayEquals(hex("40 84 80 99 78 00 80 9c 80 82 00 80 9a 80 8c 00 80 9d 80 96 00 00"),playerBytes(hits,3));
     }
     @Test public void boundedWeaponCatalogUses950MappedSequencesAndDocumentedRs2Cadence(){
         assertTrue(Native950CombatAnimations.supportsWeapon(-1));

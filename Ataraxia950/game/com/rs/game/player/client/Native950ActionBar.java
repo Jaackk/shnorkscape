@@ -258,7 +258,7 @@ public final class Native950ActionBar {
         Native950BugTest.event(p,"combat","ability-click","bar",activeBar+1,"slot",slot<0?-1:slot+1,"structure",struct(value),"result",result==null?"queued":result);
         System.out.println("[Ataraxia950] Ability action iface="+a.interfaceId()+":"+a.componentId()+" option="+a.option()
                 +" slot="+a.slot()+" structure="+struct(value)+" result="+(result==null?"queued":result));
-        if(result!=null)reply(c,result);
+        if(result!=null&&!result.endsWith(" queued."))reply(c,result);
         return true;
     }
     /** A 950 shortcut can be delivered through the visible bar child or its workspace owner. */
