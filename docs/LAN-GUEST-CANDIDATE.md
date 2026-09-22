@@ -3,6 +3,34 @@
 Status: implementation/testing candidate. A real second-PC Vulkan login has not
 yet been verified. This is private LAN testing, not public internet hosting.
 
+## Current guest package: CMD-only portable replacement
+
+The first physical guest test stopped at PowerShell execution policy, before
+client launch/authentication. No policy or security setting was changed.
+The replacement ZIP `dist/lan-guest-20260922-171346.zip` contains only
+`Play SHNORKSCAPE.cmd`, `README-FIRST.txt`, and `client/rs2client-vulkan.exe`.
+It has no guest PowerShell dependency. The builder/tests run only on the host.
+
+Extract the entire new ZIP to a writable local folder such as Desktop; spaces
+are supported. CMD establishes that folder as CWD, checks the pinned client
+hash using Windows certutil, checks the installed Vulkan loader and obtains the
+LAN config using Windows curl before ordinary client launch. Errors stay open.
+LAN_HOST near the top of CMD is the single optional DHCP-change setting.
+
+The guest-only derivative replaces the UTF-16 storage string at file offset
+`0xd92348` with `.\client-state`, padded within the existing string capacity.
+Pinned input SHA256: `36c45c1cf6eed0c6cb0b789ca1672d685c1746def9d65d6f18d72638f0087bc9`.
+Pinned output SHA256: `b6a7e8688625198a69aa31fdd70f7b8cc9e82b1ac0b4f99cd71d5657f51491d5`.
+No instructions, imports or host production binaries change. Static imports
+require Windows libraries and the graphics driver's Vulkan loader, not a V5 DLL.
+
+`tools/lan-guest/Test-Package.ps1` verifies the three-entry ZIP allowlist, exact
+binary delta, removal of the absolute host path, live CMD preflight from a temp
+path containing spaces/ampersand, and negative missing-file/unreachable-host
+paths. It never launches the native executable. Native startup/portable cache
+creation and physical LAN login remain manual verification, not automated PASS.
+All older fixed-path/PowerShell packaging instructions below are superseded.
+
 ## Production activation (September 22)
 
 `Enable-Home-LAN.cmd` requests normal Windows administrator approval. Its script
