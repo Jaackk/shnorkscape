@@ -56,6 +56,8 @@ public final class Native950Actions {
 
     /** IF_BUTTON options 1..10, in option order, from the pointer array at 950 0x140b63c00. */
     private static final int[] INTERFACE_OPCODES = {18, 122, 89, 100, 81, 126, 49, 66, 31, 59};
+    /** Exact-950 IF_BUTTON option, or zero. Used by bounded diagnostics without retaining payloads. */
+    public static int interfaceOption(int opcode) { return option(INTERFACE_OPCODES, opcode); }
     /** Object options 1..6, in option order, from the thunk chain at 950 0x14010bef7 (stride -0x50). */
     private static final int[] OBJECT_OPCODES = {34, 48, 24, 41, 73, 79};
     /** NPC options 1..6, in option order, from the thunk chain at 950 0x14010bcc7 (stride -0x50). */

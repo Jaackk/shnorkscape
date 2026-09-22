@@ -379,7 +379,14 @@ public final class Native950Interactions {
                 ||action instanceof Native950Actions.ItemOnObjectAction||action instanceof Native950Actions.ItemOnNpcAction)){
             rejectedActions++;return;
         }
-        if (!router.playerMayAct()) { cancelConversations(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); rejectedActions++; return; }
+        if (!router.playerMayAct()) {
+            if(action instanceof Native950Actions.InterfaceAction){
+                Native950Actions.InterfaceAction button=(Native950Actions.InterfaceAction)action;
+                Native950BugTest.event(player,"action-bar","pre-dispatch-rejected","interface",button.interfaceId(),
+                        "component",button.componentId(),"reason","player-may-not-act");
+            }
+            cancelConversations(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); rejectedActions++; return;
+        }
         // Loadout is a second view of the same inventory. Normalize only while that
         // verified page is mounted; stale off-screen actors retain their rejected hashes.
         if (skillGuide.navigation().isPage(0,3))

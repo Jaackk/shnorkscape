@@ -132,6 +132,12 @@ public final class Native950BugTest {
 
     /** Complete framed traffic is observed only for the opt-in workspace recorder. */
     static void inboundFrame(Player player, int opcode, byte[] payload) {
+        int option=Native950Actions.interfaceOption(opcode);
+        if(option!=0){
+            Session session=session(player);
+            if(session!=null)session.event("input","if-button-ingress","opcode",opcode,"option",option,
+                    "bytes",payload==null?0:payload.length);
+        }
         Native950Workspace.inboundFrame(player, opcode, payload);
     }
 

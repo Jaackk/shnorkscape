@@ -243,12 +243,19 @@ public final class Native950ActionBar {
                 p.getInterfaceManager().containsInterface(ROOT_INTERFACE))
                 : p.getInterfaceManager().containsInterface(a.interfaceId());
         if(a.option()!=1||!mounted||p.isLocked()||p.isDead()){
+            Native950BugTest.event(p,"action-bar","activation-rejected","interface",a.interfaceId(),
+                    "component",a.componentId(),"slot",slot,"option",a.option(),"activeBar",activeBar+1,
+                    "childMounted",p.getInterfaceManager().containsInterface(a.interfaceId()),
+                    "workspaceMounted",p.getInterfaceManager().containsInterface(ROOT_INTERFACE),
+                    "locked",p.isLocked(),"dead",p.isDead());
             System.out.println("[Ataraxia950] Ability action ignored iface="+a.interfaceId()+":"+a.componentId()
                     +" option="+a.option()+" slot="+a.slot()+" mounted="+p.getInterfaceManager().containsInterface(a.interfaceId())
                     +" locked="+p.isLocked()+" dead="+p.isDead());
             return true;
         }
         if(value==0){
+            Native950BugTest.event(p,"action-bar","activation-empty","interface",a.interfaceId(),
+                    "component",a.componentId(),"slot",slot,"activeBar",activeBar+1);
             if(slot>=0)reply(c,"That action bar slot does not contain an ability.");
             System.out.println("[Ataraxia950] Ability action had no binding iface="+a.interfaceId()+":"+a.componentId()+" slot="+a.slot());
             return true;

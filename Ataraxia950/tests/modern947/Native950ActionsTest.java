@@ -97,6 +97,7 @@ public final class Native950ActionsTest {
         // 947 fixture for the same click: 05 e7 00 05 05 c1 00 02 (8 bytes, u16 item).
         byte[] payload = {0, 5, (byte) 0xe7, (byte) 0xc1, 5, 5, 0, 0, 2};
         for (int index = 0; index < opcodes.length; index++) {
+            assertEquals(index+1,Native950Actions.interfaceOption(opcodes[index]));
             InterfaceAction action = (InterfaceAction) Native950Actions.decode(opcodes[index], payload);
             assertEquals(index + 1, action.option());
             assertEquals(1473, action.interfaceId());
@@ -105,6 +106,8 @@ public final class Native950ActionsTest {
             assertEquals(1511, action.itemId());
             assertEquals(2, action.slot());
         }
+        assertEquals(0,Native950Actions.interfaceOption(12));
+        assertEquals(0,Native950Actions.interfaceOption(87));
         // All nine bytes distinct, so a swapped hash byte cannot pass by coincidence.
         InterfaceAction action = (InterfaceAction) Native950Actions.decode(18,
                 new byte[] {0, 18, 52, 52, 18, 120, 86, 69, 103});

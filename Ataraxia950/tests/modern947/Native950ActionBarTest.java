@@ -4,6 +4,7 @@ import com.rs.game.WorldObject;
 import com.rs.game.WorldTile;
 import com.rs.game.player.Player;
 import com.rs.network.protocol.modern950.Native950Packets;
+import com.rs.network.protocol.modern950.Native950Actions;
 import io.netty.channel.embedded.EmbeddedChannel;
 import java.util.*;
 import org.junit.Test;
@@ -206,6 +207,39 @@ public class Native950ActionBarTest {
         assertEquals(775,Native950ActionBar.shortcutConfig(3,0));
         assertEquals(4435,Native950ActionBar.typeConfig(3,12));
         assertEquals(4421,Native950ActionBar.shortcutConfig(3,12));
+    }
+    @Test public void decodedKeypressKeepsResolvingTheSelectedSlotThroughRepeatedBarTransitions(){
+        EmbeddedChannel c=new EmbeddedChannel();
+        try{
+            Native950ActionBar bar=new Native950ActionBar();
+            Native950ActionBar donor=new Native950ActionBar();
+            donor.testBar(c);
+            for(int turn=0;turn<160;turn++){
+                int selected=turn%Native950ActionBar.BARS;
+                bar.setActiveBar(c,selected);
+                if(turn%7==0)bar.copyCurrentBarFrom(null,c,donor,0);
+                int component=65+13*(turn%Native950ActionBar.SLOTS);
+                int hash=(1430<<16)|component;
+                byte[] payload={(byte)255,(byte)255,(byte)255,(byte)(hash>>>16),
+                        (byte)(hash>>>24),(byte)hash,(byte)(hash>>>8),(byte)255,(byte)255};
+                Native950Actions.InterfaceAction press=(Native950Actions.InterfaceAction)Native950Actions.decode(18,payload);
+                assertEquals(1430,press.interfaceId());
+                assertEquals(component,press.componentId());
+                assertEquals(-1,press.slot());
+                int slot=Native950ActionBar.barSlot(press.interfaceId(),press.componentId());
+                assertEquals(turn%Native950ActionBar.SLOTS,slot);
+                int packed=bar.slot(selected,slot);
+                assertEquals(packed,Native950ActionBar.clientShortcut(packed));
+                c.flush();
+                Object next;boolean selectedConfig=false;
+                Native950Packets.Packet expected=Native950Packets.varp(Native950ActionBar.shortcutConfig(selected,slot),packed);
+                while((next=c.readOutbound())!=null)if(next instanceof Native950Packets.Packet){
+                    Native950Packets.Packet actual=(Native950Packets.Packet)next;
+                    selectedConfig|=actual.type()==expected.type()&&Arrays.equals(actual.payload(),expected.payload());
+                }
+                assertTrue("Selected shortcut not published on turn "+turn,selectedConfig);
+            }
+        }finally{c.finishAndReleaseAll();}
     }
     private static boolean hasPacket(List<Native950Packets.Packet> packets,Native950Packets.Packet expected){
         for(Native950Packets.Packet actual:packets)if(actual.type()==expected.type()&&Arrays.equals(actual.payload(),expected.payload()))return true;

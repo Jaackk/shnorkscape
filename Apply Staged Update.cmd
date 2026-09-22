@@ -2,12 +2,12 @@
 setlocal
 pushd "%~dp0" || exit /b 1
 set "candidate=dist\staged-update\ataraxia-950-1.0-UNTRACKED.jar"
-set "expected=92E32A56D3C2BC05190CF3EE9E97FAA3CB0462A02C673753643B7F6F0CD6FD7F"
+set "expected=631FFD999D0F5D44C65E88214E22769A4EEA2DC1662FA6B3AA3B639E517EBFFB"
 if not exist "%candidate%" goto missing
 "%SystemRoot%\System32\certutil.exe" -hashfile "%candidate%" SHA256 2>nul | "%SystemRoot%\System32\findstr.exe" /i /x "%expected%" >nul
 if errorlevel 1 goto corrupt
 if /i "%~1"=="--check-only" (
- echo Combat input, shared targets, bank, NPC spawns and typed hitmarks verified. Nothing installed or restarted.
+ echo P0 ability-input diagnostic candidate verified. Nothing installed or restarted.
  popd
  exit /b 0
 )
@@ -29,7 +29,7 @@ copy /b "%candidate%" "OpenNXT\runtime\lib\combat-bank-commands-update.tmp" >nul
 "%SystemRoot%\System32\certutil.exe" -hashfile "OpenNXT\runtime\lib\combat-bank-commands-update.tmp" SHA256 2>nul | "%SystemRoot%\System32\findstr.exe" /i /x "%expected%" >nul
 if errorlevel 1 goto failed
 move /y "OpenNXT\runtime\lib\combat-bank-commands-update.tmp" "OpenNXT\runtime\lib\ataraxia-950-1.0-UNTRACKED.jar" >nul || goto failed
-echo Combat input, shared targets, bank, NPC spawns and typed hitmarks installed. Backup: %backup%
+echo P0 ability-input diagnostic candidate installed. Backup: %backup%
 echo Start Play.cmd normally. Nooby keeps his existing launcher and password.
 pause
 popd

@@ -118,6 +118,23 @@ public class Native950MeleeCombatTest {
         for(int i=0;i<3;i++)step();
         assertNotNull(combat.ability(player,14682));
     }
+    @Test public void readyManualInputSurvivesRepeatedBarModeAndTargetTransitions(){
+        player.getSkills().set(Skills.DEFENCE,99);
+        npc.setHitpoints(1000);
+        Native950ActionBar bar=player.getNative950ActionBar();
+        int accepted=0;
+        for(int turn=0;turn<220;turn++){
+            if(turn%4==0)bar.setActiveBar(player,channel,(turn/4)%Native950ActionBar.BARS);
+            if(turn%11==0)bar.setRevolutionEnabled(channel,!bar.isRevolutionEnabled());
+            if(turn%17==0){combat.attack(player,npc);combat.stop(player);}
+            if(turn%44==0){
+                assertNull("Ready manual input rejected after transition at tick "+turn,combat.ability(player,14710));
+                accepted++;
+            }
+            step();
+        }
+        assertEquals(5,accepted);
+    }
     @Test public void lethalEnvironmentalHitUsesNativeRecoveryWithoutDestroyingLifeSavingEquipment(){
         com.rs.game.item.Item ring=new com.rs.game.item.Item(2570);
         player.getEquipment().getItems().set(com.rs.game.player.Equipment.SLOT_RING,ring);
