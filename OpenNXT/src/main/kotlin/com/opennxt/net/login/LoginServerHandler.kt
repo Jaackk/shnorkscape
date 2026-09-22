@@ -34,6 +34,12 @@ class LoginServerHandler : SimpleChannelInboundHandler<LoginPacket>() {
 
             LoginThread.login(msg, ctx.channel()) {
                 if (it.result.code == GenericResponse.SUCCESSFUL &&
+                    ctx.channel().attr(RSChannelAttributes.PASSTHROUGH_CHANNEL).get() == null &&
+                    !com.opennxt.security.NativeLanAccess.loopback(ctx.channel().remoteAddress())) {
+                    ctx.channel().attr(io.netty.util.AttributeKey.valueOf<String>("opennxt.authenticated-lan-account"))
+                        .set(it.username.lowercase(java.util.Locale.ROOT))
+                }
+                if (it.result.code == GenericResponse.SUCCESSFUL &&
                     msg is LoginPacket.GameLoginRequest &&
                     ctx.channel().attr(RSChannelAttributes.PASSTHROUGH_CHANNEL).get() == null &&
                     Ataraxia950Handoff.enabled

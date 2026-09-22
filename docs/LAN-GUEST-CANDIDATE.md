@@ -3,6 +3,26 @@
 Status: implementation/testing candidate. A real second-PC Vulkan login has not
 yet been verified. This is private LAN testing, not public internet hosting.
 
+## Physical login and explicitly approved Nooby command grant
+
+The September22 live log now proves native950.1 remote `nooby` lobby admission,
+game admission and engine ownership at player index2 while Jaxa used index1.
+Jack subsequently explicitly requested administrator/development commands for
+Nooby. This supersedes the earlier blanket remote-developer denial for this
+one named account, not for all guests.
+
+Startup grants `devAccounts=jaxa,nooby` and `lanDevAccounts=nooby`. The remote
+command gate also requires the server-only authenticated LAN account attribute
+set after successful non-proxy login, a matching player identity, native950,
+private IPv4, and enabled development tools. Rights alone or sharing Nooby's
+address do not grant remote access. OpenNXT command permissions use the same
+authenticated account attribute and explicit LAN grant. Credential verification
+and single-use account-bound handoff remain required.
+
+No persisted player rights, saves or workspace enrollment are changed. Native
+admin/development commands are available through the grant; disposable layout
+fixture/restore gates retain their original local/account-specific safeguards.
+
 ## Guest password compatibility and operator change
 
 The physical client rejected the original 24-character generated password as

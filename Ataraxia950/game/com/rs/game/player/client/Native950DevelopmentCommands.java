@@ -14,6 +14,8 @@ import java.util.Locale;
 /** Opt-in tools for this local port, without changing account rights or legacy commands. */
 public final class Native950DevelopmentCommands {
     public static final String PROPERTY = "ataraxia950.devTools";
+    public static final String LAN_ACCOUNTS = "ataraxia950.lanDevAccounts";
+    public static final io.netty.util.AttributeKey<String> AUTHENTICATED_LAN_ACCOUNT = io.netty.util.AttributeKey.valueOf("opennxt.authenticated-lan-account");
     private static final int[] EFFECTS = {94, 184, 436, 1576};
     private Native950DevelopmentCommands() { }
 
@@ -35,6 +37,18 @@ public final class Native950DevelopmentCommands {
         if (!enabled || profile != ClientProfile.NATIVE_950 || !(remote instanceof InetSocketAddress)) return false;
         InetSocketAddress address = (InetSocketAddress) remote;
         return address.getAddress() != null && address.getAddress().isLoopbackAddress();
+    }
+    static boolean allowed(Player player, Channel channel) {
+        boolean enabled=Boolean.getBoolean(PROPERTY);
+        if(allowed(enabled,player.getClientProfile(),channel.remoteAddress()))return true;
+        if(!enabled||player.getClientProfile()!=ClientProfile.NATIVE_950||!(channel.remoteAddress() instanceof InetSocketAddress))return false;
+        java.net.InetAddress address=((InetSocketAddress)channel.remoteAddress()).getAddress();
+        if(!(address instanceof java.net.Inet4Address)||!address.isSiteLocalAddress())return false;
+        String account=channel.attr(AUTHENTICATED_LAN_ACCOUNT).get();
+        if(account==null||!account.equalsIgnoreCase(player.getUsername()))return false;
+        for(String name:System.getProperty(LAN_ACCOUNTS,"").split(","))
+            if(!name.trim().isEmpty()&&name.trim().equalsIgnoreCase(account))return true;
+        return false;
     }
 
     interface SpawnActions {
@@ -63,7 +77,7 @@ public final class Native950DevelopmentCommands {
     private static void handle(Player player, Channel channel, String text, SpawnActions spawns,
                                Native950SkillGuide skillGuide) {
         if (!isCommand(text)) throw new IllegalArgumentException("Not a development command");
-        if (!allowed(Boolean.getBoolean(PROPERTY), player.getClientProfile(), channel.remoteAddress())) {
+        if (!allowed(player, channel)) {
             reply(channel, "Local development commands are disabled for this connection."); return;
         }
         String commandText=text.substring(2).trim();

@@ -26,6 +26,24 @@ public class Native950AdminCommandsTest {
     }
     private static void restore(String key,String value){if(value==null)System.clearProperty(key);else System.setProperty(key,value);}
     private void run(String text){Native950DevelopmentCommands.handle(p,channel,text);}
+    @Test public void remoteDeveloperNeedsExplicitGrantAndMatchingAuthenticatedSession() {
+        String old=System.getProperty(Native950DevelopmentCommands.LAN_ACCOUNTS);
+        EmbeddedChannel remote=new EmbeddedChannel(){@Override protected SocketAddress remoteAddress0(){return new InetSocketAddress("192.168.0.149",43650);}};
+        try {
+            System.setProperty(Native950DevelopmentCommands.LAN_ACCOUNTS,"tester");
+            Native950DevelopmentCommands.handle(p,remote,";;god");assertFalse(p.isDevelopmentGodMode());
+            remote.attr(Native950DevelopmentCommands.AUTHENTICATED_LAN_ACCOUNT).set("other");
+            Native950DevelopmentCommands.handle(p,remote,";;god");assertFalse(p.isDevelopmentGodMode());
+            remote.attr(Native950DevelopmentCommands.AUTHENTICATED_LAN_ACCOUNT).set("tester");
+            Native950DevelopmentCommands.handle(p,remote,";;god");assertTrue(p.isDevelopmentGodMode());
+            Native950DevelopmentCommands.handle(p,remote,";;god");assertFalse(p.isDevelopmentGodMode());
+            System.clearProperty(Native950DevelopmentCommands.LAN_ACCOUNTS);
+            Native950DevelopmentCommands.handle(p,remote,";;god");assertFalse(p.isDevelopmentGodMode());
+            System.setProperty(Native950DevelopmentCommands.LAN_ACCOUNTS,"tester");
+            System.setProperty(Native950DevelopmentCommands.PROPERTY,"false");
+            Native950DevelopmentCommands.handle(p,remote,";;god");assertFalse(p.isDevelopmentGodMode());
+        } finally {remote.finishAndReleaseAll();restore(Native950DevelopmentCommands.LAN_ACCOUNTS,old);}
+    }
     @Test public void almightyTogglesAllModesAndRunConsumptionResumes() {
         run(";;almighty");assertTrue(p.isDevelopmentGodMode());assertTrue(p.getPrayer().isInfinitePrayer());
         assertTrue(p.getCombatDefinitions().isInfiniteAdrenaline());assertTrue(p.isInfiniteRunEnergy());

@@ -87,7 +87,7 @@ try {
  foreach($key in $values.Keys) { $previous[$key]=[Environment]::GetEnvironmentVariable($key,'Process'); [Environment]::SetEnvironmentVariable($key,$values[$key],'Process') }
  # One complete, verified gameplay profile. No feature switches are required.
  $features = ' -Dopennxt.950.walk=true -Dopennxt.950.ribbon=true -Dopennxt.950.settings=true -Dopennxt.950.regions=true -Dopennxt.950.collision=true -Dataraxia950.npcSpawns=true -Dataraxia950.npcRegions= -Dataraxia950.devTools=true -Dataraxia950.worldMap=true -Dataraxia.native.verifyCache=true'
- $features += ' -Dataraxia950.devAccounts=jaxa'
+ $features += ' -Dataraxia950.devAccounts=jaxa,nooby -Dataraxia950.lanDevAccounts=nooby'
  if ($LanAddress) {
   $features += ' -Dopennxt.lan.address=' + $LanAddress
   $features += ' "-Dopennxt.lan.credentials=' + (Join-Path $root 'server-home\lan-credentials.properties') + '"'

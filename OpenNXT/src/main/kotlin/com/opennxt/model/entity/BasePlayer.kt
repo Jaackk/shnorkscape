@@ -33,7 +33,11 @@ abstract class BasePlayer(var client: ConnectedClient, val name: String): Comman
     }
 
     override fun hasPermissions(node: String): Boolean {
-        return com.opennxt.security.NativeLanAccess.loopback(client.channel.remoteAddress())
+        if (com.opennxt.security.NativeLanAccess.loopback(client.channel.remoteAddress())) return true
+        val authenticated = client.channel.attr(io.netty.util.AttributeKey.valueOf<String>("opennxt.authenticated-lan-account")).get()
+        return authenticated != null && authenticated.equals(name, true) &&
+            com.opennxt.security.NativeLanAccess.allowedPeer(client.channel.remoteAddress()) &&
+            System.getProperty("ataraxia950.lanDevAccounts", "").split(',').any { it.trim().equals(authenticated, true) }
     }
 
     override fun tick() {

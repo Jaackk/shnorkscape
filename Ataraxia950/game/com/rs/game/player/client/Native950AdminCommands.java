@@ -76,8 +76,7 @@ public final class Native950AdminCommands {
     }
 
     static void handle(Player p, Channel channel, String[] args) {
-        if (!Native950DevelopmentCommands.allowed(Boolean.getBoolean(Native950DevelopmentCommands.PROPERTY),
-                p.getClientProfile(), channel.remoteAddress()) || !authorized(p)) {
+        if (!Native950DevelopmentCommands.allowed(p, channel) || !authorized(p)) {
             reply(channel, "Administrator or explicitly granted local developer account required."); return;
         }
         String command = args[0];
