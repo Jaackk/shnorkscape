@@ -38,7 +38,18 @@ Inspected ZIP contains six entries only: unchanged non-diagnostic Vulkan EXE,
 two CMD launcher names, launch PowerShell, LAN-HOST.txt, README-FIRST.txt.
 No credentials, saves, sources, server cache, diagnostic DLL or workspace data.
 
-## Windows gate still pending at this checkpoint
+## Windows gate verified after operator approval
+
+Jack ran the corrected launcher (`ddacf60`) and supplied its successful result.
+Read-only verification confirms Ethernet is now Private, the named inbound
+allow rule is enabled for Private only, TCP80/8950/43650, local192.168.0.91,
+RemoteAddress LocalSubnet, and the exact bundled java25 executable. The ignored
+host JSON is enabled with Ethernet/address matching the running listeners.
+The current PID13744 already has LAN enabled, so no additional restart is needed.
+Normal subsequent Play.cmd starts retain the approved opt-in configuration.
+Physical second-PC acceptance remains pending.
+
+### Earlier activation state (superseded)
 
 The assistant process is not elevated. Jack approved trusted home Ethernet;
 `Enable-Home-LAN.cmd` was supplied for normal Windows administrator approval.
