@@ -128,7 +128,15 @@ public final class Native950EntityMasks {
         if (talk != null) {
             String text = talk.getText();
             if (text == null || !isClientText(text)) REFUSALS.incrementAndGet();
-            else { builder.forceTalk(text, FORCE_TALK_OVERHEAD_ONLY); any = true; }
+            else {
+                boolean publicChat = talk.isPublicChat();
+                Player viewer = viewerIndex == character.getIndex() ? character
+                        : com.rs.game.World.getPlayers().get(viewerIndex);
+                // Keep a declared mask nonempty without leaking ignored/filtered text.
+                boolean visible = !publicChat || Native950Social.receives(character, viewer);
+                builder.forceTalk(visible ? text : "", publicChat && visible ? 1 : FORCE_TALK_OVERHEAD_ONLY);
+                any = true;
+            }
         }
 
         Native950PlayerEffects.Result effects = Native950PlayerEffects.append(character, builder);

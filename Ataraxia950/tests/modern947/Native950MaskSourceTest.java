@@ -134,6 +134,11 @@ public final class Native950MaskSourceTest {
         assertTrue(Native950EntityMasks.refusals() > refusedBefore);
     }
 
+    @Test public void publicChatEchoesToBothOverheadAndChatbox() {
+        assertTrue(com.rs.game.player.client.Native950Social.speak(viewer, "Hi", System.currentTimeMillis()));
+        assertArrayEquals(hex(MASK_ONLY_PREFIX + " 00 00 10 80 40 48 69 00 01"), tick());
+    }
+
     @Test public void aFaceRectangleProducesTheFaceAngleBlockFromTheEntitysDirection() {
         // 950 bit 0x2 (947: 0x80): a plain big-endian ushort in 1/16384 turn units. The body is
         // unchanged, so 947's worked example "80 20 00" for angle 8192 becomes "02 20 00" - the

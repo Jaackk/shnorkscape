@@ -129,6 +129,8 @@ public final class Native950Session {
         // onStatTransmit handler (verified/ui/SKILLS_TAB.md section 2), and the
         // action-bar bars redraw from their varp/varbit transmit hooks.
         sendNative950LoginState();
+        channel.write(Native950Packets.playerOption("Follow", 4));
+        channel.write(Native950Packets.playerOption(null, 5)); // Unported trade must not offer unsafe exchange.
         music.start(player.getRegionId());
         if (saveStore != null) channel.write(Native950Packets.gameMessage(0,
                 returning ? "Your local progress has been loaded." : "Local profile created. Your progress saves automatically."));

@@ -31,6 +31,15 @@ public final class Native950Packets {
     public static Packet tickEnd() { return packet(ServerPacket.SERVER_TICK_END, new byte[0]); }
     public static Packet keepAlive() { return packet(ServerPacket.NO_TIMEOUT, new byte[0]); }
 
+    /** Wire slots are one-based. Undercut950 and exact950 parser agree on all transforms. */
+    public static Packet playerOption(String text, int slot) {
+        if (slot < 1 || slot > 8) throw new IllegalArgumentException("Player option slot must be 1..8");
+        Writer out = new Writer();
+        out.u8(0); out.string(text == null ? "null" : text); out.u8(-slot);
+        out.u8(255); out.u8(127); // short-add -1: default cursor
+        return packet(ServerPacket.SET_PLAYER_OP, out.bytes());
+    }
+
     /** 950 0x140114a40..0x140114d31. Heights use the default flags=0 units (16 fine units). */
     public static Packet projectileHalfSquare(int packed, int dx, int dy, int source, int target,
             int graphic, int startHeight, int endHeight, int start, int end, int angle, int distance) {

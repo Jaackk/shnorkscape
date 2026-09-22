@@ -331,6 +331,7 @@ public final class Native950Interactions {
     boolean blocksWorldInput(){return exitUi.isOpen()||exitUi.isSigningOut();}
 
     void beginTick() {
+        publicChatThisTick = false;
         inventionUi.sync(player,channel);
         changedInventorySlots.clear(); changedBankSlots.clear();
         if (!router.playerMayAct() || player.isLocked()) {
@@ -372,6 +373,7 @@ public final class Native950Interactions {
             closeModal();return;
         }
         if(exitUi.isOpen()&&(action instanceof Native950Actions.ObjectAction
+                ||action instanceof Native950Actions.PlayerAction
                 ||action instanceof Native950Actions.NpcAction||action instanceof Native950Actions.GroundItemAction
                 ||action instanceof Native950Actions.ItemOnObjectAction||action instanceof Native950Actions.ItemOnNpcAction)){
             rejectedActions++;return;
@@ -413,6 +415,7 @@ public final class Native950Interactions {
         else if (action instanceof Native950Actions.ItemOnNpcAction) itemOnNpc((Native950Actions.ItemOnNpcAction) action);
         else if (action instanceof Native950Actions.DragAction) drag((Native950Actions.DragAction) action);
         else if (action instanceof Native950Actions.NpcAction) npc((Native950Actions.NpcAction) action);
+        else if (action instanceof Native950Actions.PlayerAction) playerOption((Native950Actions.PlayerAction) action);
         else if (action instanceof Native950Actions.PublicChatAction) typed((Native950Actions.PublicChatAction) action);
         else if (action instanceof Native950Actions.WindowReportAction)
             Native950Workspace.windowReport(player,(Native950Actions.WindowReportAction) action);
@@ -423,7 +426,7 @@ public final class Native950Interactions {
 
     /**
      * The in-client escape hatch: a line the player types that begins with {@code ::} or
-     * {@code ;;} runs a 910 command. Ordinary chat is not handled here and stays counted.
+     * {@code ;;} runs a command. Ordinary chat uses the verified 950 player-text mask.
      *
      * <p><b>Why this exists.</b> Until now nothing a player typed could reach the server, so a
      * mistake in the interface could only be undone by stopping the server, rebuilding and
@@ -446,8 +449,7 @@ public final class Native950Interactions {
     private void typed(Native950Actions.PublicChatAction action) {
         String text = action.text() == null ? "" : action.text().trim();
         if (!text.startsWith("::") && !text.startsWith(";;")) {
-            // Real public chat. M5 owns it; until then it is a counted drop like any other.
-            unhandled(action);
+            if (!publicChatThisTick) publicChatThisTick = Native950Social.speak(player, text, System.currentTimeMillis());
             return;
         }
         commandsRun++;
@@ -469,6 +471,18 @@ public final class Native950Interactions {
             channel.write(Native950Packets.gameMessage(0,
                     "That command failed: " + failure.getClass().getSimpleName() + "."));
         }
+    }
+
+    private boolean publicChatThisTick;
+
+    private void playerOption(Native950Actions.PlayerAction action) {
+        if (action.option() == 5) { reject("Trading is not available yet"); return; }
+        if (action.option() != 4 || action.index() < 1 || action.index() > 2047) return;
+        Player target = World.getPlayers().get(action.index());
+        if (!Native950Social.followable(player, target) || !router.playerMayAct()) return;
+        walking();
+        player.resetWalkSteps();
+        player.getActionManager().setAction(new com.rs.game.player.actions.PlayerFollow(target));
     }
 
     /**

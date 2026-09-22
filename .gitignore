@@ -46,3 +46,4 @@ __pycache__/
 *.pfx
 logs/bugtest/
 logs/combatqa/
+/dist/chat-follow-update/

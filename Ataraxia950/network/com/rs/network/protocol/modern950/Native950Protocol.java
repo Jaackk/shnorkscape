@@ -46,6 +46,8 @@ public final class Native950Protocol {
 
     /** Only these server packet meanings and sizes have native verification on 950. */
     public enum ServerPacket {
+        /** 950 parser 0x14010f730: biased priority, string, negated slot, short-add cursor. */
+        SET_PLAYER_OP(99, -1),
         /** 950 parser 0x140114a40; half-tile zone projectile, plain BE fields. */
         MAP_PROJANIM_HALFSQ(154, 21),
         /** 947 opcode 94. parser 0x140107dd0; LE interface id then 17 unread bytes */
