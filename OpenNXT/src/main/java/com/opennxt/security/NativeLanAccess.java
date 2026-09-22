@@ -103,28 +103,39 @@ public final class NativeLanAccess {
         finally{spec.clearPassword();}
     }
     /** Operator-only console provisioning; never receives passwords in argv, chat or logs. */
+    static void validatePasswordChange(Properties accounts,String name,boolean change,boolean profileExists,char[] secret,char[] confirm) {
+        if(!validName(name))throw new IllegalArgumentException("Invalid or protected guest account");
+        if(change?!accounts.containsKey(name):(profileExists||accounts.containsKey(name)||accounts.size()>MAX_ACCOUNTS))
+            throw new IllegalStateException("Change requires an existing invitation; new invitations cannot claim existing profiles");
+        if(secret==null||confirm==null||secret.length<8||secret.length>16||!Arrays.equals(secret,confirm))
+            throw new IllegalArgumentException("Choose matching passwords of 8-16 letters or digits");
+        for(char c:secret)if(!(c>='a'&&c<='z'||c>='A'&&c<='Z'||c>='0'&&c<='9'))
+            throw new IllegalArgumentException("Use letters and digits only for native client compatibility");
+    }
     public static void main(String[] args)throws Exception {
         boolean generated=args.length==5&&args[2].equals("--generate");
-        if(args.length!=2&&!generated)throw new IllegalArgumentException("Usage: NativeLanAccess <absolute credential file> <absolute player directory> [--generate <name> <absolute private handoff file>]");
+        boolean change=args.length==4&&args[2].equals("--change");
+        if(args.length!=2&&!generated&&!change)throw new IllegalArgumentException("Usage: NativeLanAccess <absolute credential file> <absolute player directory> [--generate <name> <absolute private handoff file> | --change <name>]");
         Console console=System.console();if(console==null&&!generated)throw new IllegalStateException("Use a normal Windows console for hidden password input");
         Path file=Paths.get(args[0]),players=Paths.get(args[1]);
         if(!file.isAbsolute()||!players.isAbsolute())throw new IllegalArgumentException("Absolute paths required");
         Path handoff=generated?Paths.get(args[4]):null;
         if(generated&&(!handoff.isAbsolute()||Files.exists(handoff)||!handoff.getParent().equals(file.getParent())))
             throw new IllegalArgumentException("Generated handoff must be a new file beside the private credential store");
-        String name=(generated?args[3]:console.readLine("New guest account (3-12 letters/digits): ")).toLowerCase(Locale.ROOT);
+        String name=(generated||change?args[3]:console.readLine("New guest account (3-12 letters/digits): ")).toLowerCase(Locale.ROOT);
         if(!validName(name))throw new IllegalArgumentException("Invalid or protected guest account");
         byte[] identity=MessageDigest.getInstance("SHA-256").digest(name.getBytes(StandardCharsets.US_ASCII));
         StringBuilder hex=new StringBuilder();for(byte b:identity)hex.append(String.format("%02x",b&255));
-        if(Files.exists(players.resolve(hex+".950")))throw new IllegalStateException("Existing player profile: provisioning may not claim it");
+        boolean profileExists=Files.exists(players.resolve(hex+".950"));
+        if(!change&&profileExists)throw new IllegalStateException("Existing player profile: provisioning may not claim it");
         Properties p=new Properties();if(Files.exists(file))p.putAll(read(file));
-        if(p.containsKey(name)||p.size()>MAX_ACCOUNTS)throw new IllegalStateException("Account exists or invitation limit reached");
-        byte[] random=new byte[18];new SecureRandom().nextBytes(random);
-        char[] secret=generated?Base64.getUrlEncoder().withoutPadding().encodeToString(random).toCharArray():console.readPassword("Guest password (8-128 characters; use a unique test password): ");
-        Arrays.fill(random,(byte)0);
+        if(change?!p.containsKey(name):(p.containsKey(name)||p.size()>MAX_ACCOUNTS))throw new IllegalStateException("Account missing for change, already exists, or invitation limit reached");
+        char[] secret;
+        if(generated){secret=new char[16];String alphabet="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";SecureRandom random=new SecureRandom();for(int i=0;i<secret.length;i++)secret[i]=alphabet.charAt(random.nextInt(alphabet.length()));}
+        else secret=console.readPassword("New password for %s (8-16 letters/digits, hidden): ",name);
         char[] confirm=generated?secret.clone():console.readPassword("Repeat password: ");
         try {
-            if(secret.length<8||secret.length>128||!Arrays.equals(secret,confirm))throw new IllegalArgumentException("Invalid/mismatched password");
+            validatePasswordChange(p,name,change,profileExists,secret,confirm);
             byte[] salt=new byte[16];new SecureRandom().nextBytes(salt);
             p.setProperty("schema","1-pbkdf2-sha256-600000");
             p.setProperty(name,Base64.getEncoder().encodeToString(salt)+":"+Base64.getEncoder().encodeToString(derive(secret,salt)));
@@ -137,11 +148,16 @@ public final class NativeLanAccess {
             }
             Path temporary=Files.createTempFile(file.getParent(),"lan-credentials-",".tmp");
             try {
+                if(Files.exists(file)) {
+                    java.nio.file.attribute.AclFileAttributeView oldAcl=Files.getFileAttributeView(file,java.nio.file.attribute.AclFileAttributeView.class);
+                    if(oldAcl!=null)Files.getFileAttributeView(temporary,java.nio.file.attribute.AclFileAttributeView.class).setAcl(oldAcl.getAcl());
+                    if(change)Files.copy(file,file.resolveSibling("lan-credentials-before-change-"+UUID.randomUUID()+".properties"),StandardCopyOption.COPY_ATTRIBUTES);
+                }
                 ByteArrayOutputStream bytes=new ByteArrayOutputStream();p.store(bytes,"Local invited guests; never commit");
                 try(FileChannel out=FileChannel.open(temporary,StandardOpenOption.WRITE)){ByteBuffer data=ByteBuffer.wrap(bytes.toByteArray());while(data.hasRemaining())out.write(data);out.force(true);}
                 Files.move(temporary,file,StandardCopyOption.ATOMIC_MOVE,StandardCopyOption.REPLACE_EXISTING);
             }finally{Files.deleteIfExists(temporary);}
-            System.out.println("Guest provisioned. Restart optional LAN server to load credentials.");
-        }finally{Arrays.fill(secret,'\0');Arrays.fill(confirm,'\0');}
+            System.out.println("Guest credential saved. The old invitation password is no longer current. Close clients and restart the LAN server to activate it.");
+        }finally{if(secret!=null)Arrays.fill(secret,'\0');if(confirm!=null)Arrays.fill(confirm,'\0');}
     }
 }

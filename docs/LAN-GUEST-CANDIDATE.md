@@ -3,6 +3,26 @@
 Status: implementation/testing candidate. A real second-PC Vulkan login has not
 yet been verified. This is private LAN testing, not public internet hosting.
 
+## Guest password compatibility and operator change
+
+The physical client rejected the original 24-character generated password as
+too long. Provisioning now uses a conservative 8-16 ASCII alphanumeric range;
+generated invitations use 16 uniformly random alphanumeric characters. This
+does not claim the exact native maximum has been independently decoded.
+
+On the host, `Change-Nooby-Password.cmd` compiles/runs the local operator tool
+with bundled Java, prompting twice with hidden input. It changes only an already
+invited `nooby` account, preserves other account records and existing store ACL,
+backs up the prior credential store locally, and atomically replaces the salted
+verifier. It never touches player/workspace saves or logs the chosen password.
+The earlier plaintext invitation is obsolete after a change. Existing protected
+names and uninvited profiles cannot be claimed through the change operation.
+
+The running server keeps its loaded credential set until restart. Close both
+clients normally, then restart through the normal host workflow after a change.
+No broad acceptance, remote registration or IP-only identity fallback is added.
+The guest ZIP is unchanged; no Java/compiler is required on the friend's PC.
+
 ## Current guest package: CMD-only portable replacement
 
 The first physical guest test stopped at PowerShell execution policy, before

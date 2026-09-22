@@ -22,7 +22,18 @@ public final class LanProvisioningAcceptance {
             }
             NativeLanAccess.main(args);
             String text=Files.readString(handoff),password=text.lines().filter(s->s.startsWith("Password: ")).findFirst().orElseThrow().substring(10);
-            check(password.length()==24);
+            check(password.length()==16&&password.matches("[A-Za-z0-9]+"));
+            Properties accounts=new Properties();accounts.setProperty("nooby","test");
+            char[] chosen="ChosenSecret123".toCharArray();
+            NativeLanAccess.validatePasswordChange(accounts,"nooby",true,true,chosen,chosen);
+            for(String name:new String[]{"jaxa","owner","missing"}) {
+                try{NativeLanAccess.validatePasswordChange(accounts,name,true,true,chosen,chosen);throw new AssertionError();}
+                catch(IllegalArgumentException|IllegalStateException expected){}
+            }
+            for(String bad:new String[]{"short","12345678901234567","spaces in password","special_chars"}) {
+                try{NativeLanAccess.validatePasswordChange(accounts,"nooby",true,true,bad.toCharArray(),bad.toCharArray());throw new AssertionError();}
+                catch(IllegalArgumentException expected){}
+            }
             check(!Files.readString(store).contains(password));
             NativeLanAccess access=NativeLanAccess.load("192.168.0.91",store);
             check(access.verify("192.168.0.22","nooby",password));
