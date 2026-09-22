@@ -114,12 +114,12 @@ public final class Native950CacheItemsTest {
         assertNull(Native950CacheItems.resolveEntry(201,files::get));
     }
 
-    @Test public void bankRestrictionsUseExactCurrentClientParamTests() {
+    @Test public void bankAcceptsCurrentCacheItemsRegardlessOfLegacyClientParamFlags() {
         com.rs.cache.loaders.ItemDefinitions item=com.rs.cache.loaders.ItemDefinitions.decodeStrict947(0,raw("Item"),null);
         item.clientScriptData=new HashMap<Integer,Object>();
         assertTrue(Native950Banking.bankable(item));
         for(int param:new int[]{59,1047}) {
-            item.clientScriptData.put(param,1);assertFalse(Native950Banking.bankable(item));
+            item.clientScriptData.put(param,1);assertTrue(Native950Banking.bankable(item));
             item.clientScriptData.put(param,2);assertTrue(Native950Banking.bankable(item));
             item.clientScriptData.remove(param);
         }

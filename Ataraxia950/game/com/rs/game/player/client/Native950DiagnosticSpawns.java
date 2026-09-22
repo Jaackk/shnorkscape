@@ -88,7 +88,10 @@ public final class Native950DiagnosticSpawns {
         pruneOwners();
         java.util.List<String> lines=new java.util.ArrayList<>();int count=0;
         for(NPC npc:new java.util.ArrayList<>(Native950World.getInstance().nativeNpcs())) {
-            if(!ownedBy(player,npc))continue;
+            // ;;clearnpcs is a world-cleanup command.  It removes only explicit
+            // diagnostic spawns, including another local developer's, never map or
+            // data-driven NPCs.  Single-index removal remains owner-scoped below.
+            if(command.equals("clearnpcs") ? !npc.isNative950DiagnosticDefinition() : !ownedBy(player,npc))continue;
             int distance=Math.max(Math.abs(player.getX()-npc.getX()),Math.abs(player.getY()-npc.getY()));
             if(command.equals("npcs")) {
                 if(npc.getPlane()==player.getPlane()&&distance<=48&&count++<10)
@@ -98,7 +101,8 @@ public final class Native950DiagnosticSpawns {
                 Native950World.getInstance().removeDiagnosticNpc(npc);OWNERS.remove(npc);count++;
             }
         }
-        lines.add(command.equals("npcs")?count+" nearby test NPC(s); showing up to 10.":"Removed "+count+" of your test NPC(s).");
+        lines.add(command.equals("npcs")?count+" nearby test NPC(s); showing up to 10."
+                :"Removed "+count+" diagnostic test NPC(s).");
         return lines;
     }
 

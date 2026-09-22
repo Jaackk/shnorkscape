@@ -488,10 +488,12 @@ public class Native950MeleeCombatTest {
         combat.attack(player,npc);player.setNextWorldTile(new WorldTile(3220,3258,0));step();
         assertEquals(50,npc.getHitpoints());assertFalse(npc.isNative950CombatEngaged());
     }
-    @Test public void secondPlayerCannotStealAnActiveSingleCombatCreature(){
+    @Test public void twoPlayersCanDamageTheSameNpcWithoutStealingRetaliationOwnership(){
         EmbeddedChannel otherChannel=new EmbeddedChannel();
         try{Player other=Player.createNative950("other",new WorldTile(3218,3257,0),otherChannel);other.setActive(true);other.setIndex(2);access.players.add(other);combat.attach(other);
-            assertNull(combat.attack(player,npc));assertNotNull(combat.attack(other,npc));combat.stop(player);assertNull(combat.attack(other,npc));combat.detach(other);
+            assertNull(combat.attack(player,npc));assertNull(combat.attack(other,npc));step();
+            assertTrue("both native player turns damage the shared NPC",npc.getHitpoints()<=30);
+            combat.stop(player);assertSame(npc,combat.combatTarget(other));combat.detach(other);
         }finally{otherChannel.finishAndReleaseAll();}
     }
     @Test public void equipmentChangesCancelBeforeNextSwing(){

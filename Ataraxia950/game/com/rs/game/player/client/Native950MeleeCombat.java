@@ -138,7 +138,6 @@ public final class Native950MeleeCombat {
             return "Move closer to that creature.";
         if(fighter.returning) return "That creature is returning home.";
         if(targets.containsKey(player) && targets.get(player)!=fighter && targets.get(player).retaliating) return "You are already fighting another creature.";
-        if(fighter.target!=null && fighter.target!=player) return "That creature is already fighting someone else.";
         try { Loadout initial=loadouts.get(player);if(initial.profile!=null){String cost=initial.profile.costRefusal(player);if(cost!=null)return cost;} } catch(IllegalArgumentException unsupported) { return unsupported.getMessage(); }
         if(targets.get(player)==fighter) {
             fighter.attacking=true;fighter.outOfSupplies=false;fighter.approachTicks=0;player.resetWalkSteps();player.setRouteEvent(null);
@@ -147,10 +146,16 @@ public final class Native950MeleeCombat {
         }
         stop(player);
         player.getActionManager().forceStop();
-        targets.put(player,fighter);fighter.target=player;fighter.attacking=true;fighter.outOfSupplies=false;fighter.approachTicks=0;
+        boolean shared=fighter.target!=null&&fighter.target!=player;
+        targets.put(player,fighter);
+        // NPCs retain one retaliation/follow target, but player damage ownership is
+        // intentionally multi everywhere.  A second player never steals the NPC's
+        // existing target or interrupts that player's attack cadence.
+        if(!shared)fighter.target=player;
+        fighter.attacking=true;fighter.outOfSupplies=false;fighter.approachTicks=0;
         npc.resetWalkSteps();npc.setNative950CombatEngaged(true);
         player.setRouteEvent(null);player.resetWalkSteps();
-        player.setNextFaceEntity(npc);npc.setNextFaceEntity(player);
+        player.setNextFaceEntity(npc);if(!shared)npc.setNextFaceEntity(player);
         player.setTarget(npc);player.setAttackingDelay(Utils.currentTimeMillis()+6000);
         player.setAttackedBy(npc);npc.setAttackedBy(player);
         System.out.println("[Ataraxia950] Melee target player="+player.getIndex()+" npc="+npc.getIndex()+" id="+npc.getId());
@@ -160,9 +165,9 @@ public final class Native950MeleeCombat {
     public void cancelAttack(Player player) {
         owned();queuedAbilities.remove(player);pendingHits.remove(player);damageOverTime.remove(player);channelUntil.remove(player);Fighter fighter=targets.get(player);
         if(fighter==null)return;
-        fighter.attacking=false;fighter.approachTicks=0;
+        if(fighter.target==player){fighter.attacking=false;fighter.approachTicks=0;}
         player.resetWalkSteps();player.setNextFaceEntity(null);
-        if(!fighter.retaliating)stop(player);
+        if(fighter.target!=player||!fighter.retaliating)stop(player);
     }
     /** Logout, death, teleport or a leash break retires both combat owners. */
     public void stop(Player player) {
@@ -174,11 +179,22 @@ public final class Native950MeleeCombat {
         if(fighter==null)return;
         player.resetWalkSteps();player.setNextFaceEntity(null);player.setAttackedBy(null);
         if(player.getTarget()==fighter.npc)player.setTarget(null);
-        damageOverTime.remove(player);pendingHits.remove(player);fighter.target=null;fighter.attacking=false;fighter.retaliating=false;fighter.outOfSupplies=false;fighter.approachTicks=0;fighter.followFailures=0;
-        fighter.strikes.clear();
-        fighter.npc.resetWalkSteps();fighter.npc.setNextFaceEntity(null);fighter.npc.setAttackedBy(null);
-        fighter.returning=!fighter.npc.isDead() && distance(fighter.npc,fighter.home)>0;
-        fighter.npc.setNative950CombatEngaged(fighter.returning);
+        damageOverTime.remove(player);pendingHits.remove(player);
+        // A secondary attacker owns only their own queues/masks.  Do not reset the
+        // shared NPC while another player is still fighting it.
+        if(fighter.target==player){
+            Player replacement=null;
+            for(Map.Entry<Player,Fighter> entry:targets.entrySet())if(entry.getValue()==fighter&&entry.getKey()!=player){replacement=entry.getKey();break;}
+            if(replacement!=null){
+                fighter.target=replacement;fighter.npc.setNextFaceEntity(replacement);replacement.setNextFaceEntity(fighter.npc);
+                return;
+            }
+            fighter.target=null;fighter.attacking=false;fighter.retaliating=false;fighter.outOfSupplies=false;fighter.approachTicks=0;fighter.followFailures=0;
+            fighter.strikes.clear();
+            fighter.npc.resetWalkSteps();fighter.npc.setNextFaceEntity(null);fighter.npc.setAttackedBy(null);
+            fighter.returning=!fighter.npc.isDead() && distance(fighter.npc,fighter.home)>0;
+            fighter.npc.setNative950CombatEngaged(fighter.returning);
+        }
     }
     public void clear() {
         owned();for(Player player:new ArrayList<>(targets.keySet()))stop(player);
@@ -308,6 +324,10 @@ public final class Native950MeleeCombat {
         Loadout gear=loadouts.get(player);int style=abilityStyle(structure);
         if(style<0)style=gear.profile==null?0:gear.profile.style;
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
+        // Native ability input can arrive while the actor still faces a prior tile.
+        // Auto attacks already set this mask; abilities must do the same before their
+        // animation/projectile is published so ranged and magic do not cast sideways.
+        if(definition.targetRequired())player.setNextFaceEntity(fighter.npc);
         if(definition.targetRequired()&&gear.profile!=null&&!gear.profile.consume(player)){
             Native950BugTest.event(player,"combat","ability-queue-cancelled","structure",structure,
                     "reason","You cannot supply that ability's ammunition or runes.");
@@ -649,6 +669,45 @@ public final class Native950MeleeCombat {
             }
             } catch(RuntimeException failure) {failEncounter(fighter,failure);}
         }
+        // The primary fighter above owns NPC retaliation and movement.  Every other
+        // player that selected the same NPC gets a separate outbound combat turn.
+        for(Map.Entry<Player,Fighter> entry:new ArrayList<>(targets.entrySet())) {
+            Player player=entry.getKey();Fighter fighter=entry.getValue();
+            if(fighter.target==player)continue;
+            try { processSharedAttacker(player,fighter); }
+            catch(RuntimeException failure) { stop(player);System.err.println("[Ataraxia950] Shared NPC attack failed player="+player.getIndex()+": "+failure); }
+        }
+    }
+
+    /** Outbound-only turn for a second player on an NPC.  The NPC's single retaliation owner stays untouched. */
+    private void processSharedAttacker(Player player,Fighter fighter) {
+        NPC npc=fighter.npc;
+        if(npc.isDead()||!available(player,npc)||player.hasTeleported()||player.getNextWorldTile()!=null
+                ||distanceToFootprint(player,npc,fighter.profile.size)>LEASH){stop(player);return;}
+        Loadout gear=loadouts.get(player);
+        if(!playerReach(player,npc,gear)){access.approach(player,npc);return;}
+        processPendingHits(player,fighter);
+        if(npc.isDead())return;
+        if(player.getLastAnimationEnd()>Utils.currentTimeMillis()||tick<channelUntil.getOrDefault(player,0L))return;
+        boolean abilityTurn=performAbility(player,fighter);
+        if(npc.isDead())return;
+        Long next=nextAttack.get(player);
+        if(abilityTurn||next!=null&&tick<next||player.getFoodDelay()>Utils.currentTimeMillis())return;
+        if(gear.profile!=null&&!gear.profile.consume(player)){player.sendMessage("You cannot supply the ammunition or runes for that attack.");stop(player);return;}
+        nextAttack.put(player,tick+gear.speed);player.setNextFaceEntity(npc);player.setNextAnimation(new Animation(gear.attackAnimation));
+        int skill=gear.profile==null?Skills.ATTACK:gear.profile.skill;
+        int attack=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(skill)+player.getPrayer().getStatBonuses(skill),0,3,1);
+        int strength=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(gear.profile==null||gear.profile.style==0?Skills.STRENGTH:skill),0,0,1);
+        int maximum=Rs2CombatFormula.meleeOrRangedMaxHit(strength,gear.strengthBonus,1);
+        if(gear.profile!=null)maximum=gear.profile.maxHit(player,maximum);
+        int requested=rolls.accurate(Rs2CombatFormula.roll(attack,gear.attackBonus),
+                Rs2CombatFormula.roll(Rs2CombatFormula.npcEffectiveLevel(fighter.profile.defenceLevel),fighter.profile.meleeDefenceBonus))
+                ?nativeDamage(rolls.damage(maximum)):0;
+        int actual=damage(player,npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
+        if(actual>0&&!fighter.training)rewards.hit(player,npc,actual,gear);
+        if(fighter.training)npc.setHitpoints(fighter.profile.hp);
+        swings++;
+        if(npc.isDead())npcDied(fighter,player);
     }
     private void failEncounter(Fighter fighter, RuntimeException failure) {
         Player affected=fighter.target;
@@ -931,7 +990,8 @@ public final class Native950MeleeCombat {
         return damage;
     }
     private void npcDied(Fighter fighter,Player player) {
-        stop(player);retireNpc(fighter,player);
+        for(Player attacker:new ArrayList<>(targets.keySet()))if(targets.get(attacker)==fighter)stop(attacker);
+        retireNpc(fighter,player);
     }
     /** A Chain secondary can die without interrupting the primary target. */
     private void secondaryNpcDied(Fighter fighter,Player player) {

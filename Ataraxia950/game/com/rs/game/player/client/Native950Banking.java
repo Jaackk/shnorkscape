@@ -20,7 +20,10 @@ public final class Native950Banking {
         int id=source.getId(),sourceAmount=source.getAmount();
         ItemDefinitions definition=Native950CacheItems.definition(id);
         if(definition==null)return refuse(player,"That item is missing from the current cache.");
-        if(!bankable(definition))return refuse(player,"That item cannot be banked.");
+        // Cache opcode flags are not a native bankability contract.  In particular,
+        // development/cache variants often carry a legacy flag although the actual
+        // bank container can store them.  Preserve the item's authenticated identity
+        // and let capacity/controller checks below decide the transaction.
         int bankedId=id;
         // Ordinary note deposits retain normal RuneScape behavior: resolve the authored
         // current-cache link, never id-1/id+1 or an old910 item table.
@@ -30,7 +33,6 @@ public final class Native950Banking {
             definition=Native950CacheItems.definition(bankedId);
             if(definition==null||containers.itemType(bankedId)==null)return refuse(player,"That bank-note reference is unavailable.");
         }
-        if(!bankable(definition))return refuse(player,"That item cannot be banked.");
         Native950Containers.Snapshot inventory=containers.inventorySnapshot(),stored=containers.bankSnapshot();
         long available=0;for(int i=0;i<inventory.ids.length;i++)if(inventory.ids[i]==id)available+=inventory.amounts[i];
         int amount=(int)Math.min((long)requested,available);
@@ -106,7 +108,6 @@ public final class Native950Banking {
             ItemDefinitions type=Native950CacheItems.definition(item.getId());
             String reason=null;
             if(!ordinary(item,containers)||type==null)reason="stored item state is not supported";
-            else if(!bankable(type))reason=type.getName()+" cannot be banked";
             else if(!Native950EquipmentActions.cacheAllowsRemoval(type))reason=type.getName()+" cannot be removed";
             else if(!player.getControlerManager().canRemoveEquip(slot,item.getId()))reason="equipment removal was refused here";
             if(reason==null) {
@@ -127,9 +128,7 @@ public final class Native950Banking {
         if(skipped>0)player.sendMessage("Some equipment stayed worn: "+firstReason+".");
         return true;
     }
-    static boolean bankable(ItemDefinitions definition) {
-        return definition!=null&&definition.getCSOpcode(59)!=1&&definition.getCSOpcode(1047)!=1;
-    }
+    static boolean bankable(ItemDefinitions definition) { return definition!=null; }
 
     private static Native950Containers available(Player player,Bank bank) {
         if(player==null||!player.isNative950()||!player.isActive()||player.hasFinished()||player.isDead()

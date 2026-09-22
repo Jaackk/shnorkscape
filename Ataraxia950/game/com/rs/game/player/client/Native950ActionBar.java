@@ -218,7 +218,14 @@ public final class Native950ActionBar {
                     "option",a.option(),"key",key,"barSlot",slot,"result",result);
             reply(c,result);return true;
         }
-        if(a.option()!=1||!p.getInterfaceManager().containsInterface(a.interfaceId())||p.isLocked()||p.isDead()){
+        // Keyboard shortcuts arrive as actions on the action-bar child (1430), while
+        // the workspace owns its root wrapper (1477).  Testing only the child makes
+        // a correctly visible native bar reject its own keybinds after a workspace
+        // restore.  Keep the source-component validation above; this only recognises
+        // the wrapper relationship the 950 client actually uses.
+        boolean mounted=slot>=0 ? p.getInterfaceManager().containsInterface(ROOT_INTERFACE)
+                : p.getInterfaceManager().containsInterface(a.interfaceId());
+        if(a.option()!=1||!mounted||p.isLocked()||p.isDead()){
             System.out.println("[Ataraxia950] Ability action ignored iface="+a.interfaceId()+":"+a.componentId()
                     +" option="+a.option()+" slot="+a.slot()+" mounted="+p.getInterfaceManager().containsInterface(a.interfaceId())
                     +" locked="+p.isLocked()+" dead="+p.isDead());
