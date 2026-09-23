@@ -1,10 +1,10 @@
-{
-    "candidate":  "playability-20260923",
+﻿{
+    "candidate":  "library-followup-20260923",
     "files":  [
                   {
                       "source":  "ataraxia-950-1.0-UNTRACKED.jar",
                       "target":  "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-                      "sha256":  "5AAE1032EF34FC0F43F85ECBDB3847ECE29207BE127D2893C7506775DCF0DC80"
+                      "sha256":  "46AC9972B84CBE778E68FA58BE09B52241EEE270BE8C6C5191C24CC7773A01F3"
                   },
                   {
                       "source":  "Native950InterfaceBootstrap$Panel.class",
@@ -20,6 +20,42 @@
                       "source":  "Native950InterfaceBootstrap.class",
                       "target":  "patches/classes/com/opennxt/net/login/Native950InterfaceBootstrap.class",
                       "sha256":  "574000BAD9A1E048D1151AE5AC98904BD472EB984C7C7F84BE29AAE4C73CDDD4"
+                  },
+                  {
+                      "source":  "cache-v4/12/13903.dat",
+                      "target":  "cache/12/13903.dat",
+                      "sha256":  "C8D2C4BCB13AD225BC0F1D5B36B834D4C48BAA65955C60A4A3311CF7FD6882FB",
+                      "beforeSha256":  "734332323C2EAC87030DA4BEF711E84EE228622BF9A112F59EDC1EC2624E7818"
+                  },
+                  {
+                      "source":  "cache-v4/12/13905.dat",
+                      "target":  "cache/12/13905.dat",
+                      "sha256":  "20087644F68E0886A981ED0CBDE5B28CDE1F1C0AD25DE4486A8164767C69C3CD",
+                      "beforeSha256":  "3FD39AFACA9924810E87AAA5FF98E39E76663D0F2D8496F11A150174CB53B406"
+                  },
+                  {
+                      "source":  "cache-v4/12/13909.dat",
+                      "target":  "cache/12/13909.dat",
+                      "sha256":  "8C5965E281DF41CF2D6B895BC67800D84FB84C9EBF779E093A89940C32469D55",
+                      "beforeSha256":  "49EAE2B607A6B297B5DBAD9A389A47A67DBD99F76BE8DBB391B9C3EC542CAE2C"
+                  },
+                  {
+                      "source":  "cache-v4/12/15897.dat",
+                      "target":  "cache/12/15897.dat",
+                      "sha256":  "49E0E0CD51B83972A6E33D9C3F5CFC143BDE947ACC9203C34F27673E05271D16",
+                      "beforeSha256":  "2E554DB114CF86CA80DBD66681DC411479736EE81BCF860A7572B796A0A6D01D"
+                  },
+                  {
+                      "source":  "cache-v4/12/6963.dat",
+                      "target":  "cache/12/6963.dat",
+                      "sha256":  "A4A766F171C2E9106C13801AB6BFAA5D5D5395D9AC84D266BABE84808366955D",
+                      "beforeSha256":  "0D2D42CE167D4173B9B83A1EC1A9D204EBDE95219A6E3A9767160A2423B951C5"
+                  },
+                  {
+                      "source":  "cache-v4/255/12.dat",
+                      "target":  "cache/255/12.dat",
+                      "sha256":  "21AAE886E340146ED851949C0F900FAE44208BE899E305E7331C12F1D6F44E89",
+                      "beforeSha256":  "8A45E12B3D5B3BF35CDB02CDEC9DDEDBD46200B4FEF086ADC0679FB0D020EF8C"
                   }
               ]
 }

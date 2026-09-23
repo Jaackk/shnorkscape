@@ -404,6 +404,7 @@ public final class Native950Interactions {
             reject("You cannot move to that interaction right now"); return;
         }
         if (action instanceof Native950Actions.StringDialogueAction) {
+            if (equipmentLibrary.handle((Native950Actions.StringDialogueAction) action)) return;
             if (!itemBrowser.handle((Native950Actions.StringDialogueAction) action)) unhandled(action);
             return;
         }

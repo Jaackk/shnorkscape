@@ -1,7 +1,7 @@
 @echo off
 setlocal
 if /i "%~1"=="--check-only" goto check
-echo SHNORKSCAPE update: native Developer Equipment Library for ;;items.
+echo SHNORKSCAPE update: global native search and Developer Combat Loadouts for ;;items.
 echo Before applying: close both game clients and run Stop.cmd.
 echo After successful installation: launch Play.cmd normally.
 echo.

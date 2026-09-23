@@ -8,8 +8,10 @@ try {
  $clients=@(Get-CimInstance Win32_Process -Filter "Name='rs2client.exe' OR Name='rs2client-vulkan.exe'" | Where-Object {$_.ExecutablePath -and $_.ExecutablePath.StartsWith((Join-Path $root 'client')+'\',[StringComparison]::OrdinalIgnoreCase)})
  if($clients.Count){throw 'Close this copy of the game client before preparing its cache. Existing cache and settings have been left intact.'}
  $reference=Join-Path $root 'cache\255\12.dat'
- $expected='8A45E12B3D5B3BF35CDB02CDEC9DDEDBD46200B4FEF086ADC0679FB0D020EF8C'
- if(!(Test-Path -LiteralPath $reference) -or (Get-FileHash -LiteralPath $reference -Algorithm SHA256).Hash -ne $expected){throw 'Install the matching OpenRS2 cache 2691 before preparing the client. See README.md.'}
+ $acceptedReferences=@('8A45E12B3D5B3BF35CDB02CDEC9DDEDBD46200B4FEF086ADC0679FB0D020EF8C','21AAE886E340146ED851949C0F900FAE44208BE899E305E7331C12F1D6F44E89')
+ if(!(Test-Path -LiteralPath $reference)){throw 'The paired cache reference is missing.'}
+ $expected=(Get-FileHash -LiteralPath $reference -Algorithm SHA256).Hash
+ if($expected -notin $acceptedReferences){throw 'Install the paired cache or the verified Developer Library update before preparing the client.'}
  $destination=Join-Path $root 'client-state\Jagex\RuneScape'
  $markerPath=Join-Path $root 'client-state\prepared-cache.json'
  if(!$Force -and (Test-Path -LiteralPath $markerPath)){

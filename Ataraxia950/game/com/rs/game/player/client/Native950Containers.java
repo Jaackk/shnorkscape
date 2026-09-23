@@ -363,6 +363,54 @@ public final class Native950Containers {
         return moved; // count of changed slots, avoiding a summed quantity overflow
     }
 
+    /** Developer-only exchange: stage all displaced property before granting any generated item. */
+    DeveloperLoadoutChange prepareDeveloperLoadout(Item[] carried,Item[] worn) {
+        checkOwner();validateState();return new DeveloperLoadoutChange(carried,worn);
+    }
+    final class DeveloperLoadoutChange {
+        final Item[][] originalTabs=bank.bankTabs;
+        final Item[] originalInventory=inventory.getItems().clone(),originalEquipment=equipment.getItems().clone(),originalBank=bank.bankTabs[0].clone();
+        final Item[] beforeInventory=copy(originalInventory),beforeEquipment=copy(originalEquipment),beforeBank=copy(originalBank);
+        final Item[] nextInventory,nextEquipment;
+        Item[] nextBank=copy(originalBank);
+        Result result=Result.moved(1);
+        boolean committed;
+        DeveloperLoadoutChange(Item[] carried,Item[] worn){
+            if(carried.length!=INVENTORY_SIZE||worn.length!=EQUIPMENT_SIZE)throw new IllegalArgumentException("Loadout shape");
+            nextInventory=copy(carried);nextEquipment=copy(worn);
+            for(int i=0;i<carried.length;i++)if(carried[i]!=null){
+                validateItem(carried[i],"loadout inventory",i);
+                if(!requireType(carried[i].getId()).stackable&&carried[i].getAmount()!=1)throw new IllegalArgumentException("Nonstackable loadout supply");
+            }
+            for(int i=0;i<worn.length;i++)if(worn[i]!=null){
+                validateItem(worn[i],"loadout equipment",i);Native950ItemCatalog.Entry type=requireType(worn[i].getId());
+                if(type.equipSlot!=i||!type.stackable&&worn[i].getAmount()!=1)throw new IllegalArgumentException("Loadout equipment slot");
+            }
+            for(Item[] source:new Item[][]{beforeInventory,beforeEquipment})for(Item item:source)if(item!=null){
+                int target=indexOf(nextBank,item.getId());
+                if(target<0){
+                    if(nextBank.length>=Bank.MAX_BANK_SIZE){result=Result.FULL;return;}
+                    target=nextBank.length;nextBank=Arrays.copyOf(nextBank,target+1);
+                }
+                long amount=(long)item.getAmount()+(nextBank[target]==null?0:nextBank[target].getAmount());
+                if(amount>Integer.MAX_VALUE){result=Result.FULL;return;}
+                nextBank[target]=new Item(item.getId(),(int)amount);
+            }
+        }
+        Result commit(){
+            checkOwner();if(committed)return Result.STALE;if(result.moved==0)return result;
+            if(bank.bankTabs!=originalTabs||bank.bankTabs[0].length!=originalBank.length
+                    ||!unchanged(bank.bankTabs[0],originalBank,beforeBank)
+                    ||!unchanged(inventory.getItems(),originalInventory,beforeInventory)
+                    ||!unchanged(equipment.getItems(),originalEquipment,beforeEquipment))return Result.STALE;
+            validateState();
+            bank.bankTabs=new Item[][]{nextBank};
+            for(int i=0;i<INVENTORY_SIZE;i++)inventory.set(i,nextInventory[i]);
+            for(int i=0;i<EQUIPMENT_SIZE;i++)equipment.set(i,nextEquipment[i]);
+            committed=true;return result;
+        }
+    }
+
     public Result swap(int from, int sourceId, int to, int targetId) {
         checkOwner(); validateState();
         if (from < 0 || from >= INVENTORY_SIZE || to < 0 || to >= INVENTORY_SIZE || from == to) return Result.INVALID;

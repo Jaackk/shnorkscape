@@ -10,13 +10,17 @@ final class Native950EquipmentLibraryAssets {
     static synchronized void verify(){
         Native950BankUi.verify();
         if(verified==Cache.STORE)return;
+        Native950LibraryBridge.verify();
         try(InputStream in=Native950EquipmentLibraryAssets.class.getResourceAsStream("/native950/equipment-library-ui-950.properties")){
             if(in==null)throw new IllegalStateException("Missing equipment-library UI bindings");
             Properties pins=new Properties();pins.load(in);
+            try(InputStream presets=Native950EquipmentLibraryAssets.class.getResourceAsStream("/native950/developer-presets-ui-950.properties")){
+                if(presets==null)throw new IllegalStateException("Missing native developer preset bindings");pins.load(presets);
+            }
             if(pins.isEmpty())throw new IllegalStateException("Empty equipment-library UI bindings");
             for(String key:pins.stringPropertyNames()){
                 String[] ids=key.split("/");byte[] raw=Cache.STORE.getIndexes()[Integer.parseInt(ids[0])].getFile(Integer.parseInt(ids[1]),Integer.parseInt(ids[2]));
-                if(!Native950EquipmentCatalogue.hash(raw).equals(pins.getProperty(key)))throw new IllegalStateException("Changed library UI asset "+key);
+                if(!Native950LibraryBridge.matches(key,pins.getProperty(key),Native950EquipmentCatalogue.hash(raw)))throw new IllegalStateException("Changed library UI asset "+key);
             }
             verified=Cache.STORE;
         }catch(java.io.IOException e){throw new IllegalStateException("Cannot verify equipment-library UI",e);}

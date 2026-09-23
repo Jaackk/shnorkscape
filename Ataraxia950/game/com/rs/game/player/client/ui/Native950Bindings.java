@@ -876,7 +876,8 @@ public final class Native950Bindings {
     private void checkSha(List<String> problems, String what, int index, int group, int file, String expected) {
         String actual = reader.sha256(index, group, file);
         if (actual == null) { problems.add(what + " is missing from the " + REV + " cache (" + index + "/" + group + "/" + file + ")"); return; }
-        if (!actual.equalsIgnoreCase(expected))
+        if (!actual.equalsIgnoreCase(expected)
+                && !com.rs.game.player.client.Native950LibraryBridge.matches(index+"/"+group+"/"+file, expected, actual))
             problems.add(what + " changed: " + REV + " cache " + index + "/" + group + "/" + file + " is " + actual + ", table pins " + expected + "; re-verify its bindings");
     }
 

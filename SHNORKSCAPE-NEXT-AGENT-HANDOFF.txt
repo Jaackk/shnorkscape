@@ -445,3 +445,27 @@ STAGED engine SHA256:
 Apply Staged Update.cmd points to this candidate. Jack applies/relaunches himself.
 No deployment was performed. Runtime remains584E19B3C87627C7A7FE2315A02A999CE8844EACA8AC40BD7DE27EDB46367329.
 P0 keybind longevity remains unresolved; do not reopen unrelated systems here.
+
+12. GLOBAL LIBRARY SEARCH / DEVELOPER LOADOUTS - 23 SEPTEMBER 2026
+Jack LIVE-CONFIRMED the original native-bank library looks excellent. Preserve
+its appearance and curated ordering. He requested global search and isolated
+native developer presets, and chose strongest usable CACHE TIER for Best weapons.
+Read docs/EQUIPMENT-LIBRARY-FOLLOWUP-20260923.md for exact bindings and limits.
+Implemented separate39,212-definition search index, native inline search bridge,
+nine metadata-validated combat loadouts, three session-only developer custom slots,
+and atomic displacement of existing equipment/inventory into the real bank.
+No real bank preset writes or catalogue withdrawal from owned stock.
+Five guarded CS2 extensions preserve ordinary banking. Source interface/sprite
+groups and the600-row curated catalogue remain unchanged. Exact base/patched
+hashes are recognised by all native UI/startup gates; cache-v4 is current.
+1481 Java tests passed; four bridge tests; all9loadouts and native preset handlers;
+encrypted bank106actions/2619frames; equipment/ammo820frames; full cache preflight.
+Native SQLite preparation45indexes/28579groups and all5payload hashes verified.
+Apply Staged Update.cmd now checks/installs10pinned files from
+dist/library-followup-20260923. Engine SHA256:
+46AC9972B84CBE778E68FA58BE09B52241EEE270BE8C6C5191C24CC7773A01F3
+STAGED ONLY; no deployment, restart or account writes. Native visual check pending.
+Live engine remains5AAE1032EF34FC0F43F85ECBDB3847ECE29207BE127D2893C7506775DCF0DC80.
+Live cache reference remains8A45E12B3D5B3BF35CDB02CDEC9DDEDBD46200B4FEF086ADC0679FB0D020EF8C.
+Jack applies updates himself after closing clients and stopping the server.
+Do not restart the running server without asking him.

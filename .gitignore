@@ -50,3 +50,4 @@ logs/combatqa/
 /dist/chat-follow-update/
 /dist/staged-update/
 /dist/playability-*/
+/dist/library-followup-*/

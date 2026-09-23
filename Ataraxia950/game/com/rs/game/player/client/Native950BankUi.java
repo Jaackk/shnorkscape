@@ -110,7 +110,9 @@ public final class Native950BankUi {
                 if(raw==null)throw new IllegalStateException("Missing950 bank UI binding "+index+"/"+group+"/"+file);
                 StringBuilder actual=new StringBuilder();
                 for(byte value:MessageDigest.getInstance("SHA-256").digest(raw))actual.append(String.format("%02x",value&255));
-                NativeCacheVerification.requireBinding("Bank UI",index+"/"+group+"/"+file,pin.get("sha256").getAsString(),actual.toString());
+                String key=index+"/"+group+"/"+file;
+                if(!Native950LibraryBridge.matches(key,pin.get("sha256").getAsString(),actual.toString()))
+                    NativeCacheVerification.requireBinding("Bank UI",key,pin.get("sha256").getAsString(),actual.toString());
             }
         } catch(java.io.IOException|java.security.NoSuchAlgorithmException failure) {
             throw new IllegalStateException("Cannot verify950 bank UI bindings",failure);
