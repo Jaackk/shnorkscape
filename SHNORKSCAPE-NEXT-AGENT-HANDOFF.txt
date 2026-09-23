@@ -420,3 +420,9 @@ USER GATE: finish and verify ammo/bank fixes, then ask exactly:
 Are you ready for me to start with the prompt?
 Wait for the answer before reading/starting the new bank-style ;;items prompt.
 That work has not started. Confirm both clients closed before deployment.
+
+USER UPDATE WORKFLOW (latest): prepare and verify each update behind the existing
+Apply Staged Update.cmd in the game folder, then let Jack apply it and relaunch.
+Do not request an agent-led relaunch each time. Keep the command/manifest pointing
+to the latest tested candidate and report what it installs. Jack manages client
+closure and Stop.cmd; the installer still refuses replacement while running.
