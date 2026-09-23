@@ -51,10 +51,10 @@ if __name__=='__main__':
     if args.live_feedback:
         feedback=json.loads(Path(args.live_feedback).read_text())
         report['userLiveResults']=feedback['userLiveResults']
-        report['successorLiveAcceptance']='PENDING: offline evidence does not replace the installed candidate live failures'
+        report['successorLiveAcceptance']='PENDING: offline evidence does not replace user live results'
         for row in report['abilities']:
-            if row['struct']==47129:row['liveVisualStatus']='LIVE FAIL: chosen-tile movement; successor pending'
-            elif row['struct']==48314:row['liveVisualStatus']='LIVE FAIL: bouncing; successor pending'
+            if row['struct']==47129:row['liveVisualStatus']=feedback['userLiveResults'].get('diveChosenTileMovement','LIVE FAIL: chosen-tile movement; successor pending')
+            elif row['struct']==48314:row['liveVisualStatus']=feedback['userLiveResults'].get('deathSkullsTravellingBounce','LIVE FAIL: bouncing; successor pending')
             elif row['reportGroup']=='necromancy':row['liveVisualStatus']='STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending'
     if args.presentation:
         audit=json.loads(Path(args.presentation).read_text())

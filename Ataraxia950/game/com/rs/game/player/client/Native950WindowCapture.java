@@ -35,7 +35,7 @@ final class Native950WindowCapture {
         String helper = powershell();
         String command = helper + " -NoProfile -NonInteractive -ExecutionPolicy Bypass -EncodedCommand <redacted>";
         String script = "$ErrorActionPreference='Stop'; "
-                + "$p=Get-Process -Name rs2client-vulkan -ErrorAction Stop | Where-Object {$_.MainWindowHandle -ne 0} | Select-Object -First 1; "
+                + "$p=Get-Process -Name rs2client-vulkan,rs2client-vulkan-workspace-diag-v5 -ErrorAction SilentlyContinue | Where-Object {$_.MainWindowHandle -ne 0} | Select-Object -First 1; "
                 + "if($null -eq $p){throw 'RuneTek window was not found'}; "
                 + "Add-Type -AssemblyName System.Drawing; Add-Type @'\n"
                 + "using System; using System.Runtime.InteropServices; public static class BugTestWindow { "

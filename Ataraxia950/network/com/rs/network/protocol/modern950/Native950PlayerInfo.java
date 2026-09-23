@@ -273,6 +273,8 @@ public final class Native950PlayerInfo {
         private final byte[] appearance;
         private final byte[] appearanceHash;
         private final MaskSource masks;
+        private final int persistentSpotKey;
+        private final Native950PlayerMasks.SpotanimList persistentSpots;
 
         private Actor(Builder builder) {
             this.index = builder.index;
@@ -288,6 +290,7 @@ public final class Native950PlayerInfo {
             this.appearance = builder.appearance;
             this.appearanceHash = builder.appearanceHash;
             this.masks = builder.masks;
+            this.persistentSpotKey=builder.persistentSpotKey;this.persistentSpots=builder.persistentSpots;
         }
 
         /** 910 {@code WorldTile.getRegionHash()}: the low 18 bits of the 20-bit records. */
@@ -335,6 +338,8 @@ public final class Native950PlayerInfo {
             private byte[] appearance;
             private byte[] appearanceHash;
             private MaskSource masks;
+            private int persistentSpotKey;
+            private Native950PlayerMasks.SpotanimList persistentSpots;
 
             private Builder(int index, int x, int y, int plane) {
                 if (index < MIN_INDEX || index > MAX_INDEX)
@@ -433,6 +438,10 @@ public final class Native950PlayerInfo {
             }
 
             /** Non-appearance masks for this tick, composed through {@link Native950PlayerMasks}. */
+            public Builder persistentSpots(int key,Native950PlayerMasks.SpotanimList spots){
+                if(key<=0)throw new IllegalArgumentException("Persistent spot key must be positive");
+                persistentSpotKey=key;persistentSpots=Objects.requireNonNull(spots,"spots");return this;
+            }
             public Builder masks(MaskSource source) { this.masks = source; return this; }
 
             public Actor build() { return new Actor(this); }
@@ -478,6 +487,7 @@ public final class Native950PlayerInfo {
         private final int[] speedTokens = new int[SLOTS];
         private final byte[] slotFlags = new byte[SLOTS];
         private final byte[][] appearanceHashes = new byte[SLOTS][];
+        private final int[] persistentSpotKeys=new int[SLOTS];
         private int localCount;
         private int outCount;
         private int addedThisTick;
@@ -561,7 +571,7 @@ public final class Native950PlayerInfo {
          */
         public void forget(int index) {
             if (index == localIndex) throw new IllegalArgumentException("A viewer cannot forget its own slot");
-            appearanceHashes[index] = null;
+            appearanceHashes[index] = null;persistentSpotKeys[index]=0;
             emittedForceGenerations[index] = 0;
             forceBaseKnown[index] = false;
             if (localActors[index] != null) {
@@ -613,7 +623,7 @@ public final class Native950PlayerInfo {
         view.localCount = 0;
         view.outCount = 0;
         Arrays.fill(view.localActors, null);
-        Arrays.fill(view.appearanceHashes, null);
+        Arrays.fill(view.appearanceHashes, null);Arrays.fill(view.persistentSpotKeys,0);
         Arrays.fill(view.emittedForceGenerations, 0);
         Arrays.fill(view.forceBaseKnown, false);
         Arrays.fill(view.slotFlags, (byte) 0);
@@ -671,7 +681,7 @@ public final class Native950PlayerInfo {
             // pointer it builds into slot+0x28, so this record is what the slot's speed token
             // holds until something writes it again.
             view.speedTokens[index] = speed;
-            view.appearanceHashes[index] = null;
+            view.appearanceHashes[index] = null;view.persistentSpotKeys[index]=0;
             view.outIndexes[view.outCount++] = index;
         }
         bits.align();
@@ -784,7 +794,7 @@ public final class Native950PlayerInfo {
                 out.bits(2, 0);
                 out.bits(1, 0);
                 view.localActors[index] = null;
-                view.appearanceHashes[index] = null;
+                view.appearanceHashes[index] = null;view.persistentSpotKeys[index]=0;
                 view.emittedForceGenerations[index] = 0;
                 view.forceBaseKnown[index] = false;
                 continue;
@@ -808,7 +818,7 @@ public final class Native950PlayerInfo {
                 }
                 view.localActors[index] = null;
                 // Appearance and interpolation belong to the destroyed actor, unlike region/speed records.
-                view.appearanceHashes[index] = null;
+                view.appearanceHashes[index] = null;view.persistentSpotKeys[index]=0;
                 view.emittedForceGenerations[index] = 0;
                 view.forceBaseKnown[index] = false;
                 continue;
@@ -823,7 +833,7 @@ public final class Native950PlayerInfo {
             view.localActors[index] = actor;
             view.regionHashes[index] = actor.regionHash();
             boolean needAppearance = needsAppearanceUpdate(view, actor, blocks.size());
-            boolean needUpdate = needAppearance || actor.hasMasks();
+            boolean needUpdate = needAppearance || actor.hasMasks() || needsPersistentSpots(view,actor);
             boolean newForce = needUpdate && appendBlock(view, actor, blocks, needAppearance);
             // An original force mask is rebased to final XY/current plane in appendBlock.
             // With no replacement, the old interpolation owns XY but never plane.
@@ -909,7 +919,7 @@ public final class Native950PlayerInfo {
                     Actor otherActor = otherLive != null ? otherLive : otherCached;
                     if (otherActor == null || changedOccupant(otherCached, otherLive)
                             || needsRemove(view, viewer, other, otherLive)
-                            || requiresMovement(view, otherActor) || otherActor.hasMasks()
+                            || requiresMovement(view, otherActor) || otherActor.hasMasks() || needsPersistentSpots(view,otherActor)
                             || needsAppearanceUpdate(view, otherActor, blocks.size())) break;
                     skip++;
                 }
@@ -949,7 +959,7 @@ public final class Native950PlayerInfo {
                 out.bits(6, actor.xInRegion());
                 out.bits(6, actor.yInRegion());
                 boolean needAppearance = needsAppearanceUpdate(view, actor, blocks.size());
-                boolean needUpdate = needAppearance || actor.hasMasks();
+                boolean needUpdate = needAppearance || actor.hasMasks() || needsPersistentSpots(view,actor);
                 if (needUpdate) appendBlock(view, actor, blocks, needAppearance);
                 out.bits(1, needUpdate ? 1 : 0);
                 view.addedThisTick++;
@@ -1008,6 +1018,9 @@ public final class Native950PlayerInfo {
     }
 
     /** 910 {@code needAppearenceUpdate}: unchanged bodies are suppressed per viewer. */
+    private static boolean needsPersistentSpots(ViewState view,Actor actor){
+        return actor.persistentSpots!=null&&view.persistentSpotKeys[actor.index]!=actor.persistentSpotKey;
+    }
     private static boolean needsAppearanceUpdate(ViewState view, Actor actor, int blockBytes) {
         if (actor.appearance == null) return false;
         if (blockBytes > APPEARANCE_BUDGET) return false;
@@ -1030,6 +1043,9 @@ public final class Native950PlayerInfo {
         if (appearance) {
             builder.appearance(actor.appearance);
             view.appearanceHashes[actor.index] = actor.appearanceHash.clone();
+        }
+        if(needsPersistentSpots(view,actor)){
+            builder.appendSpotanims(actor.persistentSpots);view.persistentSpotKeys[actor.index]=actor.persistentSpotKey;
         }
         Native950PlayerMasks.Update update = builder.build();
         boolean force = (update.maskBits() & Native950PlayerMasks.FORCE_MOVEMENT) != 0;

@@ -692,6 +692,15 @@ public final class Native950PlayerMasks {
         }
 
         /** Mask 0x4000000. */
+        /** Compose persistent actor effects with this tick's unrelated spot animations. */
+        public Builder appendSpotanims(SpotanimList list) {
+            Objects.requireNonNull(list,"spotanims");
+            if(spotanims==null)return spotanims(list);
+            int[] removals=java.util.Arrays.copyOf(spotanims.removals,spotanims.removals.length+list.removals.length);
+            System.arraycopy(list.removals,0,removals,spotanims.removals.length,list.removals.length);
+            java.util.List<Spotanim> added=new java.util.ArrayList<>(spotanims.additions);added.addAll(list.additions);
+            return spotanims(SpotanimList.of(removals,added));
+        }
         public Builder spotanims(SpotanimList list) {
             this.spotanims = Objects.requireNonNull(list, "spotanims");
             return this;

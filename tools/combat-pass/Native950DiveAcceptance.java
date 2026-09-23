@@ -18,12 +18,14 @@ public final class Native950DiveAcceptance {
         System.setProperty(Native950World.SPAWNS_PROPERTY,"false");System.setProperty(Native950World.LEGACY_SPAWNS_PROPERTY,"false");
         Cache.initFlatReadOnly(Paths.get(args[0]));Native950World world=Native950World.getInstance();
         try{
-            world.execute(()->{fixture=new Fixture();fixture.start();return null;}).get(30,TimeUnit.SECONDS);
+            for(String mode:new String[]{"Dive","Surge","Escape"}) {
+            world.execute(()->{fixture=new Fixture();fixture.start(mode);return null;}).get(30,TimeUnit.SECONDS);
             boolean arrived=false;
             for(int i=0;i<30&&!arrived;i++){Thread.sleep(100);arrived=world.execute(()->fixture.p.getNextWorldTile()!=null).get(5,TimeUnit.SECONDS);}
             check(arrived,"Real scheduler never queued Dive arrival");
-            world.execute(()->{fixture.finish();return null;}).get(10,TimeUnit.SECONDS);
-            System.out.println("PASS: source-safe opcode85 -> actual950 collision -> scheduled force movement -> authoritative chosen tile -> native PLAYER_INFO with no duplicate terminal movement; cooldown and stale-source refusal. LIVE Vulkan pending.");
+            world.execute(()->{fixture.finish();fixture.close();fixture=null;return null;}).get(10,TimeUnit.SECONDS);
+            }
+            System.out.println("PASS: four distinct legal conjure positions; Dive/Surge/Escape actual arrivals preserve army; true teleport removes army; source-safe opcode85 -> actual950 collision -> scheduled force movement -> authoritative chosen tile -> native PLAYER_INFO with no duplicate terminal movement; cooldown and stale-source refusal. LIVE Vulkan pending.");
         }finally{if(fixture!=null)world.execute(()->{fixture.close();return null;}).get(10,TimeUnit.SECONDS);}
     }
     static final class Fixture {
@@ -31,13 +33,25 @@ public final class Native950DiveAcceptance {
         final Player p=Player.createNative950("dive-offline",new WorldTile(3217,3258,0),channel);
         final Native950EntityFrames frames=new Native950EntityFrames();
         final Native950MeleeCombat combat=new Native950MeleeCombat(Thread.currentThread());
-        Native950Interactions input;WorldTile destination;long generation;List<Player> roster;
+        String mode;Native950Conjures conjures;Native950Interactions input;WorldTile destination;long generation;List<Player> roster;
         Fixture()throws Exception{
             p.setIndex(1);p.setActive(true);p.setRunning(true);p.getSkills().setLevelWithoutRefresh(Skills.AGILITY,99);
             World.addNative950Player(p,1);World.updateEntityRegion(p);p.loadMapRegions();p.setClientHasLoadedMapRegion();
             Native950World.installVarpSink(p);combat.attach(p);
             Native950Content.BankUi bank=new Native950Content.BankUi(517,201,15,317,39,new int[11],new int[11],Collections.emptyList(),Collections.emptyList(),6);
             input=new Native950Interactions(p,channel,new Native950Content(new Native950ItemCatalog(Collections.emptyList()).withLegacyDrops(),bank));
+            p.getSkills().setLevelWithoutRefresh(Skills.NECROMANCY,120);p.setInfiniteCombatRunes(true);
+            p.getEquipment().getItems().set(5,new com.rs.game.item.Item(61355));
+            java.lang.reflect.Field companions=Native950MeleeCombat.class.getDeclaredField("conjures");companions.setAccessible(true);
+            conjures=(Native950Conjures)companions.get(combat);conjures.cast(p,33965,0);
+            check(conjures.count(p)==4,"Army was not created");
+            java.util.Set<Long> positions=new java.util.HashSet<>();
+            for(com.rs.game.npc.NPC n:Native950World.getInstance().nativeNpcs())if(n.isNative950Conjure()){
+                check(!n.matches(p),"Conjure spawned under owner");
+                check(Native950MeleeReach.clearFootprint(n,n.getSize()),"Conjure spawned in clipped footprint");
+                positions.add(((long)n.getX()<<32)|n.getY());
+            }
+            check(positions.size()==4,"Army did not use four distinct legal positions");
             java.lang.reflect.Field field=Native950ActionBar.class.getDeclaredField("bars");field.setAccessible(true);
             ((int[][])field.get(p.getNative950ActionBar()))[0][0]=Native950ActionBar.pack(1,7);
             p.getInterfaceManager().registerNativeOpen(1430,1436,0);
@@ -53,7 +67,14 @@ public final class Native950DiveAcceptance {
             check(destination!=null,"No clear actual950 destination");
         }
         Native950Actions.Action tile(int slot){int x=destination.getX(),y=destination.getY();return Native950Actions.decode(85,new byte[]{(byte)(slot>>8),(byte)slot,-1,-1,-1,5,(byte)150,0,(byte)(64+13*slot),(byte)(x>>8),(byte)(x+128),(byte)y,(byte)(y>>8)});}
-        void start(){
+        void start(String mode){
+            this.mode=mode;
+            if(!mode.equals("Dive")){
+                String refusal="no clear direction";
+                for(int direction=0;direction<8&&refusal!=null;direction++){p.setDirection(direction<<11);refusal=Native950Surge.use(p,mode.equals("Escape"));}
+                check(refusal==null,mode+" was refused: "+refusal);
+                destination=p.getNextNative950ForceMovement().finalTile();generation=p.getNative950ForceMaskGeneration();publish();drain();p.resetMasks();return;
+            }
             input.handle(tile(1));check(p.getNextNative950ForceMovement()==null,"Wrong source slot accepted");drain();
             input.handle(tile(0));check(p.getNextNative950ForceMovement()!=null,"Correct opcode85 did not start Dive");
             check(destination.matches(p.getNextNative950ForceMovement().finalTile()),"Dive used facing rather than chosen tile");generation=p.getNative950ForceMaskGeneration();
@@ -62,11 +83,32 @@ public final class Native950DiveAcceptance {
         }
         void publish(){frames.beginFrames(roster);frames.encode(new Native950Frames.Frame(p,channel,roster,Collections.emptyList(),null,false,7,p.getX(),p.getY(),p.getPlane()));}
         void finish(){
-            check(p.getNative950ForceArrivalGeneration()==generation,"Wrong terminal generation");p.processMovement();
+            check(p.getNative950ForceArrivalGeneration()==generation,"Wrong terminal generation");
+            conjures.pulse(1);check(conjures.count(p)==4,"Pending Dive arrival dismissed army");p.processMovement();
+            conjures.pulse(2);check(conjures.count(p)==4,"Committed Dive arrival dismissed army");
             check(destination.matches(p)&&p.getNextWorldTile()==null,"Chosen destination not committed");publish();
             byte[] terminal=drain().stream().filter(b->(b[0]&255)==Native950Protocol.ServerPacket.PLAYER_INFO.opcode()).findFirst().orElse(null);
             check(terminal!=null&&Arrays.equals(Arrays.copyOfRange(terminal,3,terminal.length),new byte[]{0,127,(byte)244}),"Terminal frame doubled client movement");
-            p.resetMasks();input.handle(tile(0));check(p.getNextNative950ForceMovement()==null,"Cooldown admitted a second Dive");
+            p.resetMasks();
+            conjures.pulse(3);check(conjures.count(p)==4,"Ordinary post-arrival tick dismissed army");
+            if(mode.equals("Dive")){input.handle(tile(0));check(p.getNextNative950ForceMovement()==null,"Cooldown admitted a second Dive");}
+            WorldTile beforeWalk=new WorldTile(p);boolean path=false;
+            for(int dx=-1;dx<=1&&!path;dx++)for(int dy=-1;dy<=1&&!path;dy++)if((dx!=0||dy!=0)&&World.checkWalkStep(p.getPlane(),p.getX(),p.getY(),dx,dy,1))
+                path=p.addWalkSteps(p.getX()+dx,p.getY()+dy,1);
+            check(path,"No ordinary walking step admitted");p.processMovement();
+            check(!p.matches(beforeWalk),"Ordinary walking did not move");conjures.pulse(4);check(conjures.count(p)==4,"Ordinary walking dismissed army");
+            for(com.rs.game.npc.NPC n:Native950World.getInstance().nativeNpcs())if(n.isNative950Conjure()){
+                n.setLocation(new WorldTile(p.getX()+25,p.getY(),p.getPlane()));World.updateEntityRegion(n);
+            }
+            conjures.pulse(5);java.util.Set<Long> recovered=new java.util.HashSet<>();
+            for(com.rs.game.npc.NPC n:Native950World.getInstance().nativeNpcs())if(n.isNative950Conjure()){
+                WorldTile tile=n.getNextWorldTile();check(tile!=null&&!tile.matches(p),"Recovery did not choose adjacent tile");
+                recovered.add(((long)tile.getX()<<32)|tile.getY());check(Native950MeleeReach.clearFootprint(tile,n.getSize()),"Recovery tile clipped");
+            }
+            check(recovered.size()==4,"Recovery stacked multiple conjures");
+            p.setNextWorldTile(new WorldTile(3200,3200,0));conjures.pulse(6);
+            check(conjures.count(p)==0,"True lifecycle teleport retained army");
+            check(Native950World.getInstance().nativeNpcs().stream().noneMatch(n->n.isNative950Conjure()),"True teleport leaked companion actors");
         }
         List<byte[]> drain(){channel.flushOutbound();List<byte[]> result=new ArrayList<>();Object value;while((value=channel.readOutbound())!=null){check(value instanceof ByteBuf,"Unframed output");ByteBuf b=(ByteBuf)value;try{byte[] data=new byte[b.readableBytes()];b.readBytes(data);result.add(data);}finally{b.release();}}return result;}
         void close(){if(input!=null)input.close();combat.detach(p);World.removeNative950Player(p);channel.finishAndReleaseAll();}

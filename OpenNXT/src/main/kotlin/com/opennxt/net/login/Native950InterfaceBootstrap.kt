@@ -41,6 +41,8 @@ internal object Native950InterfaceBootstrap {
         // version6 onLoad hooks call8422 with categories4/14/15 (enum16973).
         // 1887 is Teleport Spells (category10), not a Necromancy book.
         Panel(42, 1219, true), Panel(43, 1220, true), Panel(44, 1221, true),
+        // Exact950 enum7716: slots1009/1038 attach284/291. Native scripts own icons/timers.
+        Panel(1009, 284, true), Panel(1038, 291, true),
         Panel(18, 137, true)
     )
 

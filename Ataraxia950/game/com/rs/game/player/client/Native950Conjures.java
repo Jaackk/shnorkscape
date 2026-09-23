@@ -26,6 +26,7 @@ public final class Native950Conjures {
         NPC spawn(Player owner,Kind kind);
         void remove(NPC actor);
         void follow(NPC actor,WorldTile destination);
+        default void followOwner(NPC actor,Player owner){follow(actor,owner);}
         boolean valid(Player owner);
         boolean conduit(Player owner);
         NPC target(Player owner);
@@ -41,6 +42,9 @@ public final class Native950Conjures {
     private final Map<Player,EnumMap<Kind,Spirit>> owners=new IdentityHashMap<>();
     private final Host host;
     Native950Conjures(Host host){this.host=host;}
+    static boolean ownerLifecycleValid(Player owner){
+        return owner.isActive()&&!owner.hasFinished()&&!owner.isDead()&&!owner.hasLifecycleTeleport();
+    }
     static int limit(int level){return level>=106?4:level>=84?3:level>=52?2:1;}
     static boolean handles(int structure){return structure==33965||Kind.of(structure)!=null;}
     static int base(int structure){Kind k=Kind.of(structure);return k==null?structure:k.conjure;}
@@ -91,16 +95,17 @@ public final class Native950Conjures {
             if(!host.valid(owner)||!host.conduit(owner)){clear(owner);continue;}
             for(Spirit spirit:new ArrayList<>(owners.get(owner).values())){
                 NPC actor=spirit.actor;Kind k=spirit.kind;
-                if(actor.hasFinished()||actor.isDead()||actor.getPlane()!=owner.getPlane()||distance(actor,owner)>24
+                if(actor.hasFinished()||actor.isDead()
                         ||(tick>=spirit.expires&&spirit.explodeAt==0)){dismiss(owner,spirit,tick);continue;}
+                if(actor.getPlane()!=owner.getPlane()||distance(actor,owner)>12){host.followOwner(actor,owner);continue;}
                 if(spirit.explodeAt>0){if(tick>=spirit.explodeAt){host.area(owner,actor,2,360,440);dismiss(owner,spirit,tick);}continue;}
                 NPC target=host.target(owner);
                 if(target==null||target.hasFinished()||target.isDead()){
-                    if(distance(actor,owner)>2)host.follow(actor,owner);else actor.resetWalkSteps();
+                    if(distance(actor,owner)>2||Native950ConjureFormation.overlap(actor,actor.getSize(),owner,owner.getSize()))host.followOwner(actor,owner);else actor.resetWalkSteps();
                     continue;
                 }
                 int range=k==Kind.GHOST?6:1;
-                if(k==Kind.PHANTOM){if(distance(actor,owner)>2)host.follow(actor,owner);continue;}
+                if(k==Kind.PHANTOM){if(distance(actor,owner)>2||Native950ConjureFormation.overlap(actor,actor.getSize(),owner,owner.getSize()))host.followOwner(actor,owner);continue;}
                 if(!host.reach(actor,target,range)){host.follow(actor,target);continue;}
                 actor.resetWalkSteps();actor.setNextFaceEntity(target);
                 if(tick<spirit.nextAttack)continue;
@@ -128,6 +133,8 @@ public final class Native950Conjures {
     }
     private void publish(Player owner,Spirit spirit,boolean active,long tick){
         owner.getVarsManager().sendVar(spirit.kind.activeVar,active?1:0);
+        int buff=spirit.kind==Kind.PHANTOM?32349:48335+spirit.kind.ordinal();
+        Native950CombatEffectUi.timed(owner,buff,active?(int)(spirit.expires-tick):0);
         if(owner.getRealChannel()!=null){
             if(owner.getSkills().getLevel(Skills.NECROMANCY)>=spirit.kind.commandLevel)
                 owner.getRealChannel().write(com.rs.network.protocol.modern950.Native950Packets.varbitSmall(spirit.kind.unlock,1));

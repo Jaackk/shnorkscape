@@ -1845,6 +1845,7 @@ public final class Native950Interactions {
         if (supplied >= 0) { state.ids[13] = supplied; state.amounts[13] = Integer.MAX_VALUE; }
         displayedInfiniteAmmo = player.isInfiniteAmmunition();
         channel.write(Native950Packets.inventoryFull(content.equipment.containerId, false, state.ids, state.amounts));
+        Native950NecromancyEquipment.publish(player);
         if (equipmentUiReady)
             for (Native950Packets.Packet packet : content.equipment.refresh) channel.write(packet);
     }

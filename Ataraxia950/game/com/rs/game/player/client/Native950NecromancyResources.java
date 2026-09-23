@@ -54,6 +54,8 @@ final class Native950NecromancyResources {
             // Necrosis has no timer; residual souls expire after six seconds outside combat.
             s.souls=tick-s.lastCombat>=10?0:Math.min(s.souls,soulCap(player));
             if(before!=s.souls)publish(player,s);
+            if(s.souls>0&&player.getRealChannel()!=null)player.getRealChannel().write(
+                com.rs.network.protocol.modern950.Native950Packets.runClientScript(4252,48334,(int)Math.max(0,10-(tick-s.lastCombat))));
         }
     }
     void clear(Player player){State prior=states.remove(player);publish(player,new State());if(prior!=null&&prior.scythe!=0)publishScythe(player,new State());}
@@ -63,8 +65,15 @@ final class Native950NecromancyResources {
         p.getNative950ActionBar().refreshTransforms(p);
     }
     private void publish(Player player,State s){
+        int priorNecrosis=player.getVarsManager().getValue(NECROSIS_VAR);
+        int priorSouls=player.getVarsManager().getValue(SOULS_VAR);
         player.getVarsManager().sendVar(NECROSIS_VAR,s.necrosis);
         player.getVarsManager().sendVar(SOULS_VAR,s.souls);
+        if(s.souls>0||player.getNative950SoulVisual()>=0)player.setNative950SoulVisual(s.souls);
+        if((priorNecrosis>0)!=(s.necrosis>0))Native950CombatEffectUi.toggle(player,48333,s.necrosis>0);
+        if(s.souls>0&&player.getRealChannel()!=null)player.getRealChannel().write(
+            com.rs.network.protocol.modern950.Native950Packets.runClientScript(4252,48334,10));
+        if((priorSouls>0)!=(s.souls>0))Native950CombatEffectUi.toggle(player,48334,s.souls>0);
         Native950BugTest.event(player,"combat","necromancy-resources","necrosis",s.necrosis,"souls",s.souls);
     }
 }

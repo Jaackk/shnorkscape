@@ -117,8 +117,74 @@ public final class Native950CombatPassAcceptance {
             check(world.nativeNpcs().isEmpty()&&World.getNPCs().isEmpty(),"Conjure dismissal leaked a registry");drain(a);drain(b);
         }finally{for(NPC actor:actors)if(!actor.hasFinished())world.removeConjure(actor);firstView.close();secondView.close();a.finishAndReleaseAll();b.finishAndReleaseAll();}
     }
+    static boolean containsBytes(byte[] data,byte[] needle){outer:for(int i=0;i<=data.length-needle.length;i++){for(int j=0;j<needle.length;j++)if(data[i+j]!=needle[j])continue outer;return true;}return false;}
+    static void soulWorldFrames(){
+        try(Fixture f=new Fixture()){
+            equip(f.first,3,false,false);f.first.setRunning(true);f.second.setRunning(true);
+            f.first.getEquipment().getItems().set(5,new Item(55482));check(Native950NecromancyResources.soulCap(f.first)==5,"Soulbound lantern cap");
+            Native950NecromancyResources resources=new Native950NecromancyResources();Native950EntityFrames frames=new Native950EntityFrames();
+            List<Player> roster=Arrays.asList(f.first,f.second);
+            for(Player p:roster)for(com.rs.network.protocol.modern950.Native950Packets.Packet packet:frames.admit(p,new Native950World.SceneConfig(p.getX(),p.getY(),0,p.getIndex(),7,0,0,0),roster))p.getRealChannel().write(packet);
+            drain(f.firstChannel);drain(f.secondChannel);f.first.resetMasks();f.second.resetMasks();
+            for(int count=1;count<=5;count++){
+                resources.gainSoul(f.first,count);soulFrameCheck(f,frames,roster,count);
+            }
+            resources.cast(f.first,48301,6,false);soulFrameCheck(f,frames,roster,0);
+            check(f.second.getNative950SoulVisual()==-1,"Another owner gained soul visuals");
+        }
+    }
+    static void soulFrameCheck(Fixture f,Native950EntityFrames frames,List<Player> roster,int count){
+        frames.beginFrames(roster);
+        byte[] expected=com.rs.network.protocol.modern950.Native950PlayerMasks.encodeWithSkippedPrefix(com.rs.network.protocol.modern950.Native950PlayerMasks.builder().spotanims(
+            com.rs.network.protocol.modern950.Native950PlayerMasks.SpotanimList.of(new int[0],Collections.singletonList(com.rs.network.protocol.modern950.Native950PlayerMasks.Spotanim.of(4,count==0?-1:7865+count,0,0,0,0,0)))).build());
+        for(Player p:roster){
+            // Retain resource packets while checking the complete framed PLAYER_INFO path.
+            EmbeddedChannel output=(EmbeddedChannel)p.getRealChannel();List<byte[]> before=drain(output);
+            frames.encode(new Native950Frames.Frame(p,output,roster,Collections.emptyList(),null,false,7,p.getX(),p.getY(),p.getPlane()));
+            List<byte[]> encoded=drain(output);check(encoded.stream().anyMatch(b->(b[0]&255)==com.rs.network.protocol.modern950.Native950Protocol.ServerPacket.PLAYER_INFO.opcode()&&containsBytes(b,expected)),"Soul count "+count+" omitted from viewer "+p.getIndex());
+            // Resource publication is independent and only sent to its owner.
+            if(p==f.first)wire(before,11035,count);else check(before.isEmpty(),"Soul vars leaked to other player");
+        }
+    }
     static void run(){
-        worldCompanionFrames();
+        worldCompanionFrames();soulWorldFrames();
+        try(Fixture f=new Fixture()){
+            for(int id:new int[]{55526,61355}){
+                f.first.getEquipment().getItems().set(5,new Item(id));
+                check(Native950NecromancyEquipment.conduit(f.first),"Real950 conduit refused: "+id);
+                f.first.getVarsManager().sendVar(11218,0);drain(f.firstChannel);
+                Native950NecromancyEquipment.publish(f.first);wire(drain(f.firstChannel),11218,1);
+            }
+            for(int id:new int[]{-1,61333,13740}){
+                f.first.getEquipment().getItems().set(5,id<0?null:new Item(id));
+                f.first.getVarsManager().sendVar(11218,1);drain(f.firstChannel);
+                Native950NecromancyEquipment.publish(f.first);wire(drain(f.firstChannel),11218,0);
+            }
+            check(f.second.getVarsManager().getValue(11218)==0,"Conduit availability leaked to another owner");
+        }
+        try(Fixture f=new Fixture()){
+            equip(f.first,3,false,false);f.first.getCombatDefinitions().setSpecialAttackPercentage(100);
+            java.util.Map<String,Integer> queueBar=new java.util.HashMap<>();
+            queueBar.put("actionBar.0.0",(7<<13|2)|((7<<13|3)<<16));
+            f.first.getNative950ActionBar().restore(queueBar);
+            f.first.getNative950ActionBar().setActiveBar(f.first,f.firstChannel,0);
+            check(f.combat.attack(f.first,f.npc)==null,"Ordinary queue target refused");
+            f.cast(f.first,48296);check(f.first.getVarsManager().getValue(10986)==4,"Touch failed to generate Necrosis");
+            drain(f.firstChannel);String queuedReply=f.combat.ability(f.first,48297);
+            check(queuedReply!=null&&queuedReply.contains("queued"),"Finger did not enter ordinary manual queue: "+queuedReply);
+            check(f.first.getVarsManager().getValue(10986)==4,"Queued Finger spent Necrosis before execution");
+            int queued=f.first.getVarsManager().getValue(4164);check(queued>0,"Ordinary Finger queue has no native slot marker");
+            java.util.List<byte[]> queuedFrames=drain(f.firstChannel);wire(queuedFrames,4164,queued);wire(queuedFrames,5861,1003);
+            f.step(2);check(f.first.getVarsManager().getValue(10986)==4,"Finger executed before legitimate GCD ended");
+            int hp=f.npc.getHitpoints();f.step(2);
+            check(f.first.getVarsManager().getValue(10986)==0,"Queued Finger did not consume Necrosis on execution");
+            check(f.npc.getHitpoints()<hp,"Queued Finger produced no damage");
+            java.util.List<byte[]> executedFrames=drain(f.firstChannel);wire(executedFrames,4164,0);wire(executedFrames,10986,0);
+            int cycle=(int)com.rs.utils.Utils.currentWorldCycle();
+            byte[] feedback=com.rs.network.protocol.modern950.Native950Packets.runClientScript(6570,48297,cycle,cycle+Native950AbilityCatalog.get(48297).cooldown,1,1).frame(()->0);
+            check(executedFrames.stream().anyMatch(frame->Arrays.equals(frame,feedback)),"Queued execution omitted native activation/cooldown script");
+            check(f.second.getVarsManager().getValue(10986)==0,"Queued Finger resource leak");
+        }
         try(Fixture f=new Fixture()){
             equip(f.first,3,false,false);f.first.getCombatDefinitions().setSpecialAttackPercentage(100);
             check(f.combat.attack(f.first,f.npc)==null,"Resource wire target admission");drain(f.firstChannel);drain(f.secondChannel);

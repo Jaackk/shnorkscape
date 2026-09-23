@@ -69,7 +69,8 @@ public final class Native950MeleeCombat {
             public NPC spawn(Player p,Native950Conjures.Kind k){return access.spawnConjure(p,k.npc);}
             public void remove(NPC n){access.removeConjure(n);}
             public void follow(NPC n,WorldTile tile){access.follow(n,tile);}
-            public boolean valid(Player p){return access.player(p)&&p.isActive()&&!p.hasFinished()&&!p.isDead()&&!p.hasTeleported()&&p.getNextWorldTile()==null;}
+            public void followOwner(NPC n,Player p){access.followConjure(n,p);}
+            public boolean valid(Player p){return access.player(p)&&Native950Conjures.ownerLifecycleValid(p);}
             public boolean conduit(Player p){return com.rs.cache.Cache.STORE!=null&&matchingOffhand(p,3);}
             public NPC target(Player p){Entity target=combatTarget(p);return target instanceof NPC?(NPC)target:null;}
             public boolean reach(NPC actor,NPC target,int range){return distanceToFootprint(actor,target,target.getSize())<=range&&access.bounceReach(actor,target);}
@@ -519,7 +520,7 @@ public final class Native950MeleeCombat {
                 for(int stat=0;stat<Skills.SKILL_NAME.length;stat++)if(player.getSkills().getLevel(stat)<player.getSkills().getLevelForXp(stat))
                     player.getSkills().set(stat,player.getSkills().getLevelForXp(stat));
             }
-            if(type==Native950CombatBuffs.Type.BERSERK)player.getBuffDebuffTimersManager().addTimer(Timer.BERSERK,type.duration*600L);
+
             Native950BugTest.event(player,"combat","effect-started","effect",definition.name,"durationTicks",duration,"endTick",tick+duration);
         }
         if(structure==52799){
@@ -1432,6 +1433,7 @@ public final class Native950MeleeCombat {
     long channelEndTick(Player player){owned();return channelUntil.getOrDefault(player,0L);}
     int dotCount(Player player){owned();Map<Integer,DamageOverTime> effects=damageOverTime.get(player);return effects==null?0:effects.size();}
     static boolean matchingOffhand(Player player,int style){
+        if(style==Native950CombatStyles.NECROMANCY)return Native950NecromancyEquipment.conduit(player);
         Item item=player.getEquipment().getItem(Equipment.SLOT_SHIELD);
         return item!=null&&player.getEquipment().hasOffHand()
                 &&Native950CombatStyles.classify(Native950CacheItems.definition(item.getId()))==style;
@@ -1454,7 +1456,6 @@ public final class Native950MeleeCombat {
     }
     boolean isDeathsSwiftnessActive(Player player) {owned();return buffs.active(player,Native950CombatBuffs.Type.DEATHS_SWIFTNESS,tick);}
     private void buffRemoved(Player player,Native950CombatBuffs.Type type){
-        if(type==Native950CombatBuffs.Type.BERSERK)player.getBuffDebuffTimersManager().removeTimer(Timer.BERSERK);
         Native950BugTest.event(player,"combat","effect-removed","effect",type,"tick",tick);
     }
     static WorldTile respawnTile(){return new WorldTile(3217,3258,0);}
@@ -1518,7 +1519,7 @@ public final class Native950MeleeCombat {
     interface Rewards {void hit(Player player,NPC npc,int damage);default void hit(Player player,NPC npc,int damage,Loadout gear){hit(player,npc,damage);}void death(NPC npc,Player owner);}
     interface Loadouts {Loadout get(Player player);}
     interface Rolls {boolean accurate(long attack,long defence);int damage(int maximum);default int nativeDamageRemainder(int rawDamage){return 0;}default boolean critical(){return false;}}
-    interface Access {default NPC spawnConjure(Player owner,int id){throw new IllegalStateException("Conjure actor access unavailable");}default void removeConjure(NPC actor){}default boolean bounceReach(WorldTile from,Entity to){return true;}default void retire(NPC npc){}void activate(NPC npc);boolean player(Player player);boolean npc(NPC npc);boolean clear(WorldTile tile);default boolean clear(WorldTile tile,int size){return clear(tile);}boolean reach(Entity from,Entity to);default boolean rangedReach(Player from,NPC to,int range){return reach(from,to);}default boolean npcRangedReach(NPC from,Player to,int range){return reach(from,to);}default void projectile(com.rs.game.Projectile projectile){}boolean approach(Player player,NPC npc);default boolean follow(NPC npc,WorldTile target){return false;}}
+    interface Access {default void followConjure(NPC actor,Player owner){follow(actor,owner);}default NPC spawnConjure(Player owner,int id){throw new IllegalStateException("Conjure actor access unavailable");}default void removeConjure(NPC actor){}default boolean bounceReach(WorldTile from,Entity to){return true;}default void retire(NPC npc){}void activate(NPC npc);boolean player(Player player);boolean npc(NPC npc);boolean clear(WorldTile tile);default boolean clear(WorldTile tile,int size){return clear(tile);}boolean reach(Entity from,Entity to);default boolean rangedReach(Player from,NPC to,int range){return reach(from,to);}default boolean npcRangedReach(NPC from,Player to,int range){return reach(from,to);}default void projectile(com.rs.game.Projectile projectile){}boolean approach(Player player,NPC npc);default boolean follow(NPC npc,WorldTile target){return false;}}
     private static final class LiveRolls implements Rolls {
         public boolean accurate(long a,long d){return ThreadLocalRandom.current().nextDouble()<Rs2CombatFormula.hitChance(a,d);}
         public int damage(int maximum){return maximum<=0?0:ThreadLocalRandom.current().nextInt(maximum+1);}
@@ -1533,7 +1534,33 @@ public final class Native950MeleeCombat {
         public boolean clear(WorldTile tile){return Native950MeleeReach.clearFootprint(tile,1);}
         public boolean clear(WorldTile tile,int size){return Native950MeleeReach.clearFootprint(tile,size);}
         public boolean reach(Entity a,Entity b){return Native950MeleeReach.canReach(a,b);}
-        public NPC spawnConjure(Player owner,int id){NPC npc=NPC.createNative950Conjure(id,new WorldTile(owner));Native950World.getInstance().addConjure(npc);return npc;}
+        public NPC spawnConjure(Player owner,int id){
+            int size=com.rs.cache.loaders.NPCDefinitions.decodeStrict947(id,com.rs.cache.Cache.STORE.getIndexes()[18].getFile(id>>>7,id&127),null).size;
+            WorldTile tile=conjurePosition(owner,size,null);
+            if(tile==null)throw new IllegalStateException("No clear conjure position near owner");
+            NPC npc=NPC.createNative950Conjure(id,tile);Native950World.getInstance().addConjure(npc);return npc;
+        }
+        public void followConjure(NPC actor,Player owner){
+            WorldTile tile=conjurePosition(owner,actor.getSize(),actor);
+            if(tile==null){actor.resetWalkSteps();return;}
+            int distance=Math.max(Math.abs(actor.getX()-owner.getX()),Math.abs(actor.getY()-owner.getY()));
+            if(actor.getPlane()!=owner.getPlane()||distance>12){actor.resetWalkSteps();actor.setNextWorldTile(tile);return;}
+            follow(actor,tile);
+        }
+        private WorldTile conjurePosition(Player owner,int size,NPC exclude){
+            java.util.List<WorldTile> occupied=new ArrayList<>();java.util.List<Integer> sizes=new ArrayList<>();
+            for(NPC npc:World.getNPCs())if(npc!=null&&npc!=exclude&&!npc.hasFinished()){
+                WorldTile position=npc.getNextWorldTile()==null?npc:npc.getNextWorldTile();
+                if(position.getPlane()==owner.getPlane()&&position.withinDistance(owner,16)){
+                    occupied.add(position);sizes.add(npc.getSize());
+                }
+            }
+            for(Player p:World.getPlayers())if(p!=null&&p!=owner&&!p.hasFinished()
+                    &&p.getPlane()==owner.getPlane()&&p.withinDistance(owner,16)){
+                occupied.add(p);sizes.add(p.getSize());
+            }
+            return Native950ConjureFormation.place(owner,owner.getSize(),size,occupied,sizes,Native950MeleeReach::clearFootprint);
+        }
         public void removeConjure(NPC npc){Native950World.getInstance().removeConjure(npc);}
         public boolean bounceReach(WorldTile from,Entity to){return from.getPlane()==to.getPlane()&&to.clipedProjectile(from,false);}
         public boolean rangedReach(Player p,NPC n,int range){return p.getPlane()==n.getPlane()

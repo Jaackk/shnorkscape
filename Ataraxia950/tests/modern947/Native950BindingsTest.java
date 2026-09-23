@@ -274,7 +274,7 @@ public class Native950BindingsTest {
         assertEquals(1462 << 16 | 3, b.resolve("worn_equipment.root"));
         assertEquals(94, b.resolve("container:equipment"));
         assertEquals(18, b.resolve("slotkey:all_chat"));
-        assertEquals(163, b.scriptNames().size());
+        assertEquals(164, b.scriptNames().size());
         for (String name : b.slotNames()) { assertTrue(b.slotAttach(name) >= 0); assertEquals(ROOT, b.slotAttach(name) >>> 16); assertEquals(ROOT, b.slotWrapper(name) >>> 16); }
         for (String name : b.interfaceNames()) for (String comp : b.iface(name).components.keySet()) assertTrue(b.component(name, comp) >= 0);
         for (String name : b.varNames()) assertTrue(b.var(name).id >= 0);

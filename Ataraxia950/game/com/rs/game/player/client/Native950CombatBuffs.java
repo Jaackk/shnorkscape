@@ -31,6 +31,7 @@ final class Native950CombatBuffs {
     }
     void apply(Player player,Type type,long tick,int duration,Entity source){
         states.computeIfAbsent(player,p->new EnumMap<>(Type.class)).put(type,new State(tick,tick+duration,player,source));
+        Native950CombatEffectUi.effect(player,type,duration);
         if(type==Type.ANTICIPATION||type==Type.FREEDOM){
             immunity.computeIfAbsent(player,p->new boolean[]{p.isStunImmune(),p.isFreezeImmune()});
             player.setStunImmune(true);
@@ -39,14 +40,15 @@ final class Native950CombatBuffs {
     }
     boolean consume(Player player,Type type,long tick){
         if(!active(player,type,tick))return false;
-        states.get(player).remove(type);return true;
+        states.get(player).remove(type);Native950CombatEffectUi.effect(player,type,0);return true;
     }
     void setBonusDamage(Player player,Type type,int amount){states.get(player).get(type).bonusDamage=Math.max(0,amount);}
-    void extend(Player player,Type type,long tick,int duration){if(active(player,type,tick))states.get(player).get(type).end+=duration;}
+    void extend(Player player,Type type,long tick,int duration){if(active(player,type,tick)){State state=states.get(player).get(type);state.end+=duration;Native950CombatEffectUi.effect(player,type,(int)(state.end-tick));}}
     void onKill(Player player,long tick){
         if(active(player,Type.DEVOTION,tick)){
             State state=states.get(player).get(Type.DEVOTION);
             state.end=Math.min(state.started+32,state.end+8);
+            Native950CombatEffectUi.effect(player,Type.DEVOTION,(int)(state.end-tick),(int)(tick-state.started));
         }
     }
     void pulse(long tick){
@@ -64,7 +66,7 @@ final class Native950CombatBuffs {
             while(effects.hasNext()){
                 Type type=effects.next();
                 if(Native950AbilityCatalog.get(type.structure).shieldRequired()){
-                    effects.remove();removed.accept(player.getKey(),type);
+                    effects.remove();Native950CombatEffectUi.effect(player.getKey(),type,0);removed.accept(player.getKey(),type);
                 }
             }
         }
@@ -105,7 +107,7 @@ final class Native950CombatBuffs {
     void remove(Player player,BiConsumer<Player,Type> removed){
         Map<Type,State> previous=states.remove(player);
         restoreImmunity(player,Long.MAX_VALUE);
-        if(previous!=null)for(Type type:previous.keySet())removed.accept(player,type);
+        if(previous!=null)for(Type type:previous.keySet()){Native950CombatEffectUi.effect(player,type,0);removed.accept(player,type);}
     }
     void expire(long tick,BiConsumer<Player,Type> removed){
         Iterator<Map.Entry<Player,EnumMap<Type,State>>> players=states.entrySet().iterator();
@@ -115,7 +117,7 @@ final class Native950CombatBuffs {
             while(buffs.hasNext()){
                 Map.Entry<Type,State> effect=buffs.next();
                 if(tick>=effect.getValue().end||entry.getKey().isDead()||entry.getKey().hasFinished()){
-                    Type type=effect.getKey();buffs.remove();removed.accept(entry.getKey(),type);
+                    Type type=effect.getKey();buffs.remove();Native950CombatEffectUi.effect(entry.getKey(),type,0);removed.accept(entry.getKey(),type);
                 }
             }
             restoreImmunity(entry.getKey(),tick);

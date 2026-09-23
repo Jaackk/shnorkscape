@@ -1851,6 +1851,9 @@ public class Player extends Entity {
         if(native950Slayer==null)native950Slayer=new com.rs.game.player.client.Native950Slayer.State();
         return native950Slayer;
     }
+    private transient int native950SoulVisual=-1;
+    public int getNative950SoulVisual(){return native950SoulVisual;}
+    public void setNative950SoulVisual(int count){if(count<0||count>5)throw new IllegalArgumentException("Soul visual count");native950SoulVisual=count;}
     public com.rs.game.player.client.Native950MeleeCombat getNative950Combat() { return native950Combat; }
     public void setNative950Combat(com.rs.game.player.client.Native950MeleeCombat combat) { native950Combat = combat; }
 

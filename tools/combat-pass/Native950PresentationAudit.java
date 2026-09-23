@@ -44,6 +44,12 @@ public final class Native950PresentationAudit {
         // Ordinary Necromancy attacks use the weapon's sequence rather than an ability struct.
         AnimationDefinitions auto=AnimationDefinitions.getAnimationDefinitions(35449);pin(20,35449>>>7,35449&127);
         for(int key:new int[]{2920,2933,2940})graphic(integer(auto.clientScriptData,key));
+        // Residual soul count models: 130426/428/430/432/434, sequence35465.
+        // Named Pumpkin Residual Souls struct49980 selects the corresponding three-soul
+        // model134807/sequence35465. Native originals contain progressively 1..5 copies.
+        for(int graphicId=7866;graphicId<=7870;graphicId++)graphic(graphicId);
+        for(int model:new int[]{130426,130428,130430,130432,130434})pin(47,model,0);
+        pin(20,35465>>>7,35465&127);pin(22,49980>>>5,49980&31);
         Properties legacy=new Properties();
         try(java.io.InputStream in=Native950PlayerEffects.class.getResourceAsStream(Native950PlayerEffects.RESOURCE)){legacy.load(in);}
         List<Integer> previouslyRefused=new ArrayList<>();for(int id:effects.keySet())if(!legacy.containsKey("id."+id))previouslyRefused.add(id);

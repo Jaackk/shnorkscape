@@ -21,7 +21,7 @@ public class Native950ConjuresTest {
         public NPC spawn(Player p,Native950Conjures.Kind k){if(++spawns==failSpawn)throw new IllegalStateException("fixture capacity");NPC actor=NPC.createNative950(k.npc,new WorldTile(p),1);actor.setIndex(spawns);actors.add(actor);return actor;}
         public void remove(NPC n){actors.remove(n);}
         public void follow(NPC n,WorldTile t){follows++;n.setLocation(t);}
-        public boolean valid(Player p){return p.isActive()&&!p.isDead();}
+        public boolean valid(Player p){return Native950Conjures.ownerLifecycleValid(p);}
         public boolean conduit(Player p){return p!=noConduit;}
         public NPC target(Player p){return target;}
         public boolean reach(NPC a,NPC t,int range){return true;}
@@ -29,6 +29,24 @@ public class Native950ConjuresTest {
         public void area(Player p,WorldTile tile,int radius,int min,int max){strike(p,target,min,max);}
         public int abilityDamage(Player p){return 100;}
         public void close(){manager.clear();a.finishAndReleaseAll();b.finishAndReleaseAll();}
+    }
+    @Test public void fourConjuresSurviveForcedArrivalAndWalkingButNotActualTeleport()throws Exception{
+        java.lang.reflect.Field field=com.rs.cores.CoresManager.class.getDeclaredField("native947Scheduler");field.setAccessible(true);
+        Object previous=field.get(null);com.rs.cores.Native950TickScheduler wheel=new com.rs.cores.Native950TickScheduler();
+        try(Fixture f=new Fixture()){
+            field.set(null,wheel);f.manager.cast(f.first,33965,0);
+            f.first.setNextForceMovement(new ForceMovement(new WorldTile(3220,3258,0),1,ForceMovement.EAST));
+            f.manager.pulse(1);assertEquals(4,f.manager.count(f.first));
+            f.first.resetMasks();wheel.tick();
+            assertNotNull(f.first.getNextWorldTile());assertFalse(f.first.hasLifecycleTeleport());
+            f.manager.pulse(2);assertEquals(4,f.manager.count(f.first));
+            f.first.setLocation(f.first.getNextWorldTile());f.first.resetMasks();
+            // Complete transport cleanup, then ordinary movement does not terminate ownership.
+            f.first.setNextWorldTile(null);f.first.setLocation(new WorldTile(3221,3258,0));
+            f.manager.pulse(3);assertEquals(4,f.manager.count(f.first));
+            f.first.setNextWorldTile(new WorldTile(3200,3200,0));assertTrue(f.first.hasLifecycleTeleport());
+            f.manager.pulse(4);assertEquals(0,f.manager.count(f.first));assertTrue(f.actors.isEmpty());
+        }finally{field.set(null,previous);}
     }
     @Test public void armyHasFourDistinctActorsAndPublishesAndClearsNativeTransforms(){
         try(Fixture f=new Fixture()){

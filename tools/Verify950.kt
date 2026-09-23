@@ -75,7 +75,7 @@ fun main() {
  val menuSlots=(Native950InterfaceBootstrap.hiddenSlots+listOf(1000,1004,2,3,4,5,18,42,43,44)).distinct()
    .mapIndexed { index,key -> key to Native950InterfaceBootstrap.Slot((1477 shl 16) or (100+index),(1477 shl 16) or (400+index)) }.toMap()
  val bootstrapPackets=Native950InterfaceBootstrap.packets(menuSlots)
- for((key,face) in listOf(42 to 1219,43 to 1220,44 to 1221)) {
+ for((key,face) in listOf(42 to 1219,43 to 1220,44 to 1221,1009 to 284,1038 to 291)) {
    val slot=menuSlots.getValue(key)
    val expected=com.rs.network.protocol.modern950.Native950Packets.openSub(1477,slot.attach and 65535,face,true)
    check(bootstrapPackets.count { it.type()==expected.type() && it.payload().contentEquals(expected.payload()) }==1) { "Missing native Necromancy book $face" }

@@ -738,6 +738,16 @@
       "maxValue": 1044,
       "_note": "Exact950 CS5899 compares root slot identity; main bar1003 from1430:0 onLoad8109. Not saved preset number."
     },
+    "necromancy_conduit": {
+      "kind": "varp",
+      "id": 11218,
+      "maxValue": 1,
+      "_note": "Exact950 CS2660 admission and CS7473 Conduit tooltip read varp11218. Equipped offhand uses item8898/8899; not param9107."
+    },
+    "necromancy_living_death_identity": {
+      "kind": "varp", "id": 11059, "maxValue": 65535,
+      "_note": "CS11094/11088 read this ability struct for buff48339 icon/tooltip."
+    },
     "necromancy_necrosis": {
       "kind": "varp",
       "id": 10986,
@@ -852,6 +862,10 @@
       "id": 2833,
       "sha256": "3277400face2411e85602eececb21520fd33a3003969678356d8cc20eeed36f8",
       "_note": "Retrieves the five item options for an actor and calls item_option_map"
+    },
+    "defensive_effect_timer": {
+      "id": 9379, "sha256": "0343ce8ebef13c8bb795d0afe92cf9cf106d30b588f0459b914336743da68797",
+      "_note": "Exact950 Anticipation/Devotion effect duration, relative to their native activation clock."
     },
     "buff_timer_duration": {
       "id": 4252,

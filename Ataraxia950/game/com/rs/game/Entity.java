@@ -93,6 +93,8 @@ public abstract class Entity extends WorldTile {
     private transient long native950ForceMovementGeneration;
     private transient long nextNative950ForceMaskGeneration;
     private transient long native950ForceArrivalGeneration;
+    // Relocation reason outlives the frame mask: teleported remains true until the next movement tick.
+    private transient boolean native950MovementRelocation;
     private transient boolean native950ForceMovementActive;
     private transient ForceTalk nextForceTalk;
     private transient int nextFaceEntity;
@@ -1183,6 +1185,7 @@ public abstract class Entity extends WorldTile {
             // first, using the viewer's tracked logical endpoint, so cancellation cannot freeze
             // the player at an unknown interpolated position between server waypoints.
             this.nextWorldTile = new WorldTile(destination);
+            native950MovementRelocation = true;
             native950ForceArrivalGeneration = 0;
         }
     }
@@ -1190,6 +1193,7 @@ public abstract class Entity extends WorldTile {
     /** Scheduled force arrivals are not external teleports and must preserve stage two. */
     private void setNative950ForceArrival(final WorldTile tile, final long generation) {
         this.nextWorldTile = tile;
+        native950MovementRelocation = true;
         native950ForceArrivalGeneration = generation;
         if(this instanceof Player)com.rs.game.player.client.Native950BugTest.event((Player)this,"combat","force-arrival-scheduled","generation",generation,"x",tile.getX(),"y",tile.getY(),"plane",tile.getPlane());
     }
@@ -1308,6 +1312,7 @@ public abstract class Entity extends WorldTile {
                 == com.rs.game.player.client.ClientProfile.NATIVE_950)
             cancelNative950ForceMovement(nextWorldTile); // cancel both native interpolation and old server endpoints
         this.nextWorldTile = nextWorldTile;
+        if(nextWorldTile!=null)native950MovementRelocation=false;
     }
 
     public Poison getPoison() {
@@ -1351,6 +1356,13 @@ public abstract class Entity extends WorldTile {
     @Override
     public int hashCode() {
         return hashCode;
+    }
+
+    /** True lifecycle relocation, excluding a tagged native forced-movement arrival.
+     * The transport still uses teleported for both; companion ownership must not.
+     */
+    public boolean hasLifecycleTeleport() {
+        return (teleported || nextWorldTile != null) && !native950MovementRelocation;
     }
 
     public boolean hasTeleported() {
@@ -1581,6 +1593,7 @@ public abstract class Entity extends WorldTile {
             return;
         }
         teleported = false;
+        native950MovementRelocation = false;
         if (walkSteps.isEmpty()) {
             return;
         }
