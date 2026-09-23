@@ -82,6 +82,11 @@ public final class Native950BugTest {
         } else if (action instanceof Native950Actions.NpcAction) {
             Native950Actions.NpcAction a=(Native950Actions.NpcAction)action;
             session.event("input", "npc", "index", a.index(), "option", a.option());
+        } else if (action instanceof Native950Actions.PublicChatAction) {
+            String text=((Native950Actions.PublicChatAction)action).text();
+            String trimmed=text==null?"":text.trim();
+            session.event("input","text-submitted","kind",trimmed.startsWith(";;")||trimmed.startsWith("::")?"command":"public-chat",
+                    "characters",text==null?0:text.length(),"content","redacted");
         } else if (action instanceof Native950Actions.CloseModalAction) {
             session.event("interface", "close-modal");
         } else if (action instanceof Native950Actions.StringDialogueAction) {
@@ -132,6 +137,10 @@ public final class Native950BugTest {
 
     /** Complete framed traffic is observed only for the opt-in workspace recorder. */
     static void inboundFrame(Player player, int opcode, byte[] payload) {
+        if(opcode==87){
+            Session session=session(player);
+            if(session!=null)session.event("input","chat-ingress","opcode",opcode,"bytes",payload==null?0:payload.length,"content","redacted");
+        }
         int option=Native950Actions.interfaceOption(opcode);
         if(option!=0){
             Session session=session(player);

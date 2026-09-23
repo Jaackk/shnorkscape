@@ -4,6 +4,7 @@ import com.rs.game.WorldTile;
 import com.rs.game.item.Item;
 import com.rs.game.player.Player;
 import com.rs.network.protocol.modern950.Native950Actions;
+import com.rs.network.protocol.modern950.Native950Packets;
 import io.netty.channel.embedded.EmbeddedChannel;
 import java.net.*;
 import java.lang.reflect.Constructor;
@@ -100,6 +101,23 @@ public class Native950EquipmentLibraryTest {
     @Test public void revokedPermissionAndMalformedCataloguesFailSafely()throws Exception{
         f.open();System.setProperty(Native950DevelopmentCommands.PROPERTY,"false");f.click(2,201,0,995);assertFalse(f.library.isOpen());assertEquals(0,f.amount(995));
         try{new Native950EquipmentCatalogue(Collections.singletonList(new Native950EquipmentCatalogue.Entry(-1,0,0,0,1,0,"Bad","bad")));fail();}catch(IllegalArgumentException expected){}
+    }
+    @Test public void closingOneLibraryReleasesOnlyItsNativeInputContext()throws Exception{
+        try(Fixture other=new Fixture("libraryfocusother")){
+            other.open();other.channel.flush();while(other.channel.readOutbound()!=null){}
+            for(int cycle=0;cycle<12;cycle++){
+                f.open();f.channel.flush();while(f.channel.readOutbound()!=null){}
+                f.library.close();f.channel.flush();int releases=0;Object message;
+                while((message=f.channel.readOutbound())!=null){
+                    Native950Packets.Packet packet=(Native950Packets.Packet)message;
+                    Native950Packets.Packet cleanup=Native950Packets.runClientScript(9299);
+                    if(packet.type()==cleanup.type()&&Arrays.equals(packet.payload(),cleanup.payload()))releases++;
+                }
+                assertEquals(1,releases);assertTrue(other.library.isOpen());
+                other.channel.flush();assertNull(other.channel.readOutbound());
+                f.library.close();f.channel.flush();assertNull(f.channel.readOutbound());
+            }
+        }
     }
     private static Native950Actions.InterfaceAction button(int option,int component,int slot,int item)throws Exception{
         Constructor<Native950Actions.InterfaceAction> c=Native950Actions.InterfaceAction.class.getDeclaredConstructor(int.class,int.class,int.class,int.class);c.setAccessible(true);

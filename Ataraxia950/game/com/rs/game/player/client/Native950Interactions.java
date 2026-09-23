@@ -1855,6 +1855,7 @@ public final class Native950Interactions {
         bankEpoch++;
         boolean wasOpen = bankOpen;
         bankOpen = false; activeBank = null; activeNpcBank = false; remoteBank = false;
+        if(wasOpen)Native950BankUi.closeInput(player,channel);
         if (router.bankInterfaceOpen()) {
             try {
                 player.closeInterfaces();

@@ -49,7 +49,13 @@ public class Native950ModalCloseTest {
         assertFalse(player.getInterfaceManager().containsInterface(517));
         assertEquals(0, interactions.snapshot().unhandledActions);
         channel.flush();
-        assertNotNull(channel.readOutbound());
+        Native950Packets.Packet cleanup=channel.readOutbound();
+        assertEquals(Native950Packets.runClientScript(9299).type(),cleanup.type());
+        assertArrayEquals(Native950Packets.runClientScript(9299).payload(),cleanup.payload());
+        Native950Packets.Packet unmount=channel.readOutbound();
+        assertEquals(Native950Packets.closeSub(1477,369).type(),unmount.type());
+        assertArrayEquals(Native950Packets.closeSub(1477,369).payload(),unmount.payload());
+        assertNull(channel.readOutbound());
         interactions.afterMovement();
         channel.flush();
         assertFalse(interactions.snapshot().bankOpen);

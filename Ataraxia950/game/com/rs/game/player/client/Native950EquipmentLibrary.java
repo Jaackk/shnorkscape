@@ -273,7 +273,7 @@ final class Native950EquipmentLibrary {
         if(!open)return;
         cancelInput();open=false;epoch++;grantedThisTick.clear();
         channel.write(Native950Packets.interfaceText(517,73,"Load Preset:"));
-        channel.write(Native950Packets.runClientScript(13909));
+        Native950BankUi.closeInput(player,channel); // Includes search cleanup13909 and releases bank context24.
         channel.write(Native950Packets.closeSub(1477,693));channel.write(Native950Packets.hideInterface(1477,693,true));
         player.getInterfaceManager().unregisterNativeOpen(517);
         tabState(false);

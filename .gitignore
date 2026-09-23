@@ -51,3 +51,5 @@ logs/combatqa/
 /dist/staged-update/
 /dist/playability-*/
 /dist/library-followup-*/
+
+/dist/p0-bank-focus-*/

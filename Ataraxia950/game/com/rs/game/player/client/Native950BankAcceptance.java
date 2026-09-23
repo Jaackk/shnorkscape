@@ -42,7 +42,7 @@ public final class Native950BankAcceptance {
         Native950World.getInstance().execute(() -> {
             require(World.getPlayers().isEmpty(),"Acceptance requires an isolated ephemeral world");
             try(Fixture f=new Fixture()) {
-                exhaustion(f);capturedCompactionClaims(f);individualItemActors(f);quantities(f);capacity(f);withdrawX(f);bankControls(f);remoteBank(f);equipmentLibrary(f);
+                exhaustion(f);capturedCompactionClaims(f);individualItemActors(f);quantities(f);capacity(f);withdrawX(f);bankControls(f);remoteBank(f);equipmentLibrary(f);bankFocusLifecycle(f);
                 Native950Interactions.State state=f.input.snapshot();
                 require(state.handlerFailures==0&&state.unhandledActions==0&&state.unmatchedPairs==0,
                         "Bank action failed or bypassed routing: "+state.routerReport);
@@ -321,6 +321,25 @@ public final class Native950BankAcceptance {
         }finally{if(enabled==null)System.clearProperty(Native950DevelopmentCommands.PROPERTY);else System.setProperty(Native950DevelopmentCommands.PROPERTY,enabled);}
     }
 
+    private static void bankFocusLifecycle(Fixture f) {
+        String enabled=System.getProperty(Native950DevelopmentCommands.PROPERTY);
+        System.setProperty(Native950DevelopmentCommands.PROPERTY,"true");
+        try {
+            for(int cycle=0;cycle<12;cycle++) {
+                f.input.allowRemoteBank();f.player.getBank().openBank();f.nextTick();
+                if(cycle%2==0)f.control(317);else f.closeModal();
+                f.assertBankClosedOnce();f.assertInputReleasedBeforeClose();
+                f.closeModal();require(!f.hasPacket(Native950Packets.runClientScript(9299)),"Repeated close released unowned context");
+                f.output.clear();Native950AdminCommands.handle(f.player,f.channel,new String[]{"commands"});f.drain();
+                require(!f.hasPacket(Native950Packets.runClientScript(9299)),"Plain command released bank focus");
+                Native950AdminCommands.handle(f.player,f.channel,new String[]{"items"});f.drain();
+                if(cycle%2==0)f.closeModal();else f.control(317);
+                f.assertBankClosedOnce();f.assertInputReleasedBeforeClose();
+            }
+            System.out.println("PASS: 24 repeated real-bank/library close cycles release native keyboard context before unmount; duplicate close and plain commands do not release unowned focus");
+        }finally{if(enabled==null)System.clearProperty(Native950DevelopmentCommands.PROPERTY);else System.setProperty(Native950DevelopmentCommands.PROPERTY,enabled);}
+    }
+
     private static final class Fixture implements AutoCloseable {
         final int[] incoming={9,5,0,2},outgoing={59,55,50,52};
         final Native950Isaac clientCipher=new Native950Isaac(incoming),cipher=new Native950Isaac(outgoing);
@@ -467,6 +486,16 @@ public final class Native950BankAcceptance {
                     &&!manager.containsInterfaceIn(com.rs.game.player.content.InterfaceManager.MainInterfaceComponents.BANK)
                     &&manager.getInterfaceIdIn(com.rs.game.player.content.InterfaceManager.MainInterfaceComponents.BANK)==-1,
                     "Closed bank retained native bookkeeping");
+        }
+        void assertInputReleasedBeforeClose() {
+            int releases=0,releaseIndex=-1,closeIndex=-1;
+            for(int i=0;i<output.size();i++) {
+                Frame frame=output.get(i);
+                if(matches(frame,Native950Packets.runClientScript(9299))){releases++;releaseIndex=i;}
+                if(frame.kind==ServerPacket.IF_CLOSESUB&&closeIndex<0)closeIndex=i;
+                require(!matches(frame,Native950Packets.runClientScript(1998)),"Close reset the whole keyboard manager");
+            }
+            require(releases==1&&releaseIndex<closeIndex,"Bank native input cleanup must occur once before unmount");
         }
         private static boolean matches(Frame frame,Native950Packets.Packet packet) {
             return frame.kind==packet.type()&&Arrays.equals(frame.body,packet.payload());

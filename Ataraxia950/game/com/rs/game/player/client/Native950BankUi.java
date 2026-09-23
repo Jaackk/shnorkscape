@@ -32,6 +32,12 @@ public final class Native950BankUi {
             COSTUME_ROOM,DIANGO,METAL_BANK,MORE_STORAGE,TRANSFER_VIEW,PRESET_VIEW,ALL_ITEMS};
     private static volatile Object verifiedStore;
 
+    /** CS13353 acquires context24. IF_CLOSESUB alone does not run its matching CS9299 cleanup. */
+    static void closeInput(com.rs.game.player.Player player,io.netty.channel.Channel channel) {
+        Native950BugTest.event(player,"input-focus","bank-release-requested","context",24,"script",9299);
+        channel.write(Native950Packets.runClientScript(9299));
+    }
+
     /** Run after mounting517; this does not change authoritative quantity or note preferences. */
     public static List<Native950Packets.Packet> openControls() {
         List<Native950Packets.Packet> out=new ArrayList<>(resetUnsupportedModes());

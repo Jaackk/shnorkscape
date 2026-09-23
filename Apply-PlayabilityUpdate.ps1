@@ -8,9 +8,9 @@ $expectedTargets = @('OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar',
     'patches/classes/com/opennxt/net/login/Native950InterfaceBootstrap.class',
     'patches/classes/com/opennxt/net/login/Native950InterfaceBootstrap$Panel.class',
     'patches/classes/com/opennxt/net/login/Native950InterfaceBootstrap$Slot.class')
-$libraryUpdate=$manifest.candidate -eq 'library-followup-20260923'
+$libraryUpdate=$manifest.candidate -in @('library-followup-20260923','p0-bank-focus-20260923')
 if ($libraryUpdate) { $expectedTargets += @('cache/12/13903.dat','cache/12/13905.dat','cache/12/13909.dat','cache/12/15897.dat','cache/12/6963.dat','cache/255/12.dat') }
-if ($manifest.candidate -notin @('playability-20260923','library-followup-20260923') -or $manifest.files.Count -ne $expectedTargets.Count) { throw 'Unexpected update manifest.' }
+if ($manifest.candidate -notin @('playability-20260923','library-followup-20260923','p0-bank-focus-20260923') -or $manifest.files.Count -ne $expectedTargets.Count) { throw 'Unexpected update manifest.' }
 $planned = @()
 foreach ($entry in $manifest.files) {
     $expectedSource=if($entry.target.StartsWith('cache/')){'cache-v4/'+$entry.target.Substring(6)}else{[IO.Path]::GetFileName($entry.target)}

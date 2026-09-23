@@ -1,17 +1,18 @@
 SHNORKSCAPE - NEXT AGENT ENGINEERING CONTINUATION
 Snapshot: 2026-09-22. Read this before changing combat, client UI, LAN or saves.
 
-0. THE P0 FACT, NOT AN INFERENCE
-Ability keybinds have LIVE-FAILED again. They may activate at login/early combat,
-then cease after continued play or state changes. Click activation and the native
-yellow press square have also been intermittent. The precise transition is NOT
-proven. Do not call keybind longevity fixed because a fresh-login test passes or
-because c05df9d implemented immediate manual execution. First reproduce:
-WORKING keybind -> one controlled state change -> DEAD keybind. Record the first
-failed boundary: did the client emit no IF_BUTTON, did transport drop it, did
-dispatch reject it, or did combat refuse execution? These are different bugs.
-The current source includes useful Bug Test action-bar events. Do not compensate
-with a cosmetic yellow overlay or an unverified 950 script.
+0. P0 ROOT CAUSE CONFIRMED 2026-09-23; AUTOMATIC FIX STAGED
+Working key -> open/close ;;bank or ;;items -> dead key, while mouse still works.
+;;commands alone does NOT trigger it. Native bank onLoad CS13353 acquires keyboard
+context24; server close omitted matching CS9299 cleanup. User confirmed that
+;;cs 8841 24 0 restores the key after a fresh failure. General cleanup1364 and
+conditional8838(5) did not; broad reset1998 did, but is NOT the shipped fix.
+Both real-bank and library close now queue original CS9299 before IF_CLOSESUB.
+No combat/bar remount changes. See docs/P0-BANK-KEYBOARD-CONTEXT-20260923.md.
+Do not restart/deploy for the user: update Apply Staged Update.cmd and stage only.
+Automatic recovery after installation, repeated cycles and native visual feedback
+remain a live acceptance gate. A targeted manual recovery is not proof that the
+new JAR has been applied or that every intermittent-input problem is fixed.
 
 1. REPOSITORY, RUNTIME AND PROTECTION
 Repository: C:\Games\950OpenSource; branch main; remote
