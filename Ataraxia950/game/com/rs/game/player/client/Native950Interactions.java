@@ -134,6 +134,7 @@ public final class Native950Interactions {
     private long commandsRun, commandsRefused, commandFailures;
     private int pendingTicks;
     private Native950Containers.Snapshot displayedInventory, displayedBank, observedEquipment;
+    private boolean displayedInfiniteAmmo;
     private final java.util.Set<Integer> changedInventorySlots = new java.util.HashSet<>();
     private final java.util.Set<Integer> changedBankSlots = new java.util.HashSet<>();
 
@@ -342,6 +343,7 @@ public final class Native950Interactions {
         // A wear scheduled by InventoryOptionsHandler.handleItemOption2 ran in this
         // tick's WorldTasksManager pass (before the session drained input).
         observeEquipment("Equipped");
+        if (displayedInfiniteAmmo != player.isInfiniteAmmunition()) sendEquipment();
         observeInventory();
     }
 
@@ -829,6 +831,8 @@ public final class Native950Interactions {
 
     private boolean skillOption(WorldObject object, int option) {
         if (object == null || option < 1 || option > 5) return false;
+        if(Native950WorldTraversal.handles(object,option))return true;
+        if(Native950PhysicalBanks.accepts(object,option)&&!router.whitelistedObject(object.getId()))return true;
         if(Native950WarsRetreat.handles(object,option))return true;
         if(Native950Farming.isPatch(object))return Native950Farming.accepts(player,object,option);
         String[] options = object.getDefinitions().options;
@@ -883,7 +887,18 @@ public final class Native950Interactions {
             default: permitted=false;
         }
         if (!permitted) return;
-        if(Native950WarsRetreat.handles(object,pendingSkillOption))Native950WarsRetreat.use(player,object,pendingSkillOption);
+        if(Native950WorldTraversal.handles(object,pendingSkillOption)){
+            if("Climb".equalsIgnoreCase(Native950WorldTraversal.option(object,pendingSkillOption)))
+                productionMenu.openChoices("Choose a direction",Native950WorldTraversal.choices(player,object));
+            else Native950WorldTraversal.use(player,object,pendingSkillOption);
+        }
+        else if(Native950PhysicalBanks.accepts(object,pendingSkillOption)){
+            activeBank=object;activeNpcBank=false;remoteBank=false;
+            player.getBank().openBank();
+            if(router.bankInterfaceOpen())bankOpened("physical bank "+object.getId());
+            else activeBank=null;
+        }
+        else if(Native950WarsRetreat.handles(object,pendingSkillOption))Native950WarsRetreat.use(player,object,pendingSkillOption);
         else if(Native950Farming.isPatch(object))Native950Farming.handle(player,object,pendingSkillOption);
         else if(Native950Construction.handles(object,pendingSkillOption))productionMenu.openChoices("Construct furniture",Native950Construction.choices(player,object));
         else if(Native950Prayer.accepts(object,pendingSkillOption)){
@@ -1644,6 +1659,11 @@ public final class Native950Interactions {
 
     private void equipment(Native950Actions.InterfaceAction action, Native950ActionRouter.Binding binding) {
         Native950Containers.Snapshot worn = containers.equipmentSnapshot();
+        int supplied = Native950DevelopmentAmmo.supplied(worn.ids[3], worn.ids[13], player.isInfiniteAmmunition());
+        if (supplied >= 0 && action.slot() == 13 && action.itemId() == supplied) {
+            channel.write(Native950Packets.gameMessage(0, "Infinite ammunition is supplied by your development mode. Disable ;;infammo to show your own ammo."));
+            sendEquipment(); return;
+        }
         if (!Native950ActionRouter.exactClaim(action.itemId(), action.slot(), worn)) {
             reject("The equipment in that slot has changed"); sendEquipment(); return;
         }
@@ -1780,6 +1800,9 @@ public final class Native950Interactions {
     private void sendEquipment() {
         if (content.equipment == null) return;
         Native950Containers.Snapshot state = containers.equipmentSnapshot();
+        int supplied = Native950DevelopmentAmmo.supplied(state.ids[3], state.ids[13], player.isInfiniteAmmunition());
+        if (supplied >= 0) { state.ids[13] = supplied; state.amounts[13] = Integer.MAX_VALUE; }
+        displayedInfiniteAmmo = player.isInfiniteAmmunition();
         channel.write(Native950Packets.inventoryFull(content.equipment.containerId, false, state.ids, state.amounts));
         if (equipmentUiReady)
             for (Native950Packets.Packet packet : content.equipment.refresh) channel.write(packet);
@@ -1831,11 +1854,9 @@ public final class Native950Interactions {
     }
 
     private boolean validBank(WorldObject object) {
-        if (object == null || object.getPlane() != player.getPlane() || !router.whitelistedObject(object.getId())) return false;
+        if (object == null || object.getPlane() != player.getPlane() || !Native950PhysicalBanks.isBank(object)) return false;
         if (Math.abs(object.getX() - player.getX()) > 48 || Math.abs(object.getY() - player.getY()) > 48) return false;
-        String[] options = object.getDefinitions().options;
-        return options != null && options.length > 1 && "Use".equals(options[1])
-                && findObject(object.getId(), object.getX(), object.getY()) == object;
+        return findObject(object.getId(), object.getX(), object.getY()) == object;
     }
 
     private WorldObject findObject(int id, int x, int y) {

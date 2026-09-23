@@ -1,0 +1,25 @@
+﻿{
+    "candidate":  "playability-20260923",
+    "files":  [
+                  {
+                      "source":  "ataraxia-950-1.0-UNTRACKED.jar",
+                      "target":  "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
+                      "sha256":  "B64686313DF712D716958048A6F16E41D902D21DAAEC8D1C8672826DF0AF9143"
+                  },
+                  {
+                      "source":  "Native950InterfaceBootstrap$Panel.class",
+                      "target":  "patches/classes/com/opennxt/net/login/Native950InterfaceBootstrap$Panel.class",
+                      "sha256":  "D116E948AC269989480755FEBF1E81D7607B59C0B614559E434E4FED87486EEA"
+                  },
+                  {
+                      "source":  "Native950InterfaceBootstrap$Slot.class",
+                      "target":  "patches/classes/com/opennxt/net/login/Native950InterfaceBootstrap$Slot.class",
+                      "sha256":  "621611227A98CCB0658055667E015108B90D61F962C642BA5EEDB05294E500B5"
+                  },
+                  {
+                      "source":  "Native950InterfaceBootstrap.class",
+                      "target":  "patches/classes/com/opennxt/net/login/Native950InterfaceBootstrap.class",
+                      "sha256":  "574000BAD9A1E048D1151AE5AC98904BD472EB984C7C7F84BE29AAE4C73CDDD4"
+                  }
+              ]
+}

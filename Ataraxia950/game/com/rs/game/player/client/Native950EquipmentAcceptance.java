@@ -29,10 +29,13 @@ public final class Native950EquipmentAcceptance {
         require(NativeCacheVerification.isEnforced(),"Cache verification must remain enabled");
         System.setProperty(Native950World.SPAWNS_PROPERTY,"false");
         System.setProperty(Native950World.LEGACY_SPAWNS_PROPERTY,"false");
+        System.setProperty(Native950DevelopmentCommands.PROPERTY,"true");
+        System.setProperty(Native950AdminCommands.ACCOUNTS,"hatprobe");
         Cache.initFlatReadOnly(Paths.get(args[0]));
         Native950World.getInstance().execute(()->{
             BodyDefinitions.init();
             try(Fixture f=new Fixture()){check(f);}
+            try(Fixture f=new Fixture()){developmentAmmo(f);}
             require(World.getPlayers().isEmpty(),"Ephemeral equipment player leaked");
             return null;
         }).get(90,TimeUnit.SECONDS);
@@ -118,6 +121,32 @@ public final class Native950EquipmentAcceptance {
             f.player.resetWalkSteps();f.run(1);
         }
     }
+    private static void developmentAmmo(Fixture f) {
+        for(int skill=0;skill<com.rs.game.player.Skills.SKILL_COUNT;skill++)f.player.getSkills().setXpWithoutRefresh(skill,200000000);
+        Native950AdminCommands.handle(f.player,f.channel,new String[]{"almighty"});f.run(1);
+        require(f.player.isInfiniteAmmunition(),"Almighty did not enable ammunition");
+        for(int weapon:new int[]{16337,53351,63325,8880,806,1277}) {
+            f.give(weapon);f.button(2,1473,5,f.slot(weapon),weapon);f.run(2);
+            require(f.worn(3)==weapon,"Development weapon exchange failed "+weapon);
+            int expected=weapon==16337||weapon==53351?882:weapon==63325?877:weapon==8880?8882:-1;
+            require(f.lastEquipment[13]==expected,"Wrong native supplied ammo for "+weapon);
+            require(f.worn(13)==-1&&f.input.saveSnapshot().equipmentIds()[13]==-1,"Virtual ammunition entered equipment/save");
+            if(expected>=0){
+                f.button(1,1462,31,13,expected);f.run(1);
+                require(f.total(expected)==0,"Virtual ammo removal created an item");
+                Native950AdminCommands.handle(f.player,f.channel,new String[]{"infammo"});f.run(1);
+                require(f.lastEquipment[13]==-1,"Disabling supply left stale client ammo");
+                Native950AdminCommands.handle(f.player,f.channel,new String[]{"infammo"});f.run(1);
+                require(f.lastEquipment[13]==expected,"Re-enabling supply did not refresh client ammo");
+            }
+        }
+        f.give(882);f.button(2,1473,5,f.slot(882),882);f.run(1);
+        f.button(2,1473,5,f.slot(63325),63325);f.run(1);
+        require(f.lastEquipment[13]==877&&f.worn(13)==882,"Supply failed to preserve incompatible owned ammunition");
+        Native950AdminCommands.handle(f.player,f.channel,new String[]{"almighty"});f.run(1);
+        require(!f.player.isInfiniteAmmunition()&&f.lastEquipment[13]==882&&f.total(882)==1,"Disabling almighty did not restore owned ammunition");
+        System.out.println("PASS: almighty ammo follows bows/crossbows, thrown/melee unchanged, toggle refresh, virtual removal refusal, owned ammo/save preservation");
+    }
     private static void restore(Native950Save saved,Native950ItemCatalog catalog){
         EmbeddedChannel channel=new EmbeddedChannel();try{
             Player restored=Player.createNative950("hatprobe",new WorldTile(3217,3258,0),channel);
@@ -146,7 +175,9 @@ public final class Native950EquipmentAcceptance {
         final int[] incoming={9,5,0,3},outgoing={59,55,50,53};
         final Native950Isaac clientCipher=new Native950Isaac(incoming),cipher=new Native950Isaac(outgoing);
         final Native950GameTransport transport=new Native950GameTransport(new Native950Isaac(incoming),new Native950Isaac(outgoing),Thread.currentThread());
-        final EmbeddedChannel channel=new EmbeddedChannel(transport);
+        final EmbeddedChannel channel=new EmbeddedChannel(transport){
+            @Override protected java.net.SocketAddress remoteAddress0(){return new java.net.InetSocketAddress("127.0.0.1",43650);}
+        };
         final Player player;final Native950Interactions input;final Native950ItemCatalog catalog;
         int[] lastEquipment;
         Fixture(){

@@ -201,7 +201,7 @@ public final class Native950AdminCommands {
                 p.setInfiniteCombatRunes(enabled);p.setInfiniteAmmunition(enabled);
                 if(enabled){heal(p);p.getCombatDefinitions().setSpecialAttackPercentage(100);}
                 reply(channel,"<col=ffd166>ALMIGHTY "+state(enabled)+"</col> - god, prayer, adrenaline, run energy, combat runes and ammo.");
-                if(enabled)reply(channel,"Equip the correct ammo/weapon first. Modes reset on logout. ;;almighty again disables all six.");
+                if(enabled)reply(channel,"Compatible arrows/bolts are supplied automatically for your ranged weapon. Modes reset on logout. ;;almighty again disables all six.");
                 break;
             case "infrunes":
                 p.setInfiniteCombatRunes(!p.isInfiniteCombatRunes());
@@ -211,7 +211,7 @@ public final class Native950AdminCommands {
                 reply(channel,"Infinite run energy "+state(p.isInfiniteRunEnergy())+".");break;
             case "infammo":
                 p.setInfiniteAmmunition(!p.isInfiniteAmmunition());
-                reply(channel,"Infinite ammunition "+state(p.isInfiniteAmmunition())+". Equip compatible ammo or a thrown weapon first.");break;
+                reply(channel,"Infinite ammunition "+state(p.isInfiniteAmmunition())+". Compatible arrows/bolts follow your equipped ranged weapon automatically.");break;
             case "god":
                 p.setDevelopmentGodMode(!p.isDevelopmentGodMode());
                 if (p.isDevelopmentGodMode()) { p.setHitpoints(p.getMaxHitpoints()); p.refreshHitPoints(); }

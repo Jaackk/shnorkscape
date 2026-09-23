@@ -15,6 +15,21 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public final class Native950SpawnCommandsTest {
+    @Test public void compactFootprintsTouchWithoutOverlappingInEveryFacing(){
+        WorldTile anchor=new WorldTile(3200,3200,0);
+        for(int size:new int[]{1,2,5,16,64})for(int fx=-1;fx<=1;fx++)for(int fy=-1;fy<=1;fy++){
+            if(fx==0&&fy==0)continue;
+            java.util.List<WorldTile> placed=new java.util.ArrayList<>();
+            for(int index=0;index<5;index++){
+                WorldTile next=Native950DiagnosticSpawns.compactTile(anchor,size,fx,fy,index);
+                assertFalse(Native950DiagnosticSpawns.overlaps(next,size,anchor,1,0));
+                for(WorldTile before:placed)assertFalse(Native950DiagnosticSpawns.overlaps(next,size,before,size,0));
+                if(index==0)assertTrue("First footprint must touch the player's edge",Native950DiagnosticSpawns.overlaps(next,size,anchor,1,1));
+                placed.add(next);
+            }
+            assertEquals(size,Math.max(Math.abs(placed.get(0).getX()-placed.get(1).getX()),Math.abs(placed.get(0).getY()-placed.get(1).getY())));
+        }
+    }
     private String previous;
     private final EmbeddedChannel channel = new EmbeddedChannel() {
         @Override protected SocketAddress remoteAddress0() { return new InetSocketAddress("127.0.0.1",43650); }

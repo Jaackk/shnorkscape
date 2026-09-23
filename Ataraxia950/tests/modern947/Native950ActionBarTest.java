@@ -37,9 +37,24 @@ public class Native950ActionBarTest {
         assertEquals(6,Native950ActionBar.bookType(1461,1));
         assertEquals(6,Native950ActionBar.bookType(1459,1));
         assertEquals(7,Native950ActionBar.bookType(1207,1));
-        assertEquals(7,Native950ActionBar.bookType(1215,1));
+        assertEquals(7,Native950ActionBar.bookType(1211,1));
+        assertEquals(-1,Native950ActionBar.bookType(1215,1));
         assertEquals(16973,Native950ActionBar.enumFor(7));
         assertEquals(-1,Native950ActionBar.bookType(1461,2));
+    }
+    @Test public void savedNecromancyCategoryUsesNativeType17WithoutChangingOtherSlots(){
+        Map<String,Integer> legacy=new HashMap<>();
+        legacy.put("actionBar.0",Native950ActionBar.pack(7,2));
+        legacy.put("actionBar.1",Native950ActionBar.pack(6,263));
+        Native950ActionBar bar=new Native950ActionBar();bar.restore(legacy);
+        Map<String,Integer> saved=new HashMap<>();bar.writeSettings(saved);
+        Native950ActionBar restored=new Native950ActionBar();restored.restore(saved);
+        assertEquals(Native950ActionBar.pack(7,2),restored.slot(0,0));
+        assertEquals((17<<17)|(2<<4),Native950ActionBar.clientShortcut(restored.slot(0,0)));
+        assertEquals((6<<17)|(263<<4),Native950ActionBar.clientShortcut(restored.slot(0,1)));
+        assertEquals((17<<17)|(8191<<4),Native950ActionBar.clientShortcut(Native950ActionBar.pack(7,8191)));
+        Map<String,Integer> again=new HashMap<>();restored.writeSettings(again);
+        assertEquals(saved,again);
     }
     @Test public void sameSlotRearrangementIsRecognisedAsANoOp(){
         assertTrue(Native950ActionBar.isNoOpRearrangement(8,8));
@@ -150,15 +165,17 @@ public class Native950ActionBarTest {
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1886,1,0,264,8617038)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1459,1,0,264,Native950ActionBar.MAGIC_BOOK_EVENTS)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1207,1,0,264,Native950ActionBar.ABILITY_EVENTS)));
-            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1215,1,0,264,Native950ActionBar.ABILITY_EVENTS)));
-            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1887,7,7,10,10319874)));
-            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1887,1,0,264,Native950ActionBar.ABILITY_EVENTS)));
+            for(int face:new int[]{1211,1214,1219,1220,1221}){
+                assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(face,1,0,264,Native950ActionBar.ABILITY_EVENTS)));
+                assertEquals(7,Native950ActionBar.bookType(face,1));
+            }
+            assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1887,1,0,264,Native950ActionBar.MAGIC_BOOK_EVENTS)));
             assertTrue(hasPacket(packets,Native950Packets.interfaceEvents(1450,3,0,264,Native950ActionBar.ABILITY_EVENTS)));
             assertEquals(1,Native950ActionBar.bookType(1881,1));
             assertEquals(3,Native950ActionBar.bookType(1449,1));
             assertEquals(4,Native950ActionBar.bookType(1882,1));
             assertEquals(6,Native950ActionBar.bookType(1885,1));
-            assertEquals(7,Native950ActionBar.bookType(1887,1));
+            assertEquals(6,Native950ActionBar.bookType(1887,1));
             assertEquals(5,Native950ActionBar.bookType(1456,1));
         }finally{c.finishAndReleaseAll();}
     }

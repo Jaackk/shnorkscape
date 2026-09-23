@@ -80,14 +80,14 @@ public final class Native950DiagnosticSpawns {
         byte[] facing=Utils.getDirection(player.getDirection());
         int fx=Integer.signum(facing[0]),fy=Integer.signum(facing[1]);
         if(fx==0&&fy==0)fy=1;
-        int sx=fy,sy=-fx,pitch=size+2,created=0;
+        int created=0;
         String lastFailure=null,name=null;
-        for(int row=1;row<=12&&created<amount;row++)for(int column=0;column<=6&&created<amount;column++){
-            int[] sides=column==0?new int[]{0}:new int[]{-column,column};
-            for(int side:sides){
-                if(created>=amount)break;
-                WorldTile tile=new WorldTile(player.getX()+fx*row*pitch+sx*side*pitch,
-                        player.getY()+fy*row*pitch+sy*side*pitch,player.getPlane());
+        // A developer command places one compact row, touching footprint edges.
+        // It deliberately ignores gameplay clipping; ordinary spawns and dummies
+        // keep their own collision policy. Try both sides to cope with world edges
+        // and already occupied footprints without scattering NPCs into distant rows.
+        for(int position=0;position<256&&created<amount;position++){
+                WorldTile tile=compactTile(player,size,fx,fy,position);
                 if(!spawnTileAvailable(player,tile,size))continue;
                 NPC npc=null;
                 try {
@@ -99,22 +99,29 @@ public final class Native950DiagnosticSpawns {
                     if(npc!=null&&World.containsNPC(npc))Native950World.getInstance().removeDiagnosticNpc(npc);
                     lastFailure=unavailable.getMessage();
                 }
-            }
         }
-        if(created==0)return lastFailure==null?"Move to a larger clear area before spawning this NPC.":"Cannot spawn NPC "+id+": "+lastFailure;
-        return "Spawned "+created+"/"+amount+" "+name+" (NPC "+id+") in clear tiles ahead of you."
+        if(created==0)return lastFailure==null?"No unoccupied in-world footprint ahead of you.":"Cannot spawn NPC "+id+": "+lastFailure;
+        return "Spawned "+created+"/"+amount+" "+name+" (NPC "+id+") in a compact row ahead of you."
                 +(repeat?" These test NPCs respawn after death.":" They do not respawn after death.")
                 +(created<amount?" Some positions were blocked or the diagnostic limit was reached.":"");
     }
 
+    static WorldTile compactTile(WorldTile player,int size,int fx,int fy,int position){
+        if(size<1||size>64||position<0)throw new IllegalArgumentException("Invalid diagnostic footprint");
+        fx=Integer.signum(fx);fy=Integer.signum(fy);if(fx==0&&fy==0)fy=1;
+        int side=position==0?0:((position+1)/2)*(position%2==1?1:-1);
+        int x=player.getX()+(fx>0?1:fx<0?-size:-(size-1)/2);
+        int y=player.getY()+(fy>0?1:fy<0?-size:-(size-1)/2);
+        return new WorldTile(x+fy*side*size,y-fx*side*size,player.getPlane());
+    }
+
     private static boolean spawnTileAvailable(Player player,WorldTile tile,int size) {
-        if(tile.getX()<0||tile.getY()<0||tile.getX()+size>16384||tile.getY()+size>16384
-                ||!World.canMoveNPC(tile,size))return false;
-        if(overlaps(tile,size,player,1,1))return false;
+        if(!fits(tile,size,size))return false;
+        if(overlaps(tile,size,player,1,0))return false;
         for(Player other:World.getPlayers())if(other!=null&&!other.hasFinished()&&other.getPlane()==tile.getPlane()
-                &&overlaps(tile,size,other,Math.max(1,other.getSize()),1))return false;
+                &&overlaps(tile,size,other,Math.max(1,other.getSize()),0))return false;
         for(NPC other:World.getNPCs())if(other!=null&&!other.hasFinished()&&other.getPlane()==tile.getPlane()
-                &&overlaps(tile,size,other,Math.max(1,other.getSize()),1))return false;
+                &&overlaps(tile,size,other,Math.max(1,other.getSize()),0))return false;
         return true;
     }
 

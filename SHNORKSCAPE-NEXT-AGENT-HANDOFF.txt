@@ -368,3 +368,30 @@ manual input and shared-attacker changes are implemented/automated-tested;
 they did NOT establish lasting keybind/yellow-feedback reliability. The first
 hand-off action should be a bounded P0 reproduction, not another sweeping
 ability rewrite or unrelated workspace investigation.
+
+10. PLAYABILITY CHECKPOINT — 23 SEPTEMBER 2026 (LATEST)
+Read docs/PLAYABILITY-PASS-20260923.md for the implementation and validation.
+The candidate has been deployed after Jack confirmed both clients closed;
+server29784/client28620 started after verified installation. Engine SHA256:
+B64686313DF712D716958048A6F16E41D902D21DAAEC8D1C8672826DF0AF9143.
+All four files match protocol-analysis/playability-candidate-20260923.json.
+Backup: backups/playability-update-20260923-012443-121.
+1463 Java tests passed, plus cache equipment/ammo, physical-bank, traversal,
+diagnostic-spawn and native lobby wire/mount checks. Live behavior still pending.
+
+P0 intermittent keybind failure remains UNRESOLVED: keys and mouse worked in
+this session, including bar switches. Dark ranged icons had a separate cause:
+Jack confirmed no ammo equipped. Almighty/infammo now project compatible ammo
+into the native client equipment container while preserving real items/saves.
+
+CORRECTION TO EARLIER HANDOFF:1887 is Teleport Spells, NOT Necromancy.
+Native movable Necromancy interfaces1219/1220/1221 use workspace slots42/43/44;
+Powers counterparts1207/1211/1214. All use exact950 categories4/14/15 and enum16973.
+The native shortcut type is17; saved/internal type7 is converted on the wire.
+The correct native panels are mounted without changing saved visibility.
+
+Also implemented: compact developer NPC rows ignoring gameplay clipping while
+preserving bounds/footprints; generic physical bank booth/chest/counter routing;
+initial Lumbridge/southwestVarrock reciprocal ladder/stair traversal and explicit
+Lumbridge cellar round trip. Broader boss/content/mechanics work remains.
+Do not claim P0 repaired, all abilities implemented, or new visuals live-proven.

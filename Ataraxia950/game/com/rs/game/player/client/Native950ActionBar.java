@@ -72,7 +72,13 @@ public final class Native950ActionBar {
      * server value.  Repacking the type into bits 0..3 makes every ability type zero,
      * which the client renders as an empty shortcut.
      */
-    static int clientShortcut(int packed){return packed;}
+    static int clientShortcut(int packed){
+        // The compact save/catalogue category 7 predates the native mapping and must
+        // remain stable for existing bars. Exact950 CS2 6995 switch1 routes type17
+        // to enum16973; native type7 instead selects enum6739. Translate only at
+        // the wire boundary, retaining the full 13-bit key and the saved schema.
+        return (packed>>>17)==7 ? (17<<17)|(packed&0x1ffff) : packed;
+    }
     static int enumFor(int type){return type==1?10147:type==3?6736:type==4?6737:type==5?6738:type==6?6740:type==7?16973:-1;}
     static int bookType(int face,int component){
         // Recorded in the live 950 Bug Test session while dragging Flurry and Dismember.
@@ -84,8 +90,8 @@ public final class Native950ActionBar {
         // Exact950 scripts564 -> 8426 -> 8437: book12=defence, book13=constitution.
         if(face==1449)return 3;
         if(face==1882)return 4;
-        if(face==1207||face==1215||face==1887)return 7;
-        return face==1459||face==1461||face==1884||face==1885||face==1886?6:-1;
+        if(face==1207||face==1211||face==1214||face==1219||face==1220||face==1221)return 7;
+        return face==1459||face==1461||face==1884||face==1885||face==1886||face==1887?6:-1;
     }
     static int bookType(Player p,int face,int component){
         // Combined defensive books use native category 0/1; these are not ranged books.
@@ -121,13 +127,10 @@ public final class Native950ActionBar {
         for(int face:new int[]{1452,1456})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,RANGED_BOOK_EVENTS));
         for(int face:new int[]{1449,1882,1880,1883})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
         for(int face:new int[]{1880,1883})c.write(Native950Packets.interfaceEvents(face,7,7,8,2));
-        for(int face:new int[]{1459,1461,1884,1885,1886})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,MAGIC_BOOK_EVENTS));
-        // The cache-pinned Powers Necromancy page is 1207, while 1887 is the HUD book.
-        for(int face:new int[]{1207,1215,1887})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
-        // 1887:6 onLoad runs 8422 for native Necromancy category 10. Keep its
-        // category selector interactable like the sibling native ability books.
-        c.write(Native950Packets.interfaceEvents(1887,7,7,16,2));
-        c.write(Native950Packets.interfaceEvents(1887,7,7,10,10319874));
+        for(int face:new int[]{1459,1461,1884,1885,1886,1887})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,MAGIC_BOOK_EVENTS));
+        // Exact950 version6 hooks: Powers1207/1211/1214 and HUD1219/1220/1221
+        // initialize native categories4/14/15, all using Necromancy enum16973.
+        for(int face:new int[]{1207,1211,1214,1219,1220,1221})c.write(Native950Packets.interfaceEvents(face,1,0,BOOK_LAST_SLOT,ABILITY_EVENTS));
         for(int face:new int[]{1430,1436})for(int i=0;i<SLOTS;i++)for(int component:new int[]{(face==1430?65:19)+i*13,(face==1430?66:20)+i*13})
             c.write(Native950Packets.interfaceEvents(face,component,-1,1,ABILITY_EVENTS|(1<<21)));
         for(int slot=0;slot<SLOTS;slot++)for(int component:NATIVE_SLOT_EVENT_COMPONENTS[slot])

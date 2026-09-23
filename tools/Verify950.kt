@@ -72,9 +72,18 @@ fun main() {
  verify("IF_SETEVENTS run orb 1465:15", "00020000ffffff7f0f00b905"){IfSetevents.Codec(fields("IF_SETEVENTS")).encode(IfSetevents(InterfaceHash((1465 shl 16) or 15),-1,-1,2),it)}
  println("PASS IF_SETEVENTS 950 wire vectors")
  // Inspect the actual bridge bootstrap, independently of the Java menu constant's own tests.
- val menuSlots=(Native950InterfaceBootstrap.hiddenSlots+listOf(1000,1004,2,3,4,5,18)).distinct()
+ val menuSlots=(Native950InterfaceBootstrap.hiddenSlots+listOf(1000,1004,2,3,4,5,18,42,43,44)).distinct()
    .mapIndexed { index,key -> key to Native950InterfaceBootstrap.Slot((1477 shl 16) or (100+index),(1477 shl 16) or (400+index)) }.toMap()
- val backpackEvents=Native950InterfaceBootstrap.packets(menuSlots).filter {
+ val bootstrapPackets=Native950InterfaceBootstrap.packets(menuSlots)
+ for((key,face) in listOf(42 to 1219,43 to 1220,44 to 1221)) {
+   val slot=menuSlots.getValue(key)
+   val expected=com.rs.network.protocol.modern950.Native950Packets.openSub(1477,slot.attach and 65535,face,true)
+   check(bootstrapPackets.count { it.type()==expected.type() && it.payload().contentEquals(expected.payload()) }==1) { "Missing native Necromancy book $face" }
+   val show=com.rs.network.protocol.modern950.Native950Packets.hideInterface(1477,slot.wrapper and 65535,false)
+   check(bootstrapPackets.none { it.type()==show.type() && it.payload().contentEquals(show.payload()) }) { "Necromancy mount forced workspace visibility" }
+ }
+ println("PASS native Necromancy book mounts preserve workspace visibility")
+ val backpackEvents=bootstrapPackets.filter {
    it.type().opcode()==24 && ByteBufUtil.hexDump(io.netty.buffer.Unpooled.wrappedBuffer(it.payload())).endsWith("0500c105")
  }
  check(backpackEvents.size==1 && backpackEvents.single().payload().contentEquals(ByteBufUtil.decodeHexDump("37fe006d001b00800500c105"))) { "backpack bootstrap must enable native Use and all authored operations" }

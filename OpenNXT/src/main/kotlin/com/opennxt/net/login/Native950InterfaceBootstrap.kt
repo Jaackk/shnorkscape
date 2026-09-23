@@ -37,6 +37,10 @@ internal object Native950InterfaceBootstrap {
         // them unattached creates empty Melee/Ranged/Defensive frames while Magic loads.
         Panel(6, 1460, true), Panel(7, 1452, true), Panel(39, 1880, true),
         Panel(33, 1884, true), Panel(34, 1885, true), Panel(35, 1887, true), Panel(36, 1886, true),
+        // Exact950 CS8423 maps these native books to slots42/43/44. Their
+        // version6 onLoad hooks call8422 with categories4/14/15 (enum16973).
+        // 1887 is Teleport Spells (category10), not a Necromancy book.
+        Panel(42, 1219, true), Panel(43, 1220, true), Panel(44, 1221, true),
         Panel(18, 137, true)
     )
 

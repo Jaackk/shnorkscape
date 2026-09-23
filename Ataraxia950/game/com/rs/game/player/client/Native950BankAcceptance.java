@@ -47,6 +47,15 @@ public final class Native950BankAcceptance {
                 require(state.handlerFailures==0&&state.unhandledActions==0&&state.unmatchedPairs==0,
                         "Bank action failed or bypassed routing: "+state.routerReport);
             }
+            try(Fixture f=new Fixture(36786)) {
+                f.seed(0,new Item(199,2));f.button(0,199,2);
+                require(f.amount(199)==1,"Ordinary Bank booth could not withdraw");
+                f.control(39);require(f.amount(199)==0&&f.bankAmount(199)==2,"Ordinary Bank booth could not deposit");
+                f.player.setLocation(f.player.getX()+20,f.player.getY()+20,0);World.updateEntityRegion(f.player);
+                f.nextTick();f.button(0,199,2);
+                require(f.amount(199)==0,"Physical bank retained remote authority after leaving reach");
+                System.out.println("PASS: cache-name Bank booth route, deposit/withdraw and reach-scoped session");
+            }
             require(World.getPlayers().isEmpty(),"Ephemeral bank player was not cleaned up");
             return null;
         }).get(90,TimeUnit.SECONDS);
@@ -273,7 +282,8 @@ public final class Native950BankAcceptance {
         final Player player;
         final Native950Interactions input;
         final WorldObject chest;
-        Fixture() {
+        Fixture() {this(79036);}
+        Fixture(int bankId) {
             player=Player.createNative950("bankuitest",new WorldTile(3217,3258,0),channel);
             player.setActive(true);player.setRunning(true);Native950World.installVarpSink(player);
             World.addNative950Player(player,1);World.updateEntityRegion(player);
@@ -281,12 +291,12 @@ public final class Native950BankAcceptance {
             Native950ItemCatalog catalog=new Native950ItemCatalog(Collections.<Native950ItemCatalog.Entry>emptyList()).withLegacyDrops();
             for(int id:new int[]{199,201,215,1511,526})require(catalog.get(id)!=null,"Actual950 item metadata missing: "+id);
             input=new Native950Interactions(player,channel,new Native950Content(catalog,bankUi()),null,null);
-            input.bootstrap();chest=placeChest();drain();output.clear();
+            input.bootstrap();chest=placeChest(bankId);drain();output.clear();
         }
-        private WorldObject placeChest() {
+        private WorldObject placeChest(int bankId) {
             for(int y=3255;y<3290;y++)for(int x=3205;x<3250;x++) {
-                WorldObject candidate=new WorldObject(79036,10,0,x,y,0);
-                require("Use".equals(candidate.getDefinitions().options[1]),"Actual950 bank chest option2 is no longer Use");
+                WorldObject candidate=new WorldObject(bankId,10,0,x,y,0);
+                require(Native950PhysicalBanks.accepts(candidate,2),"Actual950 physical bank option2 is not supported");
                 boolean clear=true;
                 for(int dx=-1;dx<=candidate.getDefinitions().sizeX;dx++)
                     for(int dy=-1;dy<=candidate.getDefinitions().sizeY;dy++)

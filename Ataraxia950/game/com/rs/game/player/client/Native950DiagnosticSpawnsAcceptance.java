@@ -74,7 +74,7 @@ public final class Native950DiagnosticSpawnsAcceptance {
         require(world.nativeNpcs().size()==before+3,"Amount did not register three distinct NPCs");
         for(int i=before;i<world.nativeNpcs().size();i++)for(int j=0;j<i;j++)
             require(!Native950DiagnosticSpawns.overlaps(world.nativeNpcs().get(i),world.nativeNpcs().get(i).getSize(),
-                    world.nativeNpcs().get(j),world.nativeNpcs().get(j).getSize(),1),"Spawned NPCs overlap");
+                    world.nativeNpcs().get(j),world.nativeNpcs().get(j).getSize(),0),"Spawned NPCs overlap");
         String repeat=Native950DiagnosticSpawns.spawnNpcs(f.player,12353,1,true);
         require(repeat.startsWith("Spawned 1/1"),repeat);
         require(world.nativeNpcs().size()==before+4,"Repeat NPC was not registered as a distinct encounter");
