@@ -1,3 +1,57 @@
+SHNORKSCAPE - LIVE REFINEMENT 2026-09-23 (LATEST; historical notes below are superseded)
+
+Authoritative 18:41-18:50 session: Dive chosen-tile movement LIVE PASS;
+Death Skulls travelling/bouncing LIVE PASS; queuehold ring LIVE PASS;
+conjure target switching LIVE PASS; Revolution functioning; bank/items
+context24 keybind recovery LIVE PASS. Do not reopen passed investigations.
+Ordinary manual ring remains live pending. Conjure attack presentation,
+world soul effects, conduit icon availability and native buff panels failed.
+Four Dive arrivals dismissed armies;277 conjure attacks lacked animation.
+
+Source checkpoint825e684 pushed. Pre-edit verified backup:
+backups/pre-edit-20260923-190314-765 (baseline c9916c4).
+Read docs/COMBAT-LIVE-REFINEMENT-20260923.md, then the ONE checklist:
+docs/COMBAT-REFINEMENT-LIVE-CHECKLIST-20260923.md.
+
+Implemented: relocation reason independent of reset network masks;
+conjures survive actual Dive/Surge/Escape arrivals, following tick and walking;
+real teleports still clean up. Compact clear distinct spawn/recovery footprints
+reserve pending destinations. Native11218 conduit flag now shares strict
+slot5/item8898+8899 server detection (9107 is NOT the conduit item flag).
+Soul counts publish persistent spot slot4 per viewer/change, including late
+join/re-entry/reused index and clears. Native graphics7866-7870/seq35465 are
+an evidence-backed count-family inference; physical rendering remains pending.
+Mount exact native284/291 panels through slots1009/1038; retain saved layouts.
+Shared10624/4252 effect lifecycle,9379 Anticipation/Devotion timer, correct
+Living Death48339 identity11059 and separate native buff structs.
+Screenshot helper now recognises workspace-diag-v5 Vulkan process.
+
+1521 JUnit tests,0 failures/errors,2 skipped.1938 real-cache combat checks,
+226 activations,144 projectiles. Ordinary Touch->queued Finger preserves
+Necrosis while queued and consumes on execution; native marker/activation/
+cooldown packets pass. Soul1-5->0 reaches both full player frame streams.
+22 protocol checks and eight broader cache gates PASS.
+See protocol-analysis/combat-refinement-validation-20260923.json.
+
+Stage: dist/combat-live-successor-refinement-20260923;11 pinned files;
+Apply Staged Update.cmd --check-only PASS. Nothing installed/restarted.
+Running JAR unchanged:C086881CD0510C592B1F8CA17652133E04E10D8D47AEC077668BF87E57F2011F.
+Candidate JAR:B08E28B28B112B498057900265553C0B2C73BE919A179FED3E2369C333A5B106.
+User applies the update. Do not restart/install without their instruction.
+
+Remaining: exact conjure actor attacks/projectiles, actor spawn/despawn/command
+FX remain UNPROVEN. Cache/BAS/cosmetic/Undercut/public searches did not prove
+identities; do NOT substitute Rasial or guessed generic undead sequences.
+Companion idle/follow assets remain pinned. New world effects/panels need live
+Vulkan acceptance; variable Barricade countdown and some effect stack labels
+remain partial.20/85 admitted definitions lack animation bindings; all bound
+graphics pass identity gate. Generated presentation-gap report and canonical
+matrix retain PARTIAL/MISSING; no COMPLETE promotion. Deep incantations,
+Zombie poison and Phantom command scaling still incomplete. Prioritise these
+remaining evidenced gaps after the single successor acceptance, not NPC expansion.
+
+--- HISTORICAL HANDOFF BELOW ---
+
 SHNORKSCAPE - LIVE COMBAT SUCCESSOR 2026-09-23 (LATEST; supersedes historical notes below)
 
 User acceptance of installed combat-completion candidate:

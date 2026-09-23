@@ -1,0 +1,55 @@
+{
+  "date": "2026-09-23",
+  "mode": "offline; live server preserved",
+  "sourceCommit": "825e6846efcb2651c11526e96b099b28eb15e9bf",
+  "junit": {
+    "tests": 1521,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2
+  },
+  "combat": {
+    "checks": 1938,
+    "activations": 226,
+    "projectiles": 144
+  },
+  "protocolChecks": 22,
+  "gates": {
+    "Bank": "PASS",
+    "LibraryFollowup": "PASS",
+    "Equipment": "PASS",
+    "ExitUi": "PASS",
+    "CombatStyles": "PASS",
+    "DiagnosticSpawns": "PASS",
+    "World": "PASS",
+    "Melee --bosses": "PASS",
+    "Dive/Surge/Escape + walking + real teleport + recovery": "PASS",
+    "two-viewer residual souls 1-5 then clear": "PASS",
+    "ordinary queue + Finger cost on execution + activation/cooldown": "PASS",
+    "strict conduit varp publication + player isolation": "PASS",
+    "persistent soul re-entry/index reuse/concurrent cast": "PASS",
+    "native buff/debuff bootstrap and effect timers": "PASS",
+    "packaged candidate JAR combat gate": "PASS: 1938 checks"
+  },
+  "melee": {
+    "ticks": 1491,
+    "encryptedFrames": 8230
+  },
+  "builtJarSha256": "b08e28b28b112b498057900265553c0b2c73be919a179fed3e2369c333a5b106",
+  "unchangedDeployedJarSha256": "c086881cd0510c592b1f8ca17652133e04e10d8d47aec077668bf87e57f2011f",
+  "staging": {
+    "candidate": "combat-live-successor-refinement-20260923",
+    "files": 11,
+    "checkOnly": "PASS",
+    "installed": false
+  },
+  "serverRestarted": false,
+  "productionCharactersLoadedOrEdited": false,
+  "liveAcceptance": "PENDING; preserve accepted 18:41-18:50 baseline in combat-live-refinement-20260923.json",
+  "remaining": [
+    "Exact conjure actor attacks/spawn/despawn/command effect bindings unresolved",
+    "New soul world graphics and native panels need Vulkan acceptance",
+    "Variable Barricade timer and some companion/Revenge stack labels partial",
+    "Dive animation, remaining presentation gaps, incantations and other documented Necromancy mechanics incomplete"
+  ]
+}

@@ -1,4 +1,4 @@
-# Successor live check ? 23 September 2026
+# Successor live check - 23 September 2026
 
 Apply the staged candidate yourself after closing clients and stopping the server. Start normally, enable `;;bugtest`, and mark failures with `;;bug <short-note>`. Keep Revolution off for the manual queue/resource checks. Do not enable `;;almighty` for the Necrosis-cost check.
 
