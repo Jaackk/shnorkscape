@@ -426,3 +426,22 @@ Apply Staged Update.cmd in the game folder, then let Jack apply it and relaunch.
 Do not request an agent-led relaunch each time. Keep the command/manifest pointing
 to the latest tested candidate and report what it installs. Jack manages client
 closure and Stop.cmd; the installer still refuses replacement while running.
+
+11. DEVELOPER EQUIPMENT LIBRARY CHECKPOINT - 23 SEPTEMBER 2026
+Jack LIVE-CONFIRMED tier-aware almighty ammo and explicitly authorized starting
+the attached ;;items prompt. The earlier wait-before-prompt gate is fulfilled.
+The new mockup and subsequent instruction prioritize clean, useful first screens
+over maximum item count. Read docs/EQUIPMENT-LIBRARY-20260923.md.
+;;items now uses native517/1477:693 with independent session-owned catalogue
+storage. 600 rows /571 distinct items,8 category tabs, native star/sword/bow/hat/
+skull/shield/food/scroll artwork, inline native search and normal quantity menus.
+No real Bank mutation or save ownership. Original40-item testing kit preserved.
+Offline metadata generation + bounded hashed manifest keeps live opening fast.
+Native tab names use the authored enum; mockup cards/text placement are not faked.
+1472 tests passed; cache catalogue/grouping, native search program and encrypted
+bank->library->bank isolation passed. See document for precise limits/visual gate.
+STAGED engine SHA256:
+5AAE1032EF34FC0F43F85ECBDB3847ECE29207BE127D2893C7506775DCF0DC80
+Apply Staged Update.cmd points to this candidate. Jack applies/relaunches himself.
+No deployment was performed. Runtime remains584E19B3C87627C7A7FE2315A02A999CE8844EACA8AC40BD7DE27EDB46367329.
+P0 keybind longevity remains unresolved; do not reopen unrelated systems here.

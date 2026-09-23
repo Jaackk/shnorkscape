@@ -1,7 +1,7 @@
 @echo off
 setlocal
 if /i "%~1"=="--check-only" goto check
-echo SHNORKSCAPE update: tier-aware almighty ammo and augmented bank withdrawals.
+echo SHNORKSCAPE update: native Developer Equipment Library for ;;items.
 echo Before applying: close both game clients and run Stop.cmd.
 echo After successful installation: launch Play.cmd normally.
 echo.

@@ -42,7 +42,7 @@ public final class Native950BankAcceptance {
         Native950World.getInstance().execute(() -> {
             require(World.getPlayers().isEmpty(),"Acceptance requires an isolated ephemeral world");
             try(Fixture f=new Fixture()) {
-                exhaustion(f);capturedCompactionClaims(f);individualItemActors(f);quantities(f);capacity(f);withdrawX(f);bankControls(f);remoteBank(f);
+                exhaustion(f);capturedCompactionClaims(f);individualItemActors(f);quantities(f);capacity(f);withdrawX(f);bankControls(f);remoteBank(f);equipmentLibrary(f);
                 Native950Interactions.State state=f.input.snapshot();
                 require(state.handlerFailures==0&&state.unhandledActions==0&&state.unmatchedPairs==0,
                         "Bank action failed or bypassed routing: "+state.routerReport);
@@ -286,11 +286,48 @@ public final class Native950BankAcceptance {
         return Arrays.equals(first.ids,second.ids)&&Arrays.equals(first.amounts,second.amounts);
     }
 
+    private static void equipmentLibrary(Fixture f) {
+        String enabled=System.getProperty(Native950DevelopmentCommands.PROPERTY);
+        System.setProperty(Native950DevelopmentCommands.PROPERTY,"true");f.player.setRights(2);
+        try {
+            f.seed(0,new Item(995,731),new Item(52083,2),new Item(51467,1));
+            f.control(317);
+            Item[][] original=f.player.getBank().bankTabs;
+            f.player.getBank().restoreNativePreferences(true,73,5);
+            Native950Containers.Snapshot before=f.input.snapshot().inventory;
+            f.output.clear();Native950AdminCommands.handle(f.player,f.channel,new String[]{"items"});f.drain();
+            f.assertBankMountedOnce();require(f.hasContainer(95),"Library did not publish its catalogue");
+            require(!f.input.snapshot().bankOpen,"Library acquired real bank authority");
+            require(sameItems(before,f.input.snapshot().inventory),"Browsing changed carried items");
+            Native950EquipmentCatalogue catalogue=Native950EquipmentCatalogue.current();
+            int slot=-1;for(int i=0;i<catalogue.entries.size();i++)if(catalogue.entries.get(i).id==58041){slot=i;break;}
+            require(slot>=0,"Primal bolts not in library");
+            f.nextTick(); // The real bank state observer must not adopt the517 library mount.
+            require(!f.input.snapshot().bankOpen,"Tick converted library into a real bank");
+            f.button(slot,58041,3);require(f.amount(58041)==5,"Library Withdraw5 did not grant bolts");
+            f.nextTick();f.button(slot,58041,6);f.count(37);require(f.amount(58041)==42,"Library WithdrawX failed");
+            f.control(39);f.control(42);f.control(127);f.control(153);
+            require(f.player.getBank().bankTabs==original,"Library replaced real bank ownership");
+            f.bank(new int[]{995,52083,51467},new int[]{731,2,1});
+            require(f.player.getBank().getWithdrawNotes()&&f.player.getBank().getLastX()==73
+                    &&f.player.getBank().getNativeDefaultInteractionAmount()==5,"Library changed real bank preferences");
+            f.closeModal();require(!f.input.router().bankInterfaceOpen(),"Library did not unregister its mount");
+            f.input.allowRemoteBank();f.player.getBank().openBank();f.nextTick();
+            require(f.input.snapshot().bankOpen,"Real bank did not reopen after catalogue");
+            f.bank(new int[]{995,52083,51467},new int[]{731,2,1});
+            f.button(0,995,2);require(f.amount(995)==1&&f.bankAmount(995)==730,"Real bank withdrawal failed after library");
+            f.control(317);
+            System.out.println("PASS: ;;items command, single native mount, tick ownership, Withdraw5/X, deposit/preset refusal, real bank identity/preferences preserved and real withdrawal afterward");
+        }finally{if(enabled==null)System.clearProperty(Native950DevelopmentCommands.PROPERTY);else System.setProperty(Native950DevelopmentCommands.PROPERTY,enabled);}
+    }
+
     private static final class Fixture implements AutoCloseable {
         final int[] incoming={9,5,0,2},outgoing={59,55,50,52};
         final Native950Isaac clientCipher=new Native950Isaac(incoming),cipher=new Native950Isaac(outgoing);
         final Native950GameTransport transport=new Native950GameTransport(new Native950Isaac(incoming),new Native950Isaac(outgoing),Thread.currentThread());
-        final EmbeddedChannel channel=new EmbeddedChannel(transport);
+        final EmbeddedChannel channel=new EmbeddedChannel(transport){
+            @Override protected java.net.SocketAddress remoteAddress0(){return new java.net.InetSocketAddress("127.0.0.1",12345);}
+        };
         final List<Frame> output=new ArrayList<Frame>();
         final Player player;
         final Native950Interactions input;

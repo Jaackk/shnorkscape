@@ -128,7 +128,7 @@ public final class Native950AdminCommands {
         if(command.equals("items")) {
             if(args.length!=1){reply(channel,"Use ;;items.");return;}
             if (!p.isActive() || p.hasFinished() || p.isDead() || p.isLocked()) { reply(channel,"Wait until your character can act."); return; }
-            Native950ItemBrowser.open(p);return;
+            Native950EquipmentLibrary.open(p);return;
         }
         int maxArgs=command.equals("copybar")||command.equals("savecoords")?Integer.MAX_VALUE
                 :command.equals("adrenaline")||command.equals("bar")||command.equals("spell")||command.equals("dummy")||command.equals("uilayout")

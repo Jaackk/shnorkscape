@@ -106,6 +106,7 @@ public final class Native950Interactions {
     private final Native950Dialogues dialogues;
     private final Native950ProductionMenu productionMenu;
     private final Native950ItemBrowser itemBrowser;
+    private final Native950EquipmentLibrary equipmentLibrary;
     private final Native950ToolbeltUi toolbeltUi;
     private final Native950ForgeUi forgeUi;
     private final Native950QuantityInput quantityInput;
@@ -199,6 +200,7 @@ public final class Native950Interactions {
         player.setNative950Dialogues(dialogues);
         this.productionMenu = new Native950ProductionMenu(player, dialogues);
         this.itemBrowser = new Native950ItemBrowser(player, channel, dialogues);
+        this.equipmentLibrary = new Native950EquipmentLibrary(player,channel,this::closeModal);
         this.toolbeltUi = new Native950ToolbeltUi(player, channel);
         player.getInterfaceManager().setNative950ToolbeltUi(toolbeltUi);
         this.forgeUi = new Native950ForgeUi(player,channel);
@@ -333,6 +335,7 @@ public final class Native950Interactions {
     boolean blocksWorldInput(){return exitUi.isOpen()||exitUi.isSigningOut();}
 
     void beginTick() {
+        equipmentLibrary.tick();
         publicChatThisTick = false;
         inventionUi.sync(player,channel);
         changedInventorySlots.clear(); changedBankSlots.clear();
@@ -405,6 +408,7 @@ public final class Native950Interactions {
             return;
         }
         if (action instanceof Native950Actions.CountDialogueAction) {
+            if (equipmentLibrary.handle((Native950Actions.CountDialogueAction) action)) return;
             if (itemBrowser.handle((Native950Actions.CountDialogueAction) action)) return;
             quantity((Native950Actions.CountDialogueAction) action); return;
         }
@@ -416,6 +420,7 @@ public final class Native950Interactions {
             cancelQuantity(); return;
         }
         if (action instanceof Native950Actions.PauseButtonAction && itemBrowser.cancelInput()) return;
+        if (action instanceof Native950Actions.PauseButtonAction && equipmentLibrary.cancelInput()) return;
         if (!(action instanceof Native950Actions.GroundItemAction)) pendingGroundItem=null;
         if (action instanceof Native950Actions.GroundItemAction) groundItem((Native950Actions.GroundItemAction)action);
         else if (action instanceof Native950Actions.ObjectAction) object((Native950Actions.ObjectAction) action);
@@ -544,7 +549,7 @@ public final class Native950Interactions {
     void walking() { cancelSkill(); pendingGroundItem=null; combatActions.cancelAttack(player); cancelConversations(); pendingBank = null; pendingNpcOption = 0; closeBank(); worldMap.close(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); }
 
     /** Retire all pending responses before the session leaves the world. */
-    void close() { Native950WorkspaceCapture.closed(channel); Native950Familiars.onLogout(player); cancelSkill(); itemBrowser.dispose(); Native950Skilling.detach(player); pendingGroundItem=null; combatActions.stop(player); cancelConversations(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); }
+    void close() { Native950WorkspaceCapture.closed(channel); Native950Familiars.onLogout(player); cancelSkill(); equipmentLibrary.dispose(); itemBrowser.dispose(); Native950Skilling.detach(player); pendingGroundItem=null; combatActions.stop(player); cancelConversations(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); }
 
     private void cancelQuantity() {
         quantityInput.cancel();
@@ -558,6 +563,7 @@ public final class Native950Interactions {
     }
 
     private void cancelDialogue() {
+        equipmentLibrary.close();
         itemBrowser.close();
         productionMenu.close(); forgeUi.close();
         dialogueNpc = null;
@@ -802,6 +808,7 @@ public final class Native950Interactions {
      * performed by 910 code (stopAll from another action) sends the close recipe.
      */
     private void syncBankState() {
+        if (equipmentLibrary.isOpen()) return;
         boolean open910 = router.bankInterfaceOpen();
         if (!bankOpen && open910) bankOpened(activeNpcBank ? "banker (deferred)" : "chest (deferred)");
         else if (bankOpen && !open910) closeBank();
@@ -1170,6 +1177,7 @@ public final class Native950Interactions {
     }
 
     private void button(Native950Actions.InterfaceAction action) {
+        if(equipmentLibrary.handle(action))return;
         Native950BugTest.event(player,"interface","button-dispatch","interface",action.interfaceId(),"component",action.componentId(),"slot",action.slot(),"option",action.option());
         if(itemBrowser.handle(action))return;
         if(Native950Prayer.button(player,action))return;

@@ -4,7 +4,7 @@
                   {
                       "source":  "ataraxia-950-1.0-UNTRACKED.jar",
                       "target":  "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-                      "sha256":  "584E19B3C87627C7A7FE2315A02A999CE8844EACA8AC40BD7DE27EDB46367329"
+                      "sha256":  "5AAE1032EF34FC0F43F85ECBDB3847ECE29207BE127D2893C7506775DCF0DC80"
                   },
                   {
                       "source":  "Native950InterfaceBootstrap$Panel.class",
