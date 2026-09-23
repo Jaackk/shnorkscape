@@ -386,6 +386,20 @@ public final class Native950MeleeCombat {
         Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
         return cooldowns==null?0:cooldowns.getOrDefault(structure,0L);
     }
+    /** Opt-in diagnostic: the real manual queue waits twelve ticks, then executes normally. */
+    String holdQueueForVisualCheck(Player player,int slot){
+        owned();
+        if(!Native950BugTest.enabled(player))return "Enable ;;bugtest first.";
+        if(slot<1||slot>14)return "Use ;;queuehold <slot 1-14>.";
+        Native950ActionBar bar=player.getNative950ActionBar();
+        int structure=Native950ActionBar.struct(bar.slot(bar.activeBar(),slot-1));
+        String refusal=abilityQueueRefusal(player,structure);
+        if(refusal!=null)return refusal;
+        globalCooldown.put(player,Math.max(globalCooldown.getOrDefault(player,0L),tick+12));
+        queueAbility(player,structure,true);
+        Native950BugTest.event(player,"combat","queue-diagnostic-hold","structure",structure,"until",tick+12);
+        return "Queued slot "+slot+" for a 7.2-second visual check; normal validation and cancellation remain active.";
+    }
     private void queueAbility(Player player,int structure,boolean waitingForGlobalCooldown) {
         Integer replaced=queuedAbilities.put(player,structure);
         player.getNative950ActionBar().queueVisual(player,waitingForGlobalCooldown?structure:-1);

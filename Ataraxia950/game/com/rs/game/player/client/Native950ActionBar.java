@@ -177,6 +177,9 @@ public final class Native950ActionBar {
             boolean tile=slots()[i]==pack(1,7)||slots()[i]==pack(1,29);
             for(int component:NATIVE_SLOT_EVENT_COMPONENTS[i])
                 c.write(Native950Packets.interfaceEvents(1430,component,-1,-1,tile?11239422:NATIVE_SLOT_EVENT_MASKS[i]));
+            // Actual icon/target-parent children must admit ground targets too.
+            for(int component:new int[]{65+i*13,66+i*13})
+                c.write(Native950Packets.interfaceEvents(1430,component,-1,1,slotEvents(tile)));
         }
         visualWrite(p,c,Native950Packets.runClientScript(6992),"script",6992,"");
         visualWrite(p,c,Native950Packets.runClientScript(7964,1436,0,0,1,-1),"script",7964,"1436,0,0,1,-1");
@@ -212,6 +215,12 @@ public final class Native950ActionBar {
         if(name==null||name.isEmpty()){reply(c,"That ability is not in the current cache.");return true;}
         String before=barSnapshot();slots()[to]=packed;sync(p,c,"bind",before);Native950BugTest.event(p,"action-bar","bound","bar",activeBar+1,"slot",to+1,"packed",packed,"structure",struct(packed),"name",name,"sync","varps+6992+7964");reply(c,name+" bound to slot "+(to+1)+".");return true;
     }
+    // Target flags occupy bits11..17; bit6 of that field is a ground tile.
+    static int slotEvents(boolean ground){return (ABILITY_EVENTS|(1<<21))|(ground?(1<<17):0);}
+    static int selectorIndex(int component,int option){
+        // CS16001 adds labels1..5 to operations6..10 of1430:261.
+        return component==261?option>=6&&option<=10?option-6:-1:option>=1&&option<=BARS?option-1:-1;
+    }
     static boolean isTrashTarget(Native950Actions.DragAction action){return action.targetInterfaceId()==ROOT_INTERFACE&&action.targetComponentId()==TRASH_COMPONENT;}
     static boolean isNoOpRearrangement(int from,int to){return from==to;}
     public boolean button(Player p,Channel c,Native950Actions.InterfaceAction a){
@@ -225,10 +234,11 @@ public final class Native950ActionBar {
         // Actual 950 input from the native preset menu uses 1430:261. Keep 254 for
         // layouts that still route through the sibling selector component.
         if(a.interfaceId()==1430&&(a.componentId()==254||a.componentId()==261)){
-            if(a.slot()==-1&&a.option()>=1&&a.option()<=BARS&&!p.isLocked()&&!p.isDead()){
-                setActiveBar(p,c,a.option()-1);reply(c,"Action bar "+(activeBar+1)+" selected.");
+            int selected=selectorIndex(a.componentId(),a.option());
+            if(a.slot()==-1&&selected>=0&&selected<BARS&&!p.isLocked()&&!p.isDead()){
+                setActiveBar(p,c,selected);reply(c,"Action bar "+(activeBar+1)+" selected.");
                 Native950BugTest.event(p,"action-bar","preset-selection","requested",a.option(),"result","selected","activeBar",activeBar+1);
-            }else if(a.slot()==-1&&a.option()>BARS&&a.option()<=10&&!p.isLocked()&&!p.isDead()){
+            }else if(a.slot()==-1&&selected>=BARS&&!p.isLocked()&&!p.isDead()){
                 reply(c,"Only action bars 1-"+BARS+" are saved by this local build. Use ;;bar <1-"+BARS+"> to select one.");
                 Native950BugTest.event(p,"action-bar","preset-selection","requested",a.option(),"result","unsupported","savedBars",BARS);
             }else{
@@ -323,7 +333,7 @@ public final class Native950ActionBar {
         for(int i=0;i<4;i++)send.accept(Native950Packets.varbitSmall(REVOLUTION_TIER_BITS[i],(revolutionDisabledTiers>>>i)&1));
     }
     void cooldown(Channel c,int structure,int currentCycle,int duration){c.write(Native950Packets.runClientScript(6570,structure,currentCycle,currentCycle+duration,1,1));}
-    /** Exact950 components1430:{70,83,...239}: CS5899(slot,1003,overlay). */
+    /** Listener1430:{70,83,...239} calls CS5899(slot,1003,overlay71+13*i). */
     void queueVisual(Player player,int structure){
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
         int packed=definition==null?0:pack(definition.book,definition.key),slot=0;
@@ -331,6 +341,8 @@ public final class Native950ActionBar {
         player.getVarsManager().sendVar(4164,0);
         player.getVarsManager().sendVar(5861,slot==0?0:1003);
         if(slot!=0)player.getVarsManager().sendVar(4164,slot);
+        Native950BugTest.event(player,"combat","queue-visual-published","structure",structure,"preset",activeBar+1,
+                "slot",slot,"rootSlot",slot==0?0:1003,"overlay",slot==0?-1:(1430<<16)|(71+13*(slot-1)));
     }
     void setActiveBar(Player p,Channel c,int index){if(index<0||index>=BARS)return;String before=barSnapshot();activeBar=index;sync(p,c,"select-bar",before);}
     void setActiveBar(Channel c,int index){setActiveBar(null,c,index);}

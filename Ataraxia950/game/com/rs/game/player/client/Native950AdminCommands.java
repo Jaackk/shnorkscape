@@ -73,7 +73,7 @@ public final class Native950AdminCommands {
         switch (command) {
             case "god": case "infprayer": case "infadren": case "adrenaline": case "bank": case "copy": case "copybar": case "teleto": case "tpto":
             case "savecoords": case "locs": case "locations":
-            case "almighty": case "infrunes": case "infrun": case "infammo": case "commands": case "spell": case "bugtest": case "bug": case "combatqa": case "items": case "uilayout": case "comp":
+            case "almighty": case "infrunes": case "infrun": case "infammo": case "commands": case "spell": case "bugtest": case "bug": case "combatqa": case "queuehold": case "items": case "uilayout": case "comp":
             case "wars": case "warsretreat": case "death": case "deathsoffice": case "vorago": case "dummy": case "testbar": case "clearbar": case "bar":
             case "revo": case "revolution":
             case "heal": case "refill": case "max": case "coords": case "disengage": case "devhelp": case "devstatus":
@@ -113,6 +113,10 @@ public final class Native950AdminCommands {
             String summary=description.toString().trim();
             Native950BugTest.marker(p,summary);
             reply(channel,summary.isEmpty()?"Bug marker recorded. Screenshot capture queued.":"Bug marker recorded: "+summary);return;
+        }
+        if(command.equals("queuehold")) {
+            int slot=-1;try{if(args.length==2)slot=Integer.parseInt(args[1]);}catch(NumberFormatException ignored){}
+            reply(channel,p.getNative950Combat()==null?"Combat is not ready.":p.getNative950Combat().holdQueueForVisualCheck(p,slot));return;
         }
         if(command.equals("combatqa")) {
             if(args.length>2){reply(channel,"Use ;;combatqa [stop|status|reset|cleanup].");return;}

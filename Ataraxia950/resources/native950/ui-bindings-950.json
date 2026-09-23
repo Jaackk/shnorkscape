@@ -355,11 +355,17 @@
   "_varsNote": "Every varbit declares the base varp and bit range the 950 cache decodes for it (2/69), so a re-dumped cache that moves a varbit onto a different varp rejects the table instead of silently rewriting the wrong bits. That check earned its keep on the 947->950 port: it caught hitpoints. All eleven varbits below were re-decoded from 950RevTest/cache 2/69 on 2026-09-10 and, beyond the decode, cross-checked by scanning index 12 of both caches for the scripts that read each id and comparing the two sets. Scan coverage, stated plainly because it is not total: the 950 opcode numbers were derived by aligning the 19,883 script pairs that recompiled instruction-for-instruction out of the 20,551 groups the two caches share, and with that map 20,988 of the 950 cache's 21,098 groups and 20,477 of the 947 cache's 20,577 decode; the ~0.5 percent that do not were not searched. Ten varbits decode to the identical base varp and bit range on both caches AND have the same reader scripts (interface_mode 27169 and legacy_combat_mode 27168 picked up 3 and 2 additional readers, which is content growth, not a move). The eleventh, hitpoints, moved and is now a varp -- see its note. The varps below are only proved to EXIST by the loader (2/60 has no width or meaning to check), so each was additionally cross-checked the same way: varp 462, 463, 679 and 8971 have byte-identical reader-script sets on the 947 and 950 caches.",
   "vars": {
     "invention_pouch_state": {
-      "kind": "varp", "id": 5987, "maxValue": 128,
+      "kind": "varp",
+      "id": 5987,
+      "maxValue": 128,
       "_note": "Native VarsManager emits whole parent varps for30224. Only the verified pouch unlock bit7 is driven; declare this parent so the packet resolver can deliver it."
     },
     "invention_pouch_unlocked": {
-      "kind": "varbit", "id": 30224, "varp": 5987, "bits": "7..7", "maxValue": 1,
+      "kind": "varbit",
+      "id": 30224,
+      "varp": 5987,
+      "bits": "7..7",
+      "maxValue": 1,
       "_note": "950 DBrow1012 visibility via16564; native pouch requires this bit. Current2/69/30224 and script/DB identities are pinned by Native950InventionUi. Derived from base80 Crafting/Smithing/Divination; tutorial is deferred."
     },
     "xp_popups_hidden": {
@@ -719,6 +725,30 @@
       "id": 23,
       "maxValue": 2147483647,
       "_note": "Reviewed parent of the Farming patch varbits declared above. VarsManager combines private crop slices and preserves unrelated bits before the native varp update. Parent record is pinned in farming-construction-assets-950.properties."
+    },
+    "ability_queue_slot": {
+      "kind": "varp",
+      "id": 4164,
+      "maxValue": 14,
+      "_note": "Exact950 CS5899 compares its one-based slot with varp4164; 1430:70 varp hook passes overlay1430:71. Live successor fixes resolver rejection observed23Sep."
+    },
+    "ability_queue_bar": {
+      "kind": "varp",
+      "id": 5861,
+      "maxValue": 1044,
+      "_note": "Exact950 CS5899 compares root slot identity; main bar1003 from1430:0 onLoad8109. Not saved preset number."
+    },
+    "necromancy_necrosis": {
+      "kind": "varp",
+      "id": 10986,
+      "maxValue": 12,
+      "_note": "Exact950 CS17445/17458/18658/18659 resource admission/cost."
+    },
+    "necromancy_residual_souls": {
+      "kind": "varp",
+      "id": 11035,
+      "maxValue": 5,
+      "_note": "Exact950 CS17459/18660/18662 soul generation/cap/consumption."
     }
   },
   "scripts": {
@@ -1422,6 +1452,56 @@
       "id": 14234,
       "sha256": "f3aa003b8b4ce311ffe7c78ca6024f86ed150e812a6fc9d843ff486258fb05bd",
       "_note": "950 bank control/search/quantity program; protocol-analysis/bank-ui-cache-950-evidence.json"
+    },
+    "combat_resource_reader_5899": {
+      "id": 5899,
+      "sha256": "2ba613898fc9bbe3bc10c0df458bd7535caf1700ca05439a0e557d2809f8bd7b",
+      "_note": "Exact950 queue/resource reader; native varp publication is required, internal counters alone are insufficient."
+    },
+    "combat_resource_reader_6568": {
+      "id": 6568,
+      "sha256": "81c9254bc40029606d9c6efe5223abe74ff494c9bc8edf21cfb59f268fc20307",
+      "_note": "Exact950 queue/resource reader; native varp publication is required, internal counters alone are insufficient."
+    },
+    "combat_resource_reader_6505": {
+      "id": 6505,
+      "sha256": "ffaec06c6a48c412d19db552013a14c71b13b4188669f2440f5d703e8769573b",
+      "_note": "Exact950 queue/resource reader; native varp publication is required, internal counters alone are insufficient."
+    },
+    "combat_resource_reader_17445": {
+      "id": 17445,
+      "sha256": "a1a666eb0f1fab19316c8f2827cde5e91e255769cbf30e353e2b3a4d68df7b9c",
+      "_note": "Exact950 queue/resource reader; native varp publication is required, internal counters alone are insufficient."
+    },
+    "combat_resource_reader_17458": {
+      "id": 17458,
+      "sha256": "0ab4d09e18c66b63852ab5e89d73bdbcb0cd98c613ac956d84e7a3af3d50d1d8",
+      "_note": "Exact950 queue/resource reader; native varp publication is required, internal counters alone are insufficient."
+    },
+    "combat_resource_reader_17459": {
+      "id": 17459,
+      "sha256": "3ecbd5228b56104b43892aa0938d080a301eaacf5b2fb1031c735e56c17de008",
+      "_note": "Exact950 queue/resource reader; native varp publication is required, internal counters alone are insufficient."
+    },
+    "combat_resource_reader_18658": {
+      "id": 18658,
+      "sha256": "fb6aa92d64793b0a1528f840d6365e750100c287d6bf72ada38707a790a25c25",
+      "_note": "Exact950 queue/resource reader; native varp publication is required, internal counters alone are insufficient."
+    },
+    "combat_resource_reader_18659": {
+      "id": 18659,
+      "sha256": "ee96546eb423ea3fa1816577845b1ba829b3c35a85edb057dce2c9c310201382",
+      "_note": "Exact950 queue/resource reader; native varp publication is required, internal counters alone are insufficient."
+    },
+    "combat_resource_reader_18660": {
+      "id": 18660,
+      "sha256": "501f01030eb7d6011832ad10e8291b1bfcfe3e21a63cd745094664e8ae764785",
+      "_note": "Exact950 queue/resource reader; native varp publication is required, internal counters alone are insufficient."
+    },
+    "combat_resource_reader_18662": {
+      "id": 18662,
+      "sha256": "cd653ad37ba6444a79c9d23aef24d92936e023ae2ee2f5a30e80c696e2d5c71f",
+      "_note": "Exact950 queue/resource reader; native varp publication is required, internal counters alone are insufficient."
     }
   },
   "ops": {

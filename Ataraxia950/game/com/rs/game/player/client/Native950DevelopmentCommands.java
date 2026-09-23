@@ -31,7 +31,7 @@ public final class Native950DevelopmentCommands {
     public static boolean preservesGameplay(String text) {
         if (text == null || !(text.startsWith("::") || text.startsWith(";;"))) return false;
         String command = text.substring(2).trim().toLowerCase(Locale.ROOT).split("\\s+", 2)[0];
-        return command.equals("bug") || command.equals("bugtest") || command.equals("combatqa");
+        return command.equals("bug") || command.equals("bugtest") || command.equals("combatqa") || command.equals("queuehold");
     }
     public static boolean allowed(boolean enabled, ClientProfile profile, SocketAddress remote) {
         if (!enabled || profile != ClientProfile.NATIVE_950 || !(remote instanceof InetSocketAddress)) return false;

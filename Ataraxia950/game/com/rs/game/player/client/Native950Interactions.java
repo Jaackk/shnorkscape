@@ -1551,6 +1551,8 @@ public final class Native950Interactions {
     }
 
     private void abilityOnTile(Native950Actions.InterfaceOnTileAction action){
+        Native950BugTest.event(player,"combat","tile-ability-input","source",action.sourceInterfaceId()+":"+action.sourceComponentId(),
+                "slot",action.sourceSlot(),"item",action.sourceItemId(),"x",action.x(),"y",action.y());
         if(exitUi.isOpen()||bankOpen||equipmentLibrary.isOpen()||player.isLocked()||!player.clientHasLoadedMapRegion()){
             reject("Close the interface before targeting a ground tile");return;
         }
@@ -1558,6 +1560,7 @@ public final class Native950Interactions {
         if(action.sourceItemId()!=-1||structure!=47129&&structure!=1488){reject("Select an available tile-targeted ability");return;}
         Native950MeleeCombat combat=player.getNative950Combat();
         String refusal=combat==null?"Combat is not ready":combat.tileAbility(player,structure,new WorldTile(action.x(),action.y(),player.getPlane()));
+        Native950BugTest.event(player,"combat","tile-ability-result","structure",structure,"result",refusal==null?"movement-scheduled":refusal);
         if(refusal!=null)reject(refusal);
     }
     private void itemOnNpc(Native950Actions.ItemOnNpcAction action) {

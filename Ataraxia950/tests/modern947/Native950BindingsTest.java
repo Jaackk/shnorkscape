@@ -31,6 +31,29 @@ import static org.junit.Assert.*;
  * whole table. The real cache is only touched by Native950BindingsProbe.
  */
 public class Native950BindingsTest {
+    @Test public void combatResourceVarsReachTheRealWriterThroughTheStrictTable() throws Exception {
+        String json=table();Native950Bindings bindings=load(json,FakeCache.fromTable(json));
+        com.rs.game.player.client.Native950IdMap.Resolver previous=com.rs.game.player.client.Native950IdMap.current();
+        EmbeddedChannel channel=new EmbeddedChannel(new com.rs.network.modern.Native950GameTransport(()->0,()->0,Thread.currentThread()));
+        try {
+            final Native950Bindings.Resolver r=bindings.allowListResolver();
+            com.rs.game.player.client.Native950IdMap.install(new com.rs.game.player.client.Native950IdMap.Resolver(){
+                public int interfaceId(int id){return r.interfaceId(id);}public int componentId(int id,int c){return r.componentId(id,c);}
+                public int varp(int id){return r.varp(id);}public int varbit(int id){return r.varbit(id);}
+                public int varc(int id){return -1;}public int script(int id){return r.script(id);}public int container(int id){return r.container(id);}
+            });
+            Player player=Player.createNative950("combat-wire",new WorldTile(3222,3222,0),channel);
+            player.getVarsManager().setNativeVarpSink((id,value)->player.getPackets().sendConfig(id,value));
+            for(int[] pair:new int[][]{{4164,14},{5861,1003},{10986,12},{11035,5},{4164,0},{11035,0},{10986,0}}){
+                player.getVarsManager().sendVar(pair[0],pair[1]);channel.flushOutbound();
+                io.netty.buffer.ByteBuf frame=channel.readOutbound();
+                assertNotNull("Runtime binding dropped combat varp "+pair[0],frame);
+                try {byte[] actual=new byte[frame.readableBytes()];frame.readBytes(actual);
+                    assertArrayEquals((pair[1]>=-128&&pair[1]<=127?com.rs.network.protocol.modern950.Native950Packets.varpSmall(pair[0],pair[1]):com.rs.network.protocol.modern950.Native950Packets.varp(pair[0],pair[1])).frame(()->0),actual);
+                }finally{frame.release();}
+            }
+        }finally{com.rs.game.player.client.Native950IdMap.install(previous);channel.finishAndReleaseAll();}
+    }
     private static final int ROOT = 1477;
     /** 910 ids with no group in index 3 of the 950 cache. */
     private static final int[] ABSENT = { 1578, 1607, 1628, 1680, 1929 };
@@ -251,7 +274,7 @@ public class Native950BindingsTest {
         assertEquals(1462 << 16 | 3, b.resolve("worn_equipment.root"));
         assertEquals(94, b.resolve("container:equipment"));
         assertEquals(18, b.resolve("slotkey:all_chat"));
-        assertEquals(140, b.scriptNames().size());
+        assertEquals(150, b.scriptNames().size());
         for (String name : b.slotNames()) { assertTrue(b.slotAttach(name) >= 0); assertEquals(ROOT, b.slotAttach(name) >>> 16); assertEquals(ROOT, b.slotWrapper(name) >>> 16); }
         for (String name : b.interfaceNames()) for (String comp : b.iface(name).components.keySet()) assertTrue(b.component(name, comp) >= 0);
         for (String name : b.varNames()) assertTrue(b.var(name).id >= 0);

@@ -11,6 +11,15 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class Native950ActionBarTest {
+    @Test public void tileTargetingReachesTheClickableIconAndNativeSelectorUsesCurrentOperations(){
+        assertEquals(0,Native950ActionBar.slotEvents(false)&(1<<17));
+        assertEquals(1<<17,Native950ActionBar.slotEvents(true)&(1<<17));
+        assertEquals(2,Native950ActionBar.slotEvents(true)&2);
+        for(int i=0;i<5;i++)assertEquals(i,Native950ActionBar.selectorIndex(261,i+6));
+        assertEquals(-1,Native950ActionBar.selectorIndex(261,1));
+        assertEquals(2,Native950ActionBar.selectorIndex(254,3));
+    }
+
     @Test public void revolutionTierFiltersPersistWithoutLeakingToOtherPlayers(){
         EmbeddedChannel channel=new EmbeddedChannel();
         try{
