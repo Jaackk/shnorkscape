@@ -20,6 +20,24 @@ It was preserved, not rolled back. Current private hashes are recorded in
 `backups/pre-edit-20260923-042146-169/combat-pre-stage-save-hashes.json`.
 Do not publish character files or private manifests.
 
+## Staged payload and rollback
+
+Implementation checkpoint: `0194c2bc60120c41c6413749419b495470c889ae` (pushed).
+Candidate: `dist/combat-completion-20260923`,11 pinned files; installer check-only PASS.
+Only the engine differs from the currently deployed payload. The ten bootstrap/
+cache files retain their existing bytes, preserving the library and bank design.
+
+Staged JAR SHA256:
+`A426B834F41384AFD6B9AC9E81769E2D1914CCC79EAF8D416264EFCBE7DE44DE`
+
+Unchanged deployed JAR SHA256:
+`83E04F6C1E8CB3275D5CF32AE3B76363B185F8C8004CC956E46A073E2A21CAC2`
+
+`dist/bank-sort-20260923` remains intact. The installer will make a timestamped
+runtime backup when the user applies the update. It rejects running clients/server
+and copies no candidate character saves. All eight current protected files match
+the private pre-stage audit after staging. Nothing was installed or restarted.
+
 ## Machine-derived coverage and gates
 
 * 1,500 JUnit tests: zero failures/errors, two skips.

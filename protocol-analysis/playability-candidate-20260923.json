@@ -1,10 +1,10 @@
 ﻿{
-    "candidate": "bank-sort-20260923",
+    "candidate": "combat-completion-20260923",
     "files": [
         {
             "source": "ataraxia-950-1.0-UNTRACKED.jar",
             "target": "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-            "sha256": "83E04F6C1E8CB3275D5CF32AE3B76363B185F8C8004CC956E46A073E2A21CAC2"
+            "sha256": "A426B834F41384AFD6B9AC9E81769E2D1914CCC79EAF8D416264EFCBE7DE44DE"
         },
         {
             "source": "Native950InterfaceBootstrap$Panel.class",
@@ -63,5 +63,8 @@
             "sha256": "54F93928375DDB8105B317CE5919A4CB7A4460DC4BF020367C83DCCF47DB37A6",
             "beforeSha256": "B8D6CA0AD62859DFDFB2C190DAF25088C745B504AED5207738793C4899B7247E"
         }
-    ]
+    ],
+    "sourceCommit": "0194c2bc60120c41c6413749419b495470c889ae",
+    "validationReport": "protocol-analysis/combat-validation-20260923.json",
+    "liveChecklist": "docs/COMBAT-LIVE-CHECKLIST-20260923.md"
 }

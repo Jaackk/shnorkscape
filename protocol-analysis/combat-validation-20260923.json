@@ -13,7 +13,8 @@
     "count": 8,
     "differencesFromInitialLiveSnapshot": 1,
     "changedFileLastWriteLocal": "2026-09-23T04:23:17.451253",
-    "interpretation": "One character file changed while the pre-existing live session was still active; server log ends with character removal. Timestamp predates offline validation. Preserved, never rolled back. Seven others match the initial snapshot. Private pre-stage hashes retained locally."
+    "interpretation": "One character file changed while the pre-existing live session was still active; server log ends with character removal. Timestamp predates offline validation. Preserved, never rolled back. Seven others match the initial snapshot. Private pre-stage hashes retained locally.",
+    "unchangedAcrossStaging": 8
   },
   "combatAcceptance": "combat-acceptance-950-20260923.json",
   "bossGate": {
@@ -80,5 +81,14 @@
     "equipment and inventory safety": "PASS",
     "settings/exit UI": "PASS"
   },
-  "liveVerifiedThisPass": false
+  "liveVerifiedThisPass": false,
+  "staging": {
+    "candidate": "combat-completion-20260923",
+    "files": 11,
+    "installerCheckOnly": "PASS",
+    "installed": false,
+    "previousCandidatePreserved": "bank-sort-20260923",
+    "unchangedNonEngineRuntimeFiles": 10,
+    "sourceCommit": "0194c2bc60120c41c6413749419b495470c889ae"
+  }
 }

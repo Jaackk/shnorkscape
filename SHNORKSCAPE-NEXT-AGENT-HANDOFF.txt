@@ -6,6 +6,8 @@ See docs/COMBAT-COMPLETION-20260923.md for current architecture, exact950 contra
 coverage, unresolved work and test commands. 1,500 tests: 0 failures/errors,2 skips;
 723 real-cache combat checks;203 manual activations;7 generic boss lifecycle gates.
 74 explicit ability definitions (baseline60); full retail mechanics remain PARTIAL.
+Candidate dist/combat-completion-20260923:11 pinned files,check-only PASS.
+Source checkpoint0194c2b pushed; staged JAR A426B834F41384AFD6B9AC9E81769E2D1914CCC79EAF8D416264EFCBE7DE44DE.
 User applies the staged update. No agent restart, deployment or character edits.
 One early live-session character save changed at04:23; preserve it, do not restore
 an older snapshot to force hash equality. Other protected files match baseline.
