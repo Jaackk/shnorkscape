@@ -24,7 +24,7 @@ public class Native950BankUiTest {
             if(row.getKey()==15 || row.getKey()==35 || row.getKey()==201)continue;
             assertEquals(-1,row.getValue()[0]);assertEquals(-1,row.getValue()[1]);
         }
-        for(int component:new int[]{93,96,99,103,106,114,127,237,42})
+        for(int component:new int[]{93,96,99,103,106,114,127,237,42,250})
             assertArrayEquals(new int[]{-1,-1,2},events.get(component));
         assertFalse("Root containers are not buttons",events.containsKey(67));
     }

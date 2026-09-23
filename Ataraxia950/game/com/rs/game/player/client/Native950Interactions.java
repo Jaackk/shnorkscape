@@ -1318,6 +1318,14 @@ public final class Native950Interactions {
         com.rs.game.player.Bank bank = player.getBank();
         int mode = bank.getNativeDefaultInteractionAmount();
         switch (component) {
+            case Native950BankUi.SORT_TAB:
+                bankEpoch++;
+                Native950BankSort.sort(bank.bankTabs,bank.getCurrentTab());
+                bank.lastContainerCopy=null;
+                for(int slot=0;slot<com.rs.game.player.Bank.MAX_BANK_SIZE;slot++)changedBankSlots.add(slot);
+                refreshBank();
+                player.sendMessage("Sorted this bank tab.");
+                return true;
             case 93: mode = 1; break;
             case 96: mode = 5; break;
             case 99: mode = 10; break;
@@ -1403,6 +1411,8 @@ public final class Native950Interactions {
             }
         } else {
             int slot = action.slot();
+            // Reordering invalidates the source actor before any item/charge-specific withdrawal work.
+            if(changedBankSlots.contains(slot)) { reject("The item in that slot has changed"); refreshBank(); return; }
             int currentId = slot >= 0 && slot < bankBefore.ids.length ? bankBefore.ids[slot] : -1;
             int movable = currentId < 0 ? 0 : Native950Banking.withdrawableAmount(player, containers, slot, currentId, amount);
             itemId = Native950ActionRouter.withdrawalItem(action.itemId(), slot, bankBefore, movable, changedBankSlots, content.items);

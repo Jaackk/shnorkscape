@@ -19,14 +19,14 @@ public final class Native950BankUi {
             QUANTITY_FIVE=96, QUANTITY_TEN=99, QUANTITY_ALL=103, QUANTITY_X=106,
             CHANGE_X=114, PLACEHOLDER=123, NOTES=127, BANK_PIN=134,
             COSTUME_ROOM=140, DIANGO=143, METAL_BANK=146, MORE_STORAGE=149,
-            TRANSFER_VIEW=152, PRESET_VIEW=153, ALL_ITEMS=165, SEARCH=237,
+            TRANSFER_VIEW=152, PRESET_VIEW=153, ALL_ITEMS=165, SORT_TAB=250, SEARCH=237,
             CANCEL_SEARCH_OVERLAY=238, CANCEL_SEARCH=239, CLOSE=317;
     public static final int QUANTITY_VARBIT=45189, CUSTOM_QUANTITY_VARP=111, NOTES_VARP=160,
             DESTINATION_VARBIT=45139, TRANSFER_PRESET_VARBIT=45191, PLACEHOLDER_VARBIT=45190, AUTO_TAB_VARBIT=45911;
     /** Operations1..7 and10 only: no placeholder, context-sensitive op9, or drag flags. */
     public static final int ITEM_EVENTS=0x4fe;
     private static final int[] PRIMARY={DEPOSIT_INVENTORY,DEPOSIT_EQUIPMENT,QUANTITY_ONE,
-            QUANTITY_FIVE,QUANTITY_TEN,QUANTITY_ALL,QUANTITY_X,CHANGE_X,NOTES,SEARCH,CLOSE};
+            QUANTITY_FIVE,QUANTITY_TEN,QUANTITY_ALL,QUANTITY_X,CHANGE_X,NOTES,SEARCH,SORT_TAB,CLOSE};
     private static final int[] FEEDBACK={DEPOSIT_FAMILIAR,DEPOSIT_POUCH,AUTO_TAB_SWITCH,
             DESTINATION_BACKPACK,DESTINATION_WORN,DESTINATION_FAMILIAR,BANK_PIN,
             COSTUME_ROOM,DIANGO,METAL_BANK,MORE_STORAGE,TRANSFER_VIEW,PRESET_VIEW,ALL_ITEMS};
@@ -117,7 +117,8 @@ public final class Native950BankUi {
                 StringBuilder actual=new StringBuilder();
                 for(byte value:MessageDigest.getInstance("SHA-256").digest(raw))actual.append(String.format("%02x",value&255));
                 String key=index+"/"+group+"/"+file;
-                if(!Native950LibraryBridge.matches(key,pin.get("sha256").getAsString(),actual.toString()))
+                if(!(pin.has("patchedSha256")&&pin.get("patchedSha256").getAsString().equals(actual.toString()))
+                        &&!Native950LibraryBridge.matches(key,pin.get("sha256").getAsString(),actual.toString()))
                     NativeCacheVerification.requireBinding("Bank UI",key,pin.get("sha256").getAsString(),actual.toString());
             }
         } catch(java.io.IOException|java.security.NoSuchAlgorithmException failure) {

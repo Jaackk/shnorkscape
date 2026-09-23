@@ -1,7 +1,7 @@
 @echo off
 setlocal
 if /i "%~1"=="--check-only" goto check
-echo SHNORKSCAPE update: restore ability keyboard input after closing bank/items; preserve library search and loadouts.
+echo SHNORKSCAPE update: sort the current bank tab with +; tier-first equipment pages and a fuller Best tab.
 echo Before applying: close both game clients and run Stop.cmd.
 echo After successful installation: launch Play.cmd normally.
 echo.

@@ -168,6 +168,7 @@ final class Native950EquipmentLibrary {
             return true;
         }
         if(component==152||component==86){leavePresets();publish();title();return true;}
+        if(component==Native950BankUi.SORT_TAB){player.sendMessage("Library tabs are already ordered by tier and equipment set.");return true;}
         if(component==68&&action.option()>=1&&action.option()<=9){showPreset(action.option());return true;}
         if(component==267&&presetView&&(action.option()==1||action.option()==2)){
             if(action.slot()<1||action.slot()>12)return true;

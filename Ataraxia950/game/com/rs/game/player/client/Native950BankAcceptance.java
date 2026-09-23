@@ -42,7 +42,7 @@ public final class Native950BankAcceptance {
         Native950World.getInstance().execute(() -> {
             require(World.getPlayers().isEmpty(),"Acceptance requires an isolated ephemeral world");
             try(Fixture f=new Fixture()) {
-                exhaustion(f);capturedCompactionClaims(f);individualItemActors(f);quantities(f);capacity(f);withdrawX(f);bankControls(f);remoteBank(f);equipmentLibrary(f);bankFocusLifecycle(f);
+                exhaustion(f);capturedCompactionClaims(f);individualItemActors(f);quantities(f);capacity(f);withdrawX(f);bankControls(f);remoteBank(f);equipmentLibrary(f);bankFocusLifecycle(f);sortCurrentTab(f);
                 Native950Interactions.State state=f.input.snapshot();
                 require(state.handlerFailures==0&&state.unhandledActions==0&&state.unmatchedPairs==0,
                         "Bank action failed or bypassed routing: "+state.routerReport);
@@ -319,6 +319,27 @@ public final class Native950BankAcceptance {
             f.control(317);
             System.out.println("PASS: ;;items command, single native mount, tick ownership, Withdraw5/X, deposit/preset refusal, real bank identity/preferences preserved and real withdrawal afterward");
         }finally{if(enabled==null)System.clearProperty(Native950DevelopmentCommands.PROPERTY);else System.setProperty(Native950DevelopmentCommands.PROPERTY,enabled);}
+    }
+
+    private static void sortCurrentTab(Fixture f){
+        f.seed(0,new Item(995,731),new Item(52083,2),new Item(57290,1),new Item(1511,30));
+        Item[] original=f.player.getBank().bankTabs[0].clone();
+        original[1].setCharges(173);
+        f.button(0,995,6); // A pending amount must not survive reordered source slots.
+        f.control(Native950BankUi.SORT_TAB);
+        require(f.player.getBank().bankTabs[0][0]==original[2],"Highest-tier armour must precede lower-tier weapon/resources");
+        require(original[1].getCharges()==173&&original[1].getAmount()==2,"Sort changed individual item state");
+        java.util.Set<Item> identities=java.util.Collections.newSetFromMap(new java.util.IdentityHashMap<Item,Boolean>());
+        java.util.Collections.addAll(identities,f.player.getBank().bankTabs[0]);
+        for(Item item:original)require(identities.contains(item),"Sort recreated/deleted bank item");
+        f.count(5);require(f.amount(995)==0,"Sort failed to retire pending WithdrawX");
+        f.button(0,995,2);require(f.amount(995)==0,"Old source-slot claim withdrew a different item");
+        Item[] sorted=f.player.getBank().bankTabs[0].clone();f.control(Native950BankUi.SORT_TAB);
+        require(java.util.Arrays.equals(sorted,f.player.getBank().bankTabs[0]),"Sort is not idempotent");
+        Item[] other={new Item(1511,8),new Item(995,9)};Item[][] tabs={other,original.clone()};
+        Native950BankSort.sort(tabs,1);require(tabs[0]==other&&other[0].getId()==1511,"Sorting another tab changed unrelated tab");
+        f.control(317);
+        System.out.println("PASS: native plus sort, tier/set ordering, exact charged object/amount preservation, tab isolation, idempotence and stale source/X rejection");
     }
 
     private static void bankFocusLifecycle(Fixture f) {

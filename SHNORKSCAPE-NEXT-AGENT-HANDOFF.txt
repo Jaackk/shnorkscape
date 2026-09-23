@@ -470,3 +470,15 @@ Live engine remains5AAE1032EF34FC0F43F85ECBDB3847ECE29207BE127D2893C7506775DCF0D
 Live cache reference remains8A45E12B3D5B3BF35CDB02CDEC9DDEDBD46200B4FEF086ADC0679FB0D020EF8C.
 Jack applies updates himself after closing clients and stopping the server.
 Do not restart the running server without asking him.
+
+2026-09-23 BANK SORT / TIER ORDER FOLLOW-UP
+The native plus517:250 now sorts the current real bank tab on its owner thread.
+CS13830 supplies the exact native hover "Click to sort this tab"; patch is staged
+with the cache reference, never installed live by the agent. Sorting retains
+exact Item objects/charges/attributes and all other tab arrays, cancels pending
+amounts and rejects stale slot claims for that tick. Library plus cannot mutate
+real bank stock. Catalogue retains all600 previous rows, adds43 useful Best
+entries (Best40 ->83; total643), and presents gear in descending tier while
+keeping groups adjacent. P0 keyboard-context close fix remains included.
+See docs/BANK-SORT-AND-LIBRARY-TIERS-20260923.md. Apply Staged Update.cmd targets
+dist/bank-sort-20260923. Native visual tooltip/sort acceptance awaits user apply.

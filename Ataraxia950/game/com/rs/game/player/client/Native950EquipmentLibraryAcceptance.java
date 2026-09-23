@@ -32,10 +32,14 @@ public final class Native950EquipmentLibraryAcceptance {
                 require(!n.contains("pickaxe")&&!n.contains("hatchet")&&!n.contains("mattock")&&!n.contains("master cape")
                         &&!n.startsWith("batch of ")&&!n.startsWith("deathmatch ")&&!n.contains("(broken)"),"Clutter admitted: "+e.name);}
         }
-        for(int category=1;category<=4;category++){
+        require(c.counts[0]>=65,"Best tab needs a useful full first screen");
+        for(int category=1;category<=5;category++){
             final int cat=category;List<Native950EquipmentCatalogue.Entry> tab=new ArrayList<>();
             for(Native950EquipmentCatalogue.Entry e:c.entries)if(e.category==cat)tab.add(e);
-            require(tab.get(0).slot==0,"First screen does not start with an endgame armour set: "+category);
+            int previousTier=Integer.MAX_VALUE;
+            for(Native950EquipmentCatalogue.Entry e:tab)if(e.slot>=0&&e.slot!=13){
+                require(e.tier<=previousTier,"Higher tier follows lower tier: "+category+" "+e.name);previousTier=e.tier;
+            }
             Set<String> completed=new HashSet<>();String group=null;
             for(Native950EquipmentCatalogue.Entry e:tab){
                 if(!e.group.equals(group)){require(!completed.contains(e.group),"Scattered equipment group "+e.group);if(group!=null)completed.add(group);group=e.group;}

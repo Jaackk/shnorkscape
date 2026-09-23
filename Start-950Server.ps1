@@ -42,7 +42,7 @@ if ($LanAddress) {
 }
 if (!(Test-Path -LiteralPath $JavaPath) -or !(Test-Path -LiteralPath (Join-Path $root 'cache\255'))) { throw 'Bundled Java or the cache is missing. Read README.md: download OpenRS2 cache 2691 (Flat file) and extract its cache folder here.' }
 $reference=Join-Path $root 'cache\255\12.dat'
-if (!(Test-Path -LiteralPath $reference) -or (Get-FileHash -LiteralPath $reference -Algorithm SHA256).Hash -notin @('8A45E12B3D5B3BF35CDB02CDEC9DDEDBD46200B4FEF086ADC0679FB0D020EF8C','21AAE886E340146ED851949C0F900FAE44208BE899E305E7331C12F1D6F44E89')) {
+if (!(Test-Path -LiteralPath $reference) -or (Get-FileHash -LiteralPath $reference -Algorithm SHA256).Hash -notin @('8A45E12B3D5B3BF35CDB02CDEC9DDEDBD46200B4FEF086ADC0679FB0D020EF8C','21AAE886E340146ED851949C0F900FAE44208BE899E305E7331C12F1D6F44E89','95CA10C1A35C2B5B397FB5583B46DDA0876C5BE03619A6BB18BD6782F8DE4648')) {
  throw 'Wrong or incomplete cache. This bundle is paired with OpenRS2 cache 2691 (950.1). Extract its Flat file archive into this folder; see README.md.'
 }
 $conflicts = @(Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object {$_.LocalPort -in $ports -and $_.LocalAddress -in @('127.0.0.2','0.0.0.0','::')})

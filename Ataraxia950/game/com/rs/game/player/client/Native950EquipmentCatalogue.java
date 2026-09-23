@@ -91,8 +91,16 @@ final class Native950EquipmentCatalogue {
         for(int id:new int[]{58036,58041,556,555,554,557,560,565,566,9075,563,562,561,564}){
             ItemDefinitions d=Native950CacheItems.definition(id);if(valid(d)&&!contains(tabs.get(6),id))tabs.get(6).add(entry(d,6));
         }
+        // Best also offers the complete, audited strongest-style loadouts and their resources.
+        Native950DeveloperLoadouts bestLoadouts=new Native950DeveloperLoadouts();
+        for(int i=0;i<4;i++){
+            Native950DeveloperLoadouts.Loadout loadout=bestLoadouts.get(i);
+            for(com.rs.game.item.Item[] items:new com.rs.game.item.Item[][]{loadout.equipment,loadout.inventory})
+                for(com.rs.game.item.Item item:items)if(item!=null&&!containsEquivalent(tabs.get(0),Native950CacheItems.definition(item.getId())))
+                    tabs.get(0).add(entry(Native950CacheItems.definition(item.getId()),0));
+        }
         List<Entry> out=new ArrayList<>();
-        int[] limits={40,135,130,125,90,60,80,40};
+        int[] limits={100,135,130,125,90,60,80,40};
         for(int category=0;category<tabs.size();category++){
             List<Entry> tab=tabs.get(category);
             if(category!=0) {
@@ -111,8 +119,12 @@ final class Native950EquipmentCatalogue {
                         .thenComparingInt(e->armour(e.slot)?0:1)
                         .thenComparing(e->e.group).thenComparingInt(e->slotOrder(e.slot)).thenComparing(e->e.name));
             }
+            if(category==0)tab.sort(Comparator.<Entry>comparingInt(e->e.slot<0||e.slot==13?1:0)
+                    .thenComparing(Comparator.<Entry>comparingInt(e->e.tier).reversed())
+                    .thenComparingInt(e->armour(e.slot)?0:1).thenComparing(e->e.group)
+                    .thenComparingInt(e->slotOrder(e.slot)).thenComparing(e->e.name));
             // Bound the native grid, retaining complete groups rather than truncating a set.
-            int taken=0;int[] bands=new int[4];
+            int start=out.size();int taken=0;int[] bands=new int[4];
             for(int i=0;i<tab.size();) {
                 int end=i+1;while(end<tab.size()&&tab.get(end).group.equals(tab.get(i).group))end++;
                 Entry first=tab.get(i);int band=first.tier>=95?0:first.tier>=85?1:first.tier>=60?2:3;
@@ -122,15 +134,29 @@ final class Native950EquipmentCatalogue {
                 if(taken+end-i<=limit&&bands[band]+end-i<=bandLimit) {out.addAll(tab.subList(i,end));taken+=end-i;bands[band]+=end-i;}
                 i=end;
             }
+            // Preserve curated membership, then present every gear tier highest first.
+            if(category<=5)out.subList(start,out.size()).sort(Comparator.<Entry>comparingInt(e->e.slot<0||e.slot==13?1:0)
+                    .thenComparing(Comparator.<Entry>comparingInt(e->e.tier).reversed())
+                    .thenComparingInt(e->armour(e.slot)?0:1).thenComparing(e->e.group)
+                    .thenComparingInt(e->slotOrder(e.slot)).thenComparing(e->e.name));
         }
         return new Native950EquipmentCatalogue(out);
+    }
+    private static boolean containsEquivalent(List<Entry> entries,ItemDefinitions item){
+        String name=baseAppearance(item.name);
+        for(Entry e:entries)if(e.id==item.getId()||baseAppearance(e.name).equals(name))return true;
+        return false;
+    }
+    private static String baseAppearance(String name){
+        return name.toLowerCase(Locale.ROOT).replaceFirst("^augmented ","")
+                .replaceAll(" \\((blood|soul|shadow|ice|third age|barrows|aurora)\\)$","");
     }
     private static boolean contains(List<Entry> entries,int id){for(Entry e:entries)if(e.id==id)return true;return false;}
     private static boolean valid(ItemDefinitions d){
         return d!=null&&d.name!=null&&!d.name.trim().isEmpty()&&!d.name.equalsIgnoreCase("null")
                 &&!d.name.startsWith("<")&&d.certTemplateId<0&&d.lendTemplateId<0&&d.bindTemplateId<0&&d.shardTemplateId<0;
     }
-    private static int category(ItemDefinitions d){
+    static int category(ItemDefinitions d){
         String n=d.name.toLowerCase(Locale.ROOT);
         if(d.equipSlot>=0&&Native950EquipmentTypes.resolve(d.getId())!=null){
             if(d.equipSlot==13)return n.contains("spikes")?1:2;
@@ -151,7 +177,7 @@ final class Native950EquipmentCatalogue {
                 ||n.matches("(charming imp|bonecrusher|herbicide|seedicide|spring cleaner|notepaper|magic notepaper|enhanced excalibur)"))return 7;
         return -1;
     }
-    private static Entry entry(ItemDefinitions d,int category){
+    static Entry entry(ItemDefinitions d,int category){
         int tier=d.getCSOpcode(23,0);
         Native950EquipmentTypes.Type type=d.equipSlot<0?null:Native950EquipmentTypes.resolve(d.getId());
         if(tier==0&&type!=null)for(int level:type.requirements.values())tier=Math.max(tier,level);
@@ -165,12 +191,15 @@ final class Native950EquipmentCatalogue {
                 if(n.contains(set))return (n.contains("custom-fit")?"custom-fit ":n.contains("trimmed")?"trimmed ":"")+set+(n.contains("visage")?"~visage":"");
             return n.replaceAll("\\b(full helm|med helm|platebody|platelegs|plateskirt|chainbody|armoured|helm|helmet|mask|hood|hat|coif|cowl|hauberk|body|top|legs|bottoms|bottom|gloves|gauntlets|boots|shoes|robe|robetop|robeskirt|chaps|tunic|cuirass|greaves)\\b","").replaceAll("\\s+"," ").trim();
         }
+        if(n.startsWith("celestial catalytic "))return "celestial catalytic dual wield";
+        if(n.startsWith("celestial elemental "))return "celestial elemental dual wield";
+        if(n.equals("entropic guard")||n.equals("entropic lantern"))return "entropic dual wield";
         if(n.contains("dark shard of leng")||n.contains("dark sliver of leng"))return "leng dual wield";
         if(n.contains("wand of the praesul")||n.contains("imperium core"))return "praesul dual wield";
         if(n.contains("seismic wand")||n.contains("seismic singularity"))return "seismic dual wield";
         return n.replaceFirst("^off[- ]hand ","");
     }
-    private static int slotOrder(int slot){switch(slot){case 0:return 0;case 4:return 1;case 7:return 2;case 9:return 3;case 10:return 4;default:return 10+slot;}}
+    static int slotOrder(int slot){switch(slot){case 0:return 0;case 4:return 1;case 7:return 2;case 9:return 3;case 10:return 4;default:return 10+slot;}}
     private static boolean armour(int slot){return slot==0||slot==4||slot==7||slot==9||slot==10;}
     private static String upgradeBase(String name){return name.replaceAll(" \\+ ?[1-5]$","").toLowerCase(Locale.ROOT);}
     private static int upgrade(String name){return name.matches(".* \\+ ?[1-5]$")?name.charAt(name.length()-1)-'0':0;}
