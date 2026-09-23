@@ -29,6 +29,9 @@ Manifest protocol-analysis/playability-candidate-20260923.json names immutable
 bundle/source commit/hash. Backup backups/pre-edit-20260923-132706-892; source
 baseline9f778e7; first pushed checkpoint475a15b. Full validation report:
 protocol-analysis/combat-successor-validation-20260923.json.
+Staged successor: dist/combat-live-successor-20260923,11 pinned files,check-only PASS.
+Source f6d5f975c9aab5e2d3711f55ba0016dd29e331b7 pushed. Apply Staged Update.cmd
+points to this candidate; the running server is unchanged.
 Native context24 root cause remains bank onLoad13353 acquired it without close
 release; fixed through original9299/8841 before IF_CLOSESUB. User has now LIVE
 PASSED opening/closing both bank and items. Do not reopen speculative P0 work.

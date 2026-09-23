@@ -35,5 +35,12 @@
   "liveAcceptance": "PENDING; user live results in combat-live-followup-20260923.json remain authoritative",
   "serverRestarted": false,
   "installed": false,
-  "productionCharactersLoadedOrEdited": false
+  "productionCharactersLoadedOrEdited": false,
+  "staging": {
+    "candidate": "combat-live-successor-20260923",
+    "sourceCommit": "f6d5f975c9aab5e2d3711f55ba0016dd29e331b7",
+    "files": 11,
+    "checkOnly": "PASS",
+    "stageJarSha256": "c086881cd0510c592b1f8ca17652133e04e10d8d47aec077668bf87e57f2011f"
+  }
 }

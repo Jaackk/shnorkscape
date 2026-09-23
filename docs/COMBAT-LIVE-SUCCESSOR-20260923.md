@@ -5,6 +5,9 @@ The running JAR remains SHA256
 `a426b834f41384afd6b9ac9e81769e2d1914ccc79eaf8d416264efcbe7de44de`.
 No installation, restart, client manipulation or production-character edit was
 performed. The pre-edit backup is `backups/pre-edit-20260923-132706-892`.
+Staged bundle: `dist/combat-live-successor-20260923`,11 pinned files;
+installer check-only PASS. Source checkpoint `f6d5f97` pushed.
+
 Source baseline/rollback checkpoint: `9f778e7`; first successor checkpoint:
 `475a15b`. Use the candidate manifest for the final source checkpoint and hashes.
 
