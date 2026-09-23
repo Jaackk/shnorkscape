@@ -10,7 +10,7 @@ import java.util.*;
 
 /** Paired950 definitions. A tooltip coefficient is not a verified server damage formula. */
 final class Native950AbilityCatalog {
-    enum Effect { DIRECT, STUN, EXECUTE, BLEED, BUFF, FLOW, MOVEMENT, PROVOKE, CEASE, FOOD }
+    enum Effect { DIRECT, STUN, EXECUTE, BLEED, BUFF, FLOW, MOVEMENT, PROVOKE, CEASE, FOOD, CONJURE, COMMAND }
     static final class Definition {
         final int struct,book,key,skill,level,cooldown,minPercent,maxPercent,tier,hits;
         final String name;
@@ -22,7 +22,7 @@ final class Native950AbilityCatalog {
             this.cooldown=cooldown;minPercent=min;maxPercent=max;this.tier=tier;this.hits=hits;this.effect=effect;
             this.offhandRequired=offhandRequired;this.twoHandedRequired=twoHandedRequired;
         }
-        boolean targetRequired(){return effect!=Effect.MOVEMENT&&effect!=Effect.BUFF&&effect!=Effect.CEASE&&effect!=Effect.FOOD;}
+        boolean targetRequired(){return effect!=Effect.CONJURE&&effect!=Effect.COMMAND&&struct!=48305&&effect!=Effect.MOVEMENT&&effect!=Effect.BUFF&&effect!=Effect.CEASE&&effect!=Effect.FOOD;}
         boolean revolutionEligible(){return effect!=Effect.MOVEMENT&&book!=3&&book!=4;}
         int style(){return book==1?0:book==5?1:book==6?2:book==7?3:-1;}
         boolean shieldRequired(){return struct==14713||struct==14714||struct==14715||struct==14716
@@ -30,12 +30,15 @@ final class Native950AbilityCatalog {
         // Paired 950 params 2798/2800 use tenths of one percent. Tier 2 is
         // enhanced, not the pre-modernisation 50%-admission/15%-cost threshold.
         int adrenalineCost(){
+            if(Native950Conjures.handles(struct))return 0;
             if(struct==28177||struct==28180)return 0;
             if(struct==52796)return 40;
             if(struct==48299||struct==48301||struct==48309)return 0;
             if(struct==44244||struct==14666)return 0;
             if(struct==31985||struct==31986||struct==48308)return 20;
             if(struct==48311)return 10;
+            if(struct==48312)return 20;
+            if(struct==48313)return 30;
             if(struct==14686||struct==14688||struct==14674||struct==14736||struct==14709||struct==48297||struct==48314)return 60;
             return tier==2?25:tier==3?15:tier==4?100:0;
         }
@@ -124,6 +127,15 @@ final class Native950AbilityCatalog {
         d(46279,1,15,"Chaos Roar",0,92,100,0,0,1,0,Effect.BUFF),
 
         // Exact cache950 enum16973 entries, sharing the authoritative resource owner.
+        d(48302,7,4,"Conjure Skeleton Warrior",28,2,0,0,0,2,0,Effect.CONJURE),
+        d(48303,7,4,"Command Skeleton Warrior",28,20,25,0,0,2,0,Effect.COMMAND),
+        d(48304,7,8,"Conjure Putrid Zombie",28,40,50,0,0,2,0,Effect.CONJURE),
+        d(48305,7,8,"Command Putrid Zombie",28,60,0,0,0,2,0,Effect.COMMAND),
+        d(48306,7,9,"Conjure Vengeful Ghost",28,40,0,0,0,2,0,Effect.CONJURE),
+        d(48307,7,9,"Command Vengeful Ghost",28,60,0,0,0,2,0,Effect.COMMAND),
+        d(31820,7,16,"Conjure Phantom Guardian",28,70,0,0,0,2,0,Effect.CONJURE),
+        d(32342,7,16,"Command Phantom Guardian",28,80,15,0,0,2,0,Effect.COMMAND),
+        d(33965,7,15,"Conjure Undead Army",28,99,0,0,0,2,0,Effect.CONJURE),
         d(48296,7,2,"Touch of Death",Skills.NECROMANCY,13,24,90,110,1,1,Effect.DIRECT),
         d(48297,7,3,"Finger of Death",Skills.NECROMANCY,8,0,270,330,2,1,Effect.DIRECT),
         d(48298,7,5,"Soul Sap",Skills.NECROMANCY,54,9,90,110,1,1,Effect.DIRECT),
@@ -132,14 +144,17 @@ final class Native950AbilityCatalog {
         d(48309,7,11,"Blood Siphon",Skills.NECROMANCY,36,75,22,28,2,5,Effect.DIRECT),
         d(48324,7,14,"Living Death",Skills.NECROMANCY,76,150,0,0,4,0,Effect.BUFF),
         d(48308,7,10,"Bloat",Skills.NECROMANCY,48,0,60,75,2,1,Effect.BLEED),
-        d(48311,7,12,"Spectral Scythe",Skills.NECROMANCY,62,25,100,120,2,1,Effect.DIRECT),
-        d(48314,7,13,"Death Skulls",Skills.NECROMANCY,28,100,115,140,4,1,Effect.DIRECT)));
+        d(48311,7,12,"Spectral Scythe",Skills.NECROMANCY,62,25,72,88,2,1,Effect.DIRECT),
+        d(48312,7,12,"Spectral Scythe",Skills.NECROMANCY,62,0,180,220,2,1,Effect.DIRECT),
+        d(48313,7,12,"Spectral Scythe",Skills.NECROMANCY,62,0,225,275,2,1,Effect.DIRECT),
+        d(48314,7,13,"Death Skulls",Skills.NECROMANCY,28,100,225,275,4,1,Effect.DIRECT)));
     private static Definition d(int struct,int book,int key,String name,int skill,int level,int cooldown,int min,int max,
                                 int tier,int hits,Effect effect){return d(struct,book,key,name,skill,level,cooldown,min,max,tier,hits,effect,false,false);}
     private static Definition d(int struct,int book,int key,String name,int skill,int level,int cooldown,int min,int max,
                                 int tier,int hits,Effect effect,boolean offhand,boolean twoHanded){
         return new Definition(struct,book,key,name,skill,level,cooldown,min,max,tier,hits,effect,offhand,twoHanded);
     }
+    static int base(int struct){return struct==48312||struct==48313?48311:Native950Conjures.base(struct);}
     static Definition get(int struct){for(Definition d:DEFINITIONS)if(d.struct==struct)return d;return null;}
     static void verify(){
         for(Definition d:DEFINITIONS){
@@ -151,7 +166,7 @@ final class Native950AbilityCatalog {
                 ||(s.getIntValue(2811)==1)!=d.offhandRequired
                 ||(s.getIntValue(2812)==1)!=d.twoHandedRequired
                 ||(s.getIntValue(2813)==1)!=d.shieldRequired()
-                ||Native950ActionBar.struct(Native950ActionBar.pack(d.book,d.key))!=d.struct)
+                ||Native950ActionBar.struct(Native950ActionBar.pack(d.book,d.key))!=base(d.struct))
                 throw new IllegalStateException("Changed950 ability definition: "+d.name);
             if(d.channelled()&&d.struct!=14701&&d.struct!=14666
                     &&(s.getIntValue(8884)!=d.hitSpacing()||s.getIntValue(8885)!=d.hits-1))
@@ -173,10 +188,13 @@ final class Native950AbilityCatalog {
         int family=weapon==null?0:weapon.getCSOpcode(686);
         RS3ClientScriptMap table=enumId>0?RS3ClientScriptMap.getMap(enumId):null;
         Object flat=d.getValues()==null?null:d.getValues().get(2914L);
+        if(struct==48324&&flat==null)flat=d.getValues().get(2535L); // Exact Living Death sequence field.
+        if(struct==48301&&flat==null&&sequenceParam(35469,2933)==targetGraphic(struct))flat=35469;
+        // Undercut named Volley35469 corroborated by950 SeqType2933 == Struct48301 impact7879.
         int id=keyedAnimation(flat,table==null?null:table.getValues(),table==null?-1:table.getDefaultIntValue(),family);
         if(id<0)return new AnimationResolution(-1,"none:weapon-family-"+family+"-has-no-entry");
         AnimationDefinitions seq=AnimationDefinitions.getAnimationDefinitions(id);
-        return seq.decodeFailure==null?new AnimationResolution(id,enumId>0?"cache:enum-"+enumId+"-weapon-family-"+family:"cache:struct-"+struct+"-param2914")
+        return seq.decodeFailure==null?new AnimationResolution(id,enumId>0?"cache:enum-"+enumId+"-weapon-family-"+family:"cache:struct-"+struct+"-presentation-binding")
                 :new AnimationResolution(-1,"none:sequence-"+id+"-decode-failed");
     }
     /** Exact typed absence is not sequence zero. Enum family/default precedes a flat binding. */
@@ -209,9 +227,10 @@ final class Native950AbilityCatalog {
         return animationTicksForMillis(AnimationDefinitions.getAnimationDefinitions(animation).getEmoteTime());
     }
     static int animationTicksForMillis(int millis){return Math.max(1,(Math.max(0,millis)+599)/600);}
+    static int targetGraphic(int struct,int animation){int direct=targetGraphic(struct);return direct>=0?direct:sequenceParam(animation,2933);}
     static int targetGraphic(int struct){
         if(com.rs.cache.Cache.STORE==null)return -1;
-        return RS3GeneralRequirementMap.getMap(struct).getIntValue(2933);
+        return structParam(struct,2933);
     }
     static int casterGraphic(int struct,int animation){
         int direct=structParam(struct,2920);

@@ -12,12 +12,12 @@ import static org.junit.Assert.*;
 
 public class Native950AbilityFoundationTest {
     @Test public void verifiedRotationSeparatesUtilityDamageAndAdrenalineTiers(){
-        assertEquals(74,Native950AbilityCatalog.DEFINITIONS.size());
+        assertEquals(85,Native950AbilityCatalog.DEFINITIONS.size());
         long melee=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==1).count();
         long ranged=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==5).count();
         long magic=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==6&&d.targetRequired()).count();
         long necromancy=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==7&&d.targetRequired()).count();
-        assertEquals(17,melee);assertEquals(14,ranged);assertEquals(12,magic);assertEquals(9,necromancy);
+        assertEquals(17,melee);assertEquals(14,ranged);assertEquals(12,magic);assertEquals(11,necromancy);
         Native950AbilityCatalog.Definition surge=Native950AbilityCatalog.get(14726);
         assertFalse(surge.targetRequired());assertEquals(34,surge.cooldown);assertEquals(16,surge.skill);assertEquals(5,surge.level);
         assertEquals(0,Native950AbilityCatalog.get(14682).adrenalineCost());

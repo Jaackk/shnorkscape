@@ -749,6 +749,42 @@
       "id": 11035,
       "maxValue": 5,
       "_note": "Exact950 CS17459/18660/18662 soul generation/cap/consumption."
+    },
+    "conjure_skeleton_active": {
+      "kind": "varp",
+      "id": 10994,
+      "maxValue": 1,
+      "_note": "Exact950 CS8247 active conjure -> command transform. Companion ownership is server-side."
+    },
+    "conjure_zombie_active": {
+      "kind": "varp",
+      "id": 11006,
+      "maxValue": 1,
+      "_note": "Exact950 CS8247 active conjure -> command transform. Companion ownership is server-side."
+    },
+    "conjure_ghost_active": {
+      "kind": "varp",
+      "id": 11018,
+      "maxValue": 1,
+      "_note": "Exact950 CS8247 active conjure -> command transform. Companion ownership is server-side."
+    },
+    "conjure_phantom_active": {
+      "kind": "varp",
+      "id": 11820,
+      "maxValue": 1,
+      "_note": "Exact950 CS8247 active conjure -> command transform. Companion ownership is server-side."
+    },
+    "scythe_recast_1": {
+      "kind": "varp",
+      "id": 11051,
+      "maxValue": 1,
+      "_note": "Exact950 CS8247 Spectral Scythe sequence transform, CS17731 25-tick recast window."
+    },
+    "scythe_recast_2": {
+      "kind": "varp",
+      "id": 11054,
+      "maxValue": 1,
+      "_note": "Exact950 CS8247 Spectral Scythe sequence transform, CS17731 25-tick recast window."
     }
   },
   "scripts": {
@@ -1502,6 +1538,71 @@
       "id": 18662,
       "sha256": "cd653ad37ba6444a79c9d23aef24d92936e023ae2ee2f5a30e80c696e2d5c71f",
       "_note": "Exact950 queue/resource reader; native varp publication is required, internal counters alone are insufficient."
+    },
+    "conjure_reader_8247": {
+      "id": 8247,
+      "sha256": "0fb25f13c1de3cb06d670cc25c20c751cfffc7e03e07a94b8c49631f9dc63b56",
+      "_note": "Exact950 companion transform, duration, limit or tooltip evidence; no custom UI."
+    },
+    "conjure_reader_17454": {
+      "id": 17454,
+      "sha256": "61872d049178807dd55b3e84d76ea53df67051e80003612dac2fc490088b57d3",
+      "_note": "Exact950 companion transform, duration, limit or tooltip evidence; no custom UI."
+    },
+    "conjure_reader_17455": {
+      "id": 17455,
+      "sha256": "15d3b0e00725152adceb67acd75bea4dbc414ac786409416841221c54d6b737d",
+      "_note": "Exact950 companion transform, duration, limit or tooltip evidence; no custom UI."
+    },
+    "conjure_reader_17727": {
+      "id": 17727,
+      "sha256": "e81be8275fa9c3655705c1d234034b6db6fbf924ee3780c33da76e12bbea2238",
+      "_note": "Exact950 companion transform, duration, limit or tooltip evidence; no custom UI."
+    },
+    "conjure_reader_18663": {
+      "id": 18663,
+      "sha256": "0c0f44759d9769cf0f602f00dc0d784b16d67eb85aa5bf00735c0d2f568dd968",
+      "_note": "Exact950 companion transform, duration, limit or tooltip evidence; no custom UI."
+    },
+    "conjure_reader_18664": {
+      "id": 18664,
+      "sha256": "a0ec0d0b38a249588ac94b02c29fa02392cae7c132976f73b29fb61cda5d4c05",
+      "_note": "Exact950 companion transform, duration, limit or tooltip evidence; no custom UI."
+    },
+    "conjure_reader_18665": {
+      "id": 18665,
+      "sha256": "d483e4b2627961309d40eb9ffd981b04698055d66f2c91f7a5268216fcce1a65",
+      "_note": "Exact950 companion transform, duration, limit or tooltip evidence; no custom UI."
+    },
+    "conjure_reader_18666": {
+      "id": 18666,
+      "sha256": "96a783ca5fde6d65510b17fbf181fc4ef3ea1d3ef5668d708822c687beeed560",
+      "_note": "Exact950 companion transform, duration, limit or tooltip evidence; no custom UI."
+    },
+    "conjure_reader_18667": {
+      "id": 18667,
+      "sha256": "9a53aefb4afbd5f3fd856f5fd30847380116a954c75f2a4624b52789996d6540",
+      "_note": "Exact950 companion transform, duration, limit or tooltip evidence; no custom UI."
+    },
+    "conjure_reader_18668": {
+      "id": 18668,
+      "sha256": "c595644689050ccc426d67217ee47ea601b32018c175ae58fbe6cddb284573aa",
+      "_note": "Exact950 companion transform, duration, limit or tooltip evidence; no custom UI."
+    },
+    "conjure_reader_10903": {
+      "id": 10903,
+      "sha256": "f065a47743f4f9b0188c9617f4314d344908c8b373063f603c86b42d0c98ecc9",
+      "_note": "Exact950 companion transform, duration, limit or tooltip evidence; no custom UI."
+    },
+    "conjure_reader_18295": {
+      "id": 18295,
+      "sha256": "45132d152c4518df1d6d3cf34e2398835caa5880b0d0a2819aaa62c7e36faf49",
+      "_note": "Exact950 companion transform, duration, limit or tooltip evidence; no custom UI."
+    },
+    "scythe_reader_17731": {
+      "id": 17731,
+      "sha256": "8f0fc28c51e34893875a1f3b32ca308b5b5f591150cf139a975560c0a3b879e9",
+      "_note": "Exact950 cone/radius, coefficients, souls and recast window."
     }
   },
   "ops": {

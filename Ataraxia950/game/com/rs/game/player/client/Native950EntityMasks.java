@@ -201,6 +201,7 @@ public final class Native950EntityMasks {
         if (npc == null) return null;
         Native950NpcMasks.Update update = new Native950NpcMasks.Update();
         boolean any = false;
+        if(added&&npc.isNative950Conjure()){update.name(npc.getName());any=true;}
 
         // 950 bit 3: four sequence slots and a plain delay; proven in the parser tail.
         Animation animation = npc.getNextAnimation();

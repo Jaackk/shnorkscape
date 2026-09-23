@@ -805,12 +805,73 @@ public class Native950MeleeCombatTest {
         assertEquals(1,access.retired);assertFalse(access.npcs.contains(npc));
         assertNull(combat.combatTarget(player));assertEquals(1,rewards.deathCalls);
     }
+    @Test public void switchingTargetsKeepsEarlierRetaliationWithoutSendingPlayerAttacksBack(){
+        player.setHitpoints(10000);npc.setHitpoints(1000);
+        NPC second=NPC.createNative950(12353,new WorldTile(3219,3258,0),1);second.setIndex(2);
+        access.npcs.add(second);combat.register(second,profile(1000,10,3));
+        assertNull(combat.attack(player,npc));step();int firstHp=npc.getHitpoints();
+        assertNull(combat.attack(player,second));
+        for(int i=0;i<12;i++)step();
+        assertSame(second,combat.combatTarget(player));assertEquals(firstHp,npc.getHitpoints());
+        assertTrue(second.getHitpoints()<1000);assertTrue(npc.isNative950CombatEngaged());
+        assertSame(player,npc.getAttackedBy());
+        combat.stop(player);assertFalse(npc.isNative950CombatEngaged());assertFalse(second.isNative950CombatEngaged());
+    }
+    @Test public void twoPlayersSkullFlightsKeepIndependentOwnersAndCleanup(){
+        player.setHitpoints(10000);player.getCombatDefinitions().setAutoRetaliate(false);npc.setHitpoints(1000);
+        EmbeddedChannel channel=new EmbeddedChannel();
+        try{
+            Player other=Player.createNative950("skulls-owner",new WorldTile(3219,3257,0),channel);
+            other.setActive(true);other.setIndex(2);other.setHitpoints(10000);other.getCombatDefinitions().setAutoRetaliate(false);
+            access.players.add(other);
+            Native950MeleeCombat.Loadout gear=new Native950MeleeCombat.Loadout(0,0,0,4,-1,-1,null);
+            combat.startDeathSkulls(player,npc,gear,5,6,4,7882);
+            combat.startDeathSkulls(other,npc,gear,7,6,4,7882);
+            step();step();assertEquals(988,npc.getHitpoints());
+            combat.detach(player);
+            for(int i=0;i<8;i++)step();
+            assertEquals(974,npc.getHitpoints());assertTrue(npc.getReceivedDamage().containsKey(other));
+        }finally{channel.finishAndReleaseAll();}
+    }
+    @Test public void skullsTravelsBackThroughCasterAndRehitsWithoutDamagingCaster(){
+        player.setHitpoints(10000);player.getCombatDefinitions().setAutoRetaliate(false);npc.setHitpoints(50);
+        Native950MeleeCombat.Loadout gear=new Native950MeleeCombat.Loadout(0,0,0,4,-1,-1,null);
+        combat.startDeathSkulls(player,npc,gear,5,6,4,7882);
+        assertEquals(1,access.projectiles);assertEquals(50,npc.getHitpoints());
+        step();assertEquals(50,npc.getHitpoints());step();assertEquals(45,npc.getHitpoints());
+        for(int i=0;i<8;i++)step();
+        assertEquals(35,npc.getHitpoints());assertEquals(5,access.projectiles);
+    }
+    @Test public void skullsSurvivesFirstTargetDeathButEndsOnOwnerDetach(){
+        player.setHitpoints(10000);player.getCombatDefinitions().setAutoRetaliate(false);npc.setHitpoints(1);
+        NPC second=NPC.createNative950(12353,new WorldTile(3220,3258,0),1);second.setIndex(2);
+        access.npcs.add(second);combat.register(second,profile(100,0,3));
+        Native950MeleeCombat.Loadout gear=new Native950MeleeCombat.Loadout(0,0,0,4,-1,-1,null);
+        combat.startDeathSkulls(player,npc,gear,5,6,4,7882);
+        step();step();assertTrue(npc.isDead());assertEquals(2,access.projectiles);
+        step();step();assertEquals(95,second.getHitpoints());
+        combat.detach(player);int before=access.projectiles;
+        for(int i=0;i<10;i++)step();assertEquals(before,access.projectiles);assertEquals(95,second.getHitpoints());
+    }
+    @Test public void skullsChoosesHighestHpNearbyEnemyAndStopsWithoutAReachableNextTarget(){
+        player.setHitpoints(10000);player.getCombatDefinitions().setAutoRetaliate(false);
+        NPC high=NPC.createNative950(12353,new WorldTile(3220,3258,0),1);high.setIndex(2);
+        access.npcs.add(high);combat.register(high,profile(100,0,3));
+        Native950MeleeCombat.Loadout gear=new Native950MeleeCombat.Loadout(0,0,0,4,-1,-1,null);
+        combat.startDeathSkulls(player,npc,gear,5,6,4,7882);
+        for(int i=0;i<4;i++)step();assertEquals(95,high.getHitpoints());
+        access.npcs.remove(npc);player.setLocation(new WorldTile(3300,3300,0));
+        for(int i=0;i<10;i++)step();int before=access.projectiles;
+        for(int i=0;i<10;i++)step();assertEquals(before,access.projectiles);
+        assertEquals(2,Native950MeleeCombat.skullFlightTicks(5));assertEquals(3,Native950MeleeCombat.skullFlightTicks(6));
+    }
     private static Native950NpcCombatProfile profile(int hp,int maxHit,int respawn){return new Native950NpcCombatProfile(12353,1,2,hp,8,8,maxHit,5,3,respawn,-1,-1,-1,2,12);}
     private static final class FixedRolls implements Native950MeleeCombat.Rolls {boolean accurate=true;public boolean accurate(long attack,long defence){return accurate;}public int damage(int maximum){return maximum;}}
     private static final class FakeAccess implements Native950MeleeCombat.Access {
         final Set<Player> players=Collections.newSetFromMap(new IdentityHashMap<Player,Boolean>());
         final Set<NPC> npcs=Collections.newSetFromMap(new IdentityHashMap<NPC,Boolean>());
-        boolean clear=true,reachable=true,routePossible=true,moveOnFollow;int approaches,follows,retired;WorldTile followTarget;
+        boolean clear=true,reachable=true,routePossible=true,moveOnFollow;int approaches,follows,retired,projectiles;WorldTile followTarget;
+        public void projectile(com.rs.game.Projectile p){projectiles++;}
         public void retire(NPC npc){retired++;npcs.remove(npc);}
         public void activate(NPC npc){}
         public boolean player(Player p){return players.contains(p);}

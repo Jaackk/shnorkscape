@@ -1,3 +1,40 @@
+SHNORKSCAPE - LIVE COMBAT SUCCESSOR 2026-09-23 (LATEST; supersedes historical notes below)
+
+User acceptance of installed combat-completion candidate:
+P0 bank/items keybind recovery LIVE PASS; preserve keyboard-context24 close fix.
+Queued visual LIVE FAIL; Revolution LIVE PASS/PARTIAL; presentation LIVE PARTIAL;
+Necromancy LIVE PARTIAL/major missing systems; Death Skulls bounce LIVE FAIL;
+Dive chosen-tile execution LIVE FAIL. Successor remains LIVE PENDING.
+
+Read docs/COMBAT-LIVE-SUCCESSOR-20260923.md and
+ docs/COMBAT-SUCCESSOR-LIVE-CHECKLIST-20260923.md first.
+Concrete faults: strict runtime binding resolver dropped4164/5861 and10986/11035;
+legacy graphics identity gate rejected123 of125 exact950 graphics in the final
+audit. Successor admits pinned bindings, preserves overlays on transform redraw,
+adds timed Skulls bounces, dedicated owned conjure lifecycle, Scythe recasts,
+multiple-NPC retaliation and native selector handling. Dive icon/target-parent
+ground masks corrected; complete server input/movement/native-frame gate passes.
+No physical Vulkan success is inferred from these gates.
+Conjure attack poses, Zombie poison, Phantom Valour scaling, incantations and
+other documented retail mechanics remain incomplete. Companion30265/66/67 model
+semantics are inferred and need visual confirmation;31142 is publicly identified.
+No generic hostile NPCs or guessed attack animations substituted.
+
+1514 tests:0 failures/errors,2 skips;1726 combat checks/225 activations/144
+projectiles; real transport generation/consumption/queue tests; two-viewer conjure
+add/remove; chosen-tile movement/native frames; all eight broad cache gates PASS.
+Runtime JAR remains A426B834F41384AFD6B9AC9E81769E2D1914CCC79EAF8D416264EFCBE7DE44DE.
+No restart/install, no production-character edits. User applies staged candidate.
+Manifest protocol-analysis/playability-candidate-20260923.json names immutable
+bundle/source commit/hash. Backup backups/pre-edit-20260923-132706-892; source
+baseline9f778e7; first pushed checkpoint475a15b. Full validation report:
+protocol-analysis/combat-successor-validation-20260923.json.
+Native context24 root cause remains bank onLoad13353 acquired it without close
+release; fixed through original9299/8841 before IF_CLOSESUB. User has now LIVE
+PASSED opening/closing both bank and items. Do not reopen speculative P0 work.
+
+HISTORICAL HANDOFF (earlier pending-live statements below are superseded):
+
 SHNORKSCAPE - NEXT AGENT ENGINEERING CONTINUATION
 Snapshot: 2026-09-22. Read this before changing combat, client UI, LAN or saves.
 

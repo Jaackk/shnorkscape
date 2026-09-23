@@ -171,7 +171,7 @@ public final class Native950CombatStyles {
             return com.rs.game.player.combat.rs2.Rs2CombatFormula.meleeOrRangedMaxHit(
                     com.rs.game.player.combat.rs2.Rs2CombatFormula.effectiveLevel(effective,0,0,1),4+effective,1);
         }
-        Hit.HitLook look(){return style==RANGED?Hit.HitLook.RANGE_DAMAGE:style==MAGIC||style==NECROMANCY?Hit.HitLook.MAGIC_DAMAGE:Hit.HitLook.MELEE_DAMAGE;}
+        Hit.HitLook look(){return style==RANGED?Hit.HitLook.RANGE_DAMAGE:style==NECROMANCY?Hit.HitLook.NECROMANCY_DAMAGE:style==MAGIC?Hit.HitLook.MAGIC_DAMAGE:Hit.HitLook.MELEE_DAMAGE;}
     }
     static boolean ordinaryThrown(ItemDefinitions d,int struct){
         return d!=null&&d.equipSlot==Equipment.SLOT_WEAPON&&d.isStackable()

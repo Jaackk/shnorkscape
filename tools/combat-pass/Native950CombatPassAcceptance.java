@@ -19,6 +19,9 @@ public final class Native950CombatPassAcceptance {
         System.setProperty(Native950World.SPAWNS_PROPERTY,"false");
         System.setProperty(Native950World.LEGACY_SPAWNS_PROPERTY,"false");
         Cache.initFlatReadOnly(Paths.get(args[0]));Native950AbilityAssets.verify();
+        com.rs.game.player.client.ui.Native950Bindings bindings=com.rs.game.player.client.ui.Native950Bindings.tryLoad();
+        check(bindings!=null,"Exact-cache bindings failed to load");
+        Native950IdMap.install(new Native950ActionRouter.IdMapAdapter(bindings.allowListResolver()));
         Native950World.getInstance().execute(()->{run();return null;}).get(120,TimeUnit.SECONDS);
         Map<String,Object> report=new LinkedHashMap<>();report.put("checks",checks);report.put("activations",activations);
         report.put("projectiles",projectiles);report.put("liveVisual",false);report.put("accountsAccessed",false);report.put("abilities",evidence);
@@ -47,10 +50,12 @@ public final class Native950CombatPassAcceptance {
         return player;
     }
     static final class Fixture implements AutoCloseable {
-        final EmbeddedChannel firstChannel=new EmbeddedChannel(),secondChannel=new EmbeddedChannel();
+        final EmbeddedChannel firstChannel=new EmbeddedChannel(new com.rs.network.modern.Native950GameTransport(()->0,()->0,Thread.currentThread())),
+                secondChannel=new EmbeddedChannel(new com.rs.network.modern.Native950GameTransport(()->0,()->0,Thread.currentThread()));
         final Player first=player(firstChannel,1),second=player(secondChannel,2);
         final NPC npc=NPC.createNative950(12353,new WorldTile(3218,3258,0),1);
         final Native950MeleeCombat combat;
+        final Set<NPC> companions=Collections.newSetFromMap(new IdentityHashMap<NPC,Boolean>());int nextCompanion=2;
         Fixture(){
             npc.setIndex(1);
             combat=new Native950MeleeCombat(Thread.currentThread(),new Native950MeleeCombat.Access(){
@@ -58,16 +63,87 @@ public final class Native950CombatPassAcceptance {
                 public boolean npc(NPC n){return n==npc;}public boolean clear(WorldTile t){return true;}
                 public boolean reach(Entity a,Entity b){return true;}public boolean approach(Player p,NPC n){return true;}
                 public void projectile(Projectile p){projectiles++;}
+                public NPC spawnConjure(Player p,int id){NPC actor=NPC.createNative950Conjure(id,new WorldTile(p));actor.setIndex(nextCompanion++);companions.add(actor);return actor;}
+                public void removeConjure(NPC n){companions.remove(n);}
             },new Native950MeleeCombat.Rolls(){public boolean accurate(long a,long b){return true;}public int damage(int maximum){return maximum/2;}},Native950CombatStyles::loadout);
             combat.attach(first);combat.attach(second);
             combat.register(npc,new Native950NpcCombatProfile(12353,1,1,1000000,1,1,0,100,1,10,-1,-1,-1,0,0));
             npc.setHitpoints(1000000);
         }
         void step(int count){for(int i=0;i<count;i++){first.resetMasks();second.resetMasks();npc.resetMasks();combat.beforeMovement();combat.afterMovement();}}
-        void cast(Player player,int id){String result=combat.ability(player,id);check(result==null,"ability "+id+" refused: "+result);activations++;}
-        public void close(){combat.clear();Native950Skilling.detach(first);Native950Skilling.detach(second);firstChannel.finishAndReleaseAll();secondChannel.finishAndReleaseAll();}
+        void cast(Player player,int id){String result=combat.ability(player,id);check(result==null,"ability "+id+" refused: "+result);activations++;
+            Native950PlayerEffects.Result fx=Native950PlayerEffects.append(player,com.rs.network.protocol.modern950.Native950PlayerMasks.builder());
+            check(fx.refusedCount()==0,"ability "+id+" caster graphics were silently refused by the native mask gate");
+            int[] emitted={npc.getNextGraphics1()==null?-1:npc.getNextGraphics1().getId(),npc.getNextGraphics2()==null?-1:npc.getNextGraphics2().getId()};
+            for(int graphic:emitted)check(Native950PlayerEffects.isVerifiedGraphic(graphic),"ability "+id+" impact graphic rejected: "+graphic);
+        }
+        public void close(){combat.clear();check(companions.isEmpty(),"Conjure actor leaked after combat teardown");Native950Skilling.detach(first);Native950Skilling.detach(second);firstChannel.finishAndReleaseAll();secondChannel.finishAndReleaseAll();}
+    }
+    static java.util.List<byte[]> drain(EmbeddedChannel channel){
+        channel.flushOutbound();java.util.List<byte[]> result=new java.util.ArrayList<>();
+        Object value;while((value=channel.readOutbound())!=null){
+            check(value instanceof io.netty.buffer.ByteBuf,"Expected framed native output");
+            io.netty.buffer.ByteBuf frame=(io.netty.buffer.ByteBuf)value;
+            try{byte[] bytes=new byte[frame.readableBytes()];frame.readBytes(bytes);result.add(bytes);}finally{frame.release();}
+        }
+        return result;
+    }
+    static void wire(java.util.List<byte[]> frames,int id,int value){
+        byte[] expected=(value>=-128&&value<=127?com.rs.network.protocol.modern950.Native950Packets.varpSmall(id,value):
+            com.rs.network.protocol.modern950.Native950Packets.varp(id,value)).frame(()->0);
+        check(frames.stream().anyMatch(f->java.util.Arrays.equals(f,expected)),"Generated combat varp did not reach transport: "+id+"="+value);
+    }
+    static void worldCompanionFrames(){
+        Native950World world=Native950World.getInstance();
+        java.util.List<NPC> actors=new java.util.ArrayList<>();
+        EmbeddedChannel a=new EmbeddedChannel(new com.rs.network.modern.Native950GameTransport(()->0,()->0,Thread.currentThread())),
+                b=new EmbeddedChannel(new com.rs.network.modern.Native950GameTransport(()->0,()->0,Thread.currentThread()));
+        Native950NpcViewport firstView=new Native950NpcViewport(),secondView=new Native950NpcViewport();
+        Player first=Player.createNative950("companion-viewer-a",new WorldTile(3217,3258,0),a),
+                second=Player.createNative950("companion-viewer-b",new WorldTile(3217,3259,0),b);
+        try{
+            for(Native950Conjures.Kind k:Native950Conjures.Kind.values()){
+                NPC actor=NPC.createNative950Conjure(k.npc,new WorldTile(first));world.addConjure(actor);actors.add(actor);
+                check(World.getNPCs().get(actor.getIndex())==actor,"Conjure missing world registry");
+                check(World.getRegion(actor.getRegionId()).getNPCsIndexes().contains(actor.getIndex()),"Conjure missing region registry");
+                check(actor.getNative950CombatProfile()==null,"Conjure entered hostile NPC AI");
+            }
+            a.write(firstView.frame(first,7,false,actors));b.write(secondView.frame(second,7,false,actors));
+            check(firstView.snapshot().indices.length==4&&secondView.snapshot().indices.length==4,"Conjure omitted from a native player viewport");
+            check(!drain(a).isEmpty()&&!drain(b).isEmpty(),"Conjure native frames dropped");
+            for(NPC actor:actors)world.removeConjure(actor);
+            a.write(firstView.frame(first,7,false,Collections.emptyList()));b.write(secondView.frame(second,7,false,Collections.emptyList()));
+            check(firstView.snapshot().indices.length==0&&secondView.snapshot().indices.length==0,"Conjure dismissal retained a viewer actor");
+            check(world.nativeNpcs().isEmpty()&&World.getNPCs().isEmpty(),"Conjure dismissal leaked a registry");drain(a);drain(b);
+        }finally{for(NPC actor:actors)if(!actor.hasFinished())world.removeConjure(actor);firstView.close();secondView.close();a.finishAndReleaseAll();b.finishAndReleaseAll();}
     }
     static void run(){
+        worldCompanionFrames();
+        try(Fixture f=new Fixture()){
+            equip(f.first,3,false,false);f.first.getCombatDefinitions().setSpecialAttackPercentage(100);
+            check(f.combat.attack(f.first,f.npc)==null,"Resource wire target admission");drain(f.firstChannel);drain(f.secondChannel);
+            f.cast(f.first,48296);wire(drain(f.firstChannel),10986,4);f.step(3);
+            f.cast(f.first,48297);wire(drain(f.firstChannel),10986,0);f.step(3);
+            f.cast(f.first,48298);wire(drain(f.firstChannel),11035,1);f.step(3);
+            f.cast(f.first,48299);wire(drain(f.firstChannel),11035,0);
+            check(f.second.getVarsManager().getValue(10986)==0&&f.second.getVarsManager().getValue(11035)==0,"Resource wire ownership leaked");
+        }
+        try(Fixture f=new Fixture()){
+            equip(f.first,0,false,false);f.first.getNative950ActionBar().testBar(f.first,f.firstChannel);
+            check(f.combat.attack(f.first,f.npc)==null,"Queue visual target admission");
+            Native950BugTest.toggle(f.first);
+            try{
+                drain(f.firstChannel);String held=f.combat.holdQueueForVisualCheck(f.first,1);
+                check(held!=null&&held.contains("7.2"),"Queue diagnostic refused: "+held);
+                java.util.List<byte[]> frames=drain(f.firstChannel);wire(frames,5861,1003);wire(frames,4164,1);
+                f.step(6);check(f.first.getVarsManager().getValue(4164)==1,"Queue hold cleared before visual observation window");
+                f.first.getNative950ActionBar().refreshTransforms(f.first);wire(drain(f.firstChannel),4164,1);
+                f.step(7);wire(drain(f.firstChannel),4164,0);check(f.first.getVarsManager().getValue(5861)==0,"Execution retained queued overlay");
+                f.step(30);f.combat.holdQueueForVisualCheck(f.first,1);drain(f.firstChannel);
+                f.combat.cancelAttack(f.first);wire(drain(f.firstChannel),4164,0);
+            }finally{Native950BugTest.close(f.first,"offline-acceptance");}
+        }
+
         try(Fixture fixture=new Fixture()){
             equip(fixture.first,3,false,false);
             int autoAnimation=Native950CombatStyles.loadout(fixture.first).attackAnimation;
@@ -106,6 +182,14 @@ public final class Native950CombatPassAcceptance {
                 check(fixture.combat.attack(player,fixture.npc)==null,"Real gear attack rejected: "+definition.name);
                 if(definition.struct==48299||definition.struct==48301){
                     fixture.cast(player,48298);fixture.step(9);fixture.cast(player,48298);fixture.step(9);
+                }
+                if(Native950Conjures.handles(definition.struct)){
+                    player.getInventory().items.set(27,new Item(55336,20));
+                    if(Native950Conjures.base(definition.struct)!=definition.struct){fixture.cast(player,Native950Conjures.base(definition.struct));fixture.step(3);}
+                }
+                if(definition.struct==48312||definition.struct==48313){
+                    fixture.cast(player,48311);fixture.step(3);
+                    if(definition.struct==48313){fixture.cast(player,48312);fixture.step(3);}
                 }
                 int before=player.getCombatDefinitions().getSpecialAttackPercentage();
                 fixture.cast(player,definition.struct);

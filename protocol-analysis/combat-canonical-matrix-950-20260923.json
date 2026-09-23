@@ -52,10 +52,10 @@
     "necromancy": {
       "canonicalEntries": 26,
       "COMPLETE": 0,
-      "PARTIAL": 11,
-      "MISSING": 15,
+      "PARTIAL": 16,
+      "MISSING": 10,
       "BLOCKED BY UNPROVEN 950 IDENTITY": 0,
-      "automatedExecuted": 11,
+      "automatedExecuted": 16,
       "liveVerifiedThisPass": 0
     },
     "movement/utility": {
@@ -168,6 +168,18 @@
         "movement": true,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -712,6 +724,44 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          32827,
+          37470,
+          37471,
+          37472,
+          37473,
+          37474
+        ],
+        "variants": [
+          {
+            "sequence": 32827,
+            "casterGraphic": 7240
+          },
+          {
+            "sequence": 37470,
+            "impactGraphic": 8981
+          },
+          {
+            "sequence": 37471,
+            "impactGraphic": 8981
+          },
+          {
+            "sequence": 37472,
+            "impactGraphic": 8981
+          },
+          {
+            "sequence": 37473,
+            "impactGraphic": 8981
+          },
+          {
+            "sequence": 37474,
+            "impactGraphic": 8981
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -848,6 +898,44 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18459,
+          18460,
+          18461,
+          18462,
+          18463,
+          32824
+        ],
+        "variants": [
+          {
+            "sequence": 18459,
+            "impactGraphic": 3488
+          },
+          {
+            "sequence": 18460,
+            "impactGraphic": 3488
+          },
+          {
+            "sequence": 18461,
+            "impactGraphic": 3488
+          },
+          {
+            "sequence": 18462,
+            "impactGraphic": 3488
+          },
+          {
+            "sequence": 18463,
+            "impactGraphic": 3488
+          },
+          {
+            "sequence": 32824,
+            "impactGraphic": 3488
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -945,6 +1033,18 @@
         "movement": true,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -1109,6 +1209,54 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          32823,
+          37494,
+          37496,
+          37498,
+          37500,
+          37502,
+          37504
+        ],
+        "variants": [
+          {
+            "sequence": 32823
+          },
+          {
+            "sequence": 37494,
+            "casterGraphic": 9027,
+            "impactGraphic": 8985
+          },
+          {
+            "sequence": 37496,
+            "casterGraphic": 9028,
+            "impactGraphic": 8985
+          },
+          {
+            "sequence": 37498,
+            "casterGraphic": 9029,
+            "impactGraphic": 8985
+          },
+          {
+            "sequence": 37500,
+            "casterGraphic": 9030,
+            "impactGraphic": 8985
+          },
+          {
+            "sequence": 37502,
+            "casterGraphic": 9031,
+            "impactGraphic": 8985
+          },
+          {
+            "sequence": 37504,
+            "casterGraphic": 9032,
+            "impactGraphic": 8985
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -1353,6 +1501,44 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          32827,
+          37475,
+          37476,
+          37477,
+          37478,
+          37479
+        ],
+        "variants": [
+          {
+            "sequence": 32827,
+            "casterGraphic": 7240
+          },
+          {
+            "sequence": 37475,
+            "impactGraphic": 8983
+          },
+          {
+            "sequence": 37476,
+            "impactGraphic": 8983
+          },
+          {
+            "sequence": 37477,
+            "impactGraphic": 8983
+          },
+          {
+            "sequence": 37478,
+            "impactGraphic": 8983
+          },
+          {
+            "sequence": 37479,
+            "impactGraphic": 8983
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -1514,6 +1700,53 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          24382,
+          32828,
+          37445,
+          37447,
+          37449,
+          37451,
+          37453
+        ],
+        "variants": [
+          {
+            "sequence": 24382
+          },
+          {
+            "sequence": 32828,
+            "casterGraphic": 7241
+          },
+          {
+            "sequence": 37445,
+            "casterGraphic": 9039,
+            "impactGraphic": 8991
+          },
+          {
+            "sequence": 37447,
+            "casterGraphic": 9040,
+            "impactGraphic": 8991
+          },
+          {
+            "sequence": 37449,
+            "casterGraphic": 9041,
+            "impactGraphic": 8991
+          },
+          {
+            "sequence": 37451,
+            "casterGraphic": 9042,
+            "impactGraphic": 8991
+          },
+          {
+            "sequence": 37453,
+            "casterGraphic": 9043,
+            "impactGraphic": 8991
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -1643,6 +1876,60 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35773,
+          37480,
+          37482,
+          37484,
+          37486,
+          37488,
+          37490,
+          37492
+        ],
+        "variants": [
+          {
+            "sequence": 35773
+          },
+          {
+            "sequence": 37480,
+            "casterGraphic": 9020,
+            "impactGraphic": 8993
+          },
+          {
+            "sequence": 37482,
+            "casterGraphic": 9021,
+            "impactGraphic": 8993
+          },
+          {
+            "sequence": 37484,
+            "casterGraphic": 9022,
+            "impactGraphic": 8993
+          },
+          {
+            "sequence": 37486,
+            "casterGraphic": 9023,
+            "impactGraphic": 8993
+          },
+          {
+            "sequence": 37488,
+            "casterGraphic": 9024,
+            "impactGraphic": 8993
+          },
+          {
+            "sequence": 37490,
+            "casterGraphic": 9025,
+            "impactGraphic": 8993
+          },
+          {
+            "sequence": 37492,
+            "casterGraphic": 9026,
+            "impactGraphic": 8993
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -1780,6 +2067,67 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18503,
+          18504,
+          18505,
+          18506,
+          18507,
+          18508,
+          18509,
+          24382,
+          32826
+        ],
+        "variants": [
+          {
+            "sequence": 18503,
+            "casterGraphic": 3524,
+            "impactGraphic": 3525
+          },
+          {
+            "sequence": 18504,
+            "casterGraphic": 3524,
+            "impactGraphic": 3525
+          },
+          {
+            "sequence": 18505,
+            "casterGraphic": 3524,
+            "impactGraphic": 3525
+          },
+          {
+            "sequence": 18506,
+            "casterGraphic": 3524,
+            "impactGraphic": 3525
+          },
+          {
+            "sequence": 18507,
+            "casterGraphic": 3524,
+            "impactGraphic": 3525
+          },
+          {
+            "sequence": 18508,
+            "casterGraphic": 3524,
+            "impactGraphic": 3525
+          },
+          {
+            "sequence": 18509,
+            "casterGraphic": 3524,
+            "impactGraphic": 3525
+          },
+          {
+            "sequence": 24382,
+            "impactGraphic": 3525
+          },
+          {
+            "sequence": 32826,
+            "casterGraphic": 3524,
+            "impactGraphic": 3525
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -2132,6 +2480,60 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          32829,
+          37522,
+          37524,
+          37526,
+          37528,
+          37530,
+          37532,
+          37534
+        ],
+        "variants": [
+          {
+            "sequence": 32829
+          },
+          {
+            "sequence": 37522,
+            "casterGraphic": 9044,
+            "impactGraphic": 8994
+          },
+          {
+            "sequence": 37524,
+            "casterGraphic": 9045,
+            "impactGraphic": 8994
+          },
+          {
+            "sequence": 37526,
+            "casterGraphic": 9046,
+            "impactGraphic": 8994
+          },
+          {
+            "sequence": 37528,
+            "casterGraphic": 9047,
+            "impactGraphic": 8994
+          },
+          {
+            "sequence": 37530,
+            "casterGraphic": 9048,
+            "impactGraphic": 8994
+          },
+          {
+            "sequence": 37532,
+            "casterGraphic": 9049,
+            "impactGraphic": 8994
+          },
+          {
+            "sequence": 37534,
+            "casterGraphic": 9050,
+            "impactGraphic": 8994
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -2431,6 +2833,34 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37394,
+          37395,
+          37396,
+          37397
+        ],
+        "variants": [
+          {
+            "sequence": 37394,
+            "casterGraphic": 9018
+          },
+          {
+            "sequence": 37395,
+            "casterGraphic": 9018
+          },
+          {
+            "sequence": 37396,
+            "casterGraphic": 9018
+          },
+          {
+            "sequence": 37397,
+            "casterGraphic": 9018
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -2610,6 +3040,41 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37388,
+          37389,
+          37390,
+          37406,
+          37407,
+          37408
+        ],
+        "variants": [
+          {
+            "sequence": 37388,
+            "casterGraphic": 9012
+          },
+          {
+            "sequence": 37389,
+            "casterGraphic": 9012
+          },
+          {
+            "sequence": 37390,
+            "casterGraphic": 9012
+          },
+          {
+            "sequence": 37406
+          },
+          {
+            "sequence": 37407
+          },
+          {
+            "sequence": 37408
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -2884,6 +3349,30 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18154,
+          18167,
+          18168,
+          18169
+        ],
+        "variants": [
+          {
+            "sequence": 18154
+          },
+          {
+            "sequence": 18167
+          },
+          {
+            "sequence": 18168
+          },
+          {
+            "sequence": 18169
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -3177,6 +3666,24 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37428,
+          37429
+        ],
+        "variants": [
+          {
+            "sequence": 37428,
+            "casterGraphic": 9016
+          },
+          {
+            "sequence": 37429,
+            "casterGraphic": 9016
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -3307,6 +3814,29 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37437,
+          37438,
+          37439
+        ],
+        "variants": [
+          {
+            "sequence": 37437,
+            "casterGraphic": 9017
+          },
+          {
+            "sequence": 37438,
+            "casterGraphic": 9017
+          },
+          {
+            "sequence": 37439,
+            "casterGraphic": 9017
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -3497,6 +4027,34 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18177,
+          18178,
+          18179,
+          18180
+        ],
+        "variants": [
+          {
+            "sequence": 18177,
+            "casterGraphic": 3585
+          },
+          {
+            "sequence": 18178,
+            "casterGraphic": 3586
+          },
+          {
+            "sequence": 18179,
+            "casterGraphic": 3584
+          },
+          {
+            "sequence": 18180,
+            "casterGraphic": 3587
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -3723,6 +4281,29 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18175,
+          18198,
+          18199
+        ],
+        "variants": [
+          {
+            "sequence": 18175,
+            "casterGraphic": 9053
+          },
+          {
+            "sequence": 18198,
+            "casterGraphic": 9053
+          },
+          {
+            "sequence": 18199,
+            "casterGraphic": 9053
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -4350,6 +4931,34 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18560,
+          18562,
+          18563,
+          18564
+        ],
+        "variants": [
+          {
+            "sequence": 18560,
+            "casterGraphic": 946
+          },
+          {
+            "sequence": 18562,
+            "casterGraphic": 946
+          },
+          {
+            "sequence": 18563,
+            "casterGraphic": 946
+          },
+          {
+            "sequence": 18564,
+            "casterGraphic": 946
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -4466,6 +5075,44 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37421,
+          37422,
+          37423,
+          37424,
+          37425,
+          37426
+        ],
+        "variants": [
+          {
+            "sequence": 37421,
+            "impactGraphic": 9014
+          },
+          {
+            "sequence": 37422,
+            "impactGraphic": 9014
+          },
+          {
+            "sequence": 37423,
+            "impactGraphic": 9014
+          },
+          {
+            "sequence": 37424,
+            "impactGraphic": 9014
+          },
+          {
+            "sequence": 37425,
+            "impactGraphic": 9014
+          },
+          {
+            "sequence": 37426,
+            "impactGraphic": 9014
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -4803,6 +5450,34 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18577,
+          18578,
+          18579,
+          18580
+        ],
+        "variants": [
+          {
+            "sequence": 18577,
+            "casterGraphic": 9078
+          },
+          {
+            "sequence": 18578,
+            "casterGraphic": 9077
+          },
+          {
+            "sequence": 18579,
+            "casterGraphic": 9077
+          },
+          {
+            "sequence": 18580,
+            "casterGraphic": 9077
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -5136,6 +5811,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -5370,6 +6057,37 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18540,
+          18588,
+          18595,
+          27828
+        ],
+        "variants": [
+          {
+            "sequence": 18540,
+            "casterGraphic": 3473,
+            "impactGraphic": 9080
+          },
+          {
+            "sequence": 18588,
+            "casterGraphic": 3473,
+            "impactGraphic": 9080
+          },
+          {
+            "sequence": 18595,
+            "casterGraphic": 3473,
+            "impactGraphic": 9080
+          },
+          {
+            "sequence": 27828,
+            "casterGraphic": 3473
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -5520,6 +6238,38 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18069,
+          18092,
+          18093,
+          18094,
+          18095,
+          18096
+        ],
+        "variants": [
+          {
+            "sequence": 18069
+          },
+          {
+            "sequence": 18092
+          },
+          {
+            "sequence": 18093
+          },
+          {
+            "sequence": 18094
+          },
+          {
+            "sequence": 18095
+          },
+          {
+            "sequence": 18096
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -5731,6 +6481,34 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18070,
+          18071,
+          18072,
+          18073,
+          18088
+        ],
+        "variants": [
+          {
+            "sequence": 18070
+          },
+          {
+            "sequence": 18071
+          },
+          {
+            "sequence": 18072
+          },
+          {
+            "sequence": 18073
+          },
+          {
+            "sequence": 18088
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -5848,6 +6626,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -5978,6 +6768,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -6093,6 +6895,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -6215,6 +7029,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18080
+        ],
+        "variants": [
+          {
+            "sequence": 18080
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -6336,6 +7162,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18107
+        ],
+        "variants": [
+          {
+            "sequence": 18107
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -6455,6 +7293,38 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18074,
+          18075,
+          18076,
+          18077,
+          18078,
+          18079
+        ],
+        "variants": [
+          {
+            "sequence": 18074
+          },
+          {
+            "sequence": 18075
+          },
+          {
+            "sequence": 18076
+          },
+          {
+            "sequence": 18077
+          },
+          {
+            "sequence": 18078
+          },
+          {
+            "sequence": 18079
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -6583,6 +7453,44 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18098,
+          18099,
+          18100,
+          18101,
+          18102,
+          18103
+        ],
+        "variants": [
+          {
+            "sequence": 18098,
+            "casterGraphic": 3616
+          },
+          {
+            "sequence": 18099,
+            "casterGraphic": 3616
+          },
+          {
+            "sequence": 18100,
+            "casterGraphic": 3616
+          },
+          {
+            "sequence": 18101,
+            "casterGraphic": 3616
+          },
+          {
+            "sequence": 18102,
+            "casterGraphic": 3616
+          },
+          {
+            "sequence": 18103,
+            "casterGraphic": 3616
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -6699,6 +7607,19 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18091
+        ],
+        "variants": [
+          {
+            "sequence": 18091,
+            "casterGraphic": 3632
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -6825,6 +7746,44 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18082,
+          18083,
+          18084,
+          18085,
+          18086,
+          18087
+        ],
+        "variants": [
+          {
+            "sequence": 18082,
+            "casterGraphic": 3617
+          },
+          {
+            "sequence": 18083,
+            "casterGraphic": 3617
+          },
+          {
+            "sequence": 18084,
+            "casterGraphic": 3620
+          },
+          {
+            "sequence": 18085,
+            "casterGraphic": 3619
+          },
+          {
+            "sequence": 18086,
+            "casterGraphic": 3618
+          },
+          {
+            "sequence": 18087,
+            "casterGraphic": 3622
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -6940,6 +7899,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -7217,6 +8188,18 @@
         "movement": true,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -7366,6 +8349,28 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37357,
+          37358
+        ],
+        "variants": [
+          {
+            "sequence": 37357,
+            "casterGraphic": 9004,
+            "impactGraphic": 9006,
+            "projectile": 9007
+          },
+          {
+            "sequence": 37358,
+            "casterGraphic": 9004,
+            "impactGraphic": 9006,
+            "projectile": 9007
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -7536,6 +8541,26 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37354,
+          37355
+        ],
+        "variants": [
+          {
+            "sequence": 37354,
+            "impactGraphic": 8969,
+            "projectile": 8968
+          },
+          {
+            "sequence": 37355,
+            "impactGraphic": 8969,
+            "projectile": 8968
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -7695,6 +8720,24 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37349,
+          37350
+        ],
+        "variants": [
+          {
+            "sequence": 37349,
+            "impactGraphic": 8170
+          },
+          {
+            "sequence": 37350,
+            "impactGraphic": 8170
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -7814,6 +8857,22 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          36639,
+          36640
+        ],
+        "variants": [
+          {
+            "sequence": 36639
+          },
+          {
+            "sequence": 36640
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -7986,6 +9045,24 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37352,
+          37353
+        ],
+        "variants": [
+          {
+            "sequence": 37352,
+            "impactGraphic": 9003
+          },
+          {
+            "sequence": 37353,
+            "impactGraphic": 9003
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -8233,6 +9310,26 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37365,
+          37366
+        ],
+        "variants": [
+          {
+            "sequence": 37365,
+            "impactGraphic": 8967,
+            "projectile": 8966
+          },
+          {
+            "sequence": 37366,
+            "impactGraphic": 8967,
+            "projectile": 8966
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -8469,6 +9566,24 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37100,
+          37101
+        ],
+        "variants": [
+          {
+            "sequence": 37100,
+            "impactGraphic": 3562
+          },
+          {
+            "sequence": 37101,
+            "impactGraphic": 3562
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -8653,6 +9768,28 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37359,
+          37360
+        ],
+        "variants": [
+          {
+            "sequence": 37359,
+            "casterGraphic": 8976,
+            "impactGraphic": 8975,
+            "projectile": 8974
+          },
+          {
+            "sequence": 37360,
+            "casterGraphic": 8976,
+            "impactGraphic": 8975,
+            "projectile": 8974
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -8762,6 +9899,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -8874,6 +10023,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -9085,6 +10246,49 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18364,
+          18365,
+          18366,
+          18367,
+          18368,
+          18369,
+          18370
+        ],
+        "variants": [
+          {
+            "sequence": 18364,
+            "casterGraphic": 3564
+          },
+          {
+            "sequence": 18365,
+            "casterGraphic": 3564
+          },
+          {
+            "sequence": 18366,
+            "casterGraphic": 3564
+          },
+          {
+            "sequence": 18367,
+            "casterGraphic": 3564
+          },
+          {
+            "sequence": 18368,
+            "casterGraphic": 3564
+          },
+          {
+            "sequence": 18369,
+            "casterGraphic": 3564
+          },
+          {
+            "sequence": 18370,
+            "casterGraphic": 3564
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -9364,6 +10568,28 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          36641,
+          36651
+        ],
+        "variants": [
+          {
+            "sequence": 36641,
+            "casterGraphic": 9008,
+            "impactGraphic": 9009,
+            "projectile": 9010
+          },
+          {
+            "sequence": 36651,
+            "casterGraphic": 9008,
+            "impactGraphic": 9009,
+            "projectile": 9010
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -9496,6 +10722,28 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37338,
+          37340
+        ],
+        "variants": [
+          {
+            "sequence": 37338,
+            "casterGraphic": 8970,
+            "impactGraphic": 8973,
+            "projectile": 8972
+          },
+          {
+            "sequence": 37340,
+            "casterGraphic": 8971,
+            "impactGraphic": 8973,
+            "projectile": 8972
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -9611,6 +10859,49 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          22338,
+          22339,
+          22340,
+          22341,
+          22342,
+          22343,
+          22344
+        ],
+        "variants": [
+          {
+            "sequence": 22338,
+            "casterGraphic": 4495
+          },
+          {
+            "sequence": 22339,
+            "casterGraphic": 4497
+          },
+          {
+            "sequence": 22340,
+            "casterGraphic": 4499
+          },
+          {
+            "sequence": 22341,
+            "casterGraphic": 4501
+          },
+          {
+            "sequence": 22342,
+            "casterGraphic": 4500
+          },
+          {
+            "sequence": 22343,
+            "casterGraphic": 4496
+          },
+          {
+            "sequence": 22344,
+            "casterGraphic": 4498
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -10866,6 +12157,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -10980,6 +12283,32 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          23219,
+          23222,
+          23631
+        ],
+        "variants": [
+          {
+            "sequence": 23219,
+            "casterGraphic": 4666,
+            "impactGraphic": 4661
+          },
+          {
+            "sequence": 23222,
+            "casterGraphic": 4666,
+            "impactGraphic": 4661
+          },
+          {
+            "sequence": 23631,
+            "casterGraphic": 4666,
+            "impactGraphic": 4661
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -11281,6 +12610,26 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          23218,
+          23641
+        ],
+        "variants": [
+          {
+            "sequence": 23218,
+            "casterGraphic": 4665,
+            "impactGraphic": 4663
+          },
+          {
+            "sequence": 23641,
+            "casterGraphic": 4665,
+            "impactGraphic": 4663
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -11890,25 +13239,26 @@
         "8889": 1,
         "8890": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 7,
       "lifecycle": {
-        "target": "unimplemented",
-        "weaponStyle": null,
+        "target": "self",
+        "weaponStyle": 3,
         "dualWield": false,
         "twoHanded": false,
         "shield": false,
         "adrenalineCostTenths": null,
         "adrenalineGainTenths": null,
-        "effect": null,
-        "channelTicks": null,
+        "effect": "CONJURE",
+        "channelTicks": 0,
         "channelHitInterval": null,
         "channelAdditionalHits": null,
-        "cooldownStart": null,
+        "cooldownStart": "activation",
         "presentationStatus": "requires per-ability acceptance; optional IDs are not invented"
       },
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -11916,13 +13266,22 @@
       ],
       "visibilityClass": "native-book-entry",
       "canonicalClass": "CANONICAL",
-      "implementationStatus": "MISSING",
-      "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "implementationStatus": "PARTIAL",
+      "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": true,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
-      "canonicalStatus": "MISSING",
+      "executionEvidence": {
+        "struct": 31820,
+        "name": "Conjure Phantom Guardian",
+        "weapon": 61333,
+        "style": 3,
+        "animation": 35502,
+        "automated": "real-cache admission/execution/channel-completion",
+        "liveVisual": "pending"
+      },
+      "canonicalStatus": "PARTIAL",
       "effectEvidence": {
         "tooltip": "Conjure a <col=ffffff>Phantom Guardian</col> from the Underworld.",
         "rawTargetMode": 3,
@@ -11931,6 +13290,19 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35502
+        ],
+        "variants": [
+          {
+            "sequence": 35502,
+            "casterGraphic": 7899
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -12355,6 +13727,24 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          1068,
+          23958
+        ],
+        "variants": [
+          {
+            "sequence": 1068,
+            "projectile": 5711
+          },
+          {
+            "sequence": 23958,
+            "projectile": 5711
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -12488,6 +13878,70 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          18520,
+          18521,
+          18522,
+          18523,
+          18524,
+          18525,
+          18526,
+          32827
+        ],
+        "variants": [
+          {
+            "sequence": 18520,
+            "casterGraphic": 4588,
+            "impactGraphic": 5715,
+            "projectile": 5716
+          },
+          {
+            "sequence": 18521,
+            "casterGraphic": 4589,
+            "impactGraphic": 5715,
+            "projectile": 5716
+          },
+          {
+            "sequence": 18522,
+            "casterGraphic": 4590,
+            "impactGraphic": 5715,
+            "projectile": 5716
+          },
+          {
+            "sequence": 18523,
+            "casterGraphic": 4591,
+            "impactGraphic": 5715,
+            "projectile": 5716
+          },
+          {
+            "sequence": 18524,
+            "casterGraphic": 4592,
+            "impactGraphic": 5715,
+            "projectile": 5716
+          },
+          {
+            "sequence": 18525,
+            "casterGraphic": 4593,
+            "impactGraphic": 5715,
+            "projectile": 5716
+          },
+          {
+            "sequence": 18526,
+            "casterGraphic": 4594,
+            "impactGraphic": 5715,
+            "projectile": 5716
+          },
+          {
+            "sequence": 32827,
+            "casterGraphic": 7240,
+            "impactGraphic": 5715,
+            "projectile": 5716
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -12522,36 +13976,46 @@
         "8120": 34184,
         "8170": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 7,
       "lifecycle": {
-        "target": "unimplemented",
-        "weaponStyle": null,
+        "target": "self",
+        "weaponStyle": 3,
         "dualWield": false,
         "twoHanded": false,
         "shield": false,
         "adrenalineCostTenths": null,
         "adrenalineGainTenths": null,
-        "effect": null,
-        "channelTicks": null,
+        "effect": "COMMAND",
+        "channelTicks": 0,
         "channelHitInterval": null,
         "channelAdditionalHits": null,
-        "cooldownStart": null,
+        "cooldownStart": "activation",
         "presentationStatus": "requires per-ability acceptance; optional IDs are not invented"
       },
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [],
       "visibilityClass": "conditional-native-transform",
       "canonicalClass": "CONDITIONAL/ALTERNATE",
-      "implementationStatus": "MISSING",
-      "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
+      "implementationStatus": "PARTIAL",
+      "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
       "liveVisualStatus": "PENDING",
       "conditionalTransformReferenced": true,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "conditional/unresolved",
+      "executionEvidence": {
+        "struct": 32342,
+        "name": "Command Phantom Guardian",
+        "weapon": 61333,
+        "style": 3,
+        "animation": -1,
+        "automated": "real-cache admission/execution/channel-completion",
+        "liveVisual": "pending"
+      },
       "canonicalStatus": "CONDITIONAL/ALTERNATE",
       "effectEvidence": {
         "tooltip": "Command the <col=ffffff>Phantom Guardian</col> to blast the target with its shield.",
@@ -12561,6 +14025,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -12717,25 +14193,26 @@
         "8170": 3,
         "8889": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 7,
       "lifecycle": {
-        "target": "unimplemented",
-        "weaponStyle": null,
+        "target": "self",
+        "weaponStyle": 3,
         "dualWield": false,
         "twoHanded": false,
         "shield": false,
         "adrenalineCostTenths": null,
         "adrenalineGainTenths": null,
-        "effect": null,
-        "channelTicks": null,
+        "effect": "CONJURE",
+        "channelTicks": 0,
         "channelHitInterval": null,
         "channelAdditionalHits": null,
-        "cooldownStart": null,
+        "cooldownStart": "activation",
         "presentationStatus": "requires per-ability acceptance; optional IDs are not invented"
       },
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -12743,13 +14220,22 @@
       ],
       "visibilityClass": "native-book-entry",
       "canonicalClass": "CANONICAL",
-      "implementationStatus": "MISSING",
-      "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "implementationStatus": "PARTIAL",
+      "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
-      "canonicalStatus": "MISSING",
+      "executionEvidence": {
+        "struct": 33965,
+        "name": "Conjure Undead Army",
+        "weapon": 61333,
+        "style": 3,
+        "animation": 35502,
+        "automated": "real-cache admission/execution/channel-completion",
+        "liveVisual": "pending"
+      },
+      "canonicalStatus": "PARTIAL",
       "effectEvidence": {
         "tooltip": "Conjure an <col=ffffff>Undead Army</col> from the Underworld.",
         "rawTargetMode": 3,
@@ -12758,6 +14244,19 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35502
+        ],
+        "variants": [
+          {
+            "sequence": 35502,
+            "casterGraphic": 7899
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -13273,6 +14772,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -14513,6 +16024,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -14689,6 +16212,44 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37409,
+          37410,
+          37411,
+          37412,
+          37413,
+          37414
+        ],
+        "variants": [
+          {
+            "sequence": 37409,
+            "impactGraphic": 9013
+          },
+          {
+            "sequence": 37410,
+            "impactGraphic": 9013
+          },
+          {
+            "sequence": 37411,
+            "impactGraphic": 9013
+          },
+          {
+            "sequence": 37412,
+            "impactGraphic": 9013
+          },
+          {
+            "sequence": 37413,
+            "impactGraphic": 9013
+          },
+          {
+            "sequence": 37414,
+            "impactGraphic": 9013
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -14887,6 +16448,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -15139,6 +16712,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -15781,6 +17366,24 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          34957,
+          34958
+        ],
+        "variants": [
+          {
+            "sequence": 34957,
+            "casterGraphic": 6641
+          },
+          {
+            "sequence": 34958,
+            "casterGraphic": 6641
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -15868,7 +17471,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "PARTIAL",
       "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "LIVE FAIL: chosen-tile movement; successor pending",
       "conditionalTransformReferenced": true,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "movement/utility",
@@ -15881,6 +17484,18 @@
         "movement": true,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -16034,7 +17649,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "PARTIAL",
       "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -16140,7 +17755,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "PARTIAL",
       "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -16162,6 +17777,20 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35456
+        ],
+        "variants": [
+          {
+            "sequence": 35456,
+            "casterGraphic": 7859,
+            "impactGraphic": 7860
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -16245,7 +17874,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "PARTIAL",
       "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -16267,6 +17896,20 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35458
+        ],
+        "variants": [
+          {
+            "sequence": 35458,
+            "casterGraphic": 7861,
+            "impactGraphic": 7862
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -16354,7 +17997,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "PARTIAL",
       "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -16376,6 +18019,20 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35461
+        ],
+        "variants": [
+          {
+            "sequence": 35461,
+            "casterGraphic": 7863,
+            "impactGraphic": 7864
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -16464,7 +18121,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "PARTIAL",
       "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -16486,6 +18143,21 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35466
+        ],
+        "variants": [
+          {
+            "sequence": 35466,
+            "casterGraphic": 7871,
+            "impactGraphic": 7872,
+            "projectile": 7873
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -16570,7 +18242,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "PARTIAL",
       "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -16579,7 +18251,7 @@
         "name": "Volley of Souls",
         "weapon": 61333,
         "style": 3,
-        "animation": -1,
+        "animation": 35469,
         "automated": "real-cache admission/execution/channel-completion",
         "liveVisual": "pending"
       },
@@ -16592,6 +18264,20 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35469
+        ],
+        "variants": [
+          {
+            "sequence": 35469,
+            "impactGraphic": 7879,
+            "projectile": 7880
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -16656,25 +18342,26 @@
         "8889": 1,
         "8890": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 7,
       "lifecycle": {
-        "target": "unimplemented",
-        "weaponStyle": null,
+        "target": "self",
+        "weaponStyle": 3,
         "dualWield": false,
         "twoHanded": false,
         "shield": false,
         "adrenalineCostTenths": null,
         "adrenalineGainTenths": null,
-        "effect": null,
-        "channelTicks": null,
+        "effect": "CONJURE",
+        "channelTicks": 0,
         "channelHitInterval": null,
         "channelAdditionalHits": null,
-        "cooldownStart": null,
+        "cooldownStart": "activation",
         "presentationStatus": "requires per-ability acceptance; optional IDs are not invented"
       },
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -16682,13 +18369,22 @@
       ],
       "visibilityClass": "native-book-entry",
       "canonicalClass": "CANONICAL",
-      "implementationStatus": "MISSING",
-      "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "implementationStatus": "PARTIAL",
+      "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": true,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
-      "canonicalStatus": "MISSING",
+      "executionEvidence": {
+        "struct": 48302,
+        "name": "Conjure Skeleton Warrior",
+        "weapon": 61333,
+        "style": 3,
+        "animation": 35502,
+        "automated": "real-cache admission/execution/channel-completion",
+        "liveVisual": "pending"
+      },
+      "canonicalStatus": "PARTIAL",
       "effectEvidence": {
         "tooltip": "Conjure a <col=ffffff>Skeleton Warrior</col> from the Underworld.",
         "rawTargetMode": 3,
@@ -16697,6 +18393,19 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35502
+        ],
+        "variants": [
+          {
+            "sequence": 35502,
+            "casterGraphic": 7899
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -16731,36 +18440,46 @@
         "8120": 34181,
         "8170": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 7,
       "lifecycle": {
-        "target": "unimplemented",
-        "weaponStyle": null,
+        "target": "self",
+        "weaponStyle": 3,
         "dualWield": false,
         "twoHanded": false,
         "shield": false,
         "adrenalineCostTenths": null,
         "adrenalineGainTenths": null,
-        "effect": null,
-        "channelTicks": null,
+        "effect": "COMMAND",
+        "channelTicks": 0,
         "channelHitInterval": null,
         "channelAdditionalHits": null,
-        "cooldownStart": null,
+        "cooldownStart": "activation",
         "presentationStatus": "requires per-ability acceptance; optional IDs are not invented"
       },
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [],
       "visibilityClass": "conditional-native-transform",
       "canonicalClass": "CONDITIONAL/ALTERNATE",
-      "implementationStatus": "MISSING",
-      "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
+      "implementationStatus": "PARTIAL",
+      "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
       "liveVisualStatus": "PENDING",
       "conditionalTransformReferenced": true,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "conditional/unresolved",
+      "executionEvidence": {
+        "struct": 48303,
+        "name": "Command Skeleton Warrior",
+        "weapon": 61333,
+        "style": 3,
+        "animation": -1,
+        "automated": "real-cache admission/execution/channel-completion",
+        "liveVisual": "pending"
+      },
       "canonicalStatus": "CONDITIONAL/ALTERNATE",
       "effectEvidence": {
         "tooltip": "Command the <col=ffffff>Skeleton Warrior</col> to unleash its inner rage.",
@@ -16770,6 +18489,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -16836,25 +18567,26 @@
         "8889": 1,
         "8890": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 7,
       "lifecycle": {
-        "target": "unimplemented",
-        "weaponStyle": null,
+        "target": "self",
+        "weaponStyle": 3,
         "dualWield": false,
         "twoHanded": false,
         "shield": false,
         "adrenalineCostTenths": null,
         "adrenalineGainTenths": null,
-        "effect": null,
-        "channelTicks": null,
+        "effect": "CONJURE",
+        "channelTicks": 0,
         "channelHitInterval": null,
         "channelAdditionalHits": null,
-        "cooldownStart": null,
+        "cooldownStart": "activation",
         "presentationStatus": "requires per-ability acceptance; optional IDs are not invented"
       },
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -16862,13 +18594,22 @@
       ],
       "visibilityClass": "native-book-entry",
       "canonicalClass": "CANONICAL",
-      "implementationStatus": "MISSING",
-      "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "implementationStatus": "PARTIAL",
+      "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": true,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
-      "canonicalStatus": "MISSING",
+      "executionEvidence": {
+        "struct": 48304,
+        "name": "Conjure Putrid Zombie",
+        "weapon": 61333,
+        "style": 3,
+        "animation": 35502,
+        "automated": "real-cache admission/execution/channel-completion",
+        "liveVisual": "pending"
+      },
+      "canonicalStatus": "PARTIAL",
       "effectEvidence": {
         "tooltip": "Conjure a <col=ffffff>Putrid Zombie</col> from the Underworld.",
         "rawTargetMode": 3,
@@ -16877,6 +18618,19 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35502
+        ],
+        "variants": [
+          {
+            "sequence": 35502,
+            "casterGraphic": 7899
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -16910,36 +18664,46 @@
         "8120": 34183,
         "8170": 4
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 7,
       "lifecycle": {
-        "target": "unimplemented",
-        "weaponStyle": null,
+        "target": "self",
+        "weaponStyle": 3,
         "dualWield": false,
         "twoHanded": false,
         "shield": false,
         "adrenalineCostTenths": null,
         "adrenalineGainTenths": null,
-        "effect": null,
-        "channelTicks": null,
+        "effect": "COMMAND",
+        "channelTicks": 0,
         "channelHitInterval": null,
         "channelAdditionalHits": null,
-        "cooldownStart": null,
+        "cooldownStart": "activation",
         "presentationStatus": "requires per-ability acceptance; optional IDs are not invented"
       },
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [],
       "visibilityClass": "conditional-native-transform",
       "canonicalClass": "CONDITIONAL/ALTERNATE",
-      "implementationStatus": "MISSING",
-      "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
+      "implementationStatus": "PARTIAL",
+      "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
       "liveVisualStatus": "PENDING",
       "conditionalTransformReferenced": true,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "conditional/unresolved",
+      "executionEvidence": {
+        "struct": 48305,
+        "name": "Command Putrid Zombie",
+        "weapon": 61333,
+        "style": 3,
+        "animation": -1,
+        "automated": "real-cache admission/execution/channel-completion",
+        "liveVisual": "pending"
+      },
       "canonicalStatus": "CONDITIONAL/ALTERNATE",
       "effectEvidence": {
         "tooltip": "Command the <col=ffffff>Putrid Zombie</col> to explode.",
@@ -16949,6 +18713,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -17014,25 +18790,26 @@
         "8889": 1,
         "8890": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 7,
       "lifecycle": {
-        "target": "unimplemented",
-        "weaponStyle": null,
+        "target": "self",
+        "weaponStyle": 3,
         "dualWield": false,
         "twoHanded": false,
         "shield": false,
         "adrenalineCostTenths": null,
         "adrenalineGainTenths": null,
-        "effect": null,
-        "channelTicks": null,
+        "effect": "CONJURE",
+        "channelTicks": 0,
         "channelHitInterval": null,
         "channelAdditionalHits": null,
-        "cooldownStart": null,
+        "cooldownStart": "activation",
         "presentationStatus": "requires per-ability acceptance; optional IDs are not invented"
       },
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [
@@ -17040,13 +18817,22 @@
       ],
       "visibilityClass": "native-book-entry",
       "canonicalClass": "CANONICAL",
-      "implementationStatus": "MISSING",
-      "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "implementationStatus": "PARTIAL",
+      "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": true,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
-      "canonicalStatus": "MISSING",
+      "executionEvidence": {
+        "struct": 48306,
+        "name": "Conjure Vengeful Ghost",
+        "weapon": 61333,
+        "style": 3,
+        "animation": 35502,
+        "automated": "real-cache admission/execution/channel-completion",
+        "liveVisual": "pending"
+      },
+      "canonicalStatus": "PARTIAL",
       "effectEvidence": {
         "tooltip": "Conjure a <col=ffffff>Vengeful Ghost</col> from the Underworld.",
         "rawTargetMode": 3,
@@ -17055,6 +18841,19 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35502
+        ],
+        "variants": [
+          {
+            "sequence": 35502,
+            "casterGraphic": 7899
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -17088,36 +18887,46 @@
         "8120": 34182,
         "8170": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 7,
       "lifecycle": {
-        "target": "unimplemented",
-        "weaponStyle": null,
+        "target": "self",
+        "weaponStyle": 3,
         "dualWield": false,
         "twoHanded": false,
         "shield": false,
         "adrenalineCostTenths": null,
         "adrenalineGainTenths": null,
-        "effect": null,
-        "channelTicks": null,
+        "effect": "COMMAND",
+        "channelTicks": 0,
         "channelHitInterval": null,
         "channelAdditionalHits": null,
-        "cooldownStart": null,
+        "cooldownStart": "activation",
         "presentationStatus": "requires per-ability acceptance; optional IDs are not invented"
       },
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [],
       "visibilityClass": "conditional-native-transform",
       "canonicalClass": "CONDITIONAL/ALTERNATE",
-      "implementationStatus": "MISSING",
-      "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
+      "implementationStatus": "PARTIAL",
+      "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
       "liveVisualStatus": "PENDING",
       "conditionalTransformReferenced": true,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "conditional/unresolved",
+      "executionEvidence": {
+        "struct": 48307,
+        "name": "Command Vengeful Ghost",
+        "weapon": 61333,
+        "style": 3,
+        "animation": -1,
+        "automated": "real-cache admission/execution/channel-completion",
+        "liveVisual": "pending"
+      },
       "canonicalStatus": "CONDITIONAL/ALTERNATE",
       "effectEvidence": {
         "tooltip": "Command the <col=ffffff>Vengeful Ghost</col> to haunt your enemies.",
@@ -17127,6 +18936,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          -1
+        ],
+        "variants": [
+          {
+            "sequence": -1
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -17211,7 +19032,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "PARTIAL",
       "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -17233,6 +19054,20 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35477
+        ],
+        "variants": [
+          {
+            "sequence": 35477,
+            "casterGraphic": 7884,
+            "impactGraphic": 7885
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -17323,7 +19158,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "PARTIAL",
       "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -17345,6 +19180,19 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35482
+        ],
+        "variants": [
+          {
+            "sequence": 35482,
+            "casterGraphic": 7889
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -17434,7 +19282,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "PARTIAL",
       "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": true,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -17456,6 +19304,19 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35489
+        ],
+        "variants": [
+          {
+            "sequence": 35489,
+            "casterGraphic": 7893
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -17501,36 +19362,46 @@
         "8170": 4,
         "9107": 1
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 7,
       "lifecycle": {
-        "target": "unimplemented",
-        "weaponStyle": null,
+        "target": "entity",
+        "weaponStyle": 3,
         "dualWield": false,
         "twoHanded": false,
         "shield": false,
         "adrenalineCostTenths": 200,
         "adrenalineGainTenths": null,
-        "effect": null,
-        "channelTicks": null,
+        "effect": "DIRECT",
+        "channelTicks": 0,
         "channelHitInterval": null,
         "channelAdditionalHits": null,
-        "cooldownStart": null,
+        "cooldownStart": "activation",
         "presentationStatus": "requires per-ability acceptance; optional IDs are not invented"
       },
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [],
       "visibilityClass": "conditional-native-transform",
       "canonicalClass": "CONDITIONAL/ALTERNATE",
-      "implementationStatus": "MISSING",
-      "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
+      "implementationStatus": "PARTIAL",
+      "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
       "liveVisualStatus": "PENDING",
       "conditionalTransformReferenced": true,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "conditional/unresolved",
+      "executionEvidence": {
+        "struct": 48312,
+        "name": "Spectral Scythe",
+        "weapon": 61333,
+        "style": 3,
+        "animation": 35491,
+        "automated": "real-cache admission/execution/channel-completion",
+        "liveVisual": "pending"
+      },
       "canonicalStatus": "CONDITIONAL/ALTERNATE",
       "effectEvidence": {
         "tooltip": "Spin around wildly with a spectral scythe.",
@@ -17540,6 +19411,19 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35491
+        ],
+        "variants": [
+          {
+            "sequence": 35491,
+            "casterGraphic": 7894
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -17584,36 +19468,46 @@
         "8120": 32103,
         "8170": 4
       },
-      "status": "missing",
-      "serverRoutedBook": null,
+      "status": "partial",
+      "serverRoutedBook": 7,
       "lifecycle": {
-        "target": "unimplemented",
-        "weaponStyle": null,
+        "target": "entity",
+        "weaponStyle": 3,
         "dualWield": false,
         "twoHanded": false,
         "shield": false,
         "adrenalineCostTenths": 300,
         "adrenalineGainTenths": null,
-        "effect": null,
-        "channelTicks": null,
+        "effect": "DIRECT",
+        "channelTicks": 0,
         "channelHitInterval": null,
         "channelAdditionalHits": null,
-        "cooldownStart": null,
+        "cooldownStart": "activation",
         "presentationStatus": "requires per-ability acceptance; optional IDs are not invented"
       },
       "blockers": [
-        "No native combat catalog implementation; enum membership alone does not authorize execution"
+        "Combat Alpha damage/effect model; not full retail semantics",
+        "Visual and complete effect acceptance not established by this inventory"
       ],
       "liveVerifiedByThisTool": false,
       "nativeBooks": [],
       "visibilityClass": "conditional-native-transform",
       "canonicalClass": "CONDITIONAL/ALTERNATE",
-      "implementationStatus": "MISSING",
-      "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
+      "implementationStatus": "PARTIAL",
+      "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
       "liveVisualStatus": "PENDING",
       "conditionalTransformReferenced": true,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "conditional/unresolved",
+      "executionEvidence": {
+        "struct": 48313,
+        "name": "Spectral Scythe",
+        "weapon": 61333,
+        "style": 3,
+        "animation": 35493,
+        "automated": "real-cache admission/execution/channel-completion",
+        "liveVisual": "pending"
+      },
       "canonicalStatus": "CONDITIONAL/ALTERNATE",
       "effectEvidence": {
         "tooltip": "Strike from above, shattering spectral energy around you.",
@@ -17623,6 +19517,19 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35493
+        ],
+        "variants": [
+          {
+            "sequence": 35493,
+            "casterGraphic": 7895
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -17708,7 +19615,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "PARTIAL",
       "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "LIVE FAIL: bouncing; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -17730,6 +19637,20 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35472
+        ],
+        "variants": [
+          {
+            "sequence": 35472,
+            "casterGraphic": 7881,
+            "projectile": 7882
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -17816,7 +19737,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "PARTIAL",
       "automatedTestStatus": "EXECUTED WITH REAL CACHE AND EQUIPMENT",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -17825,7 +19746,7 @@
         "name": "Living Death",
         "weapon": 61333,
         "style": 3,
-        "animation": -1,
+        "animation": 35475,
         "automated": "real-cache admission/execution/channel-completion",
         "liveVisual": "pending"
       },
@@ -17838,6 +19759,18 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          35475
+        ],
+        "variants": [
+          {
+            "sequence": 35475
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -17911,7 +19844,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "MISSING",
       "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -17999,7 +19932,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "MISSING",
       "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -18089,7 +20022,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "MISSING",
       "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -18179,7 +20112,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "MISSING",
       "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -18269,7 +20202,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "MISSING",
       "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -18361,7 +20294,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "MISSING",
       "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -18453,7 +20386,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "MISSING",
       "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -18544,7 +20477,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "MISSING",
       "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -18635,7 +20568,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "MISSING",
       "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -18722,7 +20655,7 @@
       "canonicalClass": "CANONICAL",
       "implementationStatus": "MISSING",
       "automatedTestStatus": "NOT EXECUTED BY THIS HARNESS",
-      "liveVisualStatus": "PENDING",
+      "liveVisualStatus": "STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending",
       "conditionalTransformReferenced": false,
       "visibilityLimit": "Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete",
       "reportGroup": "necromancy",
@@ -19076,6 +21009,39 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37416,
+          37417,
+          37418,
+          37419,
+          37420
+        ],
+        "variants": [
+          {
+            "sequence": 37416,
+            "casterGraphic": 945
+          },
+          {
+            "sequence": 37417,
+            "casterGraphic": 945
+          },
+          {
+            "sequence": 37418,
+            "casterGraphic": 945
+          },
+          {
+            "sequence": 37419,
+            "casterGraphic": 945
+          },
+          {
+            "sequence": 37420,
+            "casterGraphic": 945
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -20009,6 +21975,26 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          37518,
+          37519,
+          37520
+        ],
+        "variants": [
+          {
+            "sequence": 37518
+          },
+          {
+            "sequence": 37519
+          },
+          {
+            "sequence": 37520
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     },
     {
@@ -20114,7 +22100,64 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
+      },
+      "presentationAudit": {
+        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "animationSequences": [
+          24382,
+          32828,
+          37445,
+          37447,
+          37449,
+          37451,
+          37453
+        ],
+        "variants": [
+          {
+            "sequence": 24382
+          },
+          {
+            "sequence": 32828,
+            "casterGraphic": 7241
+          },
+          {
+            "sequence": 37445,
+            "casterGraphic": 9039,
+            "impactGraphic": 8991
+          },
+          {
+            "sequence": 37447,
+            "casterGraphic": 9040,
+            "impactGraphic": 8991
+          },
+          {
+            "sequence": 37449,
+            "casterGraphic": 9041,
+            "impactGraphic": 8991
+          },
+          {
+            "sequence": 37451,
+            "casterGraphic": 9042,
+            "impactGraphic": 8991
+          },
+          {
+            "sequence": 37453,
+            "casterGraphic": 9043,
+            "impactGraphic": 8991
+          }
+        ],
+        "renderedAcceptance": "PENDING"
       }
     }
-  ]
+  ],
+  "userLiveResults": {
+    "bankLibraryKeybindRecovery": "LIVE PASS",
+    "queueMarker": "LIVE FAIL",
+    "revolution": "LIVE PASS/PARTIAL",
+    "presentation": "LIVE PARTIAL",
+    "necromancy": "LIVE PARTIAL; major missing systems",
+    "deathSkullsBounce": "LIVE FAIL",
+    "chosenTileDive": "LIVE FAIL"
+  },
+  "successorLiveAcceptance": "PENDING: offline evidence does not replace the installed candidate live failures"
 }

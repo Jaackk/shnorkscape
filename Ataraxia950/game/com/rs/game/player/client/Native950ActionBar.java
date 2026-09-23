@@ -187,6 +187,13 @@ public final class Native950ActionBar {
         // selected bar's still-cooling abilities when a binding/bar changes.
         if(p!=null&&p.getNative950Combat()!=null)p.getNative950Combat().refreshBarCooldowns(p,slots());
     }
+    /** Refresh only transforms, then restore overlays cleared by the native redraw. */
+    void refreshTransforms(Player player){
+        Channel channel=player.getRealChannel();
+        if(channel==null)return;
+        visualWrite(player,channel,Native950Packets.runClientScript(6992),"script",6992,"");
+        if(player.getNative950Combat()!=null)player.getNative950Combat().refreshBarCooldowns(player,slots());
+    }
     void copyCurrentBarFrom(Player recipient,Channel channel,Native950ActionBar source,int sourceBar){
         if(source==null||sourceBar<0||sourceBar>=BARS)throw new IllegalArgumentException("Invalid source bar");
         String before=barSnapshot();

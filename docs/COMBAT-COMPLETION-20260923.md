@@ -1,3 +1,5 @@
+> Superseded by [live successor](COMBAT-LIVE-SUCCESSOR-20260923.md) and [successor live checklist](COMBAT-SUCCESSOR-LIVE-CHECKLIST-20260923.md). This document records the prior candidate.
+
 # Combat completion candidate - evidence and continuation
 
 ## State and protection

@@ -69,6 +69,7 @@ final class Native950Surge {
         if(target==null||target.getPlane()!=p.getPlane()||Math.max(Math.abs(target.getX()-p.getX()),Math.abs(target.getY()-p.getY()))>10)
             return "Choose a tile within10 tiles on your current plane.";
         WorldTile start=new WorldTile(p),end=targetedDestination(start,target,steps);
+        Native950BugTest.event(p,"combat","dive-clipping","fromX",start.getX(),"fromY",start.getY(),"requestedX",target.getX(),"requestedY",target.getY(),"resolvedX",end.getX(),"resolvedY",end.getY());
         if(start.matches(end))return "There is no clear path to that tile.";
         p.getActionManager().forceStop();p.resetWalkSteps();p.setRouteEvent(null);p.setNextFaceEntity(null);
         p.setNextForceMovement(new NewForceMovement(start,0,end,1,Utils.getAngle(end.getX()-start.getX(),end.getY()-start.getY())));

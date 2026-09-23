@@ -105,7 +105,7 @@ public final class Native950BugTest {
         }
     }
 
-    static void event(Player player, String category, String name, Object... fields) {
+    public static void event(Player player, String category, String name, Object... fields) {
         Native950CombatQa.event(player, category, name, fields);
         Session session = session(player);
         if (session != null) session.event(category, name, fields);

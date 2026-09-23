@@ -160,7 +160,7 @@ public final class Native950NpcViewport {
         // both of which call setNPC(id)) replaces it with a raw 910 id that never went through
         // the spawner's validity gate. An id the table does not call "same" is dropped from the
         // published list rather than added under a definition this port cannot vouch for.
-        if (!npc.isNative950DiagnosticDefinition()
+        if (!npc.isNative950DiagnosticDefinition() && !npc.isNative950Conjure()
                 && !Native950IdValidity.get().isSafe(Native950IdValidity.Kind.NPC, npc.getId())) {
             unclassified++;
             return null;

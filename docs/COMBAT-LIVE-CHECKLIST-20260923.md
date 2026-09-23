@@ -1,3 +1,5 @@
+> Superseded by [live successor](COMBAT-LIVE-SUCCESSOR-20260923.md) and [successor live checklist](COMBAT-SUCCESSOR-LIVE-CHECKLIST-20260923.md). This document records the prior candidate.
+
 # Combat candidate: one live acceptance sequence
 
 Install only through **Apply Staged Update.cmd**, after closing Jaxa and Nooby's

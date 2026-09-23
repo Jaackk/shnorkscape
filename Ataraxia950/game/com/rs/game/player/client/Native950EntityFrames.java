@@ -202,6 +202,7 @@ public final class Native950EntityFrames implements Native950Frames {
         if (forceGeneration != 0 && forcePlan != null) {
             WorldTile endpoint = forcePlan.finalTile();
             builder.forceMovement(forceGeneration, endpoint.getX(), endpoint.getY());
+            Native950BugTest.event(character,"combat","force-frame-published","generation",forceGeneration,"x",endpoint.getX(),"y",endpoint.getY());
         }
         builder.forceMovementArrival(character.getNative950ForceArrivalGeneration());
         return builder.build();

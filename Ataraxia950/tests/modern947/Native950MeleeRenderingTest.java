@@ -37,6 +37,15 @@ public final class Native950MeleeRenderingTest {
         assertArrayEquals(hex("00 00 20 ff 80 85 81 f4 00 00"),npcBytes(hits,1));
         assertArrayEquals(hex("00 00 20 ff 80 96 81 f4 00 00"),npcBytes(hits,3));
     }
+    @Test public void necromancyAndConjuresUseTheirNativeHitmarks(){
+        victim.getNextHits().add(new Hit(attacker,50,Hit.HitLook.NECROMANCY_DAMAGE));
+        Native950Hits.Snapshot normal=Native950Hits.from(victim);
+        assertEquals(0,normal.refusals());assertArrayEquals(hex("40 81 81 dd 81 f4 00 00"),playerBytes(normal,1));
+        victim.getNextHits().get(0).setCriticalMark();
+        assertArrayEquals(hex("40 81 81 de 81 f4 00 00"),playerBytes(Native950Hits.from(victim),1));
+        victim.getNextHits().clear();victim.getNextHits().add(new Hit(attacker,50,Hit.HitLook.CONJURE_DAMAGE));
+        assertArrayEquals(hex("40 81 81 e0 81 f4 00 00"),playerBytes(Native950Hits.from(victim),1));
+    }
     @Test public void zeroDamageUsesTheNativeBlueNumberForEachRecipient(){
         victim.getNextHits().add(new Hit(attacker,0,Hit.HitLook.MELEE_DAMAGE));
         Native950Hits.Snapshot hits=Native950Hits.from(victim);

@@ -109,7 +109,7 @@ public final class Native950AbilityCoverage {
         }
         for (Native950AbilityCatalog.Definition d : Native950AbilityCatalog.DEFINITIONS) {
             if (!rows.containsKey(d.struct)) throw new IllegalStateException("Inventory missed implemented ability " + d.struct);
-            @SuppressWarnings("unchecked") List<Map<String,Object>> memberships=(List<Map<String,Object>>) rows.get(d.struct).get("enumMembership");
+            @SuppressWarnings("unchecked") List<Map<String,Object>> memberships=(List<Map<String,Object>>) rows.get(Native950AbilityCatalog.base(d.struct)).get("enumMembership");
             if (memberships.stream().noneMatch(m -> ((Integer)m.get("enum"))==Native950ActionBar.enumFor(d.book)
                     && ((Long)m.get("key"))==d.key))
                 throw new IllegalStateException("Inventory missed known native book membership " + d.struct);

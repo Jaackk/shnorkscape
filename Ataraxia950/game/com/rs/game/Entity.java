@@ -1191,6 +1191,7 @@ public abstract class Entity extends WorldTile {
     private void setNative950ForceArrival(final WorldTile tile, final long generation) {
         this.nextWorldTile = tile;
         native950ForceArrivalGeneration = generation;
+        if(this instanceof Player)com.rs.game.player.client.Native950BugTest.event((Player)this,"combat","force-arrival-scheduled","generation",generation,"x",tile.getX(),"y",tile.getY(),"plane",tile.getPlane());
     }
 
     public void setNextForceMovement(final ForceMovement nextForceMovements) {
@@ -1561,6 +1562,8 @@ public abstract class Entity extends WorldTile {
         }
         nextWalkDirection = nextRunDirection = -1;
         if (nextWorldTile != null) {
+            if(this instanceof Player&&native950ForceArrivalGeneration!=0)
+                com.rs.game.player.client.Native950BugTest.event((Player)this,"combat","force-arrival-commit","generation",native950ForceArrivalGeneration,"fromX",getX(),"fromY",getY(),"x",nextWorldTile.getX(),"y",nextWorldTile.getY());
             lastWorldTile = new WorldTile(this);
             final int lastPlane = getPlane();
             setLocation(nextWorldTile);

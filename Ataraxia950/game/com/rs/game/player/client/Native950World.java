@@ -365,6 +365,17 @@ public final class Native950World {
         });
     }
 
+    void addConjure(NPC npc){
+        if(Thread.currentThread()!=thread||npc==null||!npc.isNative950Conjure())throw new IllegalArgumentException("Expected a world-owned conjure asset");
+        World.getRegion(npc.getRegionId(),true);World.addNative950Npc(npc);
+        try{World.updateEntityRegion(npc);npc.enableNative950Movement();npcs.add(npc);}
+        catch(RuntimeException failure){World.removeNative950Npc(npc);throw failure;}
+    }
+    void removeConjure(NPC npc){
+        if(Thread.currentThread()!=thread||npc==null||!npc.isNative950Conjure())throw new IllegalArgumentException("Expected a world-owned conjure");
+        removeExactNpc(npcs,npc);World.removeNative950Npc(npc);
+    }
+
     /** Synchronous command admission: register once in every world-owned registry, with no legacy AI. */
     void addDiagnosticNpc(NPC npc) {
         if (Thread.currentThread() != thread)

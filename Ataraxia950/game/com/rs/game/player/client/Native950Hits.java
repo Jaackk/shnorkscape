@@ -16,7 +16,7 @@ import java.util.List;
 public final class Native950Hits {
     public static final int LIFE_POINTS_PER_ENGINE_HP=10;
     private static final int[] IDS={0,1,2,14,15,16,51,52,53,103,104,105,
-            133,134,136,137,139,140,150,151,153,154,156,157,458,464};
+            133,134,136,137,139,140,150,151,153,154,156,157,458,464,477,478,480};
     private static final String[] HASHES={
         "0bcb6b16d9f3da7d610278e3b6dce71e6d5244fa7b94a7eba3a503b2e6a99b9b",
         "c00c3808ea40db900c62ef92fc3d35f5c6a5877c80d9ff49fd0eb00fe1b658b8",
@@ -43,7 +43,10 @@ public final class Native950Hits {
         "4e4b030f5ef1e816e33278ce268594cb6608a6796e1bfd2d2d1c330befbbc7f7",
         "db2d421eed95a01386432aa0c215fb43ab189027fa83bf424712d04dfc299271",
         "fa0aacc41d29bd6dff34074609ad960b98c821320aff31299820e63d47775a0c",
-        "fc0ba0f97fa3c173c16ac9841ff20a2702b1b46055bf2f80f4b8cf17a484956a"};
+        "fc0ba0f97fa3c173c16ac9841ff20a2702b1b46055bf2f80f4b8cf17a484956a",
+        "f3fc7bd2bd0d7bad82a4ac2af539f2772a8d6e1baa2153b40809c80e109f37f0",
+        "6b136765a312d9a0f8268aa4b55328e5d712b6efed7014433345be187df8d882",
+        "162772692c60f5226d65b998ee5dd28d5ab4af4008891b239200befda681d9a0"};
     private static final int[] ZERO_SPRITES={23354,23355,23356,23357,23358,23359};
     private static final String[] ZERO_SPRITE_HASHES={
         "d01f7b914dc73f7a3c8f8232772703d4c35f4ba84c0d4ffc48f2f818d849e713",
@@ -94,6 +97,7 @@ public final class Native950Hits {
             if(entries.size()==255 || damage<0 || damage>32767 || hit.getDelay()!=0
                     || hit.isSpecialHit() || hit.getSoaking()!=null
                     || (hit.getLook()!=Hit.HitLook.MELEE_DAMAGE && hit.getLook()!=Hit.HitLook.RANGE_DAMAGE && hit.getLook()!=Hit.HitLook.MAGIC_DAMAGE
+                        && hit.getLook()!=Hit.HitLook.NECROMANCY_DAMAGE && hit.getLook()!=Hit.HitLook.CONJURE_DAMAGE
                         && !(hit.getLook()==Hit.HitLook.MISSED && damage==0))) {
                 refused++;continue;
             }
@@ -115,6 +119,8 @@ public final class Native950Hits {
         int type(int viewer) {
             boolean involved=viewer>0 && (viewer==source || viewer==victim);
             if(damage==0)return involved?458:464;
+            if(look==Hit.HitLook.NECROMANCY_DAMAGE)return critical?478:477;
+            if(look==Hit.HitLook.CONJURE_DAMAGE)return 480;
             if(critical){
                 if(look==Hit.HitLook.RANGE_DAMAGE)return involved?137:154;
                 if(look==Hit.HitLook.MAGIC_DAMAGE)return involved?140:157;

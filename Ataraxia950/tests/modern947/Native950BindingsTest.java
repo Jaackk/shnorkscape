@@ -44,7 +44,7 @@ public class Native950BindingsTest {
             });
             Player player=Player.createNative950("combat-wire",new WorldTile(3222,3222,0),channel);
             player.getVarsManager().setNativeVarpSink((id,value)->player.getPackets().sendConfig(id,value));
-            for(int[] pair:new int[][]{{4164,14},{5861,1003},{10986,12},{11035,5},{4164,0},{11035,0},{10986,0}}){
+            for(int[] pair:new int[][]{{4164,14},{5861,1003},{10986,12},{11035,5},{4164,0},{11035,0},{10986,0},{10994,1},{11006,1},{11018,1},{11820,1},{11051,1},{11054,1},{10994,0},{11051,0},{11054,0}}){
                 player.getVarsManager().sendVar(pair[0],pair[1]);channel.flushOutbound();
                 io.netty.buffer.ByteBuf frame=channel.readOutbound();
                 assertNotNull("Runtime binding dropped combat varp "+pair[0],frame);
@@ -274,7 +274,7 @@ public class Native950BindingsTest {
         assertEquals(1462 << 16 | 3, b.resolve("worn_equipment.root"));
         assertEquals(94, b.resolve("container:equipment"));
         assertEquals(18, b.resolve("slotkey:all_chat"));
-        assertEquals(150, b.scriptNames().size());
+        assertEquals(163, b.scriptNames().size());
         for (String name : b.slotNames()) { assertTrue(b.slotAttach(name) >= 0); assertEquals(ROOT, b.slotAttach(name) >>> 16); assertEquals(ROOT, b.slotWrapper(name) >>> 16); }
         for (String name : b.interfaceNames()) for (String comp : b.iface(name).components.keySet()) assertTrue(b.component(name, comp) >= 0);
         for (String name : b.varNames()) assertTrue(b.var(name).id >= 0);

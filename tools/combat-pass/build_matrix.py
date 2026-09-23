@@ -44,7 +44,25 @@ def build(inventory, acceptance):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('inventory');parser.add_argument('acceptance');parser.add_argument('output')
+    parser.add_argument('--live-feedback',help='User-reported installed-candidate results; never promotes successor acceptance')
+    parser.add_argument('--presentation',help='Exact950 binding audit for admitted structures')
     args=parser.parse_args()
     report=build(json.loads(Path(args.inventory).read_text()),json.loads(Path(args.acceptance).read_text()))
-    Path(args.output).write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n',encoding='utf-8')
+    if args.live_feedback:
+        feedback=json.loads(Path(args.live_feedback).read_text())
+        report['userLiveResults']=feedback['userLiveResults']
+        report['successorLiveAcceptance']='PENDING: offline evidence does not replace the installed candidate live failures'
+        for row in report['abilities']:
+            if row['struct']==47129:row['liveVisualStatus']='LIVE FAIL: chosen-tile movement; successor pending'
+            elif row['struct']==48314:row['liveVisualStatus']='LIVE FAIL: bouncing; successor pending'
+            elif row['reportGroup']=='necromancy':row['liveVisualStatus']='STYLE LIVE PARTIAL: resources/conjures/presentation; successor pending'
+    if args.presentation:
+        audit=json.loads(Path(args.presentation).read_text())
+        by_id={r['struct']:r for r in audit['abilities']}
+        for row in report['abilities']:
+            if row['struct'] in by_id:
+                item=by_id[row['struct']]
+                row['presentationAudit']={'report':args.presentation,'animationSequences':item['animationSequences'],
+                    'variants':item['variants'],'renderedAcceptance':'PENDING'}
+    Path(args.output).write_bytes((json.dumps(report,indent=2,ensure_ascii=False)+'\n').encode('utf-8'))
     print(json.dumps(report['summary'],indent=2))

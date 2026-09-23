@@ -7,6 +7,25 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class Native950NecromancyResourcesTest {
+    @Test public void scytheTransformsExpireAndRemainPlayerOwned(){
+        EmbeddedChannel a=new EmbeddedChannel(),b=new EmbeddedChannel();
+        Player first=Player.createNative950("first",new WorldTile(3200,3200,0),a);
+        Player second=Player.createNative950("second",new WorldTile(3200,3201,0),b);
+        Native950NecromancyResources state=new Native950NecromancyResources();
+        try{
+            assertNotNull(state.refusal(first,48312));
+            state.cast(first,48311,1,false);
+            assertEquals(48312,state.effective(first,48311));assertEquals(1,first.getVarsManager().getValue(11051));
+            assertEquals(48311,state.effective(second,48311));
+            state.cast(first,48312,4,false);assertEquals(48313,state.effective(first,48311));
+            assertEquals(0,first.getVarsManager().getValue(11051));assertEquals(1,first.getVarsManager().getValue(11054));
+            state.cast(first,48313,7,false);assertEquals(48311,state.effective(first,48311));
+            assertEquals(0,first.getVarsManager().getValue(11054));
+            state.cast(first,48311,10,false);state.pulse(34);assertNull(state.refusal(first,48312));
+            state.pulse(35);assertNotNull(state.refusal(first,48312));assertEquals(0,first.getVarsManager().getValue(11051));
+            state.cast(first,48311,40,false);state.clear(first);assertEquals(48311,state.effective(first,48311));
+        }finally{state.clear();a.finishAndReleaseAll();b.finishAndReleaseAll();}
+    }
     @Test public void resourcesPublishNativeAvailabilityWithoutLeakingBetweenPlayers(){
         EmbeddedChannel a=new EmbeddedChannel(),b=new EmbeddedChannel();
         Player first=Player.createNative950("first",new WorldTile(3200,3200,0),a);

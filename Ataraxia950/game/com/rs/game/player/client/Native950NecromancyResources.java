@@ -8,12 +8,15 @@ import java.util.Map;
 /** Session-owned resources. Exact950 CS17445/2660 read these varps for admission. */
 final class Native950NecromancyResources {
     static final int NECROSIS_VAR=10986, SOULS_VAR=11035;
-    private static final class State { int necrosis,souls; long lastCombat; }
+    private static final class State { int necrosis,souls,scythe; long lastCombat,scytheUntil; }
     private final Map<Player,State> states=new IdentityHashMap<>();
     int necrosis(Player player){State s=states.get(player);return s==null?0:s.necrosis;}
     int souls(Player player){State s=states.get(player);return s==null?0:s.souls;}
     int fingerCost(Player player){return Math.max(0,60-10*Math.min(6,necrosis(player)));}
+    int effective(Player player,int struct){State s=states.get(player);return struct==48311&&s!=null&&s.scythe>0?48311+s.scythe:struct;}
+    void gainSoul(Player player,long tick){State s=states.computeIfAbsent(player,p->new State());s.souls=Math.min(soulCap(player),s.souls+1);s.lastCombat=tick;publish(player,s);}
     String refusal(Player player,int struct){
+        if((struct==48312||struct==48313)&&effective(player,48311)!=struct)return "That Spectral Scythe recast is no longer available.";
         int minimum=struct==48299?1:struct==48301?2:0;
         return souls(player)<minimum?"That ability requires "+minimum+" residual soul"+(minimum==1?".":"s."):null;
     }
@@ -23,6 +26,9 @@ final class Native950NecromancyResources {
         return Cache.STORE!=null&&offhand>=0&&Native950CacheItems.definition(offhand).getCSOpcode(8928)==48397?5:3;
     }
     void cast(Player player,int struct,long tick,boolean livingDeath){
+        if(struct>=48311&&struct<=48313){
+            State s=states.computeIfAbsent(player,p->new State());s.scythe=struct==48313?0:struct-48310;s.scytheUntil=tick+25;s.lastCombat=tick;publishScythe(player,s);return;
+        }
         if(struct!=48296&&struct!=48297&&struct!=48298&&struct!=48299&&struct!=48301)return;
         State s=states.computeIfAbsent(player,p->new State());
         if(struct==48296)s.necrosis=Math.min(12,s.necrosis+4); // CS18658 + CS17458.
@@ -43,14 +49,19 @@ final class Native950NecromancyResources {
         for(Player player:new java.util.ArrayList<>(states.keySet())){
             State s=states.get(player);
             if(inCombat.test(player))s.lastCombat=tick;
+            if(s.scythe>0&&(tick>=s.scytheUntil||player.isDead()||player.hasFinished())){s.scythe=0;publishScythe(player,s);}
             int before=s.souls;
             // Necrosis has no timer; residual souls expire after six seconds outside combat.
             s.souls=tick-s.lastCombat>=10?0:Math.min(s.souls,soulCap(player));
             if(before!=s.souls)publish(player,s);
         }
     }
-    void clear(Player player){states.remove(player);publish(player,new State());}
+    void clear(Player player){State prior=states.remove(player);publish(player,new State());if(prior!=null&&prior.scythe!=0)publishScythe(player,new State());}
     void clear(){for(Player player:new java.util.ArrayList<>(states.keySet()))clear(player);}
+    private void publishScythe(Player p,State s){
+        p.getVarsManager().sendVar(11051,s.scythe==1?1:0);p.getVarsManager().sendVar(11054,s.scythe==2?1:0);
+        p.getNative950ActionBar().refreshTransforms(p);
+    }
     private void publish(Player player,State s){
         player.getVarsManager().sendVar(NECROSIS_VAR,s.necrosis);
         player.getVarsManager().sendVar(SOULS_VAR,s.souls);

@@ -262,6 +262,17 @@ public class NPC extends Entity implements Serializable {
         return new NPC(definitionId, tile, verifiedSize);
     }
 
+    private transient int native950ConjureId=-1;
+    private transient com.rs.cache.filestore.store.Store native950ConjureStore;
+    public static NPC createNative950Conjure(int id,WorldTile tile){
+        String name=com.rs.game.player.client.Native950Conjures.verifiedName(id);
+        NPCDefinitions d=NPCDefinitions.decodeStrict947(id,Cache.STORE.getIndexes()[18].getFile(id>>>7,id&127),null);
+        NPC npc=createNative950(id,tile,d.size);
+        npc.native947MenuDefinition=d;npc.name=name;npc.native950ConjureId=id;npc.native950ConjureStore=Cache.STORE;
+        return npc;
+    }
+    public boolean isNative950Conjure(){return native950ConjureStore!=null&&native950ConjureStore==Cache.STORE&&native950ConjureId==id;}
+
     /** Creates a diagnostic entity from the exact installed950 file, without old-ID admission. */
     public static NPC createNative950Diagnostic(final int definitionId, final WorldTile tile) {
         if (definitionId < 0 || definitionId > 65534)

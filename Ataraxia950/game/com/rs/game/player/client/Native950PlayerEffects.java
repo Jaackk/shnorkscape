@@ -183,6 +183,20 @@ public final class Native950PlayerEffects {
                 throw new IllegalStateException("Invalid player effect identity: " + key);
             result.put(id, hash);
         }
+        // Modern combat effects are bound by their actual950 ability/sequence parameters.
+        // They are not claims that an inherited910 effect kept the same identity.
+        Properties combat=new Properties();
+        try(InputStream stream=Native950PlayerEffects.class.getResourceAsStream("/native950/combat-effects-950.properties")){
+            if(stream==null)throw new IllegalStateException("Missing native950 combat effect bindings");
+            combat.load(stream);
+        }catch(IOException error){throw new IllegalStateException("Cannot read native combat effects",error);}
+        if(!"1".equals(combat.getProperty("format"))||!"950".equals(combat.getProperty("revision"))||!"21".equals(combat.getProperty("index")))
+            throw new IllegalStateException("Invalid native950 combat effects header");
+        for(String key:combat.stringPropertyNames())if(key.startsWith("id.")){
+            int id=Integer.parseInt(key.substring(3));String hash=combat.getProperty(key);
+            if(id<0||id>65534||!hash.matches("[0-9a-f]{64}"))throw new IllegalStateException("Invalid combat effect "+key);
+            String old=result.put(id,hash);if(old!=null&&!old.equals(hash))throw new IllegalStateException("Conflicting effect identity "+id);
+        }
         if (result.isEmpty()) throw new IllegalStateException("Empty player effect identity table");
         return Collections.unmodifiableMap(result);
     }
