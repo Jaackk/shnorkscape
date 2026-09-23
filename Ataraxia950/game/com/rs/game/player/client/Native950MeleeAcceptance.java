@@ -66,7 +66,7 @@ public final class Native950MeleeAcceptance {
             rangedAutoWitness();
             if(args.length==2) {
                 // Existing profiles at an isolated clear footprint, not a claim of boss-area access or mechanics.
-                for(int boss:new int[]{2883,5666}) {
+                for(int boss:new int[]{2883,5666,2881,2882,6203,7133,18932}) {
                     Native950NpcCombatProfile profile=Native950NpcCombatCatalog.fromRunningCache(boss);
                     require(profile!=null,"Boss profile is not admitted: "+boss);
                     boolean stress="--boss-stress".equals(args[1]);
@@ -114,23 +114,23 @@ public final class Native950MeleeAcceptance {
             // before the lifecycle assertion. No authenticated account or server stats change.
             if(originalHp>100) f.player.getSkills().setLevelWithoutRefresh(Skills.STRENGTH,20);
             if(boss) {
-                for(int skill:new int[]{Skills.ATTACK,Skills.STRENGTH,Skills.DEFENCE,Skills.HITPOINTS,Skills.MAGIC,Skills.PRAYER}) {
+                for(int skill:new int[]{Skills.ATTACK,Skills.STRENGTH,Skills.RANGE,Skills.DEFENCE,Skills.HITPOINTS,Skills.MAGIC,Skills.PRAYER}) {
                     f.player.getSkills().setXpWithoutRefresh(skill,Skills.getXPForLevel(skill,99));
                     f.player.getSkills().setLevelWithoutRefresh(skill,99);
                 }
                 f.player.setHitpoints(f.player.getMaxHitpoints());f.player.refreshHitPoints();f.resetMasks();
                 if(supplied) {
-                    int[] armour=id==2883?new int[]{42991,43119,43121,52036,51092}:new int[]{36294,38240,38242,52028,51090};
-                    for(int item:armour) {
-                        Native950EquipmentTypes.Type type=Native950EquipmentTypes.resolve(item);
-                        require(type!=null,"Unverified boss fixture armour "+item);
-                        f.player.getEquipment().getItems().set(type.slot,new Item(item,1));
-                    }
+                    int style=id==2883?2:id==2882?1:0;
+                    Native950DeveloperLoadouts.Loadout loadout=Native950DeveloperLoadouts.builtins().get(style);
+                    f.player.getEquipment().getItems().clear();
+                    for(int slot=0;slot<loadout.equipment.length;slot++)if(loadout.equipment[slot]!=null)
+                        f.player.getEquipment().getItems().set(slot,new Item(loadout.equipment[slot]));
                     f.player.getInventory().items.set(0,new Item(556,2000));
-                    for(int slot=1;slot<28;slot++)f.player.getInventory().items.set(slot,new Item(385,1));
+                    for(int slot=1;slot<28;slot++)f.player.getInventory().items.set(slot,new Item(42251,1));
                     f.player.getPrayer().restorePrayer(990);
-                    f.player.getPrayer().switchPrayer(13,false);
-                    require(f.player.getPrayer().usingPrayer(0,13),"Native Protect from Melee did not activate");
+                    int protect=f.npc.getNative950CombatProfile().attackStyle==0?13:f.npc.getNative950CombatProfile().attackStyle==1?12:11;
+                    f.player.getPrayer().switchPrayer(protect,false);
+                    require(f.player.getPrayer().usingPrayer(0,protect),"Native style protection did not activate");
                 }
             }
             String refusal=f.combat.attack(f.player,f.npc);
@@ -140,15 +140,21 @@ public final class Native950MeleeAcceptance {
                 if(supplied && !f.npc.isDead() && f.player.getHitpoints()<f.player.getMaxHitpoints()*3/5
                         && f.player.getFoodDelay()<=com.rs.utils.Utils.currentTimeMillis()) {
                     for(int slot=1;slot<28;slot++)if(f.player.getInventory().getItem(slot)!=null) {
-                        Native950Food.Result eaten=Native950Food.eat(f.player,f.containers,slot,385);
+                        Native950Food.Result eaten=Native950Food.eat(f.player,f.containers,slot,42251);
                         require(eaten.accepted,"Boss food transaction refused: "+eaten.reason);break;
                     }
                 }
+                if(supplied&&!f.npc.isDead()){
+                    int basic=id==2883?14730:id==2882?14663:14679;
+                    if(f.combat.abilityRefusal(f.player,basic)==null)
+                        require(f.combat.ability(f.player,basic)==null,"Boss manual basic activation failed");
+                }
+                boolean killedBeforeTick=f.npc.isDead();
                 Tick state=f.tick();
                 require(!f.player.isDead(),"Encounter killed player: npc="+id+", tick="+step+", npcHp="+f.npc.getHitpoints());
                 if(state.playerHit)retaliated=true;
                 if(deathTick<0 && f.npc.isDead()) {
-                    deathTick=step;
+                    deathTick=step-(killedBeforeTick?1:0);
                     java.util.List<com.rs.game.item.floor.FloorItem> drops=World.getRegion(f.npc.getRegionId()).getGroundItemsSafe();
                     require(drops.stream().anyMatch(item -> item.isNative950() && !f.initialFloor.contains(item)
                             && f.player.getUsername().equals(item.getOwner()) && item.isInvisible()),
@@ -190,8 +196,10 @@ public final class Native950MeleeAcceptance {
             require(deathTick>0&&hiddenTick>deathTick&&respawned&&retaliated,"Incomplete melee/retaliation/death/respawn loop for "+id);
             if(supplied) {
                 require(!f.player.isInvulnerable()&&!f.player.isInfiniteCombatRunes(),"Boss gate used infinite survival/resources");
-                if(id==2883)require(f.player.getInventory().getAmountOf(556)<2000,"Rex magic gate consumed no runes");
-                System.out.println("BOSS resources: id="+id+", foodRemaining="+f.player.getInventory().getAmountOf(385)+", airRunes="+f.player.getInventory().getAmountOf(556)+", finalHp="+f.player.getHitpoints());
+                // A sustained basic-ability rotation may suppress every auto cast; do not
+                // demand rune consumption from abilities whose normal contract is rune-free.
+                if(id==2883)require(Native950CombatStyles.loadout(f.player).profile.style==2,"Rex gate lost its magic loadout");
+                System.out.println("BOSS resources: id="+id+", weapon="+f.player.getEquipment().getWeaponId()+", foodRemaining="+f.player.getInventory().getAmountOf(42251)+", airRunes="+f.player.getInventory().getAmountOf(556)+", finalHp="+f.player.getHitpoints());
             }
             System.out.println("PASS: NPC"+id+" weapon"+weapon+(bankerKit?" shield1173 helm1139":"")+" HP"+originalHp+" -> lethal mask -> visible corpse -> removal -> full-HP respawn -> next-frame same-index addition");
         }

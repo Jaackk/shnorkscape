@@ -8,7 +8,7 @@ import java.util.Map;
 /** Session-owned resources. Exact950 CS17445/2660 read these varps for admission. */
 final class Native950NecromancyResources {
     static final int NECROSIS_VAR=10986, SOULS_VAR=11035;
-    private static final class State { int necrosis,souls; long expires; }
+    private static final class State { int necrosis,souls; long lastCombat; }
     private final Map<Player,State> states=new IdentityHashMap<>();
     int necrosis(Player player){State s=states.get(player);return s==null?0:s.necrosis;}
     int souls(Player player){State s=states.get(player);return s==null?0:s.souls;}
@@ -30,19 +30,23 @@ final class Native950NecromancyResources {
         if(struct==48298)s.souls=Math.min(soulCap(player),s.souls+1); // CS18660.
         if(struct==48299)s.souls--;
         if(struct==48301)s.souls=0;
-        s.expires=tick+50;
+        s.lastCombat=tick;
         publish(player,s);
     }
     void basicAttack(Player player,long tick,boolean livingDeath){
         if(!livingDeath)return;
         State s=states.computeIfAbsent(player,p->new State());
-        s.necrosis=Math.min(12,s.necrosis+2);s.expires=tick+50;publish(player,s); // CS18671.
+        s.necrosis=Math.min(12,s.necrosis+2);s.lastCombat=tick;publish(player,s); // CS18671.
     }
-    void pulse(long tick){
+    void pulse(long tick){pulse(tick,p->false);}
+    void pulse(long tick,java.util.function.Predicate<Player> inCombat){
         for(Player player:new java.util.ArrayList<>(states.keySet())){
             State s=states.get(player);
-            if(tick>=s.expires)clear(player);
-            else {int cap=soulCap(player);if(s.souls>cap){s.souls=cap;publish(player,s);}}
+            if(inCombat.test(player))s.lastCombat=tick;
+            int before=s.souls;
+            // Necrosis has no timer; residual souls expire after six seconds outside combat.
+            s.souls=tick-s.lastCombat>=10?0:Math.min(s.souls,soulCap(player));
+            if(before!=s.souls)publish(player,s);
         }
     }
     void clear(Player player){states.remove(player);publish(player,new State());}

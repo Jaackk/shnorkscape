@@ -39,6 +39,10 @@ public final class Native950ActionBar {
     private final int[][] bars=new int[BARS][SLOTS];
     private int activeBar;
     private boolean revolutionEnabled;
+    // CS2526 + DB row1306: native checkboxes store disable flags, with param7524 inversion.
+    private int revolutionDisabledTiers;
+    private int revolutionSlots=9;
+    private static final int[] REVOLUTION_TIER_BITS={38666,52329,38708,38709};
     private int[] slots(){return bars[activeBar];}
     public void writeSettings(Map<String,Integer> settings){
         // Schema one stored only bar one as fourteen raw values. Remove those keys so a
@@ -47,7 +51,9 @@ public final class Native950ActionBar {
         for(int bar=0;bar<BARS;bar++)for(int pair=0;pair<SLOTS/2;pair++)
             settings.put("actionBar."+bar+"."+pair,savePair(bars[bar][pair*2],bars[bar][pair*2+1]));
         settings.put("actionBar.active",activeBar);
-        settings.put("actionBar.revolution",revolutionEnabled?1:0);
+        // Preserve the bounded save-key count and old 0/1 values. Zero range means legacy nine.
+        settings.put("actionBar.revolution",(revolutionEnabled?1:0)|(revolutionDisabledTiers<<1)
+                |((revolutionSlots==9?0:revolutionSlots)<<5));
     }
     public void restore(Map<String,Integer> settings){
         boolean compact=settings.containsKey("actionBar.0.0");
@@ -57,7 +63,10 @@ public final class Native950ActionBar {
             bars[bar][pair*2+1]=loadValue(value>>>16);
         }
         activeBar=Math.max(0,Math.min(BARS-1,settings.getOrDefault("actionBar.active",0)));
-        revolutionEnabled=settings.getOrDefault("actionBar.revolution",0)==1;
+        int revo=settings.getOrDefault("actionBar.revolution",0);
+        if(revo<0||revo>511)revo=0;
+        revolutionEnabled=(revo&1)!=0;revolutionDisabledTiers=(revo>>>1)&15;
+        int range=(revo>>>5)&15;revolutionSlots=range>=1&&range<=14?range:9;
     }
     private static int legacyPair(Map<String,Integer> settings,int pair){return savePair(settings.getOrDefault("actionBar."+(pair*2),0),settings.getOrDefault("actionBar."+(pair*2+1),0));}
     private static int savePair(int first,int second){return saveValue(first)|(saveValue(second)<<16);}
@@ -158,6 +167,9 @@ public final class Native950ActionBar {
         visualWrite(p,c,Native950Packets.varbitSmall(DISPLAY_MODE_VARBIT,2),"varbit",DISPLAY_MODE_VARBIT,2);
         visualWrite(p,c,Native950Packets.varbitSmall(FULL_MANUAL_MODE_VARBIT,revolutionEnabled?0:1),"varbit",FULL_MANUAL_MODE_VARBIT,revolutionEnabled?0:1);
         visualWrite(p,c,Native950Packets.varbitSmall(REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0),"varbit",REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0);
+        visualWrite(p,c,Native950Packets.varbitSmall(38639,revolutionSlots),"varbit",38639,revolutionSlots);
+        for(int tier=0;tier<4;tier++)visualWrite(p,c,Native950Packets.varbitSmall(REVOLUTION_TIER_BITS[tier],(revolutionDisabledTiers>>>tier)&1),
+                "varbit",REVOLUTION_TIER_BITS[tier],(revolutionDisabledTiers>>>tier)&1);
         for(int i=0;i<SLOTS;i++){
             int typeConfig=typeConfig(activeBar,i),shortcutConfig=shortcutConfig(activeBar,i);
             visualWrite(p,c,Native950Packets.varp(typeConfig,-1),"varp",typeConfig,-1);
@@ -285,7 +297,20 @@ public final class Native950ActionBar {
     }
     int revolutionCandidate(int enabledSlots,java.util.function.IntPredicate canExecute){
         int[] structures=new int[SLOTS];for(int i=0;i<SLOTS;i++)structures[i]=struct(slots()[i]);
-        return Native950Revolution.select(structures,enabledSlots,canExecute);
+        return Native950Revolution.select(structures,enabledSlots,id->revolutionTierAllowed(id)&&canExecute.test(id));
+    }
+    boolean revolutionTierAllowed(int structure){
+        Native950AbilityCatalog.Definition d=Native950AbilityCatalog.get(structure);
+        return d!=null&&d.tier>=1&&d.tier<=4&&(revolutionDisabledTiers&(1<<(d.tier-1)))==0;
+    }
+    int revolutionSlots(){return revolutionSlots;}
+    void setRevolutionSlots(int slots,Channel c){
+        if(slots<1||slots>SLOTS)throw new IllegalArgumentException("Revolution range");
+        revolutionSlots=slots;refreshRevolution(c);
+    }
+    void toggleRevolutionTier(int tier,Channel c){
+        if(tier<1||tier>4)throw new IllegalArgumentException("Revolution tier");
+        revolutionDisabledTiers^=1<<(tier-1);refreshRevolution(c);
     }
     boolean isRevolutionEnabled(){return revolutionEnabled;}
     void setRevolutionEnabled(Channel c,boolean enabled){setRevolutionEnabled(enabled,packet->c.write(packet));}
@@ -294,6 +319,8 @@ public final class Native950ActionBar {
     private void sendCombatMode(Consumer<Native950Packets.Packet> send){
         send.accept(Native950Packets.varbitSmall(FULL_MANUAL_MODE_VARBIT,revolutionEnabled?0:1));
         send.accept(Native950Packets.varbitSmall(REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0));
+        send.accept(Native950Packets.varbitSmall(38639,revolutionSlots));
+        for(int i=0;i<4;i++)send.accept(Native950Packets.varbitSmall(REVOLUTION_TIER_BITS[i],(revolutionDisabledTiers>>>i)&1));
     }
     void cooldown(Channel c,int structure,int currentCycle,int duration){c.write(Native950Packets.runClientScript(6570,structure,currentCycle,currentCycle+duration,1,1));}
     /** Exact950 components1430:{70,83,...239}: CS5899(slot,1003,overlay). */

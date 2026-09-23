@@ -11,6 +11,19 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class Native950ActionBarTest {
+    @Test public void revolutionTierFiltersPersistWithoutLeakingToOtherPlayers(){
+        EmbeddedChannel channel=new EmbeddedChannel();
+        try{
+            Native950ActionBar first=new Native950ActionBar(),second=new Native950ActionBar();
+            assertTrue(first.revolutionTierAllowed(14679));
+            first.toggleRevolutionTier(1,channel);
+            assertFalse(first.revolutionTierAllowed(14679));assertTrue(second.revolutionTierAllowed(14679));
+            Map<String,Integer> settings=new HashMap<>();first.writeSettings(settings);
+            Native950ActionBar restored=new Native950ActionBar();restored.restore(settings);
+            assertFalse(restored.revolutionTierAllowed(14679));
+            restored.toggleRevolutionTier(1,channel);assertTrue(restored.revolutionTierAllowed(14679));
+        }finally{channel.finishAndReleaseAll();}
+    }
     @Test public void nativeShortcutWireValueRetainsTheCacheDefinedTypeAndAbilityBitRanges(){
         assertEquals((1<<17)|(3<<4),Native950ActionBar.pack(1,3));
         assertTrue(Native950ActionBar.valid(Native950ActionBar.pack(6,263)));

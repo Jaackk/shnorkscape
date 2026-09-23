@@ -29,6 +29,7 @@ public final class Native950Settings {
     private long revolutionTransaction;
     private long awaitingRevolutionTransaction;
     private boolean awaitingRevolutionState;
+    private boolean revolutionSliderSelected;
 
     public Native950Settings(Player player, Channel channel) {
         this(player, channel, Native950Settings::verify);
@@ -81,6 +82,25 @@ public final class Native950Settings {
         }
         if (!isOpen() || action.option() != 1 || action.itemId() != -1)
             return false;
+        if(page==GAMEPLAY&&action.interfaceId()==365&&action.componentId()==19){
+            // CS10451 first selects its row on19, then CS10450 sends the zero-based value on20.
+            // Observe ALL row selections so changing another slider revokes this authority first.
+            revolutionSliderSelected=action.slot()==10246;
+            if(revolutionSliderSelected)return true;
+        }
+        if(page==GAMEPLAY&&action.interfaceId()==365&&action.componentId()==20){
+            if(!revolutionSliderSelected||action.slot()<0||action.slot()>=14)return false;
+            player.getNative950ActionBar().setRevolutionSlots(action.slot()+1,channel);
+            return true;
+        }
+        if(page==GAMEPLAY&&action.interfaceId()==365&&action.componentId()==19
+                &&action.slot()>=10247&&action.slot()<=10250){
+            // Row1306 indices7/8/9/10: Basic / Threshold / Enhanced / Ultimate.
+            int[] tiers={1,3,2,4};
+            player.getNative950ActionBar().toggleRevolutionTier(tiers[action.slot()-10247],channel);
+            channel.write(Native950Packets.runClientScript(2929));
+            return true;
+        }
         if (action.interfaceId() == 365 && action.componentId() == 19
                 && Native950PendingSettings.isPendingCheckbox(page, action.slot())) {
             if (Native950PendingSettings.isManualOrRevolutionChoice(action.slot())) {
@@ -214,6 +234,7 @@ public final class Native950Settings {
     }
 
     private void removePage() {
+        revolutionSliderSelected=false;
         if (page == GAMEPLAY) pendingCheckboxEvents(0);
         if (page == GRAPHICS) {
             channel.write(Native950Packets.closeSub(1426, 0));
@@ -233,9 +254,12 @@ public final class Native950Settings {
 
     private void pendingCheckboxEvents(int mask) {
         // The native onOp hook runs before this server-notification gate.
-        // Local preferences retain the cache's zero mask; only waiting combat
-        // choices need the server's rejection reply. Retire overrides on exit.
+        // Row selection is also the slider's source authority. Observe unrelated
+        // rows to revoke it, without changing those client-local preferences.
+        channel.write(Native950Packets.interfaceEvents(365,19,0,65534,mask));
+        channel.write(Native950Packets.interfaceEvents(365,20,0,13,mask));
         channel.write(Native950Packets.interfaceEvents(365, 19, 10240, 10242, mask));
+        channel.write(Native950Packets.interfaceEvents(365, 19, 10247, 10250, mask));
         channel.write(Native950Packets.interfaceEvents(365, 19, 15872, 15872, mask));
     }
 
@@ -421,6 +445,31 @@ public final class Native950Settings {
         pin(12, 2798, 0, "e245c5568a5ab695a1fcdd85f16e4529504073941397955dbc2d504a0068acc0");
         pin(12, 8180, 0, "1146e4c31c6251a2246d6a3aa9cf20af860f58dd1bbf39ebec294a22f746e0ae");
         pin(12, 8844, 0, "05882a24def6f4008980c46787b5d4e32176ea84e31a2fc160e4f74dd3f60a05");
+
+        // Exact950 Revolution row, slider callbacks, disable flags and range varbit.
+        pin(2, 41, 1306, "6e9d6f7bbd44a0be5b43a1a21e9eaa5b9da10789222e673c1f192829fcd808c5");
+        pin(17, 56, 233, "1561a5915e9ff523af4b23325e49b58170ab6d35109f81adda4c281c22b24636");
+        pin(12, 2526, 0, "390c37c949f2d270bcd56bf4fbbe7fe19c9a2036a7ca9dbcffe317b9c1fcbfdb");
+        pin(12, 2830, 0, "1f43193c01097ccd3be4ac0eda4a8474c98b41bc6079a3697618dead8866b618");
+        pin(12, 2970, 0, "7d6254bb6775c7997a7832c2027d2f33ce27eabfa810eeca3c9e2cf981808bcd");
+        pin(12, 2987, 0, "1f3bb5f35db905b7aeaa92c8a12bb1b5c0365fd0fd6eeed8bbc786d98313f52f");
+        pin(12, 10424, 0, "37b42e3abb6084ceb60a0df1e04d9a9a7ec6a3f72dcf020b19e8381b174f23c1");
+        pin(12, 10446, 0, "0058d72245d39aa47efd09e0f1608369df6cba911731b5113e8fb94775e77e6b");
+        pin(12, 10447, 0, "74f7de3f2cdffd0c00a69de7cf22d4a227343efdc5f834b7907821112f3bf842");
+        pin(12, 10448, 0, "53c564000a1676bfd9e10027252bbdb28d6b95ed3af19191750e3181f408685f");
+        pin(12, 10450, 0, "9c72e0a2d2a18904103bf6a5359ea27f35070748e4659fc2b86a287d3fb8a907");
+        pin(12, 10451, 0, "ecd139b01402f247b286c7f39cd1a80b411f85c437a4af92bf94f5c3d2e8e01d");
+        pin(12, 10603, 0, "bd54a06042fb8cf21ef1a9c112c6a5a3d366c25ede2e2582b43cf82d1ab77196");
+        pin(22, 1297, 1, "815ede6944e79d8d6c58533a1867f54c4b75d097b8c335a2d99a6423cb81b551");
+        pin(22, 1297, 2, "653b52a4d74323edfdaefce9019309b5f0e605765094a372395eea2667cd3dd6");
+        pin(22, 1297, 3, "df54a4d4125b11880262fb8b6180008aa1a13e2871330f4278b9e0b26f8954ae");
+        pin(22, 482, 1, "57161013b08d9a7cf2f4b44a25e503f804f2900a84f24779bb02f8436212a158");
+        pin(22, 1297, 4, "35dd34721842437519c3aabf7801f1c04fc88b0d017fbc4128409bed2aa3301b");
+        pin(2, 69, 38639, "453d7486f215f0f842f3614dda79ebfed15d11a4e45ac2f59d12ee567f66a076");
+        pin(2, 69, 38666, "86fdf2f50548ce59cc4091b7452758a8bd74d114c4602544cf6529a5ad114a4f");
+        pin(2, 69, 38708, "d4bd73f3657fd41a7dca5d88cd2eb99794cc2f685e7150f9f904327a30036f56");
+        pin(2, 69, 52329, "ef8482607194ab4be7455eaa1841ef2c635b6c1da77ee0452044de6d2012d2ed");
+        pin(2, 69, 38709, "17a936ffa3179bc4e470bd0a538a081e54d213d117d7d1ea74072761f80e8cd9");
 
         verified = true;
     }

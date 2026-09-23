@@ -33,8 +33,26 @@ public final class Native950NpcDrops {
         if (npc == null || owner == null || !npc.isNative950() || !owner.isNative950()
                 || !Native950IdValidity.get().isSafe(Native950IdValidity.Kind.NPC, npc.getId()))
             return Collections.emptyList();
+        if(npc.getId()==7133&&npc.getNative950CombatProfile()!=null&&"Bork".equals(npc.getNative950CombatProfile().name))
+            return borkDrops(Native950NpcDrops::metadata,com.rs.utils.Utils.random(200000));
         return roll(NPCDropsDataParser.getDrops(npc.getId()), Settings.getDropQuantityRate(owner),
                 Settings.DOUBLE_DROPS, Native950NpcDrops::metadata, NPCDropTableRolls.LEGACY_ROLLS);
+    }
+    /** Authored Bork.drop override, absent from drops.json; cache-check every item before awarding. */
+    static List<Item> borkDrops(IntFunction<ItemMetadata> items,int coinRoll){
+        if(coinRoll<0||coinRoll>=200000)throw new IllegalArgumentException("Bork coin roll");
+        int[] ids={532,995,12163,12160,12159,12158,1618,1620,1622,1624};
+        int[] amounts={1,400000+coinRoll,15,18,20,25,10,15,20,25};
+        String[] names={"Big bones","Coins","Blue charm","Crimson charm","Green charm","Gold charm",
+                "Uncut diamond","Uncut ruby","Uncut emerald","Uncut sapphire"};
+        List<Item> result=new ArrayList<>();
+        for(int i=0;i<ids.length;i++){
+            ItemMetadata type=items.apply(ids[i]);
+            // Match ordinary drop-table admission: reject only the unsupported row.
+            if(type==null||!names[i].equalsIgnoreCase(type.name))continue;
+            result.add(new Item(ids[i],amounts[i]*(type.stackable?2:1)));
+        }
+        return Collections.unmodifiableList(result);
     }
 
     static List<Item> roll(NPCDrop[] table, double multiplier, boolean doubleDrops,

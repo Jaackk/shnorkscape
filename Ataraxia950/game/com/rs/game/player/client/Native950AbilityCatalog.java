@@ -10,7 +10,7 @@ import java.util.*;
 
 /** Paired950 definitions. A tooltip coefficient is not a verified server damage formula. */
 final class Native950AbilityCatalog {
-    enum Effect { DIRECT, STUN, EXECUTE, BLEED, BUFF, FLOW, MOVEMENT, PROVOKE, CEASE }
+    enum Effect { DIRECT, STUN, EXECUTE, BLEED, BUFF, FLOW, MOVEMENT, PROVOKE, CEASE, FOOD }
     static final class Definition {
         final int struct,book,key,skill,level,cooldown,minPercent,maxPercent,tier,hits;
         final String name;
@@ -22,7 +22,7 @@ final class Native950AbilityCatalog {
             this.cooldown=cooldown;minPercent=min;maxPercent=max;this.tier=tier;this.hits=hits;this.effect=effect;
             this.offhandRequired=offhandRequired;this.twoHandedRequired=twoHandedRequired;
         }
-        boolean targetRequired(){return effect!=Effect.MOVEMENT&&effect!=Effect.BUFF&&effect!=Effect.CEASE;}
+        boolean targetRequired(){return effect!=Effect.MOVEMENT&&effect!=Effect.BUFF&&effect!=Effect.CEASE&&effect!=Effect.FOOD;}
         boolean revolutionEligible(){return effect!=Effect.MOVEMENT&&book!=3&&book!=4;}
         int style(){return book==1?0:book==5?1:book==6?2:book==7?3:-1;}
         boolean shieldRequired(){return struct==14713||struct==14714||struct==14715||struct==14716
@@ -30,6 +30,8 @@ final class Native950AbilityCatalog {
         // Paired 950 params 2798/2800 use tenths of one percent. Tier 2 is
         // enhanced, not the pre-modernisation 50%-admission/15%-cost threshold.
         int adrenalineCost(){
+            if(struct==28177||struct==28180)return 0;
+            if(struct==52796)return 40;
             if(struct==48299||struct==48301||struct==48309)return 0;
             if(struct==44244||struct==14666)return 0;
             if(struct==31985||struct==31986||struct==48308)return 20;
@@ -39,7 +41,7 @@ final class Native950AbilityCatalog {
         }
         int adrenalineRequired(){return tier==3?50:adrenalineCost();}
         int adrenalineGain(){return struct==14679?12:tier==1?9:0;}
-        boolean channelled(){return struct==14684||struct==14701||struct==14704||struct==14666||struct==14670||struct==14731||struct==19343||struct==48309;}
+        boolean channelled(){return struct==14684||struct==14701||struct==14704||struct==14666||struct==14670||struct==14731||struct==19343||struct==48309||struct==28180;}
         int hitSpacing(){return struct==14684||struct==14670||struct==19343?1:2;}
         /** EOC effect cadence, never inferred from a sequence's optional legacy frame table. */
         int hitDelay(int hit){
@@ -75,6 +77,9 @@ final class Native950AbilityCatalog {
         d(14670,5,7,"Rapid Fire",4,62,34,45,55,2,8,Effect.DIRECT),
         d(14674,5,9,"Deadshot",4,21,50,115,115,4,4,Effect.DIRECT),
         d(19251,5,10,"Death's Swiftness",4,76,100,0,0,4,0,Effect.BUFF),
+        d(52799,5,11,"Galeshot",4,58,34,90,110,1,1,Effect.DIRECT),
+        d(28177,5,12,"Shadow Tendrils",4,75,75,200,240,2,1,Effect.DIRECT),
+        d(52796,5,19,"Imbue: Shadows",4,90,100,0,0,2,0,Effect.BUFF),
 
         d(14727,6,3,"Impact",6,31,25,65,75,1,1,Effect.STUN),
         d(14728,6,4,"Chain",6,51,17,90,110,1,1,Effect.DIRECT),
@@ -86,6 +91,7 @@ final class Native950AbilityCatalog {
         d(14736,6,11,"Omnipower",6,12,50,460,460,4,1,Effect.DIRECT),
         d(19342,6,165,"Sonic Wave",6,6,25,90,110,1,1,Effect.FLOW),
         d(19343,6,166,"Concentrated Blast",6,66,9,70,90,1,3,Effect.DIRECT),
+        d(28180,6,169,"Smoke Tendrils",6,75,75,65,80,2,4,Effect.DIRECT),
         d(14726,6,2,"Surge",16,5,34,0,0,7,0,Effect.MOVEMENT),
         d(47129,1,7,"Dive",16,30,34,0,0,7,0,Effect.MOVEMENT),
         d(1488,1,29,"Bladed Dive",0,65,34,75,95,1,1,Effect.MOVEMENT,true,false),
@@ -111,6 +117,8 @@ final class Native950AbilityCatalog {
         d(19252,3,13,"Natural Instinct",1,85,200,0,0,4,0,Effect.BUFF),
         d(25028,3,14,"Devotion",1,1,100,0,0,3,0,Effect.BUFF),
         d(24188,4,10,"Sacrifice",3,1,50,80,100,1,1,Effect.DIRECT),
+        d(37203,4,38,"Limitless",3,1,150,0,0,7,0,Effect.BUFF),
+        d(44225,4,41,"Eat Food",3,0,0,0,0,7,0,Effect.FOOD),
         d(14718,3,9,"Revenge",1,15,75,0,0,3,0,Effect.BUFF),
         d(45045,3,17,"Divert",1,48,50,0,0,1,0,Effect.BUFF),
         d(46279,1,15,"Chaos Roar",0,92,100,0,0,1,0,Effect.BUFF),
@@ -121,7 +129,7 @@ final class Native950AbilityCatalog {
         d(48298,7,5,"Soul Sap",Skills.NECROMANCY,54,9,90,110,1,1,Effect.DIRECT),
         d(48299,7,6,"Soul Strike",Skills.NECROMANCY,54,0,135,165,2,1,Effect.STUN),
         d(48301,7,7,"Volley of Souls",Skills.NECROMANCY,66,0,135,165,2,1,Effect.DIRECT),
-        d(48309,7,11,"Blood Siphon",Skills.NECROMANCY,36,75,20,30,2,5,Effect.DIRECT),
+        d(48309,7,11,"Blood Siphon",Skills.NECROMANCY,36,75,22,28,2,5,Effect.DIRECT),
         d(48324,7,14,"Living Death",Skills.NECROMANCY,76,150,0,0,4,0,Effect.BUFF),
         d(48308,7,10,"Bloat",Skills.NECROMANCY,48,0,60,75,2,1,Effect.BLEED),
         d(48311,7,12,"Spectral Scythe",Skills.NECROMANCY,62,25,100,120,2,1,Effect.DIRECT),
@@ -191,6 +199,7 @@ final class Native950AbilityCatalog {
         return "missing";
     }
     static int sequenceParam(int animation,int param){
+        if(animation<0||com.rs.cache.Cache.STORE==null)return -1;
         Map<Integer,Object> values=AnimationDefinitions.getAnimationDefinitions(animation).clientScriptData;
         Object value=values==null?null:values.get(param);return value instanceof Integer?(Integer)value:-1;
     }

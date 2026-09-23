@@ -1,10 +1,16 @@
 SHNORKSCAPE - NEXT AGENT ENGINEERING CONTINUATION
 Snapshot: 2026-09-22. Read this before changing combat, client UI, LAN or saves.
 
-ACTIVE COMBAT COMPLETION PASS 2026-09-23:
-See docs/COMBAT-COMPLETION-20260923.md for tested checkpoints, exact queue/tile
-contracts, resource ownership, unresolved work and commands. Work remains offline;
-do not confuse an implementation checkpoint with the final staged candidate.
+OFFLINE COMBAT CANDIDATE 2026-09-23:
+See docs/COMBAT-COMPLETION-20260923.md for current architecture, exact950 contracts,
+coverage, unresolved work and test commands. 1,500 tests: 0 failures/errors,2 skips;
+723 real-cache combat checks;203 manual activations;7 generic boss lifecycle gates.
+74 explicit ability definitions (baseline60); full retail mechanics remain PARTIAL.
+User applies the staged update. No agent restart, deployment or character edits.
+One early live-session character save changed at04:23; preserve it, do not restore
+an older snapshot to force hash equality. Other protected files match baseline.
+Live sequence: docs/COMBAT-LIVE-CHECKLIST-20260923.md. Do not claim offline packet
+checks prove physical keybinds or rendered effects.
 
 0. P0 ROOT CAUSE CONFIRMED 2026-09-23; AUTOMATIC FIX STAGED
 Working key -> open/close ;;bank or ;;items -> dead key, while mouse still works.

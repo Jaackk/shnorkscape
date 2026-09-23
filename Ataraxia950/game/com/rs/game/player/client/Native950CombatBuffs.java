@@ -15,13 +15,13 @@ final class Native950CombatBuffs {
         PREPARATION(14714,16), REFLECT(14716,16), DEBILITATE(14717,13),
         BARRICADE(14719,16), REJUVENATE(14720,16), IMMORTALITY(14721,50),
         NATURAL_INSTINCT(19252,34), DEVOTION(25028,16), REVENGE(14718,32), DIVERT(45045,10), CHAOS_ROAR(46279,12),
-        LIVING_DEATH(48324,50);
+        LIVING_DEATH(48324,50), SEARING_WINDS(52799,10), SHADOW_IMBUED(52796,50), LIMITLESS(37203,10);
         final int structure,duration;
         Type(int structure,int duration){this.structure=structure;this.duration=duration;}
         static Type forStructure(int id){for(Type type:values())if(type.structure==id)return type;return null;}
     }
     private static final class State {
-        long end;int stacks;final long started;final WorldTile origin;final Entity source;
+        long end;int stacks,bonusDamage;final long started;final WorldTile origin;final Entity source;
         State(long started,long end,WorldTile origin,Entity source){this.started=started;this.end=end;this.origin=new WorldTile(origin);this.source=source;}
     }
     private final Map<Player,EnumMap<Type,State>> states=new IdentityHashMap<>();
@@ -41,6 +41,8 @@ final class Native950CombatBuffs {
         if(!active(player,type,tick))return false;
         states.get(player).remove(type);return true;
     }
+    void setBonusDamage(Player player,Type type,int amount){states.get(player).get(type).bonusDamage=Math.max(0,amount);}
+    void extend(Player player,Type type,long tick,int duration){if(active(player,type,tick))states.get(player).get(type).end+=duration;}
     void onKill(Player player,long tick){
         if(active(player,Type.DEVOTION,tick)){
             State state=states.get(player).get(Type.DEVOTION);
@@ -72,6 +74,7 @@ final class Native950CombatBuffs {
         return state!=null&&tick<state.end&&!player.isDead()&&!player.hasFinished();
     }
     int outgoing(Player player,Hit.HitLook look,int damage,long tick){
+        if(look==Hit.HitLook.RANGE_DAMAGE&&active(player,Type.SEARING_WINDS,tick))damage+=states.get(player).get(Type.SEARING_WINDS).bonusDamage;
         if(active(player,Type.REVENGE,tick))damage=scale(damage,100+20*states.get(player).get(Type.REVENGE).stacks);
         if(look==Hit.HitLook.MELEE_DAMAGE&&active(player,Type.BERSERK,tick))return scale(damage,175);
         Type area=look==Hit.HitLook.RANGE_DAMAGE?Type.DEATHS_SWIFTNESS:look==Hit.HitLook.MAGIC_DAMAGE?Type.SUNSHINE:null;

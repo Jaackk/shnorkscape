@@ -11,6 +11,18 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public final class Native950NpcDropsTest {
+    @Test public void borkCustomRewardsPreserveAuthoredQuantitiesAndRefuseChangedIdentities(){
+        int[] ids={532,995,12163,12160,12159,12158,1618,1620,1622,1624};
+        String[] names={"Big bones","Coins","Blue charm","Crimson charm","Green charm","Gold charm",
+                "Uncut diamond","Uncut ruby","Uncut emerald","Uncut sapphire"};
+        Map<Integer,Native950NpcDrops.ItemMetadata> types=new HashMap<>();
+        for(int i=0;i<ids.length;i++)types.put(ids[i],new Native950NpcDrops.ItemMetadata(ids[i],names[i],i!=0,i>=6,ids[i]));
+        List<Item> result=Native950NpcDrops.borkDrops(types::get,0);
+        assertEquals(10,result.size());assertEquals(1,result.get(0).getAmount());assertEquals(800000,result.get(1).getAmount());
+        assertEquals(30,result.get(2).getAmount());assertEquals(50,result.get(9).getAmount());
+        types.remove(1618);result=Native950NpcDrops.borkDrops(types::get,0);
+        assertEquals(9,result.size());assertFalse(result.stream().anyMatch(item->item.getId()==1618));
+    }
     private static final NPCDropTableRolls.Rolls LOW = new NPCDropTableRolls.Rolls() {
         public double percentage(double max){return 1;}
         public void shuffle(List<NPCDrop> rows) { }

@@ -403,9 +403,9 @@ public final class Native950World {
     }
 
     /** Combat has already retired this fighter from its iterator. */
-    void discardDeadDiagnosticNpc(NPC npc) {
-        if(Thread.currentThread()!=thread||npc==null||!npc.isNative950DiagnosticDefinition())
-            throw new IllegalArgumentException("Expected a world-owned diagnostic NPC");
+    void discardDeadCombatNpc(NPC npc) {
+        if(Thread.currentThread()!=thread||npc==null||!npc.isDead()||World.getNPCs().get(npc.getIndex())!=npc)
+            throw new IllegalArgumentException("Expected a world-owned dead combat NPC");
         removeExactNpc(npcs,npc);World.removeNative950Npc(npc);Native950DiagnosticSpawns.forget(npc);
     }
 

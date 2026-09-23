@@ -81,6 +81,19 @@ public class Native950MeleeCombatTest {
         assertEquals(hp,npc.getHitpoints());assertTrue(player.getCombatDefinitions().isAutoRetaliate());
         assertNull(combat.attack(player,npc));assertNotNull(combat.combatTarget(player));
     }
+    @Test public void provokeTransfersRetaliationWithoutDamageOrKillCredit(){
+        player.getSkills().set(Skills.DEFENCE,99);
+        int hp=npc.getHitpoints();combat.attack(player,npc);
+        assertNull(combat.ability(player,14712));
+        assertEquals(hp,npc.getHitpoints());assertEquals(0,combat.pendingHitCount(player));
+    }
+    @Test public void limitlessLowersThresholdAdmissionButStillConsumesAdrenaline(){
+        player.getSkills().set(Skills.HITPOINTS,99);player.getSkills().set(Skills.DEFENCE,99);
+        player.getCombatDefinitions().setSpecialAttackPercentage(20);
+        assertTrue(combat.ability(player,25028).contains("50%"));
+        assertNull(combat.ability(player,37203));for(int i=0;i<3;i++)step();
+        assertNull(combat.ability(player,25028));assertEquals(5,player.getCombatDefinitions().getSpecialAttackPercentage());
+    }
     @Test public void queuedNativeOverlayUsesExactSlotAndClearsOnExecutionReplacementAndStop(){
         player.getSkills().set(Skills.ATTACK,99);npc.setHitpoints(10000);
         java.util.Map<String,Integer> saved=new java.util.HashMap<>();
@@ -390,6 +403,21 @@ public class Native950MeleeCombatTest {
         access.npcs.add(nearby);combat.register(nearby,profile(1000,10,3));
         assertNull(combat.attack(player,npc));assertNull(combat.ability(player,14728));step();
         assertTrue(npc.isDead());assertTrue(nearby.getHitpoints()<1000);
+    }
+    @Test public void areaKillRetiresTheOtherPlayersTargetWithoutCancellingTheCastersPrimary(){
+        styleProfile=new Native950CombatStyles.Profile(Native950CombatStyles.MAGIC,Skills.MAGIC,99,4,6,-1,-1,0,true);
+        player.getSkills().set(Skills.MAGIC,99);npc.setHitpoints(1000);
+        NPC nearby=NPC.createNative950(12353,new WorldTile(3219,3258,0),1);nearby.setIndex(2);
+        access.npcs.add(nearby);combat.register(nearby,profile(1,0,3));
+        EmbeddedChannel otherChannel=new EmbeddedChannel();
+        Player other=Player.createNative950("area-other",new WorldTile(3219,3257,0),otherChannel);
+        try{
+            other.setActive(true);other.setIndex(2);access.players.add(other);combat.attach(other);
+            assertNull(combat.attack(other,nearby));assertNull(combat.attack(player,npc));
+            assertNull(combat.ability(player,14728));
+            assertTrue(nearby.isDead());assertNull(combat.combatTarget(other));
+            assertSame(npc,combat.combatTarget(player));assertEquals(1,rewards.deathCalls);
+        }finally{combat.detach(other);otherChannel.finishAndReleaseAll();}
     }
     @Test public void dragonBreathHitsAtMostFourRegisteredTargetsInItsDirectionalArea(){
         styleProfile=new Native950CombatStyles.Profile(Native950CombatStyles.MAGIC,Skills.MAGIC,99,4,6,-1,-1,0,true);
@@ -742,12 +770,48 @@ public class Native950MeleeCombatTest {
         public void death(NPC npc,Player owner){deathCalls++;deathOwner=owner;}
     }
     private void step(){player.resetMasks();npc.resetMasks();combat.beforeMovement();combat.afterMovement();}
+    @Test public void lethalTendrilRecoilCannotScheduleLaterChannelHitsOrReplaceDeathPresentation(){
+        styleProfile=new Native950CombatStyles.Profile(2,Skills.MAGIC,99,4,6,-1,-1,0,true);
+        player.getSkills().set(Skills.MAGIC,99);player.setHitpoints(1);npc.setHitpoints(100000);
+        assertNull(combat.attack(player,npc));assertNull(combat.ability(player,28180));
+        assertTrue(player.isDead());assertNull(combat.combatTarget(player));
+        assertEquals(0,combat.pendingHitCount(player));
+        assertEquals(Native950CombatAnimations.deathAnimation(),player.getNextAnimation().getIds()[0]);
+    }
+    @Test public void bloodSiphonHealsFromAreaPulsesThenFinishesOnlyThePrimary(){
+        styleProfile=new Native950CombatStyles.Profile(3,Skills.NECROMANCY,99,4,6,-1,-1,0,true);
+        player.getSkills().set(Skills.NECROMANCY,99);
+        player.getSkills().setXpWithoutRefresh(Skills.HITPOINTS,Skills.getXPForLevel(Skills.HITPOINTS,99));
+        player.getSkills().setLevelWithoutRefresh(Skills.HITPOINTS,99);player.setHitpoints(100);npc.setHitpoints(100000);
+        NPC nearby=NPC.createNative950(12353,new WorldTile(3218,3259,0),1);nearby.setIndex(2);
+        access.npcs.add(nearby);combat.register(nearby,profile(100000,0,3));
+        assertNull(combat.attack(player,npc));assertNull(combat.ability(player,48309));
+        int primaryPulse=100000-npc.getHitpoints(),areaPulse=100000-nearby.getHitpoints();
+        assertTrue(primaryPulse>0);assertEquals(primaryPulse,areaPulse);
+        assertEquals(100+(primaryPulse+areaPulse)*70/100,player.getHitpoints());
+        for(int i=0;i<6;i++)step();
+        int beforeFinal=npc.getHitpoints(),areaBeforeFinal=nearby.getHitpoints();
+        step();step();
+        assertTrue("finisher includes its larger coefficient and prior heal values",beforeFinal-npc.getHitpoints()>primaryPulse*4);
+        assertEquals("final attack is single-target",areaBeforeFinal,nearby.getHitpoints());
+    }
+    @Test public void zeroRespawnProfileRetiresOnceAfterVisibleDeathInsteadOfRespawning(){
+        combat.unregister(npc);access.npcs.remove(npc);
+        npc=NPC.createNative950(12353,new WorldTile(3218,3258,0),1);npc.setIndex(1);access.npcs.add(npc);
+        combat.register(npc,profile(1,0,0));
+        assertNull(combat.attack(player,npc));step();assertTrue(npc.isDead());
+        assertEquals(0,access.retired);
+        for(int i=0;i<25;i++)step();
+        assertEquals(1,access.retired);assertFalse(access.npcs.contains(npc));
+        assertNull(combat.combatTarget(player));assertEquals(1,rewards.deathCalls);
+    }
     private static Native950NpcCombatProfile profile(int hp,int maxHit,int respawn){return new Native950NpcCombatProfile(12353,1,2,hp,8,8,maxHit,5,3,respawn,-1,-1,-1,2,12);}
     private static final class FixedRolls implements Native950MeleeCombat.Rolls {boolean accurate=true;public boolean accurate(long attack,long defence){return accurate;}public int damage(int maximum){return maximum;}}
     private static final class FakeAccess implements Native950MeleeCombat.Access {
         final Set<Player> players=Collections.newSetFromMap(new IdentityHashMap<Player,Boolean>());
         final Set<NPC> npcs=Collections.newSetFromMap(new IdentityHashMap<NPC,Boolean>());
-        boolean clear=true,reachable=true,routePossible=true,moveOnFollow;int approaches,follows;WorldTile followTarget;
+        boolean clear=true,reachable=true,routePossible=true,moveOnFollow;int approaches,follows,retired;WorldTile followTarget;
+        public void retire(NPC npc){retired++;npcs.remove(npc);}
         public void activate(NPC npc){}
         public boolean player(Player p){return players.contains(p);}
         public boolean npc(NPC n){return npcs.contains(n);}

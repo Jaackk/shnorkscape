@@ -61,7 +61,7 @@ public final class Native950NpcCombatCatalog {
             return refused("unverified ranged or magic effect binding");
         if(!positive(combat.getHitpoints(),100000000) || !positive(level,10000)
                 || !positive(stats.getDefenceLevel(),10000) || combat.getMaxHit()<0 || combat.getMaxHit()>10000000
-                || !positive(combat.getDeathDelay(),1000) || !positive(combat.getRespawnDelay(),100000))
+                || !positive(combat.getDeathDelay(),1000) || combat.getRespawnDelay()<0 || combat.getRespawnDelay()>100000)
             return refused("invalid authored combat stats");
         int accuracyKey=style==0?29:style==1?4:3;
         Integer speed=parameter(definition,14),accuracy=parameter(definition,accuracyKey),armour=parameter(definition,2865);

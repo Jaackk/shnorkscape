@@ -39,11 +39,29 @@ public final class Native950AbilityCoverage {
             row.put("sha256", hash(structures.getFile(id >> 5, id & 31)));
             row.put("enumMembership", new ArrayList<Map<String, Object>>());
             row.put("animationEnum", definition.getValue(2915));
+            row.put("animation", definition.getValue(2914));
+            row.put("casterGraphic", definition.getValue(2920));
+            row.put("projectile", definition.getValue(2940));
             row.put("targetGraphic", definition.getValue(2933));
             row.put("typedParameters", new TreeMap<>(definition.getValues()));
             Native950AbilityCatalog.Definition implemented = Native950AbilityCatalog.get(id);
             row.put("status", implemented == null ? "missing" : "partial");
             row.put("serverRoutedBook", implemented == null ? null : implemented.book);
+            Map<String,Object> lifecycle=new LinkedHashMap<>();
+            lifecycle.put("target",implemented==null?"unimplemented":implemented.effect==Native950AbilityCatalog.Effect.MOVEMENT?"tile-or-direction":implemented.targetRequired()?"entity":"self");
+            lifecycle.put("weaponStyle",implemented==null?null:implemented.style());
+            lifecycle.put("dualWield",definition.getIntValue(2811)==1);
+            lifecycle.put("twoHanded",definition.getIntValue(2812)==1);
+            lifecycle.put("shield",definition.getIntValue(2813)==1);
+            lifecycle.put("adrenalineCostTenths",definition.getValue(2798));
+            lifecycle.put("adrenalineGainTenths",definition.getValue(2800));
+            lifecycle.put("effect",implemented==null?null:implemented.effect.name());
+            lifecycle.put("channelTicks",implemented==null?null:implemented.channelTicks());
+            lifecycle.put("channelHitInterval",definition.getValue(8884));
+            lifecycle.put("channelAdditionalHits",definition.getValue(8885));
+            lifecycle.put("cooldownStart",implemented==null?null:"activation");
+            lifecycle.put("presentationStatus","requires per-ability acceptance; optional IDs are not invented");
+            row.put("lifecycle",lifecycle);
             row.put("blockers", implemented == null
                     ? Arrays.asList("No native combat catalog implementation; enum membership alone does not authorize execution")
                     : Arrays.asList("Combat Alpha damage/effect model; not full retail semantics", "Visual and complete effect acceptance not established by this inventory"));
@@ -80,6 +98,12 @@ public final class Native950AbilityCoverage {
             for(Map<String,Object> membership:memberships)if(books.containsKey(membership.get("enum")))nativeBooks.add(books.get(membership.get("enum")));
             String visibility=!nativeBooks.isEmpty()?"native-book-entry":transformed.contains((Integer)row.get("struct"))?"conditional-native-transform":"not-reached-by-reviewed-books";
             row.put("nativeBooks",nativeBooks);row.put("visibilityClass",visibility);
+            String membership=!nativeBooks.isEmpty()?"CANONICAL":transformed.contains((Integer)row.get("struct"))?"CONDITIONAL/ALTERNATE":"UNPROVEN PLAYER-FACING MEMBERSHIP";
+            row.put("canonicalClass",membership);
+            row.put("implementationStatus",Native950AbilityCatalog.get((Integer)row.get("struct"))==null?"MISSING":"PARTIAL");
+            row.put("automatedTestStatus","see separate real-cache acceptance keyed by struct; inventory is definition evidence only");
+            row.put("liveVisualStatus","NOT VERIFIED BY THIS PASS");
+            row.put("conditionalTransformReferenced",transformed.contains((Integer)row.get("struct")));
             row.put("visibilityLimit","Availability/unlock/weapon-mode filters are player-specific; unreferenced does not prove obsolete");
             visibilityCounts.merge(visibility,1,Integer::sum);
         }
@@ -93,10 +117,10 @@ public final class Native950AbilityCoverage {
         Map<String, Integer> counts = new TreeMap<>();
         for (Map<String, Object> row : rows.values()) counts.merge((String) row.get("status"), 1, Integer::sum);
         Map<String, Object> report = new LinkedHashMap<>();
-        report.put("revision", 950); report.put("schemaVersion", 2);
+        report.put("revision", 950); report.put("schemaVersion", 3);
         report.put("nativeBookEnums",books);report.put("visibilityCounts",visibilityCounts);
         report.put("visibilityEvidence","Exact950 script6995 book dispatch and script8247 conditional transformation; both hash-pinned. Mirrors Undercut AbilityBooks/AbilityTransform architecture without copying its numeric IDs.");
-        report.put("scope", "All cache index-22 structures with typed name/key/tier/cooldown ability parameters; includes unmounted, alternate and potentially obsolete definitions, not just visible player books");
+        report.put("scope", "All cache index-22 structures with typed name/key/tier; absent cooldown is retained rather than dropping basic attacks/conjures. Canonical membership is native-book reachability, with conditional alternates separate. Unreached is not proof of non-player-facing.");
         report.put("membershipRule", "All index-17 struct-reference enums: legacy opcode 2 character J=74 or modern opcode 102 ScriptVarType=73; membership is evidence, not executable admission");
         report.put("nativeWrites", false); report.put("playerSavesAccessed", false);
         report.put("counts", counts); report.put("total", rows.size()); report.put("abilities", rows.values());
@@ -106,8 +130,7 @@ public final class Native950AbilityCoverage {
 
     static boolean abilityShaped(Map<Long, Object> values) {
         return values != null && values.get(2794L) instanceof String && !((String) values.get(2794L)).trim().isEmpty()
-                && values.get(2793L) instanceof Integer && values.get(2799L) instanceof Integer
-                && values.get(2796L) instanceof Integer;
+                && values.get(2793L) instanceof Integer && values.get(2799L) instanceof Integer;
     }
 
     /** Reuses the repository's independently proven opcode map; never infers new opcodes. */

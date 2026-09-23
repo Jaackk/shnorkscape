@@ -45,7 +45,40 @@ public final class Native950Food {
     private static boolean sequences;
     private Native950Food() { }
 
-    public static boolean supports(int id) { return definition(id) != null; }
+    public static boolean supports(int id) { return id==42251?sailfishDefinition()!=null:definition(id) != null; }
+
+    /** Sailfish is newer than the inherited Food enum; require its exact950 food contract. */
+    private static ItemDefinitions sailfishDefinition(){
+        if(Cache.STORE==null||!Cache.isFlatReadOnly())return null;
+        ItemDefinitions d=Native950CacheItems.definition(42251);
+        return d!=null&&"Sailfish".equals(d.name)&&d.certTemplateId==-1&&!d.isStackable()
+                &&"Eat".equals(d.inventoryOptions[0])&&d.getCSOpcode(963)==2400&&d.getCSOpcode(6924)==10
+                &&sequence(18001,"1805741cdc5efa47e4ffeb1f21360ac39442a3a8643e254bfb725bca8d76527c")
+                &&sequence(18002,"51079b1d37711e79cffc606f737c94f87e1c049e4cb26c85dbcd43257beb8ef1")?d:null;
+    }
+
+    private static Result eatSailfish(Player player,Native950Containers containers,int slot){
+        ItemDefinitions d=sailfishDefinition();
+        if(d==null||player==null||!player.isNative950()||!player.isActive()||player.hasFinished()||player.isDead()
+                ||player.isLocked()||player.closeInterfaceLocked||player.isNative950ForceMovementActive()
+                ||player.getNextForceMovement()!=null||player.getNextWorldTile()!=null||player.hasTeleported()
+                ||player.getEmotesManager().getNextEmoteEnd()>=Utils.currentTimeMillis())return Result.refused("You cannot eat right now.");
+        if(containers==null||!containers.ownsInventory(player)||slot<0||slot>=28||!sameFood(player.getInventory().getItem(slot),42251))
+            return Result.refused("That food is not available in your backpack.");
+        if(player.getFoodDelay()>Utils.currentTimeMillis())return Result.refused("You need to wait a moment before eating again.");
+        // Older controllers accept only the inherited Food enum. Do not bypass their food restrictions.
+        if(player.getControlerManager().getControler()!=null)return Result.refused("Sailfish is not available in this controlled activity yet.");
+        Item held=player.getInventory().getItem(slot);
+        if(!player.getControlerManager().handleItemOption1(held,42251,slot)||!player.getControlerManager().canDeleteInventoryItem(42251,1)
+                ||player.getInventory().getItem(slot)!=held)return Result.refused("You cannot eat that here.");
+        player.getInventory().items.set(slot,null);
+        // Cache tooltip life points are ten times the inherited engine HP unit.
+        player.heal(d.getCSOpcode(963)/10,player.getMaxHitpoints()*d.getCSOpcode(6924)/100);
+        player.addFoodDelay(1800);player.getActionManager().setActionDelay(4);
+        player.setNextAnimationForce(new Animation(player.isUnderCombat()?18002:18001));
+        player.getPackets().sendGameMessage("You eat the sailfish.",true);
+        return new Result(true,null);
+    }
 
     private static synchronized Native950ItemCatalog.Entry definition(int id) {
         Food food = Food.forId(id);
@@ -78,6 +111,7 @@ public final class Native950Food {
     }
 
     public static Result eat(Player player, Native950Containers containers, int slot, int id) {
+        if(id==42251)return eatSailfish(player,containers,slot);
         return eat(player, containers, slot, id, definition(id));
     }
 

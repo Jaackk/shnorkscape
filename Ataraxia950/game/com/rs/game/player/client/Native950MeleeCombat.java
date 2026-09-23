@@ -107,7 +107,7 @@ public final class Native950MeleeCombat {
         npc.setNative950CombatProfile(profile);
         access.activate(npc);
         Fighter fighter=new Fighter(npc,profile);
-        fighter.respawnAllowed=!npc.isNative950DiagnosticDefinition();
+        fighter.respawnAllowed=!npc.isNative950DiagnosticDefinition()&&profile.respawnTicks>0;
         fighters.put(npc,fighter);
     }
     void setDiagnosticRepeat(NPC npc,boolean repeat) {
@@ -239,6 +239,18 @@ public final class Native950MeleeCombat {
     public String ability(Player player,int structure) {
         owned();
         Native950BugTest.event(player,"combat","ability-request","structure",structure);
+        if(structure==44225){
+            for(int slot=0;slot<28;slot++){
+                Item item=player.getInventory().getItem(slot);
+                if(item==null||!Native950Food.supports(item.getId()))continue;
+                Native950Food.Result result=Native950Food.eat(player,Native950Skilling.containers(player),slot,item.getId());
+                if(!result.accepted)return result.reason;
+                player.getNative950ActionBar().cooldown(player.getRealChannel(),structure,(int)Utils.currentWorldCycle(),3);
+                Native950BugTest.event(player,"combat","ability-executed","structure",structure,"name","Eat Food");
+                return null;
+            }
+            return "You have no supported food in your backpack.";
+        }
         if(structure==47129||structure==1488)return "Choose a destination using the native Dive targeting cursor.";
         if(structure==45340){
             if(!access.player(player)||!player.isActive()||player.hasFinished()||player.isDead())return "You cannot use an ability right now.";
@@ -325,7 +337,7 @@ public final class Native950MeleeCombat {
     private boolean isAttacking(Player player,Fighter fighter){
         return fighter!=null&&targets.get(player)==fighter&&(fighter.target!=player||fighter.attacking);
     }
-    private String abilityRefusal(Player player,int structure) {
+    String abilityRefusal(Player player,int structure) {
         return abilityRefusal(player,structure,true);
     }
     /** Temporal gates may delay a request; all gameplay requirements still apply. */
@@ -352,6 +364,7 @@ public final class Native950MeleeCombat {
         String resourceRefusal=necromancy.refusal(player,structure);
         if(resourceRefusal!=null)return resourceRefusal;
         int energy=structure==48297?necromancy.fingerCost(player):definition.adrenalineRequired();
+        if(definition.tier==3&&buffs.active(player,Native950CombatBuffs.Type.LIMITLESS,tick))energy=definition.adrenalineCost();
         if(energy>0&&!player.getCombatDefinitions().isInfiniteAdrenaline()
                 &&player.getCombatDefinitions().getSpecialAttackPercentage()<energy)
             return definition.name+" requires "+energy+"% adrenaline.";
@@ -362,6 +375,8 @@ public final class Native950MeleeCombat {
             return "You need level "+definition.level+" in the matching combat skill.";
         if(player.getFoodDelay()>Utils.currentTimeMillis())return "Wait until you have finished eating.";
         if(!definition.targetRequired())return null;
+        if(structure==48309&&distanceToFootprint(player,fighter.npc,fighter.profile.size)>2)
+            return "Blood Siphon requires a target within two tiles.";
         if(!playerReach(player,fighter.npc,gear))return "Move within attack range first.";
         String refusal=Native950Slayer.attackRefusal(player,fighter.npc);
         if(refusal==null)refusal=Native950Dungeoneering.attackRefusal(player,fighter.npc);
@@ -466,47 +481,47 @@ public final class Native950MeleeCombat {
             if(type==Native950CombatBuffs.Type.BERSERK)player.getBuffDebuffTimersManager().addTimer(Timer.BERSERK,type.duration*600L);
             Native950BugTest.event(player,"combat","effect-started","effect",definition.name,"durationTicks",duration,"endTick",tick+duration);
         }
-        int total=0, chainDamage=-1, dragonBreathDamage=-1, tsunamiDamage=-1, hurricaneDamage=-1, meteorDamage=-1, bombardmentDamage=-1;
-        for(int hit=0;hit<(definition.effect==Native950AbilityCatalog.Effect.BUFF?0:hitCount);hit++){
+        if(structure==52799){
+            buffs.apply(player,Native950CombatBuffs.Type.SEARING_WINDS,tick);
+            buffs.setBonusDamage(player,Native950CombatBuffs.Type.SEARING_WINDS,nativeDamage(Math.max(1,maximum*20/100)));
+        }
+        if(structure==28177)buffs.extend(player,Native950CombatBuffs.Type.SHADOW_IMBUED,tick,6);
+        int total=0;
+        SiphonState siphon=structure==48309?new SiphonState():null;
+        for(int hit=0;hit<(definition.effect==Native950AbilityCatalog.Effect.BUFF||definition.effect==Native950AbilityCatalog.Effect.PROVOKE?0:hitCount);hit++){
+            if(siphon!=null)percent=hit==4?117+rolls.damage(26):22+rolls.damage(6); // Exact950 CS18670.
             int rolled=Math.max(1,maximum*percent/100);
             int requested=Rs2CombatFormula.scaleNative950Damage(rolled,rolls.nativeDamageRemainder(rolled));
-            if(structure==14728&&hit==0)chainDamage=requested;
-            if(structure==14730&&hit==0)dragonBreathDamage=requested;
-            if(structure==14735&&hit==0)tsunamiDamage=requested;
-            if(structure==14685&&hit==0)hurricaneDamage=requested;
-            if(structure==14688&&hit==0)meteorDamage=requested;
-            if(structure==14671&&hit==0)bombardmentDamage=requested;
             int hitDelay=structure==48301?hit:definition.hitDelay(hit);
             if(hitDelay>0||projectile>=0){
                 long dueTick=tick+hitDelay;
                 PendingHit pending=new PendingHit(fighter,requested,dueTick,gear,Native950AbilityCatalog.targetGraphic(structure),
                         definition.channelled()?structure:-1,player,structure);
                 pending.projectileGraphic=projectile;
+                pending.baseAbilityDamage=nativeDamage(maximum);
+                pending.siphon=siphon;pending.siphonFinisher=siphon!=null&&hit==4;
                 if(hitDelay==0)releaseAbilityProjectile(player,pending);
                 pendingHits.computeIfAbsent(player,p->new ArrayList<>()).add(pending);
                 followUps.add(dueTick);
                 continue;
             }
-            total+=damage(player,fighter.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look(),false,
+            int actual=damage(player,fighter.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look(),false,
                     definition.effect!=Native950AbilityCatalog.Effect.BLEED);
-            if(fighter.npc.isDead())break;
+            total+=actual;
+            abilityImpact(player,fighter,structure,requested,actual,gear,nativeDamage(maximum));
+            if(siphon!=null)siphonPulse(player,fighter,requested,actual,gear,siphon);
+            if(player.isDead()||fighter.npc.isDead())break;
         }
-        if(structure==14728&&chainDamage>0)
-            chainSecondaryHits(player,fighter,chainDamage,gear);
-        if(structure==14730&&dragonBreathDamage>0)
-            dragonBreathSecondaryHits(player,fighter,dragonBreathDamage,gear);
-        if(structure==14735&&tsunamiDamage>0)
-            tsunamiSecondaryHits(player,fighter,tsunamiDamage,gear);
-        if(structure==14685&&hurricaneDamage>0)
-            hurricaneSecondaryHits(player,fighter,hurricaneDamage,gear);
-        if(structure==14688&&meteorDamage>0)
-            meteorSecondaryHits(player,fighter,meteorDamage,gear);
-        if(bombardmentDamage>0)secondaryAreaHits(player,fighter,bombardmentDamage,gear,1,8);
-        if(structure==14717&&fighter!=null)buffs.apply(player,Native950CombatBuffs.Type.DEBILITATE,tick,13+shieldLevel(player)/9,fighter.npc);
-        if(structure==24188&&total>0)player.heal(fighter.npc.isDead()?total:total/4);
-        if(structure==48309&&total>0)player.heal(total);
-        if(structure==48299&&total>0)secondaryAreaHits(player,fighter,total,gear,1,8);
-        if(structure==48311&&total>0)secondaryAreaHits(player,fighter,total,gear,1,8);
+        if(player.isDead()){
+            // Tendril recoil can end the cast at its first impact. Do not enqueue
+            // more channel hits or replace the death animation with the cast animation.
+            if(fighter!=null){
+                if(total>0&&!fighter.training)rewards.hit(player,fighter.npc,total,gear);
+                if(fighter.training)fighter.npc.setHitpoints(fighter.profile.hp);
+                else if(fighter.npc.isDead())npcDied(fighter,player);
+            }
+            swings++;return true;
+        }
         if(structure==14712&&fighter!=null){
             boolean priorOwnerAttacking=fighter.target==null||fighter.attacking;
             // A paused former retaliation owner must not become an active secondary attacker.
@@ -531,7 +546,7 @@ public final class Native950MeleeCombat {
                 "targetGraphic",targetGraphic>0?targetGraphic:"none","presentationEvidence",presentationEvidence,
                 "cooldownDuration",definition.cooldown,
                 "gcdEndTick",tick+3,"channelEndTick",channelUntil.getOrDefault(player,0L),
-                "hitTimingSource","effect-cadence","firstHitTick",definition.effect==Native950AbilityCatalog.Effect.BUFF?"none":tick+definition.hitDelay(0),
+                "hitTimingSource","effect-cadence","firstHitTick",definition.hits==0?"none":tick+definition.hitDelay(0),
                 "followUpHitTicks",followUps.toString());
         if(adrenalineCost>0)player.getCombatDefinitions().decreaseSpecialAttack(adrenalineCost);
         else if(definition.adrenalineGain()>0)player.getCombatDefinitions().setSpecialAttackPercentage(
@@ -539,7 +554,6 @@ public final class Native950MeleeCombat {
                         definition.adrenalineGain()+(structure==48296&&livingDeath?6:0),tick)));
         if(definition.targetRequired()){
         fighter.retaliating=!fighter.training;
-        if(definition.effect==Native950AbilityCatalog.Effect.STUN)fighter.stunnedUntil=tick+5;
         if(definition.effect==Native950AbilityCatalog.Effect.BLEED&&!fighter.npc.isDead()){
             int rawDotDamage=Math.max(1,maximum*(roar?30:15)/100);
             int dotDamage=Rs2CombatFormula.scaleNative950Damage(rawDotDamage,rolls.nativeDamageRemainder(rawDotDamage));
@@ -558,7 +572,7 @@ public final class Native950MeleeCombat {
     /** Runs after input and before ordinary entity movement, on the same world tick. */
     public void beforeMovement() {
         owned();tick++;
-        necromancy.pulse(tick);
+        necromancy.pulse(tick,p->{Fighter f=targets.get(p);return f!=null&&!f.npc.isDead()&&(isAttacking(p,f)||f.retaliating);});
         buffs.checkEquipment(Native950MeleeCombat::hasNativeShield,this::buffRemoved);
         buffs.pulse(tick);
         buffs.expire(tick,this::buffRemoved);
@@ -633,7 +647,7 @@ public final class Native950MeleeCombat {
             }
             } catch(RuntimeException failure) {failEncounter(fighter,failure);}
         }
-        for(NPC npc:retiredDiagnostics)Native950World.getInstance().discardDeadDiagnosticNpc(npc);
+        for(NPC npc:retiredDiagnostics)access.retire(npc);
     }
     /** Damage is committed only after every actor has moved, before any viewer frame. */
     public void afterMovement() {
@@ -755,7 +769,7 @@ public final class Native950MeleeCombat {
     private boolean processAbilityTurn(Player player,Fighter fighter){
         if(queuedAbilities.containsKey(player)&&performAbility(player,fighter))return true;
         if(!isAttacking(player,fighter)||!player.getNative950ActionBar().isRevolutionEnabled())return false;
-        int candidate=revolutionCandidate(player,9);
+        int candidate=revolutionCandidate(player,player.getNative950ActionBar().revolutionSlots());
         if(candidate<0)return false;
         queueAbility(player,candidate,false);
         Native950BugTest.event(player,"combat","revolution-selected","structure",candidate,"source","revolution",
@@ -802,6 +816,10 @@ public final class Native950MeleeCombat {
                         ?Native950AutoSpells.presentation(player):null;
                 int animation=spell!=null?spell.animation:-1;
                 player.setNextFaceEntity(npc);player.setNextAnimation(new Animation(animation>=0?animation:gear.attackAnimation));
+                boolean necroAuto=gear.profile!=null&&gear.profile.style==Native950CombatStyles.NECROMANCY;
+                int necroCaster=necroAuto?Native950AbilityCatalog.sequenceParam(gear.attackAnimation,2920):-1;
+                int necroImpact=necroAuto?Native950AbilityCatalog.sequenceParam(gear.attackAnimation,2933):-1;
+                if(necroCaster>=0)player.setNextGraphics(new com.rs.game.Graphics(necroCaster));
                 int skill=gear.profile==null?Skills.ATTACK:gear.profile.skill;
                 int attack=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(skill)+player.getPrayer().getStatBonuses(skill),0,3,1);
                 int strength=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(gear.profile==null||gear.profile.style==0?Skills.STRENGTH:skill),0,0,1);
@@ -828,6 +846,7 @@ public final class Native950MeleeCombat {
                     Native950BugTest.event(player,"combat","ranged-auto-fired","projectile",ranged.graphic,
                             "startCycle",ranged.start,"endCycle",ranged.end,"hitTick",dueTick);
                 } else {
+                    if(necroImpact>=0)npc.setNextGraphics(new com.rs.game.Graphics(necroImpact));
                     int actual=damage(player,npc,damage,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
                     if(actual>0&&!fighter.training)rewards.hit(player,npc,actual,gear);
                     if(fighter.training)npc.setHitpoints(fighter.profile.hp);
@@ -873,7 +892,7 @@ public final class Native950MeleeCombat {
     }
     /**
      * Chain never changes the player's primary combat owner. It selects at most
-     * two idle native NPCs within six tiles of the primary footprint and applies
+     * two admitted native NPCs within six tiles of the primary footprint and applies
      * the same hit/reward pipeline used by ordinary ability damage.
      */
     private void chainSecondaryHits(Player player,Fighter primary,int requested,Loadout gear){
@@ -884,8 +903,7 @@ public final class Native950MeleeCombat {
         for(Fighter candidate:new ArrayList<>(fighters.values())){
             if(chained>=limit)break;
             int range=distanceBetweenFootprints(primary.npc,primary.profile.size,candidate.npc,candidate.profile.size);
-            if(candidate==primary||candidate.target!=null||candidate.returning||candidate.respawnAt>0
-                    ||candidate.npc.isDead()||!access.npc(candidate.npc)||range>radius)
+            if(candidate==primary||!secondaryEligible(player,candidate)||range>radius)
                 continue;
             int actual=damage(player,candidate.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
             if(actual>0&&!candidate.training)rewards.hit(player,candidate.npc,actual,gear);
@@ -902,8 +920,7 @@ public final class Native950MeleeCombat {
         int affected=0;
         for(Fighter candidate:new ArrayList<>(fighters.values())){
             if(affected>=4)break;
-            if(candidate==primary||candidate.target!=null||candidate.returning||candidate.respawnAt>0
-                    ||candidate.npc.isDead()||!access.npc(candidate.npc)||!dragonBreathArea(player,primary,candidate))
+            if(candidate==primary||!secondaryEligible(player,candidate)||!dragonBreathArea(player,primary,candidate))
                 continue;
             int actual=damage(player,candidate.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
             if(actual>0&&!candidate.training)rewards.hit(player,candidate.npc,actual,gear);
@@ -932,8 +949,7 @@ public final class Native950MeleeCombat {
         int affected=0;
         for(Fighter candidate:new ArrayList<>(fighters.values())){
             if(affected>=8)break;
-            if(candidate==primary||candidate.target!=null||candidate.returning||candidate.respawnAt>0
-                    ||candidate.npc.isDead()||!access.npc(candidate.npc)||!tsunamiArea(player,primary,candidate))
+            if(candidate==primary||!secondaryEligible(player,candidate)||!tsunamiArea(player,primary,candidate))
                 continue;
             int actual=damage(player,candidate.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
             if(actual>0&&!candidate.training)rewards.hit(player,candidate.npc,actual,gear);
@@ -959,8 +975,7 @@ public final class Native950MeleeCombat {
         int affected=0;
         for(Fighter candidate:new ArrayList<>(fighters.values())){
             if(affected>=9)break;
-            if(candidate==primary||candidate.target!=null||candidate.returning||candidate.respawnAt>0
-                    ||candidate.npc.isDead()||!access.npc(candidate.npc)
+            if(candidate==primary||!secondaryEligible(player,candidate)
                     ||!hurricaneArea(player,candidate.npc,candidate.profile.size))
                 continue;
             int actual=damage(player,candidate.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
@@ -981,8 +996,7 @@ public final class Native950MeleeCombat {
         int affected=0;
         for(Fighter candidate:new ArrayList<>(fighters.values())){
             if(affected>=8)break;
-            if(candidate==primary||candidate.target!=null||candidate.returning||candidate.respawnAt>0
-                    ||candidate.npc.isDead()||!access.npc(candidate.npc)
+            if(candidate==primary||!secondaryEligible(player,candidate)
                     ||distanceBetweenFootprints(primary.npc,primary.profile.size,candidate.npc,candidate.profile.size)>1)
                 continue;
             int actual=damage(player,candidate.npc,requested,gear.profile==null?Hit.HitLook.MELEE_DAMAGE:gear.profile.look());
@@ -994,6 +1008,14 @@ public final class Native950MeleeCombat {
             if(candidate.npc.isDead())secondaryNpcDied(candidate,player);
         }
         Native950BugTest.event(player,"combat","meteor-secondary-summary","count",affected,"limit",8,"range",1);
+    }
+    private boolean secondaryEligible(Player player,Fighter candidate){
+        if(candidate.returning||candidate.respawnAt>0||candidate.npc.isDead()||!access.npc(candidate.npc)
+                ||player.getPlane()!=candidate.npc.getPlane())return false;
+        int distance=Math.max(1,distanceToFootprint(player,candidate.npc,candidate.profile.size));
+        return access.rangedReach(player,candidate.npc,distance)
+                &&Native950Slayer.attackRefusal(player,candidate.npc)==null
+                &&Native950Dungeoneering.attackRefusal(player,candidate.npc)==null;
     }
     private boolean npcReach(Fighter fighter,Player player) {
         return fighter.profile.attackStyle==0?access.reach(fighter.npc,player):access.npcRangedReach(fighter.npc,player,7);
@@ -1035,18 +1057,59 @@ public final class Native950MeleeCombat {
             iterator.remove();
             if(hit.fighter!=fighter||(!isAttacking(player,fighter)&&hit.abilityStructure>=0)||fighter.npc.isDead())continue;
             if(hit.impactGraphic>=0)fighter.npc.setNextGraphics(new com.rs.game.Graphics(hit.impactGraphic));
-            int actual=damage(player,fighter.npc,hit.damage,hit.gear.profile==null?Hit.HitLook.MELEE_DAMAGE:hit.gear.profile.look());
+            int requested=hit.siphonFinisher?(int)Math.min(Integer.MAX_VALUE,(long)hit.damage+hit.siphon.healValue):hit.damage;
+            int actual=damage(player,fighter.npc,requested,hit.gear.profile==null?Hit.HitLook.MELEE_DAMAGE:hit.gear.profile.look());
             if(actual>0&&!fighter.npc.isDead()&&fighter.profile.blockAnim>=0)
                 fighter.npc.setNextAnimation(new Animation(fighter.profile.blockAnim));
             if(actual>0&&!fighter.training)rewards.hit(player,fighter.npc,actual,hit.gear);
-            if(hit.abilityStructure==48309&&actual>0)player.heal(actual);
-            if(hit.abilityStructure==14685)hurricaneSecondaryHits(player,fighter,hit.damage,hit.gear);
+            abilityImpact(player,fighter,hit.abilityStructure,hit.damage,actual,hit.gear,hit.baseAbilityDamage);
+            if(hit.siphon!=null&&!hit.siphonFinisher)siphonPulse(player,fighter,hit.damage,actual,hit.gear,hit.siphon);
             if(fighter.training)fighter.npc.setHitpoints(fighter.profile.hp);
             else if(fighter.npc.isDead()){
                 pendingHits.remove(player);npcDied(fighter,player);return;
             }
         }
         if(scheduled.isEmpty())pendingHits.remove(player);
+    }
+    /** All impact effects share the immediate and projectile/delayed-hit boundary. */
+    private void abilityImpact(Player player,Fighter fighter,int structure,int requested,int actual,Loadout gear,int baseAbilityDamage){
+        Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
+        if(definition==null)return;
+        if(definition.effect==Native950AbilityCatalog.Effect.STUN&&!fighter.npc.isDead())fighter.stunnedUntil=tick+5;
+        if(structure==14728)chainSecondaryHits(player,fighter,requested,gear);
+        if(structure==14730)dragonBreathSecondaryHits(player,fighter,requested,gear);
+        if(structure==14735)tsunamiSecondaryHits(player,fighter,requested,gear);
+        if(structure==14685)hurricaneSecondaryHits(player,fighter,requested,gear);
+        if(structure==14688)meteorSecondaryHits(player,fighter,requested,gear);
+        if(structure==14671||structure==48299||structure==48311)secondaryAreaHits(player,fighter,requested,gear,1,8);
+        if(structure==14717&&!fighter.npc.isDead())buffs.apply(player,Native950CombatBuffs.Type.DEBILITATE,tick,13+shieldLevel(player)/9,fighter.npc);
+        if(structure==24188&&actual>0)player.heal(fighter.npc.isDead()?actual:actual/4);
+        if(structure==28177||structure==28180){
+            // Exact950 tooltip CS18689/18625: recoil uses ability damage, not damage received.
+            int recoilPercent=structure==28177?100+rolls.damage(35):35+rolls.damage(5);
+            int recoil=(int)Math.min(Integer.MAX_VALUE,(long)baseAbilityDamage*recoilPercent/100);
+            damage(player,player,recoil,Hit.HitLook.REGULAR_DAMAGE,true,false);
+            if(player.isDead())playerDied(player);
+        }
+    }
+    /** CS18670: four area pulses, 70% healing, then a single-target finishing hit. */
+    private void siphonPulse(Player player,Fighter primary,int requested,int primaryDamage,Loadout gear,SiphonState state){
+        long damageDealt=primaryDamage;
+        java.util.List<Fighter> ordered=new ArrayList<>(fighters.values());
+        ordered.sort((a,b)->Integer.compare(a.npc.getIndex(),b.npc.getIndex()));
+        int affected=1;
+        for(Fighter candidate:ordered){
+            if(affected>=25)break;
+            if(candidate==primary||!secondaryEligible(player,candidate)
+                    ||distanceToFootprint(player,candidate.npc,candidate.profile.size)>2)continue;
+            int actual=damage(player,candidate.npc,requested,gear.profile.look());damageDealt+=actual;affected++;
+            if(actual>0&&!candidate.training)rewards.hit(player,candidate.npc,actual,gear);
+            if(candidate.training)candidate.npc.setHitpoints(candidate.profile.hp);
+            else if(candidate.npc.isDead())secondaryNpcDied(candidate,player);
+        }
+        int heal=(int)Math.min(Integer.MAX_VALUE,damageDealt*70/100);
+        state.healValue=(int)Math.min(Integer.MAX_VALUE,(long)state.healValue+heal);player.heal(heal);
+        Native950BugTest.event(player,"combat","siphon-pulse","targets",affected,"healValue",heal,"accumulatedHeal",state.healValue);
     }
     private void releaseAbilityProjectile(Player player,PendingHit hit){
         if(hit.projectileGraphic<0)return;
@@ -1066,6 +1129,7 @@ public final class Native950MeleeCombat {
         Loadout current;
         try{current=loadouts.get(player);}catch(IllegalArgumentException unsupported){return false;}
         return definition!=null&&(current.profile==null?0:current.profile.style)==definition.style()
+                &&(structure!=48309||distanceToFootprint(player,fighter.npc,fighter.profile.size)<=2)
                 &&(!definition.offhandRequired||matchingOffhand(player,definition.style()))
                 &&(!definition.twoHandedRequired||player.getEquipment().hasTwoHandedWeapon())
                 &&playerReach(player,fighter.npc,current);
@@ -1128,6 +1192,12 @@ public final class Native950MeleeCombat {
         target.setAttackedBy(source);target.setAttackedByDelay(Utils.currentTimeMillis()+6000);source.setAttackingDelay(Utils.currentTimeMillis()+6000);
         if(target instanceof Player)((Player)target).refreshHitPoints();
         if(damage>0){hits++;target.addReceivedDamage(source,damage);}
+        if(damage>0&&buffable&&look==Hit.HitLook.RANGE_DAMAGE&&source instanceof Player&&target instanceof NPC
+                &&buffs.active((Player)source,Native950CombatBuffs.Type.SHADOW_IMBUED,tick)){
+            Player attacker=(Player)source;
+            attacker.getCombatDefinitions().setSpecialAttackPercentage(Math.min(100,
+                    attacker.getCombatDefinitions().getSpecialAttackPercentage()+5));
+        }
         return damage;
     }
     /** Shares Prayer's authoritative buffs without entering legacy hit/degradation callbacks. */
@@ -1149,8 +1219,9 @@ public final class Native950MeleeCombat {
     }
     /** A Chain secondary can die without interrupting the primary target. */
     private void secondaryNpcDied(Fighter fighter,Player player) {
-        fighter.target=null;fighter.attacking=false;fighter.retaliating=false;fighter.npc.setAttackedBy(null);
-        retireNpc(fighter,player);
+        // An area hit may kill an NPC another player is fighting. Retire every
+        // associated target/queue exactly as for a direct kill; preserve unrelated fights.
+        npcDied(fighter,player);
     }
     private void retireNpc(Fighter fighter,Player player) {
         buffs.onKill(player,tick);
@@ -1158,7 +1229,8 @@ public final class Native950MeleeCombat {
         NPC npc=fighter.npc;npc.resetWalkSteps();npc.setNative950CombatEngaged(true);
         npc.setNative950DeathVisible(true);npc.setNextAnimation(new Animation(fighter.profile.deathAnim));
         fighter.hideAt=tick+Math.max(fighter.profile.deathTicks,fighter.profile.deathAnimationTicks);
-        fighter.respawnAt=fighter.hideAt+fighter.profile.respawnTicks;kills++;
+        // A zero authored interval means one-life. Explicit developer repeat uses a 60-tick interval.
+        fighter.respawnAt=fighter.hideAt+(fighter.respawnAllowed&&fighter.profile.respawnTicks==0?60:fighter.profile.respawnTicks);kills++;
         Player credited=npc.getMostDamageReceivedSourcePlayer();
         if(credited!=null)rewards.death(npc,credited);
         player.getPackets().sendGameMessage("You defeat the "+fighter.profile.name+".");
@@ -1279,7 +1351,7 @@ public final class Native950MeleeCombat {
     interface Rewards {void hit(Player player,NPC npc,int damage);default void hit(Player player,NPC npc,int damage,Loadout gear){hit(player,npc,damage);}void death(NPC npc,Player owner);}
     interface Loadouts {Loadout get(Player player);}
     interface Rolls {boolean accurate(long attack,long defence);int damage(int maximum);default int nativeDamageRemainder(int rawDamage){return 0;}default boolean critical(){return false;}}
-    interface Access {void activate(NPC npc);boolean player(Player player);boolean npc(NPC npc);boolean clear(WorldTile tile);default boolean clear(WorldTile tile,int size){return clear(tile);}boolean reach(Entity from,Entity to);default boolean rangedReach(Player from,NPC to,int range){return reach(from,to);}default boolean npcRangedReach(NPC from,Player to,int range){return reach(from,to);}default void projectile(com.rs.game.Projectile projectile){}boolean approach(Player player,NPC npc);default boolean follow(NPC npc,WorldTile target){return false;}}
+    interface Access {default void retire(NPC npc){}void activate(NPC npc);boolean player(Player player);boolean npc(NPC npc);boolean clear(WorldTile tile);default boolean clear(WorldTile tile,int size){return clear(tile);}boolean reach(Entity from,Entity to);default boolean rangedReach(Player from,NPC to,int range){return reach(from,to);}default boolean npcRangedReach(NPC from,Player to,int range){return reach(from,to);}default void projectile(com.rs.game.Projectile projectile){}boolean approach(Player player,NPC npc);default boolean follow(NPC npc,WorldTile target){return false;}}
     private static final class LiveRolls implements Rolls {
         public boolean accurate(long a,long d){return ThreadLocalRandom.current().nextDouble()<Rs2CombatFormula.hitChance(a,d);}
         public int damage(int maximum){return maximum<=0?0:ThreadLocalRandom.current().nextInt(maximum+1);}
@@ -1287,6 +1359,7 @@ public final class Native950MeleeCombat {
         public boolean critical(){return ThreadLocalRandom.current().nextInt(10)==0;}
     }
     private static final class LiveAccess implements Access {
+        public void retire(NPC npc){Native950World.getInstance().discardDeadCombatNpc(npc);}
         public void activate(NPC npc){npc.enableNative950Movement();}
         public boolean player(Player player){return World.getPlayers().get(player.getIndex())==player&&player.getRealChannel()!=null&&player.getRealChannel().isActive();}
         public boolean npc(NPC npc){return npc!=null&&World.getNPCs().get(npc.getIndex())==npc;}
@@ -1342,9 +1415,11 @@ public final class Native950MeleeCombat {
         final Fighter fighter;final int damage;int remaining;long nextTick;final Loadout gear;
         DamageOverTime(Fighter fighter,int damage,int remaining,long nextTick,Loadout gear){this.fighter=fighter;this.damage=damage;this.remaining=remaining;this.nextTick=nextTick;this.gear=gear;}
     }
+    private static final class SiphonState { int healValue; }
     private static final class PendingHit {
         final Fighter fighter;final int damage;long dueTick;final Loadout gear;final int impactGraphic,channelStructure,abilityStructure,weapon,offhand;
-        int projectileGraphic=-1;boolean released;
+        int projectileGraphic=-1,baseAbilityDamage;boolean released;
+        SiphonState siphon;boolean siphonFinisher;
         PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear){this(fighter,damage,dueTick,gear,-1);}
         PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear,int impactGraphic){this(fighter,damage,dueTick,gear,impactGraphic,-1,null,-1);}
         PendingHit(Fighter fighter,int damage,long dueTick,Loadout gear,int impactGraphic,int channelStructure,Player caster){

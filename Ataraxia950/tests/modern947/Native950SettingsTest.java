@@ -75,6 +75,23 @@ public class Native950SettingsTest {
         assertTrue(settings.handle(button(365,19,10240,-1,1)));
         assertFalse(player.getNative950ActionBar().isRevolutionEnabled());
     }
+    @Test public void revolutionSliderRequiresItsOwnVisibleRowAndRevokesOnOtherControlsOrClose(){
+        settings.handle(button(1430,256,-1,-1,1));
+        assertFalse(settings.handle(button(365,20,13,-1,1)));
+        assertEquals(9,player.getNative950ActionBar().revolutionSlots());
+        assertTrue(settings.handle(button(365,19,10246,-1,1)));
+        assertTrue(settings.handle(button(365,20,13,-1,1)));
+        assertEquals(14,player.getNative950ActionBar().revolutionSlots());
+        assertFalse(settings.handle(button(365,20,14,-1,1)));
+        settings.handle(button(365,19,12345,-1,1));
+        assertFalse(settings.handle(button(365,20,0,-1,1)));
+        assertEquals(14,player.getNative950ActionBar().revolutionSlots());
+        settings.handle(button(365,19,10246,-1,1));settings.close();
+        assertFalse(settings.handle(button(365,20,0,-1,1)));
+        java.util.Map<String,Integer> saved=new java.util.HashMap<>();player.getNative950ActionBar().writeSettings(saved);
+        Native950ActionBar restored=new Native950ActionBar();restored.restore(saved);
+        assertEquals(14,restored.revolutionSlots());assertEquals(30,saved.size());
+    }
 
     @Test public void aCacheMismatchCannotMutateOrWriteAnOpen() {
         settings = new Native950Settings(player, channel, () -> { throw new IllegalStateException("cache mismatch"); });
@@ -357,7 +374,7 @@ public class Native950SettingsTest {
         for (int slot : new int[] {10240, 10241}) {
             assertTrue(settings.handle(button(365, 19, slot, -1, 1)));
             List<Native950Packets.Packet> response = packets();
-            assertEquals(3, response.size());
+            assertEquals(8, response.size());
             assertTrue(contains(response, Native950Packets.varbitSmall(Native950ActionBar.FULL_MANUAL_MODE_VARBIT,slot == 10241 ? 0 : 1)));
             assertTrue(contains(response, Native950Packets.varbitSmall(Native950ActionBar.REVOLUTION_MODE_VARBIT,slot == 10241 ? 1 : 0)));
             assertTrue(contains(response, Native950Packets.runClientScript(2929)));

@@ -127,6 +127,8 @@ public final class Native950NpcCombatProfileTest {
         rejected(resolve(9001,hex(CHICKEN),true,missingHp,stats(1)),"invalid authored combat stats");
         rejected(resolve(9001,hex(CHICKEN),true,chickenRow(),stats(0)),"invalid authored combat stats");
         NPCCombatDefinition zeroRespawn=chickenRow();zeroRespawn.setRespawnDelay(0);
+        assertEquals("Authored zero means one-life, not invalid",0,resolve(9001,hex(CHICKEN),true,zeroRespawn,stats(1)).profile.respawnTicks);
+        zeroRespawn.setRespawnDelay(-1);
         rejected(resolve(9001,hex(CHICKEN),true,zeroRespawn,stats(1)),"invalid authored combat stats");
     }
 
