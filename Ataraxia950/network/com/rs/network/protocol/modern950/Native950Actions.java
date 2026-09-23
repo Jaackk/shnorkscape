@@ -103,6 +103,8 @@ public final class Native950Actions {
     private static final int ITEM_ON_ITEM_OPCODE = 69;
     /** Selected inventory/UI item targets an object or NPC; native writers cited below. */
     private static final int ITEM_ON_OBJECT_OPCODE = 90, ITEM_ON_NPC_OPCODE = 19;
+    /** Selected component on a ground tile, size13; exact950 writer0x1400e4e34..0x1400e4f5b. */
+    private static final int INTERFACE_ON_TILE_OPCODE = 85;
 
     /**
      * Rows whose framing is known but whose <em>meaning</em> is not derived on 950. They are listed
@@ -166,6 +168,7 @@ public final class Native950Actions {
         if (opcode == ITEM_ON_ITEM_OPCODE) return decodeItemOnItem(payload);
         if (opcode == ITEM_ON_OBJECT_OPCODE) return decodeItemOnObject(payload);
         if (opcode == ITEM_ON_NPC_OPCODE) return decodeItemOnNpc(payload);
+        if (opcode == INTERFACE_ON_TILE_OPCODE) return decodeInterfaceOnTile(payload);
         int option = option(INTERFACE_OPCODES, opcode);
         if (option != 0) return decodeInterface(option, payload);
         option = option(OBJECT_OPCODES, opcode);
@@ -216,6 +219,7 @@ public final class Native950Actions {
     public static boolean isImplemented(int opcode) {
         return opcode == WALK_OPCODE || opcode == MINIMAP_WALK_OPCODE || opcode == DRAG_OPCODE || opcode == ITEM_ON_ITEM_OPCODE
                 || opcode == ITEM_ON_OBJECT_OPCODE || opcode == ITEM_ON_NPC_OPCODE
+                || opcode == INTERFACE_ON_TILE_OPCODE
                 || option(INTERFACE_OPCODES, opcode) != 0 || option(OBJECT_OPCODES, opcode) != 0
                 || option(NPC_OPCODES, opcode) != 0 || option(PLAYER_OPCODES, opcode) != 0
                 || option(GROUND_ITEM_OPCODES, opcode) != 0
@@ -243,7 +247,7 @@ public final class Native950Actions {
      */
     public static int[] implementedOpcodes() {
         int[] all = new int[INTERFACE_OPCODES.length + OBJECT_OPCODES.length + NPC_OPCODES.length
-                + PLAYER_OPCODES.length + GROUND_ITEM_OPCODES.length + 19];
+                + PLAYER_OPCODES.length + GROUND_ITEM_OPCODES.length + 20];
         int at = 0;
         for (int opcode : INTERFACE_OPCODES) all[at++] = opcode;
         for (int opcode : OBJECT_OPCODES) all[at++] = opcode;
@@ -255,7 +259,7 @@ public final class Native950Actions {
                 NAME_DIALOGUE_OPCODE, PAUSE_BUTTON_OPCODE, CLOSE_MODAL_OPCODE,
                 MESSAGE_PUBLIC_OPCODE, MESSAGE_PRIVATE_OPCODE, MUSIC_ENDED_OPCODE,
                 WINDOW_REPORT_OPCODE, MAP_BUILD_REPORT_OPCODE, WORLDLIST_FETCH_OPCODE, ITEM_ON_ITEM_OPCODE,
-                ITEM_ON_OBJECT_OPCODE, ITEM_ON_NPC_OPCODE};
+                ITEM_ON_OBJECT_OPCODE, ITEM_ON_NPC_OPCODE, INTERFACE_ON_TILE_OPCODE};
         for (int opcode : singles) all[at++] = opcode;
         Arrays.sort(all);
         return all;
@@ -505,6 +509,14 @@ public final class Native950Actions {
         int hash = ((p[8] & 255) << 24) | ((p[9] & 255) << 16) | ((p[10] & 255) << 8) | (p[11] & 255);
         if (modifier > 1) return null;
         return new ItemOnNpcAction(hash, sentinel16(slot), sentinel24(item), index, modifier);
+    }
+    /** Native offsets: slotBE16, item(mid/high/low), hashBE32, xBE128, yLE16. */
+    private static InterfaceOnTileAction decodeInterfaceOnTile(byte[] p){
+        if(p==null||p.length!=13)return null;
+        int slot=shortBE(p,0),item=((p[3]&255)<<16)|((p[2]&255)<<8)|(p[4]&255);
+        int hash=intBE(p,5),x=((p[9]&255)<<8)|((p[10]-128)&255),y=(p[11]&255)|((p[12]&255)<<8);
+        if(x>MAX_COORDINATE||y>MAX_COORDINATE)return null;
+        return new InterfaceOnTileAction(hash,sentinel16(slot),sentinel24(item),x,y);
     }
 
     /**
@@ -922,6 +934,19 @@ public final class Native950Actions {
         public int sourceItemId() { return sourceItemId; }
         public int index() { return index; }
         public int modifier() { return modifier; }
+    }
+    public static final class InterfaceOnTileAction implements Action {
+        private final int sourceHash,sourceSlot,sourceItemId,x,y;
+        private InterfaceOnTileAction(int hash,int slot,int item,int x,int y){
+            sourceHash=hash;sourceSlot=slot;sourceItemId=item;this.x=x;this.y=y;
+        }
+        public int sourceHash(){return sourceHash;}
+        public int sourceInterfaceId(){return sourceHash>>>16;}
+        public int sourceComponentId(){return sourceHash&65535;}
+        public int sourceSlot(){return sourceSlot;}
+        public int sourceItemId(){return sourceItemId;}
+        public int x(){return x;}
+        public int y(){return y;}
     }
 
     public static final class DragAction implements Action {

@@ -39,5 +39,40 @@ final class Native950Surge {
         //18358 is the876 Surge candidate, not a proven950 ability->sequence binding. Omit it.
         return null;
     }
+    /** Walk the straight tile ray to the chosen point, never through a clipped diagonal. */
+    static WorldTile targetedDestination(WorldTile from,WorldTile target,Steps steps){
+        if(from.getPlane()!=target.getPlane())return new WorldTile(from);
+        int dx=target.getX()-from.getX(),dy=target.getY()-from.getY();
+        int distance=Math.max(Math.abs(dx),Math.abs(dy));
+        if(distance==0||distance>10)return new WorldTile(from);
+        WorldTile end=new WorldTile(from);
+        for(int i=1;i<=distance;i++){
+            int x=from.getX()+(int)Math.round((double)dx*i/distance),y=from.getY()+(int)Math.round((double)dy*i/distance);
+            int stepX=x-end.getX(),stepY=y-end.getY();
+            if(!steps.clear(end,stepX,stepY))break;
+            end=new WorldTile(x,y,from.getPlane());
+        }
+        return end;
+    }
+    static String dive(Player player,WorldTile target){
+        return dive(player,target,(tile,dx,dy)->{
+            WorldTile next=new WorldTile(tile.getX()+dx,tile.getY()+dy,tile.getPlane());
+            return World.isRegionLoaded(next.getRegionId())&&World.canMoveNPC(next,player.getSize())
+                    &&World.checkWalkStep(tile.getPlane(),tile.getX(),tile.getY(),dx,dy,player.getSize());
+        });
+    }
+    static String dive(Player p,WorldTile target,Steps steps){
+        if(!p.isActive()||p.hasFinished()||p.isDead()||p.isLocked()||p.isStunned()||p.isFrozen()
+                ||p.getNextWorldTile()!=null||p.isNative950ForceMovementActive()||p.getNextForceMovement()!=null)
+            return "You cannot Dive during that action.";
+        if(p.getControlerManager().getControler()!=null)return "Dive is not available in this controlled activity yet.";
+        if(target==null||target.getPlane()!=p.getPlane()||Math.max(Math.abs(target.getX()-p.getX()),Math.abs(target.getY()-p.getY()))>10)
+            return "Choose a tile within10 tiles on your current plane.";
+        WorldTile start=new WorldTile(p),end=targetedDestination(start,target,steps);
+        if(start.matches(end))return "There is no clear path to that tile.";
+        p.getActionManager().forceStop();p.resetWalkSteps();p.setRouteEvent(null);p.setNextFaceEntity(null);
+        p.setNextForceMovement(new NewForceMovement(start,0,end,1,Utils.getAngle(end.getX()-start.getX(),end.getY()-start.getY())));
+        return null;
+    }
     private Native950Surge(){}
 }

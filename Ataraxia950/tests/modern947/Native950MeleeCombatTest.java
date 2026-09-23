@@ -50,6 +50,72 @@ public class Native950MeleeCombatTest {
         assertTrue(player.isStunImmune());assertTrue(player.isFreezeImmune());
         for(int i=0;i<10;i++)step();assertFalse(player.isStunImmune());assertFalse(player.isFreezeImmune());
     }
+    @Test public void necromancyRotationChargesDynamicCostsOnlyAtExecution(){
+        player.getSkills().set(Skills.NECROMANCY,99);npc.setHitpoints(100000);
+        styleProfile=new Native950CombatStyles.Profile(3,Skills.NECROMANCY,99,4,6,-1,-1,0,true);
+        player.getCombatDefinitions().setSpecialAttackPercentage(20);
+        assertNull(combat.attack(player,npc));assertNull(combat.ability(player,48296));
+        assertEquals(4,player.getVarsManager().getValue(10986));
+        assertEquals(29,player.getCombatDefinitions().getSpecialAttackPercentage());
+        assertTrue(combat.ability(player,48297).contains("queued"));
+        assertEquals("queue admission does not consume stacks",4,player.getVarsManager().getValue(10986));
+        for(int i=0;i<3;i++)step();
+        assertEquals(0,player.getVarsManager().getValue(10986));
+        assertEquals("four stacks reduce Finger's cost from60 to20",9,player.getCombatDefinitions().getSpecialAttackPercentage());
+        assertTrue(combat.ability(player,48299).contains("residual soul"));
+        for(int i=0;i<3;i++)step();
+        assertNull(combat.ability(player,48298));assertEquals(1,player.getVarsManager().getValue(11035));
+        for(int i=0;i<3;i++)step();
+        assertNull(combat.ability(player,48299));assertEquals(0,player.getVarsManager().getValue(11035));
+        combat.detach(player);assertEquals(0,player.getVarsManager().getValue(10986));
+    }
+    @Test public void ceaseCancelsChannelAndQueueWithoutChangingSavedAutoRetaliation(){
+        player.getSkills().set(Skills.ATTACK,99);npc.setHitpoints(10000);
+        player.getCombatDefinitions().setSpecialAttackPercentage(100);
+        player.getCombatDefinitions().setAutoRetaliate(true);
+        combat.attack(player,npc);assertNull(combat.ability(player,14704));
+        assertTrue(combat.pendingHitCount(player)>0);
+        assertTrue(combat.ability(player,14682).contains("queued"));
+        assertNull(combat.ability(player,45340));assertEquals(0,combat.pendingHitCount(player));
+        int hp=npc.getHitpoints();for(int i=0;i<9;i++)step();
+        assertEquals(hp,npc.getHitpoints());assertTrue(player.getCombatDefinitions().isAutoRetaliate());
+        assertNull(combat.attack(player,npc));assertNotNull(combat.combatTarget(player));
+    }
+    @Test public void queuedNativeOverlayUsesExactSlotAndClearsOnExecutionReplacementAndStop(){
+        player.getSkills().set(Skills.ATTACK,99);npc.setHitpoints(10000);
+        java.util.Map<String,Integer> saved=new java.util.HashMap<>();
+        saved.put("actionBar.0",Native950ActionBar.pack(1,3));
+        saved.put("actionBar.1",Native950ActionBar.pack(1,9));
+        player.getNative950ActionBar().restore(saved);
+        combat.attack(player,npc);assertNull(combat.ability(player,14679));
+        assertTrue(combat.ability(player,14682).contains("queued"));
+        assertEquals(1,player.getVarsManager().getValue(4164));assertEquals(1003,player.getVarsManager().getValue(5861));
+        assertTrue(combat.ability(player,14700).contains("queued"));assertEquals(2,player.getVarsManager().getValue(4164));
+        for(int i=0;i<3;i++)step();
+        assertEquals(0,player.getVarsManager().getValue(4164));assertEquals(0,player.getVarsManager().getValue(5861));
+        assertTrue(combat.ability(player,14682).contains("queued"));
+        combat.cancelAttack(player);assertEquals(0,player.getVarsManager().getValue(4164));
+    }
+    @Test public void revolutionExecutesOnReadyTickBeforeAutoDespiteUnfinishedVisualAnimation()throws Exception{
+        player.getSkills().set(Skills.ATTACK,99);npc.setHitpoints(10000);
+        player.getCombatDefinitions().setSpecialAttackPercentage(0);
+        java.util.Map<String,Integer> saved=new java.util.HashMap<>();
+        saved.put("actionBar.0",Native950ActionBar.pack(1,3));saved.put("actionBar.revolution",1);
+        player.getNative950ActionBar().restore(saved);
+        java.lang.reflect.Field animation=com.rs.game.Entity.class.getDeclaredField("lastAnimationEnd");
+        animation.setAccessible(true);animation.setLong(player,com.rs.utils.Utils.currentTimeMillis()+60000);
+        // Unit fixtures have no cache. Seed only this book entry, restoring the shared decoder afterward.
+        com.rs.cache.loaders.rs3.RS3ClientScriptMap book=com.rs.cache.loaders.rs3.RS3ClientScriptMap.getMap(10147);
+        java.lang.reflect.Field values=book.getClass().getDeclaredField("values");values.setAccessible(true);
+        Object previous=values.get(book);java.util.HashMap<Long,Object> entries=new java.util.HashMap<>();entries.put(3L,14682);
+        values.set(book,entries);
+        try{
+        combat.attack(player,npc);step();
+        assertEquals("ready Revolution executes on this tick",9,player.getCombatDefinitions().getSpecialAttackPercentage());
+        assertEquals("one ability hit, no preceding auto",9990,npc.getHitpoints());
+        assertEquals(0,player.getVarsManager().getValue(4164));
+        }finally{values.set(book,previous);}
+    }
     @Test public void defensiveThresholdAdmissionAndShieldRequirementsAreNotBypassed(){
         player.getSkills().set(Skills.DEFENCE,99);
         assertTrue(combat.ability(player,14719).contains("shield"));
@@ -527,6 +593,39 @@ public class Native950MeleeCombatTest {
             assertSame("secondary damage must not cancel the first player's target",npc,combat.combatTarget(player));
             combat.detach(other);
         }finally{otherChannel.finishAndReleaseAll();}
+    }
+    @Test public void primaryStoppingDoesNotCancelSecondaryAbilityOrChannel(){
+        EmbeddedChannel otherChannel=new EmbeddedChannel();
+        Player other=Player.createNative950("other",new WorldTile(3218,3257,0),otherChannel);
+        try{
+            other.setActive(true);other.setIndex(2);other.getSkills().set(Skills.ATTACK,99);
+            other.getCombatDefinitions().setSpecialAttackPercentage(100);
+            player.getCombatDefinitions().setAutoRetaliate(false);
+            access.players.add(other);combat.attach(other);npc.setHitpoints(1000);
+            assertNull(combat.attack(player,npc));assertNull(combat.attack(other,npc));step();
+            combat.cancelAttack(player);
+            assertNull(combat.combatTarget(player));assertSame(npc,combat.combatTarget(other));
+            assertNull(combat.ability(other,14704));
+            int initial=npc.getHitpoints();
+            for(int i=0;i<6;i++)step();
+            assertTrue("secondary channel continues after primary cancellation",npc.getHitpoints()<initial);
+            combat.stop(player);
+            assertSame("retaliation handover retains secondary attack",npc,combat.combatTarget(other));
+        }finally{combat.detach(other);otherChannel.finishAndReleaseAll();}
+    }
+    @Test public void removingSharedNpcRetiresEveryAttackersTargetAndPendingWork(){
+        EmbeddedChannel otherChannel=new EmbeddedChannel();
+        Player other=Player.createNative950("other",new WorldTile(3218,3257,0),otherChannel);
+        try{
+            other.setActive(true);other.setIndex(2);other.getSkills().set(Skills.ATTACK,99);
+            other.getCombatDefinitions().setSpecialAttackPercentage(100);
+            access.players.add(other);combat.attach(other);npc.setHitpoints(1000);
+            combat.attack(player,npc);combat.attack(other,npc);combat.ability(other,14704);
+            assertTrue(combat.pendingHitCount(other)>0);
+            combat.unregister(npc);
+            assertNull(combat.combatTarget(player));assertNull(combat.combatTarget(other));
+            assertEquals(0,combat.pendingHitCount(other));assertFalse(combat.supports(npc));
+        }finally{combat.detach(other);otherChannel.finishAndReleaseAll();}
     }
     @Test public void equipmentChangesCancelBeforeNextSwing(){
         combat.attack(player,npc);step();supported=false;step();assertEquals(40,npc.getHitpoints());assertFalse(npc.isNative950CombatEngaged());

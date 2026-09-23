@@ -82,6 +82,10 @@ public final class Native950BugTest {
         } else if (action instanceof Native950Actions.NpcAction) {
             Native950Actions.NpcAction a=(Native950Actions.NpcAction)action;
             session.event("input", "npc", "index", a.index(), "option", a.option());
+        } else if(action instanceof Native950Actions.InterfaceOnTileAction){
+            Native950Actions.InterfaceOnTileAction a=(Native950Actions.InterfaceOnTileAction)action;
+            session.event("input","ability-tile","source",component(a.sourceInterfaceId(),a.sourceComponentId()),
+                    "slot",a.sourceSlot(),"item",a.sourceItemId(),"x",a.x(),"y",a.y());
         } else if (action instanceof Native950Actions.PublicChatAction) {
             String text=((Native950Actions.PublicChatAction)action).text();
             String trimmed=text==null?"":text.trim();

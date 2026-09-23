@@ -12,12 +12,12 @@ import static org.junit.Assert.*;
 
 public class Native950AbilityFoundationTest {
     @Test public void verifiedRotationSeparatesUtilityDamageAndAdrenalineTiers(){
-        assertEquals(60,Native950AbilityCatalog.DEFINITIONS.size());
+        assertEquals(68,Native950AbilityCatalog.DEFINITIONS.size());
         long melee=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==1).count();
         long ranged=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==5).count();
         long magic=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==6&&d.targetRequired()).count();
         long necromancy=Native950AbilityCatalog.DEFINITIONS.stream().filter(d->d.book==7&&d.targetRequired()).count();
-        assertEquals(15,melee);assertEquals(11,ranged);assertEquals(11,magic);assertEquals(6,necromancy);
+        assertEquals(17,melee);assertEquals(11,ranged);assertEquals(11,magic);assertEquals(9,necromancy);
         Native950AbilityCatalog.Definition surge=Native950AbilityCatalog.get(14726);
         assertFalse(surge.targetRequired());assertEquals(34,surge.cooldown);assertEquals(16,surge.skill);assertEquals(5,surge.level);
         assertEquals(0,Native950AbilityCatalog.get(14682).adrenalineCost());
@@ -59,6 +59,31 @@ public class Native950AbilityFoundationTest {
         assertTrue(from.matches(Native950Surge.destination(from,1,1,(t,x,y)->false)));
         assertTrue(from.matches(Native950Surge.destination(from,0,0,(t,x,y)->true)));
         assertEquals(100,from.getX());
+    }
+    @Test public void diveUsesChosenTileAndChecksEveryStepInsteadOfFacingDirection()throws Exception{
+        WorldTile from=new WorldTile(100,100,0);
+        for(int x=-10;x<=10;x++)for(int y=-10;y<=10;y++){
+            WorldTile target=new WorldTile(100+x,100+y,0);
+            WorldTile end=Native950Surge.targetedDestination(from,target,(tile,dx,dy)->{
+                assertTrue(Math.abs(dx)<=1&&Math.abs(dy)<=1);assertFalse(dx==0&&dy==0);return true;
+            });
+            assertTrue(target.matches(end));
+        }
+        assertTrue(from.matches(Native950Surge.targetedDestination(from,new WorldTile(111,100,0),(t,x,y)->true)));
+        assertTrue(from.matches(Native950Surge.targetedDestination(from,new WorldTile(103,100,1),(t,x,y)->true)));
+        assertEquals(103,Native950Surge.targetedDestination(from,new WorldTile(110,105,0),(t,x,y)->t.getX()<103).getX());
+        EmbeddedChannel channel=new EmbeddedChannel();
+        java.lang.reflect.Field scheduler=com.rs.cores.CoresManager.class.getDeclaredField("native947Scheduler");
+        scheduler.setAccessible(true);Object prior=scheduler.get(null);
+        scheduler.set(null,new com.rs.cores.Native950TickScheduler());
+        try{
+            Player p=Player.createNative950("dive",from,channel);p.setActive(true);
+            assertNotNull(Native950Surge.dive(p,new WorldTile(110,100,0),(t,x,y)->false));
+            assertNull(p.getNextForceMovement());
+            assertNull(Native950Surge.dive(p,new WorldTile(103,106,0),(t,x,y)->true));
+            assertNotNull(p.getNextForceMovement());
+            assertNotNull("repeated input cannot start a second force move",Native950Surge.dive(p,new WorldTile(105,105,0),(t,x,y)->true));
+        }finally{scheduler.set(null,prior);channel.finishAndReleaseAll();}
     }
     @Test public void revolutionUsesOrderAvailabilityAndSlotLimitNeverUtility(){
         int[] bar={14726,-1,14682,14727,14701};

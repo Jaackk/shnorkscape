@@ -14,7 +14,8 @@ final class Native950CombatBuffs {
         ANTICIPATION(14710,16), FREEDOM(14711,10), RESONANCE(14713,10),
         PREPARATION(14714,16), REFLECT(14716,16), DEBILITATE(14717,13),
         BARRICADE(14719,16), REJUVENATE(14720,16), IMMORTALITY(14721,50),
-        NATURAL_INSTINCT(19252,34), DEVOTION(25028,16), REVENGE(14718,32), DIVERT(45045,10), CHAOS_ROAR(46279,12);
+        NATURAL_INSTINCT(19252,34), DEVOTION(25028,16), REVENGE(14718,32), DIVERT(45045,10), CHAOS_ROAR(46279,12),
+        LIVING_DEATH(48324,50);
         final int structure,duration;
         Type(int structure,int duration){this.structure=structure;this.duration=duration;}
         static Type forStructure(int id){for(Type type:values())if(type.structure==id)return type;return null;}

@@ -429,6 +429,7 @@ public final class Native950Interactions {
         else if (action instanceof Native950Actions.ItemOnItemAction) itemOnItem((Native950Actions.ItemOnItemAction) action);
         else if (action instanceof Native950Actions.ItemOnObjectAction) itemOnObject((Native950Actions.ItemOnObjectAction) action);
         else if (action instanceof Native950Actions.ItemOnNpcAction) itemOnNpc((Native950Actions.ItemOnNpcAction) action);
+        else if (action instanceof Native950Actions.InterfaceOnTileAction) abilityOnTile((Native950Actions.InterfaceOnTileAction) action);
         else if (action instanceof Native950Actions.DragAction) drag((Native950Actions.DragAction) action);
         else if (action instanceof Native950Actions.NpcAction) npc((Native950Actions.NpcAction) action);
         else if (action instanceof Native950Actions.PlayerAction) playerOption((Native950Actions.PlayerAction) action);
@@ -1549,6 +1550,16 @@ public final class Native950Interactions {
         else reject("That item can no longer be used on this object");
     }
 
+    private void abilityOnTile(Native950Actions.InterfaceOnTileAction action){
+        if(exitUi.isOpen()||bankOpen||equipmentLibrary.isOpen()||player.isLocked()||!player.clientHasLoadedMapRegion()){
+            reject("Close the interface before targeting a ground tile");return;
+        }
+        int structure=player.getNative950ActionBar().selectedStructure(player,action.sourceInterfaceId(),action.sourceComponentId(),action.sourceSlot());
+        if(action.sourceItemId()!=-1||structure!=47129&&structure!=1488){reject("Select an available tile-targeted ability");return;}
+        Native950MeleeCombat combat=player.getNative950Combat();
+        String refusal=combat==null?"Combat is not ready":combat.tileAbility(player,structure,new WorldTile(action.x(),action.y(),player.getPlane()));
+        if(refusal!=null)reject(refusal);
+    }
     private void itemOnNpc(Native950Actions.ItemOnNpcAction action) {
         if(Native950ActionBar.barSlot(action.sourceInterfaceId(),action.sourceComponentId())>=0
                 ||Native950ActionBar.bookType(player,action.sourceInterfaceId(),action.sourceComponentId())>0){

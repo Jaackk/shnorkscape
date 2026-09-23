@@ -162,6 +162,9 @@ public final class Native950ActionBar {
             int typeConfig=typeConfig(activeBar,i),shortcutConfig=shortcutConfig(activeBar,i);
             visualWrite(p,c,Native950Packets.varp(typeConfig,-1),"varp",typeConfig,-1);
             visualWrite(p,c,Native950Packets.varp(shortcutConfig,clientShortcut(slots()[i])),"varp",shortcutConfig,clientShortcut(slots()[i]));
+            boolean tile=slots()[i]==pack(1,7)||slots()[i]==pack(1,29);
+            for(int component:NATIVE_SLOT_EVENT_COMPONENTS[i])
+                c.write(Native950Packets.interfaceEvents(1430,component,-1,-1,tile?11239422:NATIVE_SLOT_EVENT_MASKS[i]));
         }
         visualWrite(p,c,Native950Packets.runClientScript(6992),"script",6992,"");
         visualWrite(p,c,Native950Packets.runClientScript(7964,1436,0,0,1,-1),"script",7964,"1436,0,0,1,-1");
@@ -274,8 +277,10 @@ public final class Native950ActionBar {
     /** A 950 shortcut can be delivered through the visible bar child or its workspace owner. */
     static boolean actionBarMounted(boolean childMounted,boolean workspaceMounted){return childMounted||workspaceMounted;}
     int selectedStructure(Player p,int face,int component,int slot){
-        if(!p.getInterfaceManager().containsInterface(face))return -1;
         int index=barSlot(face,component),type=bookType(p,face,component);
+        boolean mounted=index>=0?actionBarMounted(p.getInterfaceManager().containsInterface(face),p.getInterfaceManager().containsInterface(ROOT_INTERFACE))
+                :p.getInterfaceManager().containsInterface(face);
+        if(!mounted)return -1;
         return index>=0?struct(slots()[index]):type>0&&slot>0&&slot<=BOOK_LAST_SLOT?struct(pack(type,slot)):-1;
     }
     int revolutionCandidate(int enabledSlots,java.util.function.IntPredicate canExecute){
@@ -291,6 +296,15 @@ public final class Native950ActionBar {
         send.accept(Native950Packets.varbitSmall(REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0));
     }
     void cooldown(Channel c,int structure,int currentCycle,int duration){c.write(Native950Packets.runClientScript(6570,structure,currentCycle,currentCycle+duration,1,1));}
+    /** Exact950 components1430:{70,83,...239}: CS5899(slot,1003,overlay). */
+    void queueVisual(Player player,int structure){
+        Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
+        int packed=definition==null?0:pack(definition.book,definition.key),slot=0;
+        if(packed!=0)for(int i=0;i<SLOTS;i++)if(slots()[i]==packed){slot=i+1;break;}
+        player.getVarsManager().sendVar(4164,0);
+        player.getVarsManager().sendVar(5861,slot==0?0:1003);
+        if(slot!=0)player.getVarsManager().sendVar(4164,slot);
+    }
     void setActiveBar(Player p,Channel c,int index){if(index<0||index>=BARS)return;String before=barSnapshot();activeBar=index;sync(p,c,"select-bar",before);}
     void setActiveBar(Channel c,int index){setActiveBar(null,c,index);}
     int activeBar(){return activeBar;}

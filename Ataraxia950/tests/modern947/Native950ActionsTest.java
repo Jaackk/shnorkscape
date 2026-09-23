@@ -33,12 +33,21 @@ public final class Native950ActionsTest {
                     Native950Actions.isImplemented(opcode));
         }
         // 55 rows: 10 IF_BUTTON + 6 object + 6 NPC + 10 player + 6 ground item + 17 singles.
-        assertEquals(57, Native950Actions.implementedOpcodes().length);
+        assertEquals(58, Native950Actions.implementedOpcodes().length);
         int previous = -1;
         for (int opcode : Native950Actions.implementedOpcodes()) {
             assertTrue("duplicate or unsorted opcode " + opcode, opcode > previous);
             previous = opcode;
         }
+    }
+    @Test public void tileTargetPacketMatchesExact950SenderAndRejectsMalformedCoordinates(){
+        byte[] body={0,7,(byte)255,(byte)255,(byte)255,5,(byte)150,0,64,12,(byte)0xfd,(byte)0xca,12};
+        Native950Actions.InterfaceOnTileAction action=(Native950Actions.InterfaceOnTileAction)Native950Actions.decode(85,body);
+        assertNotNull(action);assertEquals(1430,action.sourceInterfaceId());assertEquals(64,action.sourceComponentId());
+        assertEquals(7,action.sourceSlot());assertEquals(-1,action.sourceItemId());
+        assertEquals(3197,action.x());assertEquals(3274,action.y());assertEquals(13,Native950Protocol.clientSize(85));
+        assertNull(Native950Actions.decode(85,java.util.Arrays.copyOf(body,12)));
+        body[9]=64;assertNull(Native950Actions.decode(85,body));
     }
 
     @Test
