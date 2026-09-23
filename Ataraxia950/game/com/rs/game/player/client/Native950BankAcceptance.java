@@ -42,7 +42,7 @@ public final class Native950BankAcceptance {
         Native950World.getInstance().execute(() -> {
             require(World.getPlayers().isEmpty(),"Acceptance requires an isolated ephemeral world");
             try(Fixture f=new Fixture()) {
-                exhaustion(f);capturedCompactionClaims(f);quantities(f);capacity(f);withdrawX(f);bankControls(f);remoteBank(f);
+                exhaustion(f);capturedCompactionClaims(f);individualItemActors(f);quantities(f);capacity(f);withdrawX(f);bankControls(f);remoteBank(f);
                 Native950Interactions.State state=f.input.snapshot();
                 require(state.handlerFailures==0&&state.unhandledActions==0&&state.unmatchedPairs==0,
                         "Bank action failed or bypassed routing: "+state.routerReport);
@@ -94,6 +94,19 @@ public final class Native950BankAcceptance {
                 "Duplicate same-tick actor48447 withdrew the next single-item row");
         f.bank(new int[]{215,201},new int[]{1,1});
         System.out.println("PASS: final-row exhaustion and same-tick duplicate protection when the replacement is another single herb");
+    }
+    private static void individualItemActors(Fixture f) {
+        for(int id:new int[]{52083,55109}) {
+            require(Native950CacheItems.definition(id).stackable==2,"Individual-item cache witness changed");
+            f.seed(0,new Item(id,2),new Item(51467,1));
+            f.button(0,EMPTY,1);
+            require(f.amount(id)==1&&f.bankAmount(id)==1,"Individual actor partial withdrawal failed "+id);
+            f.button(0,EMPTY,1);
+            require(f.amount(id)==1&&f.bankAmount(id)==1,"Repeated individual actor withdrew twice in one tick");
+            f.nextTick();f.button(0,EMPTY,2);
+            require(f.amount(id)==2&&f.bankAmount(id)==0&&f.bankAmount(51467)==1,"Individual copies or neighboring row changed");
+        }
+        System.out.println("PASS: captured augmented52083 x2 partial actor, second copy, same-tick duplicate refusal and neighboring item preservation");
     }
 
     private static Item[] capturedBankRows() {

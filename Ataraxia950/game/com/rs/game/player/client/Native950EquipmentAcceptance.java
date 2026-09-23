@@ -125,10 +125,11 @@ public final class Native950EquipmentAcceptance {
         for(int skill=0;skill<com.rs.game.player.Skills.SKILL_COUNT;skill++)f.player.getSkills().setXpWithoutRefresh(skill,200000000);
         Native950AdminCommands.handle(f.player,f.channel,new String[]{"almighty"});f.run(1);
         require(f.player.isInfiniteAmmunition(),"Almighty did not enable ammunition");
-        for(int weapon:new int[]{16337,53351,63325,8880,806,1277}) {
+        for(int weapon:new int[]{16337,53351,55109,63325,853,857,4734,8880,806,1277}) {
             f.give(weapon);f.button(2,1473,5,f.slot(weapon),weapon);f.run(2);
             require(f.worn(3)==weapon,"Development weapon exchange failed "+weapon);
-            int expected=weapon==16337||weapon==53351?882:weapon==63325?877:weapon==8880?8882:-1;
+            int expected=weapon==16337||weapon==53351?58036:weapon==55109?58041:weapon==63325?63304
+                    :weapon==853?890:weapon==857?63274:weapon==4734?4740:weapon==8880?8882:-1;
             require(f.lastEquipment[13]==expected,"Wrong native supplied ammo for "+weapon);
             require(f.worn(13)==-1&&f.input.saveSnapshot().equipmentIds()[13]==-1,"Virtual ammunition entered equipment/save");
             if(expected>=0){
@@ -142,7 +143,7 @@ public final class Native950EquipmentAcceptance {
         }
         f.give(882);f.button(2,1473,5,f.slot(882),882);f.run(1);
         f.button(2,1473,5,f.slot(63325),63325);f.run(1);
-        require(f.lastEquipment[13]==877&&f.worn(13)==882,"Supply failed to preserve incompatible owned ammunition");
+        require(f.lastEquipment[13]==63304&&f.worn(13)==882,"Supply failed to preserve incompatible owned ammunition");
         Native950AdminCommands.handle(f.player,f.channel,new String[]{"almighty"});f.run(1);
         require(!f.player.isInfiniteAmmunition()&&f.lastEquipment[13]==882&&f.total(882)==1,"Disabling almighty did not restore owned ammunition");
         System.out.println("PASS: almighty ammo follows bows/crossbows, thrown/melee unchanged, toggle refresh, virtual removal refusal, owned ammo/save preservation");

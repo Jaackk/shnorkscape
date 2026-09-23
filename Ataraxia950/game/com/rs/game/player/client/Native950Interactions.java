@@ -1785,6 +1785,14 @@ public final class Native950Interactions {
     private void sendBank() {
         Native950Containers.Snapshot state = containers.bankSnapshot();
         rememberChangedSlots(displayedBank, state, changedBankSlots);
+        // Individual-item actors clear on every withdrawal, including partial
+        // rows. Their repeated empty actor cannot identify a fresh second click
+        // until the next tick has published the authoritative quantity.
+        if (displayedBank != null) for (int slot = 0; slot < state.ids.length; slot++) {
+            Native950ItemCatalog.Entry entry = content.items.get(state.ids[slot]);
+            if (entry != null && entry.stackMode == 2
+                    && displayedBank.amounts[slot] != state.amounts[slot]) changedBankSlots.add(slot);
+        }
         displayedBank = state;
         int occupied = 0;
         for (int id : state.ids) if (id >= 0) occupied++;

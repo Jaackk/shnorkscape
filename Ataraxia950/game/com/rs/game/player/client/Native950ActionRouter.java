@@ -270,7 +270,14 @@ public final class Native950ActionRouter {
                 || catalog.get(bank.ids[slot]) == null || changedBankSlots.contains(slot)
                 || movable < 0 || movable > bank.amounts[slot]) return -1;
         int currentId = bank.ids[slot];
-        int expectedActor = movable > 0 && movable == bank.amounts[slot] ? EMPTY_BANK_ACTOR : currentId;
+        // Native stack-mode2 items are individual actors, even when our plain
+        // bank row contains multiple identical, metadata-free copies. CS6794's
+        // individual-item branch calls14362 with a one-item actor, clearing it
+        // before IF_BUTTON. Live950 captured52083 x2 ->48447 for Withdraw1.
+        // Retain the exact actor rule for ordinary partial transfers, capacity
+        // checks and changed-slot protection; never accept another row's ID.
+        int expectedActor = movable > 0 && (movable == bank.amounts[slot] || catalog.get(currentId).stackMode==2)
+                ? EMPTY_BANK_ACTOR : currentId;
         return claimedItemId == expectedActor ? currentId : -1;
     }
 

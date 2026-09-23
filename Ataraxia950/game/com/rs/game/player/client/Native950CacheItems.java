@@ -37,7 +37,7 @@ public final class Native950CacheItems {
         if(definition==null||definition.getName()==null||definition.getName().trim().isEmpty()
                 ||"null".equalsIgnoreCase(definition.getName()))return null;
         return new Native950ItemCatalog.Entry(definition.getId(),definition.getName(),
-                definition.stackable==1,definition.inventoryOptions);
+                definition.stackable,definition.inventoryOptions);
     }
 
     /** Shared by equipment metadata: strict bounded template traversal with current-cache links. */

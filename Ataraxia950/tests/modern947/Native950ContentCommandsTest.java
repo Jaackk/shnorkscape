@@ -17,7 +17,7 @@ public class Native950ContentCommandsTest {
         p=Player.createNative950("gear-test",new WorldTile(3217,3258,0),channel);p.setActive(true);p.setRights(2);
         List<Native950ItemCatalog.Entry> entries=new ArrayList<>();Set<Integer> ids=new HashSet<>();
         for(String kit:new String[]{"melee","mage","range","necro","weapons"})for(Item item:Native950ContentCommands.kit(kit))
-            if(ids.add(item.getId()))entries.add(new Native950ItemCatalog.Entry(item.getId(),"Test item",item.getId()==9244,new String[5]));
+            if(ids.add(item.getId()))entries.add(new Native950ItemCatalog.Entry(item.getId(),"Test item",item.getId()==58036||item.getId()==58041,new String[5]));
         Native950Skilling.attach(p,new Native950Containers(p,new Native950ItemCatalog(entries)));
     }
     @After public void cleanup(){Native950Skilling.detach(p);channel.finishAndReleaseAll();if(previous==null)System.clearProperty(Native950DevelopmentCommands.PROPERTY);else System.setProperty(Native950DevelopmentCommands.PROPERTY,previous);}
@@ -60,6 +60,9 @@ public class Native950ContentCommandsTest {
         assertTrue(Native950DevelopmentCommands.isCommand(";;items"));
         p.setRights(0);run(";;weapons");assertEquals(28,p.getInventory().getFreeSlots());p.setRights(2);
         run(";;gear unknown");run(";;meleegear extra");run(";;search torva -1");run(";;removenpc bad");
-        assertEquals(28,p.getInventory().getFreeSlots());run(";;gear range");assertEquals(10000,p.getInventory().getAmountOf(9244));
+        assertEquals(28,p.getInventory().getFreeSlots());run(";;gear range");
+        assertEquals(10000,p.getInventory().getAmountOf(58036));
+        assertEquals(10000,p.getInventory().getAmountOf(58041));
+        assertEquals(0,p.getInventory().getAmountOf(9244));
     }
 }

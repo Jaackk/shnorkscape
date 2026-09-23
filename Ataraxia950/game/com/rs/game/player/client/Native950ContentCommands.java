@@ -24,13 +24,13 @@ final class Native950ContentCommands {
         switch(name) {
             case "melee": case "meleegear": ids=new int[]{53375,53378,53381,52028,53384,16403,27913,51470,50465};break;
             case "mage": case "magegear": ids=new int[]{42991,43119,43121,52036,51092,51848,42574,42582,51467};break;
-            case "range": case "rangegear": case "ragegear": ids=new int[]{55045,55051,55056,52032,51088,55145,55109,55114,9244};break;
+            case "range": case "rangegear": case "ragegear": ids=new int[]{55045,55051,55056,52032,51088,55145,55109,55114,58036,58041};break;
             case "necro": case "necromancy": case "necrogear": ids=new int[]{56483,56450,56513,56476,56469,56429,56492,51469,59928};break;
             case "weapons": ids=new int[]{52533,16403,27913,51848,42574,42582,55145,55109,55114,56429,56492};break;
             default: return null;
         }
         Item[] result=new Item[ids.length];
-        for(int i=0;i<ids.length;i++)result[i]=new Item(ids[i],ids[i]==9244?10000:1);
+        for(int i=0;i<ids.length;i++)result[i]=new Item(ids[i],ids[i]==58036||ids[i]==58041?10000:1);
         return result;
     }
     static void handle(Player p,Channel c,String[] args) {
@@ -121,7 +121,7 @@ final class Native950ContentCommands {
                 // Magic: Shadow elite tectonic, specialist gloves/boots, staff, dual wield and ring.
                 42991,43119,43121,52036,51092,51848,42574,42582,51467,
                 // Ranged: Soul elite sirenic, specialist gloves/boots, 2H, dual wield and ammunition.
-                55045,55051,55056,52032,51088,55145,55109,55114,9244,
+                55045,55051,55056,52032,51088,55145,55109,55114,58041,
                 // Necromancy: Jaxa's saved First Necromancer/Omni Guard setup.
                 56483,56450,56513,56476,56469,56429,56492,51469,59928,
                 // Shared high-tier extras and a combat supply.

@@ -1,10 +1,10 @@
-{
+﻿{
     "candidate":  "playability-20260923",
     "files":  [
                   {
                       "source":  "ataraxia-950-1.0-UNTRACKED.jar",
                       "target":  "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-                      "sha256":  "B64686313DF712D716958048A6F16E41D902D21DAAEC8D1C8672826DF0AF9143"
+                      "sha256":  "584E19B3C87627C7A7FE2315A02A999CE8844EACA8AC40BD7DE27EDB46367329"
                   },
                   {
                       "source":  "Native950InterfaceBootstrap$Panel.class",

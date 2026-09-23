@@ -106,3 +106,28 @@ complete Necromancy execution, Revolution checkbox repair, more boss mechanics,
 expanded NPC combat admission, broad dungeon access or a fresh multiplayer test.
 The ranged slot containing struct52796 is Imbue: Shadows and remains unsupported;
 do not mistake that explicit refusal for the intermittent keybind failure.
+
+Ammo/bank second candidate, 23 September 2026:
+Jack LIVE-CONFIRMED first-candidate ranged lighting with almighty and populated
+Necromancy books. P0 intermittent keybind death remains unresolved.
+Tier-aware ammo now supplies matching current-cache tier40/70 ammunition and
+Primal tier99 arrows/bolts for top-tier weapons; Karil racks and Dorgeshuun bone
+bolts retain compatibility. Equivalent-tier owned enchanted ammo is preserved.
+Combat damage remains capped by weapon tier; virtual ammo never changes saves.
+Rangegear grants Primal arrows and bolts instead of dragon bolts.
+Bank capture: augmented Dark Sliver52083 x2 sends cleared actor48447 for one
+withdrawal. Preserve stack-mode2 and accept this individual-item prediction,
+with quantity-change protection against repeated same-tick clicks. This is not
+proof of degradation or ID corruption; no item data has been reset.
+AUTOMATED-TESTED:1463 tests, zero failures/errors; actual-cache equipment820
+frames; bank94 actions/76 ticks/2177 frames including both augmented copies.
+Installer check-only passed. Second candidate is STAGED, NOT YET DEPLOYED or
+LIVE-CONFIRMED. Engine SHA256:
+584E19B3C87627C7A7FE2315A02A999CE8844EACA8AC40BD7DE27EDB46367329
+Previous staged files: backups/pre-edit-20260923-012721-196/staged-playability-before-r2.
+The earlier engine SHA in this document describes the currently running first
+candidate; the manifest now pins the staged second candidate.
+USER GATE: finish and verify ammo/bank fixes, then ask exactly:
+Are you ready for me to start with the prompt?
+Wait for the answer before reading/starting the new bank-style ;;items prompt.
+That work has not started. Confirm both clients closed before deployment.

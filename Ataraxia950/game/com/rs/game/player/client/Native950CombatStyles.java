@@ -97,7 +97,8 @@ public final class Native950CombatStyles {
         int damageTier=profile.tier;
         if(profile.style==RANGED&&profile.ammoFamily!=3){
             Item ammo=p.getEquipment().getItem(Equipment.SLOT_ARROWS);
-            ItemDefinitions d=ammo==null?null:Native950CacheItems.definition(ammo.getId());
+            int supplied=Native950DevelopmentAmmo.supplied(p.getEquipment().getWeaponId(),ammo==null?-1:ammo.getId(),p.isInfiniteAmmunition());
+            ItemDefinitions d=supplied>=0?Native950CacheItems.definition(supplied):ammo==null?null:Native950CacheItems.definition(ammo.getId());
             if(matchesAmmo(d,profile.ammoFamily))damageTier=ammunitionDamageTier(profile.tier,d);
         }
         return new Native950MeleeCombat.Loadout(4+profile.tier,4+damageTier,defence,profile.speed,profile.animation,profile.block,profile);

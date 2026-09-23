@@ -41,7 +41,7 @@ public final class Native950ItemCatalog {
             int option = 0;
             for (int candidate = 1; candidate <= 5; candidate++)
                 if (equipment.isWearOption(candidate)) { option = candidate; break; }
-            return new Entry(id, current.name, current.stackable, current.inventoryOptions, equipment.slot, option);
+            return new Entry(id, current.name, current.stackMode, current.inventoryOptions, equipment.slot, option);
         });
     }
 
@@ -75,7 +75,7 @@ public final class Native950ItemCatalog {
         boolean equip = verified != null && verified.id == current.id && verified.name.equals(current.name)
                 && verified.stackable == current.stackable && verified.equipSlot >= 0
                 && Objects.equals(verified.option(verified.equipOption), current.option(verified.equipOption));
-        return new Entry(current.id, current.name, current.stackable, current.inventoryOptions,
+        return new Entry(current.id, current.name, current.stackMode, current.inventoryOptions,
                 equip ? verified.equipSlot : -1, equip ? verified.equipOption : 0);
     }
     private static Entry mergeOptions(Entry base,Entry extra) {
@@ -90,6 +90,8 @@ public final class Native950ItemCatalog {
         public final int id;
         public final String name;
         public final boolean stackable;
+        /** Native0=ordinary,1=stackable,2=individual item state (e.g. augmented gear). */
+        public final int stackMode;
         public final int equipSlot;
         public final int equipOption;
         private final String[] inventoryOptions;
@@ -100,10 +102,18 @@ public final class Native950ItemCatalog {
 
         public Entry(int id, String name, boolean stackable, String[] inventoryOptions,
                      int equipSlot, int equipOption) {
+            this(id,name,stackable?1:0,inventoryOptions,equipSlot,equipOption);
+        }
+        public Entry(int id,String name,int stackMode,String[] inventoryOptions) {
+            this(id,name,stackMode,inventoryOptions,-1,0);
+        }
+        public Entry(int id,String name,int stackMode,String[] inventoryOptions,int equipSlot,int equipOption) {
             if (id < 0 || id > MAX_ITEM_ID) throw new IllegalArgumentException("Item is outside the verified inventory wire range");
+            if(stackMode<0||stackMode>2)throw new IllegalArgumentException("Unsupported native item stack mode");
             this.id = id;
             this.name = Objects.requireNonNull(name, "name");
-            this.stackable = stackable;
+            this.stackMode=stackMode;
+            this.stackable = stackMode==1;
             this.inventoryOptions = Objects.requireNonNull(inventoryOptions, "inventoryOptions").clone();
             if (equipSlot == -1) {
                 if (equipOption != 0) throw new IllegalArgumentException("Non-wearable item has an equip operation");
