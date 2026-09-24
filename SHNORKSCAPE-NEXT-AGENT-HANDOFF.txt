@@ -19,7 +19,13 @@ Full1572 tests,0failures/errors,2skips; real-cache movement/routes/stale callbac
 1438 pins and11 signature loot rows PASS. Missing-stat alias audit found0 safe
 exact candidates. NPC support1881/2644 (+1 Graardor),763 explicit refusals.
 Seven sequence-decoder and three gameval-generator Python tests PASS.
-Combat checkpoint1d801c9 pushed/verified; final source/staging checkpoint follows.
+Combat checkpoints1d801c9 and f64a608 pushed/remote verified.
+Staged combat-live-successor-world-20260924 through Apply Staged Update.cmd:
+25 hash-pinned files, CheckOnly,5 installer fixtures, staged native preflight
+and staged real-cache world probe PASS. Source f64a608; no new cache deltas.
+Live runtime hash matches pre-edit snapshot; server35088 still running since
+14:04:22. Final staged audit confirms all four bosses and three Bandos minions
+admitted. All new combat/world changes remain LIVE TEST PENDING.
 No speculative dev startup/layout changes. Deferred live bugs unchanged.
 Stage through Apply Staged Update.cmd; never silently deploy/restart.
 

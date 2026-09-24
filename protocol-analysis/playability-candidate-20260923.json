@@ -1,10 +1,10 @@
 {
-  "candidate": "developer-tools-gamevals-20260924",
+  "candidate": "combat-live-successor-world-20260924",
   "files": [
     {
       "source": "ataraxia-950-1.0-UNTRACKED.jar",
       "target": "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-      "sha256": "8C77F565818DC76533AA129C935C76968DC17194D3D94BB57369BC216F080BE6",
+      "sha256": "666A00C3E8A1B1211ED98F6A4B9F2075C8BCC8D2D2162C32F84A77B6FA0DD429",
       "beforeSha256": "D1DAAC935C53AC0580A5AA775C5B2353914A958D315DF54E79A60A519DC96D6C"
     },
     {
@@ -152,9 +152,9 @@
       "beforeSha256": "ABSENT"
     }
   ],
-  "sourceCommit": "f8e4d4faa3dbfde800bc1bf2c97743a38f6fd200",
-  "validationReport": "protocol-analysis/developer-console-validation-20260924.json",
-  "liveChecklist": "docs/DEVELOPER-CONSOLE-READY-FIX-20260924.md",
-  "liveAcceptance": "Prior fresh-open readiness successor LIVE FAIL. Text-capable synchronous marker correction AUTOMATED VERIFIED; fresh-open Vulkan LIVE TEST PENDING. Prior backend live evidence preserved.",
+  "sourceCommit": "f64a608808265469237d1b43da6fe3a4868cbbd2",
+  "validationReport": "protocol-analysis/combat-world-expansion-950-20260924.json",
+  "liveChecklist": "docs/COMBAT-WORLD-EXPANSION-20260924.md",
+  "liveAcceptance": "Combat/world successor AUTOMATED VERIFIED; Vulkan combat presentation and portal clicks LIVE TEST PENDING. Preserve user-accepted dev startup and existing combat foundation.",
   "preflightHotfix": "Settings script8286 pin corrected; full Native950CachePreflight PASS with verification enabled against installed cache"
 }

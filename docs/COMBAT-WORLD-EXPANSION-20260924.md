@@ -42,6 +42,10 @@ Deferred live issues remain: cracker Pull, ability drag-off, equipment binding, 
 - Gameplay references: [RS Wiki Dagannoth strategy](https://runescape.wiki/w/RuneScape%3AEvents_Team/Dagannoth_Kings_%2822_April_2018%29), [bosses](https://runescape.wiki/w/Bosses), [General Graardor](https://runescape.wiki/w/General_Graardor). Numeric950 contracts come from cache pins. Normal Graardor shockwave probability also follows the local authored encounter.
 - Reference classification: preserve our shared queue/ownership/UI lifecycle; adapt named-symbol resolution from Undercut; local boss code supplies behaviour candidates only. The old one-fifth wrong-style Dagannoth rule and old Graardor projectile1200 were not blindly imported. Public Darkan727 mappings remain unsafe without verification.
 
+## Validation / Git / stage
+
+Full regression: **1,572 tests, zero failures/errors, two existing skips**. Seven sequence-decoder tests, three gameval-generator checks, five installer fixtures, 25-file CheckOnly and staged native-cache preflight pass. The staged-jar actual-world probe also passes. Gameplay checkpoints `1d801c9` and `f64a608` pushed and remote-verified. Candidate: `combat-live-successor-world-20260924`; source `f64a608`. No new cache delta beyond the previous candidate. Running server35088 remains up from14:04:22 and its runtime jar matches the pre-edit snapshot.
+
 ## One live checklist
 
 1. At War's Retreat, use Reaper portal: enter each destination; use Bandos altar Teleport to return. Check Death-office exit option.

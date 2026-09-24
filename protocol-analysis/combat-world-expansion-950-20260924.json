@@ -50,6 +50,17 @@
   "validation": [
     "isolated real-cache world probe PASS",
     "7 sequence decoder tests PASS",
-    "3 gameval generator tests PASS"
-  ]
+    "3 gameval generator tests PASS",
+    "5 installer fixtures PASS",
+    "25-file manifest CheckOnly PASS",
+    "staged Native950CachePreflight PASS",
+    "staged actual-cache world and all seven encounter actors PASS"
+  ],
+  "stage": {
+    "candidate": "combat-live-successor-world-20260924",
+    "sourceCommit": "f64a608808265469237d1b43da6fe3a4868cbbd2",
+    "files": 25,
+    "deployed": false,
+    "liveRuntimeUnchangedFromPreEditSnapshot": true
+  }
 }
