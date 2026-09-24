@@ -1,10 +1,10 @@
 {
-  "candidate": "combat-live-successor-polish-20260924",
+  "candidate": "combat-live-successor-polish2-20260924",
   "files": [
     {
       "source": "ataraxia-950-1.0-UNTRACKED.jar",
       "target": "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-      "sha256": "DB98E99D5678F550C8AFF2183F2DBFF729E684BA57A36034DF002BBA02104032"
+      "sha256": "E9AFDEA9030EEC6DE82BE7FA7892C724B224DC1E7DD7B6EA4EBCDE9205E13C6B"
     },
     {
       "source": "Native950InterfaceBootstrap$Panel.class",
@@ -62,10 +62,40 @@
       "target": "cache/12/13830.dat",
       "sha256": "54F93928375DDB8105B317CE5919A4CB7A4460DC4BF020367C83DCCF47DB37A6",
       "beforeSha256": "B8D6CA0AD62859DFDFB2C190DAF25088C745B504AED5207738793C4899B7247E"
+    },
+    {
+      "source": "cache-v4/18/236.dat",
+      "target": "cache/18/236.dat",
+      "sha256": "D4127379F00E77B8E31DE9D8D321C0182EA96293E015C30DD2BFE35F14CA8F28",
+      "beforeSha256": "1B15FF337D872418B6995C5EE419B500C045DE0CE491B2A8398932B96075C798"
+    },
+    {
+      "source": "cache-v4/18/243.dat",
+      "target": "cache/18/243.dat",
+      "sha256": "1D42C6FEE12E9A409C51FD80A267A72C5C79EE900D16B8B5004384B10D556D6C",
+      "beforeSha256": "9F5D09522E0DEB68C3B994A2FAD8254AC505D1D97A8377A7F815C56716EF0061"
+    },
+    {
+      "source": "cache-v4/19/239.dat",
+      "target": "cache/19/239.dat",
+      "sha256": "736DF0FCFB7BA9AEBD9A8D8F23183AD767C3FB51AA412802894CFA2091857623",
+      "beforeSha256": "C7B17BE2B78583A10CDBB27C3455AC4A7EE1A5DD2F07B2D8BBF7251FCF257BB3"
+    },
+    {
+      "source": "cache-v4/255/18.dat",
+      "target": "cache/255/18.dat",
+      "sha256": "20B3D26F9694CAC75029C7213FB67314028044DBB9359A6DB31FEC60AD241DEA",
+      "beforeSha256": "99428EE3EA83B1D2F0D68BDB50D65763E56BDEBA4D57C82C41D11C9651CCC67D"
+    },
+    {
+      "source": "cache-v4/255/19.dat",
+      "target": "cache/255/19.dat",
+      "sha256": "90311A2EE8D35F9C94976AA62BD8DAD3379BC1A1E1AF4A2E852DDACE6957D1A6",
+      "beforeSha256": "FF1D2E2E9BB3E2A488BD0E475B957BDBEA5276625D4489D64CB5618BF8F014C6"
     }
   ],
-  "sourceCommit": "342e84d27b6b9ba9c37f904ff5080048c4d58e89",
-  "validationReport": "protocol-analysis/combat-polish-validation-20260924.json",
-  "liveChecklist": "docs/COMBAT-POLISH-LIVE-CHECKLIST-20260924.md",
-  "liveAcceptance": "IMPLEMENTED - LIVE TEST PENDING; preserves latest accepted baseline; Living Death and conjure actor effects remain partial"
+  "sourceCommit": "ec7804db30afa2524429eef256c88048569adb18",
+  "validationReport": "protocol-analysis/combat-polish2-validation-20260924.json",
+  "liveChecklist": "docs/COMBAT-POLISH2-LIVE-CHECKLIST-20260924.md",
+  "liveAcceptance": "AUTOMATED VERIFIED; new visuals LIVE TEST PENDING. Ghost attack and general scene priority UNRESOLVED; detailed limits in handoff."
 }

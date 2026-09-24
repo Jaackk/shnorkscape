@@ -1,3 +1,64 @@
+SHNORKSCAPE - COMBAT / NECROMANCY POLISH2 2026-09-24 (LATEST)
+
+Read docs/COMBAT-LIVE-POLISH2-20260924.md, updated canonical matrix,
+protocol-analysis/combat-polish2-validation-20260924.json and the ONE14-point
+checklist docs/COMBAT-POLISH2-LIVE-CHECKLIST-20260924.md.
+
+CONFIRMED LIVE by latest user: bank/items context24 keybind recovery; persistent
+long manual queue/ring/autoexecution; Necromancy Overload; Volley timing;
+Berserk; conduit availability; Necrosis; residual soul world visuals; native
+buff/debuff panels; Death Skulls bouncing; chosen-tile Dive; conjures surviving
+Surge/Dive. Revolution functional/PARTIAL. Preserve these, no speculative P0.
+
+New AUTOMATED VERIFIED / LIVE TEST PENDING:
+- Army permanent unlock/selection replay after native bootstrap and each comp.
+  Restore happened before transport; nonempty selections were not republished.
+  CS15411/18289/18292, enum17157 and varps11499-11502 are traced. No forced icon.
+- Entropic61355 paired passive8928=48397 brings shared server/native soul cap5.
+- Real engagement-based soul expiry, including incoming NPCs and owned flights.
+  INTENTIONAL SHNORKSCAPE RULE: NEVER clear/truncate souls for an equipment swap.
+  Five earned souls can remain above the new gain cap3. Equipment requirements
+  still guard consumers. Combat-exit/re-entry timer and count/world stay synced.
+- Skeleton/Zombie attack poses, Phantom command; four spawn/exit poses and
+  supported graphics; retire actor only after bounded exit, stop attacks first.
+- Examine: four companion definitions'107 flag disables native menu before any
+  option. Exact950 NPCType+0x3ec at0x1403b3eef/0x14016d0a6. Remove only107;
+  no Attack option. Published-view Examine path retained for both viewers.
+- Separate target approach slots, accounting for reserved walking destinations.
+- Surge18358/3537, Escape18527/3526, Dive35755. Chosen-tile mechanics unchanged.
+- Sunshine19866/3856, Swiftness19879/8996, native tile SPOTANIM197 fixed15 bytes.
+  Owner-safe removal at original coordinate. Existing buffs/area bonuses retained.
+- LivingDeath35475 retained, now base7883. Global autoattack timer is unchanged.
+- Resonance18081, Preparation18106/3614, NaturalInstinct19858/3855, Devotion4503.
+
+Asset breakthrough: public gameval cache2670 names, twelve sequence groups,
+seven graphic groups and four named models matched byte-for-byte to exact950.
+See polish2-named-assets-950.json and both cross-revision proof reports. Do not
+use cosmetic preview35073 or guessed wailing-ghost24731 as base identities.
+New audit142 admitted graphics;11/85 entries still lack player-pose bindings
+(includes actor-only commands and utility actions). No COMPLETE promotions.
+
+Still PARTIAL / UNRESOLVED: Ghost attack presentation; general target scene
+priority (native0x14031a180 traced, caller target flags unproven); full area
+DoT/perk semantics and late-viewer replay; separate Dive effect; exhaustive
+nested progression audit; remaining ability/attack timing gaps. Spacing is not
+a full butterfly/Man rendering fix. New visual results await physical Vulkan.
+
+Full suite1526 tests,0 failures/errors,2 skips. Final packagedJAR:1938 combat
+checks/226 activations/141 projectiles;1618 polish checks. Bank/library/exit/
+styles/DiveSurgeEscape gates PASS. Isolated native cache45 indexes/28579 groups.
+Source checkpoint ec7804db30afa2524429eef256c88048569adb18 pushed/remote verified.
+Stage dist/combat-live-successor-polish2-20260924:16 pinned files; --check-only
+PASS. Apply Staged Update.cmd updated; no install/restart. Normal Play prepares
+NPC/item reference changes in client cache. Candidate JAR:
+E9AFDEA9030EEC6DE82BE7FA7892C724B224DC1E7DD7B6EA4EBCDE9205E13C6B
+Running JAR unchanged:
+DB98E99D5678F550C8AFF2183F2DBFF729E684BA57A36034DF002BBA02104032
+Pre-edit backup backups/pre-edit-20260924-025032-763, remote baseline b30b920.
+Latest inspected capture session-20260924-024326-527-jaxa.
+
+----- Historical handoff below; superseded where above differs -----
+
 SHNORKSCAPE - LIVE COMBAT POLISH 2026-09-24 (LATEST; supersedes historical acceptance below)
 
 READ docs/COMBAT-LIVE-POLISH-20260924.md and the ONE12-point checklist:
