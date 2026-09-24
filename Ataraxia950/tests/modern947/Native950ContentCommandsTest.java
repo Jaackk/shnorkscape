@@ -33,6 +33,9 @@ public class Native950ContentCommandsTest {
         Item[] eq=new Item[19],inv=new Item[28];eq[3]=new Item(16403,1);inv[0]=new Item(42251,1);inv[1]=new Item(556,10000);
         Item[] quick=Native950ContentCommands.quickItems(new Native950DeveloperLoadouts.Loadout("fixture",inv,eq));
         assertEquals(2,quick.length);assertEquals(16403,quick[0].getId());assertEquals(10000,quick[1].getAmount());
+        Native950DeveloperLoadouts.Loadout loadout=Native950ContentCommands.quickLoadout(new Native950DeveloperLoadouts.Loadout("fixture",inv,eq));
+        assertEquals(16403,loadout.equipment[3].getId());assertEquals(556,loadout.inventory[0].getId());
+        assertNull(loadout.inventory[1]);
         assertEquals(42251,inv[0].getId());assertNotSame(eq[3],quick[0]);
         for(String[] aliases:new String[][]{{"melee","meleegear"},{"range","rangegear","ragegear"},{"mage","magegear"},{"necro","necrogear"}})
             for(String alias:aliases)assertEquals(Native950ContentCommands.bestStyle(aliases[0]),Native950ContentCommands.bestStyle(alias));

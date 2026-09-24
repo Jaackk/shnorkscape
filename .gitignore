@@ -57,3 +57,5 @@ logs/combatqa/
 /dist/bank-sort-*/
 /dist/combat-completion-20260923/
 /dist/combat-live-successor-*/
+
+/dist/predev-cleanup-cache-*/

@@ -36,6 +36,22 @@ public class Native950NecromancyResourcesTest {
             state.pulse(38);assertEquals(0,state.souls(first));assertEquals(0,first.getNative950SoulVisual());
         }finally{state.clear();a.finishAndReleaseAll();b.finishAndReleaseAll();}
     }
+    @Test public void soulTimerPublishesOnlyAtCombatTransitions(){
+        EmbeddedChannel c=new EmbeddedChannel();Player p=Player.createNative950("timer",new WorldTile(3200,3200,0),c);
+        Native950NecromancyResources state=new Native950NecromancyResources();
+        try{
+            state.gainSoul(p,0);drain(c);
+            for(int tick=1;tick<100;tick++)state.pulse(tick,owner->true);
+            assertEquals(0,drain(c));assertEquals(1,state.souls(p));
+            state.pulse(100);assertTrue(drain(c)>0);
+            for(int tick=101;tick<105;tick++)state.pulse(tick);
+            assertEquals(0,drain(c));state.pulse(105,owner->true);assertTrue(drain(c)>0);
+            state.pulse(106,owner->true);assertEquals(0,drain(c));
+            state.pulse(107);assertTrue(drain(c)>0);state.pulse(116);assertEquals(1,state.souls(p));
+            state.pulse(117);assertEquals(0,state.souls(p));assertEquals(0,p.getNative950SoulVisual());
+        }finally{state.clear();c.finishAndReleaseAll();}
+    }
+    private static int drain(EmbeddedChannel c){c.flush();int n=0;while(c.readOutbound()!=null)n++;return n;}
     @Test public void resourcesPublishNativeAvailabilityWithoutLeakingBetweenPlayers(){
         EmbeddedChannel a=new EmbeddedChannel(),b=new EmbeddedChannel();
         Player first=Player.createNative950("first",new WorldTile(3200,3200,0),a);

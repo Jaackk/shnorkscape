@@ -22440,5 +22440,13 @@
       "General entity scene priority",
       "Additional Swiftness minor presentation"
     ]
+  },
+  "predevCleanup": {
+    "status": "AUTOMATED VERIFIED; LIVE TEST PENDING",
+    "report": "docs/PREDEV-CLEANUP-20260924.md",
+    "bindingLive": "FAIL - options not saved; successor native notification bridge pending",
+    "sunshineCooldownLive": "FAIL/PARTIAL - successor avoids side-effectful redraw, pending",
+    "soulGameplayLive": "CONFIRMED LIVE - preserved; dormant buff timer presentation pending",
+    "developerConsole": "Not implemented in cleanup candidate"
   }
 }

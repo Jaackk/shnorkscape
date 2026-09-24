@@ -38,6 +38,7 @@ public final class Native950ActionBar {
     static final int DISPLAY_MODE_VARBIT=27893;
     private final int[][] bars=new int[BARS][SLOTS];
     private int activeBar;
+    private boolean locked;
     final Native950CombatPreferences preferences=new Native950CombatPreferences();
     private boolean revolutionEnabled;
     // CS2526 + DB row1306: native checkboxes store disable flags, with param7524 inversion.
@@ -152,6 +153,8 @@ public final class Native950ActionBar {
         c.write(Native950Packets.interfaceEvents(1430,254,-1,-1,BAR_SELECTOR_EVENTS));
         c.write(Native950Packets.interfaceEvents(1430,261,-1,-1,BAR_SELECTOR_EVENTS));
         c.write(Native950Packets.interfaceEvents(1430,256,-1,-1,2));
+        c.write(Native950Packets.interfaceEvents(1430,270,-1,-1,2));
+        c.write(Native950Packets.interfaceEvents(ROOT_INTERFACE,TRASH_COMPONENT,-1,-1,1<<21));
     }
     /**
      * Writes the complete client-visible state for the selected saved bar.  Every mutation
@@ -167,7 +170,7 @@ public final class Native950ActionBar {
                 "before",before,"after",barSnapshot(),"varbits",binding("varbit",1893)+","+binding("varbit",1892)+","+binding("varbit",DISPLAY_MODE_VARBIT)+","+binding("varbit",FULL_MANUAL_MODE_VARBIT)+","+binding("varbit",REVOLUTION_MODE_VARBIT),
                 "clientShortcuts",clientSnapshot(),"slotConfigs",slotConfigs(),"scripts",binding("script",6992)+","+binding("script",7964));
         visualWrite(p,c,Native950Packets.varbitSmall(1893,activeBar+1),"varbit",1893,activeBar+1);
-        visualWrite(p,c,Native950Packets.varbitSmall(1892,0),"varbit",1892,0);
+        visualWrite(p,c,Native950Packets.varbitSmall(1892,locked?1:0),"varbit",1892,locked?1:0);
         visualWrite(p,c,Native950Packets.varbitSmall(DISPLAY_MODE_VARBIT,2),"varbit",DISPLAY_MODE_VARBIT,2);
         visualWrite(p,c,Native950Packets.varbitSmall(FULL_MANUAL_MODE_VARBIT,revolutionEnabled?0:1),"varbit",FULL_MANUAL_MODE_VARBIT,revolutionEnabled?0:1);
         visualWrite(p,c,Native950Packets.varbitSmall(REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0),"varbit",REVOLUTION_MODE_VARBIT,revolutionEnabled?1:0);
@@ -209,10 +212,11 @@ public final class Native950ActionBar {
     public boolean drag(Player p,Channel c,Native950Actions.DragAction a){
         int to=barSlot(a.targetInterfaceId(),a.targetComponentId()),from=barSlot(a.sourceInterfaceId(),a.sourceComponentId());
         if(to<0&&from<0)return false;
-        if(p.isLocked()||p.isDead()||!p.getInterfaceManager().containsInterface(a.sourceInterfaceId()))return true;
-        if(from>=0&&isTrashTarget(a)){String before=barSnapshot();slots()[from]=0;sync(p,c,"clear",before);Native950BugTest.event(p,"action-bar","cleared","bar",activeBar+1,"slot",from+1);reply(c,"Action bar slot "+(from+1)+" cleared.");return true;}
+        if(locked||p.isLocked()||p.isDead()||!(from>=0?actionBarMounted(p.getInterfaceManager().containsInterface(a.sourceInterfaceId()),
+                p.getInterfaceManager().containsInterface(ROOT_INTERFACE)):p.getInterfaceManager().containsInterface(a.sourceInterfaceId())))return true;
+        if(from>=0&&(isTrashTarget(a)||a.targetComponentHash()==-1)){String before=barSnapshot();slots()[from]=0;sync(p,c,"clear",before);Native950BugTest.event(p,"action-bar","cleared","bar",activeBar+1,"slot",from+1);reply(c,"Action bar slot "+(from+1)+" cleared.");return true;}
         if(to<0){reply(c,"Drop an action-bar slot on the native trash target to remove it.");return true;}
-        if(!p.getInterfaceManager().containsInterface(a.targetInterfaceId()))return true;
+        if(!actionBarMounted(p.getInterfaceManager().containsInterface(a.targetInterfaceId()),p.getInterfaceManager().containsInterface(ROOT_INTERFACE)))return true;
         if(from>=0){
             if(isNoOpRearrangement(from,to)){
                 Native950BugTest.event(p,"action-bar","rearrange-ignored","bar",activeBar+1,"from",from+1,"to",to+1,"reason","same-slot");
@@ -235,6 +239,13 @@ public final class Native950ActionBar {
     static boolean isTrashTarget(Native950Actions.DragAction action){return action.targetInterfaceId()==ROOT_INTERFACE&&action.targetComponentId()==TRASH_COMPONENT;}
     static boolean isNoOpRearrangement(int from,int to){return from==to;}
     public boolean button(Player p,Channel c,Native950Actions.InterfaceAction a){
+        // CS7973 names the native lock control1430:270 and reads bit1892.
+        if(a.interfaceId()==1430&&a.componentId()==270&&a.option()==1&&a.slot()==-1&&a.itemId()==-1){
+            if(actionBarMounted(p.getInterfaceManager().containsInterface(1430),p.getInterfaceManager().containsInterface(ROOT_INTERFACE))){
+                locked=!locked;c.write(Native950Packets.varbitSmall(1892,locked?1:0));
+            }
+            return true;
+        }
         if((a.interfaceId()==1880||a.interfaceId()==1883)&&a.componentId()==7&&a.slot()>=7&&a.slot()<=8){
             if(a.option()==1&&p.getInterfaceManager().containsInterface(a.interfaceId())&&!p.isLocked()&&!p.isDead()){
                 int bit=a.interfaceId()==1880?36453:36454;
@@ -345,7 +356,12 @@ public final class Native950ActionBar {
     }
     void cooldown(Channel c,int structure,int currentCycle,int duration){publishCooldown(c,structure,currentCycle,duration,true);}
     // CS6570 argument3 stamps the client's start cycle. A redraw must preserve that epoch.
-    void refreshCooldown(Channel c,int structure,int currentCycle,int duration){publishCooldown(c,structure,currentCycle,duration,false);}
+    void refreshCooldown(Channel c,int structure,int currentCycle,int duration){
+        // CS6570 also restarts the field-effect clock for these ultimates. Their retained
+        // cooldown varcs are read by6506 and are not cleared by6992/slot redraws.
+        if(structure==19254||structure==19251)return;
+        publishCooldown(c,structure,currentCycle,duration,false);
+    }
     private void publishCooldown(Channel c,int structure,int currentCycle,int duration,boolean start){
         c.write(Native950Packets.runClientScript(6570,structure,currentCycle,currentCycle+duration,start?1:0,1));
     }

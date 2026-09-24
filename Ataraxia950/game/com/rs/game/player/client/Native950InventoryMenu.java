@@ -15,6 +15,8 @@ public final class Native950InventoryMenu {
     public static final int EVENT_MASK = OPERATIONS | (USE_TARGETS << 11)
             | (3 << 18) | (1 << 21) | (1 << 22); // grid -> panel -> backpack root, drag target, Use target
 
+    static int eventsForItem(int id){return EVENT_MASK|(id==962?(8<<11):0);}
+
     // Script2833's two switch tables bypass2410 for these IDs/categories. Never interpret
     // their operation8 as Drop without deriving the selected specialized script first.
     private static final int[] SPECIAL_IDS = {35,5509,5510,5511,5512,5513,5514,5515,6099,6100,6101,6102,13561,13562,14632,19040,19042,19760,19865,19866,19867,19868,20709,21581,24199,24200,24202,24203,24205,27616,27618,27620,27622,27624,27996,28575,28686,28688,28690,28692,28694,29970,31089,31091,31093,31095,31097,31099,31101,35277,35279,35281,35283,35285,35287,35289,36619,36620,39784,39786,39788,39790,39792,41808,42679,42682,44155,51275,51276,51309,58451};

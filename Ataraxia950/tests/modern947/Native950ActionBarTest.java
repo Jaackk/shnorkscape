@@ -166,10 +166,10 @@ public class Native950ActionBarTest {
     }
     @Test public void cooldownRedrawPreservesTheOriginalRadialStart(){
         EmbeddedChannel c=new EmbeddedChannel();try{
-            Native950ActionBar bar=new Native950ActionBar();bar.cooldown(c,19254,100,100);bar.refreshCooldown(c,19254,130,70);c.flush();
+            Native950ActionBar bar=new Native950ActionBar();bar.cooldown(c,14682,100,100);bar.refreshCooldown(c,14682,130,70);c.flush();
             Native950Packets.Packet start=(Native950Packets.Packet)c.readOutbound(),refresh=(Native950Packets.Packet)c.readOutbound();
-            assertArrayEquals(Native950Packets.runClientScript(6570,19254,100,200,1,1).payload(),start.payload());
-            assertArrayEquals(Native950Packets.runClientScript(6570,19254,130,200,0,1).payload(),refresh.payload());
+            assertArrayEquals(Native950Packets.runClientScript(6570,14682,100,200,1,1).payload(),start.payload());
+            assertArrayEquals(Native950Packets.runClientScript(6570,14682,130,200,0,1).payload(),refresh.payload());
         }finally{c.finishAndReleaseAll();}
     }
     @Test public void nativeBarSelectorAndTrashTargetUseTheVerified950Components(){
@@ -287,6 +287,35 @@ public class Native950ActionBarTest {
                 assertTrue("Selected shortcut not published on turn "+turn,selectedConfig);
             }
         }finally{c.finishAndReleaseAll();}
+    }
+    @Test public void fieldCooldownRedrawDoesNotRestartItsNativeFieldTimer(){
+        EmbeddedChannel c=new EmbeddedChannel();try{
+            Native950ActionBar bar=new Native950ActionBar();
+            for(int id:new int[]{19254,19251}){
+                bar.cooldown(c,id,100,100);c.flush();assertNotNull(c.readOutbound());
+                bar.refreshCooldown(c,id,130,70);c.flush();assertNull(c.readOutbound());
+            }
+        }finally{c.finishAndReleaseAll();}
+    }
+    @Test public void unlockedWorkspaceBarCanBeDraggedOffButLockedOrUnrelatedDropsCannotClear(){
+        EmbeddedChannel c=new EmbeddedChannel();try{
+            Player p=Player.createNative950("drag-test",new WorldTile(3200,3200,0),c);
+            p.getInterfaceManager().registerNativeOpen(1477,0,0);
+            Native950ActionBar bar=p.getNative950ActionBar();bar.testBar(c);int original=bar.slot(0,0);
+            int hash=(1430<<16)|270;
+            byte[] button={(byte)255,(byte)255,(byte)255,(byte)(hash>>>16),(byte)(hash>>>24),(byte)hash,(byte)(hash>>>8),(byte)255,(byte)255};
+            Native950Actions.InterfaceAction lock=(Native950Actions.InterfaceAction)Native950Actions.decode(18,button);
+            assertTrue(bar.button(p,c,lock));bar.drag(p,c,drop(-1));assertEquals(original,bar.slot(0,0));
+            assertTrue(bar.button(p,c,lock));bar.drag(p,c,drop((1473<<16)|5));assertEquals(original,bar.slot(0,0));
+            bar.drag(p,c,drop(-1));assertEquals(0,bar.slot(0,0));
+            bar.testBar(c);bar.drag(p,c,drop((1477<<16)|18));assertEquals(0,bar.slot(0,0));
+        }finally{c.finishAndReleaseAll();}
+    }
+    private static Native950Actions.DragAction drop(int target){
+        int source=(1430<<16)|65;byte[] b=new byte[18];Arrays.fill(b,(byte)255);
+        b[2]=(byte)(source>>>8);b[3]=(byte)source;b[4]=(byte)(source>>>24);b[5]=(byte)(source>>>16);
+        b[11]=(byte)(target>>>16);b[12]=(byte)(target>>>24);b[13]=(byte)target;b[14]=(byte)(target>>>8);
+        return (Native950Actions.DragAction)Native950Actions.decode(12,b);
     }
     private static boolean hasPacket(List<Native950Packets.Packet> packets,Native950Packets.Packet expected){
         for(Native950Packets.Packet actual:packets)if(actual.type()==expected.type()&&Arrays.equals(actual.payload(),expected.payload()))return true;

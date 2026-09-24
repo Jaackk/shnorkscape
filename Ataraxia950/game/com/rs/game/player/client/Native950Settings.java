@@ -260,7 +260,7 @@ public final class Native950Settings {
         // Row selection is also the slider's source authority. Observe unrelated
         // rows to revoke it, without changing those client-local preferences.
         channel.write(Native950Packets.interfaceEvents(365,19,0,65534,mask));
-        channel.write(Native950Packets.interfaceEvents(365,20,0,13,mask));
+        channel.write(Native950Packets.interfaceEvents(365,20,0,18,mask));
         channel.write(Native950Packets.interfaceEvents(365, 19, 10240, 10242, mask));
         channel.write(Native950Packets.interfaceEvents(365, 19, 10247, 10250, mask));
         channel.write(Native950Packets.interfaceEvents(365, 19, 15872, 15872, mask));

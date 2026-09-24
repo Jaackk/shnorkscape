@@ -1,0 +1,14 @@
+{
+  "status": "AUTOMATED VERIFIED; LIVE TEST PENDING",
+  "junit": {
+    "tests": 1538,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2
+  },
+  "pairedCacheChecks": 1857,
+  "bridgeTests": 3,
+  "serverRestarted": false,
+  "liveReport": "Action Bar Binding options do not save; capture session-20260924-050959-230-jaxa",
+  "report": "docs/PREDEV-CLEANUP-20260924.md"
+}

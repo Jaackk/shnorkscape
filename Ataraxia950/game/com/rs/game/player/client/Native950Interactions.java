@@ -1828,6 +1828,10 @@ public final class Native950Interactions {
         rememberChangedSlots(displayedInventory, state, changedInventorySlots);
         displayedInventory = state;
         channel.write(Native950Packets.inventoryFull(INVENTORY_CONTAINER, false, state.ids, state.amounts));
+        // Native selected-item target bit8 admits player targets. Only crackers expose it;
+        // every snapshot restores ordinary masks on slots that no longer hold a cracker.
+        for(int slot=0;slot<state.ids.length;slot++)channel.write(Native950Packets.interfaceEvents(
+                BACKPACK_INTERFACE,BACKPACK_ITEMS,slot,slot,Native950InventoryMenu.eventsForItem(state.ids[slot])));
     }
     private void sendBank() {
         Native950Containers.Snapshot state = containers.bankSnapshot();

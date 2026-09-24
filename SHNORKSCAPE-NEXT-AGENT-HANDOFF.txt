@@ -1,3 +1,17 @@
+SHNORKSCAPE - FINAL PRE-DEV CLEANUP 2026-09-24 (LATEST)
+
+Read docs/PREDEV-CLEANUP-20260924.md first. Preserve latest live passes.
+Binding settings LIVE FAIL: choices did not save in 05:09-05:11 capture.
+Candidate adds a scoped CS5591 row/value bridge (native slider contract),
+not the discarded CS3082/count-packet hypothesis. Physical test pending.
+Also: dormant soul buff timer in combat; field cooldown redraw correction;
+safe bank-and-equip quick Best gear without food; cracker player target bit;
+unlocked bar drag-off with native lock handling. No restart/deploy.
+1538 tests / 0 failures / 2 skips;1857 paired-cache checks;3 bridge tests PASS.
+All new visual/physical paths LIVE TEST PENDING; do not claim live fixes.
+Developer Console/world editor is not implemented in this cleanup candidate.
+Follow the requested cleanup live gate, then continue its separate prompt.
+
 SHNORKSCAPE - ALMIGHTY / DM MOVEMENT 2026-09-24 (LATEST)
 
 Read docs/DEVELOPER-MOVEMENT-20260924.md and developer-movement validation.

@@ -40,6 +40,11 @@ final class Native950ContentCommands {
             default:return -1;
         }
     }
+    static Native950DeveloperLoadouts.Loadout quickLoadout(Native950DeveloperLoadouts.Loadout source){
+        Item[] supplies=new Item[28];int at=0;
+        for(Item item:source.inventory)if(item!=null&&!quickFood(item.getId()))supplies[at++]=new Item(item.getId(),item.getAmount());
+        return new Native950DeveloperLoadouts.Loadout(source.name+" (no food)",supplies,source.equipment);
+    }
     static Item[] quickItems(Native950DeveloperLoadouts.Loadout loadout){
         List<Item> out=new ArrayList<>();
         for(Item[] source:new Item[][]{loadout.equipment,loadout.inventory})for(Item item:source)
@@ -56,7 +61,7 @@ final class Native950ContentCommands {
         String command=args[0];
         if(command.equals("gearhelp")) {
             reply(c,";;melee / ;;range / ;;mage / ;;necro: the library Best loadouts, without food.");
-            reply(c,"Equipment and supplies go to your backpack; old *gear aliases still work.");
+            reply(c,"Previous items are safely banked, then Best gear is equipped; old *gear aliases still work.");
             reply(c,";;weapons: high-tier weapons for all four styles. ;;gear melee|mage|range|necro|weapons.");
             reply(c,";;search <item name> [page]; ;;findnpc <NPC name> [page]. Pages show 10 IDs.");
             reply(c,";;npc <id> [1-50] is one-life; ;;npcrepeat <id> [1-50] respawns; ;;npc <name> lists IDs.");
@@ -90,6 +95,8 @@ final class Native950ContentCommands {
         }
         String name=command.equals("gear")?(args.length==2?args[1]:""):command;
         if(!command.equals("gear")&&args.length!=1){reply(c,"Use ;;gearhelp for the available kits.");return;}
+        int style=bestStyle(name);
+        if(style>=0){reply(c,Native950DeveloperLoadouts.apply(p,quickLoadout(Native950DeveloperLoadouts.builtins().get(style))));return;}
         Item[] items=kit(name);
         if(items==null||(!command.equals("gear")&&args.length!=1)){reply(c,"Use ;;gear melee|mage|range|necro|weapons or ;;gearhelp.");return;}
         for(Item item:items)if(Native950Skilling.itemType(p,item.getId())==null){reply(c,"This cache cannot supply kit item "+item.getId()+". Nothing added.");return;}
