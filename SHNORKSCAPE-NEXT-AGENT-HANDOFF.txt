@@ -9,7 +9,12 @@ Backend and native refresh preserved. No speculative delay or forced redraw.
 Focused tests and isolated full startup cache preflight PASS. Physical fresh-open
 Vulkan remains LIVE TEST PENDING, not proven by offline tests.
 User's cs8286 diagnostic closed console through command dispatcher; invalid probe.
-No installation/restart performed. Source and staging checkpoint recorded below.
+No installation/restart performed. Source295b68b pushed/remote verified. Staged25-file candidate
+combat-live-successor-dev-ready-20260924; CheckOnly and5installer fixtures PASS.
+Full1556 tests0failures/errors2existing skips;6script/pin checks PASS.
+Apply Staged Update.cmd points to this successor. Startup reference0CD7E764...
+and native8286 dc9e373c...; all launch gates and both consumers pinned.
+Running server44292 (13:43:13) and live cache/jar unchanged.
 
 LAUNCH PREFLIGHT HOTFIX 2026-09-24 13:34 - LATEST
 User applied console successor; startup rejected script8286 because Settings

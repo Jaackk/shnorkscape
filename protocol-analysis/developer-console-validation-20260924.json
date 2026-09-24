@@ -1,28 +1,28 @@
 {
-  "status": "AUTOMATED VERIFIED; physical backend path CONFIRMED LIVE after diagnostic redraw; successor startup/layout LIVE TEST PENDING",
+  "status": "AUTOMATED VERIFIED; previous readiness successor LIVE FAIL; new fresh-open Vulkan LIVE TEST PENDING",
   "regression": {
-    "tests": 1555,
+    "tests": 1556,
     "failures": 0,
     "errors": 0,
     "skipped": 2
   },
-  "nativeScripts": "4 Python contract/VM tests PASS, including scoped native-ready notification and original management body preservation",
-  "cacheReference": "Production JS5 reader verifies seven replacement payloads and all unrelated references unchanged",
+  "nativeScripts": "5 native script/VM checks and 1 shared pin check PASS; real component type, mounted/absent/cleared marker, original body preservation",
+  "cacheReference": "Production JS5 reader verifies seven replacements and new helper21130; unrelated references unchanged",
   "worldAcceptance": "Isolated actual-cache world-thread probe passed NPC/object placement, registration/ownership, undo/redo, rotation, save, temporary cleanup and persistent delete; no network listener or character save",
   "remaining": [
-    "Successor native-ready startup and revised layout require physical Vulkan acceptance after user-applied update",
+    "Fresh-open corrected marker and native title/tab takeover require physical Vulkan acceptance after user-applied update",
     "Retained native800x600 shell, pagination, metadata preview; model/ghost previews, icon-rich navigation and continuous scrolling not implemented",
     "Saved edits must be duplicated before moving/rotating; placement-only undo/redo",
     "Christmas cracker Pull, unlocked bar drag-off and equipment-to-bar binding explicitly deferred"
   ],
-  "deployedJarSha256": "D7B5765D0A52991CF1091619BA60A6D2E8E50B7AFBD695A418572CC16B0809E8",
-  "deployedScriptReferenceSha256": "F3514AE304A825E2670E5157045CF0DEA42B0CBF9B2756608525FCE111BD8AB8",
+  "deployedJarSha256": "1AE14C7CD193DE880232C4E3DD1D6EA91A3480CFA7712ADD4A0F479E5C6C9FEB",
+  "deployedScriptReferenceSha256": "3B6396C1F2514C9C1E3CD9B18DE624D519915A7B9CFCC484A6C4DD4DCB9BF8D2",
   "serverRestarted": false,
-  "installer": "PASS:24-file CheckOnly, all three launch gates,4 fixture regressions,launch-cache identity test",
+  "installer": "PASS:25-file CheckOnly, all three launch gates,5 installer fixtures and launch identity test",
   "diagnosticCompatibility": "PASS: isolated existing diagnostic NPC/object/occupied-slot/large-footprint/native-wire acceptance (7 encrypted frames)",
-  "candidate": "combat-live-successor-dev-live-20260924",
-  "candidateJarSha256": "1AE14C7CD193DE880232C4E3DD1D6EA91A3480CFA7712ADD4A0F479E5C6C9FEB",
-  "sourceCommit": "3477576d4bc37d57d7d2fff1ab4a7c72a058199a",
+  "candidate": "combat-live-successor-dev-ready-20260924",
+  "candidateJarSha256": "D1DAAC935C53AC0580A5AA775C5B2353914A958D315DF54E79A60A519DC96D6C",
+  "sourceCommit": "295b68b6f8e3350bad668bdbac66c066464a8826",
   "physicalAcceptance": [
     "07:13 Heal selected and Execute clicked: authoritative heal handler and visible result",
     "07:14 native search ID1 returned Man; result selected",
@@ -39,5 +39,13 @@
     },
     "sharedPinRegression": "PASS: original native body verified and both script8286 pins match",
     "fullStartupPreflight": "PASS with ataraxia.native.verifyCache=true; rebuilt jar against installed cache; no server start"
+  },
+  "readinessCorrection": {
+    "liveFailure": "13:46-13:48 blank shell, awaiting-native-ready without acknowledgement; god also fails",
+    "invalidDiagnostic": "cs8286 closes console in command dispatcher before script; cannot isolate callback",
+    "rootCause": "Marker stored on container1477:713 is unreadable through native text getter; IF_SETTEXT also defers changes",
+    "fix": "CS21130 synchronously writes hidden type4 text1448:14 before varc2911; guarded bridge reads it; close/placement clear synchronously",
+    "fullStartupPreflight": "PASS with verifyCache=true, rebuilt jar and isolated successor cache; logs/cache-preflight-dev-ready-20260924.log",
+    "liveAcceptance": "PENDING; user must apply and test fresh-open without extra actions"
   }
 }
