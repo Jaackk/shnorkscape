@@ -90,7 +90,7 @@ public class Native950SettingsTest {
         assertFalse(settings.handle(button(365,20,0,-1,1)));
         java.util.Map<String,Integer> saved=new java.util.HashMap<>();player.getNative950ActionBar().writeSettings(saved);
         Native950ActionBar restored=new Native950ActionBar();restored.restore(saved);
-        assertEquals(14,restored.revolutionSlots());assertEquals(30,saved.size());
+        assertEquals(14,restored.revolutionSlots());assertEquals(33,saved.size());
     }
 
     @Test public void aCacheMismatchCannotMutateOrWriteAnOpen() {

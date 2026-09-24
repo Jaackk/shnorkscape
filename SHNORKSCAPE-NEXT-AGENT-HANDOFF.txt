@@ -1,3 +1,30 @@
+SHNORKSCAPE - FOCUSED COMBAT/QOL 2026-09-24 (LATEST)
+
+Read docs/AI-ENGINEERING-WORKFLOW.md, docs/COMBAT-QOL-20260924.md,
+protocol-analysis/combat-qol-validation-20260924.json, updated canonical matrix,
+and docs/COMBAT-QOL-LIVE-CHECKLIST-20260924.md. One primary agent. No dev UI.
+
+LATEST LIVE PASS: keybind/context24; long queue/ring/autoexecute; Revolution
+reasonable; Surge and chosen-tile Dive movement AND animation; Death Skulls;
+Entropic5; soul world visuals/conduit/Necrosis/Overload; conjure movement,
+Examine, Skeleton attacks and spawn/death; Sunshine/Swiftness substantial;
+native buffs, Berserk, Volley, comp substantial. Preserve these.
+
+SUCCESSOR AUTOMATED VERIFIED / LIVE TEST PENDING: combat-stance soul expiry;
+exact Living Death30268 player morph/cleanup; cooldown refresh epoch; native
+numeric timers/default Top Right; persisted equipment binding for four main
+bars; resource-command combat preservation; shared Best gear aliases without
+food; authoritative two-player cracker; native Shift-drop setting.
+1532 tests, zero failures/errors, two skipped;1778 paired-cache checks passed.
+No restart/deploy; stage through Apply Staged Update.cmd.
+
+INTENTIONAL RULE: equipment/style swaps never clear/truncate stored souls.
+Consumers still require proper equipment. Regression coverage protects this.
+UNRESOLVED: physical Strength book omission (cache contains canonical entries),
+Ghost attack assets, general native render priority. No speculative IDs or
+visibility hacks. No additional Swiftness minor polish claimed. Settings UI
+and morph visual require Vulkan acceptance. Older reports below are history.
+
 SHNORKSCAPE - COMBAT / NECROMANCY POLISH2 2026-09-24 (LATEST)
 
 Read docs/COMBAT-LIVE-POLISH2-20260924.md, updated canonical matrix,

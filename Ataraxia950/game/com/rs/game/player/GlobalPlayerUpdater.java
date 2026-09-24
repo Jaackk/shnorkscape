@@ -51,6 +51,13 @@ public class GlobalPlayerUpdater implements Serializable {
     private transient byte[] appeareanceData;
     private transient byte[] md5AppeareanceDataHash;
     private transient short transformedNpcId;
+    private transient boolean native950LivingDeath;
+    public boolean isNative950LivingDeath(){return native950LivingDeath;}
+    public void setNative950LivingDeath(boolean active){
+        if(active&&!com.rs.game.player.client.Native950LivingDeathAppearance.verified())return;
+        if(native950LivingDeath==active)return;
+        native950LivingDeath=active;generateAppearenceData();
+    }
     private transient short transformedItemId;
     private transient boolean hidePlayer;
     private transient Player player;
@@ -256,6 +263,11 @@ public class GlobalPlayerUpdater implements Serializable {
         if (title != -1)
             stream.writeSmart(title);
         stream.writeByte(hidePlayer ? 1 : 0);
+        // Exact950 reader0x140131cb8 / 0x140131eba: slot0 sentinel1, big-smart NPC,
+        // render type byte; morphs skip remaining slots AND item-customisation mask.
+        if(native950LivingDeath){
+            writeWearposSlot(stream,1);stream.writeBigSmart(30268);stream.writeByte(0);
+        }else {
         for (int slot = 0; slot < NATIVE947_SLOT_COUNT; slot++) {
             if (wearPositions[slot] == 1)
                 continue;
@@ -270,6 +282,7 @@ public class GlobalPlayerUpdater implements Serializable {
                 writeWearposSlot(stream, 0);
         }
         stream.writeShort(0); // no item model / recolour customization blocks
+        }
         for (int index = 0; index < colour.length; index++)
             stream.writeByte(colour[index]);
         for (int index = 0; index < 10; index++)

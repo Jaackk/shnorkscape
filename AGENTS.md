@@ -22,3 +22,7 @@ files in this project. This includes code, configuration, scripts and docs.
 
 Protect Jaxa's character. Do not alter unrelated games or their worlds. This rule
 is agent guidance, not an OS-level lock against manual or external edits.
+
+# Mandatory engineering workflow
+
+Read and follow [docs/AI-ENGINEERING-WORKFLOW.md](docs/AI-ENGINEERING-WORKFLOW.md) for every implementation pass. Default to one primary agent, preserve live-passed systems, verify meaningful checkpoints remotely, and stage without silently deploying or restarting. The pre-edit backup rules above remain mandatory.

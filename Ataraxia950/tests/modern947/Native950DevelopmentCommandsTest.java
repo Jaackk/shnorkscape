@@ -8,6 +8,9 @@ public class Native950DevelopmentCommandsTest {
     @Test public void bugTestControlsArePassiveDiagnostics() {
         assertTrue(Native950DevelopmentCommands.preservesGameplay(";;bug animation missing"));
         assertTrue(Native950DevelopmentCommands.preservesGameplay("::bugtest"));
+        for(String command:new String[]{"heal","refill","infadren","infprayer","infrun","infrunes","infammo","adrenaline 75","almighty","god"})
+            assertTrue(command,Native950DevelopmentCommands.preservesGameplay(";;"+command));
+        assertFalse(Native950DevelopmentCommands.preservesGameplay(";;disengage"));
         assertFalse(Native950DevelopmentCommands.preservesGameplay(";;dummy"));
         assertFalse(Native950DevelopmentCommands.preservesGameplay("hello"));
     }

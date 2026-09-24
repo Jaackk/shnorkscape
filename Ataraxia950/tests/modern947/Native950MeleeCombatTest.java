@@ -37,6 +37,16 @@ public class Native950MeleeCombatTest {
         combat.attach(player);combat.register(npc,profile(50,10,3));
     }
     @After public void cleanup(){combat.clear();channel.finishAndReleaseAll();}
+    @Test public void incomingCombatStanceSurvivesCancellingOurAttack(){
+        assertFalse(combat.hasCombatEngagement(player));
+        player.setAttackedByDelay(com.rs.utils.Utils.currentTimeMillis()+6000);
+        combat.cancelAttack(player);assertTrue(combat.hasCombatEngagement(player));
+        player.setAttackedByDelay(com.rs.utils.Utils.currentTimeMillis()-6001);
+        assertFalse(combat.hasCombatEngagement(player));
+        player.setAttackingDelay(com.rs.utils.Utils.currentTimeMillis()+6000);
+        assertTrue(combat.hasCombatEngagement(player));player.setHitpoints(0);
+        assertFalse(combat.hasCombatEngagement(player));
+    }
     @Test public void anticipationNeedsNoTargetAndFreedomClearsStunAndFreeze(){
         player.getSkills().set(Skills.DEFENCE,99);
         player.getCombatDefinitions().setSpecialAttackPercentage(0);

@@ -36,7 +36,7 @@ public final class Native950AdminCommands {
                     entry(";;bug <description>", "record a marked state snapshot and queue a game-window screenshot"),
                     entry(";;combatqa [stop|status|reset|cleanup]", "record and manage an automatic combat flight-recorder session")),
             group("GEAR & ITEMS", "86efac", "d9f99d",
-                    entry(";;meleegear, ;;magegear, ;;rangegear / ;;ragegear, ;;necrogear", "add a high-tier combat kit"),
+                    entry(";;melee, ;;mage, ;;range, ;;necro", "library Best gear and supplies, no food; old *gear aliases supported"),
                     entry(";;weapons, ;;gear melee|mage|range|necro|weapons, ;;gearhelp", "choose a kit or show its contents"),
                     entry(";;item <id> [amount]", "add an item by cache ID"),
                     entry(";;bank", "open your bank"),

@@ -38,6 +38,7 @@ public final class Native950ActionBar {
     static final int DISPLAY_MODE_VARBIT=27893;
     private final int[][] bars=new int[BARS][SLOTS];
     private int activeBar;
+    final Native950CombatPreferences preferences=new Native950CombatPreferences();
     private boolean revolutionEnabled;
     // CS2526 + DB row1306: native checkboxes store disable flags, with param7524 inversion.
     private int revolutionDisabledTiers;
@@ -50,10 +51,10 @@ public final class Native950ActionBar {
         for(int i=0;i<SLOTS;i++)settings.remove("actionBar."+i);
         for(int bar=0;bar<BARS;bar++)for(int pair=0;pair<SLOTS/2;pair++)
             settings.put("actionBar."+bar+"."+pair,savePair(bars[bar][pair*2],bars[bar][pair*2+1]));
-        settings.put("actionBar.active",activeBar);
+        settings.put("actionBar.active",preferences.save(settings,activeBar));
         // Preserve the bounded save-key count and old 0/1 values. Zero range means legacy nine.
         settings.put("actionBar.revolution",(revolutionEnabled?1:0)|(revolutionDisabledTiers<<1)
-                |((revolutionSlots==9?0:revolutionSlots)<<5));
+                |((revolutionSlots==9?0:revolutionSlots)<<5)|(preferences.flags()<<9));
     }
     public void restore(Map<String,Integer> settings){
         boolean compact=settings.containsKey("actionBar.0.0");
@@ -62,9 +63,11 @@ public final class Native950ActionBar {
             bars[bar][pair*2]=loadValue(value&65535);
             bars[bar][pair*2+1]=loadValue(value>>>16);
         }
-        activeBar=Math.max(0,Math.min(BARS-1,settings.getOrDefault("actionBar.active",0)));
+        int savedActive=settings.getOrDefault("actionBar.active",0);
+        activeBar=settings.containsKey("actionBar.binding.0")?savedActive&3:Math.max(0,Math.min(BARS-1,savedActive));
         int revo=settings.getOrDefault("actionBar.revolution",0);
-        if(revo<0||revo>511)revo=0;
+        preferences.restore(settings,settings.containsKey("actionBar.binding.0")?savedActive:activeBar,revo>>>9);
+        revo&=511;
         revolutionEnabled=(revo&1)!=0;revolutionDisabledTiers=(revo>>>1)&15;
         int range=(revo>>>5)&15;revolutionSlots=range>=1&&range<=14?range:9;
     }
@@ -122,6 +125,7 @@ public final class Native950ActionBar {
     static String name(int packed){int id=struct(packed);return id<0?null:RS3GeneralRequirementMap.getMap(id).getStringValue(2794);}
     public void bootstrap(Player p,Channel c){
         enableBooks(c);
+        preferences.sync(p,c);
         // Native8426 hide-unavailable filters: expose entries, without granting unlocks
         // or weakening the server's equipment/level/execution validation.
         c.write(Native950Packets.varbitSmall(44637,0));c.write(Native950Packets.varbitSmall(27344,0));
@@ -339,7 +343,12 @@ public final class Native950ActionBar {
         send.accept(Native950Packets.varbitSmall(38639,revolutionSlots));
         for(int i=0;i<4;i++)send.accept(Native950Packets.varbitSmall(REVOLUTION_TIER_BITS[i],(revolutionDisabledTiers>>>i)&1));
     }
-    void cooldown(Channel c,int structure,int currentCycle,int duration){c.write(Native950Packets.runClientScript(6570,structure,currentCycle,currentCycle+duration,1,1));}
+    void cooldown(Channel c,int structure,int currentCycle,int duration){publishCooldown(c,structure,currentCycle,duration,true);}
+    // CS6570 argument3 stamps the client's start cycle. A redraw must preserve that epoch.
+    void refreshCooldown(Channel c,int structure,int currentCycle,int duration){publishCooldown(c,structure,currentCycle,duration,false);}
+    private void publishCooldown(Channel c,int structure,int currentCycle,int duration,boolean start){
+        c.write(Native950Packets.runClientScript(6570,structure,currentCycle,currentCycle+duration,start?1:0,1));
+    }
     /** Listener1430:{70,83,...239} calls CS5899(slot,1003,overlay71+13*i). */
     void queueVisual(Player player,int structure){
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);

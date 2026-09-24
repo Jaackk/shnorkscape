@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-24",
+  "baseline": "74a3416aa6677fcfb3d658109ad0a451f85fa7a4",
+  "status": "AUTOMATED VERIFIED; LIVE TEST PENDING",
+  "unitRegression": {
+    "tests": 1532,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2
+  },
+  "cacheAcceptance": {
+    "checks": 1778,
+    "result": "PASS",
+    "runner": "tools/combat-pass/Native950CombatQolAcceptance.java"
+  },
+  "serverRestarted": false,
+  "runtimeModified": false,
+  "unresolved": [
+    "Melee Strength book live membership",
+    "Ghost attack presentation",
+    "General entity scene priority",
+    "Additional Swiftness minor presentation"
+  ]
+}

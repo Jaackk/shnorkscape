@@ -27,11 +27,17 @@ public final class Native950DevelopmentCommands {
                 || command.equals("areascan") || command.equals("areastop") || command.equals("layoutfixture")
                 || command.equals("open") || command.equals("unhide") || command.equals("events") || command.equals("guideclose") || command.equals("cs") || command.equals("varbit") || command.equals("varc");
     }
-    /** Bug Test controls are observational and must never interrupt an active manual test. */
+    /** Diagnostics and resource-only commands preserve targets, Revolution and the manual queue. */
     public static boolean preservesGameplay(String text) {
         if (text == null || !(text.startsWith("::") || text.startsWith(";;"))) return false;
         String command = text.substring(2).trim().toLowerCase(Locale.ROOT).split("\\s+", 2)[0];
-        return command.equals("bug") || command.equals("bugtest") || command.equals("combatqa") || command.equals("queuehold");
+        switch(command){
+            case "bug": case "bugtest": case "combatqa": case "queuehold":
+            case "heal": case "refill": case "infadren": case "infprayer":
+            case "infrun": case "infrunes": case "infammo": case "adrenaline":
+            case "almighty": case "god": return true;
+            default: return false;
+        }
     }
     public static boolean allowed(boolean enabled, ClientProfile profile, SocketAddress remote) {
         if (!enabled || profile != ClientProfile.NATIVE_950 || !(remote instanceof InetSocketAddress)) return false;

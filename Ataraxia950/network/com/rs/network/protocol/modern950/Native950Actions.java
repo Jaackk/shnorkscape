@@ -102,7 +102,7 @@ public final class Native950Actions {
     /** Selected inventory/UI item used on another item. Native sender0x1400e2c8d, size18. */
     private static final int ITEM_ON_ITEM_OPCODE = 69;
     /** Selected inventory/UI item targets an object or NPC; native writers cited below. */
-    private static final int ITEM_ON_OBJECT_OPCODE = 90, ITEM_ON_NPC_OPCODE = 19;
+    private static final int ITEM_ON_OBJECT_OPCODE = 90, ITEM_ON_NPC_OPCODE = 19, ITEM_ON_PLAYER_OPCODE = 102;
     /** Selected component on a ground tile, size13; exact950 writer0x1400e4e34..0x1400e4f5b. */
     private static final int INTERFACE_ON_TILE_OPCODE = 85;
 
@@ -168,6 +168,7 @@ public final class Native950Actions {
         if (opcode == ITEM_ON_ITEM_OPCODE) return decodeItemOnItem(payload);
         if (opcode == ITEM_ON_OBJECT_OPCODE) return decodeItemOnObject(payload);
         if (opcode == ITEM_ON_NPC_OPCODE) return decodeItemOnNpc(payload);
+        if (opcode == ITEM_ON_PLAYER_OPCODE) return decodeItemOnPlayer(payload);
         if (opcode == INTERFACE_ON_TILE_OPCODE) return decodeInterfaceOnTile(payload);
         int option = option(INTERFACE_OPCODES, opcode);
         if (option != 0) return decodeInterface(option, payload);
@@ -218,7 +219,7 @@ public final class Native950Actions {
 
     public static boolean isImplemented(int opcode) {
         return opcode == WALK_OPCODE || opcode == MINIMAP_WALK_OPCODE || opcode == DRAG_OPCODE || opcode == ITEM_ON_ITEM_OPCODE
-                || opcode == ITEM_ON_OBJECT_OPCODE || opcode == ITEM_ON_NPC_OPCODE
+                || opcode == ITEM_ON_OBJECT_OPCODE || opcode == ITEM_ON_NPC_OPCODE || opcode == ITEM_ON_PLAYER_OPCODE
                 || opcode == INTERFACE_ON_TILE_OPCODE
                 || option(INTERFACE_OPCODES, opcode) != 0 || option(OBJECT_OPCODES, opcode) != 0
                 || option(NPC_OPCODES, opcode) != 0 || option(PLAYER_OPCODES, opcode) != 0
@@ -247,7 +248,7 @@ public final class Native950Actions {
      */
     public static int[] implementedOpcodes() {
         int[] all = new int[INTERFACE_OPCODES.length + OBJECT_OPCODES.length + NPC_OPCODES.length
-                + PLAYER_OPCODES.length + GROUND_ITEM_OPCODES.length + 20];
+                + PLAYER_OPCODES.length + GROUND_ITEM_OPCODES.length + 21];
         int at = 0;
         for (int opcode : INTERFACE_OPCODES) all[at++] = opcode;
         for (int opcode : OBJECT_OPCODES) all[at++] = opcode;
@@ -259,7 +260,7 @@ public final class Native950Actions {
                 NAME_DIALOGUE_OPCODE, PAUSE_BUTTON_OPCODE, CLOSE_MODAL_OPCODE,
                 MESSAGE_PUBLIC_OPCODE, MESSAGE_PRIVATE_OPCODE, MUSIC_ENDED_OPCODE,
                 WINDOW_REPORT_OPCODE, MAP_BUILD_REPORT_OPCODE, WORLDLIST_FETCH_OPCODE, ITEM_ON_ITEM_OPCODE,
-                ITEM_ON_OBJECT_OPCODE, ITEM_ON_NPC_OPCODE, INTERFACE_ON_TILE_OPCODE};
+                ITEM_ON_OBJECT_OPCODE, ITEM_ON_NPC_OPCODE, ITEM_ON_PLAYER_OPCODE, INTERFACE_ON_TILE_OPCODE};
         for (int opcode : singles) all[at++] = opcode;
         Arrays.sort(all);
         return all;
@@ -500,6 +501,17 @@ public final class Native950Actions {
      * b0..1 NPC index BE; b2..4 selected item LE24; b5 modifierNeg;
      * b6..7 selected slot LE; b8..11 selected hash BE32.
      */
+    /** Exact950 writer0x1400e6a60, descriptor0x140e94940: negated modifier,
+     * targetBE128, selected slotBE128, itemBE24, component intV1. */
+    private static ItemOnPlayerAction decodeItemOnPlayer(byte[] p){
+        if(p==null||p.length!=12)return null;
+        int modifier=(-p[0])&255;if(modifier>1)return null;
+        int target=((p[1]&255)<<8)|((p[2]-128)&255);
+        int slot=((p[3]&255)<<8)|((p[4]-128)&255);
+        int item=((p[5]&255)<<16)|((p[6]&255)<<8)|(p[7]&255);
+        int hash=((p[8]&255)<<8)|(p[9]&255)|((p[10]&255)<<24)|((p[11]&255)<<16);
+        return new ItemOnPlayerAction(hash,sentinel16(slot),sentinel24(item),target,modifier);
+    }
     private static ItemOnNpcAction decodeItemOnNpc(byte[] p) {
         if (p == null || p.length != 12) return null;
         int index = shortBE(p, 0);
@@ -787,6 +799,10 @@ public final class Native950Actions {
             return a.sourceHash != fromHash ? action
                     : new ItemOnObjectAction(toHash, a.sourceSlot, a.sourceItemId, a.objectId, a.x, a.y, a.modifier);
         }
+        if (action instanceof ItemOnPlayerAction) {
+            ItemOnPlayerAction a=(ItemOnPlayerAction)action;
+            return a.sourceHash!=fromHash?action:new ItemOnPlayerAction(toHash,a.sourceSlot,a.sourceItemId,a.index,a.modifier);
+        }
         if (action instanceof ItemOnNpcAction) {
             ItemOnNpcAction a = (ItemOnNpcAction) action;
             return a.sourceHash != fromHash ? action
@@ -921,6 +937,20 @@ public final class Native950Actions {
     }
 
     /** A selected component item targets a published NPC index; the world resolves that index. */
+    public static final class ItemOnPlayerAction implements Action {
+        private final int sourceHash, sourceSlot, sourceItemId, index, modifier;
+        private ItemOnPlayerAction(int hash, int slot, int item, int index, int modifier) {
+            sourceHash = hash; sourceSlot = slot; sourceItemId = item;
+            this.index = index; this.modifier = modifier;
+        }
+        public int sourceHash() { return sourceHash; }
+        public int sourceInterfaceId() { return sourceHash >>> 16; }
+        public int sourceComponentId() { return sourceHash & 65535; }
+        public int sourceSlot() { return sourceSlot; }
+        public int sourceItemId() { return sourceItemId; }
+        public int index() { return index; }
+        public int modifier() { return modifier; }
+    }
     public static final class ItemOnNpcAction implements Action {
         private final int sourceHash, sourceSlot, sourceItemId, index, modifier;
         private ItemOnNpcAction(int hash, int slot, int item, int index, int modifier) {

@@ -1,0 +1,18 @@
+# Cost-efficient engineering workflow
+
+Mandatory sequence: BASELINE -> IMPLEMENT -> VERIFY -> REPAIR IF NEEDED -> REGRESSION -> GIT CHECKPOINT -> STAGE -> LIVE TEST IF REQUIRED.
+
+Default to ONE capable primary agent. It implements, reviews gameplay fidelity, reviews engineering/adversarial failure cases, runs focused tests and repairs findings. Do not automatically create implementation, fidelity, engineering and repair agents. For medium work, optionally use one reviewer only when valuable. For large/high-risk shared infrastructure, one primary and one independent reviewer normally suffice. More agents are exceptional, or for genuinely independent content work. Before spawning ask: "Will this likely save more tokens/time than it costs?" If uncertain, do not spawn. Optimize verified progress per token, not agent count.
+
+1. **Baseline:** Read AGENTS.md, latest handoff, relevant matrices, latest live findings and Git/deployment rules first. Do not rediscover solved research or reopen live-passed foundations without contradictory evidence. Record scoped acceptance criteria. Follow the mandatory pre-edit remote backup and local excluded-file snapshots.
+2. **Implement:** Group symptoms by shared root cause before adding individual fixes. Exact revision950 cache/client contracts govern numeric IDs, packet/UI semantics and assets. Routinely use RuneScape Wiki for gameplay semantics; consult local Ataraxia/Undercut/Darkan/Vernox/Matrix-family and public RSPS sources selectively. References begin read-only; never blindly merge or copy old-revision IDs. User-authorized gameplay differences supersede retail references.
+3. **Verify:** Primary agent checks fidelity against evidence, then adversarial engineering concerns: stale input, ownership, failure/rollback, persistence, multiplayer and lifecycle cleanup. Run focused tests during development. A test must probe behaviour, not merely repeat implementation. Packet/cache checks do not prove Vulkan rendering.
+4. **Repair:** Fix concrete findings, retest affected paths, and preserve accepted behaviour. Prefer a short physical Vulkan test to prolonged speculative appearance research. Clearly record anything unproven instead of inventing IDs or claiming completeness.
+5. **Regression:** Run the expensive full suite at coherent milestones, plus relevant protected-system checks. Do not repeatedly rerun unchanged broad suites. Preserve saves, bank/library, LAN and workspace durability.
+6. **Git checkpoint:** Make meaningful checkpoints, push and verify the remote SHA. Never force-push shared history or upload credentials, saves, proprietary cache/client assets. Keep rollback artifacts for excluded runtime changes.
+7. **Stage:** Package one coherent, hash-pinned candidate through Apply Staged Update.cmd. Validate the installer in check-only mode. Preserve rollback. Implement/verify/checkpoint/stage does not authorize silent deployment or restart.
+8. **Live acceptance:** Use one concise checklist limited to changed or directly affected behaviour. Distinguish LIVE VERIFIED, AUTOMATED VERIFIED, PARTIAL and UNRESOLVED; add LIVE TEST PENDING where appropriate. Update handoff/matrix with results and known gaps. Do not call damage-only abilities fully presented.
+
+## Future reference-project audit
+
+When Artaven's revision950/OpenNXT project arrives, first perform a bounded capability audit, not an exhaustive read/port. Classify findings as: better in SHNORKSCAPE; better in reference; useful evidence; high-value adaptation; incompatible/low value. Select a few high-value shared improvements, prove contracts and preserve existing ownership/lifecycle safeguards. Reference access is read-only until a specific adaptation is authorized.

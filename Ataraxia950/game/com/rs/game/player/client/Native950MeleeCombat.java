@@ -264,7 +264,7 @@ public final class Native950MeleeCombat {
             int structure=resolveAbility(player,Native950ActionBar.struct(packed));
             if(structure<0||!sent.add(structure))continue;
             long remaining=cooldowns.getOrDefault(structure,0L)-tick;
-            if(remaining>0)player.getNative950ActionBar().cooldown(player.getRealChannel(),structure,cycle,
+            if(remaining>0)player.getNative950ActionBar().refreshCooldown(player.getRealChannel(),structure,cycle,
                     (int)Math.min(Integer.MAX_VALUE,remaining));
         }
     }
@@ -522,6 +522,7 @@ public final class Native950MeleeCombat {
             buffs.apply(player,type,tick,duration,null);
             if(type==Native950CombatBuffs.Type.SUNSHINE)areas.start(player,3856);
             if(type==Native950CombatBuffs.Type.DEATHS_SWIFTNESS)areas.start(player,8996);
+            if(type==Native950CombatBuffs.Type.LIVING_DEATH)player.getAppearence().setNative950LivingDeath(true);
             if(type==Native950CombatBuffs.Type.LIVING_DEATH)for(int reset:new int[]{48296,48314}){
                 abilityCooldowns.get(player).remove(reset);
                 player.getNative950ActionBar().cooldown(player.getRealChannel(),reset,cycle,0);
@@ -637,6 +638,9 @@ public final class Native950MeleeCombat {
     /** Combat membership includes attackers and owned flights, not just the selected action target. */
     boolean hasCombatEngagement(Player p){
         if(!access.player(p)||p.hasFinished()||p.isDead()||p.hasLifecycleTeleport())return false;
+        // Existing shared combat stance includes incoming attacks and the post-hit combat window.
+        // Stopping one's own attack is not the same as leaving combat.
+        if(p.isUnderCombat())return true;
         Fighter selected=targets.get(p);
         if(selected!=null&&engagementNpc(p,selected.npc)&&!selected.npc.isDead()&&!selected.returning
                 &&isAttacking(p,selected))return true;
@@ -1496,6 +1500,7 @@ public final class Native950MeleeCombat {
     }
     boolean isDeathsSwiftnessActive(Player player) {owned();return buffs.active(player,Native950CombatBuffs.Type.DEATHS_SWIFTNESS,tick);}
     private void buffRemoved(Player player,Native950CombatBuffs.Type type){
+        if(type==Native950CombatBuffs.Type.LIVING_DEATH)player.getAppearence().setNative950LivingDeath(false);
         if(type==Native950CombatBuffs.Type.SUNSHINE)areas.remove(player,3856);
         if(type==Native950CombatBuffs.Type.DEATHS_SWIFTNESS)areas.remove(player,8996);
         Native950BugTest.event(player,"combat","effect-removed","effect",type,"tick",tick);

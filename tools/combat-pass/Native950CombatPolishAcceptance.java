@@ -109,7 +109,9 @@ public final class Native950CombatPolishAcceptance {
    check(!f.combat.hasCombatEngagement(f.second),"Engagement leaked to other player");
    equip(f.first,3,false,false);f.cast(f.first,48298);f.step(5);f.combat.cancelAttack(f.first);
    check(f.combat.hasCombatEngagement(f.first),"Stopping personal attacks erased incoming NPC engagement");
-   f.combat.stop(f.first);check(!f.combat.hasCombatEngagement(f.first),"Genuine combat stop retained engagement forever");
+   f.combat.stop(f.first);check(f.combat.hasCombatEngagement(f.first),"Recent incoming/outgoing combat stance was lost");
+   f.first.setAttackedByDelay(0);f.first.setAttackingDelay(0);
+   check(!f.combat.hasCombatEngagement(f.first),"Expired stance retained engagement forever");
   }
  }
  static void conjureExamine(){

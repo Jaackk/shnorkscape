@@ -16,7 +16,7 @@ public class Native950ContentCommandsTest {
         channel=new EmbeddedChannel(){@Override protected SocketAddress remoteAddress0(){return new InetSocketAddress("127.0.0.1",43650);}};
         p=Player.createNative950("gear-test",new WorldTile(3217,3258,0),channel);p.setActive(true);p.setRights(2);
         List<Native950ItemCatalog.Entry> entries=new ArrayList<>();Set<Integer> ids=new HashSet<>();
-        for(String kit:new String[]{"melee","mage","range","necro","weapons"})for(Item item:Native950ContentCommands.kit(kit))
+        for(String kit:new String[]{"weapons"})for(Item item:Native950ContentCommands.kit(kit))
             if(ids.add(item.getId()))entries.add(new Native950ItemCatalog.Entry(item.getId(),"Test item",item.getId()==58036||item.getId()==58041,new String[5]));
         Native950Skilling.attach(p,new Native950Containers(p,new Native950ItemCatalog(entries)));
     }
@@ -29,15 +29,17 @@ public class Native950ContentCommandsTest {
         assertTrue(Native950World.removeExactNpc(roster,second));assertEquals(1,roster.size());assertSame(first,roster.get(0));
         assertFalse(Native950World.removeExactNpc(roster,second));assertSame(first,roster.get(0));
     }
-    @Test public void upgradedGearAddsTheSavedPlayerStyleWithoutReplacingExistingEquipment() {
-        p.getInventory().items.set(0,new Item(51848,1));run(";;meleegear");
-        assertEquals(1,p.getInventory().getAmountOf(51848));assertEquals(1,p.getInventory().getAmountOf(53375));
-        assertEquals(1,p.getInventory().getAmountOf(16403));
-        assertEquals(0,p.getEquipment().getItems().getUsedSlots());
+    @Test public void quickLoadoutsReuseLibraryEquipmentAndSuppliesWithoutFood(){
+        Item[] eq=new Item[19],inv=new Item[28];eq[3]=new Item(16403,1);inv[0]=new Item(42251,1);inv[1]=new Item(556,10000);
+        Item[] quick=Native950ContentCommands.quickItems(new Native950DeveloperLoadouts.Loadout("fixture",inv,eq));
+        assertEquals(2,quick.length);assertEquals(16403,quick[0].getId());assertEquals(10000,quick[1].getAmount());
+        assertEquals(42251,inv[0].getId());assertNotSame(eq[3],quick[0]);
+        for(String[] aliases:new String[][]{{"melee","meleegear"},{"range","rangegear","ragegear"},{"mage","magegear"},{"necro","necrogear"}})
+            for(String alias:aliases)assertEquals(Native950ContentCommands.bestStyle(aliases[0]),Native950ContentCommands.bestStyle(alias));
     }
-    @Test public void fullInventoryNeverGrantsPartialKit() {
+    @Test public void fullInventoryNeverGrantsPartialKit(){
         for(int i=0;i<25;i++)p.getInventory().items.set(i,new Item(51848,1));
-        run(";;rangegear");assertEquals(25,p.getInventory().getItems().getUsedSlots());assertEquals(0,p.getInventory().getAmountOf(9244));
+        run(";;weapons");assertEquals(25,p.getInventory().getItems().getUsedSlots());
     }
     @Test public void searchUsesActual950NamesAndIncludesVariantIdentity() {
         assertTrue(Native950ContentCommands.search(false,"torva full helm").stream().anyMatch(s->s.startsWith("20135: Torva full helm")));
@@ -60,9 +62,8 @@ public class Native950ContentCommandsTest {
         assertTrue(Native950DevelopmentCommands.isCommand(";;items"));
         p.setRights(0);run(";;weapons");assertEquals(28,p.getInventory().getFreeSlots());p.setRights(2);
         run(";;gear unknown");run(";;meleegear extra");run(";;search torva -1");run(";;removenpc bad");
-        assertEquals(28,p.getInventory().getFreeSlots());run(";;gear range");
-        assertEquals(10000,p.getInventory().getAmountOf(58036));
-        assertEquals(10000,p.getInventory().getAmountOf(58041));
+        assertEquals(28,p.getInventory().getFreeSlots());run(";;gear weapons");
+        assertEquals(1,p.getInventory().getAmountOf(16403));
         assertEquals(0,p.getInventory().getAmountOf(9244));
     }
 }

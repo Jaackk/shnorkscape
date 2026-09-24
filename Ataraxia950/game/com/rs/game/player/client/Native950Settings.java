@@ -85,10 +85,12 @@ public final class Native950Settings {
         if(page==GAMEPLAY&&action.interfaceId()==365&&action.componentId()==19){
             // CS10451 first selects its row on19, then CS10450 sends the zero-based value on20.
             // Observe ALL row selections so changing another slider revokes this authority first.
+            if(player.getNative950ActionBar().preferences.select(player,channel,action.slot())){revolutionSliderSelected=false;return true;}
             revolutionSliderSelected=action.slot()==10246;
             if(revolutionSliderSelected)return true;
         }
         if(page==GAMEPLAY&&action.interfaceId()==365&&action.componentId()==20){
+            if(player.getNative950ActionBar().preferences.value(player,channel,action.slot()))return true;
             if(!revolutionSliderSelected||action.slot()<0||action.slot()>=14)return false;
             player.getNative950ActionBar().setRevolutionSlots(action.slot()+1,channel);
             return true;
@@ -235,6 +237,7 @@ public final class Native950Settings {
 
     private void removePage() {
         revolutionSliderSelected=false;
+        player.getNative950ActionBar().preferences.close();
         if (page == GAMEPLAY) pendingCheckboxEvents(0);
         if (page == GRAPHICS) {
             channel.write(Native950Packets.closeSub(1426, 0));

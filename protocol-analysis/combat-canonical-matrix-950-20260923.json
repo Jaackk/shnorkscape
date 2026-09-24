@@ -277,7 +277,7 @@
       "typedParameters": {
         "2793": 14,
         "2794": "Salt the Wound",
-        "2795": "Perform a coup de grÃƒÂ¢ce.",
+        "2795": "Perform a coup de gr\u00c3\u0192\u00c6\u2019\u00c3\u201a\u00c2\u00a2ce.",
         "2796": 25,
         "2798": 150,
         "2799": 2,
@@ -325,7 +325,7 @@
       "reportGroup": "conditional/unresolved",
       "canonicalStatus": "BLOCKED BY UNPROVEN 950 IDENTITY",
       "effectEvidence": {
-        "tooltip": "Perform a coup de grÃƒÂ¢ce.",
+        "tooltip": "Perform a coup de gr\u00c3\u0192\u00c6\u2019\u00c3\u201a\u00c2\u00a2ce.",
         "rawTargetMode": 1,
         "bleed": false,
         "stun": false,
@@ -22400,30 +22400,45 @@
     }
   ],
   "userLiveResults": {
-    "acceptedAt": "2026-09-24 latest user polish request; supporting capture session-20260924-024326-527-jaxa",
+    "acceptedAt": "2026-09-24 cost-efficient workflow / final QoL user report",
     "bankItemsKeybindRecovery": "CONFIRMED LIVE; preserve context24 close fix",
-    "diveChosenTileMovement": "CONFIRMED LIVE; preserve chosen tile",
+    "diveChosenTileMovement": "CONFIRMED LIVE: movement AND animation",
     "conjuresSurviveDiveSurge": "CONFIRMED LIVE",
     "deathSkullsTravellingBounce": "CONFIRMED LIVE",
     "queueholdNativeRing": "CONFIRMED LIVE",
     "ordinaryManualQueue": "CONFIRMED LIVE: long cooldown manual queue, native ring, execution when ready",
     "conjureTargetSwitching": "CONFIRMED LIVE; ownership/follow working",
     "revolution": "CONFIRMED LIVE / PARTIAL; preserve foundation",
-    "conjureAttackPresentation": "PARTIAL: Skeleton/Zombie bound, Phantom command bound; Ghost attack UNRESOLVED. LIVE TEST PENDING",
+    "conjureAttackPresentation": "Skeleton CONFIRMED LIVE; Ghost UNRESOLVED; others not newly accepted",
     "residualSoulWorldVisual": "CONFIRMED LIVE; retain look and per-viewer persistence",
-    "residualSoulLifetime": "LIVE FAIL baseline; engagement-based grace + intentional equipment-swap retention AUTOMATED VERIFIED; LIVE TEST PENDING",
+    "residualSoulLifetime": "LIVE FAIL baseline; shared combat stance added AUTOMATED VERIFIED / LIVE TEST PENDING; retain intentional style-swap rule",
     "conduitAbilityAvailability": "CONFIRMED LIVE",
     "necrosis": "CONFIRMED LIVE: generate, display, consume",
     "buffDebuffPanels": "CONFIRMED LIVE; preserve native panels",
-    "livingDeathPresentation": "LIVE FAIL baseline; retained sequence35475 plus exact base7883 now published, LIVE TEST PENDING",
+    "livingDeathPresentation": "LIVE FAIL skeleton baseline; exact30268 appearance morph AUTOMATED VERIFIED / LIVE TEST PENDING",
     "berserkPresentation": "CONFIRMED LIVE",
     "overloadNecromancy": "CONFIRMED LIVE",
     "soulStrikeTiming": "Volley timing CONFIRMED LIVE improved; do not conflate with Soul Strike",
     "armyAvailability": "LIVE FAIL baseline; progression/selection replay AUTOMATED VERIFIED, LIVE TEST PENDING",
-    "entropicSoulCap": "LIVE FAIL baseline; paired native passive + shared cap5 AUTOMATED VERIFIED, LIVE TEST PENDING",
-    "conjureExamine": "LIVE FAIL baseline; exact client opcode107 menu suppression removed only for four companions. AUTOMATED VERIFIED; physical menu LIVE TEST PENDING",
+    "entropicSoulCap": "CONFIRMED LIVE: five souls",
+    "conjureExamine": "CONFIRMED LIVE",
     "scenePriority": "PARTIAL: target-footprint avoidance improved; general native target priority UNRESOLVED",
-    "conjureLifecyclePresentation": "Native spawn/exit bindings and delayed removal AUTOMATED VERIFIED; LIVE TEST PENDING"
+    "conjureLifecyclePresentation": "CONFIRMED LIVE: spawn/death",
+    "surgePresentation": "CONFIRMED LIVE: movement AND animation",
+    "sunshine": "CONFIRMED LIVE substantial; radial refresh LIVE FAIL baseline; successor AUTOMATED VERIFIED / LIVE TEST PENDING",
+    "deathsSwiftness": "CONFIRMED LIVE substantial; no new minor polish"
   },
-  "successorLiveAcceptance": "LIVE TEST PENDING: combat-live-successor-polish2-20260924; no new visual promoted from offline tests"
+  "successorLiveAcceptance": "LIVE TEST PENDING: combat-live-successor-qol-20260924; previous live confirmations recorded in userLiveResults",
+  "qolSuccessor": {
+    "report": "docs/COMBAT-QOL-20260924.md",
+    "validation": "protocol-analysis/combat-qol-validation-20260924.json",
+    "checklist": "docs/COMBAT-QOL-LIVE-CHECKLIST-20260924.md",
+    "status": "AUTOMATED VERIFIED / LIVE TEST PENDING",
+    "unresolved": [
+      "Melee Strength book live membership",
+      "Ghost attack presentation",
+      "General entity scene priority",
+      "Additional Swiftness minor presentation"
+    ]
+  }
 }

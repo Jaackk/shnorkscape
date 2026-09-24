@@ -100,7 +100,7 @@ public class Native950ActionBarTest {
     @Test public void badAndOldSettingsProduceEmptySlots(){
         Native950ActionBar bar=new Native950ActionBar();
         bar.restore(Collections.singletonMap("actionBar.0",-1));Map<String,Integer> out=new HashMap<>();bar.writeSettings(out);
-        assertEquals(Integer.valueOf(0),out.get("actionBar.0.0"));assertEquals(30,out.size());
+        assertEquals(Integer.valueOf(0),out.get("actionBar.0.0"));assertEquals(33,out.size());
     }
     @Test public void fourBarsRoundTripIndependentlyWithinTheNativeSettingsCap(){
         Native950ActionBar bar=new Native950ActionBar();Map<String,Integer> legacy=new HashMap<>();
@@ -108,7 +108,7 @@ public class Native950ActionBarTest {
         EmbeddedChannel c=new EmbeddedChannel();try{
             bar.setActiveBar(c,1);bar.testBar(c);bar.setActiveBar(c,2);bar.testBar(c);bar.setActiveBar(c,3);bar.testBar(c);
             Map<String,Integer> settings=new HashMap<>();bar.writeSettings(settings);
-            assertEquals(30,settings.size());assertTrue(settings.size()<=Native950Save.MAX_SETTINGS);
+            assertEquals(33,settings.size());assertTrue(settings.size()<=Native950Save.MAX_SETTINGS);
             Native950ActionBar restored=new Native950ActionBar();restored.restore(settings);
             assertEquals(Native950ActionBar.pack(1,3),restored.slot(0,0));
             assertEquals(Native950ActionBar.pack(1,3),restored.slot(1,0));
@@ -162,6 +162,14 @@ public class Native950ActionBarTest {
             assertTrue(packet instanceof Native950Packets.Packet);Native950Packets.Packet actual=(Native950Packets.Packet)packet;
             Native950Packets.Packet expected=Native950Packets.runClientScript(6570,14682,100,125,1,1);
             assertEquals(expected.type(),actual.type());assertArrayEquals(expected.payload(),actual.payload());
+        }finally{c.finishAndReleaseAll();}
+    }
+    @Test public void cooldownRedrawPreservesTheOriginalRadialStart(){
+        EmbeddedChannel c=new EmbeddedChannel();try{
+            Native950ActionBar bar=new Native950ActionBar();bar.cooldown(c,19254,100,100);bar.refreshCooldown(c,19254,130,70);c.flush();
+            Native950Packets.Packet start=(Native950Packets.Packet)c.readOutbound(),refresh=(Native950Packets.Packet)c.readOutbound();
+            assertArrayEquals(Native950Packets.runClientScript(6570,19254,100,200,1,1).payload(),start.payload());
+            assertArrayEquals(Native950Packets.runClientScript(6570,19254,130,200,0,1).payload(),refresh.payload());
         }finally{c.finishAndReleaseAll();}
     }
     @Test public void nativeBarSelectorAndTrashTargetUseTheVerified950Components(){

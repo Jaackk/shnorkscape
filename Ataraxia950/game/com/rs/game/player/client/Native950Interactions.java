@@ -381,7 +381,7 @@ public final class Native950Interactions {
         if(exitUi.isOpen()&&(action instanceof Native950Actions.ObjectAction
                 ||action instanceof Native950Actions.PlayerAction
                 ||action instanceof Native950Actions.NpcAction||action instanceof Native950Actions.GroundItemAction
-                ||action instanceof Native950Actions.ItemOnObjectAction||action instanceof Native950Actions.ItemOnNpcAction)){
+                ||action instanceof Native950Actions.ItemOnObjectAction||action instanceof Native950Actions.ItemOnNpcAction||action instanceof Native950Actions.ItemOnPlayerAction)){
             rejectedActions++;return;
         }
         if (!router.playerMayAct()) {
@@ -399,7 +399,7 @@ public final class Native950Interactions {
                     (BACKPACK_INTERFACE << 16) | BACKPACK_ITEMS);
         if ((action instanceof Native950Actions.ObjectAction || action instanceof Native950Actions.NpcAction
                 || action instanceof Native950Actions.GroundItemAction || action instanceof Native950Actions.ItemOnItemAction
-                || action instanceof Native950Actions.ItemOnObjectAction || action instanceof Native950Actions.ItemOnNpcAction)
+                || action instanceof Native950Actions.ItemOnObjectAction || action instanceof Native950Actions.ItemOnNpcAction || action instanceof Native950Actions.ItemOnPlayerAction)
                 && (player.isLocked() || player.isNative950ForceMovementActive())) {
             reject("You cannot move to that interaction right now"); return;
         }
@@ -428,6 +428,7 @@ public final class Native950Interactions {
         else if (action instanceof Native950Actions.InterfaceAction) button((Native950Actions.InterfaceAction) action);
         else if (action instanceof Native950Actions.ItemOnItemAction) itemOnItem((Native950Actions.ItemOnItemAction) action);
         else if (action instanceof Native950Actions.ItemOnObjectAction) itemOnObject((Native950Actions.ItemOnObjectAction) action);
+        else if (action instanceof Native950Actions.ItemOnPlayerAction) itemOnPlayer((Native950Actions.ItemOnPlayerAction)action);
         else if (action instanceof Native950Actions.ItemOnNpcAction) itemOnNpc((Native950Actions.ItemOnNpcAction) action);
         else if (action instanceof Native950Actions.InterfaceOnTileAction) abilityOnTile((Native950Actions.InterfaceOnTileAction) action);
         else if (action instanceof Native950Actions.DragAction) drag((Native950Actions.DragAction) action);
@@ -1491,6 +1492,13 @@ public final class Native950Interactions {
         observeInventory();
     }
 
+    private void itemOnPlayer(Native950Actions.ItemOnPlayerAction action){
+        if(!selectedBackpackItem(action.sourceHash(),action.sourceSlot(),action.sourceItemId()))return;
+        if(action.sourceItemId()!=962){reject("That item cannot be used on another player here");return;}
+        Player target=action.index()>0&&action.index()<2048?World.getPlayers().get(action.index()):null;
+        String result=Native950ChristmasCracker.pull(player,target,action.sourceSlot());
+        if(result!=null)reject(result);else {observeInventory();channel.write(Native950Packets.gameMessage(0,"You pull the cracker and receive a partyhat. Your partner receives the other prize."));}
+    }
     private boolean selectedBackpackItem(int hash,int slot,int itemId) {
         if(bankOpen||hash!=((BACKPACK_INTERFACE<<16)|BACKPACK_ITEMS)) {
             reject("Select the item from your backpack"); return false;

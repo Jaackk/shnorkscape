@@ -13,19 +13,17 @@ final class Native950ContentCommands {
     private Native950ContentCommands() { }
     static boolean recognizes(String command) {
         switch(command) {
-            case "meleegear": case "magegear": case "rangegear": case "ragegear": case "necrogear": case "weapons": case "gear": case "gearhelp":
+            case "melee": case "mage": case "range": case "necro": case "meleegear": case "magegear": case "rangegear": case "ragegear": case "necrogear": case "weapons": case "gear": case "gearhelp":
             case "search": case "find": case "si": case "itemid": case "finditem":
             case "findnpc": case "snpc": case "clearnpcs": case "removenpc": case "delnpc": case "npcs": return true;
             default: return false;
         }
     }
     static Item[] kit(String name) {
+        int style=bestStyle(name);
+        if(style>=0)return quickItems(Native950DeveloperLoadouts.builtins().get(style));
         int[] ids;
         switch(name) {
-            case "melee": case "meleegear": ids=new int[]{53375,53378,53381,52028,53384,16403,27913,51470,50465};break;
-            case "mage": case "magegear": ids=new int[]{42991,43119,43121,52036,51092,51848,42574,42582,51467};break;
-            case "range": case "rangegear": case "ragegear": ids=new int[]{55045,55051,55056,52032,51088,55145,55109,55114,58036,58041};break;
-            case "necro": case "necromancy": case "necrogear": ids=new int[]{56483,56450,56513,56476,56469,56429,56492,51469,59928};break;
             case "weapons": ids=new int[]{52533,16403,27913,51848,42574,42582,55145,55109,55114,56429,56492};break;
             default: return null;
         }
@@ -33,11 +31,32 @@ final class Native950ContentCommands {
         for(int i=0;i<ids.length;i++)result[i]=new Item(ids[i],ids[i]==58036||ids[i]==58041?10000:1);
         return result;
     }
+    static int bestStyle(String name){
+        switch(name){
+            case "melee": case "meleegear": return 0;
+            case "range": case "rangegear": case "ragegear": return 1;
+            case "mage": case "magegear": return 2;
+            case "necro": case "necromancy": case "necrogear": return 3;
+            default:return -1;
+        }
+    }
+    static Item[] quickItems(Native950DeveloperLoadouts.Loadout loadout){
+        List<Item> out=new ArrayList<>();
+        for(Item[] source:new Item[][]{loadout.equipment,loadout.inventory})for(Item item:source)
+            if(item!=null&&!quickFood(item.getId()))out.add(new Item(item.getId(),item.getAmount()));
+        return out.toArray(new Item[0]);
+    }
+    private static boolean quickFood(int id){
+        if(id==42251)return true;
+        if(com.rs.cache.Cache.isFlatReadOnly())for(String option:Native950CacheItems.definition(id).inventoryOptions)
+            if("Eat".equalsIgnoreCase(option))return true;
+        return false;
+    }
     static void handle(Player p,Channel c,String[] args) {
         String command=args[0];
         if(command.equals("gearhelp")) {
-            reply(c,";;meleegear: Vestments/primal dual wield. ;;necrogear: First Necromancer/Omni Guard/Lantern.");
-            reply(c,";;magegear: elite tectonic/Praesul/Armadyl. ;;rangegear: elite sirenic/Last Guardian/blightbounds.");
+            reply(c,";;melee / ;;range / ;;mage / ;;necro: the library Best loadouts, without food.");
+            reply(c,"Equipment and supplies go to your backpack; old *gear aliases still work.");
             reply(c,";;weapons: high-tier weapons for all four styles. ;;gear melee|mage|range|necro|weapons.");
             reply(c,";;search <item name> [page]; ;;findnpc <NPC name> [page]. Pages show 10 IDs.");
             reply(c,";;npc <id> [1-50] is one-life; ;;npcrepeat <id> [1-50] respawns; ;;npc <name> lists IDs.");
@@ -70,6 +89,7 @@ final class Native950ContentCommands {
             return;
         }
         String name=command.equals("gear")?(args.length==2?args[1]:""):command;
+        if(!command.equals("gear")&&args.length!=1){reply(c,"Use ;;gearhelp for the available kits.");return;}
         Item[] items=kit(name);
         if(items==null||(!command.equals("gear")&&args.length!=1)){reply(c,"Use ;;gear melee|mage|range|necro|weapons or ;;gearhelp.");return;}
         for(Item item:items)if(Native950Skilling.itemType(p,item.getId())==null){reply(c,"This cache cannot supply kit item "+item.getId()+". Nothing added.");return;}

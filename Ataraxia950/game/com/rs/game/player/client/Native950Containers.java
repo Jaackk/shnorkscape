@@ -20,12 +20,14 @@ public final class Native950Containers {
     private final ItemsContainer<Item> inventory;
     private final ItemsContainer<Item> equipment;
     private final Bank bank;
+    private final Player player;
     private final Native950ItemCatalog catalog;
     private final Thread owner;
     private boolean equipmentKitClaimed;
 
     public Native950Containers(Player player, Native950ItemCatalog catalog) {
         if (!player.isNative950()) throw new IllegalArgumentException("Native character required");
+        this.player=player;
         this.inventory = player.getInventory().items;
         this.equipment = player.getEquipment().getItems();
         this.bank = player.getBank();
@@ -187,6 +189,7 @@ public final class Native950Containers {
             for (int slot = 0; slot < INVENTORY_SIZE; slot++) inventory.set(slot, nextInventory[slot]);
             for (int slot = 0; slot < EQUIPMENT_SIZE; slot++) equipment.set(slot, nextEquipment[slot]);
             committed = true;
+            player.getNative950ActionBar().preferences.equipmentChanged(player,false);
             return result;
         }
     }
@@ -407,7 +410,9 @@ public final class Native950Containers {
             bank.bankTabs=new Item[][]{nextBank};
             for(int i=0;i<INVENTORY_SIZE;i++)inventory.set(i,nextInventory[i]);
             for(int i=0;i<EQUIPMENT_SIZE;i++)equipment.set(i,nextEquipment[i]);
-            committed=true;return result;
+            committed=true;
+            player.getNative950ActionBar().preferences.equipmentChanged(player,true);
+            return result;
         }
     }
 
