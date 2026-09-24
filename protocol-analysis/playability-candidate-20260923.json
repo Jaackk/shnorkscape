@@ -1,10 +1,10 @@
 {
-  "candidate": "combat-live-successor-refinement-20260923",
+  "candidate": "combat-live-successor-polish-20260924",
   "files": [
     {
       "source": "ataraxia-950-1.0-UNTRACKED.jar",
       "target": "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-      "sha256": "B08E28B28B112B498057900265553C0B2C73BE919A179FED3E2369C333A5B106"
+      "sha256": "DB98E99D5678F550C8AFF2183F2DBFF729E684BA57A36034DF002BBA02104032"
     },
     {
       "source": "Native950InterfaceBootstrap$Panel.class",
@@ -64,8 +64,8 @@
       "beforeSha256": "B8D6CA0AD62859DFDFB2C190DAF25088C745B504AED5207738793C4899B7247E"
     }
   ],
-  "sourceCommit": "825e6846efcb2651c11526e96b099b28eb15e9bf",
-  "validationReport": "protocol-analysis/combat-refinement-validation-20260923.json",
-  "liveChecklist": "docs/COMBAT-REFINEMENT-LIVE-CHECKLIST-20260923.md",
-  "liveAcceptance": "PENDING: see docs/COMBAT-REFINEMENT-LIVE-CHECKLIST-20260923.md"
+  "sourceCommit": "342e84d27b6b9ba9c37f904ff5080048c4d58e89",
+  "validationReport": "protocol-analysis/combat-polish-validation-20260924.json",
+  "liveChecklist": "docs/COMBAT-POLISH-LIVE-CHECKLIST-20260924.md",
+  "liveAcceptance": "IMPLEMENTED - LIVE TEST PENDING; preserves latest accepted baseline; Living Death and conjure actor effects remain partial"
 }

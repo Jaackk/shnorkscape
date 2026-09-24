@@ -30,7 +30,11 @@ No COMPLETE promotions. See new presentation audit/gaps dated20260924.
 Full suite1524 tests,0 failures/errors,2 skips. Real-cache1938 combat checks;
 new polish gate983; Dive/Surge/Escape, bank, library, exit UI, styles PASS.
 Final artifact hashes/check-only result:combat-polish-validation-20260924.json.
-Stage intended:dist/combat-live-successor-polish-20260924. User applies via
+Source checkpoint342e84d pushed/remote verified. Packaged gate983 checks PASS.
+Stage VERIFIED:dist/combat-live-successor-polish-20260924;11 pinned files.
+Apply --check-only PASS; running JAR unchanged. Candidate JAR:
+DB98E99D5678F550C8AFF2183F2DBFF729E684BA57A36034DF002BBA02104032
+User applies via
 Apply Staged Update.cmd. No deploy/restart or production character modifications.
 Pre-edit verified remote68116bf;backup backups/pre-edit-20260924-011715-588.
 Running JAR at startB08E28B28B112B498057900265553C0B2C73BE919A179FED3E2369C333A5B106.
