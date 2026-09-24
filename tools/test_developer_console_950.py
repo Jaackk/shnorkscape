@@ -1,6 +1,6 @@
 """Offline native-script contracts and selected-component VM stack regression."""
 import hashlib, struct, unittest
-from build_developer_console_950 import programs, BASE, NATIVE_SELECT
+from build_developer_console_950 import programs, BASE, NATIVE_SELECT, MARKER_COMPONENT
 from library_trace_read import scope, inverse, ROOT
 from dis950 import Image, EXE_950
 from pathlib import Path
@@ -43,7 +43,7 @@ class DeveloperScripts(unittest.TestCase):
             self.assertEqual((slot,(1448<<16)|11),selected);self.assertEqual([],ints);self.assertEqual([],strings)
 
     def test_render_helpers_argument_and_return_contracts(self):
-        for sid,expected in ((BASE,(0,0)),(BASE+1,(6,2)),(BASE+2,(6,1)),(BASE+3,(0,1)),(BASE+5,(0,0))):
+        for sid,expected in ((BASE,(0,0)),(BASE+1,(6,2)),(BASE+2,(6,1)),(BASE+3,(0,1)),(BASE+5,(0,0)),(BASE+6,(0,1))):
             ops,tail=scope['decode'](programs()[sid],inverse)
             self.assertEqual(expected,struct.unpack('>2H',tail[10:14]));self.assertEqual(0x495,ops[-1][2])
         ops,_=scope['decode'](programs()[BASE+1],inverse)
@@ -54,15 +54,16 @@ class DeveloperScripts(unittest.TestCase):
         from build_developer_console_950 import unpack
         native,_=scope['decode'](unpack((ROOT/'cache/12/8286.dat').read_bytes()),inverse)
         patched,_=scope['decode'](programs()[8286],inverse)
-        self.assertEqual([(o,a) for _,_,o,a,_ in native[:-1]],[(o,a) for _,_,o,a,_ in patched[:len(native)-1]])
+        self.assertEqual([(o,a) for _,_,o,a,_ in native[:19]],[(o,a) for _,_,o,a,_ in patched[:19]])
         # Execute appended guard with a normal management host, dev marker, and
         # cleared close marker. Only the developer session may acknowledge.
         for marker,wanted in (('',[]),('CUSTOMISATIONS',[]),('SHNORKSCAPE Developer Console',['__devready'])):
-            ints=[];strings=[];sent=[];pc=len(native)-1
+            ints=[];strings=[];sent=[];pc=19
             while pc<len(patched):
                 _,_,op,arg,_=patched[pc];pc+=1
                 if op==0x511:(strings if arg[0]==2 else ints).append(arg[1])
-                elif op==0x8b9:self.assertEqual(1477<<16|713,ints.pop());strings.append(marker)
+                elif op==0x5a2:self.assertEqual(MARKER_COMPONENT,ints.pop());ints.append(1)
+                elif op==0x8b9:self.assertEqual(MARKER_COMPONENT,ints.pop());strings.append(marker)
                 elif op==0x3f:b,a=strings.pop(),strings.pop();ints.append(0 if a==b else 1)
                 elif op==0x412:
                     b,a=ints.pop(),ints.pop()
@@ -71,5 +72,33 @@ class DeveloperScripts(unittest.TestCase):
                 elif op==0x495:break
                 else:self.fail(hex(op))
             self.assertEqual(wanted,sent);self.assertEqual([],ints);self.assertEqual([],strings)
+
+    def test_marker_requires_native_text_and_synchronous_setter(self):
+        # Raw definition type is byte1. Container713 cannot retain readable text.
+        self.assertEqual(0,(ROOT/'temp/dev-console/faces/1477-713.bin').read_bytes()[1])
+        self.assertEqual(4,(ROOT/'temp/dev-console/faces/1448-14.bin').read_bytes()[1])
+        setter,_=scope['decode'](programs()[BASE+6],inverse)
+        bridge,_=scope['decode'](programs()[8286],inverse)
+        for mounted in (False,True):
+            for value in ('SHNORKSCAPE Developer Console',''):
+                ints=[];strings=[];text='Loading...';sent=[]
+                for ops,start in ((setter,0),(bridge,19)):
+                    pc=start
+                    while pc<len(ops):
+                        _,_,op,arg,_=ops[pc];pc+=1
+                        if op==0x511:(strings if arg[0]==2 else ints).append(arg[1])
+                        elif op==0x5a2:self.assertEqual(MARKER_COMPONENT,ints.pop());ints.append(int(mounted))
+                        elif op==0x412:
+                            b,a=ints.pop(),ints.pop()
+                            if a!=b:pc+=arg
+                        elif op==0x25a:strings.append(value)
+                        elif op==0x1f1:self.assertTrue(mounted);text=strings.pop()
+                        elif op==0x8b9:self.assertTrue(mounted);self.assertEqual(MARKER_COMPONENT,ints.pop());strings.append(text)
+                        elif op==0x3f:b,a=strings.pop(),strings.pop();ints.append(int(a!=b))
+                        elif op==0x77b:sent.append(strings.pop())
+                        elif op==0x495:break
+                        else:self.fail(hex(op))
+                    self.assertEqual([],ints);self.assertEqual([],strings)
+                self.assertEqual(['__devready'] if mounted and value else [],sent)
 
 if __name__=='__main__':unittest.main()

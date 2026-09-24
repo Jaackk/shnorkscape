@@ -15,6 +15,7 @@ NATIVE_SELECT=0x10000
 def instruction(op,arg):
     return struct.pack('>HB',0x72c,arg) if op==NATIVE_SELECT else encode(op,arg)
 
+MARKER_COMPONENT = 1448 << 16 | 14  # Native type4 text, under the hidden loading panel.
 BASE = 21124  # first unused ID in the paired 950 cache; checked below
 def push(value): return (0x511, (2 if isinstance(value,str) else 0,value))
 def call(sid): return (0x895,sid)
@@ -66,20 +67,23 @@ def programs():
     arm+=ints(1448<<16|11)+[(0x35e,0),(NATIVE_SELECT,0)]
     # Two int locals, only one argument (the target actor index).
     armraw=bytearray(script(arm,2,2));end=len(armraw)-19;armraw[end+10:end+12]=struct.pack('>H',1)
-    return {BASE:script(init),BASE+1:script(button,6,2),BASE+2:script(text,6,1),BASE+3:script([(0x25a,0),(0x77b,0)],0,1),BASE+4:bytes(armraw),BASE+5:script([(0x8aa,0)]),8286:ready_bridge()}
+    return {BASE:script(init),BASE+1:script(button,6,2),BASE+2:script(text,6,1),BASE+3:script([(0x25a,0),(0x77b,0)],0,1),BASE+4:bytes(armraw),BASE+5:script([(0x8aa,0)]),BASE+6:script(ints(MARKER_COMPONENT)+[(0x5a2,0)]+ints(1)+[(0x412,2),(0x25a,0),(0x1f1,0)],0,1),8286:ready_bridge()}
 
 def ready_bridge():
     """Acknowledge the REAL varc2911 management refresh, after its native work.
 
-    The root host exists even when1448 is closed. Its inert text property is a
-    scoped session marker; normal management gets the original instructions.
-    No timer, action-bar reset or replacement of the native lifecycle.
+    The marker must be text-capable: root1477:713 is a container and its
+    native IF_GETTEXT is empty. CS21130 sets hidden text1448:14 synchronously
+    before varc2911 changes; close clears it before unmounting the shell.
     """
     raw=unpack((ROOT/'cache/12/8286.dat').read_bytes())
     ops,tail=scope['decode'](raw,inverse)
-    old=[(o,a) for _,_,o,a,_ in ops]
-    assert len(old)==20 and old[-1]==(0x495,0), 'Unexpected native8286'
-    extra=ints(1477<<16|713)+[(0x8b9,0),push('SHNORKSCAPE Developer Console'),(0x3f,0)]+ints(0)+[(0x412,2),push('__devready'),(0x77b,0)]
+    old=[(o,a) for _,_,o,a,_ in ops[:19]]+[(0x495,0)]
+    original=b'\0'+b''.join(instruction(*op) for op in old)+struct.pack('>I',20)+tail[4:]
+    assert hashlib.sha256(original).hexdigest()=='5bd6296bb761633d83eb47a86757815ee88d0369ab844439a11f13792f24d5f7', 'Unexpected native8286 body'
+    # IF_FIND protects ordinary management when the developer shell is absent.
+    extra=ints(MARKER_COMPONENT)+[(0x5a2,0)]+ints(1)+[(0x412,8)]
+    extra+=ints(MARKER_COMPONENT)+[(0x8b9,0),push('SHNORKSCAPE Developer Console'),(0x3f,0)]+ints(0)+[(0x412,2),push('__devready'),(0x77b,0)]
     updated=old[:-1]+extra+[old[-1]]
     return raw[:raw.index(0)+1]+b''.join(instruction(*op) for op in updated)+struct.pack('>I',len(updated))+tail[4:]
 
@@ -93,7 +97,7 @@ def append_reference(raw, additions):
         n=4 if raw[p]&128 else 2;v=int.from_bytes(raw[p:p+n],'big')&0x7fffffff;p+=n;return v
     total=count();ids=[];last=0
     for _ in range(total):last+=count();ids.append(last)
-    assert all(sid in ids for sid in additions), 'Successor replaces audited existing scripts only'
+    assert all(sid in ids or sid==BASE+6 for sid in additions), 'Only the audited marker helper may be appended'
     arrays=[]
     for width in (4,4,4,8,4):arrays.append([raw[p+i*width:p+(i+1)*width] for i in range(total)]);p+=total*width
     counts=[count() for _ in ids];files=[]
@@ -105,6 +109,11 @@ def append_reference(raw, additions):
     for n in counts:names.append(raw[p:p+4*n]);p+=4*n
     assert p==len(raw),(p,len(raw))
     for sid,(packed,payload) in sorted(additions.items()):
+        if sid not in ids:
+            assert sid>ids[-1]
+            ids.append(sid)
+            for arr in arrays:arr.append(b'\0'*(8 if arr is arrays[3] else 4))
+            counts.append(1);files.append(smart(0));names.append(b'\0'*4)
         i=ids.index(sid)
         version=int.from_bytes(arrays[4][i],'big')+1
         for arr,value in zip(arrays[1:],(struct.pack('>I',zlib.crc32(packed)),struct.pack('>I',zlib.crc32(payload)),struct.pack('>II',len(packed),len(payload)),struct.pack('>I',version))):arr[i]=value
@@ -113,11 +122,12 @@ def append_reference(raw, additions):
     return out+b''.join(b''.join(a) for a in arrays)+b''.join(smart(n) for n in counts)+b''.join(files)+b''.join(names)
 
 def main():
-    dest=ROOT/'dist/developer-console-live-cache-20260924/cache-v4';dest.mkdir(parents=True,exist_ok=True)
+    dest=ROOT/'dist/developer-console-cache-ready-20260924/cache-v4';dest.mkdir(parents=True,exist_ok=True)
     additions={};pins={}
     for sid,payload in programs().items():
         packed=container(payload);additions[sid]=(packed,payload)
-        before=(ROOT/f'cache/12/{sid}.dat').read_bytes()
+        source=ROOT/f'cache/12/{sid}.dat'
+        before=source.read_bytes() if source.exists() else b'\0\0'
         version=(int.from_bytes(before[-2:],'big')+1)&65535
         path=dest/f'12/{sid}.dat';path.parent.mkdir(exist_ok=True);path.write_bytes(packed+struct.pack('>H',version))
         pins[str(sid)]=hashlib.sha256(payload).hexdigest()
@@ -127,6 +137,6 @@ def main():
     for sid in (10410,10899,2995,10644,10324):
         pins[str(sid)]=hashlib.sha256((ROOT/f'temp/library-followup-trace/12-{sid}-0.bin').read_bytes()).hexdigest()
     (ROOT/'Ataraxia950/resources/native950/developer-console-950.properties').write_bytes((''.join(f'{sid}={value}\n' for sid,value in sorted(pins.items()))).encode())
-    print('Staged six developer helpers and scoped native-ready bridge; live cache untouched.')
+    print('Staged seven developer helpers and scoped native-ready bridge; live cache untouched.')
 if __name__=='__main__':main()
 

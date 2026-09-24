@@ -2,13 +2,14 @@
 import hashlib,re,struct,unittest
 from pathlib import Path
 from build_library_search_bridge import unpack,encode
+from build_developer_console_950 import programs
 from library_trace_read import scope,inverse,ROOT
 
 class SharedPin(unittest.TestCase):
     def test_bridge_preserves_original_and_settings_pin_matches_console(self):
-        raw=unpack((ROOT/'cache/12/8286.dat').read_bytes())
+        raw=programs()[8286]
         ops,tail=scope['decode'](raw,inverse)
-        self.assertEqual(28,len(ops))
+        self.assertEqual(32,len(ops))
         original=[(o,a) for _,_,o,a,_ in ops[:19]]+[(0x495,0)]
         original_raw=b'\0'+b''.join(encode(o,a) for o,a in original)+struct.pack('>I',20)+tail[4:]
         self.assertEqual('5bd6296bb761633d83eb47a86757815ee88d0369ab844439a11f13792f24d5f7',hashlib.sha256(original_raw).hexdigest())

@@ -46,7 +46,7 @@ final class Native950DeveloperConsole {
         // Native varc/onLoad callbacks run after server scripts. Rendering here
         // loses the actors to CS8193. CS8286 now acknowledges its real refresh;
         // only the subsequent server round trip publishes our page.
-        write(Native950Packets.interfaceText(1477,713,"SHNORKSCAPE Developer Console"));
+        write(Native950Packets.runClientScript(INIT+6,"SHNORKSCAPE Developer Console"));
         write(Native950Packets.varbitSmall(18994,1));write(Native950Packets.varbitSmall(29607,2));write(Native950Packets.varcLarge(2911,1));
         for(int bit:new int[]{19029,19031,19032,19033,47565,60056,19004})write(Native950Packets.varbitSmall(bit,0));
         write(Native950Packets.runClientScript(8288,1));write(Native950Packets.runClientScript(8193));
@@ -116,7 +116,7 @@ final class Native950DeveloperConsole {
         moving=null;if(!open)return;closeInput();open=false;confirm=false;awaitingNative=false;buttons.clear();
         if(placement!=null){placement=null;write(Native950Packets.runClientScript(INIT+5));}
         if(player.getInterfaceManager().getInterfaceParentId(SHELL)!=(1477<<16|715))return;
-        write(Native950Packets.interfaceText(1477,713,""));
+        write(Native950Packets.runClientScript(INIT+6,""));
         write(Native950Packets.interfaceEvents(SHELL,ACTORS,0,255,0));
         write(Native950Packets.runClientScript(8179));write(Native950Packets.runClientScript(8180,1,1));
         write(Native950Packets.varcLarge(2911,-1));write(Native950Packets.runClientScript(8290,1));
@@ -235,7 +235,7 @@ final class Native950DeveloperConsole {
         placement=new Native950DeveloperPlacement.Request(entity,++placementSerial,entity.kind.equals("NPC")?amount:1,
                 entity.types.length==0?-1:entity.types[typeIndex],rotation,repeat,player,System.currentTimeMillis());
         buttons.clear();
-        write(Native950Packets.interfaceText(1477,713,""));
+        write(Native950Packets.runClientScript(INIT+6,""));
         // Release the management keyboard lifecycle, but retain its hidden target
         // actor until the one-shot ground selection is committed or cancelled.
         write(Native950Packets.runClientScript(8179));write(Native950Packets.runClientScript(8180,1,1));

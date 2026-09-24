@@ -89,6 +89,27 @@ public class Native950DeveloperConsoleTest {
         ((Map<Integer,Runnable>)bs.get(console)).put(0,()->{throw new IllegalStateException("World is full");});
         console.handle(notification("__devop:"+ep.getLong(console)+":0"));assertTrue(console.isOpen());assertTrue(channel.isOpen());
     }
+    @Test public void markerIsSetBeforeRefreshAndClearedBeforeUnmount() {
+        console.open();
+        List<com.rs.network.protocol.modern950.Native950Packets.Packet> packets=drain();
+        int mount=index(packets,com.rs.network.protocol.modern950.Native950Packets.openSub(1477,715,1448,true));
+        int marker=index(packets,com.rs.network.protocol.modern950.Native950Packets.runClientScript(21130,"SHNORKSCAPE Developer Console"));
+        int refresh=index(packets,com.rs.network.protocol.modern950.Native950Packets.varcLarge(2911,1));
+        assertTrue(mount>=0&&marker>mount&&refresh>marker);
+        console.close();packets=drain();
+        marker=index(packets,com.rs.network.protocol.modern950.Native950Packets.runClientScript(21130,""));
+        int unmount=index(packets,com.rs.network.protocol.modern950.Native950Packets.closeSub(1477,715));
+        assertTrue(marker>=0&&unmount>marker);
+    }
+    private List<com.rs.network.protocol.modern950.Native950Packets.Packet> drain(){
+        channel.flush();List<com.rs.network.protocol.modern950.Native950Packets.Packet> result=new ArrayList<>();Object o;
+        while((o=channel.readOutbound())!=null)if(o instanceof com.rs.network.protocol.modern950.Native950Packets.Packet)result.add((com.rs.network.protocol.modern950.Native950Packets.Packet)o);
+        return result;
+    }
+    private int index(List<com.rs.network.protocol.modern950.Native950Packets.Packet> packets,com.rs.network.protocol.modern950.Native950Packets.Packet expected){
+        for(int i=0;i<packets.size();i++)if(packets.get(i).type()==expected.type()&&Arrays.equals(packets.get(i).payload(),expected.payload()))return i;
+        return -1;
+    }
     @Test public void nativeReadyBarrierPreventsEarlyRenderAndRejectsDuplicateOrClosedAcknowledgement()throws Exception{
         java.lang.reflect.Field ep=Native950DeveloperConsole.class.getDeclaredField("epoch"),bs=Native950DeveloperConsole.class.getDeclaredField("buttons");ep.setAccessible(true);bs.setAccessible(true);
         console.open();long opening=ep.getLong(console);
