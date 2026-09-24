@@ -106,6 +106,19 @@ public final class Native950DiagnosticSpawns {
                 +(created<amount?" Some positions were blocked or the diagnostic limit was reached.":"");
     }
 
+    /** Shared world registration used by the visual editor; full footprint policy is stricter than ;;npc. */
+    static NPC placeNpc(Player player,int id,WorldTile tile,boolean repeat) {
+        String rejection=refusal(player);if(rejection!=null)throw new IllegalArgumentException(rejection);
+        NPC npc=NPC.createNative950Diagnostic(id,tile);
+        if(!spawnTileAvailable(player,tile,npc.getSize())||!World.canMoveNPC(tile,npc.getSize()))
+            throw new IllegalArgumentException("That NPC footprint is blocked or occupied.");
+        registerPlacedNpc(npc,player.getUsername(),repeat);return npc;
+    }
+    static void registerPlacedNpc(NPC npc,String owner,boolean repeat){
+        Native950World.getInstance().addDiagnosticNpc(npc);
+        Native950World.getInstance().setDiagnosticRepeat(npc,repeat);OWNERS.put(npc,owner);
+    }
+
     static WorldTile compactTile(WorldTile player,int size,int fx,int fy,int position){
         if(size<1||size>64||position<0)throw new IllegalArgumentException("Invalid diagnostic footprint");
         fx=Integer.signum(fx);fy=Integer.signum(fy);if(fx==0&&fy==0)fy=1;
@@ -115,9 +128,9 @@ public final class Native950DiagnosticSpawns {
         return new WorldTile(x+fy*side*size,y-fx*side*size,player.getPlane());
     }
 
-    private static boolean spawnTileAvailable(Player player,WorldTile tile,int size) {
+    static boolean spawnTileAvailable(Player player,WorldTile tile,int size) {
         if(!fits(tile,size,size))return false;
-        if(overlaps(tile,size,player,1,0))return false;
+        if(player!=null&&overlaps(tile,size,player,1,0))return false;
         for(Player other:World.getPlayers())if(other!=null&&!other.hasFinished()&&other.getPlane()==tile.getPlane()
                 &&overlaps(tile,size,other,Math.max(1,other.getSize()),0))return false;
         for(NPC other:World.getNPCs())if(other!=null&&!other.hasFinished()&&other.getPlane()==tile.getPlane()
@@ -186,25 +199,34 @@ public final class Native950DiagnosticSpawns {
 
     /** requestedType=-1 selects a supported cache shape; explicit types must have a world model. */
     public static String spawnObject(Player player, int id, int requestedType, int rotation) {
-        String refusal = refusal(player);
-        if (refusal != null) return refusal;
-        if (id < 0) return "Object ID must be nonnegative.";
-        if (rotation < 0 || rotation > 3) return "Object rotation must be 0-3.";
+        String refusal=refusal(player);if(refusal!=null)return refusal;
+        return spawnObjectAt(player,id,requestedType,rotation,new WorldTile(player));
+    }
+
+    static String spawnObjectAt(Player player,int id,int requestedType,int rotation,WorldTile tile) {
+        String refusal=refusal(player);if(refusal!=null)return refusal;
         try {
+            WorldObject object=placeObject(id,requestedType,rotation,tile);
+            return "Spawned "+ObjectDefinitions.getObjectDefinitions(id).name+" (object "+id+", type "+object.getType()+", rotation "+rotation+") at "+tile.getX()+", "+tile.getY()+".";
+        }catch(IllegalArgumentException|IllegalStateException unavailable){return "Cannot spawn object "+id+": "+unavailable.getMessage();}
+    }
+
+    /** Shared validated placement also used for explicitly saved developer edits at startup. */
+    static WorldObject placeObject(int id,int requestedType,int rotation,WorldTile tile) {
+        if(id<0||rotation<0||rotation>3||!Cache.isFlatReadOnly())throw new IllegalArgumentException("Invalid object placement");
             Index[] indexes = Cache.STORE.getIndexes();
             Index index = indexes.length <= 16 ? null : indexes[16];
             if (index == null || (id >>> 8) > index.getLastArchiveId()
                     || index.getFile(id >>> 8, id & 255) == null)
-                return "That object ID is missing from the 950 cache.";
+                throw new IllegalArgumentException("That object ID is missing from the 950 cache.");
             ObjectDefinitions definition = ObjectDefinitions.getObjectDefinitions(id);
-            if (!definition.loaded) return "That object definition could not be loaded.";
+            if (!definition.loaded) throw new IllegalArgumentException("That object definition could not be loaded.");
             if (definition.transforms != null)
-                return "That object has variable forms; use a concrete form's object ID.";
+                throw new IllegalArgumentException("That object has variable forms; use a concrete form's object ID.");
             int type = selectShape(definition.shapes, definition.models, requestedType);
             int width = (rotation & 1) == 0 ? definition.sizeX : definition.sizeY;
             int height = (rotation & 1) == 0 ? definition.sizeY : definition.sizeX;
-            WorldTile tile = new WorldTile(player);
-            if (!fits(tile, width, height)) return "That object's footprint is unavailable at your tile.";
+            if (!fits(tile, width, height)) throw new IllegalArgumentException("That object's footprint is unavailable at your tile.");
             Region region = World.getRegion(tile.getRegionId(), true);
             int slot = Region.OBJECT_SLOTS[type];
             // Region.spawnObject restores a removed map original before accepting a new override.
@@ -212,30 +234,26 @@ public final class Native950DiagnosticSpawns {
             // fire or pending regrowth, and the feedback cannot claim an ID the world did not retain.
             if (region.getObjectWithSlot(tile.getPlane(), tile.getXInRegion(), tile.getYInRegion(), slot) != null
                     || region.getRemovedObjectWithSlot(tile.getPlane(), tile.getXInRegion(), tile.getYInRegion(), slot) != null)
-                return "An object already occupies that scene slot. Move to an empty tile.";
+                throw new IllegalArgumentException("An object already occupies that scene slot. Move to an empty tile.");
             if (type >= 9 && type <= 21) {
                 for (int x = tile.getX(); x < tile.getX() + width; x++)
                     for (int y = tile.getY(); y < tile.getY() + height; y++) {
                         WorldTile part = new WorldTile(x, y, tile.getPlane());
                         Region footprint = World.getRegion(part.getRegionId(), true);
                         if ((width > 1 || height > 1) && !World.isWallsFree(part.getPlane(), x, y))
-                            return "That multi-tile object's footprint touches a wall. Move to an area clear of walls.";
+                            throw new IllegalArgumentException("That multi-tile object's footprint touches a wall. Move to an area clear of walls.");
                         if (!World.isFloorFree(part.getPlane(), x, y)
                                 || World.getObjectWithSlot(part, Region.OBJECT_SLOT_FLOOR) != null
                                 || footprint.getRemovedObjectWithSlot(part.getPlane(), part.getXInRegion(),
                                         part.getYInRegion(), Region.OBJECT_SLOT_FLOOR) != null)
-                            return "That object's footprint overlaps scenery. Move to a clear area.";
+                            throw new IllegalArgumentException("That object's footprint overlaps scenery. Move to a clear area.");
                     }
             }
             WorldObject object = new WorldObject(id, type, rotation, tile);
             World.spawnObject(object); // Region owns collision and each session publishes its existing mutation ledger.
             if (World.getObjectWithSlot(tile, slot) != object)
                 throw new IllegalStateException("The region did not retain the requested object.");
-            return "Spawned " + definition.name + " (object " + id + ", type " + type
-                    + ", rotation " + rotation + ") at your tile.";
-        } catch (IllegalArgumentException | IllegalStateException unavailable) {
-            return "Cannot spawn object " + id + ": " + unavailable.getMessage();
-        }
+            return object;
     }
 
     static int selectShape(byte[] shapes, int[][] models, int requested) {
@@ -266,7 +284,7 @@ public final class Native950DiagnosticSpawns {
                 && (long)tile.getX() + width <= 16384 && (long)tile.getY() + height <= 16384;
     }
 
-    private static String refusal(Player player) {
+    static String refusal(Player player) {
         if (player == null || !player.isNative950() || !player.isActive() || player.hasFinished()
                 || player.isDead() || player.isLocked() || player.isNative950ForceMovementActive()
                 || player.getNextForceMovement() != null || player.getNextWorldTile() != null

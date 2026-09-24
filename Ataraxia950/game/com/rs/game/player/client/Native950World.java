@@ -1060,6 +1060,7 @@ public final class Native950World {
         // entities now, before anything moves, so a viewer never sees an NPC appear
         // mid-step.
         drainSpawnRegions();
+        Native950DeveloperWorldEdits.restore();
         if (sessions().isEmpty() && npcs.isEmpty()) return;
         // Phase 1a: drain client input, so a walk requested this tick is routed before the
         // mover runs - the order the single-session tick() has always used.

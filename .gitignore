@@ -59,3 +59,5 @@ logs/combatqa/
 /dist/combat-live-successor-*/
 
 /dist/predev-cleanup-cache-*/
+
+/dist/developer-console-cache-*/

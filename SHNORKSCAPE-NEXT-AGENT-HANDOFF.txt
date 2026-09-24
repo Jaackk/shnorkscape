@@ -1,3 +1,22 @@
+DEVELOPER CONSOLE IMPLEMENTATION 2026-09-24
+Native shell1448, scripts21124-21129, shared command directory/handlers,
+per-account favourites, NPC/object catalogue, independent native tile placement,
+owned temporary edits and explicit persistent Save to World are implemented.
+Full regression: 1553 tests, zero failures/errors, 2 existing skips.
+Exact-cache isolated world lifecycle and production JS5 reference probes PASS.
+Native Vulkan appearance / button hooks / placement cursor remain LIVE TEST PENDING.
+See docs/DEVELOPER-CONSOLE-20260924.md and validation JSON for limits/checklist.
+Do not claim visual success from packet/cache tests. Server left running unchanged.
+
+DEVELOPER CONSOLE PASS 2026-09-24 - CURRENT USER DIRECTION
+User explicitly defers these LIVE FAILURES; do not investigate during ;;dev:
+1. Christmas cracker still has no usable Pull/player interaction.
+2. Dragging abilities off an unlocked bar still does not work.
+3. Equipment binding may save, but weapon changes do not select the bar.
+Prior packet/cache tests are NOT live acceptance. Keep them marked unresolved.
+Proceed with native Developer Console/world editor prompt and mockup now.
+User waives the cleanup live gate; no server restart without permission.
+
 URGENT LAUNCH HOTFIX 2026-09-24
 Predev candidate was installed correctly, but its new script-reference SHA was
 omitted from Start-950Server/Test-Bundle/Prepare-ClientCache allowlists.

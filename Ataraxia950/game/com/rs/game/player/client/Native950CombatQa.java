@@ -78,6 +78,8 @@ final class Native950CombatQa {
         return "Combat QA stopped. The session index is finalizing in the background.";
     }
 
+    static synchronized boolean enabled(Player player) { return SESSIONS.containsKey(player); }
+
     static synchronized String status(Player player) {
         Session session = SESSIONS.get(player);
         return session == null ? "Combat QA is not active."

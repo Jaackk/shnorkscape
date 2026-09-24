@@ -107,6 +107,7 @@ public final class Native950Interactions {
     private final Native950ProductionMenu productionMenu;
     private final Native950ItemBrowser itemBrowser;
     private final Native950EquipmentLibrary equipmentLibrary;
+    private final Native950DeveloperConsole developerConsole;
     private final Native950ToolbeltUi toolbeltUi;
     private final Native950ForgeUi forgeUi;
     private final Native950QuantityInput quantityInput;
@@ -201,6 +202,7 @@ public final class Native950Interactions {
         this.productionMenu = new Native950ProductionMenu(player, dialogues);
         this.itemBrowser = new Native950ItemBrowser(player, channel, dialogues);
         this.equipmentLibrary = new Native950EquipmentLibrary(player,channel,this::closeModal);
+        this.developerConsole = new Native950DeveloperConsole(player,channel,()->{closeModal();skillGuide.close();settings.close();lodestones.close();exitUi.close();},this::runCommand);
         this.toolbeltUi = new Native950ToolbeltUi(player, channel);
         player.getInterfaceManager().setNative950ToolbeltUi(toolbeltUi);
         this.forgeUi = new Native950ForgeUi(player,channel);
@@ -336,6 +338,7 @@ public final class Native950Interactions {
 
     void beginTick() {
         equipmentLibrary.tick();
+        developerConsole.tick();
         publicChatThisTick = false;
         inventionUi.sync(player,channel);
         changedInventorySlots.clear(); changedBankSlots.clear();
@@ -404,6 +407,7 @@ public final class Native950Interactions {
             reject("You cannot move to that interaction right now"); return;
         }
         if (action instanceof Native950Actions.StringDialogueAction) {
+            if (developerConsole.handle((Native950Actions.StringDialogueAction) action)) return;
             if (equipmentLibrary.handle((Native950Actions.StringDialogueAction) action)) return;
             if (!itemBrowser.handle((Native950Actions.StringDialogueAction) action)) unhandled(action);
             return;
@@ -421,6 +425,7 @@ public final class Native950Interactions {
             cancelQuantity(); return;
         }
         if (action instanceof Native950Actions.PauseButtonAction && itemBrowser.cancelInput()) return;
+        if (action instanceof Native950Actions.PauseButtonAction && developerConsole.cancelInput()) return;
         if (action instanceof Native950Actions.PauseButtonAction && equipmentLibrary.cancelInput()) return;
         if (!(action instanceof Native950Actions.GroundItemAction)) pendingGroundItem=null;
         if (action instanceof Native950Actions.GroundItemAction) groundItem((Native950Actions.GroundItemAction)action);
@@ -470,6 +475,10 @@ public final class Native950Interactions {
             if (!publicChatThisTick) publicChatThisTick = Native950Social.speak(player, text, System.currentTimeMillis());
             return;
         }
+        runCommand(text);
+    }
+
+    private void runCommand(String text) {
         commandsRun++;
         boolean passiveDiagnostic=Native950DevelopmentCommands.preservesGameplay(text);
         if(!passiveDiagnostic){
@@ -552,7 +561,7 @@ public final class Native950Interactions {
     void walking() { cancelSkill(); pendingGroundItem=null; combatActions.cancelAttack(player); cancelConversations(); pendingBank = null; pendingNpcOption = 0; closeBank(); worldMap.close(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); }
 
     /** Retire all pending responses before the session leaves the world. */
-    void close() { Native950WorkspaceCapture.closed(channel); Native950Familiars.onLogout(player); cancelSkill(); equipmentLibrary.dispose(); itemBrowser.dispose(); Native950Skilling.detach(player); pendingGroundItem=null; combatActions.stop(player); cancelConversations(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); }
+    void close() { Native950WorkspaceCapture.closed(channel); Native950Familiars.onLogout(player); cancelSkill(); developerConsole.dispose(); equipmentLibrary.dispose(); itemBrowser.dispose(); Native950Skilling.detach(player); pendingGroundItem=null; combatActions.stop(player); cancelConversations(); settings.close(); lodestones.close(); skillGuide.close(); toolbeltUi.close(); forgeUi.close(); exitUi.close(); }
 
     private void cancelQuantity() {
         quantityInput.cancel();
@@ -566,6 +575,7 @@ public final class Native950Interactions {
     }
 
     private void cancelDialogue() {
+        developerConsole.close();
         equipmentLibrary.close();
         itemBrowser.close();
         productionMenu.close(); forgeUi.close();
@@ -1186,6 +1196,7 @@ public final class Native950Interactions {
     }
 
     private void button(Native950Actions.InterfaceAction action) {
+        if(developerConsole.handle(action))return;
         if(equipmentLibrary.handle(action))return;
         Native950BugTest.event(player,"interface","button-dispatch","interface",action.interfaceId(),"component",action.componentId(),"slot",action.slot(),"option",action.option());
         if(itemBrowser.handle(action))return;
@@ -1565,6 +1576,7 @@ public final class Native950Interactions {
     }
 
     private void abilityOnTile(Native950Actions.InterfaceOnTileAction action){
+        if(developerConsole.handle(action))return;
         Native950BugTest.event(player,"combat","tile-ability-input","source",action.sourceInterfaceId()+":"+action.sourceComponentId(),
                 "slot",action.sourceSlot(),"item",action.sourceItemId(),"x",action.x(),"y",action.y());
         if(exitUi.isOpen()||bankOpen||equipmentLibrary.isOpen()||player.isLocked()||!player.clientHasLoadedMapRegion()){

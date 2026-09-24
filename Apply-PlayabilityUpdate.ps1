@@ -8,12 +8,17 @@ $expectedTargets = @('OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar',
     'patches/classes/com/opennxt/net/login/Native950InterfaceBootstrap.class',
     'patches/classes/com/opennxt/net/login/Native950InterfaceBootstrap$Panel.class',
     'patches/classes/com/opennxt/net/login/Native950InterfaceBootstrap$Slot.class')
-$libraryUpdate=$manifest.candidate -in @('library-followup-20260923','p0-bank-focus-20260923','bank-sort-20260923','combat-completion-20260923','combat-live-successor-20260923','combat-live-successor-refinement-20260923','combat-live-successor-polish-20260924','combat-live-successor-polish2-20260924','combat-live-successor-qol-20260924','combat-live-successor-dm-20260924','combat-live-successor-predev-20260924')
+$libraryUpdate=$manifest.candidate -in @('library-followup-20260923','p0-bank-focus-20260923','bank-sort-20260923','combat-completion-20260923','combat-live-successor-20260923','combat-live-successor-refinement-20260923','combat-live-successor-polish-20260924','combat-live-successor-polish2-20260924','combat-live-successor-qol-20260924','combat-live-successor-dm-20260924','combat-live-successor-predev-20260924','combat-live-successor-dev-20260924')
 if ($libraryUpdate) { $expectedTargets += @('cache/12/13903.dat','cache/12/13905.dat','cache/12/13909.dat','cache/12/15897.dat','cache/12/6963.dat','cache/255/12.dat') }
-if ($manifest.candidate -in @('bank-sort-20260923','combat-completion-20260923','combat-live-successor-20260923','combat-live-successor-refinement-20260923','combat-live-successor-polish-20260924','combat-live-successor-polish2-20260924','combat-live-successor-qol-20260924','combat-live-successor-dm-20260924','combat-live-successor-predev-20260924')) { $expectedTargets += 'cache/12/13830.dat' }
-if ($manifest.candidate -in @('combat-live-successor-polish2-20260924','combat-live-successor-qol-20260924','combat-live-successor-dm-20260924','combat-live-successor-predev-20260924')) { $expectedTargets += @('cache/18/236.dat','cache/18/243.dat','cache/19/239.dat','cache/255/18.dat','cache/255/19.dat') }
-if ($manifest.candidate -eq 'combat-live-successor-predev-20260924') { $expectedTargets += 'cache/12/5591.dat' }
-if ($manifest.candidate -notin @('playability-20260923','library-followup-20260923','p0-bank-focus-20260923','bank-sort-20260923','combat-completion-20260923','combat-live-successor-20260923','combat-live-successor-refinement-20260923','combat-live-successor-polish-20260924','combat-live-successor-polish2-20260924','combat-live-successor-qol-20260924','combat-live-successor-dm-20260924','combat-live-successor-predev-20260924') -or $manifest.files.Count -ne $expectedTargets.Count) { throw 'Unexpected update manifest.' }
+if ($manifest.candidate -in @('bank-sort-20260923','combat-completion-20260923','combat-live-successor-20260923','combat-live-successor-refinement-20260923','combat-live-successor-polish-20260924','combat-live-successor-polish2-20260924','combat-live-successor-qol-20260924','combat-live-successor-dm-20260924','combat-live-successor-predev-20260924','combat-live-successor-dev-20260924')) { $expectedTargets += 'cache/12/13830.dat' }
+if ($manifest.candidate -in @('combat-live-successor-polish2-20260924','combat-live-successor-qol-20260924','combat-live-successor-dm-20260924','combat-live-successor-predev-20260924','combat-live-successor-dev-20260924')) { $expectedTargets += @('cache/18/236.dat','cache/18/243.dat','cache/19/239.dat','cache/255/18.dat','cache/255/19.dat') }
+if ($manifest.candidate -in @('combat-live-successor-predev-20260924','combat-live-successor-dev-20260924')) { $expectedTargets += 'cache/12/5591.dat' }
+if ($manifest.candidate -eq 'combat-live-successor-dev-20260924') { $expectedTargets += @(21124..21129 | ForEach-Object { "cache/12/$_.dat" }) }
+if ($manifest.candidate -notin @('playability-20260923','library-followup-20260923','p0-bank-focus-20260923','bank-sort-20260923','combat-completion-20260923','combat-live-successor-20260923','combat-live-successor-refinement-20260923','combat-live-successor-polish-20260924','combat-live-successor-polish2-20260924','combat-live-successor-qol-20260924','combat-live-successor-dm-20260924','combat-live-successor-predev-20260924','combat-live-successor-dev-20260924') -or $manifest.files.Count -ne $expectedTargets.Count) { throw 'Unexpected update manifest.' }
+$newTargets = @()
+if ($manifest.candidate -eq 'combat-live-successor-dev-20260924') {
+    $newTargets = @(21124..21129 | ForEach-Object { "cache/12/$_.dat" })
+}
 $planned = @()
 foreach ($entry in $manifest.files) {
     $expectedSource=if($entry.target.StartsWith('cache/')){'cache-v4/'+$entry.target.Substring(6)}else{[IO.Path]::GetFileName($entry.target)}
@@ -23,12 +28,15 @@ foreach ($entry in $manifest.files) {
     $target = [IO.Path]::GetFullPath((Join-Path $updateRoot $entry.target))
     if (!$target.StartsWith($updateRoot + '\', [StringComparison]::OrdinalIgnoreCase)) { throw 'Target is outside the workspace.' }
     if ((Get-FileHash -LiteralPath $source -Algorithm SHA256).Hash -ne $entry.sha256) { throw "Candidate hash mismatch: $($entry.source)" }
-    if (!(Test-Path -LiteralPath $target -PathType Leaf)) { throw "Expected existing runtime file: $($entry.target)" }
-    if($entry.target.StartsWith('cache/')) {
+    $existed = Test-Path -LiteralPath $target -PathType Leaf
+    $newScript = $entry.target -in $newTargets
+    if ($newScript -and $entry.beforeSha256 -ne 'ABSENT') { throw 'New script must declare its absent base.' }
+    if (!$existed -and (!$newScript -or (Test-Path -LiteralPath $target))) { throw "Expected existing runtime file: $($entry.target)" }
+    if($existed -and $entry.target.StartsWith('cache/')) {
         $currentHash=(Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash
         if(!$entry.beforeSha256 -or $currentHash -notin @($entry.beforeSha256,$entry.sha256)){throw "Cache target differs from the audited base and staged update: $($entry.target)"}
     }
-    $planned += [pscustomobject]@{Source=$source;Target=$target;Relative=$entry.target;Hash=$entry.sha256}
+    $planned += [pscustomobject]@{Source=$source;Target=$target;Relative=$entry.target;Hash=$entry.sha256;Existed=$existed}
 }
 # A valid cache delta must also be accepted by all three startup gates before installation.
 $scriptReference = @($manifest.files | Where-Object { $_.target -eq 'cache/255/12.dat' })
@@ -46,7 +54,10 @@ $running = Get-Process | Where-Object { $_.ProcessName -in @('java','javaw') -or
 if ($running) { throw 'Close both game clients and stop SHNORKSCAPE with Stop.cmd first. No files were replaced.' }
 $backupRoot = Join-Path $updateRoot ('backups\playability-update-' + (Get-Date -Format 'yyyyMMdd-HHmmss-fff'))
 New-Item -ItemType Directory -Path $backupRoot -ErrorAction Stop | Out-Null
+# Newly created files must be removed when manually rolling back this candidate.
+@($planned | Where-Object { !$_.Existed } | ForEach-Object { $_.Relative }) | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $backupRoot 'new-files.json') -Encoding UTF8
 foreach ($entry in $planned) {
+    if (!$entry.Existed) { continue }
     $backupFile = Join-Path $backupRoot $entry.Relative
     New-Item -ItemType Directory -Path (Split-Path -Parent $backupFile) -Force | Out-Null
     Copy-Item -LiteralPath $entry.Target -Destination $backupFile
@@ -67,7 +78,14 @@ try {
     }
 } catch {
     $installError = $_
-    foreach ($entry in $planned) { Copy-Item -LiteralPath (Join-Path $backupRoot $entry.Relative) -Destination $entry.Target -Force }
+    foreach ($entry in $planned) {
+        if ($entry.Existed) { Copy-Item -LiteralPath (Join-Path $backupRoot $entry.Relative) -Destination $entry.Target -Force }
+        elseif ((Test-Path -LiteralPath $entry.Target -PathType Leaf) -and $entry.Relative -in $newTargets) {
+            # Exact, previously validated file path only; never recursive.
+            if (![IO.Path]::GetFullPath($entry.Target).StartsWith($updateRoot + '\', [StringComparison]::OrdinalIgnoreCase)) { throw 'Rollback target escaped workspace.' }
+            Remove-Item -LiteralPath $entry.Target -Force
+        }
+    }
     throw "Update failed; original runtime files restored. Backup: $backupRoot. $installError"
 }
 Write-Host "Playability candidate installed. Backup: $backupRoot"

@@ -22447,6 +22447,18 @@
     "bindingLive": "FAIL - options not saved; successor native notification bridge pending",
     "sunshineCooldownLive": "FAIL/PARTIAL - successor avoids side-effectful redraw, pending",
     "soulGameplayLive": "CONFIRMED LIVE - preserved; dormant buff timer presentation pending",
-    "developerConsole": "Not implemented in cleanup candidate"
+    "developerConsole": "User authorizes proceeding now; no cleanup live gate",
+    "deferredLiveFailures": [
+      "Christmas cracker player interaction unavailable",
+      "Unlocked action-bar drag removal unavailable",
+      "Equipment binding does not select configured bar on weapon change"
+    ]
+  },
+  "developerConsole": {
+    "status": "AUTOMATED VERIFIED / LIVE TEST PENDING",
+    "report": "docs/DEVELOPER-CONSOLE-20260924.md",
+    "validation": "protocol-analysis/developer-console-validation-20260924.json",
+    "preserved": "Existing bank-context24, ability targeting and combat unchanged",
+    "limits": "Native metadata previews only; no ghost/footprint overlay; saved edits duplicate-before-move; temporary-placement undo only"
   }
 }

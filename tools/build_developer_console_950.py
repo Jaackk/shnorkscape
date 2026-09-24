@@ -1,0 +1,107 @@
+"""Author server-driven pages in the existing 950 management shell.
+
+Uses the cache's CS10410/10899 textured button, CS2995 text styles and normal
+management lifecycle. No client executable, existing interface or script changes.
+New scripts are appended to a copy of the current reference table, never live cache.
+"""
+import hashlib, json, struct, zlib
+from pathlib import Path
+from build_library_search_bridge import ROOT, encode, unpack, container
+from library_trace_read import scope, inverse
+
+# Native-only opcode: independently derived from registration1400562be and
+# handler1401f76f0 (pop hash/slot, resolve component, cancel prior, select target).
+NATIVE_SELECT=0x10000
+def instruction(op,arg):
+    return struct.pack('>HB',0x72c,arg) if op==NATIVE_SELECT else encode(op,arg)
+
+BASE = 21124  # first unused ID in the paired 950 cache; checked below
+def push(value): return (0x511, (2 if isinstance(value,str) else 0,value))
+def call(sid): return (0x895,sid)
+def ints(*values): return [push(v) for v in values]
+def script(ops, ni=0, ns=0):
+    ops=ops+[(0x495,0)]
+    tail=struct.pack('>I6H',len(ops),ni,ns,0,ni,ns,0)+b'\0\0\1'
+    raw=b'\0'+b''.join(instruction(*op) for op in ops)+tail
+    decoded,_=scope['decode'](raw,dict(inverse,**{})|{0x72c:NATIVE_SELECT})
+    assert [(o,a) for _,_,o,a,_ in decoded]==ops
+    return raw
+def programs():
+    init=[]
+    for c in (3,5,7,9,11):
+        h=1448<<16|c
+        init+=ints(h)+[(0x5,0)]+ints(0,0,0,0,h)+[(0x7c5,0)]+ints(742,450,0,0,h)+[(0x55,0)]
+        init+=ints(0 if c in (3,5,7) else 1,h)+[(0xe4,0)]
+    # Header and tabs belong to the shell, content remains in its page hosts.
+    init+=ints(1,1477<<16|714)+[(0xe4,0)]
+    init+=ints(1477<<16|713)+[(0x5,0)]
+    init+=ints(1477<<16|713,0,14,0,0,0,660,52,0,0,17514)+[push('DEVELOPER CONSOLE'),call(2995)]
+    # Button arguments: actor, x,y,width,height,selected,text. Native nine-slice
+    # visuals live in host3; operation actors in host5, as in the Beasts browser.
+    button=ints(1448<<16|3,1448<<16|5,28556)
+    button += [(0x35e,n) for n in (1,2,3,4,0,5)]+[(0x25a,0),call(10410),(0x592,0)]
+    # Same CC_SETONOP contract as native CS10324; callback carries a per-render
+    # capability, so delayed input can never execute a new row at an old slot.
+    button += ints(BASE+3)+[(0x25a,1),push('s'),(0x6a,0)]
+    # CS10410 returns the next actor index; the caller has its own actor allocation.
+    text=ints(1448<<16|7)+[(0x35e,0),(0x35e,1),(0x35e,2)]+ints(0,0)
+    text += [(0x35e,3),(0x35e,4)]+ints(0,0)+[(0x35e,5),(0x25a,0),call(2995)]
+    # A distinct source slot per placement rejects late opcode85 packets from old
+    # selections. CC_CREATE requires contiguous preceding children; they are hidden.
+    arm=ints(1448<<16|11)+[(0x5,0)]+ints(0)+[(0x592,1)]
+    start=len(arm);arm += [(0x35e,1),(0x35e,0),(0x647,0)];branch=len(arm)-1
+    arm+=ints(1448<<16|11,3)+[(0x35e,1),(0x691,0)]+ints(1)+[(0x4a9,0),(0x35e,1)]+ints(1)+[(0x1d,0),(0x592,1)]
+    arm += [(0x713,start-len(arm)-1)];arm[branch]=(0x647,len(arm)-branch-1)
+    arm+=ints(1448<<16|11,4)+[(0x35e,0),(0x691,0),(0x25a,0),(0x776,0)]
+    # Native selection enters event15, leaves event16. The normalized665 handler
+    # at1401fa2b0 installs event16 through1401f84d0, matching14019f66d.
+    arm+=ints(BASE+3)+[(0x25a,1),push('s'),(0x665,0)]
+    arm+=ints(1448<<16|11)+[(0x35e,0),(NATIVE_SELECT,0)]
+    # Two int locals, only one argument (the target actor index).
+    armraw=bytearray(script(arm,2,2));end=len(armraw)-19;armraw[end+10:end+12]=struct.pack('>H',1)
+    return {BASE:script(init),BASE+1:script(button,6,2),BASE+2:script(text,6,1),BASE+3:script([(0x25a,0),(0x77b,0)],0,1),BASE+4:bytes(armraw),BASE+5:script([(0x8aa,0)])}
+
+def smart(v): return struct.pack('>I',v|0x80000000) if v>=32768 else struct.pack('>H',v)
+def append_reference(raw, additions):
+    """Retain all original named group/file metadata while adding single-file scripts."""
+    assert raw[0]==7 and raw[5]==13
+    p=6
+    def count():
+        nonlocal p
+        n=4 if raw[p]&128 else 2;v=int.from_bytes(raw[p:p+n],'big')&0x7fffffff;p+=n;return v
+    total=count();ids=[];last=0
+    for _ in range(total):last+=count();ids.append(last)
+    assert max(ids)<BASE and min(additions)==BASE
+    arrays=[]
+    for width in (4,4,4,8,4):arrays.append([raw[p+i*width:p+(i+1)*width] for i in range(total)]);p+=total*width
+    counts=[count() for _ in ids];files=[]
+    for n in counts:
+        start=p
+        for _ in range(n):count()
+        files.append(raw[start:p])
+    names=[]
+    for n in counts:names.append(raw[p:p+4*n]);p+=4*n
+    assert p==len(raw),(p,len(raw))
+    for sid,(packed,payload) in sorted(additions.items()):
+        ids.append(sid);counts.append(1);files.append(smart(0));names.append(struct.pack('>i',-1))
+        for arr,value in zip(arrays,(struct.pack('>i',-1),struct.pack('>I',zlib.crc32(packed)),struct.pack('>I',zlib.crc32(payload)),struct.pack('>II',len(packed),len(payload)),struct.pack('>I',1))):arr.append(value)
+    out=raw[:1]+struct.pack('>I',int.from_bytes(raw[1:5],'big')+1)+raw[5:6]+smart(len(ids));last=0
+    for sid in ids:out+=smart(sid-last);last=sid
+    return out+b''.join(b''.join(a) for a in arrays)+b''.join(smart(n) for n in counts)+b''.join(files)+b''.join(names)
+
+def main():
+    dest=ROOT/'dist/developer-console-cache-20260924/cache-v4';dest.mkdir(parents=True,exist_ok=True)
+    additions={};pins={}
+    for sid,payload in programs().items():
+        packed=container(payload);additions[sid]=(packed,payload)
+        path=dest/f'12/{sid}.dat';path.parent.mkdir(exist_ok=True);path.write_bytes(packed+b'\0\1')
+        pins[str(sid)]=hashlib.sha256(payload).hexdigest()
+    ref=append_reference(unpack((ROOT/'cache/255/12.dat').read_bytes()),additions)
+    (dest/'255').mkdir(exist_ok=True);(dest/'255/12.dat').write_bytes(container(ref))
+    (ROOT/'protocol-analysis/developer-console-scripts-950.json').write_bytes((json.dumps({'scripts':pins,'nativeButton':10410,'nativeText':2995,'shell':1448,'status':'AUTOMATED VERIFIED; Vulkan visual acceptance pending'},indent=2)+'\n').encode())
+    for sid in (10410,10899,2995,10644,10324):
+        pins[str(sid)]=hashlib.sha256((ROOT/f'temp/library-followup-trace/12-{sid}-0.bin').read_bytes()).hexdigest()
+    (ROOT/'Ataraxia950/resources/native950/developer-console-950.properties').write_bytes((''.join(f'{sid}={value}\n' for sid,value in sorted(pins.items()))).encode())
+    print('Staged six new native scripts; live cache untouched.')
+if __name__=='__main__':main()
+

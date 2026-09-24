@@ -1,0 +1,21 @@
+{
+  "status": "AUTOMATED VERIFIED; physical Vulkan LIVE TEST PENDING",
+  "regression": {
+    "tests": 1553,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2
+  },
+  "nativeScripts": "3 Python contract/VM tests passed; actual native executable selection-handler identity verified",
+  "cacheReference": "Production Java JS5 decoder confirms all original references preserved and six appended payload CRC/length/version/file identities valid",
+  "worldAcceptance": "Isolated actual-cache world-thread probe passed NPC/object placement, registration/ownership, undo/redo, rotation, save, temporary cleanup and persistent delete; no network listener or character save",
+  "remaining": [
+    "Native layout, button interaction and world placement cursor/opcode85 path require physical Vulkan acceptance",
+    "Ghost/model/green-red footprint preview not implemented; verified metadata preview only",
+    "Saved edits must be duplicated before moving/rotating; placement-only undo/redo",
+    "Christmas cracker Pull, unlocked bar drag-off and equipment-to-bar binding explicitly deferred by user"
+  ],
+  "deployedJarSha256": "E31CD5E6F2DE70B57B6DD21F3C4D2C6BA276DEFBB5062F9476DD2028C8F27E55",
+  "deployedScriptReferenceSha256": "A0A233157B1709AEA860B1EFD9961950DE1C15FAF0B29805E3E7EAED0E6A3494",
+  "serverRestarted": false
+}

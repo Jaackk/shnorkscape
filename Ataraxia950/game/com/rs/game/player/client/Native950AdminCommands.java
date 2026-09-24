@@ -42,7 +42,7 @@ public final class Native950AdminCommands {
                     entry(";;item <id> [amount]", "add an item by cache ID"),
                     entry(";;bank", "open your bank"),
                     entry(";;copy <player>", "replace your inventory and worn gear with an online player's"),
-                    entry(";;items", "open the paged Developer Item Browser; search, recent, and quantity controls"),
+                    entry(";;items", "open the native Developer Equipment Library with global cache search and combat loadouts"),
                     entry(";;search / ;;find / ;;si / ;;itemid / ;;finditem <name> [page]", "find item IDs"),
                     entry(";;findnpc / ;;snpc <name> [page]", "find NPC IDs")),
             group("NPCS & TRAVEL", "fda4af", "fecdd3",
@@ -57,6 +57,7 @@ public final class Native950AdminCommands {
                     entry(";;teleto / ;;tpto <player>", "teleport to an online player"),
                     entry(";;disengage, ;;obj <id> [type] [rotation]", "stop combat/movement; spawn a diagnostic object")),
             group("DEVELOPMENT", "f9a8d4", "fbcfe8",
+                    entry(";;dev / ;;developer", "open the native Developer Console"),
                     entry(";;devstatus, ;;commands / ;;devhelp", "show resource modes; show this directory"),
                     entry(";;uilayout status", "show native workspace diagnostic state"),
                     entry(";;layoutfixture stage|apply", "pinned layout application gate; layoutgate2 only"),
@@ -72,7 +73,7 @@ public final class Native950AdminCommands {
     static boolean recognizes(String command) {
         if (Native950ContentCommands.recognizes(command)) return true;
         switch (command) {
-            case "god": case "infprayer": case "infadren": case "adrenaline": case "bank": case "copy": case "copybar": case "teleto": case "tpto":
+            case "dev": case "developer": case "god": case "infprayer": case "infadren": case "adrenaline": case "bank": case "copy": case "copybar": case "teleto": case "tpto":
             case "savecoords": case "locs": case "locations":
             case "almighty": case "dm": case "infrunes": case "infrun": case "infammo": case "commands": case "spell": case "bugtest": case "bug": case "combatqa": case "queuehold": case "items": case "uilayout": case "comp":
             case "wars": case "warsretreat": case "death": case "deathsoffice": case "vorago": case "dummy": case "testbar": case "clearbar": case "bar":
@@ -95,6 +96,10 @@ public final class Native950AdminCommands {
             reply(channel, "Administrator or explicitly granted local developer account required."); return;
         }
         String command = args[0];
+        if(command.equals("dev")||command.equals("developer")){
+            if(args.length!=1){reply(channel,"Use ;;dev.");return;}
+            Native950DeveloperConsole.openFor(p);return;
+        }
         if (Native950ContentCommands.recognizes(command)) {
             if (!p.isActive() || p.hasFinished() || p.isDead() || p.isLocked()) {
                 reply(channel, "Wait until your character can act."); return;
@@ -342,6 +347,14 @@ public final class Native950AdminCommands {
         for(int slot=0;slot<inventory.length;slot++)player.getInventory().getItems().set(slot,slot<sourceInventory.length&&sourceInventory[slot]!=null?new Item(sourceInventory[slot]):null);
         for(int slot=0;slot<equipment.length;slot++)player.getEquipment().getItems().set(slot,slot<sourceEquipment.length&&sourceEquipment[slot]!=null?new Item(sourceEquipment[slot]):null);
         player.getInventory().refresh();player.getEquipment().refresh();player.getAppearence().generateAppearenceData();
+    }
+
+    /** Immutable copies of the one authoritative help catalogue. */
+    static java.util.List<String[]> developerDirectory() {
+        java.util.List<String[]> rows=new java.util.ArrayList<>();
+        for(CommandGroup group:COMMAND_DIRECTORY)for(CommandEntry entry:group.entries)
+            rows.add(new String[]{group.title,entry.names,entry.description});
+        return java.util.Collections.unmodifiableList(rows);
     }
 
     private static CommandGroup group(String title, String headerColor, String commandColor, CommandEntry... entries) {
