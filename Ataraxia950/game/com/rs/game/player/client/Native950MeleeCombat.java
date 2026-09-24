@@ -442,6 +442,42 @@ public final class Native950MeleeCombat {
         Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
         return developerMovement(player,structure)||cooldowns==null?0:cooldowns.getOrDefault(structure,0L);
     }
+    /** Read-only snapshot on the owning world thread; no queue selection or publication. */
+    java.util.List<String> abilityDiagnostic(Player p,int slot){
+        owned();
+        if(slot<1||slot>14)throw new IllegalArgumentException("Use a slot from 1 to 14.");
+        Native950ActionBar bar=p.getNative950ActionBar();
+        int raw=Native950ActionBar.struct(bar.slot(bar.activeBar(),slot-1));
+        int id=resolveAbility(p,raw);Native950AbilityCatalog.Definition d=Native950AbilityCatalog.get(id);
+        java.util.List<String> lines=new java.util.ArrayList<>();
+        lines.add("Bar "+(bar.activeBar()+1)+" slot "+slot+": struct="+raw+" effective="+id+" "+(d==null?"unsupported / not an ability":d.name));
+        lines.add("Server tick="+tick+" cooldown="+Math.max(0,abilityCooldownEnd(p,id)-tick)
+                +" GCD="+Math.max(0,globalCooldown.getOrDefault(p,0L)-tick)+" channel="+Math.max(0,channelUntil.getOrDefault(p,0L)-tick)+" ticks");
+        lines.add("Native last publication: "+bar.cooldownPublication(id));
+        lines.add("Native GCD publication: "+bar.cooldownPublication(14881));
+        Fighter target=targets.get(p);
+        lines.add("Queued="+queuedAbilities.getOrDefault(p,-1)+"; target="+(target==null?"none":target.npc.getId()+" index="+target.npc.getIndex()+" attacking="+isAttacking(p,target)));
+        if(d!=null){
+            String refusal=abilityRefusal(p,id);
+            lines.add("Runtime gate: "+(refusal==null?"ready":refusal));
+            lines.add("Level="+d.level+" skill="+d.skill+" style="+d.style()+" shield="+d.shieldRequired()+" offhand="+d.offhandRequired+" twoHanded="+d.twoHandedRequired);
+            lines.add("Adrenaline current="+p.getCombatDefinitions().getSpecialAttackPercentage()+" baseRequired="+d.adrenalineRequired()+" baseCost="+d.adrenalineCost()+" infinite="+p.getCombatDefinitions().isInfiniteAdrenaline());
+            lines.add("Necromancy resource gate: "+String.valueOf(necromancy.refusal(p,id))+" (null=passed; dynamic cost included in runtime gate)");
+            lines.add("Revolution enabled="+bar.isRevolutionEnabled()+" withinRange="+(slot<=bar.revolutionSlots())+" eligible="+d.revolutionEligible()+" tierAllowed="+bar.revolutionTierAllowed(id)+" ceaseTicks="+Math.max(0,ceaseUntil.getOrDefault(p,0L)-tick));
+        }
+        return java.util.Collections.unmodifiableList(lines);
+    }
+    /** Explicit developer operation; invalidate this player's queue before clearing its timers. */
+    String resetDeveloperCooldowns(Player p){
+        owned();
+        if(tick<channelUntil.getOrDefault(p,0L))return "Wait for the current channel to finish before resetting cooldowns.";
+        clearQueuedAbility(p);
+        Map<Integer,Long> current=abilityCooldowns.remove(p);
+        java.util.Set<Integer> ids=new java.util.HashSet<>();if(current!=null)ids.addAll(current.keySet());ids.add(14881);
+        globalCooldown.remove(p);
+        for(int id:ids)p.getNative950ActionBar().cooldown(p.getRealChannel(),id,(int)Utils.currentWorldCycle(),0);
+        return "Your ability cooldowns and manual queue were cleared. Active buffs and other players are unchanged.";
+    }
     /** Opt-in diagnostic: the real manual queue waits twelve ticks, then executes normally. */
     String holdQueueForVisualCheck(Player player,int slot){
         owned();

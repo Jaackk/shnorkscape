@@ -46,7 +46,9 @@ final class Native950DeveloperActions {
             if(q.isEmpty()&&!category.equals("Commands")&&!category.equals(a.category)&&!(category.equals("Favourites")&&favourites.contains(a.id)))continue;
             if(!q.isEmpty()&&!(a.id+" "+a.aliases+" "+a.description+" "+a.category).toLowerCase(Locale.ROOT).contains(q))continue;
             result.add(a);
-        }return result;
+        }
+        if(!q.isEmpty())result.sort(Comparator.comparing((Action a)->!Pattern.compile(";;"+Pattern.quote(q)+"(?![a-z0-9])").matcher(a.aliases).find()));
+        return result;
     }
     static boolean permitted(Player p,Channel c){return Native950DevelopmentCommands.allowed(p,c)&&Native950AdminCommands.authorized(p);}
     static void execute(Player p,Channel c,Native950SkillGuide guide,Action a,List<String> values){
@@ -79,6 +81,8 @@ final class Native950DeveloperActions {
             if(actions.containsKey(id)||id.equals("dev"))continue;
             List<Parameter> params=new ArrayList<>();boolean configured=true;
             switch(id){
+                case "abilityinfo":params.add(n("Action bar slot",1,1,14));break;
+                case "npcinfo":params.add(t("NPC ID, name or symbol","6260"));break;
                 case "adrenaline":params.add(n("Adrenaline %",100,0,100));break;
                 case "bar":params.add(n("Saved bar",1,1,4));break;
                 case "dummy":params.add(n("Amount",1,1,5));break;
@@ -103,8 +107,9 @@ final class Native950DeveloperActions {
                 default: if(segment.contains("[")||segment.contains("<"))configured=false;
             }
             String cat=row[0].equals("COMBAT & RESOURCES")||row[0].equals("ACTION BARS")?"Combat":row[0].equals("GEAR & ITEMS")?"Items":row[0].equals("NPCS & TRAVEL")?"World":"Tools";
-            if(Arrays.asList("npc","npcrepeat","npcs","removenpc","clearnpcs","dummy","findnpc").contains(id))cat="NPCs";
-            if(Arrays.asList("heal","max","copy","coords").contains(id))cat="Player";
+            if(Arrays.asList("npc","npcrepeat","npcs","removenpc","clearnpcs","dummy","findnpc","npcinfo").contains(id))cat="NPCs";
+            if(Arrays.asList("max","copy","coords").contains(id))cat="Player";
+            if(Arrays.asList("melee","mage","range","necro","disengage","combatqa").contains(id))cat="Combat";
             if(id.equals("comp"))cat="Quests";if(id.equals("uilayout"))cat="Settings";
             actions.put(id,new Action(id,segment,segment,description(id,row[2]),cat,params,configured));
         }

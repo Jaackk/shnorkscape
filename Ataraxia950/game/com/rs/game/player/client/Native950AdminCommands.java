@@ -21,6 +21,9 @@ public final class Native950AdminCommands {
      */
     private static final CommandGroup[] COMMAND_DIRECTORY = {
             group("COMBAT & RESOURCES", "ffd166", "fff1b8",
+                    entry(";;abilityinfo <slot 1-14>", "read-only server/native cooldown, queue, target and requirement snapshot"),
+                    entry(";;resetcooldowns", "clear your ability cooldowns and queue for testing; waits for channels"),
+                    entry(";;npcinfo <ID, name or symbol>", "inspect native combat admission, refusal reasons, presentation and drops"),
                     entry(";;god", "Toggle damage immunity"),
                     entry(";;almighty / ;;dm", "Toggle full developer combat mode: damage immunity, infinite combat resources and conveniences, including cooldown-free Surge/Escape/Dive"),
                     entry(";;infprayer, ;;infadren, ;;infrunes", "infinite prayer, adrenaline, or combat runes"),
@@ -75,6 +78,7 @@ public final class Native950AdminCommands {
     static boolean recognizes(String command) {
         if (Native950ContentCommands.recognizes(command)) return true;
         switch (command) {
+            case "abilityinfo": case "resetcooldowns": case "npcinfo":
             case "dev": case "developer": case "god": case "infprayer": case "infadren": case "adrenaline": case "bank": case "copy": case "copybar": case "teleto": case "tpto":
             case "savecoords": case "locs": case "locations":
             case "almighty": case "dm": case "infrunes": case "infrun": case "infammo": case "commands": case "spell": case "bugtest": case "bug": case "combatqa": case "queuehold": case "items": case "uilayout": case "comp":
@@ -107,6 +111,27 @@ public final class Native950AdminCommands {
                 reply(channel, "Wait until your character can act."); return;
             }
             Native950ContentCommands.handle(p, channel, args); return;
+        }
+        if(command.equals("abilityinfo")||command.equals("npcinfo")||command.equals("resetcooldowns")){
+            try{
+                if(!p.isActive()||p.hasFinished()||p.isDead()||p.isLocked())throw new IllegalArgumentException("Wait until your character can act.");
+                if(command.equals("npcinfo")){
+                    if(args.length<2)throw new IllegalArgumentException("Use ;;npcinfo <ID, name or symbol>.");
+                    String query=String.join(" ",Arrays.copyOfRange(args,1,args.length));
+                    if(query.length()>160)throw new IllegalArgumentException("Query is too long.");
+                    Native950CombatInspector.send(p,Native950CombatInspector.search(query));
+                }else{
+                    if(p.getNative950Combat()==null)throw new IllegalArgumentException("Combat is not ready.");
+                    if(command.equals("abilityinfo")){
+                        if(args.length!=2)throw new IllegalArgumentException("Use ;;abilityinfo <slot 1-14>.");
+                        Native950CombatInspector.send(p,p.getNative950Combat().abilityDiagnostic(p,Integer.parseInt(args[1])));
+                    }else{
+                        if(args.length!=1)throw new IllegalArgumentException("Use ;;resetcooldowns.");
+                        p.sendMessage(p.getNative950Combat().resetDeveloperCooldowns(p));
+                    }
+                }
+            }catch(IllegalArgumentException|IllegalStateException unavailable){reply(channel,unavailable.getMessage());}
+            return;
         }
         if(command.equals("commands")) { commandList(channel,args);return; }
         if(command.equals("bugtest")) {

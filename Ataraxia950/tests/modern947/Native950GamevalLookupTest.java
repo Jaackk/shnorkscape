@@ -12,6 +12,12 @@ public class Native950GamevalLookupTest {
         assertTrue(Native950GamevalLookup.search("interface machinima").stream().allMatch(e->e.type.equals("interface")));
         assertEquals(1438,Native950GamevalLookup.search("").size());
     }
+    @Test public void provenanceCanBeSearchedWithoutDefeatingTypeFilter(){
+        assertFalse(Native950GamevalLookup.search("sequence 949").isEmpty());
+        assertTrue(Native950GamevalLookup.search("sequence 949").stream().allMatch(e->e.type.equals("sequence")));
+        assertFalse(Native950GamevalLookup.search("payload match").isEmpty());
+        assertEquals("almighty",Native950DeveloperActions.search("Combat","dm",Collections.emptySet()).get(0).id);
+    }
     @Test public void changedPayloadNeverClaimsVerification(){
         Native950GamevalLookup.Entry entry=Native950GamevalLookup.search("623:27").get(0);
         assertFalse(entry.matches(null));assertFalse(entry.matches(new byte[]{1,2,3}));

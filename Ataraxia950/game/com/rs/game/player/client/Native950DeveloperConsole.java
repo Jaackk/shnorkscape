@@ -233,7 +233,10 @@ final class Native950DeveloperConsole {
                 button(495,219,239,30,"Native type: "+entity.types[typeIndex],false,()->{typeIndex=(typeIndex+1)%entity.types.length;render();});
                 button(495,252,239,30,"Rotation: "+(rotation*90)+" degrees",false,()->{rotation=(rotation+1)%4;render();});
             }
-            text(500,296,227,56,2100,"Temporary diagnostic spawn.<br>No cache or map files are changed.");
+            if(browser.equals("NPC"))button(495,291,239,30,"Inspect combat profile",false,()->{
+                try{Native950CombatInspector.send(player,Native950CombatInspector.npc(entity.id));status="Combat profile printed to chat.";}
+                catch(IllegalStateException unavailable){status=unavailable.getMessage();}render();
+            });else text(500,296,227,56,2100,"Temporary diagnostic spawn.<br>No cache or map files are changed.");
             button(495,387,239,28,"Place in world",false,this::beginPlacement);
         }
         button(495,358,239,27,"Back to actions",false,()->{browser="";query="";page=0;render();});

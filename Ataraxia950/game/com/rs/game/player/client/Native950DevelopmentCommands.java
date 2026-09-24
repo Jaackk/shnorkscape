@@ -32,6 +32,7 @@ public final class Native950DevelopmentCommands {
         if (text == null || !(text.startsWith("::") || text.startsWith(";;"))) return false;
         String command = text.substring(2).trim().toLowerCase(Locale.ROOT).split("\\s+", 2)[0];
         switch(command){
+            case "abilityinfo": case "npcinfo": case "resetcooldowns":
             case "bug": case "bugtest": case "combatqa": case "queuehold":
             case "heal": case "refill": case "infadren": case "infprayer":
             case "infrun": case "infrunes": case "infammo": case "adrenaline":

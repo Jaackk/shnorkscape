@@ -38,10 +38,14 @@ final class Native950GamevalLookup {
         List<Entry> result=new ArrayList<>();boolean numeric=q.matches("[0-9]+(:[0-9]+)?");
         for(Entry e:Index.ALL){
             boolean match=numeric?(e.id.equals(q)||e.packed().equals(q)):
-                Arrays.stream(q.split("\\s+")).allMatch(token->(e.type+" "+e.name+" "+e.id).contains(token));
+                Arrays.stream(q.split("\\s+")).allMatch(token->matchesToken(e,token));
             if(match)result.add(e);
         }
         return result;
+    }
+    private static boolean matchesToken(Entry e,String token){
+        if(Arrays.asList("interface","component","varp","varbit","npc","object","sequence","effect").contains(token))return e.type.equals(token);
+        return (e.type+" "+e.name+" "+e.id+" "+e.evidence).toLowerCase(Locale.ROOT).contains(token);
     }
     static List<Entry> load(BufferedReader reader)throws IOException{
         List<Entry> result=new ArrayList<>();Set<String> keys=new HashSet<>(),names=new HashSet<>();String line;

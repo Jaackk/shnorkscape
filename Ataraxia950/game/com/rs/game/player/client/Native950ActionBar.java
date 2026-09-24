@@ -362,7 +362,12 @@ public final class Native950ActionBar {
         if(structure==19254||structure==19251)return;
         publishCooldown(c,structure,currentCycle,duration,false);
     }
+    // Session-local observation of the actual packet boundary, never persisted or read by combat.
+    private final java.util.Map<Integer,String> cooldownPublications=new java.util.HashMap<>();
+    String cooldownPublication(int structure){return cooldownPublications.getOrDefault(structure,"none this session");}
     private void publishCooldown(Channel c,int structure,int currentCycle,int duration,boolean start){
+        cooldownPublications.put(structure,"CS6570 start="+currentCycle+" end="+(currentCycle+duration)
+                +" duration="+duration+" startFlag="+(start?1:0)+" (queued for transport; not client acknowledgement)");
         c.write(Native950Packets.runClientScript(6570,structure,currentCycle,currentCycle+duration,start?1:0,1));
     }
     /** Listener1430:{70,83,...239} calls CS5899(slot,1003,overlay71+13*i). */

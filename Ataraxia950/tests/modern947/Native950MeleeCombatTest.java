@@ -37,6 +37,23 @@ public class Native950MeleeCombatTest {
         combat.attach(player);combat.register(npc,profile(50,10,3));
     }
     @After public void cleanup(){combat.clear();channel.finishAndReleaseAll();}
+    @Test public void diagnosticsDoNotChangeTimersAndResetIsPlayerScoped(){
+        EmbeddedChannel otherChannel=new EmbeddedChannel();
+        try{
+            Player other=Player.createNative950("other",new WorldTile(3217,3259,0),otherChannel);other.setActive(true);
+            access.players.add(other);combat.attach(other);
+            combat.publishMovementCooldown(player,14726);combat.publishMovementCooldown(other,14726);
+            String before=player.getNative950ActionBar().cooldownPublication(14726);
+            channel.flush();while(channel.readOutbound()!=null){}
+            assertFalse(combat.abilityDiagnostic(player,1).isEmpty());
+            channel.flush();assertNull("read only snapshot must not publish packets",channel.readOutbound());
+            assertEquals(before,player.getNative950ActionBar().cooldownPublication(14726));
+            assertTrue(combat.resetDeveloperCooldowns(player).contains("cleared"));
+            assertTrue(player.getNative950ActionBar().cooldownPublication(14726).contains("duration=0"));
+            assertTrue(other.getNative950ActionBar().cooldownPublication(14726).contains("duration=34"));
+            assertEquals("Surge is cooling down.",combat.ability(other,14726));
+        }finally{otherChannel.finishAndReleaseAll();}
+    }
     @Test public void developerMovementClearsOldCooldownsAndRestoresNormalPolicy() throws Exception {
         int[] ids={14726,14665,47129,1488};
         java.lang.reflect.Method end=Native950MeleeCombat.class.getDeclaredMethod("abilityCooldownEnd",Player.class,int.class);
