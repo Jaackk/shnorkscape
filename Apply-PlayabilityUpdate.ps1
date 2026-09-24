@@ -30,7 +30,18 @@ foreach ($entry in $manifest.files) {
     }
     $planned += [pscustomobject]@{Source=$source;Target=$target;Relative=$entry.target;Hash=$entry.sha256}
 }
-if ($CheckOnly) { Write-Host "Candidate verified: $($planned.Count) pinned files. Nothing installed or restarted."; return }
+# A valid cache delta must also be accepted by all three startup gates before installation.
+$scriptReference = @($manifest.files | Where-Object { $_.target -eq 'cache/255/12.dat' })
+if ($scriptReference.Count -eq 1) {
+    foreach ($gate in @('Start-950Server.ps1','Test-Bundle.ps1','Prepare-ClientCache.ps1')) {
+        $gateText = Get-Content -LiteralPath (Join-Path $updateRoot $gate) -Raw
+        $allowlist = [regex]::Match($gateText, '@\(([^\r\n]*8A45E12B[^\r\n]*?)\)').Groups[1].Value
+        if (!$allowlist.Contains("'" + $scriptReference[0].sha256 + "'")) {
+            throw "Update would be rejected by $gate. Update its paired-cache allowlist before installation."
+        }
+    }
+}
+if ($CheckOnly) { Write-Host "Candidate verified: $($planned.Count) pinned files and launch cache gates. Nothing installed or restarted."; return }
 $running = Get-Process | Where-Object { $_.ProcessName -in @('java','javaw') -or $_.ProcessName -like 'rs2client*' }
 if ($running) { throw 'Close both game clients and stop SHNORKSCAPE with Stop.cmd first. No files were replaced.' }
 $backupRoot = Join-Path $updateRoot ('backups\playability-update-' + (Get-Date -Format 'yyyyMMdd-HHmmss-fff'))

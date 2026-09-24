@@ -1,3 +1,12 @@
+URGENT LAUNCH HOTFIX 2026-09-24
+Predev candidate was installed correctly, but its new script-reference SHA was
+omitted from Start-950Server/Test-Bundle/Prepare-ClientCache allowlists.
+All three now accept the exact staged A0A23315... reference. No cache redownload
+or replacement was needed. Paired-cache preflight PASS. Apply updater now
+checks all launch gates BEFORE installation; regression catches stale gates.
+Server/client not started. User authorizes continuing ;;dev without waiting
+for cleanup live acceptance; launch failure took temporary priority.
+
 SHNORKSCAPE - FINAL PRE-DEV CLEANUP 2026-09-24 (LATEST)
 
 Read docs/PREDEV-CLEANUP-20260924.md first. Preserve latest live passes.
