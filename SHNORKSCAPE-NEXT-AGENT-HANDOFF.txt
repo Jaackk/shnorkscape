@@ -9,6 +9,8 @@ safe bank-and-equip quick Best gear without food; cracker player target bit;
 unlocked bar drag-off with native lock handling. No restart/deploy.
 1538 tests / 0 failures / 2 skips;1857 paired-cache checks;3 bridge tests PASS.
 All new visual/physical paths LIVE TEST PENDING; do not claim live fixes.
+Staged combat-live-successor-predev-20260924:17 pinned files, check-only PASS.
+Source checkpoint c004f9f pushed/remote verified; use Apply Staged Update.cmd.
 Developer Console/world editor is not implemented in this cleanup candidate.
 Follow the requested cleanup live gate, then continue its separate prompt.
 

@@ -2,6 +2,8 @@
 
 AUTOMATED VERIFIED; physical Vulkan LIVE TEST PENDING. Running server and source cache were not changed.
 
+Staged combat-live-successor-predev-20260924 through Apply Staged Update.cmd: 17 hash-pinned files, installer check-only PASS. Source checkpoint c004f9f was pushed and remotely verified. This cumulative candidate includes the preceding DM/combat/library updates.
+
 The latest live binding capture is `session-20260924-050959-230-jaxa`, marker `action-bar-binding-test`. It contains checkbox365:19 row10754 and equipment changes, but no decoded dropdown selection/value notifications. The user confirms choices do not save. Previous isolated preference tests did not establish the physical UI path.
 
 Exact950 settings type4 builds a type16 dropdown through CS2830/8020. CS5181 and CS5591 own its display/selection callbacks. This is distinct from the icon chooser CS3069/3082; its opcode008f is a component-field setter, not a count-input packet. That earlier hypothesis was discarded. A narrowly guarded CS5591 bridge now notifies the existing server row/value handler using the same IF_FIND/CC_OP contract as CS10450/10451. Only numeric-timer and binding dropdown rows notify; unrelated native callbacks and switch offsets remain intact. Hidden value actors remain on365:20. Server validation still limits HUD selection to Main and saved presets to1–4, retains per-player storage, and rejects unarmed/stale values. The changed callback must still be tested physically.

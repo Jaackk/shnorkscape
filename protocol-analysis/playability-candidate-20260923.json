@@ -1,10 +1,10 @@
 {
-  "candidate": "combat-live-successor-dm-20260924",
+  "candidate": "combat-live-successor-predev-20260924",
   "files": [
     {
       "source": "ataraxia-950-1.0-UNTRACKED.jar",
       "target": "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-      "sha256": "3961B2E185D6B657A1C7C66B8CC715858B32F74F901DD4D2B0B41ABCE97D88A2"
+      "sha256": "E31CD5E6F2DE70B57B6DD21F3C4D2C6BA276DEFBB5062F9476DD2028C8F27E55"
     },
     {
       "source": "Native950InterfaceBootstrap$Panel.class",
@@ -54,8 +54,8 @@
     {
       "source": "cache-v4/255/12.dat",
       "target": "cache/255/12.dat",
-      "sha256": "95CA10C1A35C2B5B397FB5583B46DDA0876C5BE03619A6BB18BD6782F8DE4648",
-      "beforeSha256": "21AAE886E340146ED851949C0F900FAE44208BE899E305E7331C12F1D6F44E89"
+      "sha256": "A0A233157B1709AEA860B1EFD9961950DE1C15FAF0B29805E3E7EAED0E6A3494",
+      "beforeSha256": "95CA10C1A35C2B5B397FB5583B46DDA0876C5BE03619A6BB18BD6782F8DE4648"
     },
     {
       "source": "cache-v4/12/13830.dat",
@@ -92,10 +92,16 @@
       "target": "cache/255/19.dat",
       "sha256": "90311A2EE8D35F9C94976AA62BD8DAD3379BC1A1E1AF4A2E852DDACE6957D1A6",
       "beforeSha256": "FF1D2E2E9BB3E2A488BD0E475B957BDBEA5276625D4489D64CB5618BF8F014C6"
+    },
+    {
+      "source": "cache-v4/12/5591.dat",
+      "target": "cache/12/5591.dat",
+      "beforeSha256": "000C13DEB57902A86B78C2E42DAC26467C53F4BD268776767026A2A22158EF59",
+      "sha256": "2DDB6BBE2155A3CBCFD9FDD378BD64CF76458FC2FA1F1590568EE06AFEADBDD9"
     }
   ],
-  "sourceCommit": "d902c97b4bd8a331d6159b525eab5ec60df71a1c",
-  "validationReport": "protocol-analysis/developer-movement-validation-20260924.json",
-  "liveChecklist": "docs/DEVELOPER-MOVEMENT-20260924.md",
-  "liveAcceptance": "AUTOMATED VERIFIED; physical Vulkan zero timers and repeated movement LIVE TEST PENDING. Includes previous QoL candidate."
+  "sourceCommit": "c004f9fa2f05951fb70689bb244ddd36bc0b6d39",
+  "validationReport": "protocol-analysis/predev-cleanup-validation-20260924.json",
+  "liveChecklist": "docs/PREDEV-CLEANUP-20260924.md",
+  "liveAcceptance": "AUTOMATED VERIFIED; cleanup physical paths LIVE TEST PENDING. Developer Console not included."
 }
