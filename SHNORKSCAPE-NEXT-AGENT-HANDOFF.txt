@@ -16,7 +16,9 @@ numeric timers/default Top Right; persisted equipment binding for four main
 bars; resource-command combat preservation; shared Best gear aliases without
 food; authoritative two-player cracker; native Shift-drop setting.
 1532 tests, zero failures/errors, two skipped;1778 paired-cache checks passed.
-No restart/deploy; stage through Apply Staged Update.cmd.
+Staged combat-live-successor-qol-20260924:16 pinned files, check-only PASS.
+Jar SHA256:6D5FB4B955B287192166EF73C202953A2675D6523876C371118E8AE4ADA91019
+No restart/deploy; use Apply Staged Update.cmd.
 
 INTENTIONAL RULE: equipment/style swaps never clear/truncate stored souls.
 Consumers still require proper equipment. Regression coverage protects this.

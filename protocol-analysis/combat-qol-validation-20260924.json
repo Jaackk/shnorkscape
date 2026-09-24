@@ -20,5 +20,13 @@
     "Ghost attack presentation",
     "General entity scene priority",
     "Additional Swiftness minor presentation"
-  ]
+  ],
+  "staging": {
+    "candidate": "combat-live-successor-qol-20260924",
+    "files": 16,
+    "checkOnly": "PASS",
+    "jarSha256": "6D5FB4B955B287192166EF73C202953A2675D6523876C371118E8AE4ADA91019",
+    "unchangedRunningJarSha256": "E9AFDEA9030EEC6DE82BE7FA7892C724B224DC1E7DD7B6EA4EBCDE9205E13C6B",
+    "sourceCommit": "94bb7b69a66b9f3bc8d34018df679780cc29d7e6"
+  }
 }

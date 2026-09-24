@@ -1,10 +1,10 @@
 {
-  "candidate": "combat-live-successor-polish2-20260924",
+  "candidate": "combat-live-successor-qol-20260924",
   "files": [
     {
       "source": "ataraxia-950-1.0-UNTRACKED.jar",
       "target": "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-      "sha256": "E9AFDEA9030EEC6DE82BE7FA7892C724B224DC1E7DD7B6EA4EBCDE9205E13C6B"
+      "sha256": "6D5FB4B955B287192166EF73C202953A2675D6523876C371118E8AE4ADA91019"
     },
     {
       "source": "Native950InterfaceBootstrap$Panel.class",
@@ -94,8 +94,8 @@
       "beforeSha256": "FF1D2E2E9BB3E2A488BD0E475B957BDBEA5276625D4489D64CB5618BF8F014C6"
     }
   ],
-  "sourceCommit": "ec7804db30afa2524429eef256c88048569adb18",
-  "validationReport": "protocol-analysis/combat-polish2-validation-20260924.json",
-  "liveChecklist": "docs/COMBAT-POLISH2-LIVE-CHECKLIST-20260924.md",
-  "liveAcceptance": "AUTOMATED VERIFIED; new visuals LIVE TEST PENDING. Ghost attack and general scene priority UNRESOLVED; detailed limits in handoff."
+  "sourceCommit": "94bb7b69a66b9f3bc8d34018df679780cc29d7e6",
+  "validationReport": "protocol-analysis/combat-qol-validation-20260924.json",
+  "liveChecklist": "docs/COMBAT-QOL-LIVE-CHECKLIST-20260924.md",
+  "liveAcceptance": "AUTOMATED VERIFIED; physical settings and appearance LIVE TEST PENDING. Missing Strength book, Ghost attacks, general scene priority unresolved."
 }
