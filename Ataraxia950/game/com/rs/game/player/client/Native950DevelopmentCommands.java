@@ -512,6 +512,7 @@ public final class Native950DevelopmentCommands {
         reply(channel, "Move to an open area before testing forced movement.");
     }
     private static void reply(Channel channel, String message) {
+        if(Native950DeveloperOutput.capture(channel,message))return;
         channel.write(Native950Packets.gameMessage(0, message));
     }
 }

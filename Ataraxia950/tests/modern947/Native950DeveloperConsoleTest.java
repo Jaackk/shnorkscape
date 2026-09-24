@@ -147,6 +147,65 @@ public class Native950DeveloperConsoleTest {
             assertEquals(1,Native950DeveloperWorldEdits.owned("nooby").size());
         }finally{Native950DeveloperWorldEdits.cleanup(p);Native950DeveloperWorldEdits.cleanup(other);}
     }
+    private Object field(String name)throws Exception{java.lang.reflect.Field f=Native950DeveloperConsole.class.getDeclaredField(name);f.setAccessible(true);return f.get(console);}
+    private void invoke(String name,Class<?> type,Object argument)throws Exception{java.lang.reflect.Method m=Native950DeveloperConsole.class.getDeclaredMethod(name,type);m.setAccessible(true);m.invoke(console,argument);}
+    @Test public void sidebarNpcAndWorldOpenSemanticBrowsers()throws Exception{
+        console.open();console.handle(notification("__devready"));
+        invoke("navigate",String.class,"NPCs");assertEquals("NPC",field("browser"));
+        invoke("navigate",String.class,"World");assertEquals("Object",field("browser"));
+        invoke("select",Native950DeveloperActions.Action.class,Native950DeveloperActions.find("obj"));assertEquals("Object",field("browser"));
+        invoke("select",Native950DeveloperActions.Action.class,Native950DeveloperActions.find("clearnpcs"));assertEquals("Edits",field("browser"));
+    }
+    @Test public void rightClickHealRunsSharedHandlerAndReportsInsideConsole()throws Exception{
+        console.open();console.handle(notification("__devready"));p.setHitpoints(1);drain();
+        Map<Integer,Native950DeveloperActions.Action> rows=(Map<Integer,Native950DeveloperActions.Action>)field("rowActions");
+        int actor=rows.entrySet().stream().filter(e->e.getValue().id.equals("heal")).findFirst().get().getKey();long epoch=(Long)field("epoch");
+        console.handle(notification("__devop:"+(epoch-1)+":"+actor+":2"));assertEquals(1,p.getHitpoints());
+        console.handle(notification("__devop:"+epoch+":"+actor+":2"));assertEquals(p.getMaxHitpoints(),p.getHitpoints());
+        assertFalse(((List<?>)field("report")).isEmpty());
+        for(com.rs.network.protocol.modern950.Native950Packets.Packet packet:drain())assertNotEquals(com.rs.network.protocol.modern950.Native950Packets.gameMessage(0,"x").type(),packet.type());
+    }
+    @Test public void singleClickInspectsDoubleClickRunsAndToggleRunsDirectly()throws Exception{
+        console.open();console.handle(notification("__devready"));p.setHitpoints(1);
+        invoke("select",Native950DeveloperActions.Action.class,Native950DeveloperActions.find("heal"));assertEquals(1,p.getHitpoints());
+        invoke("select",Native950DeveloperActions.Action.class,Native950DeveloperActions.find("heal"));assertEquals(p.getMaxHitpoints(),p.getHitpoints());
+        invoke("select",Native950DeveloperActions.Action.class,Native950DeveloperActions.find("god"));assertTrue(p.isDevelopmentGodMode());
+    }
+    @Test public void physicalDoubleClickWithSameRenderTokenExecutesOnlyInspectedActionOnce()throws Exception{
+        console.open();console.handle(notification("__devready"));p.setHitpoints(1);
+        Map<Integer,Native950DeveloperActions.Action> rows=(Map<Integer,Native950DeveloperActions.Action>)field("rowActions");
+        int actor=rows.entrySet().stream().filter(e->e.getValue().id.equals("heal")).findFirst().get().getKey();
+        String click="__devop:"+field("epoch")+":"+actor;
+        console.handle(notification(click));assertEquals(1,p.getHitpoints());
+        console.handle(notification(click));assertEquals(p.getMaxHitpoints(),p.getHitpoints());
+        p.setHitpoints(1);console.handle(notification(click));assertEquals(1,p.getHitpoints());
+        // Any navigation invalidates the continuation, even if Heal was the last selection.
+        invoke("navigate",String.class,"Favourites");rows=(Map<Integer,Native950DeveloperActions.Action>)field("rowActions");
+        actor=rows.entrySet().stream().filter(e->e.getValue().id.equals("heal")).findFirst().get().getKey();click="__devop:"+field("epoch")+":"+actor;
+        console.handle(notification(click));invoke("navigate",String.class,"NPCs");console.handle(notification(click));assertEquals(1,p.getHitpoints());
+    }
+    @Test public void outputCaptureIsScopedToOwnerAndRestoredAfterFailure(){
+        EmbeddedChannel other=new EmbeddedChannel();Player q=Player.createNative950("nooby",new WorldTile(p),other);
+        try{
+            List<String> lines=Native950DeveloperOutput.run(p,channel,()->{
+                assertFalse(Native950DeveloperOutput.capture(q,"other player"));assertFalse(Native950DeveloperOutput.capture(other,"other channel"));
+                assertTrue(Native950DeveloperOutput.capture(p,"own message"));
+                assertEquals(Arrays.asList("nested"),Native950DeveloperOutput.run(q,other,()->Native950DeveloperOutput.capture(q,"nested")));
+                assertTrue(Native950DeveloperOutput.capture(channel,"own result"));
+            });assertEquals(Arrays.asList("own message","own result"),lines);
+            try{Native950DeveloperOutput.run(p,channel,()->{throw new IllegalStateException("test");});fail();}catch(IllegalStateException expected){}
+            assertFalse(Native950DeveloperOutput.capture(p,"later combat"));assertFalse(Native950DeveloperOutput.capture(channel,"typed command"));
+        }finally{other.finishAndReleaseAll();}
+    }
+    @Test public void indexedSearchFindsNamesIdsAndAuditedSymbolsWithoutLeakingMutableResults(){
+        List<Native950DeveloperCatalogue.Entry> named=Native950DeveloperCatalogue.search("NPC","VoRaGo");assertFalse(named.isEmpty());
+        assertTrue(named.stream().allMatch(e->e.name.toLowerCase(Locale.ROOT).contains("vorago")));
+        assertEquals(6260,Native950DeveloperCatalogue.search("NPC","shnorkscape_general_graardor_6260").get(0).id);
+        assertSame(named,Native950DeveloperCatalogue.search("NPC","vorago"));
+        try{named.clear();fail();}catch(UnsupportedOperationException expected){}
+        List<Native950DeveloperCatalogue.Entry> objects=Native950DeveloperCatalogue.search("Object","bank chest");assertFalse(objects.isEmpty());
+        assertTrue(objects.stream().allMatch(e->e.types.length>0));
+    }
     private static Native950Actions.StringDialogueAction notification(String text)throws Exception{
         java.lang.reflect.Constructor<Native950Actions.StringDialogueAction> c=Native950Actions.StringDialogueAction.class.getDeclaredConstructor(boolean.class,String.class);c.setAccessible(true);return c.newInstance(false,text);
     }

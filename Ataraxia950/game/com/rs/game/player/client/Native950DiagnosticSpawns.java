@@ -93,7 +93,7 @@ public final class Native950DiagnosticSpawns {
                 try {
                     npc=NPC.createNative950Diagnostic(id,tile);
                     Native950World.getInstance().addDiagnosticNpc(npc);
-                    Native950World.getInstance().setDiagnosticRepeat(npc,repeat);
+                    Native950World.getInstance().setDiagnosticRepeat(npc,repeat);if(repeat)REPEATING.add(npc);else REPEATING.remove(npc);
                     OWNERS.put(npc,player.getUsername());name=npc.getName();created++;
                 }catch(IllegalArgumentException|IllegalStateException unavailable){
                     if(npc!=null&&World.containsNPC(npc))Native950World.getInstance().removeDiagnosticNpc(npc);
@@ -116,7 +116,7 @@ public final class Native950DiagnosticSpawns {
     }
     static void registerPlacedNpc(NPC npc,String owner,boolean repeat){
         Native950World.getInstance().addDiagnosticNpc(npc);
-        Native950World.getInstance().setDiagnosticRepeat(npc,repeat);OWNERS.put(npc,owner);
+        Native950World.getInstance().setDiagnosticRepeat(npc,repeat);if(repeat)REPEATING.add(npc);else REPEATING.remove(npc);OWNERS.put(npc,owner);
     }
 
     static WorldTile compactTile(WorldTile player,int size,int fx,int fy,int position){
@@ -146,7 +146,10 @@ public final class Native950DiagnosticSpawns {
                 &&second.getY()<first.getY()+firstSize+clearance;
     }
 
-    static void forget(NPC npc){OWNERS.remove(npc);}
+    static java.util.List<NPC> ownedNpcs(Player player){pruneOwners();java.util.List<NPC> result=new java.util.ArrayList<>();for(NPC npc:OWNERS.keySet())if(ownedBy(player,npc))result.add(npc);return result;}
+    private static final java.util.Set<NPC> REPEATING=java.util.Collections.newSetFromMap(new java.util.IdentityHashMap<NPC,Boolean>());
+    static boolean repeating(NPC npc){return REPEATING.contains(npc);}
+    static void forget(NPC npc){OWNERS.remove(npc);REPEATING.remove(npc);}
 
     static java.util.List<String> matchingNpcIds(Player player,String query){
         java.util.List<String> result=new java.util.ArrayList<>();
@@ -166,7 +169,7 @@ public final class Native950DiagnosticSpawns {
         return npc!=null && npc.isNative950DiagnosticDefinition() && player.getUsername().equals(OWNERS.get(npc));
     }
     private static void pruneOwners() {
-        OWNERS.keySet().removeIf(npc -> npc.hasFinished() || !World.containsNPC(npc));
+        OWNERS.keySet().removeIf(npc -> npc.hasFinished() || !World.containsNPC(npc));REPEATING.retainAll(OWNERS.keySet());
     }
     static java.util.List<String> manage(Player player,String command,int value) {
         String refusal=refusal(player);

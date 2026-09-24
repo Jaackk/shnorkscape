@@ -209,5 +209,5 @@ final class Native950ContentCommands {
         }catch(IOException error){throw new IllegalStateException("Cannot read950 search catalog",error);}
         return Collections.unmodifiableList(rows);
     }
-    private static void reply(Channel c,String text){c.write(Native950Packets.gameMessage(0,text.length()>180?text.substring(0,177)+"...":text));}
+    private static void reply(Channel c,String text){if(Native950DeveloperOutput.capture(c,text))return;c.write(Native950Packets.gameMessage(0,text.length()>180?text.substring(0,177)+"...":text));}
 }

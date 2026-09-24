@@ -247,6 +247,7 @@ public class Native950PacketDispatcher extends PacketDispatcher {
     // ---------------------------------------------------------------- shared writers
 
     private void message(String method, final int type, final String text, final Player sender) {
+        if(sender==null&&Native950DeveloperOutput.capture(getPlayer(),text))return;
         final String senderName = sender == null ? null : Utils.formatPlayerNameForDisplay(sender.getDisplayName());
         final String senderAlias = sender == null ? null : sender.getDisplayName();
         final String body = String.valueOf(text);

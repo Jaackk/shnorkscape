@@ -495,8 +495,8 @@ public final class Native950Interactions {
         } catch (Throwable failure) {
             commandFailures++;
             System.out.println("[Ataraxia950] command failed: " + text + " -> " + failure);
-            channel.write(Native950Packets.gameMessage(0,
-                    "That command failed: " + failure.getClass().getSimpleName() + "."));
+            String error="That command failed: " + failure.getClass().getSimpleName() + ".";
+            if(!Native950DeveloperOutput.capture(channel,error))channel.write(Native950Packets.gameMessage(0,error));
         }
     }
 

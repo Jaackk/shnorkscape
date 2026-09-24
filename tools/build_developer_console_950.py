@@ -34,10 +34,14 @@ def programs():
         init+=ints(h)+[(0x5,0)]+ints(0,0,0,0,h)+[(0x7c5,0)]+ints(742,450,0,0,h)+[(0x55,0)]
         init+=ints(0 if c in (3,5,7) else 1,h)+[(0xe4,0)]
     # CS8289 resolves the native title host from struct21301/3506 and uses
-    # dynamic child3. 713 is NOT the title: putting text there clips under tabs.
+    # dynamic child14 (child3 is a frame component). 713 is NOT the title: putting text there clips under tabs.
     init+=ints(1,1477<<16|714)+[(0xe4,0)]
     init+=ints(1477<<16|713)+[(0x5,0)]
-    init+=ints(21301,3506)+[(0x540,0)]+ints(3)+[(0x109,0)]+ints(1)+[(0x412,2),push('DEVELOPER CONSOLE'),(0x1f1,0)]
+    title=[push('DEVELOPER CONSOLE'),(0x1f1,0)]
+    # Match CS8289's text measurement and frame height so the longer title fits.
+    title+=ints(21301,0)+[call(8418)]+ints(3557)+[(0x540,0),push('DEVELOPER CONSOLE')]+ints(60)+[(0x23a,0),(0x1f9,0)]
+    title+=ints(21301,0)+[call(8418)]+ints(3548)+[(0x540,0)]+ints(0,0)+[(0x8c3,0)]
+    init+=ints(21301,3506)+[(0x540,0)]+ints(14)+[(0x109,0)]+ints(1)+[(0x412,len(title))]+title
     # Native type3 outline components, using the same size/position/colour
     # setters as CS6204. Keep the native textured frame behind all three panes.
     for child,(x,y,w,h) in enumerate(((0,73,162,313),(169,73,314,305),(491,38,247,378))):
@@ -48,7 +52,15 @@ def programs():
     button += [(0x35e,n) for n in (1,2,3,4,0,5)]+[(0x25a,0),call(10410),(0x592,0)]
     # Same CC_SETONOP contract as native CS10324; callback carries a per-render
     # capability, so delayed input can never execute a new row at an old slot.
-    button += ints(BASE+3)+[(0x25a,1),push('s'),(0x6a,0)]
+    # Native CS10324 uses CC_SETOP083c and event_op=-2147483644.
+    button += [(0x35e,6)]+ints(1)+[(0x412,12)]
+    for number,label in ((1,'Open Details'),(2,'Execute Now'),(3,'Add/Remove Favourite'),(4,'Open Details')):
+        button += ints(number)+[push(label),(0x83c,0)]
+    button += ints(BASE+3,-2147483644)+[(0x25a,1),push('is'),(0x6a,0)]
+    notify=[]
+    for operation in (2,3,4):
+        notify += [(0x35e,0)]+ints(operation)+[(0x412,5),(0x25a,0),push(':'+str(operation)),(0x267,2),(0x77b,0),(0x495,0)]
+    notify += [(0x25a,0),(0x77b,0)]
     # CS10410 returns the next actor index; the caller has its own actor allocation.
     text=ints(1448<<16|7)+[(0x35e,0),(0x35e,1),(0x35e,2)]+ints(0,0)
     text += [(0x35e,3),(0x35e,4)]+ints(0,0)+[(0x35e,5),(0x25a,0),call(2995)]
@@ -63,11 +75,11 @@ def programs():
     arm+=ints(1448<<16|11,4)+[(0x35e,0),(0x691,0),(0x25a,0),(0x776,0)]
     # Native selection enters event15, leaves event16. The normalized665 handler
     # at1401fa2b0 installs event16 through1401f84d0, matching14019f66d.
-    arm+=ints(BASE+3)+[(0x25a,1),push('s'),(0x665,0)]
+    arm+=ints(BASE+3,0)+[(0x25a,1),push('is'),(0x665,0)]
     arm+=ints(1448<<16|11)+[(0x35e,0),(NATIVE_SELECT,0)]
     # Two int locals, only one argument (the target actor index).
     armraw=bytearray(script(arm,2,2));end=len(armraw)-19;armraw[end+10:end+12]=struct.pack('>H',1)
-    return {BASE:script(init),BASE+1:script(button,6,2),BASE+2:script(text,6,1),BASE+3:script([(0x25a,0),(0x77b,0)],0,1),BASE+4:bytes(armraw),BASE+5:script([(0x8aa,0)]),BASE+6:script(ints(MARKER_COMPONENT)+[(0x5a2,0)]+ints(1)+[(0x412,2),(0x25a,0),(0x1f1,0)],0,1),8286:ready_bridge()}
+    return {BASE:script(init),BASE+1:script(button,7,2),BASE+2:script(text,6,1),BASE+3:script(notify,1,1),BASE+4:bytes(armraw),BASE+5:script([(0x8aa,0)]),BASE+6:script(ints(MARKER_COMPONENT)+[(0x5a2,0)]+ints(1)+[(0x412,2),(0x25a,0),(0x1f1,0)],0,1),8286:ready_bridge()}
 
 def ready_bridge():
     """Acknowledge the REAL varc2911 management refresh, after its native work.
@@ -122,7 +134,7 @@ def append_reference(raw, additions):
     return out+b''.join(b''.join(a) for a in arrays)+b''.join(smart(n) for n in counts)+b''.join(files)+b''.join(names)
 
 def main():
-    dest=ROOT/'dist/developer-console-cache-ready-20260924/cache-v4';dest.mkdir(parents=True,exist_ok=True)
+    dest=ROOT/'dist/developer-console-cache-ux-20260925/cache-v4';dest.mkdir(parents=True,exist_ok=True)
     additions={};pins={}
     for sid,payload in programs().items():
         packed=container(payload);additions[sid]=(packed,payload)
@@ -134,7 +146,7 @@ def main():
     ref=append_reference(unpack((ROOT/'cache/255/12.dat').read_bytes()),additions)
     (dest/'255').mkdir(exist_ok=True);(dest/'255/12.dat').write_bytes(container(ref))
     (ROOT/'protocol-analysis/developer-console-scripts-950.json').write_bytes((json.dumps({'scripts':pins,'nativeButton':10410,'nativeText':2995,'shell':1448,'status':'AUTOMATED VERIFIED; Vulkan visual acceptance pending'},indent=2)+'\n').encode())
-    for sid in (10410,10899,2995,10644,10324):
+    for sid in (10410,10899,2995,10644,10324,8289,8418):
         pins[str(sid)]=hashlib.sha256((ROOT/f'temp/library-followup-trace/12-{sid}-0.bin').read_bytes()).hexdigest()
     (ROOT/'Ataraxia950/resources/native950/developer-console-950.properties').write_bytes((''.join(f'{sid}={value}\n' for sid,value in sorted(pins.items()))).encode())
     print('Staged seven developer helpers and scoped native-ready bridge; live cache untouched.')

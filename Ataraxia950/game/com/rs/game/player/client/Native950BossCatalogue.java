@@ -59,6 +59,7 @@ final class Native950BossCatalogue {
         Boss b=find(id);if(b==null||b.route<0)throw new IllegalArgumentException("No audited boss destination for this ID.");
         Native950WorldTraversal.arriveDeveloper(p,Native950CombatTravel.DESTINATIONS.get(b.route).object());
     }
+    static String encounter(String owner,NPC actor){List<NPC> actors=TESTS.get(owner);if(actors==null||actors.stream().noneMatch(n->n==actor)||actors.isEmpty())return "";Boss boss=find(actors.get(0).getId());return boss==null?"Boss test":boss.name+" test";}
     static boolean testActor(int id){return Native950BossRules.aggressive(id);}
     static String spawn(Player p,int id){
         Boss b=find(id);if(b==null||(!Native950BossRules.king(id)&&id!=6260))return "Temporary encounters are currently audited for Kings and normal Graardor only.";

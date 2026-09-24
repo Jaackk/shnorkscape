@@ -53,6 +53,35 @@ final class Native950DeveloperWorldEdits {
             for(Edit e:saved){EDITS.put(e.key,e);try{spawn(e);}catch(RuntimeException rejected){System.err.println("[DeveloperWorld] Saved placement "+e.key+" was not restored: "+rejected.getMessage());}}
         }catch(IOException invalid){persistenceHealthy=false;System.err.println("[DeveloperWorld] Persistence unavailable: "+invalid.getMessage());}
     }
+    static String encounter(Edit e){return e.actor instanceof NPC?Native950BossCatalogue.encounter(e.owner,(NPC)e.actor):"";}
+    static String teleport(Player p,Edit e){
+        requireOwner(p,e);if(!alive(e))throw new IllegalArgumentException("This placement is no longer present.");
+        if(!p.isActive()||p.hasFinished()||p.isDead()||p.isLocked()||p.getNextWorldTile()!=null||p.isNative950ForceMovementActive())throw new IllegalArgumentException("Finish your current movement first.");
+        if(e.actor instanceof WorldObject){Native950WorldTraversal.arriveDeveloper(p,(WorldObject)e.actor);return p.getNextWorldTile()==null?"No safe landing beside this object.":"Travelling to your object.";}
+        NPC npc=(NPC)e.actor;int size=npc.getSize();
+        for(int radius=1;radius<=4;radius++)for(int dx=-radius;dx<size+radius;dx++)for(int dy=-radius;dy<size+radius;dy++){
+            if(dx>=0&&dx<size&&dy>=0&&dy<size)continue;WorldTile tile=new WorldTile(npc.getX()+dx,npc.getY()+dy,npc.getPlane());
+            if(!Native950DiagnosticSpawns.fits(tile,1,1)||!World.isFloorFree(tile.getPlane(),tile.getX(),tile.getY())||!Native950DiagnosticSpawns.spawnTileAvailable(p,tile,1))continue;
+            if(p.getNative950Combat()!=null)p.getNative950Combat().stop(p);p.getActionManager().forceStop();p.resetWalkSteps();p.setRouteEvent(null);p.setNextWorldTile(tile);return "Travelling beside your NPC.";
+        }
+        throw new IllegalArgumentException("No clear landing beside this NPC.");
+    }
+    static void adopt(Player player){
+        Set<Object> recorded=Collections.newSetFromMap(new IdentityHashMap<Object,Boolean>());for(Edit e:EDITS.values())recorded.add(e.actor);
+        for(NPC npc:Native950DiagnosticSpawns.ownedNpcs(player))if(!recorded.contains(npc)){
+            Edit e=new Edit(UUID.randomUUID().toString(),player.getUsername(),"NPC",npc.getId(),npc.getX(),npc.getY(),npc.getPlane(),-1,0,Native950DiagnosticSpawns.repeating(npc),false);
+            e.actor=npc;EDITS.put(e.key,e);
+        }
+    }
+    static int clearOwned(Player player,String kind,boolean temporaryOnly)throws IOException{
+        adopt(player);List<Edit> selected=new ArrayList<>();for(Edit e:owned(player.getUsername()))
+            if((kind.isEmpty()||e.kind.equals(kind))&&(!temporaryOnly||!e.saved))selected.add(e);
+        if(selected.stream().anyMatch(e->e.saved)){
+            if(!persistenceHealthy)throw new IOException("World-edit persistence is unavailable; nothing removed.");
+            List<Edit> remaining=new ArrayList<>(EDITS.values());remaining.removeAll(selected);write(file(),remaining);
+        }
+        for(Edit e:selected){removeActor(e);EDITS.remove(e.key);}return selected.size();
+    }
     static List<Edit> owned(String owner){List<Edit> result=new ArrayList<>();for(Edit e:EDITS.values())if(e.owner.equals(owner))result.add(e);return result;}
     static List<Edit> record(Player owner,Native950DeveloperPlacement.Request request,List<Object> actors){
         List<Edit> result=new ArrayList<>();for(Object actor:actors){WorldTile tile=(WorldTile)actor;

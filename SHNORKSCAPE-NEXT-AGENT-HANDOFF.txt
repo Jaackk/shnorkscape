@@ -1,3 +1,24 @@
+DEVELOPER CONSOLE UX 2026-09-25 - LATEST
+One primary agent. Source backup 9e28224; local pre-edit-20260925-001828-688.
+Preserved native1448/ready bridge, shared handlers, placement/persistence, combat and live runtime.
+Title correction: exact CS8289 frame child14 (not3), native text width/frame height.
+Nonce-safe native context menu, zero-argument double-click (including queued same-token clicks), direct toggles.
+GUI results/errors captured synchronously per owner/channel into details; typed commands retain chat.
+NPC/World sidebar now routes to browsers; audited-symbol/name/ID search, bounded immutable result cache.
+NPC inspector, collision-checked Spawn Near Me, repeat/amount, boss travel/test actions.
+Object valid-type default, rotate controls, Advanced types, optional explicit save; return after tile placement.
+Spawns adopts own command NPCs/repeaters/boss groups; exact actor deletion, safe travel, atomic owned clears.
+AUTOMATED VERIFIED: full1583 tests/0fail/0error/2skip;7scriptVM+1sharedPin tests; real-cache editor and boss probes.
+Staged cache preflight PASS. Real-cache probe covers command NPC deletion, repeat policy, four-actor boss ledger,
+clear/recreate, second-owner survival, persisted object delete, undo/redo and stale replacement protection.
+LIVE TEST PENDING: all new title/menu/double-click/return-from-placement/UX appearance and responsiveness.
+PARTIAL: atomic native page redraw and pagination retained; smooth scrolling/incremental host composition unproven.
+UNRESOLVED: arbitrary NPC/model/animation preview; packet setters still no-op; no speculative renderer added.
+Live input correlation median267.5ms/max572ms; 600ms world cadence retained. New render timing event is available.
+See docs/DEVELOPER-CONSOLE-UX-20260925.md for exact evidence, limits and the seven-step live checklist.
+Runtime at baseline: PID39368, started24Sep23:51:14; deployed jar96035C...110B0E. Do not restart/deploy automatically.
+Packaging record follows in the final staging checkpoint.
+
 STAGED DEV/COMBAT SUCCESSOR 2026-09-24
 Source b9b9177; diagnostics checkpoint5c85bbe. Both pushed/remote verified.
 Apply Staged Update.cmd selects combat-live-successor-dev-quality-20260924.

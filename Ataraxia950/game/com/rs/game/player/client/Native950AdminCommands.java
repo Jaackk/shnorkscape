@@ -442,5 +442,6 @@ public final class Native950AdminCommands {
         p.setRunEnergy(100);
     }
     private static String state(boolean enabled) { return enabled ? "enabled" : "disabled"; }
-    private static void reply(Channel channel, String message) { channel.write(Native950Packets.gameMessage(0, message.length()>180?message.substring(0,177)+"...":message)); }
+    private static void reply(Channel channel, String message) {
+        if(Native950DeveloperOutput.capture(channel,message))return; channel.write(Native950Packets.gameMessage(0, message.length()>180?message.substring(0,177)+"...":message)); }
 }

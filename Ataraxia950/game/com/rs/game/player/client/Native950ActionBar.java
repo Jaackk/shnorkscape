@@ -417,5 +417,5 @@ public final class Native950ActionBar {
                     "failure",failure==null?"":failure.getClass().getSimpleName(),"message",message);
         }});
     }
-    private static void reply(Channel c,String text){c.write(Native950Packets.gameMessage(0,text));}
+    private static void reply(Channel c,String text){if(Native950DeveloperOutput.capture(c,text))return;c.write(Native950Packets.gameMessage(0,text));}
 }
