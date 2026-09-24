@@ -36,5 +36,17 @@
     "real-cache boss travel",
     "atomic four-actor spawn with late-failure rollback",
     "two-owner temporary encounter cleanup"
-  ]
+  ],
+  "stage": {
+    "candidate": "combat-live-successor-dev-quality-20260924",
+    "sourceCommit": "b9b9177f34de7868ea6e5001d7d5fbb0d9936856",
+    "jarSha256": "96035C919939A1DBD58CA4A27D4E47F574A605671CCF096458BB0B517E110B0E",
+    "files": 25,
+    "checkOnly": "PASS",
+    "installerFixtures": 5,
+    "nativeCachePreflight": "PASS",
+    "stagedDeveloperProbe": "PASS",
+    "stagedWorldRegression": "PASS: 1438 pins, 26 stair movements, four portal routes, 11 signature loot rows",
+    "deployed": false
+  }
 }

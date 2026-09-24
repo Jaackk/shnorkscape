@@ -1,10 +1,10 @@
 {
-  "candidate": "combat-live-successor-world-20260924",
+  "candidate": "combat-live-successor-dev-quality-20260924",
   "files": [
     {
       "source": "ataraxia-950-1.0-UNTRACKED.jar",
       "target": "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-      "sha256": "666A00C3E8A1B1211ED98F6A4B9F2075C8BCC8D2D2162C32F84A77B6FA0DD429",
+      "sha256": "96035C919939A1DBD58CA4A27D4E47F574A605671CCF096458BB0B517E110B0E",
       "beforeSha256": "D1DAAC935C53AC0580A5AA775C5B2353914A958D315DF54E79A60A519DC96D6C"
     },
     {
@@ -152,9 +152,9 @@
       "beforeSha256": "ABSENT"
     }
   ],
-  "sourceCommit": "f64a608808265469237d1b43da6fe3a4868cbbd2",
-  "validationReport": "protocol-analysis/combat-world-expansion-950-20260924.json",
-  "liveChecklist": "docs/COMBAT-WORLD-EXPANSION-20260924.md",
-  "liveAcceptance": "Combat/world successor AUTOMATED VERIFIED; Vulkan combat presentation and portal clicks LIVE TEST PENDING. Preserve user-accepted dev startup and existing combat foundation.",
+  "sourceCommit": "b9b9177f34de7868ea6e5001d7d5fbb0d9936856",
+  "validationReport": "protocol-analysis/dev-combat-quality-950-20260924.json",
+  "liveChecklist": "docs/DEV-COMBAT-QUALITY-20260924.md",
+  "liveAcceptance": "AUTOMATED VERIFIED; new developer tools, boss recovery and Provoke remain LIVE TEST PENDING. Preserve previous world candidate and accepted UI/combat foundation.",
   "preflightHotfix": "Settings script8286 pin corrected; full Native950CachePreflight PASS with verification enabled against installed cache"
 }

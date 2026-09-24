@@ -38,4 +38,6 @@ All new UI and combat behaviour remains LIVE TEST PENDING until these physical c
 
 Full regression: **1,577 tests, zero failures/errors, two existing skips**. Additional isolated real-cache acceptance covers exact profile refusals, symbolic lookup, related asset pins, both boss destinations, four-actor creation, duplicate prevention, two-owner clearing, actual combat detach/logout cleanup and late-placement rollback preserving an existing actor. The running PID35088 and jar SHA D1DAAC...96D6C remain unchanged.
 
-Checkpoints: `5c85bbe` diagnostics; the following combat/tooling checkpoint includes the boss matrix, lifecycle fixes and actual-cache acceptance. Stage validation is recorded in protocol-analysis/dev-combat-quality-950-20260924.json.
+Checkpoints: `5c85bbe` diagnostics; `b9b9177` combat/tooling checkpoint includes the boss matrix, lifecycle fixes and actual-cache acceptance. Stage validation is recorded in protocol-analysis/dev-combat-quality-950-20260924.json.
+
+Staged successor: `dist/combat-live-successor-dev-quality-20260924`, selected by Apply Staged Update.cmd. All25 file hashes verified; installer CheckOnly, five disposable installer fixtures, staged native cache preflight and both staged real-cache probes PASS. Jar SHA256: `96035C919939A1DBD58CA4A27D4E47F574A605671CCF096458BB0B517E110B0E`. Previous world stage and pre-edit installer metadata remain intact; applying retains the installer's normal backup/rollback flow. No new cache deltas.

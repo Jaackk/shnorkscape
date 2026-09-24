@@ -1,3 +1,11 @@
+STAGED DEV/COMBAT SUCCESSOR 2026-09-24
+Source b9b9177; diagnostics checkpoint5c85bbe. Both pushed/remote verified.
+Apply Staged Update.cmd selects combat-live-successor-dev-quality-20260924.
+25file CheckOnly,5installer fixtures, staged native preflight and both real-cache probes PASS.
+Jar96035C919939A1DBD58CA4A27D4E47F574A605671CCF096458BB0B517E110B0E.
+Previous combat-live-successor-world-20260924 preserved and all its hashes rechecked.
+Live PID35088/runtime D1DAAC...96D6C unchanged. Do not deploy/restart automatically.
+
 DEV COMBAT QUALITY 2026-09-24 - LATEST
 One primary agent, offline. Previous world successor preserved; no deployment/restart.
 Diagnostics checkpoint 5c85bbe pushed and verified. Added abilityinfo, resetcooldowns,
