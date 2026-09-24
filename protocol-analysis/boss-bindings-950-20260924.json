@@ -1,0 +1,129 @@
+{
+  "nameSource": "https://gameval.z-kris.com/site/gameval/runescape/2670/seq.txt",
+  "nameSourceSha256": "8ee30d038c06be125fb484be3968e281355f48601de3726b1e5db6654fa6d5e8",
+  "sourceCache": 2670,
+  "targetCache": 2691,
+  "bindings": [
+    {
+      "id": 17361,
+      "name": "godwars_general_graardor_2012_attack_ranged_impact",
+      "sha256": "f300923a0cb693acdfd2bef0c783de4a09457f3e1d5a5e3dd89a307383d51849",
+      "durationCycles": 73
+    },
+    {
+      "id": 17362,
+      "name": "godwars_general_graardor_2012_attack_ranged_spotanim",
+      "sha256": "33c11d61103bf9920874342e39f95f2c9a05aa4e321fea33891856834532f1c9",
+      "durationCycles": 55
+    },
+    {
+      "id": 17389,
+      "name": "godwars_general_graardor_2012_attack_melee",
+      "sha256": "d2fde6aa003343a409facc82581e967f54a5cedaa7dfa3616b2f074f7e86fbc4",
+      "durationCycles": 59
+    },
+    {
+      "id": 17391,
+      "name": "godwars_general_graardor_2012_attack_ranged",
+      "sha256": "62c021766dc5f9a5a8e19814e19b0585d7a04fbf9fb35455836ee1fab42d4a01",
+      "durationCycles": 60
+    },
+    {
+      "id": 29366,
+      "name": "dagannoth_kings_2016_update_melee_defend",
+      "sha256": "fee3f3f6f0dbc5e0e8cbf79aa5a7cc3304868cc557b835db7043786dcf2b68fa",
+      "durationCycles": 30
+    },
+    {
+      "id": 29371,
+      "name": "dagannoth_kings_2016_update_range_defend",
+      "sha256": "c6bfb4ac8e1390e62f079a99d3df148f0192f9615869dce740c0d8465015e30d",
+      "durationCycles": 30
+    },
+    {
+      "id": 29375,
+      "name": "dagannoth_kings_2016_update_range_death",
+      "sha256": "62da4c75b8de424e4a8e4f5c97d4e30a91fea38c1e3e70ec5e89a9e24b3258c9",
+      "durationCycles": 180
+    },
+    {
+      "id": 29378,
+      "name": "dagannoth_kings_2016_update_magic_defend",
+      "sha256": "24e47decdeab6c165d41e85e58114e7233841930ba0c6549d44379cf50d92986",
+      "durationCycles": 30
+    },
+    {
+      "id": 29380,
+      "name": "dagannoth_kings_2016_update_magic_attack_spotanim",
+      "sha256": "c7b3da7a8feda2f25b4ab98d8a3b03ee0d6ddd800face5a1e18008f08240e577",
+      "durationCycles": 90
+    },
+    {
+      "id": 29381,
+      "name": "dagannoth_kings_2016_update_magic_attack_proj",
+      "sha256": "dc714e50b6f6ff54e506876dbf95340ef883ed3f0995c5f0d609278366e1c1e0",
+      "durationCycles": 30
+    },
+    {
+      "id": 29382,
+      "name": "dagannoth_kings_2016_update_magic_attack_impact",
+      "sha256": "f1c0b8ef2cb8627327447c136b20901538c2cdeb807a37b80070ab24b3d443db",
+      "durationCycles": 30
+    },
+    {
+      "id": 29383,
+      "name": "dagannoth_kings_2016_update_magic_death",
+      "sha256": "5602bb4123c06991d684c49b880971eeec5554d11c5c7bb48883d86bac3c4440",
+      "durationCycles": 180
+    },
+    {
+      "id": 29373,
+      "name": "dagannoth_kings_2016_update_range_attack_proj",
+      "sha256": "b224078da0c7e5c54ed979084fa2a54eb98e68a617d613489b3ea76a1e04c3b7",
+      "durationCycles": 30
+    },
+    {
+      "id": 29374,
+      "name": "dagannoth_kings_2016_update_range_attack_spotanim",
+      "sha256": "829bf39e3eb742288e8259d39095465ab1622ff2e887d3b0a3fbad1617632b83",
+      "durationCycles": 90
+    },
+    {
+      "effect": 6355,
+      "sequence": 29380,
+      "model": 114236,
+      "sha256": "348e35c9a2724658b281e6f7014a42a5924746c12a24fae4ed06300eb43c8e6c"
+    },
+    {
+      "effect": 6356,
+      "sequence": 29381,
+      "model": 114236,
+      "sha256": "4038c9ac24798a05404c51eebe6328b8bf798495bf2ceaaccc40302318612cca"
+    },
+    {
+      "effect": 6357,
+      "sequence": 29382,
+      "model": 114234,
+      "sha256": "3f3c7b64e8cf8bef382d8da3a80b01532bedbef27d05a0d37c275dafa73493ff"
+    },
+    {
+      "effect": 6358,
+      "sequence": 29374,
+      "model": 114237,
+      "sha256": "b3e1018a0d50b527bf438d4debfedf67765494e6329107c3c211cfddb67eb2d1"
+    },
+    {
+      "effect": 6359,
+      "sequence": 29373,
+      "model": 114237,
+      "sha256": "517f502f056ea8eff86bece4d88823b728a82960802aad9039fdd592a7edf900"
+    },
+    {
+      "effect": 3352,
+      "sequence": 17362,
+      "model": 75257,
+      "sha256": "619df2d018e21360b965f4d3fee67208ddd6cdb02510df21dc65c78d395c1c4b"
+    }
+  ],
+  "limitation": "Payload/role proof, not physical Vulkan acceptance"
+}

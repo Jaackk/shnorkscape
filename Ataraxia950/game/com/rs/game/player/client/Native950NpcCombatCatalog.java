@@ -29,8 +29,11 @@ public final class Native950NpcCombatCatalog {
             return refused("unverified legacy NPC identity");
         try{Native950BossRules.verifyIdentity(npcId);}catch(IllegalStateException changed){return refused("boss symbol verification failed");}
         byte[] raw=Cache.STORE.getIndexes()[18].getFile(npcId>>>7,npcId&127);
-        return resolve(npcId,raw,true,NPCCombatDefinitionsDataParser.getDefinitions().get(npcId),
+        Resolution result=resolve(npcId,raw,true,NPCCombatDefinitionsDataParser.getDefinitions().get(npcId),
                 NPCStatsDataParser.getDefinitions().get(npcId),Native950NpcCombatAnimations::durationCycles);
+        if(result.profile==null)return result;
+        try{return new Resolution(Native950BossRules.presentation(result.profile),null);}
+        catch(IllegalStateException changed){return refused("boss presentation binding failed");}
     }
 
     /** Pure resolution: no NPC-ID branches, mutable loader defaults or invented health/levels. */
@@ -54,6 +57,8 @@ public final class Native950NpcCombatCatalog {
         if(stats==null) return refused("missing authored stat row");
         int style="MELEE".equalsIgnoreCase(combat.attackStyle)?0:"RANGE".equalsIgnoreCase(combat.attackStyle)?1:
                 ("MAGE".equalsIgnoreCase(combat.attackStyle)||"MAGIC".equalsIgnoreCase(combat.attackStyle))?2:-1;
+        // Only normal Graardor has a verified mixed-attack implementation.
+        if(npcId==6260&&"SPECIAL2".equalsIgnoreCase(combat.attackStyle))style=0;
         if(style<0)return refused("special attack style requires its own mechanics");
         int level=style==0?stats.getAttackLevel():style==1?stats.getRangeLevel():stats.getMagicLevel();
         if(style!=0 && (combat.getAttackProjectile() < -1 || combat.getAttackGfx() < -1

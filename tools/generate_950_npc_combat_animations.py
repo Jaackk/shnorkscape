@@ -13,7 +13,6 @@ import json
 from pathlib import Path
 import sys
 sys.dont_write_bytecode = True
-import verify_950_hitbars as v
 ROOT = Path(__file__).resolve().parents[1]
 
 class Reader:
@@ -86,6 +85,7 @@ def compatibility(old_data, modern_data):
     return 'identical-frame-duration-binding', modern, None
 
 def main():
+    import verify_950_hitbars as v
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--old-cache', type=Path, default=ROOT.parent/'Ataraxia-PS/data/cache')
     parser.add_argument('--combat-defs', type=Path, default=ROOT/'Ataraxia950/data/npcs/combatDefs.json')

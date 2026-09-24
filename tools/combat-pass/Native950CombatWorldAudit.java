@@ -20,7 +20,7 @@ public class Native950CombatWorldAudit {
    if(r.getAllObjects()==null)continue;
    for(WorldObject o:r.getAllObjects()){
     ObjectDefinitions d=o.getDefinitions();String n=d.name==null?"":d.name.toLowerCase(Locale.ROOT);
-    if(!n.matches(".*(portal|ladder|stair|door|entrance|exit|gate|chain|cave|rope|hole|trapdoor|barrier|crevice).*"))continue;
+    if(!n.matches(".*(altar|portal|ladder|stair|door|entrance|exit|gate|chain|cave|rope|hole|trapdoor|barrier|crevice).*"))continue;
     Map<String,Object> v=new LinkedHashMap<>();v.put("id",o.getId());v.put("name",d.name);v.put("x",o.getX());v.put("y",o.getY());v.put("plane",o.getPlane());v.put("type",o.getType());v.put("rotation",o.getRotation());v.put("options",d.options);objects.add(v);
    }
   }
@@ -30,7 +30,7 @@ public class Native950CombatWorldAudit {
     NPCDefinitions d=NPCDefinitions.decodeStrict947(id,Cache.STORE.getIndexes()[18].getFile(id>>>7,id&127),null);
     symbols.add(symbol("npc",id,d.name,18,id>>>7,id&127));
    }
-   for(int id:new int[]{82481,82483,82485,82487,82666,82667,82668,82669,82488,82489,82491,114746,114761,10229,8930,8929,26425,74864}){
+   for(int id:new int[]{82481,82483,82485,82487,82666,82667,82668,82669,82488,82489,82491,114746,114761,26289,10229,8930,8929,26425,74864}){
     symbols.add(symbol("object",id,ObjectDefinitions.getObjectDefinitions(id).name,16,id>>>8,id&255));
    }
    Files.write(Paths.get(args[1]),symbols,java.nio.charset.StandardCharsets.UTF_8);

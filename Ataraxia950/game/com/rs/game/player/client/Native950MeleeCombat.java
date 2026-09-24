@@ -727,7 +727,7 @@ public final class Native950MeleeCombat {
                 }
                 continue;
             }
-            if(fighter.target==null&&Native950BossRules.king(npc.getId())&&!npc.isDead()){
+            if(fighter.target==null&&Native950BossRules.aggressive(npc.getId())&&!npc.isDead()){
                 Player nearest=null;int nearestDistance=8;
                 for(Player candidate:access.players()){
                     if(candidate==null||!available(candidate,npc)||candidate.getNextWorldTile()!=null)continue;
@@ -823,45 +823,48 @@ public final class Native950MeleeCombat {
             if(fighter.retaliating && tick>=fighter.stunnedUntil && npcReach(fighter,player) && tick>=fighter.nextAttack && !player.isDead()) {
                 fighter.nextAttack=tick+fighter.profile.attackSpeed;
                 npc.setNextFaceEntity(player);
-                if(fighter.profile.attackAnim>=0)npc.setNextAnimation(new Animation(fighter.profile.attackAnim));
+                boolean shockwave=npc.getId()==6260&&rolls.damage(2)==0;
+                int attackStyle=shockwave?1:fighter.profile.attackStyle;
+                int attackAnimation=shockwave?17391:fighter.profile.attackAnim;
+                // Normal-mode displayed maxima: 3000 melee / 1676 ranged. Engine
+                // units are one tenth; fractional display remainder stays shared.
+                int maximum=npc.getId()==6260?(shockwave?167:300):fighter.profile.maxHit;
+                int attackBonus=shockwave?157:fighter.profile.meleeAttackBonus;
+                if(attackAnimation>=0)npc.setNextAnimation(new Animation(attackAnimation));
                 int defence=Rs2CombatFormula.effectiveLevel(player.getSkills().getLevel(Skills.DEFENCE)
                         +player.getPrayer().getStatBonuses(Skills.DEFENCE),0,0,1);
-                int damage=rolls.accurate(Rs2CombatFormula.roll(Rs2CombatFormula.npcEffectiveLevel(fighter.profile.attackLevel),fighter.profile.meleeAttackBonus),
+                int damage=rolls.accurate(Rs2CombatFormula.roll(Rs2CombatFormula.npcEffectiveLevel(fighter.profile.attackLevel),attackBonus),
                         Rs2CombatFormula.roll(defence,gear.defenceBonus))
-                        ? nativeDamage(rolls.damage(fighter.profile.maxHit/10)) : 0;
-                if(fighter.profile.attackStyle==0)damage(npc,player,damage);
+                        ? Math.min(maximum,nativeDamage(rolls.damage(maximum/10))) : 0;
+                if(attackStyle==0)damage(npc,player,damage);
                 else {
-                    int delay=2;
-                    if(fighter.profile.attackGraphic>=0)npc.setNextGraphics(new com.rs.game.Graphics(fighter.profile.attackGraphic));
-                    if(fighter.profile.attackProjectile>=0) {
-                        int end=35+Utils.getDistance(npc.getX(),npc.getY(),player.getX(),player.getY())*30/4;
-                        access.projectile(new com.rs.game.Projectile(npc,player,false,false,0,
-                                fighter.profile.attackProjectile,41,16,35,end,npc.getSize()*64,16));
-                        delay=Math.max(1,Utils.projectileTimeToCycles(end));
-                    }
+                    int castGraphic=shockwave?3352:fighter.profile.attackGraphic;
+                    if(castGraphic>=0)npc.setNextGraphics(new com.rs.game.Graphics(castGraphic));
+                    int delay=shockwave?2:npcFlight(fighter,player);
                     if(fighter.strikes.size()>=32)throw new IllegalStateException("NPC strike queue exceeded bound");
-                    fighter.strikes.add(new NpcStrike(tick+delay,damage,player));
-                    if(npc.getId()==2881){
-                        // Supreme attacks every visible player in range, with a
+                    fighter.strikes.add(new NpcStrike(tick+delay,damage,player,attackStyle));
+                    if(npc.getId()==2881||shockwave){
+                        int areaRange=shockwave?12:7;
+                        // Area attacks hit every eligible player in range, with a
                         // separate accuracy/damage roll and captured ownership.
                         for(Player other:access.players()){
                             if(other==null||other==player||!available(other,npc)||other.getNextWorldTile()!=null
-                                    ||distanceToFootprint(other,npc,fighter.profile.size)>7
-                                    ||!access.npcRangedReach(npc,other,7)||fighter.strikes.size()>=32)continue;
+                                    ||distanceToFootprint(other,npc,fighter.profile.size)>areaRange
+                                    ||!access.npcRangedReach(npc,other,areaRange)||fighter.strikes.size()>=32)continue;
                             Loadout otherGear;
                             try{otherGear=loadouts.get(other);}catch(IllegalArgumentException unsupported){continue;}
                             int otherDefence=Rs2CombatFormula.effectiveLevel(other.getSkills().getLevel(Skills.DEFENCE)
                                     +other.getPrayer().getStatBonuses(Skills.DEFENCE),0,0,1);
-                            int otherDamage=rolls.accurate(Rs2CombatFormula.roll(Rs2CombatFormula.npcEffectiveLevel(fighter.profile.attackLevel),fighter.profile.meleeAttackBonus),
-                                    Rs2CombatFormula.roll(otherDefence,otherGear.defenceBonus))?nativeDamage(rolls.damage(fighter.profile.maxHit/10)):0;
-                            fighter.strikes.add(new NpcStrike(tick+delay,otherDamage,other));
+                            int otherDamage=rolls.accurate(Rs2CombatFormula.roll(Rs2CombatFormula.npcEffectiveLevel(fighter.profile.attackLevel),attackBonus),
+                                    Rs2CombatFormula.roll(otherDefence,otherGear.defenceBonus))?Math.min(maximum,nativeDamage(rolls.damage(maximum/10))):0;
+                            fighter.strikes.add(new NpcStrike(tick+(shockwave?2:npcFlight(fighter,other)),otherDamage,other,attackStyle));
                         }
                     }
                 }
                 swings++;
                 if(player.isDead())playerDied(player);
                 else {
-                    if(fighter.profile.attackStyle==0 && damage>0 && player.getNextAnimation()==null&&tick>=channelUntil.getOrDefault(player,0L)
+                    if(attackStyle==0 && damage>0 && player.getNextAnimation()==null&&tick>=channelUntil.getOrDefault(player,0L)
                             &&player.getLastAnimationEnd()<=Utils.currentTimeMillis())player.setNextAnimation(new Animation(gear.blockAnimation));
                     //910 CombatScript auto-retaliation gate; never interrupt an explicit walk/skill/route.
                     if(!fighter.attacking && (targets.get(player)==null||targets.get(player)==fighter) && !fighter.outOfSupplies && tick>=ceaseUntil.getOrDefault(player,0L)&&player.getCombatDefinitions().isAutoRetaliate()
@@ -1156,6 +1159,13 @@ public final class Native950MeleeCombat {
     private boolean npcReach(Fighter fighter,Player player) {
         return fighter.profile.attackStyle==0?access.reach(fighter.npc,player):access.npcRangedReach(fighter.npc,player,7);
     }
+    private int npcFlight(Fighter fighter,Player target){
+        int graphic=fighter.profile.attackProjectile;if(graphic<0)return 2;
+        NPC npc=fighter.npc;
+        int end=35+Utils.getDistance(npc.getX(),npc.getY(),target.getX(),target.getY())*30/4;
+        access.projectile(new com.rs.game.Projectile(npc,target,false,false,0,graphic,41,16,35,end,npc.getSize()*64,16));
+        return Math.max(1,Utils.projectileTimeToCycles(end));
+    }
     private void processNpcStrikes(Fighter fighter,Player player) {
         for(int i=0;i<fighter.strikes.size();) {
             NpcStrike strike=fighter.strikes.get(i);
@@ -1163,8 +1173,10 @@ public final class Native950MeleeCombat {
             fighter.strikes.remove(i);
             player=strike.target;
             if(!available(player,fighter.npc)||player.getNextWorldTile()!=null||distance(player,fighter.npc)>LEASH)continue;
-            Hit.HitLook look=fighter.profile.attackStyle==1?Hit.HitLook.RANGE_DAMAGE:Hit.HitLook.MAGIC_DAMAGE;
+            Hit.HitLook look=strike.style==1?Hit.HitLook.RANGE_DAMAGE:Hit.HitLook.MAGIC_DAMAGE;
             int actual=damage(fighter.npc,player,strike.damage,look);
+            int impact=Native950BossRules.impactGraphic(fighter.npc.getId());
+            if(actual>0&&impact>=0)player.setNextGraphics(new com.rs.game.Graphics(impact));
             if(player.isDead()){playerDied(player);return;}
             if(actual>0 && player.getNextAnimation()==null && tick>=channelUntil.getOrDefault(player,0L)
                     && player.getLastAnimationEnd()<=Utils.currentTimeMillis())
@@ -1712,8 +1724,8 @@ public final class Native950MeleeCombat {
         Fighter(NPC npc,Native950NpcCombatProfile profile){this.npc=npc;this.profile=profile;home=new WorldTile(npc);}
     }
     private static final class NpcStrike {
-        final long due;final int damage;final Player target;
-        NpcStrike(long due,int damage,Player target){this.due=due;this.damage=damage;this.target=target;}
+        final long due;final int damage,style;final Player target;
+        NpcStrike(long due,int damage,Player target,int style){this.due=due;this.damage=damage;this.target=target;this.style=style;}
     }
     private static final class DashImpact {
         final WorldTile tile;final Loadout gear;final long expires;

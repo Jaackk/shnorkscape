@@ -16,6 +16,7 @@ final class Native950CombatTravel {
         }
     }
     static final List<Destination> DESTINATIONS=Collections.unmodifiableList(Arrays.asList(
+        new Destination("General Graardor - inside the boss room","shnorkscape_bandos_altar_26289",2869,5372,0),
         new Destination("Dagannoth Kings - lair entrance","shnorkscape_ladder_10229",2899,4446,0),
         new Destination("Slayer Tower - ground floor","shnorkscape_stairs_82481",3432,3557,0),
         new Destination("Taverley Dungeon - entrance","shnorkscape_stairs_74864",2884,9792,0)));

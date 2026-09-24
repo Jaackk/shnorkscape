@@ -28,7 +28,7 @@ public final class Native950NpcCombatAnimationsTest {
     }
 
     @Test public void generatedCatalogCoversAllCompatibleAuthoredBindingsAndOmitsChangedFrames() {
-        assertEquals(870, Native950NpcCombatAnimations.verifiedDefinitionCount());
+        assertEquals(880, Native950NpcCombatAnimations.verifiedDefinitionCount());
         for (int id : new int[] {3310,3311,3312,17347,32041,32050,32053,32205,32206,32208,32695,32697})
             assertFalse("Changed sequence " + id, Native950NpcCombatAnimations.hasCatalogBinding(id));
         assertFalse(Native950NpcCombatAnimations.hasCatalogBinding(Integer.MAX_VALUE));

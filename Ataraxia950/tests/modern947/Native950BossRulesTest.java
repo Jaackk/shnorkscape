@@ -12,13 +12,18 @@ public class Native950BossRulesTest {
  }
  @Test public void rexCanBeStunnedButPrimeAndSupremeCannot(){
   assertTrue(Native950BossRules.stunImmune(2881));assertTrue(Native950BossRules.stunImmune(2882));
+  assertTrue(Native950BossRules.stunImmune(6260));assertFalse(Native950BossRules.acceptsDamage(6260,HitLook.POISON_DAMAGE));
   assertFalse(Native950BossRules.stunImmune(2883));assertFalse(Native950BossRules.stunImmune(12353));
  }
  @Test public void executionBindingFailsClosedWithoutThePairedCache(){
   try{Native950Symbols.require("npc","missing_boss");fail();}catch(IllegalStateException expected){}
   assertEquals(14,Native950GamevalLookup.search("npc shnorkscape").size());
-  assertEquals(18,Native950GamevalLookup.search("object shnorkscape").size());
+  assertEquals(19,Native950GamevalLookup.search("object shnorkscape").size());
   assertFalse(Native950GamevalLookup.search("npc dagannoth").get(0).matches(new byte[]{0}));
+ }
+ @Test public void bossAggressionIsScopedToTheImplementedEncounters(){
+  for(int id:new int[]{2881,2882,2883,6260,6261,6263,6265})assertTrue(Native950BossRules.aggressive(id));
+  assertFalse(Native950BossRules.aggressive(50));assertFalse(Native950BossRules.aggressive(12353));
  }
  @Test public void stairsRolloutDoesNotEnableUnknownRegions(){
   assertTrue(Native950WorldTraversal.ordinaryRegion(13623));

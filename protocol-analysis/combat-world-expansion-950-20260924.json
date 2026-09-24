@@ -2,11 +2,12 @@
   "date": "2026-09-24",
   "status": "AUTOMATED VERIFIED; LIVE TEST PENDING",
   "baselineAcceptedNpcs": 1880,
-  "newlyAdmittedNpcs": 0,
+  "newlyAdmittedNpcs": 1,
   "improvedBosses": [
     "Dagannoth Supreme",
     "Dagannoth Prime",
-    "Dagannoth Rex"
+    "Dagannoth Rex",
+    "General Graardor (normal)"
   ],
   "bossRules": [
     "counter-style damage gate shared by autos/abilities/DoTs/conjures/bounces",
@@ -15,27 +16,40 @@
     "Supreme multi-player ranged hits with captured targets"
   ],
   "bossGaps": [
-    "projectile presentation remains incomplete for Kings",
-    "retail target switching and Provoke immunity not yet implemented",
-    "no claim of complete retail encounters"
+    "Retail target switching/Provoke rules",
+    "Graardor hard mode and group reset/instances",
+    "Physical Vulkan presentation acceptance pending"
   ],
   "travel": [
     "26 reciprocal Slayer Tower stair movements verified against real950 collision",
     "large-stair landing search uses decoded footprint",
     "Wars Reaper portal: SHNORKSCAPE combat travel menu to Dagannoth lair / Slayer Tower / Taverley Dungeon",
-    "Wars exit option3 reaches Death office"
+    "Wars exit option3 reaches Death office",
+    "Normal Graardor room and Bandos altar return to Wars"
   ],
   "symbols": {
-    "newProjectAliases": 32,
-    "total": 1417,
-    "execution": "fail-closed payload + index reference SHA pins",
-    "originalGamevalClaim": false
+    "newProjectAliases": 33,
+    "namedSequences": 14,
+    "effectAliases": 6,
+    "total": 1438,
+    "execution": "fail-closed payload and reference SHA pins with cache-store invalidation"
   },
   "tests": {
-    "tests": 1569,
+    "tests": 1572,
     "failures": 0,
     "errors": 0,
     "skipped": 2
   },
-  "liveServer": "not deployed or restarted"
+  "liveServer": "not deployed or restarted",
+  "acceptedNpcs": 1881,
+  "loot": {
+    "signatureRowsVerified": 11,
+    "ratesChanged": false
+  },
+  "missingStatAliasCandidates": 0,
+  "validation": [
+    "isolated real-cache world probe PASS",
+    "7 sequence decoder tests PASS",
+    "3 gameval generator tests PASS"
+  ]
 }

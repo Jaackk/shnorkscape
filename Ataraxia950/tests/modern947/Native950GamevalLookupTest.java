@@ -10,7 +10,7 @@ public class Native950GamevalLookupTest {
         assertTrue(Native950GamevalLookup.search("1477:713").isEmpty());assertTrue(Native950GamevalLookup.search("8286").isEmpty());
         assertEquals("combatv2_buff_necromancy_residual_soul_stacks",Native950GamevalLookup.search("11035").get(0).name);
         assertTrue(Native950GamevalLookup.search("interface machinima").stream().allMatch(e->e.type.equals("interface")));
-        assertEquals(1417,Native950GamevalLookup.search("").size());
+        assertEquals(1438,Native950GamevalLookup.search("").size());
     }
     @Test public void changedPayloadNeverClaimsVerification(){
         Native950GamevalLookup.Entry entry=Native950GamevalLookup.search("623:27").get(0);

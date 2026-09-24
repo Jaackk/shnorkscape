@@ -257,7 +257,7 @@ final class Native950DeveloperConsole {
         else{
             // Break long underscore-separated names for native text wrapping, preserving the full name in chat.
             text(500,87,227,116,2100,symbol.name.replace("_","_ ").replace(":",": "));
-            text(500,207,227,145,2100,symbol.type+" "+symbol.id+"<br>Packed / numeric ID: "+symbol.packed()+"<br>"+symbol.verify()+"<br>"+symbol.evidence+"<br>Source 2670 (949) / target 2691 (950.1)");
+            text(500,207,227,145,2100,symbol.type+" "+symbol.id+"<br>Packed / numeric ID: "+symbol.packed()+"<br>"+symbol.verify()+"<br>"+symbol.evidence+"<br>"+(symbol.evidence.startsWith("Project")?"Project-authored 950 alias":"Named source 2670 (949); checked target 2691 (950.1)"));
             button(495,354,239,29,"Print full identity to chat",false,()->{message(symbol.type+" "+symbol.id+" = "+symbol.name);message(symbol.verify()+"; "+symbol.evidence);});
         }
         button(495,387,239,28,"Back to tools",false,()->navigate("Tools"));

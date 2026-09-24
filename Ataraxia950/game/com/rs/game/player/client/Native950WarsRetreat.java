@@ -18,6 +18,7 @@ final class Native950WarsRetreat {
     static boolean handles(WorldObject object,int option){
         if(object==null)return false;
         if(object.getId()==114745)return option==1;
+        if(object.getId()==26289&&object.getX()==2869&&object.getY()==5372&&object.getPlane()==0)return option==3;
         if(object.getRegionId()!=REGION||object.getPlane()!=0)return false;
         int id=object.getId();
         return option==1&&(id==114748||id==114749||id==79034||id==114746)
@@ -40,7 +41,7 @@ final class Native950WarsRetreat {
     }
     static void use(Player p,WorldObject object,int option){
         switch(object.getId()){
-            case 114745:p.sendMessage(teleport(p,true));break;
+            case 114745:case 26289:p.sendMessage(teleport(p,true));break;
             case 114746:p.sendMessage(option==3?deathsOffice(p):teleport(p,false));break;
             case 114748:p.getPrayer().restorePrayer(Skills.getLevelCap(Skills.PRAYER)*10);p.sendMessage("Your prayer is restored.");break;
             case 114749:p.getCombatDefinitions().setSpecialAttackPercentage(100);p.sendMessage("Your adrenaline is restored.");break;

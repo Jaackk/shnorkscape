@@ -40,6 +40,16 @@ public final class Native950NpcCombatProfile {
         this.attackAnim=attackAnim; this.blockAnim=blockAnim; this.deathAnim=deathAnim;
         this.meleeAttackBonus=meleeAttackBonus; this.meleeDefenceBonus=meleeDefenceBonus;
     }
+    Native950NpcCombatProfile withMaximumHit(int maximum){
+        return new Native950NpcCombatProfile(npcId,size,combatLevel,hp,attackLevel,defenceLevel,maximum,attackSpeed,
+                deathTicks,respawnTicks,attackAnim,blockAnim,deathAnim,meleeAttackBonus,meleeDefenceBonus,name,
+                cacheAttackSpeed,cacheAttackBonus,cacheDefenceBonus,deathAnimationTicks,attackStyle,attackProjectile,attackGraphic);
+    }
+    Native950NpcCombatProfile withPresentation(int block,int death,int projectile,int graphic,int deathCycles){
+        return new Native950NpcCombatProfile(npcId,size,combatLevel,hp,attackLevel,defenceLevel,maxHit,attackSpeed,
+                deathTicks,respawnTicks,attackAnim,block,death,meleeAttackBonus,meleeDefenceBonus,name,
+                cacheAttackSpeed,cacheAttackBonus,cacheDefenceBonus,Math.min(10,(deathCycles+29)/30),attackStyle,projectile,graphic);
+    }
     Native950NpcCombatProfile withAttackStyle(int style,int projectile,int graphic) {
         if(style<0||style>2)throw new IllegalArgumentException("Unsupported NPC combat style");
         return new Native950NpcCombatProfile(npcId,size,combatLevel,hp,attackLevel,defenceLevel,maxHit,attackSpeed,

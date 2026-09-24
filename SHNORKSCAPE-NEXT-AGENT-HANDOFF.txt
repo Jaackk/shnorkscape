@@ -1,3 +1,28 @@
+COMBAT / WORLD EXPANSION 2026-09-24 - LATEST
+User autonomous combat/world pass; one primary agent, offline only.
+Read docs/COMBAT-WORLD-EXPANSION-20260924.md and matching protocol-analysis report.
+AUTOMATED VERIFIED / LIVE TEST PENDING. No server restart/deployment/save edits.
+Dagannoth Kings: style immunity, nearby aggro, Supreme multi-player ranged,
+exact named cast/projectile/impact bindings and corrected defence/death sequences.
+Normal Graardor newly admitted: melee/ranged shockwave, delayed typed AoE,
+stun/poison immunity, existing three minions aggro, existing loot/respawn.
+Not retail-complete: Kings target-switch/Provoke, Graardor hard mode/group reset
+and instances remain gaps. Keep individual NPC profile admission claims separate.
+War Reaper portal offers four explicit SHNORKSCAPE sandbox combat routes:
+Graardor room, Dagannoth lair, Slayer Tower, Taverley Dungeon. Bandos altar returns
+to Wars; normal War exit option3 reaches Death office. No retail killcount claim.
+26 Tower stair links collision-tested; landing radius respects large footprints.
+1438 browser symbols, including53 new NPC/object/sequence/effect entries.
+New runtime symbol resolver fails closed on payload/reference pins and resets
+verification on cache-store replacement. Project aliases labelled honestly.
+Full1572 tests,0failures/errors,2skips; real-cache movement/routes/stale callbacks,
+1438 pins and11 signature loot rows PASS. Missing-stat alias audit found0 safe
+exact candidates. NPC support1881/2644 (+1 Graardor),763 explicit refusals.
+Seven sequence-decoder and three gameval-generator Python tests PASS.
+Combat checkpoint1d801c9 pushed/verified; final source/staging checkpoint follows.
+No speculative dev startup/layout changes. Deferred live bugs unchanged.
+Stage through Apply Staged Update.cmd; never silently deploy/restart.
+
 OWNED OBJECT CLEARING / GAMEVAL LOOKUP 2026-09-24 - LATEST
 User now authorizes focused developer improvements after Darkan research.
 Current ;;dev described by user as working rather well; preserve its lifecycle.

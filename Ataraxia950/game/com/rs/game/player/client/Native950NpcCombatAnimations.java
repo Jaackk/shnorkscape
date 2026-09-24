@@ -107,6 +107,16 @@ public final class Native950NpcCombatAnimations {
             if (stream == null) throw new IllegalStateException("Missing NPC combat animation bindings: " + RESOURCE);
             properties.load(stream);
         } catch (IOException error) { throw new ExceptionInInitializerError(error); }
+        try(InputStream stream=Native950NpcCombatAnimations.class.getResourceAsStream("/native950/boss-animations-950.properties")){
+            if(stream==null)throw new IllegalStateException("Missing named boss sequence bindings");
+            Properties extra=new Properties();extra.load(stream);
+            for(String key:extra.stringPropertyNames()){
+                String prior=properties.getProperty(key),value=extra.getProperty(key);
+                if(prior!=null&&!prior.split(",")[0].equals(value.split(",")[0]))throw new IllegalStateException("Conflicting boss sequence "+key);
+                properties.setProperty(key,value);
+            }
+        }catch(IOException error){throw new ExceptionInInitializerError(error);}
+
         Map<Integer, Binding> bindings = new HashMap<Integer, Binding>();
         for (String key : properties.stringPropertyNames()) {
             int id = Integer.parseInt(key);

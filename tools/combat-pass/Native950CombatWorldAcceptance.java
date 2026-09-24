@@ -15,11 +15,17 @@ public final class Native950CombatWorldAcceptance {
   System.setProperty(Native950World.SPAWNS_PROPERTY,"false");System.setProperty(Native950World.LEGACY_SPAWNS_PROPERTY,"false");
   Cache.initFlatReadOnly(Paths.get("cache"));Native950World world=Native950World.getInstance();
   world.execute(()->{
-   NPCCombatDefinitionsDataParser.init();NPCStatsDataParser.init();
+   NPCCombatDefinitionsDataParser.init();NPCStatsDataParser.init();NPCDropsDataParser.init();
    int symbols=0;for(Native950GamevalLookup.Entry e:Native950GamevalLookup.search("")){
     check(e.verify().equals("950 payload SHA-256 MATCH"),"Symbol pin: "+e.name);symbols++;
    }
-   for(int id=2881;id<=2883;id++)check(Native950NpcCombatCatalog.fromRunningCache(id)!=null,"Boss refused "+id);
+   for(int id:new int[]{2881,2882,2883,6260})check(Native950NpcCombatCatalog.fromRunningCache(id)!=null,"Boss refused "+id);
+   int signatureDrops=0;
+   for(int[] row:new int[][]{{2881,6733},{2881,6739},{2882,6731},{2882,6739},{2883,6735},{2883,6737},{2883,6739},{6260,11724},{6260,11726},{6260,11728},{6260,11704}}){
+    check(Native950NpcDrops.metadata(row[1])!=null,"Signature item rejected "+row[1]);
+    boolean present=false;for(com.rs.utils.data.parsers.npcs.pojos.NPCDrop drop:NPCDropsDataParser.getDrops(row[0]))if(drop.getItemId()==row[1])present=true;
+    check(present,"Signature drop missing for boss "+row[0]+": "+row[1]);signatureDrops++;
+   }
    int pairs=0,uses=0;EmbeddedChannel c=new EmbeddedChannel();
    Player p=Player.createNative950("travel-probe",new WorldTile(3432,3556,0),c);p.setActive(true);World.addNative950Player(p,1);
    try{
@@ -53,12 +59,16 @@ public final class Native950CombatWorldAcceptance {
      if(World.isFloorFree(0,tile.getX(),tile.getY())&&RouteFinder.findRoute(RouteFinder.WALK_ROUTEFINDER,tile.getX(),tile.getY(),0,1,new ObjectStrategy(portal),false)==0){portalStart=tile;break;}
     }
     check(portalStart!=null,"Portal unreachable");
+    WorldObject altar=Native950CombatTravel.DESTINATIONS.get(0).object();
+    check(Native950WarsRetreat.handles(altar,3),"Bandos altar exit unavailable");
+    p.setNextWorldTile(null);p.setLocation(new WorldTile(2868,5371,0));Native950WarsRetreat.use(p,altar,3);
+    check(Native950WarsRetreat.WARS_RETREAT.equals(p.getNextWorldTile()),"Bandos altar sandbox return failed");
     for(Native950ProductionMenu.Choice route:Native950CombatTravel.choices(p,portal)){
      p.setNextWorldTile(null);p.setLocation(portalStart);World.updateEntityRegion(p);p.loadMapRegions();p.setClientHasLoadedMapRegion();
      route.start(1);check(p.getNextWorldTile()!=null&&!p.getNextWorldTile().equals(portalStart),"Travel failed: "+route.label);
      p.setLocation(new WorldTile(3200,3200,0));p.setNextWorldTile(null);route.start(1);check(p.getNextWorldTile()==null,"Stale route callback moved player");
     }
-    System.out.println("PASS: "+symbols+" symbol pins; three boss profiles; "+pairs+" reciprocal stair links; "+uses+" real collision-checked stair movements; War exit option3; three combat portal routes and stale callback protection");
+    System.out.println("PASS: "+symbols+" symbol pins; four boss profiles; "+pairs+" reciprocal stair links; "+uses+" real collision-checked stair movements; War exit option3; four combat portal routes and stale callback protection; "+signatureDrops+" signature loot rows");
    }finally{c.finishAndReleaseAll();}return null;
   }).get(120,java.util.concurrent.TimeUnit.SECONDS);
  }

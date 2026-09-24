@@ -945,6 +945,30 @@ public class Native950MeleeCombatTest {
         for(int i=0;i<10;i++)step();assertEquals(before,access.projectiles);
         assertEquals(2,Native950MeleeCombat.skullFlightTicks(5));assertEquals(3,Native950MeleeCombat.skullFlightTicks(6));
     }
+    @Test public void npcNativeRemainderCannotExceedTheAuthoredMaximum(){
+        player.setHitpoints(1000);player.getCombatDefinitions().setAutoRetaliate(false);
+        rolls.remainder=9;combat.unregister(npc);access.npcs.remove(npc);
+        npc=NPC.createNative950(12353,new WorldTile(3218,3258,0),1);npc.setIndex(1);
+        access.npcs.add(npc);combat.register(npc,profile(500,13,3));
+        assertNull(combat.attack(player,npc));step();assertEquals(987,player.getHitpoints());
+    }
+    @Test public void graardorShockwaveIsDelayedMultiTargetAndKeepsItsRangedType(){
+        EmbeddedChannel secondChannel=new EmbeddedChannel();
+        try{
+            Player other=Player.createNative950("shockwave-other",new WorldTile(3217,3259,0),secondChannel);
+            other.setIndex(2);other.setActive(true);other.setHitpoints(1000);other.getCombatDefinitions().setAutoRetaliate(false);
+            player.setHitpoints(1000);player.getCombatDefinitions().setAutoRetaliate(false);access.players.add(other);combat.attach(other);
+            NPC boss=NPC.createNative950(6260,new WorldTile(3218,3258,0),3);boss.setIndex(3);access.npcs.add(boss);
+            combat.register(boss,new Native950NpcCombatProfile(6260,3,624,4000,75,75,300,6,3,60,17389,-1,-1,218,113));
+            rolls.shockwave=true;step();
+            assertEquals(17391,boss.getNextAnimation().getIds()[0]);assertEquals(3352,boss.getNextGraphics1().getId());
+            assertEquals(1000,player.getHitpoints());assertEquals(1000,other.getHitpoints());
+            step();step();assertEquals(840,player.getHitpoints());assertEquals(840,other.getHitpoints());
+            assertEquals(com.rs.game.Hit.HitLook.RANGE_DAMAGE,other.getNextHits().get(0).getLook());
+            for(int i=0;i<4;i++)step();combat.unregister(boss);
+            for(int i=0;i<4;i++)step();assertEquals(840,other.getHitpoints());
+        }finally{secondChannel.finishAndReleaseAll();}
+    }
     @Test public void kingStyleImmunityIsAppliedAtTheActualDamageBoundary()throws Exception {
         java.lang.reflect.Method hit=Native950MeleeCombat.class.getDeclaredMethod("damage",Entity.class,Entity.class,int.class,com.rs.game.Hit.HitLook.class);
         hit.setAccessible(true);
@@ -973,7 +997,7 @@ public class Native950MeleeCombatTest {
         }finally{secondChannel.finishAndReleaseAll();}
     }
     private static Native950NpcCombatProfile profile(int hp,int maxHit,int respawn){return new Native950NpcCombatProfile(12353,1,2,hp,8,8,maxHit,5,3,respawn,-1,-1,-1,2,12);}
-    private static final class FixedRolls implements Native950MeleeCombat.Rolls {boolean accurate=true;public boolean accurate(long attack,long defence){return accurate;}public int damage(int maximum){return maximum;}}
+    private static final class FixedRolls implements Native950MeleeCombat.Rolls {int remainder;boolean accurate=true,shockwave;public int nativeDamageRemainder(int raw){return remainder;}public boolean accurate(long attack,long defence){return accurate;}public int damage(int maximum){return shockwave&&maximum==2?0:maximum;}}
     private static final class FakeAccess implements Native950MeleeCombat.Access {
         final Set<Player> players=Collections.newSetFromMap(new IdentityHashMap<Player,Boolean>());
         final Set<NPC> npcs=Collections.newSetFromMap(new IdentityHashMap<NPC,Boolean>());

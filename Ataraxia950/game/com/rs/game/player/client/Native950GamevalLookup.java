@@ -13,7 +13,7 @@ final class Native950GamevalLookup {
         Entry(String[] f){
             if(f.length!=9)throw new IllegalArgumentException("Invalid symbol row");
             type=f[0];id=f[1];name=f[2];index=Integer.parseInt(f[3]);group=Integer.parseInt(f[4]);file=Integer.parseInt(f[5]);sha=f[6];evidence=f[7];referenceSha=f[8];
-            if(!Arrays.asList("interface","component","varp","varbit","npc","object").contains(type)||!id.matches("[0-9]+(:[0-9]+)?")
+            if(!Arrays.asList("interface","component","varp","varbit","npc","object","sequence","effect").contains(type)||!id.matches("[0-9]+(:[0-9]+)?")
                 ||!name.matches("[a-z0-9_:]+")||!sha.matches("[a-f0-9]{64}")||!referenceSha.matches("[a-f0-9]{64}")||index<0||group<0||file< -1)throw new IllegalArgumentException("Invalid symbol identity");
         }
         String packed(){if(!type.equals("component"))return id;String[] p=id.split(":");return ""+((Integer.parseInt(p[0])<<16)|Integer.parseInt(p[1]));}
@@ -51,7 +51,7 @@ final class Native950GamevalLookup {
     }
     private static List<Entry> load(){
         List<Entry> all=new ArrayList<>();
-        for(String resource:new String[]{"gameval-lookup-950.tsv","combat-world-symbols-950.tsv"}){
+        for(String resource:new String[]{"gameval-lookup-950.tsv","combat-world-symbols-950.tsv","boss-symbols-950.tsv"}){
             try(InputStream in=Native950GamevalLookup.class.getResourceAsStream("/native950/"+resource)){
                 if(in==null)throw new IllegalStateException("Missing symbol index: "+resource);
                 try(BufferedReader r=new BufferedReader(new InputStreamReader(in,StandardCharsets.UTF_8))){all.addAll(load(r));}
