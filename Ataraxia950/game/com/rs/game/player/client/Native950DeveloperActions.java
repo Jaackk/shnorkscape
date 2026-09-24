@@ -106,8 +106,29 @@ final class Native950DeveloperActions {
             if(Arrays.asList("npc","npcrepeat","npcs","removenpc","clearnpcs","dummy","findnpc").contains(id))cat="NPCs";
             if(Arrays.asList("heal","max","copy","coords").contains(id))cat="Player";
             if(id.equals("comp"))cat="Quests";if(id.equals("uilayout"))cat="Settings";
-            actions.put(id,new Action(id,segment,segment,row[2],cat,params,configured));
+            actions.put(id,new Action(id,segment,segment,description(id,row[2]),cat,params,configured));
         }
         return Collections.unmodifiableList(new ArrayList<>(actions.values()));
+    }
+    private static String description(String id,String fallback){
+        switch(id){
+            case "heal":return "Restore health, prayer and run energy, and restore drained stats.";
+            case "god":return "Toggle damage immunity. Other combat requirements remain active.";
+            case "almighty":return "Toggle full developer combat mode: immunity, infinite resources and cooldown-free Surge, Escape and Dive.";
+            case "items":return "Open the Equipment Library: curated gear, global item search and developer loadouts.";
+            case "bank":return "Open your real bank to store and withdraw your items.";
+            case "dummy":return "Spawn nearby combat dummies for ability and damage testing.";
+            case "wars":return "Teleport to War's Retreat, the combat testing hub.";
+            case "adrenaline":return "Set your current adrenaline to the selected percentage.";
+            case "npc":return "Spawn temporary NPCs by cache ID and amount. Use the NPC browser for chosen-tile placement.";
+            case "npcrepeat":return "Spawn test NPCs that respawn after death.";
+            case "findnpc":return "Find NPC definitions by partial name or exact cache ID.";
+            case "npcs":return "List nearby test NPCs and their indices.";
+            case "tele":return "Teleport to the selected world coordinates and plane.";
+            case "bugtest":return "Toggle Bug Test diagnostics for live input, interfaces and combat.";
+            case "comp":return "Apply permanent completion and combat unlocks for development testing.";
+            case "max":return "Raise skills to their development maximum levels.";
+            default:return fallback;
+        }
     }
 }

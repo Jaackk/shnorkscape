@@ -1,8 +1,8 @@
 """Author server-driven pages in the existing 950 management shell.
 
-Uses the cache's CS10410/10899 textured button, CS2995 text styles and normal
-management lifecycle. No client executable, existing interface or script changes.
-New scripts are appended to a copy of the current reference table, never live cache.
+Uses CS10410/10899 buttons, CS2995 text and the normal management lifecycle.
+Replaces the installed helpers and adds a scoped acknowledgement to native8286.
+Writes only a staged cache delta; never the client executable or live cache.
 """
 import hashlib, json, struct, zlib
 from pathlib import Path
@@ -32,10 +32,15 @@ def programs():
         h=1448<<16|c
         init+=ints(h)+[(0x5,0)]+ints(0,0,0,0,h)+[(0x7c5,0)]+ints(742,450,0,0,h)+[(0x55,0)]
         init+=ints(0 if c in (3,5,7) else 1,h)+[(0xe4,0)]
-    # Header and tabs belong to the shell, content remains in its page hosts.
+    # CS8289 resolves the native title host from struct21301/3506 and uses
+    # dynamic child3. 713 is NOT the title: putting text there clips under tabs.
     init+=ints(1,1477<<16|714)+[(0xe4,0)]
     init+=ints(1477<<16|713)+[(0x5,0)]
-    init+=ints(1477<<16|713,0,14,0,0,0,660,52,0,0,17514)+[push('DEVELOPER CONSOLE'),call(2995)]
+    init+=ints(21301,3506)+[(0x540,0)]+ints(3)+[(0x109,0)]+ints(1)+[(0x412,2),push('DEVELOPER CONSOLE'),(0x1f1,0)]
+    # Native type3 outline components, using the same size/position/colour
+    # setters as CS6204. Keep the native textured frame behind all three panes.
+    for child,(x,y,w,h) in enumerate(((0,73,162,313),(169,73,314,305),(491,38,247,378))):
+        init+=ints(1448<<16|3,3,child)+[(0x691,0)]+ints(w,h,0,0)+[(0x8c3,0)]+ints(x,y,0,0)+[(0x828,0)]+ints(0x6d5b38)+[(0x1a5,0)]
     # Button arguments: actor, x,y,width,height,selected,text. Native nine-slice
     # visuals live in host3; operation actors in host5, as in the Beasts browser.
     button=ints(1448<<16|3,1448<<16|5,28556)
@@ -46,6 +51,8 @@ def programs():
     # CS10410 returns the next actor index; the caller has its own actor allocation.
     text=ints(1448<<16|7)+[(0x35e,0),(0x35e,1),(0x35e,2)]+ints(0,0)
     text += [(0x35e,3),(0x35e,4)]+ints(0,0)+[(0x35e,5),(0x25a,0),call(2995)]
+    # Headings reuse CS8289's native serif font; body text retains CS2995 style.
+    text += [(0x35e,5)]+ints(17514)+[(0x412,4)]+ints(60)+[(0x742,0)]+ints(0xffd479)+[(0x1a5,0)]
     # A distinct source slot per placement rejects late opcode85 packets from old
     # selections. CC_CREATE requires contiguous preceding children; they are hidden.
     arm=ints(1448<<16|11)+[(0x5,0)]+ints(0)+[(0x592,1)]
@@ -59,11 +66,26 @@ def programs():
     arm+=ints(1448<<16|11)+[(0x35e,0),(NATIVE_SELECT,0)]
     # Two int locals, only one argument (the target actor index).
     armraw=bytearray(script(arm,2,2));end=len(armraw)-19;armraw[end+10:end+12]=struct.pack('>H',1)
-    return {BASE:script(init),BASE+1:script(button,6,2),BASE+2:script(text,6,1),BASE+3:script([(0x25a,0),(0x77b,0)],0,1),BASE+4:bytes(armraw),BASE+5:script([(0x8aa,0)])}
+    return {BASE:script(init),BASE+1:script(button,6,2),BASE+2:script(text,6,1),BASE+3:script([(0x25a,0),(0x77b,0)],0,1),BASE+4:bytes(armraw),BASE+5:script([(0x8aa,0)]),8286:ready_bridge()}
+
+def ready_bridge():
+    """Acknowledge the REAL varc2911 management refresh, after its native work.
+
+    The root host exists even when1448 is closed. Its inert text property is a
+    scoped session marker; normal management gets the original instructions.
+    No timer, action-bar reset or replacement of the native lifecycle.
+    """
+    raw=unpack((ROOT/'cache/12/8286.dat').read_bytes())
+    ops,tail=scope['decode'](raw,inverse)
+    old=[(o,a) for _,_,o,a,_ in ops]
+    assert len(old)==20 and old[-1]==(0x495,0), 'Unexpected native8286'
+    extra=ints(1477<<16|713)+[(0x8b9,0),push('SHNORKSCAPE Developer Console'),(0x3f,0)]+ints(0)+[(0x412,2),push('__devready'),(0x77b,0)]
+    updated=old[:-1]+extra+[old[-1]]
+    return raw[:raw.index(0)+1]+b''.join(instruction(*op) for op in updated)+struct.pack('>I',len(updated))+tail[4:]
 
 def smart(v): return struct.pack('>I',v|0x80000000) if v>=32768 else struct.pack('>H',v)
 def append_reference(raw, additions):
-    """Retain all original named group/file metadata while adding single-file scripts."""
+    """Replace audited scripts while retaining all unrelated group/file metadata."""
     assert raw[0]==7 and raw[5]==13
     p=6
     def count():
@@ -71,7 +93,7 @@ def append_reference(raw, additions):
         n=4 if raw[p]&128 else 2;v=int.from_bytes(raw[p:p+n],'big')&0x7fffffff;p+=n;return v
     total=count();ids=[];last=0
     for _ in range(total):last+=count();ids.append(last)
-    assert max(ids)<BASE and min(additions)==BASE
+    assert all(sid in ids for sid in additions), 'Successor replaces audited existing scripts only'
     arrays=[]
     for width in (4,4,4,8,4):arrays.append([raw[p+i*width:p+(i+1)*width] for i in range(total)]);p+=total*width
     counts=[count() for _ in ids];files=[]
@@ -83,18 +105,21 @@ def append_reference(raw, additions):
     for n in counts:names.append(raw[p:p+4*n]);p+=4*n
     assert p==len(raw),(p,len(raw))
     for sid,(packed,payload) in sorted(additions.items()):
-        ids.append(sid);counts.append(1);files.append(smart(0));names.append(struct.pack('>i',-1))
-        for arr,value in zip(arrays,(struct.pack('>i',-1),struct.pack('>I',zlib.crc32(packed)),struct.pack('>I',zlib.crc32(payload)),struct.pack('>II',len(packed),len(payload)),struct.pack('>I',1))):arr.append(value)
+        i=ids.index(sid)
+        version=int.from_bytes(arrays[4][i],'big')+1
+        for arr,value in zip(arrays[1:],(struct.pack('>I',zlib.crc32(packed)),struct.pack('>I',zlib.crc32(payload)),struct.pack('>II',len(packed),len(payload)),struct.pack('>I',version))):arr[i]=value
     out=raw[:1]+struct.pack('>I',int.from_bytes(raw[1:5],'big')+1)+raw[5:6]+smart(len(ids));last=0
     for sid in ids:out+=smart(sid-last);last=sid
     return out+b''.join(b''.join(a) for a in arrays)+b''.join(smart(n) for n in counts)+b''.join(files)+b''.join(names)
 
 def main():
-    dest=ROOT/'dist/developer-console-cache-20260924/cache-v4';dest.mkdir(parents=True,exist_ok=True)
+    dest=ROOT/'dist/developer-console-live-cache-20260924/cache-v4';dest.mkdir(parents=True,exist_ok=True)
     additions={};pins={}
     for sid,payload in programs().items():
         packed=container(payload);additions[sid]=(packed,payload)
-        path=dest/f'12/{sid}.dat';path.parent.mkdir(exist_ok=True);path.write_bytes(packed+b'\0\1')
+        before=(ROOT/f'cache/12/{sid}.dat').read_bytes()
+        version=(int.from_bytes(before[-2:],'big')+1)&65535
+        path=dest/f'12/{sid}.dat';path.parent.mkdir(exist_ok=True);path.write_bytes(packed+struct.pack('>H',version))
         pins[str(sid)]=hashlib.sha256(payload).hexdigest()
     ref=append_reference(unpack((ROOT/'cache/255/12.dat').read_bytes()),additions)
     (dest/'255').mkdir(exist_ok=True);(dest/'255/12.dat').write_bytes(container(ref))
@@ -102,6 +127,6 @@ def main():
     for sid in (10410,10899,2995,10644,10324):
         pins[str(sid)]=hashlib.sha256((ROOT/f'temp/library-followup-trace/12-{sid}-0.bin').read_bytes()).hexdigest()
     (ROOT/'Ataraxia950/resources/native950/developer-console-950.properties').write_bytes((''.join(f'{sid}={value}\n' for sid,value in sorted(pins.items()))).encode())
-    print('Staged six new native scripts; live cache untouched.')
+    print('Staged six developer helpers and scoped native-ready bridge; live cache untouched.')
 if __name__=='__main__':main()
 

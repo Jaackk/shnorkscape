@@ -25,13 +25,16 @@ class Installer(unittest.TestCase):
         result=subprocess.run([str(shell),'-NoProfile','-ExecutionPolicy','Bypass','-File',str(self.base/'Apply-PlayabilityUpdate.ps1'),'-CheckOnly'],capture_output=True,text=True)
         self.assertEqual(expected,result.returncode==0,result.stdout+result.stderr)
 
-    def test_base_and_idempotent_new_file(self):
+    def test_base_idempotence_and_corrupt_script_rejected(self):
         self.check(True)
-        entry=next(e for e in self.manifest['files'] if e.get('beforeSha256')=='ABSENT');dst=self.base/entry['target']
+        entry=next(e for e in self.manifest['files'] if e['target']=='cache/12/21124.dat');dst=self.base/entry['target']
+        before=dst.read_bytes() if dst.exists() else None
         shutil.copyfile(self.base/'dist'/self.manifest['candidate']/entry['source'],dst)
         try:
             self.check(True);dst.write_bytes(b'corrupt new archive');self.check(False)
-        finally:dst.unlink()
+        finally:
+            if before is None:dst.unlink()
+            else:dst.write_bytes(before)
 
     def test_unknown_target_is_rejected(self):
         m=json.loads(json.dumps(self.manifest));m['files'][-1]['target']='cache/12/999999.dat'

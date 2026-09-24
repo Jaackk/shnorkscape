@@ -68,7 +68,7 @@ public class Native950DeveloperConsoleTest {
         }
     }
     @Test public void nonceRejectsOldRowsAndPlainButtonCannotRunAction()throws Exception{
-        console.open();java.lang.reflect.Field ep=Native950DeveloperConsole.class.getDeclaredField("epoch");ep.setAccessible(true);
+        console.open();console.handle(notification("__devready"));java.lang.reflect.Field ep=Native950DeveloperConsole.class.getDeclaredField("epoch");ep.setAccessible(true);
         java.lang.reflect.Field bs=Native950DeveloperConsole.class.getDeclaredField("buttons");bs.setAccessible(true);
         final int[] calls={0};((Map<Integer,Runnable>)bs.get(console)).put(0,()->calls[0]++);
         long epoch=ep.getLong(console);
@@ -85,9 +85,23 @@ public class Native950DeveloperConsoleTest {
         console.open();console.dispose();assertFalse(console.isOpen());
     }
     @Test public void worldCapacityFailureReturnsToConsoleInsteadOfDisconnecting()throws Exception{
-        console.open();java.lang.reflect.Field ep=Native950DeveloperConsole.class.getDeclaredField("epoch"),bs=Native950DeveloperConsole.class.getDeclaredField("buttons");ep.setAccessible(true);bs.setAccessible(true);
+        console.open();console.handle(notification("__devready"));java.lang.reflect.Field ep=Native950DeveloperConsole.class.getDeclaredField("epoch"),bs=Native950DeveloperConsole.class.getDeclaredField("buttons");ep.setAccessible(true);bs.setAccessible(true);
         ((Map<Integer,Runnable>)bs.get(console)).put(0,()->{throw new IllegalStateException("World is full");});
         console.handle(notification("__devop:"+ep.getLong(console)+":0"));assertTrue(console.isOpen());assertTrue(channel.isOpen());
+    }
+    @Test public void nativeReadyBarrierPreventsEarlyRenderAndRejectsDuplicateOrClosedAcknowledgement()throws Exception{
+        java.lang.reflect.Field ep=Native950DeveloperConsole.class.getDeclaredField("epoch"),bs=Native950DeveloperConsole.class.getDeclaredField("buttons");ep.setAccessible(true);bs.setAccessible(true);
+        console.open();long opening=ep.getLong(console);
+        assertTrue(((Map<?,?>)bs.get(console)).isEmpty());
+        Native950DevelopmentCommands.handle(p,channel,";;god");console.tick();
+        assertEquals(opening,ep.getLong(console));assertTrue(((Map<?,?>)bs.get(console)).isEmpty());
+        console.handle(notification("__devready"));long rendered=ep.getLong(console);
+        assertTrue(rendered>opening);assertFalse(((Map<?,?>)bs.get(console)).isEmpty());
+        console.handle(notification("__devready"));assertEquals(rendered,ep.getLong(console));
+        console.close();console.handle(notification("__devready"));assertTrue(((Map<?,?>)bs.get(console)).isEmpty());assertFalse(console.isOpen());
+        console.open();assertTrue(((Map<?,?>)bs.get(console)).isEmpty());
+        console.handle(notification("__devop:"+rendered+":0"));assertTrue(((Map<?,?>)bs.get(console)).isEmpty());
+        console.handle(notification("__devready"));assertFalse(((Map<?,?>)bs.get(console)).isEmpty());
     }
     @Test public void placementLedgerRejectsOtherOwnersAndCleansOnlyTemporaryEdits()throws Exception{
         Native950DeveloperPlacement.Request request=new Native950DeveloperPlacement.Request(new Native950DeveloperCatalogue.Entry(new String[]{"NPC","1","Test","1","1","1",""}),1,1,-1,0,false,p,0);

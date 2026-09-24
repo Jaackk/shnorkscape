@@ -50,4 +50,26 @@ class DeveloperScripts(unittest.TestCase):
         self.assertTrue(any(op==0x895 and arg==10410 for _,_,op,arg,_ in ops))
         self.assertEqual(0x6a,ops[-2][2])
 
+    def test_native_ready_bridge_preserves_original_refresh_and_scopes_notification(self):
+        from build_developer_console_950 import unpack
+        native,_=scope['decode'](unpack((ROOT/'cache/12/8286.dat').read_bytes()),inverse)
+        patched,_=scope['decode'](programs()[8286],inverse)
+        self.assertEqual([(o,a) for _,_,o,a,_ in native[:-1]],[(o,a) for _,_,o,a,_ in patched[:len(native)-1]])
+        # Execute appended guard with a normal management host, dev marker, and
+        # cleared close marker. Only the developer session may acknowledge.
+        for marker,wanted in (('',[]),('CUSTOMISATIONS',[]),('SHNORKSCAPE Developer Console',['__devready'])):
+            ints=[];strings=[];sent=[];pc=len(native)-1
+            while pc<len(patched):
+                _,_,op,arg,_=patched[pc];pc+=1
+                if op==0x511:(strings if arg[0]==2 else ints).append(arg[1])
+                elif op==0x8b9:self.assertEqual(1477<<16|713,ints.pop());strings.append(marker)
+                elif op==0x3f:b,a=strings.pop(),strings.pop();ints.append(0 if a==b else 1)
+                elif op==0x412:
+                    b,a=ints.pop(),ints.pop()
+                    if a!=b:pc+=arg
+                elif op==0x77b:sent.append(strings.pop())
+                elif op==0x495:break
+                else:self.fail(hex(op))
+            self.assertEqual(wanted,sent);self.assertEqual([],ints);self.assertEqual([],strings)
+
 if __name__=='__main__':unittest.main()
