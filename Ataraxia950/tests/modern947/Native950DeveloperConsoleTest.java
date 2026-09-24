@@ -84,6 +84,11 @@ public class Native950DeveloperConsoleTest {
         console.handle(notification("__devcancel:1"));assertFalse(console.isOpen());assertNull(move.get(console));assertNull(pending.get(console));
         console.open();console.dispose();assertFalse(console.isOpen());
     }
+    @Test public void worldCapacityFailureReturnsToConsoleInsteadOfDisconnecting()throws Exception{
+        console.open();java.lang.reflect.Field ep=Native950DeveloperConsole.class.getDeclaredField("epoch"),bs=Native950DeveloperConsole.class.getDeclaredField("buttons");ep.setAccessible(true);bs.setAccessible(true);
+        ((Map<Integer,Runnable>)bs.get(console)).put(0,()->{throw new IllegalStateException("World is full");});
+        console.handle(notification("__devop:"+ep.getLong(console)+":0"));assertTrue(console.isOpen());assertTrue(channel.isOpen());
+    }
     @Test public void placementLedgerRejectsOtherOwnersAndCleansOnlyTemporaryEdits()throws Exception{
         Native950DeveloperPlacement.Request request=new Native950DeveloperPlacement.Request(new Native950DeveloperCatalogue.Entry(new String[]{"NPC","1","Test","1","1","1",""}),1,1,-1,0,false,p,0);
         Player other=Player.createNative950("nooby",new WorldTile(p),channel);other.setActive(true);

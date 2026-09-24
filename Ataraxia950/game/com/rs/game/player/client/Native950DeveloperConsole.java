@@ -78,7 +78,7 @@ final class Native950DeveloperConsole {
                 if(fields.length!=3||Long.parseLong(fields[1])!=epoch)return true;
                 Runnable operation=buttons.get(Integer.parseInt(fields[2]));
                 if(operation!=null)operation.run();
-            }catch(IllegalArgumentException invalid){status=invalid.getMessage();if(open)render();}
+            }catch(IllegalArgumentException|IllegalStateException invalid){status=invalid.getMessage();if(open)render();}
             return true;
         }
         if(!open||input==null)return false;Consumer<String> callback=input;closeInput();
