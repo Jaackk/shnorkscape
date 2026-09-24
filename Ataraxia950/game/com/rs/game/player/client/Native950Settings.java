@@ -411,7 +411,8 @@ public final class Native950Settings {
         pin(2, 69, 60056, "8890278b507db50d4cb0ba9bb9b568c7d8b5df2f14ea56037f6402ed92204db2");
         pin(12, 8179, 0, "6129f1fc028f9ba3fb259cc22ebe23d5b01c31feaa22a7a0e7b82ec880a3c888");
         pin(12, 8181, 0, "e852b15a50764ee4550b3d16ffcdb3d9fa6ed483fdae866b908619c7e611d7ae");
-        pin(12, 8286, 0, "5bd6296bb761633d83eb47a86757815ee88d0369ab844439a11f13792f24d5f7");
+        // Original management refresh plus the scoped Developer Console ready acknowledgement.
+        pin(12, 8286, 0, "e422808ec2897c48041e1fef85799a3bd0f0f7f594acf89d0e9988f1cd35a365");
         pin(12, 8288, 0, "bd7585328d7c15e6597038b0b19df5239fb44abd343253a17ec52355e42b0f59");
         pin(12, 8290, 0, "2e4f3cac7fbbb9799bfa079ba47898f797c9d20e36517bb0787040f04520a2b8");
         pin(12, 8192, 0, "14d87898eca9c7d5e5145cc1555d362fbc7ac5e2fcfa5944b34ae6e7599c72fe");

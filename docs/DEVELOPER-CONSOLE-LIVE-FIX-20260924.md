@@ -1,5 +1,15 @@
 # Developer Console: live input diagnosis and successor
 
+## Launch preflight hotfix — 24 September, afternoon
+
+The first successor contained a stale Settings pin for script8286. The console
+manifest expected the intended `e422808e...` bridge, but Settings still required
+the original `5bd6296b...` script. This blocked startup after applying the update.
+The Settings pin now matches the audited bridge. A regression reconstructs and
+hashes its original native body, then checks both consumers against the installed
+payload. Cache verification remains mandatory. Reapply the corrected staged jar;
+no cache redownload or verification bypass is needed.
+
 ## Physical Vulkan evidence — confirmed live
 
 The first console open was broken: native Customisations tabs/title remained,
