@@ -1,7 +1,7 @@
 {
   "status": "AUTOMATED VERIFIED; physical Vulkan LIVE TEST PENDING",
   "regression": {
-    "tests": 1553,
+    "tests": 1554,
     "failures": 0,
     "errors": 0,
     "skipped": 2
@@ -17,5 +17,10 @@
   ],
   "deployedJarSha256": "E31CD5E6F2DE70B57B6DD21F3C4D2C6BA276DEFBB5062F9476DD2028C8F27E55",
   "deployedScriptReferenceSha256": "A0A233157B1709AEA860B1EFD9961950DE1C15FAF0B29805E3E7EAED0E6A3494",
-  "serverRestarted": false
+  "serverRestarted": false,
+  "installer": "PASS: 23-file CheckOnly and all launch gates; four disposable-fixture tests cover absent/idempotent new scripts, corruption, missing existing targets, unexpected paths and stale launch allowlist",
+  "diagnosticCompatibility": "PASS: isolated existing diagnostic NPC/object/occupied-slot/large-footprint/native-wire acceptance (7 encrypted frames)",
+  "candidate": "combat-live-successor-dev-20260924",
+  "candidateJarSha256": "D7B5765D0A52991CF1091619BA60A6D2E8E50B7AFBD695A418572CC16B0809E8",
+  "sourceCommit": "b667ff961c7658ded34c4801a6c173efebb25fd1"
 }

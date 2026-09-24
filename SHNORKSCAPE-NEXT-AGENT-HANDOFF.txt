@@ -1,8 +1,19 @@
+STAGED DEVELOPER CONSOLE 2026-09-24
+Candidate dist/combat-live-successor-dev-20260924: 23 pinned files.
+Apply Staged Update.cmd updated; CheckOnly and all three cache launch gates PASS.
+Source checkpoint b667ff9; full suite 1554 tests, 0 failures/errors, 2 skips.
+Four installer fixture regressions and three native-script tests PASS.
+Existing diagnostic native-wire acceptance and actual-cache editor lifecycle PASS.
+Live Java PID41044 (started05:37:28), deployed jar E31CD5E6... and cache reference
+A0A23315... unchanged. No server/client restart or cache installation performed.
+Final checklist/limitations: docs/DEVELOPER-CONSOLE-20260924.md.
+Three user-deferred cleanup failures below remain unresolved; not part of this pass.
+
 DEVELOPER CONSOLE IMPLEMENTATION 2026-09-24
 Native shell1448, scripts21124-21129, shared command directory/handlers,
 per-account favourites, NPC/object catalogue, independent native tile placement,
 owned temporary edits and explicit persistent Save to World are implemented.
-Full regression: 1553 tests, zero failures/errors, 2 existing skips.
+Full regression: 1554 tests, zero failures/errors, 2 existing skips.
 Exact-cache isolated world lifecycle and production JS5 reference probes PASS.
 Native Vulkan appearance / button hooks / placement cursor remain LIVE TEST PENDING.
 See docs/DEVELOPER-CONSOLE-20260924.md and validation JSON for limits/checklist.

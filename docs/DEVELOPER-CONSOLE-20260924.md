@@ -29,6 +29,12 @@ Account favourites: `server-home/developer-preferences/<account>.txt`. Explicit 
 
 The staged update is cumulative. `Apply Staged Update.cmd --check-only` verifies all 23 hashes and all three launch cache gates without installation. Installation requires clients/server closed. Backup `new-files.json` identifies the six newly appended script files for manual rollback; automatic rollback restores prior files and removes only new files created by that install.
 
+## Exact native input evidence
+
+The native-only selected-component opcode is `0x72c`, registered at `0x1400562be`; handler `0x1401f76f0` resolves hash/slot through `0x140390f60`, cancels the previous selection through `0x14019f620`, then selects through `0x14019f3e0`. Its independent source is dynamic child **1448:11**, with native ground-target mask `64 << 11`. Existing Dive/action-bar sources are not reused. Per-session source slots advance and are consumed once; source hash/item, plane, timeout and distance are checked before mutation.
+
+Native button onOp is normalized `0x6a` / actual `0x83b`, event `0x25`; the callback sends a per-render nonce through the existing STRING_DIALOGUE contract. Target-leave is event `16`, installed by normalized `0x665`; normalized `0x8aa` performs native target cancellation. The exact client executable identity and selection-handler calls are checked by `tools/test_developer_console_950.py`. Script-loop/stack tests and the production JS5 decoder verify the appended archives. These are contract checks, not proof that the physical cursor/button presentation works; that boundary is deliberately left for the live checklist below.
+
 ## One live checklist
 
 After applying and launching normally:

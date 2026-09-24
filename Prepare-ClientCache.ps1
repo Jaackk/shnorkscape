@@ -8,7 +8,7 @@ try {
  $clients=@(Get-CimInstance Win32_Process -Filter "Name='rs2client.exe' OR Name='rs2client-vulkan.exe'" | Where-Object {$_.ExecutablePath -and $_.ExecutablePath.StartsWith((Join-Path $root 'client')+'\',[StringComparison]::OrdinalIgnoreCase)})
  if($clients.Count){throw 'Close this copy of the game client before preparing its cache. Existing cache and settings have been left intact.'}
  $reference=Join-Path $root 'cache\255\12.dat'
- $acceptedReferences=@('8A45E12B3D5B3BF35CDB02CDEC9DDEDBD46200B4FEF086ADC0679FB0D020EF8C','21AAE886E340146ED851949C0F900FAE44208BE899E305E7331C12F1D6F44E89','95CA10C1A35C2B5B397FB5583B46DDA0876C5BE03619A6BB18BD6782F8DE4648','A0A233157B1709AEA860B1EFD9961950DE1C15FAF0B29805E3E7EAED0E6A3494')
+ $acceptedReferences=@('8A45E12B3D5B3BF35CDB02CDEC9DDEDBD46200B4FEF086ADC0679FB0D020EF8C','21AAE886E340146ED851949C0F900FAE44208BE899E305E7331C12F1D6F44E89','95CA10C1A35C2B5B397FB5583B46DDA0876C5BE03619A6BB18BD6782F8DE4648','A0A233157B1709AEA860B1EFD9961950DE1C15FAF0B29805E3E7EAED0E6A3494','F3514AE304A825E2670E5157045CF0DEA42B0CBF9B2756608525FCE111BD8AB8')
  if(!(Test-Path -LiteralPath $reference)){throw 'The paired cache reference is missing.'}
  $expected=(Get-FileHash -LiteralPath $reference -Algorithm SHA256).Hash
  if($expected -notin $acceptedReferences){throw 'Install the paired cache or the verified Developer Library update before preparing the client.'}
