@@ -41,7 +41,7 @@ final class Native950DeveloperSearch {
     static synchronized boolean verifiedItem(int id){
         current();Row row=byId.get(id);if(row==null)return false;
         if(!verified.contains(id)){
-            if(!row.hash.equals(Native950EquipmentCatalogue.hash(Cache.STORE.getIndexes()[19].getFile(id>>>8,id&255))))
+            if(!Native950EquipmentCatalogue.matchesItemHash(id,row.hash,Native950EquipmentCatalogue.hash(Cache.STORE.getIndexes()[19].getFile(id>>>8,id&255))))
                 throw new IllegalStateException("Changed developer item "+id);
             verified.add(id);
         }
@@ -52,7 +52,7 @@ final class Native950DeveloperSearch {
         if(query.isEmpty()||query.length()>80)return result;
         int exact=exactId(query);
         for(Row row:rows)if(exact>=0?row.item.id==exact:row.lower.contains(query)){
-            if(!row.hash.isEmpty()&&!row.hash.equals(Native950EquipmentCatalogue.hash(Cache.STORE.getIndexes()[19].getFile(row.item.id>>>8,row.item.id&255))))
+            if(!row.hash.isEmpty()&&!Native950EquipmentCatalogue.matchesItemHash(row.item.id,row.hash,Native950EquipmentCatalogue.hash(Cache.STORE.getIndexes()[19].getFile(row.item.id>>>8,row.item.id&255))))
                 throw new IllegalStateException("Changed global-search item "+row.item.id);
             result.add(row.item);if(result.size()>LIMIT)break;
         }

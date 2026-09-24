@@ -392,7 +392,7 @@ public class NPC extends Entity implements Serializable {
     /** The combat owner keeps an HP0 actor visible only for its bounded death presentation. */
     public void setNative950DeathVisible(final boolean visible) {
         requireNative950Npc("death presentation");
-        if(visible && (native950CombatProfile==null || !isDead() || hasFinished()))
+        if(visible && ((native950CombatProfile==null && !isNative950Conjure()) || !isDead() || hasFinished()))
             throw new IllegalStateException("Death presentation requires an admitted HP0 native NPC");
         native950DeathVisible=visible;
     }

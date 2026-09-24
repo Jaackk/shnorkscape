@@ -8,10 +8,11 @@ $expectedTargets = @('OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar',
     'patches/classes/com/opennxt/net/login/Native950InterfaceBootstrap.class',
     'patches/classes/com/opennxt/net/login/Native950InterfaceBootstrap$Panel.class',
     'patches/classes/com/opennxt/net/login/Native950InterfaceBootstrap$Slot.class')
-$libraryUpdate=$manifest.candidate -in @('library-followup-20260923','p0-bank-focus-20260923','bank-sort-20260923','combat-completion-20260923','combat-live-successor-20260923','combat-live-successor-refinement-20260923','combat-live-successor-polish-20260924')
+$libraryUpdate=$manifest.candidate -in @('library-followup-20260923','p0-bank-focus-20260923','bank-sort-20260923','combat-completion-20260923','combat-live-successor-20260923','combat-live-successor-refinement-20260923','combat-live-successor-polish-20260924','combat-live-successor-polish2-20260924')
 if ($libraryUpdate) { $expectedTargets += @('cache/12/13903.dat','cache/12/13905.dat','cache/12/13909.dat','cache/12/15897.dat','cache/12/6963.dat','cache/255/12.dat') }
-if ($manifest.candidate -in @('bank-sort-20260923','combat-completion-20260923','combat-live-successor-20260923','combat-live-successor-refinement-20260923','combat-live-successor-polish-20260924')) { $expectedTargets += 'cache/12/13830.dat' }
-if ($manifest.candidate -notin @('playability-20260923','library-followup-20260923','p0-bank-focus-20260923','bank-sort-20260923','combat-completion-20260923','combat-live-successor-20260923','combat-live-successor-refinement-20260923','combat-live-successor-polish-20260924') -or $manifest.files.Count -ne $expectedTargets.Count) { throw 'Unexpected update manifest.' }
+if ($manifest.candidate -in @('bank-sort-20260923','combat-completion-20260923','combat-live-successor-20260923','combat-live-successor-refinement-20260923','combat-live-successor-polish-20260924','combat-live-successor-polish2-20260924')) { $expectedTargets += 'cache/12/13830.dat' }
+if ($manifest.candidate -eq 'combat-live-successor-polish2-20260924') { $expectedTargets += @('cache/18/236.dat','cache/18/243.dat','cache/19/239.dat','cache/255/18.dat','cache/255/19.dat') }
+if ($manifest.candidate -notin @('playability-20260923','library-followup-20260923','p0-bank-focus-20260923','bank-sort-20260923','combat-completion-20260923','combat-live-successor-20260923','combat-live-successor-refinement-20260923','combat-live-successor-polish-20260924','combat-live-successor-polish2-20260924') -or $manifest.files.Count -ne $expectedTargets.Count) { throw 'Unexpected update manifest.' }
 $planned = @()
 foreach ($entry in $manifest.files) {
     $expectedSource=if($entry.target.StartsWith('cache/')){'cache-v4/'+$entry.target.Substring(6)}else{[IO.Path]::GetFileName($entry.target)}
@@ -39,7 +40,7 @@ foreach ($entry in $planned) {
     Copy-Item -LiteralPath $entry.Target -Destination $backupFile
     if ((Get-FileHash -LiteralPath $entry.Target).Hash -ne (Get-FileHash -LiteralPath $backupFile).Hash) { throw 'Runtime backup verification failed.' }
 }
-foreach ($relative in @('players\modern950\players','workspace-state950','client-state\prepared-cache.json','client-state\Jagex\RuneScape\js5-12.jcache')) {
+foreach ($relative in @('players\modern950\players','workspace-state950','client-state\prepared-cache.json','client-state\Jagex\RuneScape\js5-12.jcache','client-state\Jagex\RuneScape\js5-18.jcache','client-state\Jagex\RuneScape\js5-19.jcache')) {
     $source = Join-Path $updateRoot $relative
     if (Test-Path -LiteralPath $source) {
         $destination = Join-Path $backupRoot $relative
@@ -59,4 +60,4 @@ try {
 }
 Write-Host "Playability candidate installed. Backup: $backupRoot"
 Write-Host 'Start Play.cmd normally. Existing account and LAN settings are preserved.'
-if($libraryUpdate){Write-Host 'Play.cmd will refresh the native bank/library scripts in the client cache. Curated tabs and real bank presets are preserved.'}
+if($libraryUpdate){Write-Host 'Play.cmd will refresh the paired native bank/library, NPC and item definitions in the client cache. Curated tabs and real bank presets are preserved.'}

@@ -208,6 +208,13 @@ public class AnimationDefinitions {
 			throw new IllegalArgumentException("Trailing bytes in modern animation " + id + " at " + stream.getOffset());
 	}
 
+	/** Native950 frame durations use the proven 20ms client clock. Opcode26 adds its duration base. */
+	public int getNative950EmoteTime() {
+		long cycles = Math.max(0, modernInt26b);
+		if (anIntArray2153 != null) for (int frame : anIntArray2153) cycles += frame;
+		return (int)Math.min(Integer.MAX_VALUE, cycles * 20L);
+	}
+
 	public int getEmoteTime() {
 		if (anIntArray2153 == null)
 			return 0;

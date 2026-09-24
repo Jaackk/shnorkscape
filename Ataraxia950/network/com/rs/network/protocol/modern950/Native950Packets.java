@@ -28,6 +28,18 @@ public final class Native950Packets {
     /** Native full logout; flush this frame before closing the world transport. */
     public static Packet logoutFull() { return packet(ServerPacket.LOGOUT_FULL, new byte[0]); }
 
+    /** Tile branch of950 parser0x1400efb10; see protocol-analysis/world-spotanim-950.md. */
+    public static Packet worldSpotanim(int x,int y,int plane,int graphic,int delay){
+        if(x<0||x>16383||y<0||y>16383||plane<0||plane>3||graphic< -1||graphic>65534||delay<0||delay>32767)
+            throw new IllegalArgumentException("Invalid950 world spotanim");
+        int target=0x40000000|(plane<<28)|(x<<14)|y;
+        int offsets=1023|(1023<<11);
+        byte[] body={(byte)(target>>8),(byte)target,(byte)(target>>24),(byte)(target>>16),
+            0,(byte)(offsets>>8),(byte)(offsets>>16),(byte)offsets,(byte)128,
+            0,(byte)128,(byte)(graphic+128),(byte)(graphic>>8),(byte)(delay+128),(byte)(delay>>8)};
+        return packet(ServerPacket.SPOTANIM_SPECIFIC,body);
+    }
+
     public static Packet tickEnd() { return packet(ServerPacket.SERVER_TICK_END, new byte[0]); }
     public static Packet keepAlive() { return packet(ServerPacket.NO_TIMEOUT, new byte[0]); }
 

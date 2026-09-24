@@ -1950,7 +1950,7 @@ public class Player extends Entity {
         if(isNative950())getNative950ActionBar().restore(settings);
         if(isNative950())com.rs.game.player.client.Native950AutoSpells.restore(this,settings);
         if(isNative950()&&Integer.valueOf(1).equals(settings.get(com.rs.game.player.client.Native950Completionist.SETTING)))
-            com.rs.game.player.client.Native950Completionist.grant(this);
+            com.rs.game.player.client.Native950Completionist.restore(this);
         Integer value;
         if ((value = settings.get(SETTING_CHAT_EFFECTS)) != null) allowChatEffects = value != 0;
         if ((value = settings.get(SETTING_PROFANITY_FILTER)) != null) profanityFilter = value != 0;

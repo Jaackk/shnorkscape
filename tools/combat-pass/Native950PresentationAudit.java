@@ -25,11 +25,13 @@ public final class Native950PresentationAudit {
             Map<Long,Object> params=RS3GeneralRequirementMap.getMap(d.struct).getValues();pin(22,d.struct>>>5,d.struct&31);
             Set<Integer> sequences=new TreeSet<>();Integer direct=integer(params,2914L),table=integer(params,2915L);
             if(direct!=null)sequences.add(direct);
+            int named=Native950PresentationBindings.playerAnimation(d.struct);if(named>=0)sequences.add(named);
             if(d.struct==14707){sequences.add(35135);pin(22,39860>>>5,39860&31);pin(22,47230>>>5,47230&31);}
             if(d.struct==48301)sequences.add(35469); // Named Undercut Volley, matching exact950 impact7879.
             if(d.struct==48324){Integer alternative=integer(params,2535L);if(alternative!=null)sequences.add(alternative);}
             if(table!=null){pin(17,table>>>8,table&255);RS3ClientScriptMap e=RS3ClientScriptMap.getMap(table);if(e.getDefaultIntValue()>=0)sequences.add(e.getDefaultIntValue());
                 for(Object value:e.getValues().values())if(value instanceof Integer&&((Integer)value)>=0)sequences.add((Integer)value);}
+            if(d.struct==19254){sequences.clear();sequences.add(19866);}
             Map<String,Object> row=new LinkedHashMap<>();row.put("struct",d.struct);row.put("name",d.name);row.put("animationSequences",sequences);
             List<Map<String,Object>> variants=new ArrayList<>();
             if(sequences.isEmpty())sequences.add(-1);
@@ -37,7 +39,7 @@ public final class Native950PresentationAudit {
                 Map<Integer,Object> seq=null;
                 if(sequence>=0){pin(20,sequence>>>7,sequence&127);AnimationDefinitions a=AnimationDefinitions.getAnimationDefinitions(sequence);if(a.decodeFailure!=null)throw new IllegalStateException(a.decodeFailure);seq=a.clientScriptData;}
                 Map<String,Object> v=new LinkedHashMap<>();v.put("sequence",sequence);String[] names={"casterGraphic","impactGraphic","projectile"};int[] keys={2920,2933,2940};
-                for(int i=0;i<keys.length;i++){Integer id=integer(params,(long)keys[i]);if(id==null)id=integer(seq,keys[i]);v.put(names[i],id);graphic(id);}
+                for(int i=0;i<keys.length;i++){Integer id=integer(params,(long)keys[i]);if(id==null&&i==0&&Native950PresentationBindings.casterGraphic(d.struct)>=0)id=Native950PresentationBindings.casterGraphic(d.struct);if(id==null)id=integer(seq,keys[i]);v.put(names[i],id);graphic(id);}
                 variants.add(v);
             }
             row.put("variants",variants);row.put("liveAcceptance","pending; metadata and transport admission cannot prove rendered suitability");rows.add(row);
@@ -51,6 +53,8 @@ public final class Native950PresentationAudit {
         for(int graphicId=7866;graphicId<=7870;graphicId++)graphic(graphicId);
         for(int model:new int[]{130426,130428,130430,130432,130434})pin(47,model,0);
         pin(20,35465>>>7,35465&127);pin(22,49980>>>5,49980&31);
+        for(int id:new int[]{3614,3855,4503,3537,3526,7883,7815,7819,7811,5187,7818,3856,8996})graphic(id);
+        for(int id:new int[]{18081,18104,18106,19858,19859,18358,18359,18527,18528,18529,18530,19865,19866,19879,24724,24727,24728,35204,35206,35209,35216,35217,35219,35249,35251,35256,35257,35258,35272,35475,35476,35626,35755,36200,36213,36214,36601,37099})pin(20,id>>>7,id&127);
         Properties legacy=new Properties();
         try(java.io.InputStream in=Native950PlayerEffects.class.getResourceAsStream(Native950PlayerEffects.RESOURCE)){legacy.load(in);}
         List<Integer> previouslyRefused=new ArrayList<>();for(int id:effects.keySet())if(!legacy.containsKey("id."+id))previouslyRefused.add(id);

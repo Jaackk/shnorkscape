@@ -1,0 +1,90 @@
+[
+  {
+    "index": 21,
+    "group": 13,
+    "url": "https://archive.openrs2.org/caches/runescape/2670/archives/21/groups/13.dat",
+    "identical": true,
+    "betaSha256": "bfe9c6a8d9676d341bcdef896f4e2c389dbf406e26f1c5eebbe0f1bb43871a54",
+    "native950Sha256": "bfe9c6a8d9676d341bcdef896f4e2c389dbf406e26f1c5eebbe0f1bb43871a54"
+  },
+  {
+    "index": 21,
+    "group": 14,
+    "url": "https://archive.openrs2.org/caches/runescape/2670/archives/21/groups/14.dat",
+    "identical": true,
+    "betaSha256": "8c95b103913d0bd9a692aa781f57e515cc722379f78e88926c40ca8df616a316",
+    "native950Sha256": "8c95b103913d0bd9a692aa781f57e515cc722379f78e88926c40ca8df616a316"
+  },
+  {
+    "index": 21,
+    "group": 15,
+    "url": "https://archive.openrs2.org/caches/runescape/2670/archives/21/groups/15.dat",
+    "identical": true,
+    "betaSha256": "1884e95390923deb9d19955888c2fda3122ab07cb11f64f99f5f4341911e1144",
+    "native950Sha256": "1884e95390923deb9d19955888c2fda3122ab07cb11f64f99f5f4341911e1144"
+  },
+  {
+    "index": 21,
+    "group": 17,
+    "url": "https://archive.openrs2.org/caches/runescape/2670/archives/21/groups/17.dat",
+    "identical": true,
+    "betaSha256": "7480a2691f0685b060347a048f04f82e85ccb3189e6d4f795aab7f38e866ee31",
+    "native950Sha256": "7480a2691f0685b060347a048f04f82e85ccb3189e6d4f795aab7f38e866ee31"
+  },
+  {
+    "index": 21,
+    "group": 20,
+    "url": "https://archive.openrs2.org/caches/runescape/2670/archives/21/groups/20.dat",
+    "identical": true,
+    "betaSha256": "2efe408c114fcc0f07ce02e11abe752ce06d48ed00c3293f3966d9494ac0b01f",
+    "native950Sha256": "2efe408c114fcc0f07ce02e11abe752ce06d48ed00c3293f3966d9494ac0b01f"
+  },
+  {
+    "index": 21,
+    "group": 30,
+    "url": "https://archive.openrs2.org/caches/runescape/2670/archives/21/groups/30.dat",
+    "identical": true,
+    "betaSha256": "e9e86dc8e6be50199a9a75b0432a1a188a841aa20f893aa81dca5622b0c6a0fe",
+    "native950Sha256": "e9e86dc8e6be50199a9a75b0432a1a188a841aa20f893aa81dca5622b0c6a0fe"
+  },
+  {
+    "index": 21,
+    "group": 35,
+    "url": "https://archive.openrs2.org/caches/runescape/2670/archives/21/groups/35.dat",
+    "identical": true,
+    "betaSha256": "ad04b4e8387c68dcfaf1f6acb4e6f27e8c47ba8cdce94d8a5a1811a6c32414e6",
+    "native950Sha256": "ad04b4e8387c68dcfaf1f6acb4e6f27e8c47ba8cdce94d8a5a1811a6c32414e6"
+  },
+  {
+    "index": 47,
+    "group": 92237,
+    "url": "https://archive.openrs2.org/caches/runescape/2670/archives/47/groups/92237.dat",
+    "identical": true,
+    "betaSha256": "300a6f25d3946d6ec9794041a7754434e34dbfb3f232d0c2f5f6ff822a8b85f5",
+    "native950Sha256": "300a6f25d3946d6ec9794041a7754434e34dbfb3f232d0c2f5f6ff822a8b85f5"
+  },
+  {
+    "index": 47,
+    "group": 130422,
+    "url": "https://archive.openrs2.org/caches/runescape/2670/archives/47/groups/130422.dat",
+    "identical": true,
+    "betaSha256": "792fcabee308d302a46c57c0d0b96ac78fa51332e7caf3faf1740f5f1e0a12cc",
+    "native950Sha256": "792fcabee308d302a46c57c0d0b96ac78fa51332e7caf3faf1740f5f1e0a12cc"
+  },
+  {
+    "index": 47,
+    "group": 139366,
+    "url": "https://archive.openrs2.org/caches/runescape/2670/archives/47/groups/139366.dat",
+    "identical": true,
+    "betaSha256": "0083b82f96d133e5e63d04a28840c146c087de63d200d0f6bde7a75221119b91",
+    "native950Sha256": "0083b82f96d133e5e63d04a28840c146c087de63d200d0f6bde7a75221119b91"
+  },
+  {
+    "index": 47,
+    "group": 84388,
+    "url": "https://archive.openrs2.org/caches/runescape/2670/archives/47/groups/84388.dat",
+    "identical": true,
+    "betaSha256": "173376ce98faea39f837225ef004a70af6951abf3035171b3b4596d44cce4428",
+    "native950Sha256": "173376ce98faea39f837225ef004a70af6951abf3035171b3b4596d44cce4428"
+  }
+]

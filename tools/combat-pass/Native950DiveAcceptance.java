@@ -108,6 +108,7 @@ public final class Native950DiveAcceptance {
             check(recovered.size()==4,"Recovery stacked multiple conjures");
             p.setNextWorldTile(new WorldTile(3200,3200,0));conjures.pulse(6);
             check(conjures.count(p)==0,"True lifecycle teleport retained army");
+            conjures.pulse(40); // Ownership ends immediately; native exit poses finish before actor removal.
             check(Native950World.getInstance().nativeNpcs().stream().noneMatch(n->n.isNative950Conjure()),"True teleport leaked companion actors");
         }
         List<byte[]> drain(){channel.flushOutbound();List<byte[]> result=new ArrayList<>();Object value;while((value=channel.readOutbound())!=null){check(value instanceof ByteBuf,"Unframed output");ByteBuf b=(ByteBuf)value;try{byte[] data=new byte[b.readableBytes()];b.readBytes(data);result.add(data);}finally{b.release();}}return result;}

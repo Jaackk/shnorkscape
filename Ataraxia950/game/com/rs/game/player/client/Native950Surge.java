@@ -36,7 +36,11 @@ final class Native950Surge {
         p.getActionManager().forceStop();p.resetWalkSteps();p.setRouteEvent(null);p.setNextFaceEntity(null);
         // Timing uses the proven950 20ms interpolation adapter. No teleport or second scheduler.
         p.setNextForceMovement(new NewForceMovement(start,0,end,1,Utils.getAngle(end.getX()-start.getX(),end.getY()-start.getY())));
-        //18358 is the876 Surge candidate, not a proven950 ability->sequence binding. Omit it.
+        int animation=Native950AbilityCatalog.animation(p,backwards?14665:14726);
+        if(animation>=0)p.setNextAnimation(new Animation(animation));
+        int graphic=Native950AbilityCatalog.casterGraphic(backwards?14665:14726,animation);
+        if(graphic>=0)p.setNextGraphics(new Graphics(graphic));
+        Native950BugTest.event(p,"combat","movement-presentation","ability",name,"animation",animation,"fromX",start.getX(),"fromY",start.getY(),"toX",end.getX(),"toY",end.getY());
         return null;
     }
     /** Walk the straight tile ray to the chosen point, never through a clipped diagonal. */
@@ -73,6 +77,9 @@ final class Native950Surge {
         if(start.matches(end))return "There is no clear path to that tile.";
         p.getActionManager().forceStop();p.resetWalkSteps();p.setRouteEvent(null);p.setNextFaceEntity(null);
         p.setNextForceMovement(new NewForceMovement(start,0,end,1,Utils.getAngle(end.getX()-start.getX(),end.getY()-start.getY())));
+        int animation=Native950AbilityCatalog.animation(p,47129);
+        if(animation>=0)p.setNextAnimation(new Animation(animation));
+        Native950BugTest.event(p,"combat","movement-presentation","ability","Dive","animation",animation,"toX",end.getX(),"toY",end.getY());
         return null;
     }
     private Native950Surge(){}

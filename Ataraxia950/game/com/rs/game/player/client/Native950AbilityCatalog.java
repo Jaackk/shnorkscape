@@ -191,13 +191,17 @@ final class Native950AbilityCatalog {
         // Both exact950 named Berserk variants share this player pose; their cosmetic models stay separate.
         // Jagex's 2023-01-16 release identifies Chaotic as a variant of the updated standard Berserk.
         if(struct==14707&&flat==null&&structParam(39860,2535)==35135&&structParam(47230,2535)==35135)flat=35135;
+        // Public949.1 gameval names; containing sequence groups are byte-identical to this950 cache.
+        if(flat==null){int named=Native950PresentationBindings.playerAnimation(struct);if(named>=0)flat=named;}
         if(struct==48324&&flat==null)flat=d.getValues().get(2535L); // Exact Living Death sequence field.
         if(struct==48301&&flat==null&&sequenceParam(35469,2933)==targetGraphic(struct))flat=35469;
         // Undercut named Volley35469 corroborated by950 SeqType2933 == Struct48301 impact7879.
-        int id=keyedAnimation(flat,table==null?null:table.getValues(),table==null?-1:table.getDefaultIntValue(),family);
+        // Sunshine retains the old generic magic-overload enum6712 in its struct;
+        // named base19866 and both exact950 Sunshine cosmetic bindings establish its dedicated pose.
+        int id=struct==19254?Native950PresentationBindings.playerAnimation(struct):keyedAnimation(flat,table==null?null:table.getValues(),table==null?-1:table.getDefaultIntValue(),family);
         if(id<0)return new AnimationResolution(-1,"none:weapon-family-"+family+"-has-no-entry");
         AnimationDefinitions seq=AnimationDefinitions.getAnimationDefinitions(id);
-        return seq.decodeFailure==null?new AnimationResolution(id,enumId>0?"cache:enum-"+enumId+"-weapon-family-"+family:"cache:struct-"+struct+"-presentation-binding")
+        return seq.decodeFailure==null?new AnimationResolution(id,enumId>0&&struct!=19254?"cache:enum-"+enumId+"-weapon-family-"+family:"cache:struct-"+struct+"-presentation-binding")
                 :new AnimationResolution(-1,"none:sequence-"+id+"-decode-failed");
     }
     /** Exact typed absence is not sequence zero. Enum family/default precedes a flat binding. */
@@ -227,7 +231,7 @@ final class Native950AbilityCatalog {
     /** Mirrors Entity#setNextAnimation's cache-frame duration in the native world's 600ms ticks. */
     static int animationTicks(int animation){
         if(animation<0)return 1;
-        return animationTicksForMillis(AnimationDefinitions.getAnimationDefinitions(animation).getEmoteTime());
+        return animationTicksForMillis(AnimationDefinitions.getAnimationDefinitions(animation).getNative950EmoteTime());
     }
     static int animationTicksForMillis(int millis){return Math.max(1,(Math.max(0,millis)+599)/600);}
     static int targetGraphic(int struct,int animation){int direct=targetGraphic(struct);return direct>=0?direct:sequenceParam(animation,2933);}
@@ -237,7 +241,7 @@ final class Native950AbilityCatalog {
     }
     static int casterGraphic(int struct,int animation){
         int direct=structParam(struct,2920);
-        return direct>=0?direct:animation<0?-1:sequenceParam(animation,2920);
+        return direct>=0?direct:Native950PresentationBindings.casterGraphic(struct)>=0?Native950PresentationBindings.casterGraphic(struct):animation<0?-1:sequenceParam(animation,2920);
     }
     static int projectileGraphic(int struct,int animation){
         int direct=structParam(struct,2940);

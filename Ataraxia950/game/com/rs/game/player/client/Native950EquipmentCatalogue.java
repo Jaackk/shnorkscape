@@ -47,11 +47,15 @@ final class Native950EquipmentCatalogue {
                 String[] row=line.split("\t",-1);if(row.length!=9)throw new IllegalStateException("Malformed equipment catalogue row");
                 int id=Integer.parseInt(row[0]);
                 String actual=hash(Cache.STORE.getIndexes()[19].getFile(id>>>8,id&255));
-                if(!actual.equals(row[8]))throw new IllegalStateException("Changed catalogue item "+id);
+                if(!matchesItemHash(id,row[8],actual))throw new IllegalStateException("Changed catalogue item "+id);
                 rows.add(new Entry(id,Integer.parseInt(row[1]),Integer.parseInt(row[2]),Integer.parseInt(row[3]),Integer.parseInt(row[4]),Integer.parseInt(row[5]),row[6],row[7]));
             }
         }catch(java.io.IOException e){throw new IllegalStateException("Cannot load equipment catalogue",e);}
         return new Native950EquipmentCatalogue(rows);
+    }
+    // Explicit paired Entropic passive delta; all other catalogue metadata remains byte-pinned.
+    static boolean matchesItemHash(int id,String expected,String actual){
+        return expected.equals(actual)||(id==61355&&expected.equals("f42f17dd7802fac647108efb2cbda299ca50ef985f42d573d6155911f93ea041")&&actual.equals("89169274d17d7d8845dcf1087580f20cbfa690f5cac9de27c99230149baed942"));
     }
     static String hash(byte[] bytes){
         if(bytes==null)throw new IllegalStateException("Missing catalogue cache asset");

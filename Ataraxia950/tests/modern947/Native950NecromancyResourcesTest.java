@@ -58,8 +58,8 @@ public class Native950NecromancyResourcesTest {
             assertEquals(4,state.necrosis(second));state.pulse(70);assertEquals(4,state.necrosis(second));
             assertEquals(4,second.getVarsManager().getValue(10986));
             state.cast(second,48298,71,false);state.pulse(200,p->p==second);
-            assertEquals(1,state.souls(second));state.pulse(209);assertEquals(1,state.souls(second));
-            state.pulse(210);assertEquals(0,state.souls(second));assertEquals(4,state.necrosis(second));
+            assertEquals(1,state.souls(second));state.pulse(201);state.pulse(210);assertEquals(1,state.souls(second));
+            state.pulse(211);assertEquals(0,state.souls(second));assertEquals(4,state.necrosis(second));
         }finally{state.clear();a.finishAndReleaseAll();b.finishAndReleaseAll();}
     }
 }

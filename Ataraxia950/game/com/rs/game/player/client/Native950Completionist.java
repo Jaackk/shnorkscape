@@ -9,7 +9,11 @@ public final class Native950Completionist {
 
     private Native950Completionist() { }
 
-    public static void grant(Player player) {
+    public static void grant(Player player) { grant(player, true); }
+
+    public static void restore(Player player) { grant(player, false); }
+
+    private static void grant(Player player, boolean publish) {
         for (int skill = 0; skill < Skills.SKILL_COUNT; skill++) {
             player.getSkills().setXpWithoutRefresh(skill, Skills.MAXIMUM_EXP);
             player.getSkills().set(skill, Skills.getLevelForXp(skill, Skills.MAXIMUM_EXP));
@@ -22,7 +26,8 @@ public final class Native950Completionist {
         player.setCompletedRfd();
         if (player.getAchievements() != null) player.getAchievements().quickFinish();
         if (player.getQuestManager() != null) player.getQuestManager().completeAllForLocalDevelopment();
-        Native950CombatProgression.grant(player);
+        if (publish) Native950CombatProgression.grant(player);
+        else Native950CombatProgression.restore(player);
         player.getSkills().init();
         player.refreshHitPoints();
         if (player.getPrayer() != null) player.getPrayer().refreshPrayerPoints();

@@ -129,6 +129,8 @@ public final class Native950Session {
         // onStatTransmit handler (verified/ui/SKILLS_TAB.md section 2), and the
         // action-bar bars redraw from their varp/varbit transmit hooks.
         sendNative950LoginState();
+        // Completionist variables must arrive after transport and native UI bootstrap.
+        Native950CombatProgression.grant(player);
         channel.write(Native950Packets.playerOption("Follow", 4));
         channel.write(Native950Packets.playerOption(null, 5)); // Unported trade must not offer unsafe exchange.
         music.start(player.getRegionId());

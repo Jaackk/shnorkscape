@@ -41,6 +41,9 @@ public final class Native950Conjures {
         Spirit(Kind kind,NPC actor,long now,int duration){this.kind=kind;this.actor=actor;expires=now+duration;nextAttack=now+7;}
     }
     private final Map<Player,EnumMap<Kind,Spirit>> owners=new IdentityHashMap<>();
+    private static final class Exit {final Player owner;final long removeAt;Exit(Player p,long tick){owner=p;removeAt=tick;}}
+    private final Map<NPC,Exit> exiting=new IdentityHashMap<>();
+    private long clock;
     private final Host host;
     Native950Conjures(Host host){this.host=host;}
     static boolean ownerLifecycleValid(Player owner){
@@ -71,12 +74,13 @@ public final class Native950Conjures {
         return !owner.isInfiniteCombatRunes()&&!owner.getInventory().containsItem(ECTOPLASM,cost)?"You need "+cost+" ectoplasm.":null;
     }
     void cast(Player owner,int structure,long tick){
+        clock=tick;
         Kind k=Kind.of(structure);
         if(k!=null&&structure==k.command){
             Spirit spirit=get(owner,k);
             if(spirit==null)throw new IllegalStateException("Conjure disappeared after validation");
-            if(k==Kind.ZOMBIE)spirit.explodeAt=tick+4;
-            else if(k==Kind.PHANTOM){NPC target=host.target(owner);if(target!=null)host.phantomCommand(owner,target,45*(100+20*spirit.valour)/100,55*(100+20*spirit.valour)/100);spirit.valour=0;publishStacks(owner,spirit);}
+            if(k==Kind.ZOMBIE){spirit.explodeAt=tick+4;present(spirit.actor,35257,7818);}
+            else if(k==Kind.PHANTOM){present(spirit.actor,36200,-1);NPC target=host.target(owner);if(target!=null)host.phantomCommand(owner,target,45*(100+20*spirit.valour)/100,55*(100+20*spirit.valour)/100);spirit.valour=0;publishStacks(owner,spirit);}
             else {spirit.commandUntil=k==Kind.SKELETON?tick+10:spirit.expires;spirit.nextAttack=Math.min(spirit.nextAttack,tick+2);}
             return;
         }
@@ -89,9 +93,11 @@ public final class Native950Conjures {
         }catch(RuntimeException failure){for(Spirit s:created)host.remove(s.actor);throw failure;}
         if(!owner.isInfiniteCombatRunes())owner.getInventory().deleteItem(ECTOPLASM,created.size()*(structure==33965?2:1));
         EnumMap<Kind,Spirit> spirits=owners.computeIfAbsent(owner,p->new EnumMap<>(Kind.class));
-        for(Spirit spirit:created){spirits.put(spirit.kind,spirit);publish(owner,spirit,true,tick);}
+        for(Spirit spirit:created){spirits.put(spirit.kind,spirit);present(spirit.actor,Native950PresentationBindings.conjureSpawn(spirit.kind),Native950PresentationBindings.conjureSpawnGraphic(spirit.kind));publish(owner,spirit,true,tick);}
     }
     void pulse(long tick){
+        clock=tick;
+        for(NPC actor:new ArrayList<>(exiting.keySet()))if(actor.hasFinished()||tick>=exiting.get(actor).removeAt){exiting.remove(actor);host.remove(actor);}
         for(Player owner:new ArrayList<>(owners.keySet())){
             if(!host.valid(owner)||!host.conduit(owner)){clear(owner);continue;}
             for(Spirit spirit:new ArrayList<>(owners.get(owner).values())){
@@ -113,11 +119,13 @@ public final class Native950Conjures {
                 boolean commanded=tick<spirit.commandUntil;
                 spirit.nextAttack=tick+(commanded&&k==Kind.SKELETON?2:k.speed);
                 int scale=k==Kind.SKELETON?100+3*spirit.rage:100;
+                int attackAnimation=Native950PresentationBindings.conjureAttack(k,commanded);
+                present(actor,attackAnimation,-1);
                 int dealt=host.strike(owner,target,k.min*scale/100,k.max*scale/100);
                 if(commanded&&k==Kind.SKELETON&&!target.isDead())host.strike(owner,target,k.min*scale/100,k.max*scale/100);
                 if(k==Kind.SKELETON){spirit.rage=Math.min(25,spirit.rage+1);publishStacks(owner,spirit);}
                 if(k==Kind.GHOST){owner.heal(dealt*140/100);if(commanded)haunts.computeIfAbsent(owner,p->new IdentityHashMap<>()).put(target,tick+8);}
-                Native950BugTest.event(owner,"combat","conjure-attack","kind",k,"actor",actor.getIndex(),"target",target.getIndex(),"damage",dealt,"attackAnimation","unresolved");
+                Native950BugTest.event(owner,"combat","conjure-attack","kind",k,"actor",actor.getIndex(),"target",target.getIndex(),"damage",dealt,"attackAnimation",attackAnimation>=0?attackAnimation:"unresolved");
             }
         }
         for(Map<NPC,Long> map:haunts.values())map.entrySet().removeIf(e->e.getKey().hasFinished()||e.getKey().isDead()||tick>=e.getValue());
@@ -126,11 +134,24 @@ public final class Native950Conjures {
     private final Map<Player,Map<NPC,Long>> haunts=new IdentityHashMap<>();
     int hauntedBonus(Player owner,NPC target,int damage,long tick){Map<NPC,Long> map=haunts.get(owner);return map!=null&&tick<map.getOrDefault(target,0L)?Math.min(damage/10,host.abilityDamage(owner)/5):0;}
     int absorb(Player owner,int requested){Spirit s=get(owner,Kind.PHANTOM);if(s==null||requested<=0)return requested;s.valour=Math.min(25,s.valour+1);publishStacks(owner,s);return requested-Math.min(requested/20,host.abilityDamage(owner)/10);}
-    void clear(Player owner){Map<Kind,Spirit> m=owners.get(owner);if(m!=null)for(Spirit s:new ArrayList<>(m.values()))dismiss(owner,s,0);haunts.remove(owner);}
-    void clear(){for(Player p:new ArrayList<>(owners.keySet()))clear(p);haunts.clear();}
+    void clear(Player owner){Map<Kind,Spirit> m=owners.get(owner);if(m!=null)for(Spirit s:new ArrayList<>(m.values()))dismiss(owner,s,clock);haunts.remove(owner);}
+    void clear(){for(Player p:new ArrayList<>(owners.keySet()))clear(p);for(NPC actor:new ArrayList<>(exiting.keySet()))host.remove(actor);exiting.clear();haunts.clear();}
     private void dismiss(Player owner,Spirit spirit,long tick){
         Map<Kind,Spirit> m=owners.get(owner);if(m!=null){m.remove(spirit.kind);if(m.isEmpty())owners.remove(owner);}
-        host.remove(spirit.actor);publish(owner,spirit,false,tick);
+        NPC actor=spirit.actor;actor.resetWalkSteps();actor.setNextFaceEntity(null);
+        int animation=Native950PresentationBindings.conjureExit(spirit.kind);
+        int duration=Cache.STORE!=null&&Cache.isFlatReadOnly()&&spirit.explodeAt==0?Native950AbilityCatalog.animationTicks(animation):0;
+        if(duration>0){
+            if(actor.isDead())actor.setNative950DeathVisible(true);
+            present(actor,animation,Native950PresentationBindings.conjureExitGraphic(spirit.kind));
+            exiting.put(actor,new Exit(owner,tick+duration));
+        }else host.remove(actor);
+        publish(owner,spirit,false,tick);
+    }
+    private static void present(NPC actor,int animation,int graphic){
+        if(Cache.STORE==null||!Cache.isFlatReadOnly())return;
+        if(animation>=0)actor.setNextAnimation(new Animation(animation));
+        if(graphic>=0)actor.setNextGraphics(new Graphics(graphic));
     }
     // Exact950 CS11077 cases48335/32349; CS17457/6438 cap each at25.
     private void publishStacks(Player owner,Spirit spirit){
@@ -153,13 +174,22 @@ public final class Native950Conjures {
         Native950BugTest.event(owner,"combat",active?"conjure-created":"conjure-dismissed","kind",spirit.kind,"actor",spirit.actor.getIndex(),"expires",spirit.expires);
     }
     private static int distance(WorldTile a,WorldTile b){return Math.max(Math.abs(a.getX()-b.getX()),Math.abs(a.getY()-b.getY()));}
+    private static boolean patchedConjureHash(int id,String hash){
+        switch(id){
+            case 30265:return "41fb991025746bda61c919fd93b4978d4b1a32dcd8e850af648c64870a106b23".equals(hash);
+            case 30266:return "9d77ee7e44e151282cf327b7343d6746cffa752e932697099a3ae894b3986ed2".equals(hash);
+            case 30267:return "6091951ae222265b3de87f8135c7cacefb99dbb4e13f59a8808327a840fa95a2".equals(hash);
+            case 31142:return "9951861bd945d1a196f070a5040bc026ac65621a0a04b7db25e5d3d8ae03f453".equals(hash);
+            default:return false;
+        }
+    }
     /** Only the four pinned companion assets may bypass the older NPC identity table. */
     public static String verifiedName(int npcId){
         if(Cache.STORE==null||!Cache.isFlatReadOnly())throw new IllegalStateException("Conjures require the paired950 cache");
         for(Kind k:Kind.values())if(k.npc==npcId){
             byte[] raw=Cache.STORE.getIndexes()[18].getFile(npcId>>>7,npcId&127);
             try{StringBuilder hash=new StringBuilder();for(byte b:java.security.MessageDigest.getInstance("SHA-256").digest(raw))hash.append(String.format("%02x",b&255));
-                if(!k.hash.equals(hash.toString()))throw new IllegalStateException("Changed conjure asset "+npcId);
+                if(!k.hash.equals(hash.toString())&&!patchedConjureHash(npcId,hash.toString()))throw new IllegalStateException("Changed conjure asset "+npcId);
             }catch(java.security.NoSuchAlgorithmException impossible){throw new AssertionError(impossible);}
             return k.name;
         }

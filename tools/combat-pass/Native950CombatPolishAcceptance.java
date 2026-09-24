@@ -11,14 +11,14 @@ import static com.rs.game.player.client.Native950CombatPassAcceptance.*;
 /** Real-cache regression for the September24 live polish; never reads character saves. */
 public final class Native950CombatPolishAcceptance {
  public static void main(String[] args)throws Exception{
-  Cache.initFlatReadOnly(Paths.get("cache"));Native950AbilityAssets.verify();
+  Cache.initFlatReadOnly(Paths.get(args.length==0?"cache":args[0]));Native950AbilityAssets.verify();
   com.rs.game.player.client.ui.Native950Bindings bindings=com.rs.game.player.client.ui.Native950Bindings.tryLoad();
   Native950IdMap.install(new Native950ActionRouter.IdMapAdapter(bindings.allowListResolver()));
   Native950World.getInstance().execute(()->{run();return null;}).get(90,TimeUnit.SECONDS);
   System.out.println("POLISH PASS checks="+checks+"; ephemeral accounts; live visuals pending");System.exit(0);
  }
  static void run()throws Exception{
-  conjureExamine();phantomTargets();
+  conjureExamine();phantomTargets();soulSwapAndExit();
   try(Fixture f=new Fixture()){
    equip(f.first,3,false,false);equip(f.second,3,false,false);
    java.lang.reflect.Field field=Native950MeleeCombat.class.getDeclaredField("necromancy");field.setAccessible(true);
@@ -65,6 +65,8 @@ public final class Native950CombatPolishAcceptance {
     for(int[] row:q.varps)check(f.first.getVarsManager().getValue(row[0])>=row[2],"Missing native quest varp "+q.name);
     for(int[] row:q.varbits)check(f.first.getVarsManager().getBitValue(row[0])>=row[2],"Missing native quest varbit "+q.name);
    }
+   java.lang.reflect.Field unlockTable=Native950CombatProgression.class.getDeclaredField("UNLOCKS");unlockTable.setAccessible(true);
+   for(int[] unlock:(int[][])unlockTable.get(null))check(f.first.getVarsManager().getBitValue(unlock[0])>=unlock[1],"Permanent unlock missing after fresh comp: "+unlock[0]);
    check(f.first.getVarsManager().getBitValue(54631)==1,"Army talent remained locked");
    check(f.first.getVarsManager().getBitValue(53587)==3,"Spirit Pact not completed");
    for(int i=0;i<4;i++)check(f.first.getVarsManager().getValue(11499+i)==i+1,"Empty army selection not initialised");
@@ -73,9 +75,41 @@ public final class Native950CombatPolishAcceptance {
    java.util.List<byte[]> frames=drain(f.firstChannel);
    byte[] expected=Native950Packets.varbitLarge(54631,1).frame(()->0);
    check(frames.stream().anyMatch(b->Arrays.equals(b,expected)),"Talent unlock never reached native transport");
+   // Regrant must republish selections even when the model already has them from restore.
+   f.first.getVarsManager().setVar(11499,4);
+   drain(f.firstChannel);Native950CombatProgression.grant(f.first);
+   java.util.List<byte[]> replay=drain(f.firstChannel);
+   for(int i=0;i<4;i++){
+    final byte[] selection=Native950Packets.varp(11499+i,i==0?4:i+1).frame(()->0);
+    check(replay.stream().anyMatch(b->Arrays.equals(b,selection)),"Army selection not republished after restore");
+   }
    Native950Quests quests=new Native950Quests(f.first,f.firstChannel);quests.opened(0,1);
    check(quests.summaryCounts()[0]==0&&quests.summaryCounts()[2]>300,"Quest summary erased developer completion");
    check(drain(f.secondChannel).isEmpty(),"Progression wrote to the other player's channel");
+  }
+ }
+ static void soulSwapAndExit(){
+  try(Fixture f=new Fixture()){
+   equip(f.first,3,false,false);equip(f.second,3,false,false);
+   f.first.getEquipment().getItems().set(5,new Item(55482));
+   Native950NecromancyResources r=new Native950NecromancyResources();
+   for(int i=0;i<5;i++)r.gainSoul(f.first,0);
+   r.gainSoul(f.second,0);
+   f.first.getEquipment().getItems().set(5,null);
+   check(Native950NecromancyResources.soulCap(f.first)==3,"Unequipped gain cap changed");
+   for(int t=1;t<=30;t++)r.pulse(t,p->p==f.first);
+   check(r.souls(f.first)==5&&f.first.getVarsManager().getValue(11035)==5&&f.first.getNative950SoulVisual()==5,"Style swap discarded earned souls or desynchronised presentation");
+   check(r.souls(f.second)==0,"Other player's expiry extended");
+   r.gainSoul(f.first,30);check(r.souls(f.first)==5,"Gain at lower cap discarded stored souls");
+   r.pulse(31);r.pulse(40);check(r.souls(f.first)==5,"Souls expired before combat-exit grace");
+   r.pulse(40,p->p==f.first);r.pulse(41);r.pulse(50);check(r.souls(f.first)==5,"Re-entry did not restart grace");
+   r.pulse(51);check(r.souls(f.first)==0&&f.first.getNative950SoulVisual()==0,"Expiry did not clear resources and visuals together");
+   check(f.combat.attack(f.first,f.npc)==null,"Engagement fixture refused");
+   check(f.combat.hasCombatEngagement(f.first),"Selected combat engagement ignored");
+   check(!f.combat.hasCombatEngagement(f.second),"Engagement leaked to other player");
+   equip(f.first,3,false,false);f.cast(f.first,48298);f.step(5);f.combat.cancelAttack(f.first);
+   check(f.combat.hasCombatEngagement(f.first),"Stopping personal attacks erased incoming NPC engagement");
+   f.combat.stop(f.first);check(!f.combat.hasCombatEngagement(f.first),"Genuine combat stop retained engagement forever");
   }
  }
  static void conjureExamine(){

@@ -12,11 +12,15 @@ try {
  if(!(Test-Path -LiteralPath $reference)){throw 'The paired cache reference is missing.'}
  $expected=(Get-FileHash -LiteralPath $reference -Algorithm SHA256).Hash
  if($expected -notin $acceptedReferences){throw 'Install the paired cache or the verified Developer Library update before preparing the client.'}
+ # Include every reference: item/NPC metadata changes must also refresh native databases.
+ $referenceHashes=@(Get-ChildItem -LiteralPath (Join-Path $root 'cache\255') -Filter '*.dat' | Sort-Object Name | ForEach-Object { $_.Name+':'+(Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash })
+ $digest=[Security.Cryptography.SHA256]::Create()
+ try{$fingerprint=[BitConverter]::ToString($digest.ComputeHash([Text.Encoding]::UTF8.GetBytes(($referenceHashes -join '|')))).Replace('-','')}finally{$digest.Dispose()}
  $destination=Join-Path $root 'client-state\Jagex\RuneScape'
  $markerPath=Join-Path $root 'client-state\prepared-cache.json'
  if(!$Force -and (Test-Path -LiteralPath $markerPath)){
   try {$marker=Get-Content -LiteralPath $markerPath -Raw|ConvertFrom-Json}catch{$marker=$null}
-  if($marker -and $marker.format -eq 1 -and $marker.reference -eq $expected -and @($marker.databases).Count -eq 45){
+  if($marker -and $marker.format -eq 2 -and $marker.reference -eq $expected -and $marker.fingerprint -eq $fingerprint -and @($marker.databases).Count -eq 45){
    $present=$true
    foreach($name in $marker.databases){if($name -notmatch '^js5-\d+\.jcache$' -or !(Test-Path -LiteralPath (Join-Path $destination $name))){$present=$false;break}}
    if($present){Write-Host 'Client startup assets are ready.';return}
@@ -34,7 +38,7 @@ try {
  if($exitCode -ne 0){throw 'Client cache preparation did not finish. See logs/prepare-client-cache.log. Run Play.cmd again to resume.'}
  $names=@(Get-ChildItem -LiteralPath (Join-Path $root 'cache\255') -Filter '*.dat'|ForEach-Object {'js5-'+$_.BaseName+'.jcache'})
  if($names.Count -ne 45 -or @($names|Where-Object {!(Test-Path -LiteralPath (Join-Path $destination $_))}).Count){throw 'Client cache preparation is missing reference databases.'}
- $marker=[ordered]@{format=1;reference=$expected;mode=$mode;databases=$names;completedUtc=[datetime]::UtcNow.ToString('o')}
+ $marker=[ordered]@{format=2;reference=$expected;fingerprint=$fingerprint;mode=$mode;databases=$names;completedUtc=[datetime]::UtcNow.ToString('o')}
  $temporary=$markerPath+'.tmp'
  [IO.File]::WriteAllText($temporary,($marker|ConvertTo-Json -Depth 3),(New-Object Text.UTF8Encoding($false)))
  if(Test-Path -LiteralPath $markerPath){[IO.File]::Replace($temporary,$markerPath,[NullString]::Value)}else{[IO.File]::Move($temporary,$markerPath)}

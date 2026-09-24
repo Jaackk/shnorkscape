@@ -173,15 +173,14 @@
         "struct": 1488,
         "name": "Bladed Dive",
         "animationSequences": [
-          -1
+          35626
         ],
         "variants": [
           {
-            "sequence": -1
+            "sequence": 35626
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -278,7 +277,7 @@
       "typedParameters": {
         "2793": 14,
         "2794": "Salt the Wound",
-        "2795": "Perform a coup de gr\u00c3\u0192\u00c2\u00a2ce.",
+        "2795": "Perform a coup de grÃƒÂ¢ce.",
         "2796": 25,
         "2798": 150,
         "2799": 2,
@@ -326,7 +325,7 @@
       "reportGroup": "conditional/unresolved",
       "canonicalStatus": "BLOCKED BY UNPROVEN 950 IDENTITY",
       "effectEvidence": {
-        "tooltip": "Perform a coup de gr\u00c3\u0192\u00c2\u00a2ce.",
+        "tooltip": "Perform a coup de grÃƒÂ¢ce.",
         "rawTargetMode": 1,
         "bleed": false,
         "stun": false,
@@ -770,8 +769,7 @@
             "impactGraphic": 8981
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -947,8 +945,7 @@
             "impactGraphic": 3488
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -1052,17 +1049,17 @@
         "struct": 14665,
         "name": "Escape",
         "animationSequences": [
-          -1
+          18527
         ],
         "variants": [
           {
-            "sequence": -1
+            "sequence": 18527,
+            "casterGraphic": 3526
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": ""
+      "livePolishNotes": "Named18527/3526 published with unchanged backward movement. LIVE TEST PENDING."
     },
     {
       "struct": 14666,
@@ -1274,8 +1271,7 @@
             "impactGraphic": 8985
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -1560,8 +1556,7 @@
             "impactGraphic": 8983
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -1771,8 +1766,7 @@
             "impactGraphic": 8991
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -1957,8 +1951,7 @@
             "impactGraphic": 8993
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -2158,8 +2151,7 @@
             "impactGraphic": 3525
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -2569,8 +2561,7 @@
             "impactGraphic": 8994
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -2900,8 +2891,7 @@
             "casterGraphic": 9018
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -3117,8 +3107,7 @@
             "sequence": 37408
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -3419,8 +3408,7 @@
             "sequence": 18169
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -3734,8 +3722,7 @@
             "casterGraphic": 9016
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -3890,8 +3877,7 @@
             "casterGraphic": 9017
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -4111,8 +4097,7 @@
             "casterGraphic": 3587
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -4364,8 +4349,7 @@
             "casterGraphic": 9053
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -5027,8 +5011,7 @@
             "casterGraphic": 946
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -5184,8 +5167,7 @@
             "impactGraphic": 9014
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -5554,8 +5536,7 @@
             "casterGraphic": 9077
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -5904,8 +5885,7 @@
             "sequence": 35135
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": "35135 shared named variant pose; separate caster effect unresolved; LIVE TEST PENDING"
     },
@@ -6173,8 +6153,7 @@
             "casterGraphic": 3473
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -6358,8 +6337,7 @@
             "sequence": 18096
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -6600,8 +6578,7 @@
             "sequence": 18088
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -6732,8 +6709,7 @@
             "sequence": -1
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -6870,17 +6846,16 @@
         "struct": 14713,
         "name": "Resonance",
         "animationSequences": [
-          -1
+          18081
         ],
         "variants": [
           {
-            "sequence": -1
+            "sequence": 18081
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": ""
+      "livePolishNotes": "Named18081; LIVE TEST PENDING."
     },
     {
       "struct": 14714,
@@ -7000,17 +6975,17 @@
         "struct": 14714,
         "name": "Preparation",
         "animationSequences": [
-          -1
+          18106
         ],
         "variants": [
           {
-            "sequence": -1
+            "sequence": 18106,
+            "casterGraphic": 3614
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": ""
+      "livePolishNotes": "Named18106/3614; LIVE TEST PENDING."
     },
     {
       "struct": 14715,
@@ -7144,8 +7119,7 @@
             "sequence": 18080
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -7280,8 +7254,7 @@
             "sequence": 18107
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -7434,8 +7407,7 @@
             "sequence": 18079
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -7603,8 +7575,7 @@
             "casterGraphic": 3616
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -7735,8 +7706,7 @@
             "casterGraphic": 3632
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -7902,8 +7872,7 @@
             "casterGraphic": 3622
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -8032,8 +8001,7 @@
             "sequence": -1
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -8318,17 +8286,17 @@
         "struct": 14726,
         "name": "Surge",
         "animationSequences": [
-          -1
+          18358
         ],
         "variants": [
           {
-            "sequence": -1
+            "sequence": 18358,
+            "casterGraphic": 3537
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": ""
+      "livePolishNotes": "Named18358/3537 published with unchanged forward movement. LIVE TEST PENDING."
     },
     {
       "struct": 14727,
@@ -8499,8 +8467,7 @@
             "projectile": 9007
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -8692,8 +8659,7 @@
             "projectile": 8968
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -8872,8 +8838,7 @@
             "impactGraphic": 8170
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -9010,8 +8975,7 @@
             "sequence": 36640
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -9203,8 +9167,7 @@
             "impactGraphic": 9003
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -9474,8 +9437,7 @@
             "projectile": 8966
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -9732,8 +9694,7 @@
             "impactGraphic": 3562
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -9941,8 +9902,7 @@
             "projectile": 8974
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -10058,17 +10018,16 @@
         "struct": 19251,
         "name": "Death's Swiftness",
         "animationSequences": [
-          -1
+          19879
         ],
         "variants": [
           {
-            "sequence": -1
+            "sequence": 19879
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": ""
+      "livePolishNotes": "Dedicated19879 plus native stationary8996; area/style buff preserved. LIVE TEST PENDING; broader area semantics PARTIAL."
     },
     {
       "struct": 19252,
@@ -10185,17 +10144,17 @@
         "struct": 19252,
         "name": "Natural Instinct",
         "animationSequences": [
-          -1
+          19858
         ],
         "variants": [
           {
-            "sequence": -1
+            "sequence": 19858,
+            "casterGraphic": 3855
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": ""
+      "livePolishNotes": "Named19858/3855; LIVE TEST PENDING."
     },
     {
       "struct": 19253,
@@ -10412,48 +10371,16 @@
         "struct": 19254,
         "name": "Sunshine",
         "animationSequences": [
-          18364,
-          18365,
-          18366,
-          18367,
-          18368,
-          18369,
-          18370
+          19866
         ],
         "variants": [
           {
-            "sequence": 18364,
-            "casterGraphic": 3564
-          },
-          {
-            "sequence": 18365,
-            "casterGraphic": 3564
-          },
-          {
-            "sequence": 18366,
-            "casterGraphic": 3564
-          },
-          {
-            "sequence": 18367,
-            "casterGraphic": 3564
-          },
-          {
-            "sequence": 18368,
-            "casterGraphic": 3564
-          },
-          {
-            "sequence": 18369,
-            "casterGraphic": 3564
-          },
-          {
-            "sequence": 18370,
-            "casterGraphic": 3564
+            "sequence": 19866
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": ""
+      "livePolishNotes": "Dedicated19866 overrides old generic enum6712; stationary3856 and existing area buff. Late-viewer replay/complete retail area semantics PARTIAL."
     },
     {
       "struct": 19255,
@@ -10756,8 +10683,7 @@
             "projectile": 9010
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -10913,8 +10839,7 @@
             "projectile": 8972
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -11074,8 +10999,7 @@
             "casterGraphic": 4498
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -12354,13 +12278,13 @@
         ],
         "variants": [
           {
-            "sequence": -1
+            "sequence": -1,
+            "casterGraphic": 4503
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": ""
+      "livePolishNotes": "Named Devotion model92237 in graphic4503; LIVE TEST PENDING."
     },
     {
       "struct": 28177,
@@ -12500,8 +12424,7 @@
             "impactGraphic": 4661
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -12826,8 +12749,7 @@
             "impactGraphic": 4663
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -13508,10 +13430,9 @@
             "casterGraphic": 7899
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
+      "livePolishNotes": "Owned companion spawn/exit presentation added; Skeleton/Zombie attacks and Phantom command bound. Ghost attack UNRESOLVED. Examine paired cache gate enabled without Attack. LIVE TEST PENDING."
     },
     {
       "struct": 31982,
@@ -13956,8 +13877,7 @@
             "projectile": 5711
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -14156,8 +14076,7 @@
             "projectile": 5716
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -14254,10 +14173,9 @@
             "sequence": -1
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": "Exact CS13240 Valour scaling and primary+4 adjacent targets; automated cap/range/plane/isolation verified"
+      "livePolishNotes": "Owned companion spawn/exit presentation added; Skeleton/Zombie attacks and Phantom command bound. Ghost attack UNRESOLVED. Examine paired cache gate enabled without Attack. LIVE TEST PENDING."
     },
     {
       "struct": 33650,
@@ -14478,10 +14396,9 @@
             "casterGraphic": 7899
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
+      "livePolishNotes": "Army permanent flags and nonempty selection varps replay after bootstrap/comp. AUTOMATED VERIFIED; native availability LIVE TEST PENDING."
     },
     {
       "struct": 37199,
@@ -15012,8 +14929,7 @@
             "sequence": -1
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -16280,8 +16196,7 @@
             "sequence": -1
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -16497,8 +16412,7 @@
             "impactGraphic": 9013
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -16711,8 +16625,7 @@
             "sequence": -1
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -16980,8 +16893,7 @@
             "sequence": -1
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -17649,8 +17561,7 @@
             "casterGraphic": 6641
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -17757,17 +17668,16 @@
         "struct": 47129,
         "name": "Dive",
         "animationSequences": [
-          -1
+          35755
         ],
         "variants": [
           {
-            "sequence": -1
+            "sequence": 35755
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": ""
+      "livePolishNotes": "Chosen tile mechanically CONFIRMED LIVE;35755 pose now published. No separately proven Dive graphic."
     },
     {
       "struct": 47221,
@@ -18064,8 +17974,7 @@
             "impactGraphic": 7860
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -18186,8 +18095,7 @@
             "impactGraphic": 7862
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -18312,8 +18220,7 @@
             "impactGraphic": 7864
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -18440,8 +18347,7 @@
             "projectile": 7873
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": "Existing one main hit + same-impact AoE and stun retained; user may have meant Volley; latest log did not execute Soul Strike"
     },
@@ -18563,8 +18469,7 @@
             "projectile": 7880
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": "Remove artificial serial release; one flight per soul launched together; real-cache timing verified; LIVE TEST PENDING"
     },
@@ -18694,10 +18599,9 @@
             "casterGraphic": 7899
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
+      "livePolishNotes": "Owned companion spawn/exit presentation added; Skeleton/Zombie attacks and Phantom command bound. Ghost attack UNRESOLVED. Examine paired cache gate enabled without Attack. LIVE TEST PENDING."
     },
     {
       "struct": 48303,
@@ -18792,10 +18696,9 @@
             "sequence": -1
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
+      "livePolishNotes": "Owned companion spawn/exit presentation added; Skeleton/Zombie attacks and Phantom command bound. Ghost attack UNRESOLVED. Examine paired cache gate enabled without Attack. LIVE TEST PENDING."
     },
     {
       "struct": 48304,
@@ -18925,10 +18828,9 @@
             "casterGraphic": 7899
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
+      "livePolishNotes": "Owned companion spawn/exit presentation added; Skeleton/Zombie attacks and Phantom command bound. Ghost attack UNRESOLVED. Examine paired cache gate enabled without Attack. LIVE TEST PENDING."
     },
     {
       "struct": 48305,
@@ -19022,10 +18924,9 @@
             "sequence": -1
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
+      "livePolishNotes": "Owned companion spawn/exit presentation added; Skeleton/Zombie attacks and Phantom command bound. Ghost attack UNRESOLVED. Examine paired cache gate enabled without Attack. LIVE TEST PENDING."
     },
     {
       "struct": 48306,
@@ -19154,10 +19055,9 @@
             "casterGraphic": 7899
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
+      "livePolishNotes": "Owned companion spawn/exit presentation added; Skeleton/Zombie attacks and Phantom command bound. Ghost attack UNRESOLVED. Examine paired cache gate enabled without Attack. LIVE TEST PENDING."
     },
     {
       "struct": 48307,
@@ -19251,10 +19151,9 @@
             "sequence": -1
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
+      "livePolishNotes": "Owned companion spawn/exit presentation added; Skeleton/Zombie attacks and Phantom command bound. Ghost attack UNRESOLVED. Examine paired cache gate enabled without Attack. LIVE TEST PENDING."
     },
     {
       "struct": 48308,
@@ -19374,8 +19273,7 @@
             "impactGraphic": 7885
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -19502,8 +19400,7 @@
             "casterGraphic": 7889
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -19629,8 +19526,7 @@
             "casterGraphic": 7893
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -19739,8 +19635,7 @@
             "casterGraphic": 7894
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -19848,8 +19743,7 @@
             "casterGraphic": 7895
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -19972,8 +19866,7 @@
             "projectile": 7882
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -20092,13 +19985,13 @@
         ],
         "variants": [
           {
-            "sequence": 35475
+            "sequence": 35475,
+            "casterGraphic": 7883
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
-      "livePolishNotes": "Already sends35475. LIVE FAIL remains; post-movement frame diagnostic added, not a claimed fix"
+      "livePolishNotes": "Known35475 retained; base Living Death graphic7883 now admitted and published. LIVE TEST PENDING."
     },
     {
       "struct": 48325,
@@ -21382,8 +21275,7 @@
             "casterGraphic": 945
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -22348,8 +22240,7 @@
             "sequence": 37520
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     },
@@ -22503,32 +22394,36 @@
             "impactGraphic": 8991
           }
         ],
-        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
-        "renderedAcceptance": "PENDING; see current userLiveResults"
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability"
       },
       "livePolishNotes": ""
     }
   ],
   "userLiveResults": {
-    "acceptedAt": "2026-09-24; latest user report and session-20260924-010148-657-jaxa",
+    "acceptedAt": "2026-09-24 latest user polish request; supporting capture session-20260924-024326-527-jaxa",
     "bankItemsKeybindRecovery": "CONFIRMED LIVE; preserve context24 close fix",
     "diveChosenTileMovement": "CONFIRMED LIVE; preserve chosen tile",
     "conjuresSurviveDiveSurge": "CONFIRMED LIVE",
     "deathSkullsTravellingBounce": "CONFIRMED LIVE",
     "queueholdNativeRing": "CONFIRMED LIVE",
-    "ordinaryManualQueue": "LIVE FAIL for long cooldown; successor persistent queue IMPLEMENTED - LIVE TEST PENDING",
+    "ordinaryManualQueue": "CONFIRMED LIVE: long cooldown manual queue, native ring, execution when ready",
     "conjureTargetSwitching": "CONFIRMED LIVE; ownership/follow working",
     "revolution": "CONFIRMED LIVE / PARTIAL; preserve foundation",
-    "conjureAttackPresentation": "PARTIAL / LIVE FAIL; exact actor attack/spawn/expiry identities unresolved",
+    "conjureAttackPresentation": "PARTIAL: Skeleton/Zombie bound, Phantom command bound; Ghost attack UNRESOLVED. LIVE TEST PENDING",
     "residualSoulWorldVisual": "CONFIRMED LIVE; retain look and per-viewer persistence",
-    "residualSoulLifetime": "LIVE FAIL during ongoing combat; successor accounts for owned delayed hits and incoming damage; LIVE TEST PENDING",
+    "residualSoulLifetime": "LIVE FAIL baseline; engagement-based grace + intentional equipment-swap retention AUTOMATED VERIFIED; LIVE TEST PENDING",
     "conduitAbilityAvailability": "CONFIRMED LIVE",
     "necrosis": "CONFIRMED LIVE: generate, display, consume",
     "buffDebuffPanels": "CONFIRMED LIVE; preserve native panels",
-    "livingDeathPresentation": "PARTIAL / LIVE FAIL; known sequence35475 reaches server cast; successor adds frame-boundary diagnostic",
-    "berserkPresentation": "LIVE FAIL; successor binds shared exact950 pose35135; LIVE TEST PENDING",
-    "overloadNecromancy": "LIVE FAIL; successor boost/damage/stat-wire/expiry AUTOMATED VERIFIED; LIVE TEST PENDING",
-    "soulStrikeTiming": "Latest captured test used Volley48301; Soul Strike48299 not observed. Volley serial release corrected, Soul Strike existing same-impact AoE retained."
+    "livingDeathPresentation": "LIVE FAIL baseline; retained sequence35475 plus exact base7883 now published, LIVE TEST PENDING",
+    "berserkPresentation": "CONFIRMED LIVE",
+    "overloadNecromancy": "CONFIRMED LIVE",
+    "soulStrikeTiming": "Volley timing CONFIRMED LIVE improved; do not conflate with Soul Strike",
+    "armyAvailability": "LIVE FAIL baseline; progression/selection replay AUTOMATED VERIFIED, LIVE TEST PENDING",
+    "entropicSoulCap": "LIVE FAIL baseline; paired native passive + shared cap5 AUTOMATED VERIFIED, LIVE TEST PENDING",
+    "conjureExamine": "LIVE FAIL baseline; exact client opcode107 menu suppression removed only for four companions. AUTOMATED VERIFIED; physical menu LIVE TEST PENDING",
+    "scenePriority": "PARTIAL: target-footprint avoidance improved; general native target priority UNRESOLVED",
+    "conjureLifecyclePresentation": "Native spawn/exit bindings and delayed removal AUTOMATED VERIFIED; LIVE TEST PENDING"
   },
-  "successorLiveAcceptance": "PENDING: combat-live-successor-polish-20260924; no new visual promoted from offline tests"
+  "successorLiveAcceptance": "LIVE TEST PENDING: combat-live-successor-polish2-20260924; no new visual promoted from offline tests"
 }

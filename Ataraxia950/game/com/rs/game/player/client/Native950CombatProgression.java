@@ -102,7 +102,9 @@ final class Native950CombatProgression {
         {60739,1},
     };
     private Native950CombatProgression(){}
-    static void grant(Player player){
+    static void grant(Player player){grant(player,true);}
+    static void restore(Player player){grant(player,false);}
+    private static void grant(Player player,boolean publish){
         if(!player.isNative950()||!player.isCompT()||Cache.STORE==null||!Cache.isFlatReadOnly())return;
         verify();
         Map<Integer,Integer> vars=new TreeMap<>(),bits=new TreeMap<>();
@@ -113,16 +115,16 @@ final class Native950CombatProgression {
         for(int[] row:UNLOCKS)bits.merge(row[0],row[1],Math::max);
         // CS18289 maps four selections through enum17157. Initialise the empty developer army.
         boolean emptyArmy=true;for(int id=11499;id<=11502;id++)emptyArmy&=player.getVarsManager().getValue(id)==0;
-        if(emptyArmy)for(int i=0;i<4;i++)vars.put(11499+i,i+1);
+        for(int i=0;i<4;i++)vars.put(11499+i,emptyArmy?i+1:player.getVarsManager().getValue(11499+i));
         vars.put(1297,Native950QuestCatalog.maximumPoints());
         vars.put(423,Native950QuestCatalog.maximumPoints());
         for(Map.Entry<Integer,Integer> row:vars.entrySet()){
             player.getVarsManager().setVar(row.getKey(),row.getValue());
-            if(player.getRealChannel()!=null)player.getRealChannel().write(Native950Packets.varp(row.getKey(),row.getValue()));
+            if(publish&&player.getRealChannel()!=null)player.getRealChannel().write(Native950Packets.varp(row.getKey(),row.getValue()));
         }
         for(Map.Entry<Integer,Integer> row:bits.entrySet()){
             player.getVarsManager().setVarBit(row.getKey(),row.getValue());
-            if(player.getRealChannel()!=null)player.getRealChannel().write(Native950Packets.varbitLarge(row.getKey(),row.getValue()));
+            if(publish&&player.getRealChannel()!=null)player.getRealChannel().write(Native950Packets.varbitLarge(row.getKey(),row.getValue()));
         }
     }
     private static synchronized void verify(){
