@@ -7,7 +7,8 @@ endpoints clear radial/numeric timers; mode changes clear stale deadlines.
 Normal34-tick policy resumes on next cast after disabling. Movement/FX and
 clipping remain unchanged. Other abilities/players are unaffected.
 AUTOMATED VERIFIED; physical Vulkan LIVE TEST PENDING. No restart/deploy.
-Cumulative candidate retains the preceding QoL changes and known limitations.
+Staged combat-live-successor-dm-20260924:16 pinned files, check-only PASS.
+Apply Staged Update.cmd includes preceding QoL changes/known limitations.
 
 SHNORKSCAPE - FOCUSED COMBAT/QOL 2026-09-24 (LATEST)
 

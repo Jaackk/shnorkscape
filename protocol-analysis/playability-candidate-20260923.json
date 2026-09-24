@@ -1,10 +1,10 @@
 {
-  "candidate": "combat-live-successor-qol-20260924",
+  "candidate": "combat-live-successor-dm-20260924",
   "files": [
     {
       "source": "ataraxia-950-1.0-UNTRACKED.jar",
       "target": "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-      "sha256": "6D5FB4B955B287192166EF73C202953A2675D6523876C371118E8AE4ADA91019"
+      "sha256": "3961B2E185D6B657A1C7C66B8CC715858B32F74F901DD4D2B0B41ABCE97D88A2"
     },
     {
       "source": "Native950InterfaceBootstrap$Panel.class",
@@ -94,8 +94,8 @@
       "beforeSha256": "FF1D2E2E9BB3E2A488BD0E475B957BDBEA5276625D4489D64CB5618BF8F014C6"
     }
   ],
-  "sourceCommit": "94bb7b69a66b9f3bc8d34018df679780cc29d7e6",
-  "validationReport": "protocol-analysis/combat-qol-validation-20260924.json",
-  "liveChecklist": "docs/COMBAT-QOL-LIVE-CHECKLIST-20260924.md",
-  "liveAcceptance": "AUTOMATED VERIFIED; physical settings and appearance LIVE TEST PENDING. Missing Strength book, Ghost attacks, general scene priority unresolved."
+  "sourceCommit": "d902c97b4bd8a331d6159b525eab5ec60df71a1c",
+  "validationReport": "protocol-analysis/developer-movement-validation-20260924.json",
+  "liveChecklist": "docs/DEVELOPER-MOVEMENT-20260924.md",
+  "liveAcceptance": "AUTOMATED VERIFIED; physical Vulkan zero timers and repeated movement LIVE TEST PENDING. Includes previous QoL candidate."
 }

@@ -9,5 +9,13 @@
   "baseline": "79530028aa84ba495fbe6cd7e8ee5786b6338743",
   "backup": "backups/pre-edit-20260924-044750-458",
   "report": "docs/DEVELOPER-MOVEMENT-20260924.md",
-  "serverRestarted": false
+  "serverRestarted": false,
+  "staging": {
+    "candidate": "combat-live-successor-dm-20260924",
+    "files": 16,
+    "sourceCommit": "d902c97b4bd8a331d6159b525eab5ec60df71a1c",
+    "jarSha256": "3961B2E185D6B657A1C7C66B8CC715858B32F74F901DD4D2B0B41ABCE97D88A2",
+    "runningJarSha256": "6D5FB4B955B287192166EF73C202953A2675D6523876C371118E8AE4ADA91019",
+    "checkOnly": "PASS"
+  }
 }
