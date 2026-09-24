@@ -1,0 +1,40 @@
+{
+  "status": "AUTOMATED VERIFIED; LIVE TEST PENDING",
+  "tests": {
+    "tests": 1577,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2
+  },
+  "bossesImproved": [
+    2881,
+    2882,
+    2883,
+    6260
+  ],
+  "newBosses": 0,
+  "abilityFix": 14712,
+  "diagnosticCommands": [
+    "abilityinfo",
+    "resetcooldowns",
+    "npcinfo",
+    "bosses",
+    "bossinfo",
+    "bossgo",
+    "bossfight",
+    "bossclear"
+  ],
+  "bossMatrix": "Ataraxia950/resources/native950/boss-support-950.json",
+  "newCacheAssets": 0,
+  "newNpcAdmissions": 0,
+  "serverRestarted": false,
+  "serverDeployed": false,
+  "previousStagePreserved": "combat-live-successor-world-20260924",
+  "acceptance": [
+    "focused combat/console/Gameval tests",
+    "real-cache NPC refusal/symbol and related pin checks",
+    "real-cache boss travel",
+    "atomic four-actor spawn with late-failure rollback",
+    "two-owner temporary encounter cleanup"
+  ]
+}

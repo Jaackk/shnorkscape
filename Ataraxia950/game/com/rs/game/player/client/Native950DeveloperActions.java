@@ -25,7 +25,7 @@ final class Native950DeveloperActions {
         Action(String id,String aliases,String usage,String description,String category,List<Parameter> parameters,boolean configured){
             this.id=id;this.aliases=aliases;this.usage=usage;this.description=description;this.category=category;
             this.parameters=Collections.unmodifiableList(parameters);this.configured=configured;
-            confirmation=Arrays.asList("copy","clearbar","max","comp","clearnpcs","removenpc","clearobjects").contains(id);
+            confirmation=Arrays.asList("copy","clearbar","max","comp","clearnpcs","removenpc","clearobjects","bossfight","bossclear","resetcooldowns").contains(id);
         }
         String command(List<String> values){
             if(!configured||values.size()!=parameters.size())throw new IllegalArgumentException("This diagnostic requires its documented chat command.");
@@ -81,6 +81,8 @@ final class Native950DeveloperActions {
             if(actions.containsKey(id)||id.equals("dev"))continue;
             List<Parameter> params=new ArrayList<>();boolean configured=true;
             switch(id){
+                case "bosses":params.add(t("Boss search","dagannoth"));break;
+                case "bossinfo":case "bossgo":case "bossfight":params.add(n("Boss NPC ID",6260,0,200000));break;
                 case "abilityinfo":params.add(n("Action bar slot",1,1,14));break;
                 case "npcinfo":params.add(t("NPC ID, name or symbol","6260"));break;
                 case "adrenaline":params.add(n("Adrenaline %",100,0,100));break;
@@ -110,6 +112,7 @@ final class Native950DeveloperActions {
             if(Arrays.asList("npc","npcrepeat","npcs","removenpc","clearnpcs","dummy","findnpc","npcinfo").contains(id))cat="NPCs";
             if(Arrays.asList("max","copy","coords").contains(id))cat="Player";
             if(Arrays.asList("melee","mage","range","necro","disengage","combatqa").contains(id))cat="Combat";
+            if(id.startsWith("boss"))cat="Combat";
             if(id.equals("comp"))cat="Quests";if(id.equals("uilayout"))cat="Settings";
             actions.put(id,new Action(id,segment,segment,description(id,row[2]),cat,params,configured));
         }

@@ -163,6 +163,10 @@ public class Native950MeleeCombatTest {
         int hp=npc.getHitpoints();combat.attack(player,npc);
         assertNull(combat.ability(player,14712));
         assertEquals(hp,npc.getHitpoints());assertEquals(0,combat.pendingHitCount(player));
+        int before=player.getHitpoints();player.getCombatDefinitions().setAutoRetaliate(false);
+        combat.cancelAttack(player); // retain NPC retaliation while cancelling the player's attacks
+        for(int i=0;i<8;i++)step();
+        assertTrue("Provoke must initiate retaliation without needing a damaging hit",player.getHitpoints()<before);
     }
     @Test public void limitlessLowersThresholdAdmissionButStillConsumesAdrenaline(){
         player.getSkills().set(Skills.HITPOINTS,99);player.getSkills().set(Skills.DEFENCE,99);
@@ -1012,6 +1016,39 @@ public class Native950MeleeCombatTest {
             for(int i=0;i<8;i++)step();assertEquals(900,other.getHitpoints());
             assertTrue(player.getHitpoints()<900);
         }finally{secondChannel.finishAndReleaseAll();}
+    }
+    @Test public void livingGraardorResurrectsOnlyItsNormalRoomBodyguards() throws Exception {
+        player.setLocation(new WorldTile(2868,5369,0));player.setDevelopmentGodMode(true);
+        NPC boss=NPC.createNative950(6260,new WorldTile(2870,5369,0),3);boss.setIndex(30);access.npcs.add(boss);
+        combat.register(boss,new Native950NpcCombatProfile(6260,3,624,4000,99,99,1,6,2,150,-1,-1,-1,10,10));
+        NPC minion=NPC.createNative950(6261,new WorldTile(2867,5369,0),1);minion.setIndex(31);access.npcs.add(minion);
+        combat.register(minion,new Native950NpcCombatProfile(6261,1,141,100,99,99,1,6,2,150,-1,-1,-1,10,10));
+        NPC remote=NPC.createNative950(6263,new WorldTile(2800,5300,0),1);remote.setIndex(32);access.npcs.add(remote);
+        combat.register(remote,new Native950NpcCombatProfile(6263,1,141,100,99,99,1,6,2,150,-1,-1,-1,10,10));
+        java.lang.reflect.Field field=Native950MeleeCombat.class.getDeclaredField("fighters");field.setAccessible(true);
+        java.util.Map<?,?> fighters=(java.util.Map<?,?>)field.get(combat);Object f=fighters.get(minion),far=fighters.get(remote);
+        java.lang.reflect.Method retire=Native950MeleeCombat.class.getDeclaredMethod("retireNpc",f.getClass(),Player.class);retire.setAccessible(true);
+        minion.setHitpoints(0);remote.setHitpoints(0);retire.invoke(combat,f,player);retire.invoke(combat,far,player);
+        assertNull(combat.attack(player,boss));
+        for(int i=0;i<50;i++)combat.beforeMovement();assertTrue(minion.isDead());
+        combat.beforeMovement();combat.beforeMovement();assertFalse("30-second boss pulse",minion.isDead());
+        assertTrue("other arena not resurrected",remote.isDead());
+    }
+    @Test public void auditedBossesResetOnlyAfterLastLivingPlayerLeaves(){
+        EmbeddedChannel otherChannel=new EmbeddedChannel();
+        try{
+            Player other=Player.createNative950("boss-other",new WorldTile(3217,3259,0),otherChannel);other.setActive(true);access.players.add(other);combat.attach(other);
+            for(int id:new int[]{2881,2882,2883,6260}){
+                NPC boss=NPC.createNative950(id,new WorldTile(3224,3258,0),3);boss.setIndex(id);access.npcs.add(boss);
+                combat.register(boss,new Native950NpcCombatProfile(id,3,303,1000,99,99,1,4,3,60,-1,-1,-1,10,10));
+                boss.setHitpoints(400);
+                player.setLocation(new WorldTile(3217,3258,1));
+                other.lock();combat.beforeMovement();assertEquals("locked remaining participant protects progress",400,boss.getHitpoints());other.unlock();
+                combat.stop(other);other.setLocation(new WorldTile(3217,3259,1));
+                combat.beforeMovement();combat.beforeMovement();assertEquals("abandoned boss resets",1000,boss.getHitpoints());
+                combat.unregister(boss);access.npcs.remove(boss);other.setLocation(new WorldTile(3217,3259,0));
+            }
+        }finally{otherChannel.finishAndReleaseAll();}
     }
     private static Native950NpcCombatProfile profile(int hp,int maxHit,int respawn){return new Native950NpcCombatProfile(12353,1,2,hp,8,8,maxHit,5,3,respawn,-1,-1,-1,2,12);}
     private static final class FixedRolls implements Native950MeleeCombat.Rolls {int remainder;boolean accurate=true,shockwave;public int nativeDamageRemainder(int raw){return remainder;}public boolean accurate(long attack,long defence){return accurate;}public int damage(int maximum){return shockwave&&maximum==2?0:maximum;}}

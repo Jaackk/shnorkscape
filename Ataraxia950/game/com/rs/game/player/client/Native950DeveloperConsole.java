@@ -22,6 +22,7 @@ final class Native950DeveloperConsole {
     private String lastState="";
     private long epoch;
     private Native950GamevalLookup.Entry symbol;
+    private boolean bossOnly;
     private String browser="";private Native950DeveloperCatalogue.Entry entity;
     private int amount=1,rotation,typeIndex;private boolean repeat;
     private int placementSerial;
@@ -41,6 +42,10 @@ final class Native950DeveloperConsole {
     static void gamevalsFor(Player p,String query){
         Native950DeveloperConsole c; synchronized(OWNERS){c=OWNERS.get(p);}
         if(c!=null&&c.mayAct()){if(c.placement!=null)c.close();if(!c.open)c.open();if(c.open){c.browseGamevals();c.query=query;c.render();}}
+    }
+    static void bossesFor(Player p,String query){
+        Native950DeveloperConsole c;synchronized(OWNERS){c=OWNERS.get(p);}
+        if(c!=null&&c.mayAct()){if(c.placement!=null)c.close();if(!c.open)c.open();if(c.open){c.browse("NPC");c.bossOnly=true;c.query=query;c.render();}}
     }
     boolean isOpen(){return open;}
     void open(){
@@ -211,9 +216,9 @@ final class Native950DeveloperConsole {
     }
     private void navigate(String c){category=c;query="";page=0;confirm=false;browser=c.equals("Spawns")?"Edits":"";entity=null;selected=null;render();}
     private static String shortDescription(String value){return value.length()>43?value.substring(0,40)+"...":value;}
-    private void browse(String kind){browser=kind;category=kind.equals("NPC")?"NPCs":"World";query="";page=0;entity=null;selected=null;confirm=false;status="Search by cache name or exact ID. Select a result for its real footprint.";render();}
+    private void browse(String kind){bossOnly=false;browser=kind;category=kind.equals("NPC")?"NPCs":"World";query="";page=0;entity=null;selected=null;confirm=false;status="Search by cache name or exact ID. Select a result for its real footprint.";render();}
     private void renderBrowser(){
-        List<Native950DeveloperCatalogue.Entry> results=Native950DeveloperCatalogue.search(browser,query);
+        List<Native950DeveloperCatalogue.Entry> results=bossOnly?Native950BossCatalogue.search(query):Native950DeveloperCatalogue.search(browser,query);
         int pages=Math.max(1,(results.size()+PAGE_SIZE-1)/PAGE_SIZE);page=Math.max(0,Math.min(page,pages-1));
         for(int n=0;n<PAGE_SIZE;n++){
             int at=page*PAGE_SIZE+n;if(at>=results.size())break;Native950DeveloperCatalogue.Entry e=results.get(at);
@@ -225,7 +230,7 @@ final class Native950DeveloperConsole {
         button(412,387,69,28,"Next",false,()->{if(page+1<pages)page++;render();});
         if(entity==null){text(500,48,229,35,17514,browser+" browser");text(500,93,227,200,2100,"Actual revision-950 names and footprints.<br><br>Search by name or exact numeric ID.<br><br>Only concrete definitions with world models are listed.<br><br>Placement is validated again by the existing diagnostic handler.");}
         else{
-            text(500,43,229,54,17514,safe(entity.name));text(500,103,227,95,2100,entity.details());
+            text(500,43,229,54,17514,safe(entity.name));text(500,103,227,95,2100,entity.details()+(bossOnly?"<br>"+Native950BossCatalogue.find(entity.id).status:""));
             if(browser.equals("NPC")){
                 button(495,219,239,30,"Amount: "+amount,false,()->prompt("NPC amount (1-50):",v->{try{int n=Integer.parseInt(v);if(n<1||n>50)throw new NumberFormatException();amount=n;}catch(NumberFormatException e){throw new IllegalArgumentException("Amount must be 1-50.");}}));
                 button(495,252,239,30,"Respawn: "+(repeat?"ON":"OFF"),false,()->{repeat=!repeat;render();});
@@ -234,7 +239,7 @@ final class Native950DeveloperConsole {
                 button(495,252,239,30,"Rotation: "+(rotation*90)+" degrees",false,()->{rotation=(rotation+1)%4;render();});
             }
             if(browser.equals("NPC"))button(495,291,239,30,"Inspect combat profile",false,()->{
-                try{Native950CombatInspector.send(player,Native950CombatInspector.npc(entity.id));status="Combat profile printed to chat.";}
+                try{Native950CombatInspector.send(player,bossOnly?Native950BossCatalogue.details(entity.id):Native950CombatInspector.npc(entity.id));status="Combat profile printed to chat.";}
                 catch(IllegalStateException unavailable){status=unavailable.getMessage();}render();
             });else text(500,296,227,56,2100,"Temporary diagnostic spawn.<br>No cache or map files are changed.");
             button(495,387,239,28,"Place in world",false,this::beginPlacement);

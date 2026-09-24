@@ -98,7 +98,7 @@ public final class Native950MeleeCombat {
     }
     public void detach(Player player) {
         conjures.clear(player);necromancy.clear(player);ceaseUntil.remove(player);dashImpacts.remove(player);skullFlights.removeIf(f->f.owner==player);
-        owned();stop(player);deadPlayers.remove(player);nextAttack.remove(player);player.setNative950Combat(null);
+        owned();Native950BossCatalogue.cleanup(player);stop(player);deadPlayers.remove(player);nextAttack.remove(player);player.setNative950Combat(null);
         globalCooldown.remove(player);abilityCooldowns.remove(player);damageOverTime.remove(player);buffs.remove(player,this::buffRemoved);pendingHits.remove(player);Native950AutoSpells.clear(player);
         player.setDevelopmentGodMode(false);
         player.setInfiniteRunEnergy(false);
@@ -462,15 +462,25 @@ public final class Native950MeleeCombat {
             lines.add("Runtime gate: "+(refusal==null?"ready":refusal));
             lines.add("Level="+d.level+" skill="+d.skill+" style="+d.style()+" shield="+d.shieldRequired()+" offhand="+d.offhandRequired+" twoHanded="+d.twoHandedRequired);
             lines.add("Adrenaline current="+p.getCombatDefinitions().getSpecialAttackPercentage()+" baseRequired="+d.adrenalineRequired()+" baseCost="+d.adrenalineCost()+" infinite="+p.getCombatDefinitions().isInfiniteAdrenaline());
+            lines.add("Stored necrosis="+necromancy.necrosis(p)+" souls="+necromancy.souls(p)+" equipment soul cap="+Native950NecromancyResources.soulCap(p));
+            if(com.rs.cache.Cache.isFlatReadOnly()){
+                Native950AbilityCatalog.AnimationResolution animation=Native950AbilityCatalog.animationResolution(p,id);
+                int caster=Native950AbilityCatalog.casterGraphic(id,animation.id),impact=Native950AbilityCatalog.targetGraphic(id,animation.id);
+                lines.add("Presentation sequence="+animation.id+" caster="+caster+" projectile="+Native950AbilityCatalog.projectileGraphic(id,animation.id)+" impact="+impact);
+                lines.add("Presentation source: "+animation.source+"; "+Native950AbilityCatalog.presentationEvidence(id,animation.id,caster,impact));
+            }
             lines.add("Necromancy resource gate: "+String.valueOf(necromancy.refusal(p,id))+" (null=passed; dynamic cost included in runtime gate)");
             lines.add("Revolution enabled="+bar.isRevolutionEnabled()+" withinRange="+(slot<=bar.revolutionSlots())+" eligible="+d.revolutionEligible()+" tierAllowed="+bar.revolutionTierAllowed(id)+" ceaseTicks="+Math.max(0,ceaseUntil.getOrDefault(p,0L)-tick));
         }
+        Native950BugTest.event(p,"combat","ability-inspection","slot",slot,"snapshot",String.join(" | ",lines));
         return java.util.Collections.unmodifiableList(lines);
     }
     /** Explicit developer operation; invalidate this player's queue before clearing its timers. */
     String resetDeveloperCooldowns(Player p){
         owned();
         if(tick<channelUntil.getOrDefault(p,0L))return "Wait for the current channel to finish before resetting cooldowns.";
+        if(buffs.active(p,Native950CombatBuffs.Type.SUNSHINE,tick)||buffs.active(p,Native950CombatBuffs.Type.DEATHS_SWIFTNESS,tick))
+            return "Wait for Sunshine/Death's Swiftness to expire; their native cooldown publication also owns the field clock.";
         clearQueuedAbility(p);
         Map<Integer,Long> current=abilityCooldowns.remove(p);
         java.util.Set<Integer> ids=new java.util.HashSet<>();if(current!=null)ids.addAll(current.keySet());ids.add(14881);
@@ -648,8 +658,8 @@ public final class Native950MeleeCombat {
             boolean priorOwnerAttacking=fighter.target==null||fighter.attacking;
             // A paused former retaliation owner must not become an active secondary attacker.
             if(!priorOwnerAttacking&&fighter.target!=player)stop(fighter.target);
-            fighter.target=player;fighter.attacking=true;fighter.outOfSupplies=false;
-            fighter.npc.setNextFaceEntity(player);fighter.npc.setAttackedBy(player);
+            fighter.target=player;fighter.attacking=true;fighter.retaliating=true;fighter.outOfSupplies=false;
+            fighter.npc.setNative950CombatEngaged(true);fighter.npc.setNextFaceEntity(player);fighter.npc.setAttackedBy(player);
         }
         // Param2802 is an icon sprite. Actual sequences come from param2915's weapon-family enum.
         int effect=Native950AbilityCatalog.casterGraphic(structure,animation);
@@ -763,6 +773,8 @@ public final class Native950MeleeCombat {
                 }
                 continue;
             }
+            resetAbandonedBoss(fighter);
+            restoreBandosBodyguards(fighter);
             if(fighter.target==null&&Native950BossRules.aggressive(npc.getId())&&!npc.isDead()){
                 Player nearest=null;int nearestDistance=8;
                 for(Player candidate:access.players()){
@@ -1299,6 +1311,32 @@ public final class Native950MeleeCombat {
             launchSkull(flight,previous.hasFinished()?origin:previous,destination);
         }
     }
+    /** Scope reset to audited bosses after all living players leave their home area. */
+    private void resetAbandonedBoss(Fighter f){
+        if(!(Native950BossRules.king(f.npc.getId())||f.npc.getId()==6260)||f.target!=null||f.returning||f.npc.isDead()
+                ||distance(f.npc,f.home)>0||f.npc.getHitpoints()>=f.profile.hp)return;
+        for(Player p:access.players())if(p!=null&&access.player(p)&&p.isActive()&&!p.hasFinished()&&!p.isDead()
+                &&p.getPlane()==f.home.getPlane()&&distanceToFootprint(p,f.home,f.profile.size)<=LEASH)return;
+        f.strikes.clear();f.stunnedUntil=0;f.nextAttack=0;f.bodyguardPulse=0;
+        for(java.util.List<PendingHit> hits:pendingHits.values())hits.removeIf(h->h.fighter==f);
+        for(Map<Integer,DamageOverTime> dots:damageOverTime.values())dots.values().removeIf(d->d.fighter==f);
+        skullFlights.removeIf(flight->flight.target==f.npc);
+        f.npc.resetReceivedHits();f.npc.resetReceivedDamage();f.npc.setHitpoints(f.profile.hp);
+        f.npc.setAttackedBy(null);f.npc.setNextFaceEntity(null);f.npc.setNative950CombatEngaged(false);
+    }
+    /** Normal public Bandos room only. Never resurrect one-life developer actors or mix arenas. */
+    private void restoreBandosBodyguards(Fighter boss){
+        if(boss.npc.getId()!=6260||boss.npc.isNative950DiagnosticDefinition()||boss.npc.isDead()
+                ||boss.npc.getRegionId()!=((2869>>6)<<8|(5372>>6))||boss.npc.getPlane()!=0)return;
+        if(boss.target==null){boss.bodyguardPulse=0;return;}
+        if(boss.bodyguardPulse==0){boss.bodyguardPulse=tick+50;return;}
+        if(tick<boss.bodyguardPulse)return;
+        boss.bodyguardPulse=tick+50;
+        for(Fighter minion:fighters.values())if((minion.npc.getId()==6261||minion.npc.getId()==6263||minion.npc.getId()==6265)
+                &&!minion.npc.isNative950DiagnosticDefinition()&&minion.respawnAllowed&&minion.npc.isDead()
+                &&minion.home.getPlane()==boss.home.getPlane()&&distance(minion.home,boss.home)<=16
+                &&minion.respawnAt>0&&tick>=minion.hideAt)minion.respawnAt=Math.min(minion.respawnAt,tick);
+    }
     private void engageRetaliation(Fighter fighter,Player owner){
         if(fighter.training)return;
         fighter.retaliating=true;
@@ -1756,7 +1794,7 @@ public final class Native950MeleeCombat {
     private static final class Fighter {
         final NPC npc;final Native950NpcCombatProfile profile;final WorldTile home;
         final java.util.List<NpcStrike> strikes=new ArrayList<>();
-        Player target;boolean attacking,retaliating,returning,outOfSupplies,training,respawnAllowed;int approachTicks,followFailures;long nextAttack,hideAt,respawnAt,stunnedUntil;
+        Player target;boolean attacking,retaliating,returning,outOfSupplies,training,respawnAllowed;int approachTicks,followFailures;long nextAttack,hideAt,respawnAt,stunnedUntil,bodyguardPulse;
         Fighter(NPC npc,Native950NpcCombatProfile profile){this.npc=npc;this.profile=profile;home=new WorldTile(npc);}
     }
     private static final class NpcStrike {

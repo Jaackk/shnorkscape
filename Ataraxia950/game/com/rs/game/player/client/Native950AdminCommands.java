@@ -23,6 +23,11 @@ public final class Native950AdminCommands {
             group("COMBAT & RESOURCES", "ffd166", "fff1b8",
                     entry(";;abilityinfo <slot 1-14>", "read-only server/native cooldown, queue, target and requirement snapshot"),
                     entry(";;resetcooldowns", "clear your ability cooldowns and queue for testing; waits for channels"),
+                    entry(";;bosses [query]", "search the curated boss support browser"),
+                    entry(";;bossinfo <ID>", "inspect encounter mechanics, status, related verified assets and gaps"),
+                    entry(";;bossgo <ID>", "travel to an audited sandbox boss destination"),
+                    entry(";;bossfight <ID>", "create an owned temporary King or Graardor test encounter; blocked placement rolls back"),
+                    entry(";;bossclear", "remove only your temporary boss and bodyguard actors"),
                     entry(";;npcinfo <ID, name or symbol>", "inspect native combat admission, refusal reasons, presentation and drops"),
                     entry(";;god", "Toggle damage immunity"),
                     entry(";;almighty / ;;dm", "Toggle full developer combat mode: damage immunity, infinite combat resources and conveniences, including cooldown-free Surge/Escape/Dive"),
@@ -78,6 +83,7 @@ public final class Native950AdminCommands {
     static boolean recognizes(String command) {
         if (Native950ContentCommands.recognizes(command)) return true;
         switch (command) {
+            case "bosses": case "bossinfo": case "bossgo": case "bossfight": case "bossclear":
             case "abilityinfo": case "resetcooldowns": case "npcinfo":
             case "dev": case "developer": case "god": case "infprayer": case "infadren": case "adrenaline": case "bank": case "copy": case "copybar": case "teleto": case "tpto":
             case "savecoords": case "locs": case "locations":
@@ -111,6 +117,19 @@ public final class Native950AdminCommands {
                 reply(channel, "Wait until your character can act."); return;
             }
             Native950ContentCommands.handle(p, channel, args); return;
+        }
+        if(command.equals("bosses")||command.equals("bossinfo")||command.equals("bossgo")||command.equals("bossfight")||command.equals("bossclear")){
+            try{
+                if(!p.isActive()||p.hasFinished()||p.isDead()||p.isLocked())throw new IllegalArgumentException("Wait until your character can act.");
+                if(command.equals("bosses")){Native950DeveloperConsole.bossesFor(p,String.join(" ",Arrays.copyOfRange(args,1,args.length)));return;}
+                if(command.equals("bossclear")){if(args.length!=1)throw new IllegalArgumentException("Use ;;bossclear.");p.sendMessage(Native950BossCatalogue.clear(p));return;}
+                if(args.length!=2)throw new IllegalArgumentException("Use ;;"+command+" <NPC ID>.");
+                int id=Integer.parseInt(args[1]);
+                if(command.equals("bossinfo"))Native950CombatInspector.send(p,Native950BossCatalogue.details(id));
+                else if(command.equals("bossgo"))Native950BossCatalogue.travel(p,id);
+                else p.sendMessage(Native950BossCatalogue.spawn(p,id));
+            }catch(IllegalArgumentException|IllegalStateException unavailable){reply(channel,unavailable.getMessage());}
+            return;
         }
         if(command.equals("abilityinfo")||command.equals("npcinfo")||command.equals("resetcooldowns")){
             try{

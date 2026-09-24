@@ -1,0 +1,475 @@
+{
+  "revision": 950,
+  "statusVocabulary": [
+    "PLAYABLE",
+    "PARTIAL",
+    "ACCESS BLOCKED",
+    "COMBAT BLOCKED",
+    "PRESENTATION PARTIAL",
+    "UNIMPLEMENTED"
+  ],
+  "note": "Curated research matrix, not admission authority. Inspect runtime profile before testing. Empty asset lists mean unrecorded, not proof none is required. Project aliases are not original950 Gamevals.",
+  "bosses": [
+    {
+      "id": 2881,
+      "name": "Dagannoth Supreme",
+      "symbol": "shnorkscape_dagannoth_supreme_2881",
+      "forms": [
+        2881
+      ],
+      "footprint": 3,
+      "status": "PARTIAL",
+      "presentationStatus": "LIVE TEST PENDING",
+      "route": 1,
+      "location": "Waterbirth lair",
+      "styles": [
+        "RANGE"
+      ],
+      "animations": [
+        29372,
+        29371,
+        29375
+      ],
+      "projectiles": [
+        6359
+      ],
+      "graphics": [
+        6358
+      ],
+      "phases": [
+        "No phase engine implemented"
+      ],
+      "minions": [],
+      "mechanics": [
+        "counter-style damage gate",
+        "proximity aggression",
+        "multi-target ranged projectiles",
+        "abandoned encounter reset with delayed-hit cleanup"
+      ],
+      "immunities": [
+        "all combat styles except MELEE",
+        "stun"
+      ],
+      "drops": {
+        "authoredRows": 31,
+        "policy": "shared damage-credit owner and per-item950 validation; Bork has an authored override"
+      },
+      "reset": "Shared authored respawn; full health/credit reset at home after all living players leave the leash area. No instanced scaling.",
+      "multiplayer": "captured projectile recipients and shared damage attribution; live duo test pending",
+      "gaps": [
+        "retail target-switching rules",
+        "physical presentation acceptance"
+      ],
+      "evidence": [
+        "Native950BossRules.java",
+        "Native950MeleeCombat.java",
+        "combat-world-expansion-950-20260924.json"
+      ]
+    },
+    {
+      "id": 2882,
+      "name": "Dagannoth Prime",
+      "symbol": "shnorkscape_dagannoth_prime_2882",
+      "forms": [
+        2882
+      ],
+      "footprint": 3,
+      "status": "PARTIAL",
+      "presentationStatus": "LIVE TEST PENDING",
+      "route": 1,
+      "location": "Waterbirth lair",
+      "styles": [
+        "MAGE"
+      ],
+      "animations": [
+        29379,
+        29378,
+        29383
+      ],
+      "projectiles": [
+        6356
+      ],
+      "graphics": [
+        6355,
+        6357
+      ],
+      "phases": [
+        "No phase engine implemented"
+      ],
+      "minions": [],
+      "mechanics": [
+        "counter-style damage gate",
+        "proximity aggression",
+        "abandoned encounter reset with delayed-hit cleanup"
+      ],
+      "immunities": [
+        "all combat styles except RANGED",
+        "stun"
+      ],
+      "drops": {
+        "authoredRows": 36,
+        "policy": "shared damage-credit owner and per-item950 validation; Bork has an authored override"
+      },
+      "reset": "Shared authored respawn; full health/credit reset at home after all living players leave the leash area. No instanced scaling.",
+      "multiplayer": "captured projectile recipients and shared damage attribution; live duo test pending",
+      "gaps": [
+        "retail target-switching rules",
+        "physical presentation acceptance"
+      ],
+      "evidence": [
+        "Native950BossRules.java",
+        "Native950MeleeCombat.java",
+        "combat-world-expansion-950-20260924.json"
+      ]
+    },
+    {
+      "id": 2883,
+      "name": "Dagannoth Rex",
+      "symbol": "shnorkscape_dagannoth_rex_2883",
+      "forms": [
+        2883
+      ],
+      "footprint": 3,
+      "status": "PARTIAL",
+      "presentationStatus": "LIVE TEST PENDING",
+      "route": 1,
+      "location": "Waterbirth lair",
+      "styles": [
+        "MELEE"
+      ],
+      "animations": [
+        29367,
+        29366,
+        29368
+      ],
+      "projectiles": [],
+      "graphics": [],
+      "phases": [
+        "No phase engine implemented"
+      ],
+      "minions": [],
+      "mechanics": [
+        "counter-style damage gate",
+        "proximity aggression",
+        "abandoned encounter reset with delayed-hit cleanup"
+      ],
+      "immunities": [
+        "all combat styles except MAGIC"
+      ],
+      "drops": {
+        "authoredRows": 36,
+        "policy": "shared damage-credit owner and per-item950 validation; Bork has an authored override"
+      },
+      "reset": "Shared authored respawn; full health/credit reset at home after all living players leave the leash area. No instanced scaling.",
+      "multiplayer": "captured projectile recipients and shared damage attribution; live duo test pending",
+      "gaps": [
+        "retail target-switching rules",
+        "physical presentation acceptance"
+      ],
+      "evidence": [
+        "Native950BossRules.java",
+        "Native950MeleeCombat.java",
+        "combat-world-expansion-950-20260924.json"
+      ]
+    },
+    {
+      "id": 6260,
+      "name": "General Graardor",
+      "symbol": "shnorkscape_general_graardor_6260",
+      "forms": [
+        6260
+      ],
+      "footprint": 3,
+      "status": "PARTIAL",
+      "presentationStatus": "LIVE TEST PENDING",
+      "route": 0,
+      "location": "God Wars Dungeon - Bandos chamber",
+      "styles": [
+        "MELEE",
+        "RANGED"
+      ],
+      "animations": [
+        17389,
+        17390,
+        17392,
+        17391
+      ],
+      "projectiles": [],
+      "graphics": [
+        3352
+      ],
+      "phases": [
+        "No phase engine implemented"
+      ],
+      "minions": [
+        6261,
+        6263,
+        6265
+      ],
+      "mechanics": [
+        "melee and delayed ranged shockwave",
+        "separate player accuracy/damage rolls",
+        "abandoned encounter reset with delayed-hit cleanup",
+        "living normal-room boss restores dead normal bodyguards on a 50-tick pulse; temporary actors excluded"
+      ],
+      "immunities": [
+        "stun",
+        "poison"
+      ],
+      "drops": {
+        "authoredRows": 36,
+        "policy": "shared damage-credit owner and per-item950 validation; Bork has an authored override"
+      },
+      "reset": "Shared authored respawn; full health/credit reset at home after all living players leave the leash area. No instanced scaling.",
+      "multiplayer": "captured projectile recipients and shared damage attribution; live duo test pending",
+      "gaps": [
+        "hard mode",
+        "physical presentation acceptance",
+        "retail instances and group spawn timing"
+      ],
+      "evidence": [
+        "Native950BossRules.java",
+        "Native950MeleeCombat.java",
+        "combat-world-expansion-950-20260924.json",
+        "https://runescape.wiki/w/Transcript:Beasts"
+      ]
+    },
+    {
+      "id": 18932,
+      "name": "Giant mole",
+      "symbol": "shnorkscape_giant_mole_18932",
+      "forms": [
+        18932
+      ],
+      "footprint": 3,
+      "status": "PARTIAL",
+      "presentationStatus": "PARTIAL",
+      "route": -1,
+      "location": "Access not audited for developer teleport",
+      "styles": [
+        "MELEE"
+      ],
+      "animations": [
+        22627,
+        22618,
+        22619
+      ],
+      "projectiles": [],
+      "graphics": [],
+      "phases": [
+        "No phase engine implemented"
+      ],
+      "minions": [],
+      "mechanics": [
+        "ordinary combat only; boss-specific mechanics incomplete"
+      ],
+      "immunities": [
+        "not audited"
+      ],
+      "drops": {
+        "authoredRows": 10,
+        "policy": "shared damage-credit owner and per-item950 validation; Bork has an authored override"
+      },
+      "reset": "authored respawn interval; no retail group reset certified",
+      "multiplayer": "captured projectile recipients and shared damage attribution; live duo test pending",
+      "gaps": [
+        "boss-specific mechanics",
+        "safe encounter access"
+      ],
+      "evidence": [
+        "Native950NpcCombatCatalog admission",
+        "authored combatDefs/stats + exact950 metadata"
+      ]
+    },
+    {
+      "id": 50,
+      "name": "King Black Dragon",
+      "symbol": "shnorkscape_king_black_dragon_50",
+      "forms": [
+        50
+      ],
+      "footprint": 5,
+      "status": "COMBAT BLOCKED",
+      "presentationStatus": "PARTIAL",
+      "route": -1,
+      "location": "Access not audited for developer teleport",
+      "styles": [
+        "SPECIAL"
+      ],
+      "animations": [
+        17782,
+        17779,
+        17780
+      ],
+      "projectiles": [],
+      "graphics": [],
+      "phases": [
+        "No phase engine implemented"
+      ],
+      "minions": [],
+      "mechanics": [
+        "ordinary combat only; boss-specific mechanics incomplete"
+      ],
+      "immunities": [
+        "not audited"
+      ],
+      "drops": {
+        "authoredRows": 32,
+        "policy": "shared damage-credit owner and per-item950 validation; Bork has an authored override"
+      },
+      "reset": "authored respawn interval; no retail group reset certified",
+      "multiplayer": "captured projectile recipients and shared damage attribution; live duo test pending",
+      "gaps": [
+        "boss-specific mechanics",
+        "safe encounter access"
+      ],
+      "evidence": [
+        "Native950NpcCombatCatalog admission",
+        "authored combatDefs/stats + exact950 metadata"
+      ]
+    },
+    {
+      "id": 1158,
+      "name": "Kalphite Queen",
+      "symbol": "shnorkscape_kalphite_queen_1158",
+      "forms": [
+        1158,
+        1160
+      ],
+      "footprint": 5,
+      "status": "COMBAT BLOCKED",
+      "presentationStatus": "PARTIAL",
+      "route": -1,
+      "location": "Access not audited for developer teleport",
+      "styles": [
+        "SPECIAL"
+      ],
+      "animations": [
+        24275,
+        24274,
+        24276
+      ],
+      "projectiles": [],
+      "graphics": [],
+      "phases": [
+        "No phase engine implemented"
+      ],
+      "minions": [],
+      "mechanics": [
+        "ordinary combat only; boss-specific mechanics incomplete"
+      ],
+      "immunities": [
+        "not audited"
+      ],
+      "drops": {
+        "authoredRows": 26,
+        "policy": "shared damage-credit owner and per-item950 validation; Bork has an authored override"
+      },
+      "reset": "authored respawn interval; no retail group reset certified",
+      "multiplayer": "captured projectile recipients and shared damage attribution; live duo test pending",
+      "gaps": [
+        "boss-specific mechanics",
+        "safe encounter access"
+      ],
+      "evidence": [
+        "Native950NpcCombatCatalog admission",
+        "authored combatDefs/stats + exact950 metadata"
+      ]
+    },
+    {
+      "id": 1160,
+      "name": "Kalphite Queen",
+      "symbol": "shnorkscape_kalphite_queen_1160",
+      "forms": [
+        1158,
+        1160
+      ],
+      "footprint": 5,
+      "status": "COMBAT BLOCKED",
+      "presentationStatus": "PARTIAL",
+      "route": -1,
+      "location": "Access not audited for developer teleport",
+      "styles": [
+        "SPECIAL"
+      ],
+      "animations": [
+        24277,
+        24278,
+        24279
+      ],
+      "projectiles": [],
+      "graphics": [],
+      "phases": [
+        "No phase engine implemented"
+      ],
+      "minions": [],
+      "mechanics": [
+        "ordinary combat only; boss-specific mechanics incomplete"
+      ],
+      "immunities": [
+        "not audited"
+      ],
+      "drops": {
+        "authoredRows": 26,
+        "policy": "shared damage-credit owner and per-item950 validation; Bork has an authored override"
+      },
+      "reset": "authored respawn interval; no retail group reset certified",
+      "multiplayer": "captured projectile recipients and shared damage attribution; live duo test pending",
+      "gaps": [
+        "boss-specific mechanics",
+        "safe encounter access"
+      ],
+      "evidence": [
+        "Native950NpcCombatCatalog admission",
+        "authored combatDefs/stats + exact950 metadata"
+      ]
+    },
+    {
+      "id": 7133,
+      "name": "Bork",
+      "symbol": "shnorkscape_bork_7133",
+      "forms": [
+        7133
+      ],
+      "footprint": 3,
+      "status": "PARTIAL",
+      "presentationStatus": "PARTIAL",
+      "route": -1,
+      "location": "Access not audited for developer teleport",
+      "styles": [
+        "MELEE"
+      ],
+      "animations": [
+        8754,
+        8755,
+        8756
+      ],
+      "projectiles": [],
+      "graphics": [],
+      "phases": [
+        "No phase engine implemented"
+      ],
+      "minions": [],
+      "mechanics": [
+        "ordinary combat only; boss-specific mechanics incomplete"
+      ],
+      "immunities": [
+        "not audited"
+      ],
+      "drops": {
+        "authoredRows": 0,
+        "policy": "shared damage-credit owner and per-item950 validation; Bork has an authored override"
+      },
+      "reset": "authored respawn interval; no retail group reset certified",
+      "multiplayer": "captured projectile recipients and shared damage attribution; live duo test pending",
+      "gaps": [
+        "boss-specific mechanics",
+        "safe encounter access"
+      ],
+      "evidence": [
+        "Native950NpcCombatCatalog admission",
+        "authored combatDefs/stats + exact950 metadata"
+      ]
+    }
+  ]
+}

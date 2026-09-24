@@ -96,6 +96,11 @@ final class Native950WorldTraversal {
         if(p.isDead()||p.isLocked()||p.getNextWorldTile()!=null||p.isNative950ForceMovementActive()
                 ||p.getPlane()!=source.getPlane()||!Native950Woodcutting.current(source)
                 ||RouteFinder.findRoute(RouteFinder.WALK_ROUTEFINDER,p.getX(),p.getY(),p.getPlane(),p.getSize(),new ObjectStrategy(source),false)!=0)return;
+        arriveDeveloper(p,target);
+    }
+    /** Explicit developer travel shares normal landing/collision policy, without a source-object requirement. */
+    static void arriveDeveloper(Player p,WorldObject target){
+        if(!p.isActive()||p.hasFinished()||p.isDead()||p.isLocked()||p.getNextWorldTile()!=null||p.isNative950ForceMovementActive())return;
         if(target!=null&&Native950Woodcutting.current(target)){
             // Large native stairs can occupy 7x7 tiles. Search their perimeter,
             // still requiring a free floor and a valid route to the actual object.

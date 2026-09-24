@@ -28,7 +28,7 @@ final class Native950CombatInspector {
         return out;
     }
     static List<String> search(String query){
-        String q=query.trim();List<Native950DeveloperCatalogue.Entry> rows=Native950DeveloperCatalogue.search("NPC",q);
+        String q=query.trim();if(q.matches("[0-9]{1,7}"))return npc(Integer.parseInt(q));List<Native950DeveloperCatalogue.Entry> rows=Native950DeveloperCatalogue.search("NPC",q);
         if(rows.isEmpty())for(Native950GamevalLookup.Entry e:Native950GamevalLookup.search(q))
             if(e.type.equals("npc")&&e.name.equalsIgnoreCase(q)){rows=Native950DeveloperCatalogue.search("NPC",e.id);break;}
         if(rows.size()==1)return npc(rows.get(0).id);

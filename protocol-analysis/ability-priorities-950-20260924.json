@@ -1,0 +1,57 @@
+{
+  "revision": 950,
+  "basis": [
+    "combat-canonical-matrix-950-20260923.json",
+    "combat-presentation-polish2-950.json",
+    "Native950PresentationBindings.java"
+  ],
+  "warning": "Older presentation-gap report predates named movement/defensive bindings. Do not rediscover or remove accepted bindings based on its empty arrays.",
+  "changed": [
+    {
+      "struct": 14712,
+      "name": "Provoke",
+      "status": "AUTOMATED VERIFIED; LIVE TEST PENDING",
+      "mechanic": "Initiate NPC retaliation even when no damaging hit has landed; preserve zero damage/loot credit."
+    }
+  ],
+  "priorities": [
+    {
+      "styles": [
+        "Melee",
+        "Ranged",
+        "Magic"
+      ],
+      "work": "weapon-family presentation gaps for admitted channels/area attacks",
+      "nextEvidence": "abilityinfo now exposes effective binding; compare to physical Vulkan and existing exact950 family enum; do not substitute guessed sequences"
+    },
+    {
+      "styles": [
+        "Necromancy"
+      ],
+      "work": "Ghost attack presentation",
+      "status": "DEFERRED LIVE / exact actor binding unresolved"
+    },
+    {
+      "styles": [
+        "Defence"
+      ],
+      "work": "Immortality and Divert activation presentation",
+      "status": "PARTIAL; missing sequence identity remains evidence work"
+    },
+    {
+      "styles": [
+        "Constitution"
+      ],
+      "work": "Limitless activation presentation; Eat Food is an item action, not proof of missing spell FX",
+      "status": "PARTIAL; no guessed asset added"
+    }
+  ],
+  "protected": [
+    "manual queues",
+    "Revolution",
+    "Death Skulls",
+    "Necromancy resources",
+    "soul retention",
+    "movement targeting"
+  ]
+}

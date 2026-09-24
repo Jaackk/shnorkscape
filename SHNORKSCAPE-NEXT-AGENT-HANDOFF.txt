@@ -1,3 +1,26 @@
+DEV COMBAT QUALITY 2026-09-24 - LATEST
+One primary agent, offline. Previous world successor preserved; no deployment/restart.
+Diagnostics checkpoint 5c85bbe pushed and verified. Added abilityinfo, resetcooldowns,
+npcinfo; Gameval provenance search with strict type tokens and exact command alias ranking.
+Bosses/bossinfo/bossgo/bossfight/bossclear use existing console/command/combat paths.
+Nine-form truthful boss matrix: Ataraxia950/resources/native950/boss-support-950.json.
+Temporary single King or Graardor+three bodyguards: atomic footprint rollback, one-life,
+exact-owner actor clear and combat-detach/logout cleanup. Other owners/map/editor actors safe.
+Kings+normal Graardor now reset health/credit at home after all living players leave;
+locks/movement do not count as absence. Clear pending hits/DoTs targeting the reset boss.
+Normal public-room living Graardor restores dead normal minions every50ticks in combat.
+No temporary resurrection, hard-mode/instance implementation or retail-complete claim.
+Provoke now enables retaliation before a damaging hit. Zero damage/loot credit preserved.
+abilityinfo reports actual server/native cooldown publication (not Vulkan acknowledgement),
+queue, target, resources, requirements, Revo filters and resolved presentation evidence.
+Explicit cooldown reset waits for channels and Sunshine/Swiftness field expiry.
+Full1577 tests,0failures/errors,2skips. Real-cache boss tooling/ownership/rollback probe PASS.
+See docs/DEV-COMBAT-QUALITY-20260924.md and protocol-analysis/dev-combat-quality-950-20260924.json.
+Small future-boss template docs/CUSTOM-BOSS-TEMPLATE.md; focused ability priorities JSON.
+No new animation IDs, NPC admissions, Slayer mechanics or speculative native UI repair.
+Deferred: dev physical layout/startup, cracker Pull, drag-off, equipment bar switching,
+Strength Powers, Ghost presentation, target rendering priority. All new work LIVE TEST PENDING.
+
 COMBAT / WORLD EXPANSION 2026-09-24 - LATEST
 User autonomous combat/world pass; one primary agent, offline only.
 Read docs/COMBAT-WORLD-EXPANSION-20260924.md and matching protocol-analysis report.
