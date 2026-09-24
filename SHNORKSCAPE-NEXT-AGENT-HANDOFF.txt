@@ -1,4 +1,17 @@
-DEVELOPER CONSOLE LIVE INPUT SUCCESSOR 2026-09-24 - LATEST
+LAUNCH PREFLIGHT HOTFIX 2026-09-24 13:34 - LATEST
+User applied console successor; startup rejected script8286 because Settings
+still pinned the original5bd6296b... instead of audited bridge e422808e...
+Corrected Settings pin; original native body independently reconstructed and
+SHA verified; both Settings and console pins now match the installed payload.
+32 focused Settings/PendingSettings/Console tests PASS;shared-pin regression
+PASS;FULL Native950CachePreflight against installed cache with verification
+enabled PASS. Log:logs/cache-preflight-dev-hotfix-20260924.log.
+Restaged same24-file candidate with corrected jar1AE14C7C...;CheckOnly and four
+installer fixtures PASS. Source3477576 pushed/remote verified. User should
+reapply Apply Staged Update.cmd then Play.cmd. No server start or deployment.
+Do not bypass cache verification. Prior console visual acceptance still pending.
+
+DEVELOPER CONSOLE LIVE INPUT SUCCESSOR 2026-09-24
 Read docs/DEVELOPER-CONSOLE-LIVE-FIX-20260924.md before further work.
 Prior initial-open result is LIVE FAIL. Shared native deferred refresh hides
 actors/text and restores Customisations. A post-startup redraw restored input.

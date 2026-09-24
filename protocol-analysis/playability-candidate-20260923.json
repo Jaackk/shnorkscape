@@ -4,8 +4,8 @@
     {
       "source": "ataraxia-950-1.0-UNTRACKED.jar",
       "target": "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-      "sha256": "F688C59F4F74D53FF761BF783D49A55CA3A3FBB03D3BD2A1EC9009300965EA08",
-      "beforeSha256": "D7B5765D0A52991CF1091619BA60A6D2E8E50B7AFBD695A418572CC16B0809E8"
+      "sha256": "1AE14C7CD193DE880232C4E3DD1D6EA91A3480CFA7712ADD4A0F479E5C6C9FEB",
+      "beforeSha256": "F688C59F4F74D53FF761BF783D49A55CA3A3FBB03D3BD2A1EC9009300965EA08"
     },
     {
       "source": "Native950InterfaceBootstrap$Panel.class",
@@ -146,8 +146,9 @@
       "beforeSha256": "A8C824B1F3BAF398C4C75F6DF6702D5BCE3C8D7F770CCC656B90C5D94EA32798"
     }
   ],
-  "sourceCommit": "ca959ef0abab62cd6f285cb4b2bc9e61cfb7447a",
+  "sourceCommit": "3477576d4bc37d57d7d2fff1ab4a7c72a058199a",
   "validationReport": "protocol-analysis/developer-console-validation-20260924.json",
   "liveChecklist": "docs/DEVELOPER-CONSOLE-LIVE-FIX-20260924.md",
-  "liveAcceptance": "Heal, NPC search/selection and native tile placement physically passed after diagnostic redraw. Successor native-ready startup and revised appearance LIVE TEST PENDING; no restart or deployment."
+  "liveAcceptance": "Heal, NPC search/selection and native tile placement physically passed after diagnostic redraw. Successor native-ready startup and revised appearance LIVE TEST PENDING; no restart or deployment.",
+  "preflightHotfix": "Settings script8286 pin corrected; full Native950CachePreflight PASS with verification enabled against installed cache"
 }

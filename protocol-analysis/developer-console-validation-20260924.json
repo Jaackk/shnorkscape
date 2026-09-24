@@ -21,12 +21,23 @@
   "installer": "PASS:24-file CheckOnly, all three launch gates,4 fixture regressions,launch-cache identity test",
   "diagnosticCompatibility": "PASS: isolated existing diagnostic NPC/object/occupied-slot/large-footprint/native-wire acceptance (7 encrypted frames)",
   "candidate": "combat-live-successor-dev-live-20260924",
-  "candidateJarSha256": "F688C59F4F74D53FF761BF783D49A55CA3A3FBB03D3BD2A1EC9009300965EA08",
-  "sourceCommit": "ca959ef0abab62cd6f285cb4b2bc9e61cfb7447a",
+  "candidateJarSha256": "1AE14C7CD193DE880232C4E3DD1D6EA91A3480CFA7712ADD4A0F479E5C6C9FEB",
+  "sourceCommit": "3477576d4bc37d57d7d2fff1ab4a7c72a058199a",
   "physicalAcceptance": [
     "07:13 Heal selected and Execute clicked: authoritative heal handler and visible result",
     "07:14 native search ID1 returned Man; result selected",
     "07:15 Place, ground click, opcode85 source1448:11/slot1, visible owned Man at3317,10142"
   ],
-  "rootCause": "Initial custom render precedes native deferred management refresh, which hides operation/text hosts and restores native tabs. Diagnostic state-change redraw restores physical controls."
+  "rootCause": "Initial custom render precedes native deferred management refresh, which hides operation/text hosts and restores native tabs. Diagnostic state-change redraw restores physical controls.",
+  "preflightHotfix": {
+    "status": "PASS",
+    "focusedRegression": {
+      "tests": 32,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "sharedPinRegression": "PASS: original native body verified and both script8286 pins match",
+    "fullStartupPreflight": "PASS with ataraxia.native.verifyCache=true; rebuilt jar against installed cache; no server start"
+  }
 }
