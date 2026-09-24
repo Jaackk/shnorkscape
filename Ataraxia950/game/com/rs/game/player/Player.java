@@ -720,6 +720,16 @@ public class Player extends Entity {
     private final Inventory inventory;
     private transient boolean invulnerable;
     private transient boolean developmentGodMode;
+    private transient boolean developmentAlmighty;
+    public boolean isDevelopmentAlmighty() { return developmentAlmighty; }
+    /** One session-only mode used by both almighty and dm; individual resource flags do not define it. */
+    public void setDevelopmentAlmighty(boolean enabled) {
+        developmentAlmighty = enabled;
+        setDevelopmentGodMode(enabled); getPrayer().setInfinitePrayer(enabled);
+        getCombatDefinitions().setInfiniteAdrenaline(enabled); setInfiniteRunEnergy(enabled);
+        setInfiniteCombatRunes(enabled); setInfiniteAmmunition(enabled);
+        if (getNative950Combat() != null) getNative950Combat().developerModeChanged(this);
+    }
     private transient boolean infiniteRunEnergy, infiniteCombatRunes, infiniteAmmunition;
     public boolean isInfiniteRunEnergy() { return infiniteRunEnergy; }
     public void setInfiniteRunEnergy(boolean enabled) { infiniteRunEnergy = enabled; }

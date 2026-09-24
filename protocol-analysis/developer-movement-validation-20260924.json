@@ -1,0 +1,13 @@
+{
+  "status": "AUTOMATED VERIFIED / LIVE TEST PENDING",
+  "regression": {
+    "tests": 1535,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2
+  },
+  "baseline": "79530028aa84ba495fbe6cd7e8ee5786b6338743",
+  "backup": "backups/pre-edit-20260924-044750-458",
+  "report": "docs/DEVELOPER-MOVEMENT-20260924.md",
+  "serverRestarted": false
+}

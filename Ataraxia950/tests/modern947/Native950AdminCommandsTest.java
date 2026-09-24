@@ -44,6 +44,16 @@ public class Native950AdminCommandsTest {
             Native950DevelopmentCommands.handle(p,remote,";;god");assertFalse(p.isDevelopmentGodMode());
         } finally {remote.finishAndReleaseAll();restore(Native950DevelopmentCommands.LAN_ACCOUNTS,old);}
     }
+    @Test public void dmAndAlmightyShareOneModeDespiteIndividualResourceChanges() {
+        p.setHitpoints(1);run(";;god");assertEquals("god grants immunity only",1,p.getHitpoints());
+        assertFalse(p.isDevelopmentAlmighty());run(";;god");
+        run(";;dm");assertTrue(p.isDevelopmentAlmighty());assertTrue(p.isInfiniteAmmunition());
+        run(";;infadren");assertFalse(p.getCombatDefinitions().isInfiniteAdrenaline());
+        run(";;almighty");assertFalse(p.isDevelopmentAlmighty());assertFalse(p.isInfiniteAmmunition());
+        run(";;almighty");assertTrue(p.isDevelopmentAlmighty());run(";;dm");assertFalse(p.isDevelopmentAlmighty());
+        run(";;dm nope");assertFalse(p.isDevelopmentAlmighty());
+        assertTrue(Native950DevelopmentCommands.preservesGameplay(";;dm"));
+    }
     @Test public void almightyTogglesAllModesAndRunConsumptionResumes() {
         run(";;almighty");assertTrue(p.isDevelopmentGodMode());assertTrue(p.getPrayer().isInfinitePrayer());
         assertTrue(p.getCombatDefinitions().isInfiniteAdrenaline());assertTrue(p.isInfiniteRunEnergy());

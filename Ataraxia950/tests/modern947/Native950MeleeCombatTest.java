@@ -37,6 +37,56 @@ public class Native950MeleeCombatTest {
         combat.attach(player);combat.register(npc,profile(50,10,3));
     }
     @After public void cleanup(){combat.clear();channel.finishAndReleaseAll();}
+    @Test public void developerMovementClearsOldCooldownsAndRestoresNormalPolicy() throws Exception {
+        int[] ids={14726,14665,47129,1488};
+        java.lang.reflect.Method end=Native950MeleeCombat.class.getDeclaredMethod("abilityCooldownEnd",Player.class,int.class);
+        end.setAccessible(true);
+        for(int id:ids)combat.publishMovementCooldown(player,id);
+        assertEquals("Surge is cooling down.",combat.ability(player,14726));
+        assertEquals("Surge is cooling down.",combat.ability(player,14665));
+        player.getSkills().set(Skills.AGILITY,99);
+        assertEquals("Dive is cooling down.",combat.tileAbility(player,47129,new WorldTile(3220,3258,0)));
+        player.setDevelopmentGodMode(true);
+        assertEquals("immunity must not bypass cooldown",34L,((Long)end.invoke(combat,player,14726)).longValue());
+        channel.flush();while(channel.readOutbound()!=null){}
+        player.setDevelopmentAlmighty(true);
+        channel.flush();
+        for(int id:ids)assertCooldownPacket(id,0);
+        for(int repeat=0;repeat<3;repeat++)for(int id:ids){
+            combat.publishMovementCooldown(player,id);channel.flush();assertCooldownPacket(id,0);
+            assertEquals(0L,((Long)end.invoke(combat,player,id)).longValue());
+        }
+        player.lock();
+        assertFalse(combat.ability(player,14726).contains("cooling down"));
+        assertFalse(combat.ability(player,14665).contains("cooling down"));
+        assertFalse(combat.tileAbility(player,47129,new WorldTile(3220,3258,0)).contains("cooling down"));
+        player.unlock();player.setDevelopmentAlmighty(false);
+        channel.flush();while(channel.readOutbound()!=null){}
+        for(int id:ids){combat.publishMovementCooldown(player,id);channel.flush();assertCooldownPacket(id,34);}
+        assertEquals("Surge is cooling down.",combat.ability(player,14726));
+    }
+    @Test public void developerModeLeavesOtherPlayersAndOrdinaryCooldownsAlone() throws Exception {
+        EmbeddedChannel otherChannel=new EmbeddedChannel();
+        try {
+            Player other=Player.createNative950("other",new WorldTile(3217,3259,0),otherChannel);other.setActive(true);
+            access.players.add(other);combat.attach(other);combat.publishMovementCooldown(other,14726);
+            player.getSkills().set(Skills.DEFENCE,99);assertNull(combat.ability(player,14710));
+            java.lang.reflect.Method end=Native950MeleeCombat.class.getDeclaredMethod("abilityCooldownEnd",Player.class,int.class);end.setAccessible(true);
+            long ordinary=(Long)end.invoke(combat,player,14710);assertTrue(ordinary>0);
+            player.setDevelopmentAlmighty(true);
+            assertEquals(ordinary,((Long)end.invoke(combat,player,14710)).longValue());
+            assertEquals(34L,((Long)end.invoke(combat,other,14726)).longValue());
+            assertFalse(other.isDevelopmentAlmighty());assertFalse(other.isDevelopmentGodMode());
+        } finally {otherChannel.finishAndReleaseAll();}
+    }
+    private void assertCooldownPacket(int structure,int duration){
+        com.rs.network.protocol.modern950.Native950Packets.Packet packet=channel.readOutbound();assertNotNull(packet);
+        byte[] payload=packet.payload();
+        assertEquals(30,payload.length);
+        java.nio.ByteBuffer b=java.nio.ByteBuffer.wrap(payload);
+        assertEquals(6570,b.getInt(26));assertEquals(structure,b.getInt(22));
+        assertEquals(duration,b.getInt(14)-b.getInt(18));assertEquals(1,b.getInt(6));assertEquals(1,b.getInt(10));
+    }
     @Test public void incomingCombatStanceSurvivesCancellingOurAttack(){
         assertFalse(combat.hasCombatEngagement(player));
         player.setAttackedByDelay(com.rs.utils.Utils.currentTimeMillis()+6000);

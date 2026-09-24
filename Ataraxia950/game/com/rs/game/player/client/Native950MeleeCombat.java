@@ -253,6 +253,28 @@ public final class Native950MeleeCombat {
         conjures.clear();necromancy.clear();ceaseUntil.clear();dashImpacts.clear();skullFlights.clear();
         pendingHits.clear();
     }
+    private static final int[] MOVEMENT_COOLDOWNS={14726,14665,47129,1488};
+    private static boolean developerMovement(Player p,int structure){
+        if(!p.isDevelopmentAlmighty())return false;
+        for(int id:MOVEMENT_COOLDOWNS)if(id==structure)return true;
+        return false;
+    }
+    /** Clear linked Dive state and both native timer endpoints on either mode transition. */
+    public void developerModeChanged(Player player){
+        owned();
+        Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
+        for(int structure:MOVEMENT_COOLDOWNS){
+            if(cooldowns!=null)cooldowns.remove(structure);
+            if(player.getRealChannel()!=null)player.getNative950ActionBar().cooldown(
+                    player.getRealChannel(),structure,(int)Utils.currentWorldCycle(),0);
+        }
+    }
+    void publishMovementCooldown(Player player,int structure){
+        int duration=developerMovement(player,structure)?0:34;
+        Map<Integer,Long> cooldowns=abilityCooldowns.computeIfAbsent(player,p->new java.util.HashMap<>());
+        if(duration==0)cooldowns.remove(structure);else cooldowns.put(structure,tick+duration);
+        player.getNative950ActionBar().cooldown(player.getRealChannel(),structure,(int)Utils.currentWorldCycle(),duration);
+    }
     void refreshBarCooldowns(Player player,int[] slots) {
         owned();
         player.getNative950ActionBar().queueVisual(player,queuedAbilities.getOrDefault(player,-1));
@@ -263,7 +285,7 @@ public final class Native950MeleeCombat {
         for(int packed:slots){
             int structure=resolveAbility(player,Native950ActionBar.struct(packed));
             if(structure<0||!sent.add(structure))continue;
-            long remaining=cooldowns.getOrDefault(structure,0L)-tick;
+            long remaining=abilityCooldownEnd(player,structure)-tick;
             if(remaining>0)player.getNative950ActionBar().refreshCooldown(player.getRealChannel(),structure,cycle,
                     (int)Math.min(Integer.MAX_VALUE,remaining));
         }
@@ -294,15 +316,14 @@ public final class Native950MeleeCombat {
         }
         if(structure==14726||structure==14665){
             Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
-            if(cooldowns!=null&&tick<cooldowns.getOrDefault(structure,0L)){
+            if(tick<abilityCooldownEnd(player,structure)){
                 Native950BugTest.event(player,"combat","ability-rejected","structure",structure,"reason","Surge is cooling down.",
                         "source","manual","cooldownEndTick",cooldowns.getOrDefault(structure,0L));
                 return "Surge is cooling down.";
             }
             String refusal=Native950Surge.use(player,structure==14665);
             if(refusal==null){
-                abilityCooldowns.computeIfAbsent(player,p->new java.util.HashMap<>()).put(structure,tick+34);
-                player.getNative950ActionBar().cooldown(player.getRealChannel(),structure,(int)Utils.currentWorldCycle(),34);
+                publishMovementCooldown(player,structure);
             } else {
                 Native950BugTest.event(player,"combat","ability-rejected","structure",structure,"reason",refusal,"source","manual");
             }
@@ -347,8 +368,7 @@ public final class Native950MeleeCombat {
         cancelAttack(player);
         if(structure==1488)dashImpacts.put(player,new DashImpact(new WorldTile(player.getNextForceMovement().getToSecondTile()),gear,tick+4));
         for(int linked:new int[]{47129,1488}){
-            abilityCooldowns.computeIfAbsent(player,p->new java.util.HashMap<>()).put(linked,tick+34);
-            player.getNative950ActionBar().cooldown(player.getRealChannel(),linked,(int)Utils.currentWorldCycle(),34);
+            publishMovementCooldown(player,linked);
         }
         Native950BugTest.event(player,"combat","tile-ability-executed","structure",structure,"x",target.getX(),"y",target.getY());
         return null;
@@ -420,7 +440,7 @@ public final class Native950MeleeCombat {
     }
     private long abilityCooldownEnd(Player player,int structure){
         Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
-        return cooldowns==null?0:cooldowns.getOrDefault(structure,0L);
+        return developerMovement(player,structure)||cooldowns==null?0:cooldowns.getOrDefault(structure,0L);
     }
     /** Opt-in diagnostic: the real manual queue waits twelve ticks, then executes normally. */
     String holdQueueForVisualCheck(Player player,int slot){

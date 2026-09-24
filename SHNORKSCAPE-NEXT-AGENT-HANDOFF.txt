@@ -1,3 +1,14 @@
+SHNORKSCAPE - ALMIGHTY / DM MOVEMENT 2026-09-24 (LATEST)
+
+Read docs/DEVELOPER-MOVEMENT-20260924.md and developer-movement validation.
+God is damage immunity only. Almighty/DM share one explicit session mode and
+handler, with zero Surge/Escape/linked Dive cooldowns. Equal native CS6570
+endpoints clear radial/numeric timers; mode changes clear stale deadlines.
+Normal34-tick policy resumes on next cast after disabling. Movement/FX and
+clipping remain unchanged. Other abilities/players are unaffected.
+AUTOMATED VERIFIED; physical Vulkan LIVE TEST PENDING. No restart/deploy.
+Cumulative candidate retains the preceding QoL changes and known limitations.
+
 SHNORKSCAPE - FOCUSED COMBAT/QOL 2026-09-24 (LATEST)
 
 Read docs/AI-ENGINEERING-WORKFLOW.md, docs/COMBAT-QOL-20260924.md,

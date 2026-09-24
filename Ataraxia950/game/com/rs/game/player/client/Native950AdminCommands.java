@@ -21,7 +21,8 @@ public final class Native950AdminCommands {
      */
     private static final CommandGroup[] COMMAND_DIRECTORY = {
             group("COMBAT & RESOURCES", "ffd166", "fff1b8",
-                    entry(";;almighty, ;;god", "all six infinite combat resources; damage immunity"),
+                    entry(";;god", "Toggle damage immunity"),
+                    entry(";;almighty / ;;dm", "Toggle full developer combat mode: damage immunity, infinite combat resources and conveniences, including cooldown-free Surge/Escape/Dive"),
                     entry(";;infprayer, ;;infadren, ;;infrunes", "infinite prayer, adrenaline, or combat runes"),
                     entry(";;infrun, ;;infammo, ;;adrenaline [0-100]", "infinite run or ammo; set adrenaline"),
                     entry(";;heal / ;;refill, ;;max, ;;comp", "restore resources; max skills; or grant local completion state"),
@@ -73,7 +74,7 @@ public final class Native950AdminCommands {
         switch (command) {
             case "god": case "infprayer": case "infadren": case "adrenaline": case "bank": case "copy": case "copybar": case "teleto": case "tpto":
             case "savecoords": case "locs": case "locations":
-            case "almighty": case "infrunes": case "infrun": case "infammo": case "commands": case "spell": case "bugtest": case "bug": case "combatqa": case "queuehold": case "items": case "uilayout": case "comp":
+            case "almighty": case "dm": case "infrunes": case "infrun": case "infammo": case "commands": case "spell": case "bugtest": case "bug": case "combatqa": case "queuehold": case "items": case "uilayout": case "comp":
             case "wars": case "warsretreat": case "death": case "deathsoffice": case "vorago": case "dummy": case "testbar": case "clearbar": case "bar":
             case "revo": case "revolution":
             case "heal": case "refill": case "max": case "coords": case "disengage": case "devhelp": case "devstatus":
@@ -196,16 +197,12 @@ public final class Native950AdminCommands {
             case "spell":
                 if(args.length==1){reply(channel,"Selected native auto-spell: "+Native950AutoSpells.select(p).name+". Use ;;spell strike|bolt|blast|wave|surge.");break;}
                 reply(channel,Native950AutoSpells.choose(p,channel,args[1]));break;
-            case "almighty":
-                boolean enabled=!(p.isDevelopmentGodMode()&&p.getPrayer().isInfinitePrayer()
-                        &&p.getCombatDefinitions().isInfiniteAdrenaline()&&p.isInfiniteRunEnergy()
-                        &&p.isInfiniteCombatRunes()&&p.isInfiniteAmmunition());
-                p.setDevelopmentGodMode(enabled);p.getPrayer().setInfinitePrayer(enabled);
-                p.getCombatDefinitions().setInfiniteAdrenaline(enabled);p.setInfiniteRunEnergy(enabled);
-                p.setInfiniteCombatRunes(enabled);p.setInfiniteAmmunition(enabled);
+            case "almighty": case "dm":
+                boolean enabled=!p.isDevelopmentAlmighty();
+                p.setDevelopmentAlmighty(enabled);
                 if(enabled){heal(p);p.getCombatDefinitions().setSpecialAttackPercentage(100);}
-                reply(channel,"<col=ffd166>ALMIGHTY "+state(enabled)+"</col> - god, prayer, adrenaline, run energy, combat runes and ammo.");
-                if(enabled)reply(channel,"Compatible arrows/bolts are supplied automatically for your ranged weapon. Modes reset on logout. ;;almighty again disables all six.");
+                reply(channel,"<col=ffd166>ALMIGHTY "+state(enabled)+"</col> - damage immunity, infinite resources and cooldown-free Surge/Escape/Dive.");
+                if(enabled)reply(channel,"Compatible arrows/bolts are supplied automatically for your ranged weapon. Modes reset on logout. ;;almighty or ;;dm disables the mode.");
                 break;
             case "infrunes":
                 p.setInfiniteCombatRunes(!p.isInfiniteCombatRunes());
@@ -218,7 +215,6 @@ public final class Native950AdminCommands {
                 reply(channel,"Infinite ammunition "+state(p.isInfiniteAmmunition())+". Compatible arrows/bolts follow your equipped ranged weapon automatically.");break;
             case "god":
                 p.setDevelopmentGodMode(!p.isDevelopmentGodMode());
-                if (p.isDevelopmentGodMode()) { p.setHitpoints(p.getMaxHitpoints()); p.refreshHitPoints(); }
                 reply(channel, "God mode " + state(p.isDevelopmentGodMode()) + "."); break;
             case "infprayer":
                 p.getPrayer().setInfinitePrayer(!p.getPrayer().isInfinitePrayer());
@@ -267,8 +263,12 @@ public final class Native950AdminCommands {
         reply(channel,"<col=ffd166>===== SHNORKSCAPE LOCAL COMMANDS =====</col>");
         for (CommandGroup group : COMMAND_DIRECTORY) {
             reply(channel,"<col="+group.headerColor+">"+group.title+"</col>");
-            for (CommandEntry entry : group.entries)
-                reply(channel,"<col="+group.commandColor+">"+entry.names+"</col><col=e8e8e8> - "+entry.description+".</col>");
+            for (CommandEntry entry : group.entries) {
+                String names="<col="+group.commandColor+">"+entry.names+"</col>";
+                String line=names+"<col=e8e8e8> - "+entry.description+".</col>";
+                if(line.length()<=180)reply(channel,line);
+                else {reply(channel,names);reply(channel,entry.description+".");}
+            }
         }
     }
 

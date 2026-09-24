@@ -35,7 +35,7 @@ public final class Native950DevelopmentCommands {
             case "bug": case "bugtest": case "combatqa": case "queuehold":
             case "heal": case "refill": case "infadren": case "infprayer":
             case "infrun": case "infrunes": case "infammo": case "adrenaline":
-            case "almighty": case "god": return true;
+            case "almighty": case "dm": case "god": return true;
             default: return false;
         }
     }
