@@ -1,4 +1,30 @@
-STAGED DEVELOPER CONSOLE 2026-09-24
+DEVELOPER CONSOLE LIVE INPUT SUCCESSOR 2026-09-24 - LATEST
+Read docs/DEVELOPER-CONSOLE-LIVE-FIX-20260924.md before further work.
+Prior initial-open result is LIVE FAIL. Shared native deferred refresh hides
+actors/text and restores Customisations. A post-startup redraw restored input.
+PHYSICAL VERIFIED after diagnostic redraw: category input; Heal -> Execute
+shared handler; NPC search ID1 -> Man selection; Place -> ground click ->
+opcode85 source1448:11/slot1 -> owned temporary Man at3317,10142.
+Evidence: Bug Test session20260924-065938-283-jaxa,07:12-07:15.
+God diagnostic toggle restored OFF. Temporary Man not saved to world.
+
+Successor waits for scoped CS8286 native-ready acknowledgement before render;
+correct native title contract; top tabs, descriptive rows, separate details
+and native panes. Backend, ownership, persistence and targeting preserved.
+Source checkpoint ca959ef pushed and remotely verified.
+1555 tests,0 failures/errors,2 existing skips;4 script tests;production JS5
+reference verifier;4 installer fixtures;launch cache identity all PASS.
+Staged combat-live-successor-dev-live-20260924:24 pinned files;Apply Staged
+Update.cmd and all three cache launch gates updated;CheckOnly PASS.
+New startup/layout remain LIVE TEST PENDING. Do not call mockup achieved:
+native800x600/pagination and metadata previews remain; model/ghost preview,
+icon-rich navigation and continuous scrolling are still not implemented.
+User asleep; NO restart/deploy authorization. Java52460 since06:55:13 and
+Vulkan47460 since06:59:20 preserved. Live jar D7B5765D... / ref F3514AE3...
+unchanged. Install/restart is the next necessary physical acceptance gate.
+Christmas cracker/bar drag-off/equipment binding remain USER-DEFERRED.
+
+STAGED DEVELOPER CONSOLE 2026-09-24 - SUPERSEDED
 Candidate dist/combat-live-successor-dev-20260924: 23 pinned files.
 Apply Staged Update.cmd updated; CheckOnly and all three cache launch gates PASS.
 Source checkpoint b667ff9; full suite 1554 tests, 0 failures/errors, 2 skips.
