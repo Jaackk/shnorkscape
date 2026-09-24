@@ -27,6 +27,8 @@ AUTOMATED VERIFIED:
 - Lookup case/partial/type/ID/hash searches, missing-symbol exclusions, duplicate rejection, mismatched payload rejection, native readiness and closed-window lifecycle tests.
 - Three generator tests: deterministic subset, changed source rejection, changed target rejection.
 
+- Installer CheckOnly and five disposable installer fixtures PASS. Staged-jar full native cache preflight PASS.
+
 LIVE TEST PENDING: new browser layout/buttons and object removal as seen by Vulkan. Earlier console startup/Heal/NPC placement acceptance is preserved, not re-certified by these tests.
 
 ## Operational limits
@@ -41,3 +43,5 @@ No cache edits, character-save edits, server restart or deployment are needed du
 2. Save one placement, clear it, and confirm it does not return on the next normal restart.
 3. Open `;;gameval skybox_tab`, select a row, search `623:27` and `11035`, print an identity, and return to Tools. Check the new panel for clipping.
 4. Quick regression: fresh `;;dev`, Heal, NPC placement, close console, then ability keybind.
+
+Staged candidate: `dist/developer-tools-gamevals-20260924`, 25 pinned files. Only the engine jar changes relative to the previous successor; cache/patch files are carried forward unchanged. Source checkpoint `f8e4d4f`. Running jar matches the pre-edit backup.

@@ -1,11 +1,11 @@
 {
-  "candidate": "combat-live-successor-dev-ready-20260924",
+  "candidate": "developer-tools-gamevals-20260924",
   "files": [
     {
       "source": "ataraxia-950-1.0-UNTRACKED.jar",
       "target": "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-      "sha256": "D1DAAC935C53AC0580A5AA775C5B2353914A958D315DF54E79A60A519DC96D6C",
-      "beforeSha256": "1AE14C7CD193DE880232C4E3DD1D6EA91A3480CFA7712ADD4A0F479E5C6C9FEB"
+      "sha256": "8C77F565818DC76533AA129C935C76968DC17194D3D94BB57369BC216F080BE6",
+      "beforeSha256": "D1DAAC935C53AC0580A5AA775C5B2353914A958D315DF54E79A60A519DC96D6C"
     },
     {
       "source": "Native950InterfaceBootstrap$Panel.class",
@@ -152,7 +152,7 @@
       "beforeSha256": "ABSENT"
     }
   ],
-  "sourceCommit": "295b68b6f8e3350bad668bdbac66c066464a8826",
+  "sourceCommit": "f8e4d4faa3dbfde800bc1bf2c97743a38f6fd200",
   "validationReport": "protocol-analysis/developer-console-validation-20260924.json",
   "liveChecklist": "docs/DEVELOPER-CONSOLE-READY-FIX-20260924.md",
   "liveAcceptance": "Prior fresh-open readiness successor LIVE FAIL. Text-capable synchronous marker correction AUTOMATED VERIFIED; fresh-open Vulkan LIVE TEST PENDING. Prior backend live evidence preserved.",

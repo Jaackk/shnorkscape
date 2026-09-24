@@ -1,12 +1,12 @@
 @echo off
 setlocal
 if /i "%~1"=="--check-only" goto check
-echo SHNORKSCAPE Developer Console: fresh-open readiness marker correction.
-echo Includes synchronized native text marker and verified startup cache pins.
-echo Preserves combat/library and world editor. Heal, NPC search and tile placement physically verified after redraw.
+echo SHNORKSCAPE: owned object cleanup and Cache / Gamevals browser.
+echo New commands: ;;clearobjects [radius] and ;;gameval [name or ID].
+echo Includes saved-placement safety, owner isolation and 1385 audited symbols.
 echo Before applying: close both game clients and run Stop.cmd.
 echo After successful installation: launch Play.cmd normally.
-echo Live checklist: docs\DEVELOPER-CONSOLE-READY-FIX-20260924.md
+echo Live checklist: docs/DEVELOPER-TOOLS-GAMEVALS-20260924.md
 echo.
 "%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -ExecutionPolicy Bypass -File "%~dp0Apply-PlayabilityUpdate.ps1"
 set "result=%errorlevel%"

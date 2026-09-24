@@ -11,7 +11,11 @@ Full1563 tests,0 failures/errors,2 existing skips. Actual-cache isolated world
 cleanup/ownership/stale-object/persistence and all1385 symbol pins PASS.
 Three generator checks PASS. New Vulkan controls/removal remain LIVE TEST PENDING.
 See docs/DEVELOPER-TOOLS-GAMEVALS-20260924.md for scope, limits and live checklist.
-Stage successor through Apply Staged Update.cmd; do NOT restart/deploy silently.
+Source f8e4d4f pushed/remote verified. Staged developer-tools-gamevals-20260924
+through Apply Staged Update.cmd:25 pinned files, CheckOnly +5installer fixtures
+and staged-jar full native cache preflight PASS. No cache deltas beyond the
+previous candidate. Runtime jar unchanged from backup; server35088 still running
+since14:04:22. Do NOT restart/deploy silently.
 No old untracked ;;obj ownership can be safely inferred. Clearing resets owner's
 placement history so stale undo/redo cannot resurrect deletions.
 

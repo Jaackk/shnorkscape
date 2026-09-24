@@ -62,3 +62,5 @@ logs/combatqa/
 
 /dist/developer-console-cache-*/
 /dist/developer-console-live-cache-*/
+
+/dist/developer-tools-*/
