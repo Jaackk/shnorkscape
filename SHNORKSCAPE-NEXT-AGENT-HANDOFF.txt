@@ -1,3 +1,14 @@
+STAGED DEVELOPER CONSOLE UX SUCCESSOR 2026-09-25
+Source76ea6c0 pushed and remote verified. Apply Staged Update.cmd selects developer-console-ux-20260925.
+25 pinned files + launch cache gates CheckOnly PASS; five disposable installer fixtures PASS.
+Jar CB39EEEEFFC8B4A6425FF07833A7D911C304D2C1A9AFD1C336E9B202F623A161.
+Index12 reference C036A346B4E455F3FED09B81275997DC0757D8E2A77F699784417C7BB603DFF0.
+Native preflight and console helper/dependency verification PASS against isolated staged cache.
+Previous dist/combat-live-successor-dev-quality-20260924 retained; all previous files checked before copying.
+Current live PID39368/runtime jar96035C...110B0E preserved. No server/client restart or deployment.
+Install manually with Apply Staged Update.cmd after closing clients and stopping server, then Play.cmd.
+New interactions/rendering remain LIVE TEST PENDING; see the seven-step checklist in docs/DEVELOPER-CONSOLE-UX-20260925.md.
+
 DEVELOPER CONSOLE UX 2026-09-25 - LATEST
 One primary agent. Source backup 9e28224; local pre-edit-20260925-001828-688.
 Preserved native1448/ready bridge, shared handlers, placement/persistence, combat and live runtime.
@@ -17,7 +28,6 @@ UNRESOLVED: arbitrary NPC/model/animation preview; packet setters still no-op; n
 Live input correlation median267.5ms/max572ms; 600ms world cadence retained. New render timing event is available.
 See docs/DEVELOPER-CONSOLE-UX-20260925.md for exact evidence, limits and the seven-step live checklist.
 Runtime at baseline: PID39368, started24Sep23:51:14; deployed jar96035C...110B0E. Do not restart/deploy automatically.
-Packaging record follows in the final staging checkpoint.
 
 STAGED DEV/COMBAT SUCCESSOR 2026-09-24
 Source b9b9177; diagnostics checkpoint5c85bbe. Both pushed/remote verified.

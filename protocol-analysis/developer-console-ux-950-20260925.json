@@ -1,0 +1,41 @@
+{
+  "status": "AUTOMATED VERIFIED; LIVE TEST PENDING",
+  "sourceCommit": "76ea6c0bd0506ef31c5c14173c60088842c83b9d",
+  "candidate": "developer-console-ux-20260925",
+  "javaTests": {
+    "tests": 1583,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2
+  },
+  "nativeScriptTests": 8,
+  "actualCacheProbes": [
+    "Native950DeveloperUxAcceptance PASS",
+    "Native950DeveloperCombatAcceptance PASS",
+    "Native950CachePreflight PASS against isolated staged cache"
+  ],
+  "performance": {
+    "liveInputApproxMedianMs": 267.5,
+    "liveInputApproxMaxMs": 572,
+    "coldVoragoSearchMsRange": [
+      12,
+      36
+    ],
+    "cached1000LookupsMs": 2.3,
+    "clientRedraw": "not measured; Vulkan pending"
+  },
+  "partial": [
+    "Native scrolling/incremental redraw: shared multi-host composition not yet proven",
+    "Arbitrary NPC/model/animation preview: exact native setter contract unresolved"
+  ],
+  "artifactJarSha256": "CB39EEEEFFC8B4A6425FF07833A7D911C304D2C1A9AFD1C336E9B202F623A161",
+  "scriptReferenceSha256": "C036A346B4E455F3FED09B81275997DC0757D8E2A77F699784417C7BB603DFF0",
+  "liveRestarted": false,
+  "installer": {
+    "pinnedFiles": 25,
+    "checkOnly": "PASS",
+    "disposableFixtures": 5,
+    "failures": 0,
+    "previousCandidatePreserved": true
+  }
+}

@@ -38,12 +38,14 @@ class Installer(unittest.TestCase):
 
     def test_new_marker_helper_is_idempotent_but_cannot_replace_unknown_file(self):
         entry=next(e for e in self.manifest['files'] if e['target']=='cache/12/21130.dat')
-        self.assertEqual('ABSENT',entry['beforeSha256']);dst=self.base/entry['target']
+        dst=self.base/entry['target'];before=dst.read_bytes() if dst.exists() else None
         self.check(True)
         shutil.copyfile(self.base/'dist'/self.manifest['candidate']/entry['source'],dst)
         try:
             self.check(True);dst.write_bytes(b'unrelated existing script');self.check(False)
-        finally:dst.unlink()
+        finally:
+            if before is None:dst.unlink()
+            else:dst.write_bytes(before)
 
     def test_unknown_target_is_rejected(self):
         m=json.loads(json.dumps(self.manifest));m['files'][-1]['target']='cache/12/999999.dat'
