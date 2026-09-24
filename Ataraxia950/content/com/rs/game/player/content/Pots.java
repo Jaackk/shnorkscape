@@ -181,6 +181,7 @@ public final class Pots {
         player.setOverloadDelay(0);
         player.getBuffDebuffTimersManager().removeTimer(Timer.OVERLOADED);
         player.getPackets().sendGameMessage("<col=930000>The effects of overload have worn off and you feel normal again.");
+        resetNativeNecromancyOverload(player);
     }
 
     public static void resetSupremeOverLoadEffect(Player player) {
@@ -210,6 +211,7 @@ public final class Pots {
         player.setSupremeOverloadDelay(0);
         player.getBuffDebuffTimersManager().removeTimer(Timer.SUPREME_OVERLOAD_POTION_ACTIVE);
         player.getPackets().sendGameMessage("<col=930000>The effects of supreme overload have worn off and you feel normal again.");
+        resetNativeNecromancyOverload(player);
     }
 
     public static void applySupremeOverLoadEffect(Player player) {
@@ -264,6 +266,7 @@ public final class Pots {
             level = virtualLevel > realLevel ? realLevel : virtualLevel;
             player.getSkills().set(Skills.RANGE, (int) (level + 6 + (Math.floor(realLevel / 5.2))));
         }
+        applyNativeNecromancyOverload(player,16,4);
     }
 
     public static void applyOverLoadEffect(Player player) {
@@ -318,6 +321,19 @@ public final class Pots {
             level = virtualLevel > realLevel ? realLevel : virtualLevel;
             player.getSkills().set(Skills.RANGE, (int) (level + 4 + (Math.floor(realLevel / 5.2))));
         }
+        applyNativeNecromancyOverload(player,15,3);
+    }
+
+    /** Revision950 Necromancy overload boost: normal15%+3, supreme16%+4, floor. */
+    private static void applyNativeNecromancyOverload(Player player,int percent,int fixed) {
+        if(player.getClientProfile()!=com.rs.game.player.client.ClientProfile.NATIVE_950)return;
+        int base=player.getSkills().getLevelForXp(Skills.NECROMANCY);
+        player.getSkills().set(Skills.NECROMANCY,base+base*percent/100+fixed);
+    }
+    private static void resetNativeNecromancyOverload(Player player) {
+        if(player.getClientProfile()!=com.rs.game.player.client.ClientProfile.NATIVE_950)return;
+        int base=player.getSkills().getLevelForXp(Skills.NECROMANCY);
+        if(player.getSkills().getLevel(Skills.NECROMANCY)>base)player.getSkills().set(Skills.NECROMANCY,base);
     }
 
     public enum Pot {

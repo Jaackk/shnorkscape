@@ -197,6 +197,10 @@ public final class Native950EntityFrames implements Native950Frames {
         // encoded it. Locomotion needs no animation mask: the Base Animation Set in the
         // appearance block supplies stand, walk and run.
         builder.masks(Native950EntityMasks.playerSource(character));
+        com.rs.game.Animation emitted=character.getNextAnimation();
+        if(emitted!=null&&(emitted.getIds()[0]==35475||emitted.getIds()[0]==35135))
+            Native950BugTest.event(character,"presentation","ultimate-animation-frame","animation",emitted.getIds()[0],
+                    "boundary","post-movement-player-info","livingDeath",character.getVarsManager().getValue(11059));
         Native950SoulVisual.append(character,builder);
         long forceGeneration = character.getNative950ForceMaskGeneration();
         Native950ForceMovement.Plan forcePlan = character.getNextNative950ForceMovement();

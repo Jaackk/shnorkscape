@@ -29,7 +29,7 @@ final class Native950Potions {
         if(player.getOverloadDelay()<=0)return;
         player.setOverloadDelay(0);
         player.getBuffDebuffTimersManager().removeTimer(com.rs.game.player.BuffDebuffTimersManager.Timer.OVERLOADED);
-        for(int skill:new int[]{0,1,2,4,6}){
+        for(int skill:new int[]{0,1,2,4,6,com.rs.game.player.Skills.NECROMANCY}){
             int base=player.getSkills().getLevelForXp(skill);
             if(player.getSkills().getLevel(skill)>base)player.getSkills().set(skill,base);
         }

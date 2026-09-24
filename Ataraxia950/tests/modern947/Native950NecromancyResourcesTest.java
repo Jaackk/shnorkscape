@@ -26,6 +26,16 @@ public class Native950NecromancyResourcesTest {
             state.cast(first,48311,40,false);state.clear(first);assertEquals(48311,state.effective(first,48311));
         }finally{state.clear();a.finishAndReleaseAll();b.finishAndReleaseAll();}
     }
+    @Test public void lateProjectilesAndIncomingAttacksExtendOnlyTheirOwnersSoulLifetime(){
+        EmbeddedChannel a=new EmbeddedChannel(),b=new EmbeddedChannel();
+        Player first=Player.createNative950("soul-combat",new WorldTile(3200,3200,0),a),second=Player.createNative950("soul-other",new WorldTile(3201,3200,0),b);
+        Native950NecromancyResources state=new Native950NecromancyResources();
+        try{state.gainSoul(first,0);state.gainSoul(second,0);
+            for(int tick=1;tick<=30;tick++){if(tick%4==0)state.combatActivity(first,tick);state.pulse(tick);assertEquals(1,state.souls(first));}
+            assertEquals(0,state.souls(second));state.pulse(37);assertEquals(1,state.souls(first));
+            state.pulse(38);assertEquals(0,state.souls(first));assertEquals(0,first.getNative950SoulVisual());
+        }finally{state.clear();a.finishAndReleaseAll();b.finishAndReleaseAll();}
+    }
     @Test public void resourcesPublishNativeAvailabilityWithoutLeakingBetweenPlayers(){
         EmbeddedChannel a=new EmbeddedChannel(),b=new EmbeddedChannel();
         Player first=Player.createNative950("first",new WorldTile(3200,3200,0),a);

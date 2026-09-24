@@ -25,6 +25,7 @@ public final class Native950PresentationAudit {
             Map<Long,Object> params=RS3GeneralRequirementMap.getMap(d.struct).getValues();pin(22,d.struct>>>5,d.struct&31);
             Set<Integer> sequences=new TreeSet<>();Integer direct=integer(params,2914L),table=integer(params,2915L);
             if(direct!=null)sequences.add(direct);
+            if(d.struct==14707){sequences.add(35135);pin(22,39860>>>5,39860&31);pin(22,47230>>>5,47230&31);}
             if(d.struct==48301)sequences.add(35469); // Named Undercut Volley, matching exact950 impact7879.
             if(d.struct==48324){Integer alternative=integer(params,2535L);if(alternative!=null)sequences.add(alternative);}
             if(table!=null){pin(17,table>>>8,table&255);RS3ClientScriptMap e=RS3ClientScriptMap.getMap(table);if(e.getDefaultIntValue()>=0)sequences.add(e.getDefaultIntValue());

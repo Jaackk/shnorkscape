@@ -1,3 +1,42 @@
+SHNORKSCAPE - LIVE COMBAT POLISH 2026-09-24 (LATEST; supersedes historical acceptance below)
+
+READ docs/COMBAT-LIVE-POLISH-20260924.md and the ONE12-point checklist:
+docs/COMBAT-POLISH-LIVE-CHECKLIST-20260924.md.
+
+CONFIRMED LIVE: context24 bank/items keybind recovery; chosen-tile Dive;
+conjures survive Surge/Dive; Death Skulls bouncing; soul world appearance;
+conduit availability; Necrosis generation/display/consumption; native buff
+panels. Revolution functional/PARTIAL. Preserve these; no P0 reinvestigation.
+
+Latest log session-20260924-010148-657-jaxa:265 executions,261 Revolution,
+375 conjure attacks,151 Skulls flights/149 impacts. Long manual Living Death
+cooldowns rejected by old3-tick queue window. Multi-soul cast was Volley48301,
+not Soul Strike48299. Souls expired despite late owned Skulls impacts.
+
+Successor changes: persistent manual queue isolated from Revo; normal/supreme
+Necromancy Overload stat/damage/expiry; late-hit/incoming combat soul activity;
+shared Volley flight launch; published-view companion Examine;362 native quest
+thresholds + permanent combat unlocks for ;;comp only; default empty army;
+Berserk shared named35135 pose; native Skeleton Rage/Phantom Valour stacks;
+Phantom command Valour scaling and primary+4 adjacent target limit.
+All new changes IMPLEMENTED - LIVE TEST PENDING, not rendered acceptance.
+
+Living Death remains LIVE FAIL/PARTIAL:35475 already bound; new post-movement
+PLAYER_INFO diagnostic only. Graphic7883 is a research candidate, NOT bound.
+Conjure actor attack/spawn/expiry FX UNRESOLVED; never substitute hostile/Rasial
+or guessed sequences.19/85 admitted definitions still lack animation bindings.
+No COMPLETE promotions. See new presentation audit/gaps dated20260924.
+
+Full suite1524 tests,0 failures/errors,2 skips. Real-cache1938 combat checks;
+new polish gate983; Dive/Surge/Escape, bank, library, exit UI, styles PASS.
+Final artifact hashes/check-only result:combat-polish-validation-20260924.json.
+Stage intended:dist/combat-live-successor-polish-20260924. User applies via
+Apply Staged Update.cmd. No deploy/restart or production character modifications.
+Pre-edit verified remote68116bf;backup backups/pre-edit-20260924-011715-588.
+Running JAR at startB08E28B28B112B498057900265553C0B2C73BE919A179FED3E2369C333A5B106.
+
+----- Historical handoff (superseded where above differs) -----
+
 SHNORKSCAPE - LIVE REFINEMENT 2026-09-23 (LATEST; historical notes below are superseded)
 
 Authoritative 18:41-18:50 session: Dive chosen-tile movement LIVE PASS;

@@ -170,7 +170,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 1488,
+        "name": "Bladed Dive",
         "animationSequences": [
           -1
         ],
@@ -179,8 +180,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 1490,
@@ -255,7 +258,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 1491,
@@ -274,7 +278,7 @@
       "typedParameters": {
         "2793": 14,
         "2794": "Salt the Wound",
-        "2795": "Perform a coup de grÃ¢ce.",
+        "2795": "Perform a coup de gr\u00c3\u0192\u00c2\u00a2ce.",
         "2796": 25,
         "2798": 150,
         "2799": 2,
@@ -322,14 +326,15 @@
       "reportGroup": "conditional/unresolved",
       "canonicalStatus": "BLOCKED BY UNPROVEN 950 IDENTITY",
       "effectEvidence": {
-        "tooltip": "Perform a coup de grÃ¢ce.",
+        "tooltip": "Perform a coup de gr\u00c3\u0192\u00c2\u00a2ce.",
         "rawTargetMode": 1,
         "bleed": false,
         "stun": false,
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 1874,
@@ -408,7 +413,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 11748,
@@ -494,7 +500,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 12297,
@@ -574,7 +581,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14663,
@@ -726,7 +734,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14663,
+        "name": "Piercing Shot",
         "animationSequences": [
           32827,
           37470,
@@ -761,8 +770,10 @@
             "impactGraphic": 8981
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14664,
@@ -900,7 +911,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14664,
+        "name": "Binding Shot",
         "animationSequences": [
           18459,
           18460,
@@ -935,8 +947,10 @@
             "impactGraphic": 3488
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14665,
@@ -1035,7 +1049,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14665,
+        "name": "Escape",
         "animationSequences": [
           -1
         ],
@@ -1044,8 +1059,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14666,
@@ -1211,7 +1228,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14666,
+        "name": "Snipe",
         "animationSequences": [
           32823,
           37494,
@@ -1256,8 +1274,10 @@
             "impactGraphic": 8985
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14667,
@@ -1365,7 +1385,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14668,
@@ -1503,7 +1524,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14668,
+        "name": "Ricochet",
         "animationSequences": [
           32827,
           37475,
@@ -1538,8 +1560,10 @@
             "impactGraphic": 8983
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14669,
@@ -1702,7 +1726,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14669,
+        "name": "Snap Shot",
         "animationSequences": [
           24382,
           32828,
@@ -1746,8 +1771,10 @@
             "impactGraphic": 8991
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14670,
@@ -1878,7 +1905,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14670,
+        "name": "Rapid Fire",
         "animationSequences": [
           35773,
           37480,
@@ -1929,8 +1957,10 @@
             "impactGraphic": 8993
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14671,
@@ -2069,7 +2099,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14671,
+        "name": "Bombardment",
         "animationSequences": [
           18503,
           18504,
@@ -2127,8 +2158,10 @@
             "impactGraphic": 3525
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14672,
@@ -2241,7 +2274,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14673,
@@ -2320,7 +2354,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14674,
@@ -2482,7 +2517,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14674,
+        "name": "Deadshot",
         "animationSequences": [
           32829,
           37522,
@@ -2533,8 +2569,10 @@
             "impactGraphic": 8994
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14677,
@@ -2706,7 +2744,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14678,
@@ -2835,7 +2874,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14678,
+        "name": "Barge",
         "animationSequences": [
           37394,
           37395,
@@ -2860,8 +2900,10 @@
             "casterGraphic": 9018
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14679,
@@ -3042,7 +3084,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14679,
+        "name": "Adaptive Strike",
         "animationSequences": [
           37388,
           37389,
@@ -3074,8 +3117,10 @@
             "sequence": 37408
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14681,
@@ -3173,7 +3218,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14682,
@@ -3351,7 +3397,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14682,
+        "name": "Backhand",
         "animationSequences": [
           18154,
           18167,
@@ -3372,8 +3419,10 @@
             "sequence": 18169
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14683,
@@ -3537,7 +3586,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14684,
@@ -3668,7 +3718,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14684,
+        "name": "Flurry",
         "animationSequences": [
           37428,
           37429
@@ -3683,8 +3734,10 @@
             "casterGraphic": 9016
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14685,
@@ -3816,7 +3869,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14685,
+        "name": "Hurricane",
         "animationSequences": [
           37437,
           37438,
@@ -3836,8 +3890,10 @@
             "casterGraphic": 9017
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14686,
@@ -4029,7 +4085,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14686,
+        "name": "Overpower",
         "animationSequences": [
           18177,
           18178,
@@ -4054,8 +4111,10 @@
             "casterGraphic": 3587
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14687,
@@ -4154,7 +4213,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14688,
@@ -4283,7 +4343,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14688,
+        "name": "Meteor Strike",
         "animationSequences": [
           18175,
           18198,
@@ -4303,8 +4364,10 @@
             "casterGraphic": 9053
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14690,
@@ -4403,7 +4466,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14691,
@@ -4500,7 +4564,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14693,
@@ -4589,7 +4654,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14694,
@@ -4678,7 +4744,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14695,
@@ -4767,7 +4834,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14700,
@@ -4933,7 +5001,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14700,
+        "name": "Punish",
         "animationSequences": [
           18560,
           18562,
@@ -4958,8 +5027,10 @@
             "casterGraphic": 946
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14701,
@@ -5077,7 +5148,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14701,
+        "name": "Fury",
         "animationSequences": [
           37421,
           37422,
@@ -5112,8 +5184,10 @@
             "impactGraphic": 9014
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14702,
@@ -5201,7 +5275,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14703,
@@ -5285,7 +5360,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14704,
@@ -5452,7 +5528,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14704,
+        "name": "Assault",
         "animationSequences": [
           18577,
           18578,
@@ -5477,8 +5554,10 @@
             "casterGraphic": 9077
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14705,
@@ -5567,7 +5646,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14706,
@@ -5655,7 +5735,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14707,
@@ -5813,17 +5894,20 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14707,
+        "name": "Berserk",
         "animationSequences": [
-          -1
+          35135
         ],
         "variants": [
           {
-            "sequence": -1
+            "sequence": 35135
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": "35135 shared named variant pose; separate caster effect unresolved; LIVE TEST PENDING"
     },
     {
       "struct": 14708,
@@ -5925,7 +6009,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14709,
@@ -6059,7 +6144,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14709,
+        "name": "Pulverise",
         "animationSequences": [
           18540,
           18588,
@@ -6087,8 +6173,10 @@
             "casterGraphic": 3473
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14710,
@@ -6240,7 +6328,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14710,
+        "name": "Anticipation",
         "animationSequences": [
           18069,
           18092,
@@ -6269,8 +6358,10 @@
             "sequence": 18096
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14711,
@@ -6483,7 +6574,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14711,
+        "name": "Freedom",
         "animationSequences": [
           18070,
           18071,
@@ -6508,8 +6600,10 @@
             "sequence": 18088
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14712,
@@ -6628,7 +6722,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14712,
+        "name": "Provoke",
         "animationSequences": [
           -1
         ],
@@ -6637,8 +6732,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14713,
@@ -6770,7 +6867,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14713,
+        "name": "Resonance",
         "animationSequences": [
           -1
         ],
@@ -6779,8 +6877,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14714,
@@ -6897,7 +6997,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14714,
+        "name": "Preparation",
         "animationSequences": [
           -1
         ],
@@ -6906,8 +7007,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14715,
@@ -7031,7 +7134,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14715,
+        "name": "Bash",
         "animationSequences": [
           18080
         ],
@@ -7040,8 +7144,10 @@
             "sequence": 18080
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14716,
@@ -7164,7 +7270,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14716,
+        "name": "Reflect",
         "animationSequences": [
           18107
         ],
@@ -7173,8 +7280,10 @@
             "sequence": 18107
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14717,
@@ -7295,7 +7404,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14717,
+        "name": "Debilitate",
         "animationSequences": [
           18074,
           18075,
@@ -7324,8 +7434,10 @@
             "sequence": 18079
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14718,
@@ -7455,7 +7567,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14718,
+        "name": "Revenge",
         "animationSequences": [
           18098,
           18099,
@@ -7490,8 +7603,10 @@
             "casterGraphic": 3616
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14719,
@@ -7609,7 +7724,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14719,
+        "name": "Barricade",
         "animationSequences": [
           18091
         ],
@@ -7619,8 +7735,10 @@
             "casterGraphic": 3632
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14720,
@@ -7748,7 +7866,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14720,
+        "name": "Rejuvenate",
         "animationSequences": [
           18082,
           18083,
@@ -7783,8 +7902,10 @@
             "casterGraphic": 3622
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14721,
@@ -7901,7 +8022,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14721,
+        "name": "Immortality",
         "animationSequences": [
           -1
         ],
@@ -7910,8 +8032,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14725,
@@ -8088,7 +8212,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14726,
@@ -8190,7 +8315,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14726,
+        "name": "Surge",
         "animationSequences": [
           -1
         ],
@@ -8199,8 +8325,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14727,
@@ -8351,7 +8479,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14727,
+        "name": "Impact",
         "animationSequences": [
           37357,
           37358
@@ -8370,8 +8499,10 @@
             "projectile": 9007
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14728,
@@ -8543,7 +8674,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14728,
+        "name": "Chain",
         "animationSequences": [
           37354,
           37355
@@ -8560,8 +8692,10 @@
             "projectile": 8968
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14729,
@@ -8722,7 +8856,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14729,
+        "name": "Combust",
         "animationSequences": [
           37349,
           37350
@@ -8737,8 +8872,10 @@
             "impactGraphic": 8170
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14730,
@@ -8859,7 +8996,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14730,
+        "name": "Dragon Breath",
         "animationSequences": [
           36639,
           36640
@@ -8872,8 +9010,10 @@
             "sequence": 36640
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14731,
@@ -9047,7 +9187,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14731,
+        "name": "Asphyxiate",
         "animationSequences": [
           37352,
           37353
@@ -9062,8 +9203,10 @@
             "impactGraphic": 9003
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14732,
@@ -9142,7 +9285,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14733,
@@ -9312,7 +9456,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14733,
+        "name": "Wild Magic",
         "animationSequences": [
           37365,
           37366
@@ -9329,8 +9474,10 @@
             "projectile": 8966
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14734,
@@ -9445,7 +9592,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14735,
@@ -9568,7 +9716,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14735,
+        "name": "Tsunami",
         "animationSequences": [
           37100,
           37101
@@ -9583,8 +9732,10 @@
             "impactGraphic": 3562
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 14736,
@@ -9770,7 +9921,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 14736,
+        "name": "Omnipower",
         "animationSequences": [
           37359,
           37360
@@ -9789,8 +9941,10 @@
             "projectile": 8974
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 19251,
@@ -9901,7 +10055,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 19251,
+        "name": "Death's Swiftness",
         "animationSequences": [
           -1
         ],
@@ -9910,8 +10065,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 19252,
@@ -10025,7 +10182,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 19252,
+        "name": "Natural Instinct",
         "animationSequences": [
           -1
         ],
@@ -10034,8 +10192,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 19253,
@@ -10133,7 +10293,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 19254,
@@ -10248,7 +10409,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 19254,
+        "name": "Sunshine",
         "animationSequences": [
           18364,
           18365,
@@ -10288,8 +10450,10 @@
             "casterGraphic": 3564
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 19255,
@@ -10364,7 +10528,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 19340,
@@ -10444,7 +10609,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 19342,
@@ -10570,7 +10736,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 19342,
+        "name": "Sonic Wave",
         "animationSequences": [
           36641,
           36651
@@ -10589,8 +10756,10 @@
             "projectile": 9010
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 19343,
@@ -10724,7 +10893,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 19343,
+        "name": "Concentrated Blast",
         "animationSequences": [
           37338,
           37340
@@ -10743,8 +10913,10 @@
             "projectile": 8972
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24188,
@@ -10861,7 +11033,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 24188,
+        "name": "Sacrifice",
         "animationSequences": [
           22338,
           22339,
@@ -10901,8 +11074,10 @@
             "casterGraphic": 4498
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24189,
@@ -11007,7 +11182,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24362,
@@ -11093,7 +11269,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24363,
@@ -11179,7 +11356,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24364,
@@ -11265,7 +11443,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24365,
@@ -11351,7 +11530,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24366,
@@ -11437,7 +11617,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24367,
@@ -11523,7 +11704,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24368,
@@ -11609,7 +11791,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24369,
@@ -11695,7 +11878,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24370,
@@ -11781,7 +11965,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24371,
@@ -11867,7 +12052,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24372,
@@ -11953,7 +12139,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 24373,
@@ -12039,7 +12226,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 25028,
@@ -12159,7 +12347,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 25028,
+        "name": "Devotion",
         "animationSequences": [
           -1
         ],
@@ -12168,8 +12357,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 28177,
@@ -12285,7 +12476,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 28177,
+        "name": "Shadow Tendrils",
         "animationSequences": [
           23219,
           23222,
@@ -12308,8 +12500,10 @@
             "impactGraphic": 4661
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 28178,
@@ -12390,7 +12584,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 28179,
@@ -12489,7 +12684,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 28180,
@@ -12612,7 +12808,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 28180,
+        "name": "Smoke Tendrils",
         "animationSequences": [
           23218,
           23641
@@ -12629,8 +12826,10 @@
             "impactGraphic": 4663
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 28429,
@@ -12741,7 +12940,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 28430,
@@ -12825,7 +13025,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 28431,
@@ -12907,7 +13108,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 28927,
@@ -13000,7 +13202,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 28928,
@@ -13073,7 +13276,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 31649,
@@ -13174,7 +13378,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 31820,
@@ -13292,7 +13497,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 31820,
+        "name": "Conjure Phantom Guardian",
         "animationSequences": [
           35502
         ],
@@ -13302,8 +13508,10 @@
             "casterGraphic": 7899
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
     },
     {
       "struct": 31982,
@@ -13404,7 +13612,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 31983,
@@ -13503,7 +13712,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 31984,
@@ -13612,7 +13822,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 31985,
@@ -13729,7 +13940,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 31985,
+        "name": "Corruption Blast",
         "animationSequences": [
           1068,
           23958
@@ -13744,8 +13956,10 @@
             "projectile": 5711
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 31986,
@@ -13880,7 +14094,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 31986,
+        "name": "Corruption Shot",
         "animationSequences": [
           18520,
           18521,
@@ -13941,8 +14156,10 @@
             "projectile": 5716
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 32342,
@@ -14027,7 +14244,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 32342,
+        "name": "Command Phantom Guardian",
         "animationSequences": [
           -1
         ],
@@ -14036,8 +14254,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": "Exact CS13240 Valour scaling and primary+4 adjacent targets; automated cap/range/plane/isolation verified"
     },
     {
       "struct": 33650,
@@ -14141,7 +14361,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 33965,
@@ -14246,7 +14467,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 33965,
+        "name": "Conjure Undead Army",
         "animationSequences": [
           35502
         ],
@@ -14256,8 +14478,10 @@
             "casterGraphic": 7899
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
     },
     {
       "struct": 37199,
@@ -14356,7 +14580,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 37200,
@@ -14455,7 +14680,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 37201,
@@ -14554,7 +14780,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 37202,
@@ -14658,7 +14885,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 37203,
@@ -14774,7 +15002,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 37203,
+        "name": "Limitless",
         "animationSequences": [
           -1
         ],
@@ -14783,8 +15012,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 37204,
@@ -14882,7 +15113,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 37205,
@@ -14980,7 +15212,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 37206,
@@ -15082,7 +15315,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 37207,
@@ -15188,7 +15422,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 37220,
@@ -15289,7 +15524,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 39530,
@@ -15367,7 +15603,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 39531,
@@ -15450,7 +15687,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 39532,
@@ -15526,7 +15764,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 39533,
@@ -15602,7 +15841,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 40935,
@@ -15676,7 +15916,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 40936,
@@ -15762,7 +16003,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 40941,
@@ -15834,7 +16076,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 44223,
@@ -15927,7 +16170,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 44225,
@@ -16026,7 +16270,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 44225,
+        "name": "Eat Food",
         "animationSequences": [
           -1
         ],
@@ -16035,8 +16280,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 44244,
@@ -16214,7 +16461,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 44244,
+        "name": "Dismember",
         "animationSequences": [
           37409,
           37410,
@@ -16249,8 +16497,10 @@
             "impactGraphic": 9013
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 44900,
@@ -16334,7 +16584,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 45045,
@@ -16450,7 +16701,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 45045,
+        "name": "Divert",
         "animationSequences": [
           -1
         ],
@@ -16459,8 +16711,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 45046,
@@ -16537,7 +16791,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 45048,
@@ -16610,7 +16865,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 45340,
@@ -16714,7 +16970,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 45340,
+        "name": "Cease",
         "animationSequences": [
           -1
         ],
@@ -16723,8 +16980,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 45450,
@@ -16811,7 +17070,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 45800,
@@ -16913,7 +17173,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 45801,
@@ -17004,7 +17265,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 45802,
@@ -17095,7 +17357,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 46275,
@@ -17178,7 +17441,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 46276,
@@ -17257,7 +17521,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 46279,
@@ -17368,7 +17633,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 46279,
+        "name": "Chaos Roar",
         "animationSequences": [
           34957,
           34958
@@ -17383,8 +17649,10 @@
             "casterGraphic": 6641
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 47129,
@@ -17486,7 +17754,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 47129,
+        "name": "Dive",
         "animationSequences": [
           -1
         ],
@@ -17495,8 +17764,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 47221,
@@ -17579,7 +17850,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48293,
@@ -17672,7 +17944,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48296,
@@ -17779,7 +18052,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48296,
+        "name": "Touch of Death",
         "animationSequences": [
           35456
         ],
@@ -17790,8 +18064,10 @@
             "impactGraphic": 7860
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48297,
@@ -17898,7 +18174,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48297,
+        "name": "Finger of Death",
         "animationSequences": [
           35458
         ],
@@ -17909,8 +18186,10 @@
             "impactGraphic": 7862
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48298,
@@ -18021,7 +18300,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48298,
+        "name": "Soul Sap",
         "animationSequences": [
           35461
         ],
@@ -18032,8 +18312,10 @@
             "impactGraphic": 7864
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48299,
@@ -18145,7 +18427,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48299,
+        "name": "Soul Strike",
         "animationSequences": [
           35466
         ],
@@ -18157,8 +18440,10 @@
             "projectile": 7873
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": "Existing one main hit + same-impact AoE and stun retained; user may have meant Volley; latest log did not execute Soul Strike"
     },
     {
       "struct": 48301,
@@ -18266,7 +18551,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48301,
+        "name": "Volley of Souls",
         "animationSequences": [
           35469
         ],
@@ -18277,8 +18563,10 @@
             "projectile": 7880
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": "Remove artificial serial release; one flight per soul launched together; real-cache timing verified; LIVE TEST PENDING"
     },
     {
       "struct": 48302,
@@ -18395,7 +18683,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48302,
+        "name": "Conjure Skeleton Warrior",
         "animationSequences": [
           35502
         ],
@@ -18405,8 +18694,10 @@
             "casterGraphic": 7899
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
     },
     {
       "struct": 48303,
@@ -18491,7 +18782,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48303,
+        "name": "Command Skeleton Warrior",
         "animationSequences": [
           -1
         ],
@@ -18500,8 +18792,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
     },
     {
       "struct": 48304,
@@ -18620,7 +18914,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48304,
+        "name": "Conjure Putrid Zombie",
         "animationSequences": [
           35502
         ],
@@ -18630,8 +18925,10 @@
             "casterGraphic": 7899
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
     },
     {
       "struct": 48305,
@@ -18715,7 +19012,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48305,
+        "name": "Command Putrid Zombie",
         "animationSequences": [
           -1
         ],
@@ -18724,8 +19022,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
     },
     {
       "struct": 48306,
@@ -18843,7 +19143,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48306,
+        "name": "Conjure Vengeful Ghost",
         "animationSequences": [
           35502
         ],
@@ -18853,8 +19154,10 @@
             "casterGraphic": 7899
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
     },
     {
       "struct": 48307,
@@ -18938,7 +19241,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48307,
+        "name": "Command Vengeful Ghost",
         "animationSequences": [
           -1
         ],
@@ -18947,8 +19251,10 @@
             "sequence": -1
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": "Follow/movement persistence LIVE PASS; Examine corrected; Skeleton Rage/Phantom Valour native stacks; actor attack/spawn/expiry FX unresolved"
     },
     {
       "struct": 48308,
@@ -19056,7 +19362,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48308,
+        "name": "Bloat",
         "animationSequences": [
           35477
         ],
@@ -19067,8 +19374,10 @@
             "impactGraphic": 7885
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48309,
@@ -19182,7 +19491,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48309,
+        "name": "Blood Siphon",
         "animationSequences": [
           35482
         ],
@@ -19192,8 +19502,10 @@
             "casterGraphic": 7889
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48311,
@@ -19306,7 +19618,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48311,
+        "name": "Spectral Scythe",
         "animationSequences": [
           35489
         ],
@@ -19316,8 +19629,10 @@
             "casterGraphic": 7893
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48312,
@@ -19413,7 +19728,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48312,
+        "name": "Spectral Scythe",
         "animationSequences": [
           35491
         ],
@@ -19423,8 +19739,10 @@
             "casterGraphic": 7894
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48313,
@@ -19519,7 +19837,8 @@
         "transform": "CS8247 conditional branch referenced"
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48313,
+        "name": "Spectral Scythe",
         "animationSequences": [
           35493
         ],
@@ -19529,8 +19848,10 @@
             "casterGraphic": 7895
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48314,
@@ -19639,7 +19960,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48314,
+        "name": "Death Skulls",
         "animationSequences": [
           35472
         ],
@@ -19650,8 +19972,10 @@
             "projectile": 7882
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48324,
@@ -19761,7 +20085,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 48324,
+        "name": "Living Death",
         "animationSequences": [
           35475
         ],
@@ -19770,8 +20095,10 @@
             "sequence": 35475
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": "Already sends35475. LIVE FAIL remains; post-movement frame diagnostic added, not a claimed fix"
     },
     {
       "struct": 48325,
@@ -19857,7 +20184,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48326,
@@ -19945,7 +20273,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48327,
@@ -20035,7 +20364,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48328,
@@ -20125,7 +20455,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48329,
@@ -20215,7 +20546,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48330,
@@ -20307,7 +20639,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48331,
@@ -20399,7 +20732,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 48332,
@@ -20490,7 +20824,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 49072,
@@ -20581,7 +20916,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 49390,
@@ -20668,7 +21004,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 49531,
@@ -20751,7 +21088,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 50069,
@@ -20821,7 +21159,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52777,
@@ -20902,7 +21241,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52781,
@@ -21011,7 +21351,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 52781,
+        "name": "Rend",
         "animationSequences": [
           37416,
           37417,
@@ -21041,8 +21382,10 @@
             "casterGraphic": 945
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52782,
@@ -21128,7 +21471,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52783,
@@ -21213,7 +21557,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52784,
@@ -21298,7 +21643,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52785,
@@ -21383,7 +21729,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52786,
@@ -21462,7 +21809,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52787,
@@ -21539,7 +21887,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52788,
@@ -21623,7 +21972,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52789,
@@ -21708,7 +22058,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52790,
@@ -21790,7 +22141,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": "CS8247 conditional branch referenced"
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52795,
@@ -21868,7 +22220,8 @@
         "movement": false,
         "aoe": "per-ability geometry in Native950MeleeCombat; full acceptance pending",
         "transform": null
-      }
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52796,
@@ -21977,7 +22330,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 52796,
+        "name": "Imbue: Shadows",
         "animationSequences": [
           37518,
           37519,
@@ -21994,8 +22348,10 @@
             "sequence": 37520
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     },
     {
       "struct": 52799,
@@ -22102,7 +22458,8 @@
         "transform": null
       },
       "presentationAudit": {
-        "report": "protocol-analysis/combat-presentation-audit-950-20260923.json",
+        "struct": 52799,
+        "name": "Galeshot",
         "animationSequences": [
           24382,
           32828,
@@ -22146,25 +22503,32 @@
             "impactGraphic": 8991
           }
         ],
-        "renderedAcceptance": "PENDING"
-      }
+        "liveAcceptance": "pending; metadata and transport admission cannot prove rendered suitability",
+        "renderedAcceptance": "PENDING; see current userLiveResults"
+      },
+      "livePolishNotes": ""
     }
   ],
   "userLiveResults": {
-    "bankItemsKeybindRecovery": "LIVE PASS",
-    "diveChosenTileMovement": "LIVE PASS; forced arrival dismissed conjures; animation missing",
-    "deathSkullsTravellingBounce": "LIVE PASS",
-    "queueholdNativeRing": "LIVE PASS",
-    "ordinaryManualQueueRing": "NOT YET LIVE VERIFIED",
-    "conjureTargetSwitching": "LIVE PASS",
-    "revolution": "LIVE PASS/PARTIAL; preserve foundation",
-    "conjureAttackPresentation": "LIVE FAIL; 277 attacks marked unresolved",
-    "conjurePlacement": "LIVE FAIL; spawned under owner",
-    "residualSoulResources": "LIVE PASS; 0-3 and Soul Strike/Volley recorded",
-    "residualSoulWorldVisual": "LIVE FAIL",
-    "conduitAbilityAvailability": "LIVE FAIL; equipped conduit still reported missing",
-    "fingerConsumption": "NOT EXERCISED; Necrosis stayed at12",
-    "buffDebuffPanels": "LIVE FAIL"
+    "acceptedAt": "2026-09-24; latest user report and session-20260924-010148-657-jaxa",
+    "bankItemsKeybindRecovery": "CONFIRMED LIVE; preserve context24 close fix",
+    "diveChosenTileMovement": "CONFIRMED LIVE; preserve chosen tile",
+    "conjuresSurviveDiveSurge": "CONFIRMED LIVE",
+    "deathSkullsTravellingBounce": "CONFIRMED LIVE",
+    "queueholdNativeRing": "CONFIRMED LIVE",
+    "ordinaryManualQueue": "LIVE FAIL for long cooldown; successor persistent queue IMPLEMENTED - LIVE TEST PENDING",
+    "conjureTargetSwitching": "CONFIRMED LIVE; ownership/follow working",
+    "revolution": "CONFIRMED LIVE / PARTIAL; preserve foundation",
+    "conjureAttackPresentation": "PARTIAL / LIVE FAIL; exact actor attack/spawn/expiry identities unresolved",
+    "residualSoulWorldVisual": "CONFIRMED LIVE; retain look and per-viewer persistence",
+    "residualSoulLifetime": "LIVE FAIL during ongoing combat; successor accounts for owned delayed hits and incoming damage; LIVE TEST PENDING",
+    "conduitAbilityAvailability": "CONFIRMED LIVE",
+    "necrosis": "CONFIRMED LIVE: generate, display, consume",
+    "buffDebuffPanels": "CONFIRMED LIVE; preserve native panels",
+    "livingDeathPresentation": "PARTIAL / LIVE FAIL; known sequence35475 reaches server cast; successor adds frame-boundary diagnostic",
+    "berserkPresentation": "LIVE FAIL; successor binds shared exact950 pose35135; LIVE TEST PENDING",
+    "overloadNecromancy": "LIVE FAIL; successor boost/damage/stat-wire/expiry AUTOMATED VERIFIED; LIVE TEST PENDING",
+    "soulStrikeTiming": "Latest captured test used Volley48301; Soul Strike48299 not observed. Volley serial release corrected, Soul Strike existing same-impact AoE retained."
   },
-  "successorLiveAcceptance": "PENDING; offline checks are not Vulkan acceptance"
+  "successorLiveAcceptance": "PENDING: combat-live-successor-polish-20260924; no new visual promoted from offline tests"
 }

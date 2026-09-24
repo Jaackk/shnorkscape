@@ -29,7 +29,7 @@ public final class Native950CombatAudit {
             row.put("weaponRequirement",d.effect==Native950AbilityCatalog.Effect.MOVEMENT?"none":"matching attack style and admitted 950 equipment");
             row.put("damageModel","classic tier-derived baseline x explicit Alpha coefficient; not retail EOC accuracy/balance");
             row.put("revolutionEligible",d.revolutionEligible());
-            row.put("manualQueue",d.effect==Native950AbilityCatalog.Effect.MOVEMENT?"immediate utility path":"one replacement request; waits for GCD/animation/channel; own cooldown window <=3 ticks; state revalidated");
+            row.put("manualQueue",d.effect==Native950AbilityCatalog.Effect.MOVEMENT?"immediate utility path":"one replacement request; waits for GCD/animation/channel; any own cooldown; preserved while Revolution runs; state revalidated at execution");
             row.put("cancellation",d.effect==Native950AbilityCatalog.Effect.BUFF?"death/logout/world clear; persists through combat stop until expiry":"queue and pending hits cleared on combat stop/death/logout/teleport; channels revalidate range/style/hands/weapon identity");
             row.put("stunBind",d.effect==Native950AbilityCatalog.Effect.STUN?"5 ticks NPC attack/follow suppression; immunity and charge systems incomplete":"none implemented");
             row.put("dot",d.effect==Native950AbilityCatalog.Effect.BLEED?"Alpha opening hit plus 3 follow-ups every 2 ticks; retail bleed model incomplete":"none");

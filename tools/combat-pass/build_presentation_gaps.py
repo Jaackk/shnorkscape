@@ -3,7 +3,7 @@ import json, collections
 from pathlib import Path
 root=Path(__file__).resolve().parents[2]
 source=root/'protocol-analysis/combat-canonical-matrix-950-20260923.json'
-audit=json.loads((root/'protocol-analysis/combat-presentation-audit-950-20260923.json').read_text())
+audit=json.loads((root/'protocol-analysis/combat-presentation-audit-950-20260924.json').read_text())
 matrix=json.loads(source.read_text(encoding='utf-8'))
 by_id={r['struct']:r for r in matrix['abilities']}
 pins={int(line.split('=')[0][3:]) for line in (root/'Ataraxia950/resources/native950/combat-effects-950.properties').read_text().splitlines() if line.startswith('id.')}
@@ -26,11 +26,13 @@ for binding in audit['abilities']:
     if sid in (48302,48304,48306,31820,33965,48303,48305,48307,32342):
         fields['conjureActorAttack']={'status':'MISSING: actor attack identity unproven; not replaced by player casting animation'}
         fields['conjureActorSpawnDespawnCommandFx']={'status':'PARTIAL: exact actor bindings unproven; not generic NPC substitutions'}
-        fields['conjureIdleFollow']={'status':'CACHE BOUND via companion BAS; visual model semantics remain live pending'}
+        fields['conjureIdleFollow']={'status':'CONFIRMED LIVE: companion models, follow and movement persistence; preserve'}
+    if sid==48324:fields['animation']['status']='PARTIAL / LIVE FAIL: 35475 is bound; actual activation visual still missing; new post-movement diagnostic only'
+    if sid==14707:fields['animation']['status']='IMPLEMENTED - LIVE TEST PENDING: shared 35135 pose from two exact950 named Berserk variants; separate effect unresolved'
     rows.append({'struct':sid,'name':binding['name'],'nativeBooks':canonical.get('nativeBooks',[]),'implementation':'PARTIAL','stages':fields})
 report={'revision':950,'sourceMatrix':source.name,'scope':'Every admitted ability from exact-cache presentation audit; canonical entries plus admitted conditional/utility entries. No COMPLETE promotion.',
  'interpretation':'An absent parameter does not prove a projectile/impact is required. UNRESOLVED REQUIREMENT/IDENTITY needs semantic or visual evidence, not an invented graphic. Cache-bound IDs prove admission, not rendered suitability.',
  'summary':{'admittedAbilities':len(rows),'missingAnimationBindings':sum(not r['stages']['animation']['ids'] for r in rows),'graphicsRejectedByCurrentGate':sum(len(s.get('rejectedByIdentityGate',[])) for r in rows for s in r['stages'].values()),'complete':0},'abilities':rows}
-output=root/'protocol-analysis/combat-presentation-gaps-950-20260923.json'
+output=root/'protocol-analysis/combat-presentation-gaps-950-20260924.json'
 output.write_bytes((json.dumps(report,indent=2)+'\n').encode())
 print(json.dumps(report['summary']))

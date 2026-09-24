@@ -170,7 +170,7 @@ public final class Native950AdminCommands {
                 reply(channel,Native950Workspace.status(p));break;
             case "comp":
                 Native950Completionist.grant(p);
-                reply(channel,"Completionist development state granted: 200m XP, all local skill caps, tracked quests, achievements and cape flags. Saved with this local profile.");
+                reply(channel,"Completionist development state granted: 200m XP, all local skill caps, native quests and combat unlocks, achievements and cape flags. Saved with this local profile.");
                 break;
             case "wars": case "warsretreat":reply(channel,Native950WarsRetreat.teleport(p,true));break;
             case "death": case "deathsoffice":reply(channel,Native950WarsRetreat.deathsOffice(p));break;

@@ -1073,6 +1073,12 @@ public final class Native950Interactions {
         }
         NPC clicked = World.getNPCs().get(action.index());
         if (clicked == null) { reject("That NPC is no longer in the world"); return; }
+        if(clicked.isNative950Conjure()&&action.option()==Native950ActionRouter.NATIVE_NPC_EXAMINE_OPTION){
+            if(!player.getMapRegionsIds().contains(clicked.getRegionId())||!player.getControlerManager().processNPCExamine(clicked)){
+                reject("That conjure is not available to examine");return;
+            }
+            channel.write(Native950Packets.gameMessage(0,Native950Conjures.verifiedName(clicked.getId())+" - a conjured spirit from the Underworld."));return;
+        }
         if (clicked.isCantInteract() || !player.getMapRegionsIds().contains(clicked.getRegionId())) {
             reject("That NPC is not available"); return;
         }

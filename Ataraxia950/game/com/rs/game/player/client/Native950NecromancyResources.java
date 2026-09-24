@@ -10,6 +10,7 @@ final class Native950NecromancyResources {
     static final int NECROSIS_VAR=10986, SOULS_VAR=11035;
     private static final class State { int necrosis,souls,scythe; long lastCombat,scytheUntil; }
     private final Map<Player,State> states=new IdentityHashMap<>();
+    void combatActivity(Player player,long tick){State s=states.get(player);if(s!=null)s.lastCombat=tick;}
     int necrosis(Player player){State s=states.get(player);return s==null?0:s.necrosis;}
     int souls(Player player){State s=states.get(player);return s==null?0:s.souls;}
     int fingerCost(Player player){return Math.max(0,60-10*Math.min(6,necrosis(player)));}
@@ -53,7 +54,10 @@ final class Native950NecromancyResources {
             int before=s.souls;
             // Necrosis has no timer; residual souls expire after six seconds outside combat.
             s.souls=tick-s.lastCombat>=10?0:Math.min(s.souls,soulCap(player));
-            if(before!=s.souls)publish(player,s);
+            if(before!=s.souls){
+                Native950BugTest.event(player,"combat","soul-count-lifecycle","before",before,"after",s.souls,"tick",tick,"lastCombatTick",s.lastCombat,"reason",tick-s.lastCombat>=10?"out-of-combat-expiry":"conduit-cap");
+                publish(player,s);
+            }
             if(s.souls>0&&player.getRealChannel()!=null)player.getRealChannel().write(
                 com.rs.network.protocol.modern950.Native950Packets.runClientScript(4252,48334,(int)Math.max(0,10-(tick-s.lastCombat))));
         }

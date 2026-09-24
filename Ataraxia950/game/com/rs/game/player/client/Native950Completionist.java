@@ -22,6 +22,7 @@ public final class Native950Completionist {
         player.setCompletedRfd();
         if (player.getAchievements() != null) player.getAchievements().quickFinish();
         if (player.getQuestManager() != null) player.getQuestManager().completeAllForLocalDevelopment();
+        Native950CombatProgression.grant(player);
         player.getSkills().init();
         player.refreshHitPoints();
         if (player.getPrayer() != null) player.getPrayer().refreshPrayerPoints();

@@ -188,6 +188,9 @@ final class Native950AbilityCatalog {
         int family=weapon==null?0:weapon.getCSOpcode(686);
         RS3ClientScriptMap table=enumId>0?RS3ClientScriptMap.getMap(enumId):null;
         Object flat=d.getValues()==null?null:d.getValues().get(2914L);
+        // Both exact950 named Berserk variants share this player pose; their cosmetic models stay separate.
+        // Jagex's 2023-01-16 release identifies Chaotic as a variant of the updated standard Berserk.
+        if(struct==14707&&flat==null&&structParam(39860,2535)==35135&&structParam(47230,2535)==35135)flat=35135;
         if(struct==48324&&flat==null)flat=d.getValues().get(2535L); // Exact Living Death sequence field.
         if(struct==48301&&flat==null&&sequenceParam(35469,2933)==targetGraphic(struct))flat=35469;
         // Undercut named Volley35469 corroborated by950 SeqType2933 == Struct48301 impact7879.

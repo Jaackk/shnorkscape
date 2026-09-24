@@ -150,6 +150,7 @@ public final class Native950Quests {
     }
     private void travelHistory(int direction){int next=historyIndex+direction;if(next<0||next>=history.size())return;historyIndex=next;select(history.get(next),false,journal);}
     private void syncKnownProgress(){
+        if(player.isCompT()){Native950CombatProgression.grant(player);return;}
         int points=0;for(Native950QuestCatalog.Quest q:Native950QuestCatalog.all()){
             if(q.key!=126&&q.key!=136&&q.key!=162)continue;int status=state(q);
             if(status==2)points+=q.points;
@@ -161,6 +162,7 @@ public final class Native950Quests {
         var(1297,points);var(423,Native950QuestCatalog.maximumPoints());
     }
     int state(Native950QuestCatalog.Quest q){
+        if(player.isCompT())return 2;
         QuestManager.Quests legacy;
         switch(q.key){case 126:legacy=QuestManager.Quests.KINGS_RANSOM;break;case 136:legacy=QuestManager.Quests.PERIL_OF_ICE_MONTAINS;break;case 162:legacy=QuestManager.Quests.NOMADS_REQUIEM;break;default:return 0;}
         if(player.getQuestManager()==null)return 0;

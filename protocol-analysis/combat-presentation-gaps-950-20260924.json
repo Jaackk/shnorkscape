@@ -1,0 +1,2892 @@
+{
+  "revision": 950,
+  "sourceMatrix": "combat-canonical-matrix-950-20260923.json",
+  "scope": "Every admitted ability from exact-cache presentation audit; canonical entries plus admitted conditional/utility entries. No COMPLETE promotion.",
+  "interpretation": "An absent parameter does not prove a projectile/impact is required. UNRESOLVED REQUIREMENT/IDENTITY needs semantic or visual evidence, not an invented graphic. Cache-bound IDs prove admission, not rendered suitability.",
+  "summary": {
+    "admittedAbilities": 85,
+    "missingAnimationBindings": 19,
+    "graphicsRejectedByCurrentGate": 0,
+    "complete": 0
+  },
+  "abilities": [
+    {
+      "struct": 14678,
+      "name": "Barge",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37394,
+            37395,
+            37396,
+            37397
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            9018
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14679,
+      "name": "Adaptive Strike",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37388,
+            37389,
+            37390,
+            37406,
+            37407,
+            37408
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            9012
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14682,
+      "name": "Backhand",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18154,
+            18167,
+            18168,
+            18169
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14684,
+      "name": "Flurry",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37428,
+            37429
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            9016
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14686,
+      "name": "Overpower",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18177,
+            18178,
+            18179,
+            18180
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            3584,
+            3585,
+            3586,
+            3587
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14688,
+      "name": "Meteor Strike",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18175,
+            18198,
+            18199
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            9053
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 44244,
+      "name": "Dismember",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37409,
+            37410,
+            37411,
+            37412,
+            37413,
+            37414
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            9013
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14700,
+      "name": "Punish",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18560,
+            18562,
+            18563,
+            18564
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            946
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14701,
+      "name": "Fury",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37421,
+            37422,
+            37423,
+            37424,
+            37425,
+            37426
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            9014
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14704,
+      "name": "Assault",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18577,
+            18578,
+            18579,
+            18580
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            9077,
+            9078
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14685,
+      "name": "Hurricane",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37437,
+            37438,
+            37439
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            9017
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14707,
+      "name": "Berserk",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35135
+          ],
+          "status": "IMPLEMENTED - LIVE TEST PENDING: shared 35135 pose from two exact950 named Berserk variants; separate effect unresolved"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14663,
+      "name": "Piercing Shot",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            32827,
+            37470,
+            37471,
+            37472,
+            37473,
+            37474
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7240
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            8981
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14664,
+      "name": "Binding Shot",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18459,
+            18460,
+            18461,
+            18462,
+            18463,
+            32824
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            3488
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14666,
+      "name": "Snipe",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            32823,
+            37494,
+            37496,
+            37498,
+            37500,
+            37502,
+            37504
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            9027,
+            9028,
+            9029,
+            9030,
+            9031,
+            9032
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            8985
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14668,
+      "name": "Ricochet",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            32827,
+            37475,
+            37476,
+            37477,
+            37478,
+            37479
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7240
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            8983
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14669,
+      "name": "Snap Shot",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            24382,
+            32828,
+            37445,
+            37447,
+            37449,
+            37451,
+            37453
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7241,
+            9039,
+            9040,
+            9041,
+            9042,
+            9043
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            8991
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14670,
+      "name": "Rapid Fire",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35773,
+            37480,
+            37482,
+            37484,
+            37486,
+            37488,
+            37490,
+            37492
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            9020,
+            9021,
+            9022,
+            9023,
+            9024,
+            9025,
+            9026
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            8993
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14674,
+      "name": "Deadshot",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            32829,
+            37522,
+            37524,
+            37526,
+            37528,
+            37530,
+            37532,
+            37534
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            9044,
+            9045,
+            9046,
+            9047,
+            9048,
+            9049,
+            9050
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            8994
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 19251,
+      "name": "Death's Swiftness",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 52799,
+      "name": "Galeshot",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            24382,
+            32828,
+            37445,
+            37447,
+            37449,
+            37451,
+            37453
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7241,
+            9039,
+            9040,
+            9041,
+            9042,
+            9043
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            8991
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 28177,
+      "name": "Shadow Tendrils",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            23219,
+            23222,
+            23631
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            4666
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            4661
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 52796,
+      "name": "Imbue: Shadows",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37518,
+            37519,
+            37520
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14727,
+      "name": "Impact",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37357,
+            37358
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            9004
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [
+            9007
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "impactGraphic": {
+          "ids": [
+            9006
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14728,
+      "name": "Chain",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37354,
+            37355
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [
+            8968
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "impactGraphic": {
+          "ids": [
+            8969
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14729,
+      "name": "Combust",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37349,
+            37350
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            8170
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14730,
+      "name": "Dragon Breath",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            36639,
+            36640
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14731,
+      "name": "Asphyxiate",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37352,
+            37353
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            9003
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14733,
+      "name": "Wild Magic",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37365,
+            37366
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [
+            8966
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "impactGraphic": {
+          "ids": [
+            8967
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14735,
+      "name": "Tsunami",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37100,
+            37101
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            3562
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14736,
+      "name": "Omnipower",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37359,
+            37360
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            8976
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [
+            8974
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "impactGraphic": {
+          "ids": [
+            8975
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 19342,
+      "name": "Sonic Wave",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            36641,
+            36651
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            9008
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [
+            9010
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "impactGraphic": {
+          "ids": [
+            9009
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 19343,
+      "name": "Concentrated Blast",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37338,
+            37340
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            8970,
+            8971
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [
+            8972
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "impactGraphic": {
+          "ids": [
+            8973
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 28180,
+      "name": "Smoke Tendrils",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            23218,
+            23641
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            4665
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            4663
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14726,
+      "name": "Surge",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 47129,
+      "name": "Dive",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING; NO GUESSED MOVEMENT ANIMATION"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 1488,
+      "name": "Bladed Dive",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14665,
+      "name": "Escape",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 19254,
+      "name": "Sunshine",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18364,
+            18365,
+            18366,
+            18367,
+            18368,
+            18369,
+            18370
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            3564
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14709,
+      "name": "Pulverise",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18540,
+            18588,
+            18595,
+            27828
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            3473
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            9080
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 14671,
+      "name": "Bombardment",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18503,
+            18504,
+            18505,
+            18506,
+            18507,
+            18508,
+            18509,
+            24382,
+            32826
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            3524
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            3525
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 31985,
+      "name": "Corruption Blast",
+      "nativeBooks": [
+        "magic"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            1068,
+            23958
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [
+            5711
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 31986,
+      "name": "Corruption Shot",
+      "nativeBooks": [
+        "ranged"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18520,
+            18521,
+            18522,
+            18523,
+            18524,
+            18525,
+            18526,
+            32827
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            4588,
+            4589,
+            4590,
+            4591,
+            4592,
+            4593,
+            4594,
+            7240
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [
+            5716
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "impactGraphic": {
+          "ids": [
+            5715
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 52781,
+      "name": "Rend",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            37416,
+            37417,
+            37418,
+            37419,
+            37420
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            945
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14710,
+      "name": "Anticipation",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18069,
+            18092,
+            18093,
+            18094,
+            18095,
+            18096
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14711,
+      "name": "Freedom",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18070,
+            18071,
+            18072,
+            18073,
+            18088
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14712,
+      "name": "Provoke",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 45340,
+      "name": "Cease",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14713,
+      "name": "Resonance",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14714,
+      "name": "Preparation",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14715,
+      "name": "Bash",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18080
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14716,
+      "name": "Reflect",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18107
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14717,
+      "name": "Debilitate",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18074,
+            18075,
+            18076,
+            18077,
+            18078,
+            18079
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14719,
+      "name": "Barricade",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18091
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            3632
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14720,
+      "name": "Rejuvenate",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18082,
+            18083,
+            18084,
+            18085,
+            18086,
+            18087
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            3617,
+            3618,
+            3619,
+            3620,
+            3622
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14721,
+      "name": "Immortality",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 19252,
+      "name": "Natural Instinct",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 25028,
+      "name": "Devotion",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 24188,
+      "name": "Sacrifice",
+      "nativeBooks": [
+        "constitution"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            22338,
+            22339,
+            22340,
+            22341,
+            22342,
+            22343,
+            22344
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            4495,
+            4496,
+            4497,
+            4498,
+            4499,
+            4500,
+            4501
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 37203,
+      "name": "Limitless",
+      "nativeBooks": [
+        "constitution"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 44225,
+      "name": "Eat Food",
+      "nativeBooks": [
+        "constitution"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 14718,
+      "name": "Revenge",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            18098,
+            18099,
+            18100,
+            18101,
+            18102,
+            18103
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            3616
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 45045,
+      "name": "Divert",
+      "nativeBooks": [
+        "defence"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 46279,
+      "name": "Chaos Roar",
+      "nativeBooks": [
+        "melee"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            34957,
+            34958
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            6641
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 48302,
+      "name": "Conjure Skeleton Warrior",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35502
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7899
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "conjureActorAttack": {
+          "status": "MISSING: actor attack identity unproven; not replaced by player casting animation"
+        },
+        "conjureActorSpawnDespawnCommandFx": {
+          "status": "PARTIAL: exact actor bindings unproven; not generic NPC substitutions"
+        },
+        "conjureIdleFollow": {
+          "status": "CONFIRMED LIVE: companion models, follow and movement persistence; preserve"
+        }
+      }
+    },
+    {
+      "struct": 48303,
+      "name": "Command Skeleton Warrior",
+      "nativeBooks": [],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "conjureActorAttack": {
+          "status": "MISSING: actor attack identity unproven; not replaced by player casting animation"
+        },
+        "conjureActorSpawnDespawnCommandFx": {
+          "status": "PARTIAL: exact actor bindings unproven; not generic NPC substitutions"
+        },
+        "conjureIdleFollow": {
+          "status": "CONFIRMED LIVE: companion models, follow and movement persistence; preserve"
+        }
+      }
+    },
+    {
+      "struct": 48304,
+      "name": "Conjure Putrid Zombie",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35502
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7899
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "conjureActorAttack": {
+          "status": "MISSING: actor attack identity unproven; not replaced by player casting animation"
+        },
+        "conjureActorSpawnDespawnCommandFx": {
+          "status": "PARTIAL: exact actor bindings unproven; not generic NPC substitutions"
+        },
+        "conjureIdleFollow": {
+          "status": "CONFIRMED LIVE: companion models, follow and movement persistence; preserve"
+        }
+      }
+    },
+    {
+      "struct": 48305,
+      "name": "Command Putrid Zombie",
+      "nativeBooks": [],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "conjureActorAttack": {
+          "status": "MISSING: actor attack identity unproven; not replaced by player casting animation"
+        },
+        "conjureActorSpawnDespawnCommandFx": {
+          "status": "PARTIAL: exact actor bindings unproven; not generic NPC substitutions"
+        },
+        "conjureIdleFollow": {
+          "status": "CONFIRMED LIVE: companion models, follow and movement persistence; preserve"
+        }
+      }
+    },
+    {
+      "struct": 48306,
+      "name": "Conjure Vengeful Ghost",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35502
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7899
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "conjureActorAttack": {
+          "status": "MISSING: actor attack identity unproven; not replaced by player casting animation"
+        },
+        "conjureActorSpawnDespawnCommandFx": {
+          "status": "PARTIAL: exact actor bindings unproven; not generic NPC substitutions"
+        },
+        "conjureIdleFollow": {
+          "status": "CONFIRMED LIVE: companion models, follow and movement persistence; preserve"
+        }
+      }
+    },
+    {
+      "struct": 48307,
+      "name": "Command Vengeful Ghost",
+      "nativeBooks": [],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "conjureActorAttack": {
+          "status": "MISSING: actor attack identity unproven; not replaced by player casting animation"
+        },
+        "conjureActorSpawnDespawnCommandFx": {
+          "status": "PARTIAL: exact actor bindings unproven; not generic NPC substitutions"
+        },
+        "conjureIdleFollow": {
+          "status": "CONFIRMED LIVE: companion models, follow and movement persistence; preserve"
+        }
+      }
+    },
+    {
+      "struct": 31820,
+      "name": "Conjure Phantom Guardian",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35502
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7899
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "conjureActorAttack": {
+          "status": "MISSING: actor attack identity unproven; not replaced by player casting animation"
+        },
+        "conjureActorSpawnDespawnCommandFx": {
+          "status": "PARTIAL: exact actor bindings unproven; not generic NPC substitutions"
+        },
+        "conjureIdleFollow": {
+          "status": "CONFIRMED LIVE: companion models, follow and movement persistence; preserve"
+        }
+      }
+    },
+    {
+      "struct": 32342,
+      "name": "Command Phantom Guardian",
+      "nativeBooks": [],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [],
+          "status": "MISSING BINDING"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "conjureActorAttack": {
+          "status": "MISSING: actor attack identity unproven; not replaced by player casting animation"
+        },
+        "conjureActorSpawnDespawnCommandFx": {
+          "status": "PARTIAL: exact actor bindings unproven; not generic NPC substitutions"
+        },
+        "conjureIdleFollow": {
+          "status": "CONFIRMED LIVE: companion models, follow and movement persistence; preserve"
+        }
+      }
+    },
+    {
+      "struct": 33965,
+      "name": "Conjure Undead Army",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35502
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7899
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "conjureActorAttack": {
+          "status": "MISSING: actor attack identity unproven; not replaced by player casting animation"
+        },
+        "conjureActorSpawnDespawnCommandFx": {
+          "status": "PARTIAL: exact actor bindings unproven; not generic NPC substitutions"
+        },
+        "conjureIdleFollow": {
+          "status": "CONFIRMED LIVE: companion models, follow and movement persistence; preserve"
+        }
+      }
+    },
+    {
+      "struct": 48296,
+      "name": "Touch of Death",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35456
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7859
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            7860
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 48297,
+      "name": "Finger of Death",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35458
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7861
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            7862
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 48298,
+      "name": "Soul Sap",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35461
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7863
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            7864
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 48299,
+      "name": "Soul Strike",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35466
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7871
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [
+            7873
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "impactGraphic": {
+          "ids": [
+            7872
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 48301,
+      "name": "Volley of Souls",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35469
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [
+            7880
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "impactGraphic": {
+          "ids": [
+            7879
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 48309,
+      "name": "Blood Siphon",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35482
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7889
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 48324,
+      "name": "Living Death",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35475
+          ],
+          "status": "PARTIAL / LIVE FAIL: 35475 is bound; actual activation visual still missing; new post-movement diagnostic only"
+        },
+        "casterGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 48308,
+      "name": "Bloat",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35477
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7884
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [
+            7885
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        }
+      }
+    },
+    {
+      "struct": 48311,
+      "name": "Spectral Scythe",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35489
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7893
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 48312,
+      "name": "Spectral Scythe",
+      "nativeBooks": [],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35491
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7894
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 48313,
+      "name": "Spectral Scythe",
+      "nativeBooks": [],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35493
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7895
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "UNRESOLVED REQUIREMENT/IDENTITY"
+        }
+      }
+    },
+    {
+      "struct": 48314,
+      "name": "Death Skulls",
+      "nativeBooks": [
+        "necromancy"
+      ],
+      "implementation": "PARTIAL",
+      "stages": {
+        "animation": {
+          "ids": [
+            35472
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED"
+        },
+        "casterGraphic": {
+          "ids": [
+            7881
+          ],
+          "status": "CACHE BOUND; LIVE ACCEPTANCE REQUIRED",
+          "rejectedByIdentityGate": []
+        },
+        "projectile": {
+          "ids": [
+            7882
+          ],
+          "status": "LIVE PASS: travelling/bouncing; preserve",
+          "rejectedByIdentityGate": []
+        },
+        "impactGraphic": {
+          "ids": [],
+          "status": "LIVE PARTIAL: separate impact asset not established"
+        }
+      }
+    }
+  ]
+}

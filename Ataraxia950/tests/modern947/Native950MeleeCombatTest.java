@@ -129,6 +129,26 @@ public class Native950MeleeCombatTest {
         assertEquals(0,player.getVarsManager().getValue(4164));
         }finally{values.set(book,previous);}
     }
+    @Test public void longManualQueueSurvivesRevolutionUntilOwnCooldownExpires()throws Exception{
+        player.getSkills().set(Skills.ATTACK,99);npc.setHitpoints(100000);
+        java.util.Map<String,Integer> saved=new java.util.HashMap<>();
+        saved.put("actionBar.0",Native950ActionBar.pack(1,3));
+        saved.put("actionBar.1",Native950ActionBar.pack(1,2));
+        saved.put("actionBar.revolution",1);player.getNative950ActionBar().restore(saved);
+        com.rs.cache.loaders.rs3.RS3ClientScriptMap book=com.rs.cache.loaders.rs3.RS3ClientScriptMap.getMap(10147);
+        java.lang.reflect.Field values=book.getClass().getDeclaredField("values");values.setAccessible(true);
+        Object previous=values.get(book);java.util.HashMap<Long,Object> entries=new java.util.HashMap<>();
+        entries.put(3L,14682);entries.put(2L,14679);values.set(book,entries);
+        try{
+            combat.attack(player,npc);assertNull(combat.ability(player,14682));
+            assertEquals("Backhand queued.",combat.ability(player,14682));
+            int hp=npc.getHitpoints();
+            for(int i=0;i<24;i++){step();assertEquals("Revolution must not clear manual ring",1,player.getVarsManager().getValue(4164));}
+            assertTrue("Revolution still attacks while manual cooldown waits",npc.getHitpoints()<hp);
+            for(int i=0;i<6;i++)step();
+            assertEquals("Ready manual cast consumed its queue",0,player.getVarsManager().getValue(4164));
+        }finally{values.set(book,previous);}
+    }
     @Test public void defensiveThresholdAdmissionAndShieldRequirementsAreNotBypassed(){
         player.getSkills().set(Skills.DEFENCE,99);
         assertTrue(combat.ability(player,14719).contains("shield"));
@@ -145,7 +165,7 @@ public class Native950MeleeCombatTest {
         assertNull(combat.ability(player,19254));step();
         assertEquals(0,player.getCombatDefinitions().getSpecialAttackPercentage());
         player.getCombatDefinitions().setSpecialAttackPercentage(100);
-        assertTrue(combat.ability(player,19254).contains("cooling"));
+        assertEquals("Sunshine queued.",combat.ability(player,19254));
     }
     @Test public void nextHitDefensivesBlockHealAndReviveThroughTheRealDamagePipeline()throws Exception{
         java.lang.reflect.Field field=Native950MeleeCombat.class.getDeclaredField("buffs");field.setAccessible(true);
@@ -312,10 +332,10 @@ public class Native950MeleeCombatTest {
         for(int i=0;i<4;i++)step();
         assertFalse(combat.isBerserkActive(player));
     }
-    @Test public void ownCooldownCanQueueOnlyWithinOneGlobalCooldownOfReadiness(){
+    @Test public void longOwnCooldownQueuesImmediatelyAndExecutesWhenReady(){
         player.getSkills().set(0,99);player.setDevelopmentGodMode(true);npc.setHitpoints(10000);
         combat.attack(player,npc);combat.ability(player,14682);step();
-        assertTrue(combat.ability(player,14682).contains("24 ticks remaining"));
+        assertEquals("Backhand queued.",combat.ability(player,14682));
         for(int i=0;i<22;i++)step();
         assertEquals("Backhand queued.",combat.ability(player,14682));
         int hp=npc.getHitpoints();step();step();assertTrue(npc.getHitpoints()<hp);
@@ -485,7 +505,7 @@ public class Native950MeleeCombatTest {
         step();assertEquals(0,npc.getNextHits().size());
         step();assertEquals(1,npc.getNextHits().size());assertEquals(0,combat.pendingHitCount(player));
         step();assertEquals(1,npc.getNextHits().size());assertEquals(0,combat.channelEndTick(player));
-        assertTrue(combat.ability(player,14682).contains("25 ticks remaining"));
+        assertEquals("Backhand queued.",combat.ability(player,14682));
     }
     @Test public void losingRangeCancelsChannelFollowUpsRatherThanLandingThroughWalls(){
         player.getSkills().set(0,99);npc.setHitpoints(1000);

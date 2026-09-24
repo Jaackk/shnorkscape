@@ -85,6 +85,17 @@ public class Native950ConjuresTest {
             assertEquals(0,f.first.getVarsManager().getValue(11006));
         }
     }
+    @Test public void valourScalesCommandAndNativeStacksRemainPerOwner(){
+        try(Fixture f=new Fixture()){
+            f.manager.cast(f.first,31820,0);f.manager.cast(f.second,31820,0);
+            for(int i=0;i<30;i++)f.manager.absorb(f.first,100);
+            assertEquals(25,f.first.getVarsManager().getValue(11823));assertEquals(0,f.second.getVarsManager().getValue(11823));
+            f.manager.cast(f.first,32342,1);assertEquals(Integer.valueOf(270),f.damage.get(f.first));
+            assertEquals(0,f.first.getVarsManager().getValue(11823));
+            f.manager.absorb(f.second,100);f.manager.clear(f.first);assertEquals(1,f.second.getVarsManager().getValue(11823));
+            f.manager.clear(f.second);assertEquals(0,f.second.getVarsManager().getValue(11823));
+        }
+    }
     @Test public void exactCacheLevelLimitsAndActiveCommandTransform(){
         assertEquals(1,Native950Conjures.limit(51));assertEquals(2,Native950Conjures.limit(52));
         assertEquals(3,Native950Conjures.limit(84));assertEquals(4,Native950Conjures.limit(106));

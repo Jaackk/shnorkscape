@@ -1,0 +1,747 @@
+{
+  "source": "exact950 CS15411 permanent unlock branches; enum2252 QuestType finished thresholds",
+  "scriptSHA256": "d6d1fe9c0a1ab5753f820a5623022b6b38532c5fe9847a740295a3d9513256c1",
+  "directFlags": [
+    {
+      "abilities": [
+        45048
+      ],
+      "pc": 69,
+      "varbit": 48719,
+      "value": 1
+    },
+    {
+      "abilities": [
+        45046
+      ],
+      "pc": 72,
+      "varbit": 48720,
+      "value": 1
+    },
+    {
+      "abilities": [
+        45045
+      ],
+      "pc": 75,
+      "varbit": 48721,
+      "value": 1
+    },
+    {
+      "abilities": [
+        45450
+      ],
+      "pc": 81,
+      "varbit": 49799,
+      "value": 1
+    },
+    {
+      "abilities": [
+        47221
+      ],
+      "pc": 84,
+      "varbit": 52857,
+      "value": 1
+    },
+    {
+      "abilities": [
+        45800,
+        28927
+      ],
+      "pc": 87,
+      "varbit": 50371,
+      "value": 1
+    },
+    {
+      "abilities": [
+        46279
+      ],
+      "pc": 100,
+      "varbit": 51565,
+      "value": 1
+    },
+    {
+      "abilities": [
+        1488
+      ],
+      "pc": 103,
+      "varbit": 35826,
+      "value": 1
+    },
+    {
+      "abilities": [
+        39530,
+        39531,
+        39532,
+        39533
+      ],
+      "pc": 106,
+      "varbit": 39926,
+      "value": 1
+    },
+    {
+      "abilities": [
+        7120
+      ],
+      "pc": 124,
+      "varbit": 44136,
+      "value": 1
+    },
+    {
+      "abilities": [
+        7122
+      ],
+      "pc": 131,
+      "varbit": 15884,
+      "value": 1
+    },
+    {
+      "abilities": [
+        7123
+      ],
+      "pc": 134,
+      "varbit": 15885,
+      "value": 1
+    },
+    {
+      "abilities": [
+        11659
+      ],
+      "pc": 137,
+      "varbit": 45680,
+      "value": 1
+    },
+    {
+      "abilities": [
+        14833
+      ],
+      "pc": 168,
+      "varbit": 6,
+      "value": 1
+    },
+    {
+      "abilities": [
+        37901
+      ],
+      "pc": 183,
+      "varbit": 36971,
+      "value": 1
+    },
+    {
+      "abilities": [
+        37199
+      ],
+      "pc": 208,
+      "varbit": 34061,
+      "value": 1
+    },
+    {
+      "abilities": [
+        37200
+      ],
+      "pc": 211,
+      "varbit": 34072,
+      "value": 1
+    },
+    {
+      "abilities": [
+        37201
+      ],
+      "pc": 214,
+      "varbit": 34071,
+      "value": 1
+    },
+    {
+      "abilities": [
+        37202
+      ],
+      "pc": 217,
+      "varbit": 34073,
+      "value": 1
+    },
+    {
+      "abilities": [
+        37220
+      ],
+      "pc": 220,
+      "varbit": 34065,
+      "value": 1
+    },
+    {
+      "abilities": [
+        37203
+      ],
+      "pc": 223,
+      "varbit": 34066,
+      "value": 1
+    },
+    {
+      "abilities": [
+        37206
+      ],
+      "pc": 226,
+      "varbit": 34067,
+      "value": 1
+    },
+    {
+      "abilities": [
+        37204
+      ],
+      "pc": 229,
+      "varbit": 34068,
+      "value": 1
+    },
+    {
+      "abilities": [
+        37205
+      ],
+      "pc": 232,
+      "varbit": 34069,
+      "value": 1
+    },
+    {
+      "abilities": [
+        37207
+      ],
+      "pc": 235,
+      "varbit": 34070,
+      "value": 1
+    },
+    {
+      "abilities": [
+        44912
+      ],
+      "pc": 238,
+      "varbit": 49489,
+      "value": 1
+    },
+    {
+      "abilities": [
+        44946
+      ],
+      "pc": 241,
+      "varbit": 49490,
+      "value": 1
+    },
+    {
+      "abilities": [
+        44947
+      ],
+      "pc": 244,
+      "varbit": 49491,
+      "value": 1
+    },
+    {
+      "abilities": [
+        44950
+      ],
+      "pc": 247,
+      "varbit": 49492,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24188
+      ],
+      "pc": 250,
+      "varbit": 21067,
+      "value": 1
+    },
+    {
+      "abilities": [
+        25028
+      ],
+      "pc": 253,
+      "varbit": 21068,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24189
+      ],
+      "pc": 256,
+      "varbit": 21069,
+      "value": 1
+    },
+    {
+      "abilities": [
+        28178,
+        28180,
+        28177,
+        28179
+      ],
+      "pc": 259,
+      "varbit": 22464,
+      "value": 1
+    },
+    {
+      "abilities": [
+        31649
+      ],
+      "pc": 262,
+      "varbit": 28166,
+      "value": 1
+    },
+    {
+      "abilities": [
+        31985
+      ],
+      "pc": 265,
+      "varbit": 28743,
+      "value": 1
+    },
+    {
+      "abilities": [
+        31986
+      ],
+      "pc": 268,
+      "varbit": 28742,
+      "value": 1
+    },
+    {
+      "abilities": [
+        31982
+      ],
+      "pc": 271,
+      "varbit": 28747,
+      "value": 1
+    },
+    {
+      "abilities": [
+        31983
+      ],
+      "pc": 274,
+      "varbit": 28747,
+      "value": 1
+    },
+    {
+      "abilities": [
+        31984
+      ],
+      "pc": 277,
+      "varbit": 28754,
+      "value": 1
+    },
+    {
+      "abilities": [
+        33650
+      ],
+      "pc": 280,
+      "varbit": 32628,
+      "value": 1
+    },
+    {
+      "abilities": [
+        4374
+      ],
+      "pc": 299,
+      "varbit": 30,
+      "value": 1
+    },
+    {
+      "abilities": [
+        11753
+      ],
+      "pc": 302,
+      "varbit": 28,
+      "value": 1
+    },
+    {
+      "abilities": [
+        11780
+      ],
+      "pc": 305,
+      "varbit": 29,
+      "value": 1
+    },
+    {
+      "abilities": [
+        14967
+      ],
+      "pc": 308,
+      "varbit": 31,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24202
+      ],
+      "pc": 311,
+      "varbit": 32,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24225
+      ],
+      "pc": 314,
+      "varbit": 33,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24274
+      ],
+      "pc": 317,
+      "varbit": 34,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24278
+      ],
+      "pc": 320,
+      "varbit": 35,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24298
+      ],
+      "pc": 323,
+      "varbit": 36,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24299
+      ],
+      "pc": 326,
+      "varbit": 37,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24300
+      ],
+      "pc": 329,
+      "varbit": 38,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24302
+      ],
+      "pc": 332,
+      "varbit": 39,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24308
+      ],
+      "pc": 335,
+      "varbit": 40,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24311
+      ],
+      "pc": 348,
+      "varbit": 18523,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24312
+      ],
+      "pc": 351,
+      "varbit": 18524,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24313
+      ],
+      "pc": 354,
+      "varbit": 18525,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24314
+      ],
+      "pc": 357,
+      "varbit": 18526,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24315
+      ],
+      "pc": 360,
+      "varbit": 18527,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24316
+      ],
+      "pc": 363,
+      "varbit": 18528,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24317
+      ],
+      "pc": 366,
+      "varbit": 18529,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24320
+      ],
+      "pc": 369,
+      "varbit": 22430,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24321
+      ],
+      "pc": 372,
+      "varbit": 24967,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24323
+      ],
+      "pc": 375,
+      "varbit": 36173,
+      "value": 1
+    },
+    {
+      "abilities": [
+        24324
+      ],
+      "pc": 378,
+      "varbit": 44270,
+      "value": 1
+    },
+    {
+      "abilities": [
+        39862
+      ],
+      "pc": 381,
+      "varbit": 52518,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48292
+      ],
+      "pc": 384,
+      "varbit": 53270,
+      "value": 1
+    },
+    {
+      "abilities": [
+        53005
+      ],
+      "pc": 387,
+      "varbit": 60739,
+      "value": 1
+    },
+    {
+      "abilities": [
+        14776
+      ],
+      "pc": 500,
+      "varbit": 3901,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48302
+      ],
+      "pc": 513,
+      "varbit": 53571,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48303
+      ],
+      "pc": 516,
+      "varbit": 53572,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48304
+      ],
+      "pc": 519,
+      "varbit": 53573,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48305
+      ],
+      "pc": 522,
+      "varbit": 53574,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48306
+      ],
+      "pc": 525,
+      "varbit": 53575,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48307
+      ],
+      "pc": 528,
+      "varbit": 53576,
+      "value": 1
+    },
+    {
+      "abilities": [
+        31820
+      ],
+      "pc": 531,
+      "varbit": 55973,
+      "value": 1
+    },
+    {
+      "abilities": [
+        32342
+      ],
+      "pc": 534,
+      "varbit": 55974,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48311
+      ],
+      "pc": 537,
+      "varbit": 53577,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48312
+      ],
+      "pc": 540,
+      "varbit": 53578,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48313
+      ],
+      "pc": 543,
+      "varbit": 53579,
+      "value": 1
+    },
+    {
+      "abilities": [
+        33965
+      ],
+      "pc": 546,
+      "varbit": 54631,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48326
+      ],
+      "pc": 559,
+      "varbit": 53580,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48327
+      ],
+      "pc": 562,
+      "varbit": 53581,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48328
+      ],
+      "pc": 565,
+      "varbit": 53582,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48329
+      ],
+      "pc": 568,
+      "varbit": 53583,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48330
+      ],
+      "pc": 571,
+      "varbit": 53584,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48331
+      ],
+      "pc": 574,
+      "varbit": 53585,
+      "value": 1
+    },
+    {
+      "abilities": [
+        48332
+      ],
+      "pc": 577,
+      "varbit": 53586,
+      "value": 1
+    },
+    {
+      "abilities": [
+        49072
+      ],
+      "pc": 580,
+      "varbit": 54732,
+      "value": 1
+    }
+  ],
+  "additionalComparisons": {
+    "51566": 1,
+    "51567": 1,
+    "16374": 11,
+    "53587": 3
+  },
+  "excluded": "44900 temporary Wrack transform; no equipment/resource/active-effect flags",
+  "armySelection": {
+    "script": 18289,
+    "enum": 17157,
+    "vars": [
+      11499,
+      11500,
+      11501,
+      11502
+    ],
+    "defaultValues": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "structures": [
+      48302,
+      48304,
+      48306,
+      31820
+    ],
+    "condition": "developer completionist; only initialise when all four selections empty"
+  }
+}

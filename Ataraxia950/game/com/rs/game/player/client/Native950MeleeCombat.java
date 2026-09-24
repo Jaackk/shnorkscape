@@ -76,6 +76,15 @@ public final class Native950MeleeCombat {
             public boolean reach(NPC actor,NPC target,int range){return distanceToFootprint(actor,target,target.getSize())<=range&&access.bounceReach(actor,target);}
             public int abilityDamage(Player p){return conjureAbilityDamage(p);}
             public int strike(Player p,NPC target,int min,int max){return conjureStrike(p,target,min,max);}
+            public void phantomCommand(Player p,NPC target,int min,int max){
+                // CS13240: primary plus at most four nearby enemies, all attributed to this owner.
+                conjureStrike(p,target,min,max);int remaining=4;
+                java.util.List<Fighter> ordered=new ArrayList<>(fighters.values());ordered.sort((a,b)->Integer.compare(a.npc.getIndex(),b.npc.getIndex()));
+                for(Fighter f:ordered)if(f.npc!=target&&secondaryEligible(p,f)
+                        &&distanceBetweenFootprints(target,target.getSize(),f.npc,f.profile.size)<=1&&access.bounceReach(target,f.npc)){
+                    conjureStrike(p,f.npc,min,max);if(--remaining==0)break;
+                }
+            }
             public void area(Player p,WorldTile origin,int radius,int min,int max){for(Fighter f:new ArrayList<>(fighters.values()))if(distanceToFootprint(origin,f.npc,f.profile.size)<=radius&&secondaryEligible(p,f)&&access.bounceReach(origin,f.npc))conjureStrike(p,f.npc,min,max);}
         });
     }
@@ -304,12 +313,7 @@ public final class Native950MeleeCombat {
             return refusal;
         }
         long remaining=abilityCooldownEnd(player,structure)-tick;
-        // One request, at most one GCD early. A long-cooldown click must not fire much later.
-        if(remaining>3){
-            Native950BugTest.event(player,"combat","ability-queue-rejected","structure",structure,"reason","ability-cooldown",
-                    "cooldownRemainingTicks",remaining,"queueWindowTicks",3);
-            return "That ability is cooling down ("+remaining+" ticks remaining).";
-        }
+        // A manual request owns one persistent queue slot until ready, replaced or cancelled.
         boolean waiting=tick<globalCooldown.getOrDefault(player,0L)||remaining>0
                 ||tick<channelUntil.getOrDefault(player,0L);
         queueAbility(player,structure,waiting);
@@ -370,6 +374,9 @@ public final class Native950MeleeCombat {
         return abilityRefusal(player,structure,false);
     }
     private String abilityRefusal(Player player,int structure,boolean requireGlobalCooldown) {
+        return abilityRefusal(player,structure,requireGlobalCooldown,true);
+    }
+    private String abilityRefusal(Player player,int structure,boolean requireGlobalCooldown,boolean resources) {
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
         if(definition==null)return "That ability is not available in Combat Alpha yet.";
         int style=definition.style();
@@ -389,10 +396,10 @@ public final class Native950MeleeCombat {
         String conjureRefusal=conjures.refusal(player,structure);
         if(conjureRefusal!=null)return conjureRefusal;
         String resourceRefusal=necromancy.refusal(player,structure);
-        if(resourceRefusal!=null)return resourceRefusal;
+        if(resources&&resourceRefusal!=null)return resourceRefusal;
         int energy=structure==48297?necromancy.fingerCost(player):structure==48314?skullsCost(player):definition.adrenalineRequired();
         if(definition.tier==3&&buffs.active(player,Native950CombatBuffs.Type.LIMITLESS,tick))energy=definition.adrenalineCost();
-        if(energy>0&&!player.getCombatDefinitions().isInfiniteAdrenaline()
+        if(resources&&energy>0&&!player.getCombatDefinitions().isInfiniteAdrenaline()
                 &&player.getCombatDefinitions().getSpecialAttackPercentage()<energy)
             return definition.name+" requires "+energy+"% adrenaline.";
         if(definition.offhandRequired&&!matchingOffhand(player,style))return definition.name+" requires a matching off-hand weapon.";
@@ -407,7 +414,7 @@ public final class Native950MeleeCombat {
         if(!playerReach(player,fighter.npc,gear))return "Move within attack range first.";
         String refusal=Native950Slayer.attackRefusal(player,fighter.npc);
         if(refusal==null)refusal=Native950Dungeoneering.attackRefusal(player,fighter.npc);
-        return refusal!=null?refusal:gear.profile==null?null:gear.profile.costRefusal(player);
+        return refusal!=null?refusal:!resources||gear.profile==null?null:gear.profile.costRefusal(player);
     }
     private long abilityCooldownEnd(Player player,int structure){
         Map<Integer,Long> cooldowns=abilityCooldowns.get(player);
@@ -446,15 +453,22 @@ public final class Native950MeleeCombat {
     private boolean performAbility(Player player,Fighter fighter) {
         Integer structure=queuedAbilities.get(player);
         if(structure==null)return false;
-        String refusal=abilityQueueRefusal(player,structure);
+        return performAbility(player,fighter,structure,true);
+    }
+    private boolean performAbility(Player player,Fighter fighter,int structure,boolean manualQueue) {
+        String refusal=abilityRefusal(player,structure,false,false);
+        if(refusal==null&&(tick<globalCooldown.getOrDefault(player,0L)||tick<abilityCooldownEnd(player,structure)
+                ||tick<channelUntil.getOrDefault(player,0L)))return false;
+        if(refusal==null)refusal=abilityQueueRefusal(player,structure);
         if(refusal!=null){
-            clearQueuedAbility(player);
-            Native950BugTest.event(player,"combat","ability-queue-cancelled","structure",structure,"reason",refusal);
-            player.sendMessage(refusal);return false;
+            if(manualQueue){
+                clearQueuedAbility(player);
+                Native950BugTest.event(player,"combat","ability-queue-cancelled","structure",structure,"reason",refusal);
+                player.sendMessage(refusal);
+            }
+            return false;
         }
-        if(tick<globalCooldown.getOrDefault(player,0L)||tick<abilityCooldownEnd(player,structure)
-                ||tick<channelUntil.getOrDefault(player,0L))return true;
-        clearQueuedAbility(player);
+        if(manualQueue)clearQueuedAbility(player);
         Loadout gear=loadouts.get(player);int style=abilityStyle(structure);
         if(style<0)style=gear.profile==null?0:gear.profile.style;
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
@@ -538,7 +552,8 @@ public final class Native950MeleeCombat {
             if(siphon!=null)percent=hit==4?117+rolls.damage(26):22+rolls.damage(6); // Exact950 CS18670.
             int rolled=Math.max(1,maximum*percent/100);
             int requested=Rs2CombatFormula.scaleNative950Damage(rolled,rolls.nativeDamageRemainder(rolled));
-            int hitDelay=structure==48301?hit:definition.hitDelay(hit);
+            // CS18662 describes one non-channelled volley, one hit per soul: a shared flight/impact, not serial casts.
+            int hitDelay=structure==48301?0:definition.hitDelay(hit);
             if(hitDelay>0||projectile>=0){
                 long dueTick=tick+hitDelay;
                 PendingHit pending=new PendingHit(fighter,requested,dueTick,gear,Native950AbilityCatalog.targetGraphic(structure,animation),
@@ -820,10 +835,9 @@ public final class Native950MeleeCombat {
         if(!isAttacking(player,fighter)||!player.getNative950ActionBar().isRevolutionEnabled())return false;
         int candidate=revolutionCandidate(player,player.getNative950ActionBar().revolutionSlots());
         if(candidate<0)return false;
-        queueAbility(player,candidate,false);
         Native950BugTest.event(player,"combat","revolution-selected","structure",candidate,"source","revolution",
                 "activeBar",player.getNative950ActionBar().activeBar()+1);
-        return performAbility(player,fighter);
+        return performAbility(player,fighter,candidate,false);
     }
     private void processDashImpacts(){
         for(Player player:new ArrayList<>(dashImpacts.keySet())){
@@ -1309,6 +1323,10 @@ public final class Native950MeleeCombat {
         return damage(source,target,requested,look,adjusted,buffable,null);
     }
     private int damage(Entity source,Entity target,int requested,Hit.HitLook look,boolean adjusted,boolean buffable,Boolean criticalSnapshot){
+        if(source!=target){
+            if(source instanceof Player)necromancy.combatActivity((Player)source,tick);
+            if(target instanceof Player)necromancy.combatActivity((Player)target,tick);
+        }
         if(!adjusted)requested=prayerAdjustedDamage(source,target,requested,look);
         if(buffable&&source instanceof Player)requested=buffs.outgoing((Player)source,look,requested,tick);
         if(source instanceof Player&&target instanceof NPC&&buffable)requested+=conjures.hauntedBonus((Player)source,(NPC)target,requested,tick);

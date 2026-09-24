@@ -33,6 +33,7 @@ public final class Native950Conjures {
         boolean reach(NPC actor,NPC target,int range);
         int strike(Player owner,NPC target,int minPercent,int maxPercent);
         void area(Player owner,WorldTile origin,int radius,int min,int max);
+        default void phantomCommand(Player owner,NPC target,int min,int max){strike(owner,target,min,max);}
         int abilityDamage(Player owner);
     }
     private static final class Spirit {
@@ -75,7 +76,7 @@ public final class Native950Conjures {
             Spirit spirit=get(owner,k);
             if(spirit==null)throw new IllegalStateException("Conjure disappeared after validation");
             if(k==Kind.ZOMBIE)spirit.explodeAt=tick+4;
-            else if(k==Kind.PHANTOM){NPC target=host.target(owner);if(target!=null)host.strike(owner,target,45,55);spirit.valour=0;}
+            else if(k==Kind.PHANTOM){NPC target=host.target(owner);if(target!=null)host.phantomCommand(owner,target,45*(100+20*spirit.valour)/100,55*(100+20*spirit.valour)/100);spirit.valour=0;publishStacks(owner,spirit);}
             else {spirit.commandUntil=k==Kind.SKELETON?tick+10:spirit.expires;spirit.nextAttack=Math.min(spirit.nextAttack,tick+2);}
             return;
         }
@@ -114,7 +115,7 @@ public final class Native950Conjures {
                 int scale=k==Kind.SKELETON?100+3*spirit.rage:100;
                 int dealt=host.strike(owner,target,k.min*scale/100,k.max*scale/100);
                 if(commanded&&k==Kind.SKELETON&&!target.isDead())host.strike(owner,target,k.min*scale/100,k.max*scale/100);
-                if(k==Kind.SKELETON)spirit.rage=Math.min(25,spirit.rage+1);
+                if(k==Kind.SKELETON){spirit.rage=Math.min(25,spirit.rage+1);publishStacks(owner,spirit);}
                 if(k==Kind.GHOST){owner.heal(dealt*140/100);if(commanded)haunts.computeIfAbsent(owner,p->new IdentityHashMap<>()).put(target,tick+8);}
                 Native950BugTest.event(owner,"combat","conjure-attack","kind",k,"actor",actor.getIndex(),"target",target.getIndex(),"damage",dealt,"attackAnimation","unresolved");
             }
@@ -124,14 +125,23 @@ public final class Native950Conjures {
     }
     private final Map<Player,Map<NPC,Long>> haunts=new IdentityHashMap<>();
     int hauntedBonus(Player owner,NPC target,int damage,long tick){Map<NPC,Long> map=haunts.get(owner);return map!=null&&tick<map.getOrDefault(target,0L)?Math.min(damage/10,host.abilityDamage(owner)/5):0;}
-    int absorb(Player owner,int requested){Spirit s=get(owner,Kind.PHANTOM);if(s==null||requested<=0)return requested;s.valour=Math.min(25,s.valour+1);return requested-Math.min(requested/20,host.abilityDamage(owner)/10);}
+    int absorb(Player owner,int requested){Spirit s=get(owner,Kind.PHANTOM);if(s==null||requested<=0)return requested;s.valour=Math.min(25,s.valour+1);publishStacks(owner,s);return requested-Math.min(requested/20,host.abilityDamage(owner)/10);}
     void clear(Player owner){Map<Kind,Spirit> m=owners.get(owner);if(m!=null)for(Spirit s:new ArrayList<>(m.values()))dismiss(owner,s,0);haunts.remove(owner);}
     void clear(){for(Player p:new ArrayList<>(owners.keySet()))clear(p);haunts.clear();}
     private void dismiss(Player owner,Spirit spirit,long tick){
         Map<Kind,Spirit> m=owners.get(owner);if(m!=null){m.remove(spirit.kind);if(m.isEmpty())owners.remove(owner);}
         host.remove(spirit.actor);publish(owner,spirit,false,tick);
     }
+    // Exact950 CS11077 cases48335/32349; CS17457/6438 cap each at25.
+    private void publishStacks(Player owner,Spirit spirit){
+        int id=spirit.kind==Kind.SKELETON?10997:spirit.kind==Kind.PHANTOM?11823:-1;
+        if(id<0)return;int count=spirit.kind==Kind.SKELETON?spirit.rage:spirit.valour;
+        if(owner.getVarsManager().getValue(id)==count)return;
+        owner.getVarsManager().setVar(id,count);
+        if(owner.getRealChannel()!=null)owner.getRealChannel().write(com.rs.network.protocol.modern950.Native950Packets.varp(id,count));
+    }
     private void publish(Player owner,Spirit spirit,boolean active,long tick){
+        if(!active){spirit.rage=0;spirit.valour=0;}publishStacks(owner,spirit);
         owner.getVarsManager().sendVar(spirit.kind.activeVar,active?1:0);
         int buff=spirit.kind==Kind.PHANTOM?32349:48335+spirit.kind.ordinal();
         Native950CombatEffectUi.timed(owner,buff,active?(int)(spirit.expires-tick):0);
