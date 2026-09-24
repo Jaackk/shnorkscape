@@ -1,0 +1,753 @@
+{
+  "scope": "Research only; source IDs are NOT blanket-approved 950 runtime mappings",
+  "sourceCache": 2670,
+  "sourceRevision": 949,
+  "targetCache": 2691,
+  "targetRevision": 950,
+  "rawDecoderChecks": [
+    {
+      "type": "component",
+      "archive": 0,
+      "entries": 104326,
+      "rawSha256": "343263fc546d502e9fbb6e0093c038bcd6956decb66b6a676f2f33aa7b51d0bb",
+      "viewerMatchesRaw": false,
+      "differingKeys": 55,
+      "sourceOnly": 2,
+      "viewerOnly": 2,
+      "differenceExamples": [
+        {
+          "key": "1433:38",
+          "raw": null,
+          "viewer": "escape_menu:report_issue_layer"
+        },
+        {
+          "key": "1433:39",
+          "raw": null,
+          "viewer": "escape_menu:report_issue_button"
+        },
+        {
+          "key": "1433:40",
+          "raw": "escape_menu:report_issue_layer",
+          "viewer": "escape_menu:report_issue_build"
+        },
+        {
+          "key": "1433:41",
+          "raw": "escape_menu:report_issue_button",
+          "viewer": "escape_menu:report_issue"
+        },
+        {
+          "key": "1433:42",
+          "raw": "escape_menu:report_issue_build",
+          "viewer": "escape_menu:divider_settings_vertical"
+        },
+        {
+          "key": "1433:43",
+          "raw": "escape_menu:report_issue",
+          "viewer": "escape_menu:divider_line_highlight_4"
+        },
+        {
+          "key": "1433:44",
+          "raw": "escape_menu:divider_settings_vertical",
+          "viewer": "escape_menu:divider_line_shadow_4"
+        },
+        {
+          "key": "1433:45",
+          "raw": "escape_menu:divider_line_highlight_4",
+          "viewer": "escape_menu:csat_layer"
+        }
+      ]
+    },
+    {
+      "type": "interface",
+      "archive": 24,
+      "entries": 1881,
+      "rawSha256": "520fe420296d8fed15b3fb4ec10d8c39e3b0047ca7da58b8eed91777c75ac010",
+      "viewerMatchesRaw": true,
+      "differingKeys": 0,
+      "sourceOnly": 0,
+      "viewerOnly": 0,
+      "differenceExamples": []
+    },
+    {
+      "type": "var_player",
+      "archive": 61,
+      "entries": 10627,
+      "rawSha256": "2e8d6c64cd596fc5443c94056797c0a77e6d60752143d05b082a3caa55425e7c",
+      "viewerMatchesRaw": true,
+      "differingKeys": 0,
+      "sourceOnly": 0,
+      "viewerOnly": 0,
+      "differenceExamples": []
+    }
+  ],
+  "varbitSplit": {
+    "baseOffset": 13469,
+    "entries": 50690,
+    "allRawEntriesMatchViewer": true,
+    "viewerAdditionalEntries": 3210,
+    "viewerAdditionalEntriesNotValidated": true
+  },
+  "representativeSymbols": [
+    {
+      "type": "component",
+      "sourceId": "623:27",
+      "name": "machinima_skybox_filter:skybox_tab"
+    },
+    {
+      "type": "component",
+      "sourceId": "623:26",
+      "name": "machinima_skybox_filter:filter_tab"
+    },
+    {
+      "type": "component",
+      "sourceId": "623:16",
+      "name": "machinima_skybox_filter:load_save_button"
+    },
+    {
+      "type": "component",
+      "sourceId": "623:17",
+      "name": "machinima_skybox_filter:save_button"
+    },
+    {
+      "type": "component",
+      "sourceId": "623:1",
+      "name": "machinima_skybox_filter:sun_colour"
+    },
+    {
+      "type": "component",
+      "sourceId": "623:3",
+      "name": "machinima_skybox_filter:fog_colour"
+    },
+    {
+      "type": "component",
+      "sourceId": "623:5",
+      "name": "machinima_skybox_filter:volumetric_colour"
+    },
+    {
+      "type": "component",
+      "sourceId": "623:12",
+      "name": "machinima_skybox_filter:scroll_bar"
+    },
+    {
+      "type": "component",
+      "sourceId": "623:11",
+      "name": "machinima_skybox_filter:content_panel_blue"
+    },
+    {
+      "type": "component",
+      "sourceId": "623:37",
+      "name": "machinima_skybox_filter:button_click_layer"
+    },
+    {
+      "type": "component",
+      "sourceId": "1448:11",
+      "name": "toplevel_v2_parent:suboverlay_layer_5"
+    },
+    {
+      "type": "component",
+      "sourceId": "1448:14",
+      "name": "toplevel_v2_parent:com_14"
+    },
+    {
+      "type": "component",
+      "sourceId": "1477:713",
+      "name": "toplevel_v2:parent_window_border"
+    },
+    {
+      "type": "component",
+      "sourceId": "1477:736",
+      "name": "toplevel_v2:modal_window_content"
+    },
+    {
+      "type": "component",
+      "sourceId": "91:25",
+      "name": "rand_party_side_new:form_button"
+    },
+    {
+      "type": "interface",
+      "sourceId": "623",
+      "name": "machinima_skybox_filter"
+    },
+    {
+      "type": "interface",
+      "sourceId": "1448",
+      "name": "toplevel_v2_parent"
+    },
+    {
+      "type": "interface",
+      "sourceId": "517",
+      "name": "bank"
+    },
+    {
+      "type": "interface",
+      "sourceId": "91",
+      "name": "rand_party_side_new"
+    },
+    {
+      "type": "interface",
+      "sourceId": "938",
+      "name": "rand_complexity_select"
+    },
+    {
+      "type": "interface",
+      "sourceId": "947",
+      "name": "rand_floor_select"
+    },
+    {
+      "type": "var_player",
+      "sourceId": "10986",
+      "name": "combatv2_buff_necromancy_necrosis_stacks"
+    },
+    {
+      "type": "var_player",
+      "sourceId": "11035",
+      "name": "combatv2_buff_necromancy_residual_soul_stacks"
+    },
+    {
+      "type": "varbit",
+      "sourceId": "28041",
+      "name": "machinima_remember_selection_skybox"
+    },
+    {
+      "type": "varbit",
+      "sourceId": "42886",
+      "name": "machinima_custom_sun_colour_r_perm"
+    },
+    {
+      "type": "varbit",
+      "sourceId": "42889",
+      "name": "machinima_custom_fog_colour_r_perm"
+    },
+    {
+      "type": "varbit",
+      "sourceId": "42892",
+      "name": "machinima_custom_volumetric_colour_r_perm"
+    },
+    {
+      "type": "enum",
+      "sourceId": "15005",
+      "name": "machinima_interface_skybox"
+    },
+    {
+      "type": "obj",
+      "sourceId": "61880",
+      "name": "construction_house_tutorial_furniture_chair_crude"
+    },
+    {
+      "type": "loc",
+      "sourceId": "138056",
+      "name": "construction_house_tutorial_furniture_chair_crude"
+    },
+    {
+      "type": "loc",
+      "sourceId": "48496",
+      "name": "rand_dragonkin_ruin_large_dungeon_entrance_steps_lvl1"
+    },
+    {
+      "type": "dbrow",
+      "sourceId": "18480",
+      "name": "construction_house_tutorial_furniture_chair_crude"
+    }
+  ],
+  "groupComparisons": [
+    {
+      "index": 3,
+      "group": 91,
+      "url": "https://archive.openrs2.org/caches/runescape/2670/archives/3/groups/91.dat",
+      "sha256": "05bcfc6e16f5ac94aacbe0f32ee77bb6cb383eb9b0e6e4266cd14540eb6facad",
+      "identical950": true,
+      "size": 5614
+    },
+    {
+      "index": 3,
+      "group": 517,
+      "url": "https://archive.openrs2.org/caches/runescape/2670/archives/3/groups/517.dat",
+      "sha256": "c47f1fb331aad8ea7e35acd8087243779a069759792b1006298452728efb834a",
+      "identical950": true,
+      "size": 34935
+    },
+    {
+      "index": 3,
+      "group": 623,
+      "url": "https://archive.openrs2.org/caches/runescape/2670/archives/3/groups/623.dat",
+      "sha256": "57a04a69e12e51dc05aed1a5400cce6804eb44113ac7e1ef5fe55dce8a52d185",
+      "identical950": true,
+      "size": 11123
+    },
+    {
+      "index": 3,
+      "group": 938,
+      "url": "https://archive.openrs2.org/caches/runescape/2670/archives/3/groups/938.dat",
+      "sha256": "8bbfe5ea165b090ac88ee6408d833b0ba94f069dd1fa0fd3d2eab38fa0d87f22",
+      "identical950": true,
+      "size": 7746
+    },
+    {
+      "index": 3,
+      "group": 947,
+      "url": "https://archive.openrs2.org/caches/runescape/2670/archives/3/groups/947.dat",
+      "sha256": "0183050200e41a7383848ebd031fb0c41946f32ac061916f882a483d9be4b667",
+      "identical950": true,
+      "size": 84928
+    },
+    {
+      "index": 3,
+      "group": 1448,
+      "url": "https://archive.openrs2.org/caches/runescape/2670/archives/3/groups/1448.dat",
+      "sha256": "a0e3f9c70c9af0cc22508cab04eb5ccebf5753aa638ec1cee51686c79095424e",
+      "identical950": true,
+      "size": 2269
+    },
+    {
+      "index": 3,
+      "group": 1477,
+      "url": "https://archive.openrs2.org/caches/runescape/2670/archives/3/groups/1477.dat",
+      "sha256": "dffea0b5a3ded3e367596636399c85dbf3723872b75487a37f132baff3aea7b2",
+      "identical950": false,
+      "size": 78616
+    },
+    {
+      "index": 2,
+      "group": 60,
+      "url": "https://archive.openrs2.org/caches/runescape/2670/archives/2/groups/60.dat",
+      "sha256": "efea7bde06fc2ef4a7f08ef0118ea887073aa314838f08a008d76758b77e4a41",
+      "identical950": false,
+      "size": 148324
+    },
+    {
+      "index": 2,
+      "group": 69,
+      "url": "https://archive.openrs2.org/caches/runescape/2670/archives/2/groups/69.dat",
+      "sha256": "a7683f2c74703acfc613c7c1e0fa92b758a8d0eaa7d2773c08048948aee1a18f",
+      "identical950": false,
+      "size": 737757
+    },
+    {
+      "index": 67,
+      "group": 0,
+      "url": "https://archive.openrs2.org/caches/runescape/2670/archives/67/groups/0.dat",
+      "sha256": "343263fc546d502e9fbb6e0093c038bcd6956decb66b6a676f2f33aa7b51d0bb",
+      "identical950": false,
+      "size": 4671655
+    },
+    {
+      "index": 67,
+      "group": 24,
+      "url": "https://archive.openrs2.org/caches/runescape/2670/archives/67/groups/24.dat",
+      "sha256": "520fe420296d8fed15b3fb4ec10d8c39e3b0047ca7da58b8eed91777c75ac010",
+      "identical950": false,
+      "size": 44406
+    },
+    {
+      "index": 67,
+      "group": 61,
+      "url": "https://archive.openrs2.org/caches/runescape/2670/archives/67/groups/61.dat",
+      "sha256": "2e8d6c64cd596fc5443c94056797c0a77e6d60752143d05b082a3caa55425e7c",
+      "identical950": false,
+      "size": 2053110
+    }
+  ],
+  "darkan727Coverage": {
+    "interface": {
+      "cache_ids": 1324,
+      "named": 209,
+      "placeholder": 1115,
+      "by_channel": {
+        "cs2": 39,
+        "struct": 206
+      },
+      "carbon_copies": 243,
+      "same_component_count": 335,
+      "component_count_differs": 986,
+      "differs_only_by_component_count": 5,
+      "near_misses": 20,
+      "degenerate_carbon_copies_rejected": 37,
+      "degenerate_carbon_copies_rescued_by_witness": 0,
+      "witnessed_but_not_carbon_copy": 181,
+      "witness_contradictions": 0
+    },
+    "component": {
+      "cache_ids": 65398,
+      "named": 3900,
+      "placeholder": 61498,
+      "by_channel": {
+        "cs2": 266,
+        "struct": 3734
+      },
+      "carbon_copy_interfaces": 206,
+      "components_of_carbon_copies": 3734,
+      "unnamed_in_rs3_table": 0,
+      "component_witness_agreements": 266
+    },
+    "inv": {
+      "cache_ids": 674,
+      "named": 298,
+      "placeholder": 376,
+      "by_channel": {
+        "cs2": 7,
+        "struct": 296
+      },
+      "ids_present_in_rs3": 620,
+      "ids_named_in_rs3_table": 620,
+      "ids_with_stock_727": 478,
+      "struct_stock_matches": 291,
+      "size_eq_no_stock": 162,
+      "proven_by_struct_and_cs2": 5,
+      "cs2_only": 2,
+      "channel_contradictions": 0,
+      "low_information_struct_proofs": 35,
+      "struct_proofs_with_identical_twins": 50
+    },
+    "obj": {
+      "cache_ids": 25489,
+      "named": 18664,
+      "placeholder": 6825,
+      "by_channel": {
+        "cs2": 35,
+        "manual": 74,
+        "struct": 18321
+      },
+      "named_by_struct_and_cs2": 20,
+      "named_by_cs2_only": 15,
+      "struct_cs2_contradictions": 0,
+      "ids_absent_in_rs3": 102,
+      "demoted_stackable_only": 74,
+      "derived_cert_twin": 0
+    },
+    "seq": {
+      "cache_ids": 17224,
+      "named": 16186,
+      "placeholder": 1038,
+      "by_channel": {
+        "cs2": 39,
+        "struct": 16148
+      },
+      "struct_signature_passed": 16157,
+      "struct_mapping_conflicts": 9,
+      "cs2_whole_tier": 39,
+      "channels_agree_on_overlap": "39/39"
+    },
+    "quest": {
+      "cache_ids": 204,
+      "named": 168,
+      "placeholder": 36,
+      "by_channel": {
+        "struct": 168
+      },
+      "rs3_names": 533
+    }
+  },
+  "downloads": [
+    {
+      "file": "viewer-index.json",
+      "url": "https://gameval.z-kris.com/site/gameval/index.json",
+      "sha256": "3481b8afd78a8bfd1c8e863cbfa1ecc984843da5ce7162ca999d0070e3febc89",
+      "bytes": 228567
+    },
+    {
+      "file": "2670-component.txt",
+      "url": "https://gameval.z-kris.com/site/gameval/runescape/2670/component.txt",
+      "sha256": "4e5578388f644af31469bdbe44fdb3a8e802135f71a2cabc7ebbc0afd4cad639",
+      "bytes": 4532900
+    },
+    {
+      "file": "2670-interface.txt",
+      "url": "https://gameval.z-kris.com/site/gameval/runescape/2670/interface.txt",
+      "sha256": "a7b3dfd8349c7c3ddc22d2ad5f34a0da365b20b10e75c88232061f1a46521630",
+      "bytes": 44905
+    },
+    {
+      "file": "2670-var_player.txt",
+      "url": "https://gameval.z-kris.com/site/gameval/runescape/2670/var_player.txt",
+      "sha256": "809b5b326199fb078b36d346c3fec6075b0eb227bd8d906603743e08411e78e5",
+      "bytes": 315416
+    },
+    {
+      "file": "2670-varbit.txt",
+      "url": "https://gameval.z-kris.com/site/gameval/runescape/2670/varbit.txt",
+      "sha256": "ce16b294e2af6ff1221c5d4ee3b0131789bd794af4b59ba5b185326f55c00d7a",
+      "bytes": 1852317
+    },
+    {
+      "file": "2670-enum.txt",
+      "url": "https://gameval.z-kris.com/site/gameval/runescape/2670/enum.txt",
+      "sha256": "baaa4676195ec2b049fdaf6a9c490f4e67ccbfe5a7b4ff139acf87c61e47daa1",
+      "bytes": 299702
+    },
+    {
+      "file": "2670-loc.txt",
+      "url": "https://gameval.z-kris.com/site/gameval/runescape/2670/loc.txt",
+      "sha256": "a249b1058b4f018a06c46258e79e46cda1050a50aa548d7b782251801d81ffe9",
+      "bytes": 5308786
+    },
+    {
+      "file": "2670-obj.txt",
+      "url": "https://gameval.z-kris.com/site/gameval/runescape/2670/obj.txt",
+      "sha256": "5159b89b2d072d1ca2d041f626b854766004291211399254ae95d08ba9728df4",
+      "bytes": 2039084
+    },
+    {
+      "file": "2670-dbrow.txt",
+      "url": "https://gameval.z-kris.com/site/gameval/runescape/2670/dbrow.txt",
+      "sha256": "ef63fb0af1f607c9a262a0cc9ce17e1011e72c0fd2fc754c093fa2a226ce35cb",
+      "bytes": 618677
+    },
+    {
+      "file": "2670-inv.txt",
+      "url": "https://gameval.z-kris.com/site/gameval/runescape/2670/inv.txt",
+      "sha256": "32482ac037ca78b5c1e8c1e64cb5ffff9dead938ee16881e19c3f10e241d4a2d",
+      "bytes": 23643
+    },
+    {
+      "file": "2670-struct.txt",
+      "url": "https://gameval.z-kris.com/site/gameval/runescape/2670/struct.txt",
+      "sha256": "02687e68e76c7480819082db9beb97c5d4ae075f71ac9ca281eb013fbc8dbd07",
+      "bytes": 1291260
+    },
+    {
+      "file": "2670-seq.txt",
+      "url": "https://gameval.z-kris.com/site/gameval/runescape/2670/seq.txt",
+      "sha256": "8ee30d038c06be125fb484be3968e281355f48601de3726b1e5db6654fa6d5e8",
+      "bytes": 1420070
+    },
+    {
+      "file": "undercut-Gameval.kt",
+      "url": "https://gitlab.com/project-undercut/engine/-/raw/f5d2b28ae31cfdaf27062b203567c9879993b858/core/src/main/kotlin/world/gregs/voidps/gameval/Gameval.kt",
+      "sha256": "bdcd7b89d128cc77e61dc8616eef5b325f003ac5de5522091562ae9f3bbf0da7",
+      "bytes": 14563
+    },
+    {
+      "file": "undercut-export.kt",
+      "url": "https://gitlab.com/project-undercut/engine/-/raw/f5d2b28ae31cfdaf27062b203567c9879993b858/tools/src/main/kotlin/org/darkan/tools/gamevalexport/Main.kt",
+      "sha256": "9a4e38a487409ea2134159bdf8211f4ba49ab5030d17d0d4926c08a8856438ca",
+      "bytes": 9643
+    },
+    {
+      "file": "727-interface.json",
+      "url": "https://gitlab.com/darkanrs/cache-unpacked/-/raw/f05ba1e700c7e6b810c451b2f5cbc792d1057372/gamevals/interface.json",
+      "sha256": "767bf7893a9465cb628da54a2ec913be8b77af2e08e08e46b389cc1fcd4e96ca",
+      "bytes": 39125
+    },
+    {
+      "file": "727-component.json",
+      "url": "https://gitlab.com/darkanrs/cache-unpacked/-/raw/f05ba1e700c7e6b810c451b2f5cbc792d1057372/gamevals/component.json",
+      "sha256": "3dbb6565e5e31b214917f867fc0abc52fafe884e7ff8d9accb08988813398aac",
+      "bytes": 2330891
+    },
+    {
+      "file": "727-inv.json",
+      "url": "https://gitlab.com/darkanrs/cache-unpacked/-/raw/f05ba1e700c7e6b810c451b2f5cbc792d1057372/gamevals/inv.json",
+      "sha256": "99aaede2c4fa4960e66572d9bb80108955042b005fc51d42470f665aded2b453",
+      "bytes": 18954
+    },
+    {
+      "file": "727-seq.json",
+      "url": "https://gitlab.com/darkanrs/cache-unpacked/-/raw/f05ba1e700c7e6b810c451b2f5cbc792d1057372/gamevals/seq.json",
+      "sha256": "5ad59e5e53b8f72ebbe75ffa97d6e100b3fb9fc0a0f032bbb255035c396dfb9a",
+      "bytes": 706571
+    },
+    {
+      "file": "727-obj.json",
+      "url": "https://gitlab.com/darkanrs/cache-unpacked/-/raw/f05ba1e700c7e6b810c451b2f5cbc792d1057372/gamevals/obj.json",
+      "sha256": "4a0a070b4ac3c1a19cd1467bf90421ae26c3841fb8f7f091cb8488e67c11ff03",
+      "bytes": 869235
+    },
+    {
+      "file": "727-quest.json",
+      "url": "https://gitlab.com/darkanrs/cache-unpacked/-/raw/f05ba1e700c7e6b810c451b2f5cbc792d1057372/gamevals/quest.json",
+      "sha256": "e17faa878383aa3b8de1dc30cecda87505787bf782c7c8457126af64793e4279",
+      "bytes": 5852
+    }
+  ],
+  "productionReaderComparisonRows": [
+    [
+      "GROUP",
+      "3",
+      "91",
+      "55",
+      "55",
+      "55",
+      "true"
+    ],
+    [
+      "GROUP",
+      "3",
+      "517",
+      "341",
+      "341",
+      "341",
+      "true"
+    ],
+    [
+      "GROUP",
+      "3",
+      "623",
+      "112",
+      "112",
+      "112",
+      "true"
+    ],
+    [
+      "GROUP",
+      "3",
+      "938",
+      "71",
+      "71",
+      "71",
+      "true"
+    ],
+    [
+      "GROUP",
+      "3",
+      "947",
+      "762",
+      "762",
+      "762",
+      "true"
+    ],
+    [
+      "GROUP",
+      "3",
+      "1448",
+      "32",
+      "32",
+      "32",
+      "true"
+    ],
+    [
+      "GROUP",
+      "3",
+      "1477",
+      "926",
+      "924",
+      "65",
+      "false"
+    ],
+    [
+      "FILE",
+      "3",
+      "1477",
+      "291",
+      "false",
+      "9245492319957b474e79ade2ab5d5a7b1d911e8d5814781ab175147df51a825a",
+      "a545dee8ebab6659531c3682b5f792c758dd444c50ea4886126433265d35fade"
+    ],
+    [
+      "FILE",
+      "3",
+      "1477",
+      "707",
+      "false",
+      "a752afaa06a79cae5ddce31c1469368795edf755538645ecc3e070acab5ff94c",
+      "827650aaeba23495f848bf95b6710ca7c79333949e4e0b6112221d7796259315"
+    ],
+    [
+      "FILE",
+      "3",
+      "1477",
+      "713",
+      "false",
+      "111175e598c8b9e6daf6e0c89db6655ec7112668c612c808b282b8ac484ef1fa",
+      "aa13d9a89d7e8a4e145bdf1f3f69c7834e594690c49d2f60f81c3332fb8a94f7"
+    ],
+    [
+      "FILE",
+      "3",
+      "1477",
+      "714",
+      "false",
+      "9001c5decb2254a47754756d3072d80e462c465c7c44ddb11ee05685258367da",
+      "aa13d9a89d7e8a4e145bdf1f3f69c7834e594690c49d2f60f81c3332fb8a94f7"
+    ],
+    [
+      "FILE",
+      "3",
+      "1477",
+      "715",
+      "false",
+      "9001c5decb2254a47754756d3072d80e462c465c7c44ddb11ee05685258367da",
+      "095e273fec6e74353c55cdc5af1730c80b0481c6917c57c0aeed8af51ef8c628"
+    ],
+    [
+      "FILE",
+      "3",
+      "1477",
+      "736",
+      "false",
+      "7afe11d1ced98ad7870e5b3af8fb1f4f3c5a4ccfeb59fd4f6ad9827501543396",
+      "901ce66ac6141e6b5fe1a8da980cb958a8d33991faa6e0de5cfb79afd1cee08b"
+    ],
+    [
+      "GROUP",
+      "2",
+      "60",
+      "13202",
+      "13270",
+      "13196",
+      "false"
+    ],
+    [
+      "FILE",
+      "2",
+      "60",
+      "10986",
+      "true",
+      "890437b70d9b486e3feed1b393b47a8af8dca19c347e2966e67c3f44f182c98b",
+      "890437b70d9b486e3feed1b393b47a8af8dca19c347e2966e67c3f44f182c98b"
+    ],
+    [
+      "FILE",
+      "2",
+      "60",
+      "11035",
+      "true",
+      "890437b70d9b486e3feed1b393b47a8af8dca19c347e2966e67c3f44f182c98b",
+      "890437b70d9b486e3feed1b393b47a8af8dca19c347e2966e67c3f44f182c98b"
+    ],
+    [
+      "GROUP",
+      "2",
+      "69",
+      "61465",
+      "61889",
+      "60168",
+      "false"
+    ],
+    [
+      "FILE",
+      "2",
+      "69",
+      "28041",
+      "true",
+      "8cc6828872a49c89ed7c10f0e65e9e6fdb964e7ee8bf8fec62574a68c7aecdd1",
+      "8cc6828872a49c89ed7c10f0e65e9e6fdb964e7ee8bf8fec62574a68c7aecdd1"
+    ],
+    [
+      "FILE",
+      "2",
+      "69",
+      "42886",
+      "true",
+      "788d3492d3e5cf198c8d169c2f2ea40f5d10783e6a2bb5ed3764595a372bf94d",
+      "788d3492d3e5cf198c8d169c2f2ea40f5d10783e6a2bb5ed3764595a372bf94d"
+    ],
+    [
+      "FILE",
+      "2",
+      "69",
+      "42889",
+      "true",
+      "885f5b91bb8f7d42fd602229a981aa07cfff40cfe154c9f3f1e25133cde55637",
+      "885f5b91bb8f7d42fd602229a981aa07cfff40cfe154c9f3f1e25133cde55637"
+    ],
+    [
+      "FILE",
+      "2",
+      "69",
+      "42892",
+      "true",
+      "0e91966c5777cc6ee17f66bf83ad3fece940286ac8825717b17a6a5bd603b2bb",
+      "0e91966c5777cc6ee17f66bf83ad3fece940286ac8825717b17a6a5bd603b2bb"
+    ]
+  ]
+}

@@ -1,3 +1,20 @@
+DARKAN / GAMEVAL RESEARCH 2026-09-24 - LATEST
+User says ;;dev is working rather well; pause console development for now.
+Research completed in docs/DARKAN-GAMEVAL-INVESTIGATION.md, with machine-readable
+protocol-analysis/gameval-investigation-950.json and two read-only audit tools.
+No gameplay/client/save/console changes, deployment or restart in this pass.
+Key distinction: public darkanrs/server is727; Project Undercut engine is the
+modern NXT source containing exact requireId/requireComponentHash screenshot API.
+Local engine archive resolver/exporter match public f5d2b28 byte-for-byte.
+Exact950 cache2691 lacks index67. Beta2670 names can be individually proven:
+interfaces91/517/623/938/947/1448 match all files;1477 differs (926 vs924 files,
+only65 same-ID matches). Do NOT import its beta component table wholesale.
+Original67 decoder also found 55 differing viewer/raw keys under interface 1433; quarantine.
+First proposal: offline verified lookup/provenance index, then generated symbols
+for new code; no runtime implementation authorized by this research prompt.
+Private screenshot project's complete POH/content claims remain unverified.
+Research checkpoints supersede no live systems; previous staged update unchanged.
+
 DEVELOPER CONSOLE BLANK FRESH-OPEN FIX 2026-09-24 - LATEST
 Prior readiness successor LIVE FAIL: blank Customisations, including after god.
 Read docs/DEVELOPER-CONSOLE-READY-FIX-20260924.md for evidence and acceptance.
