@@ -16,7 +16,7 @@ final class Native950DeveloperActions {
             if(value==null)throw new IllegalArgumentException(name+" is required.");value=value.trim();
             if(number){try{int n=Integer.parseInt(value);if(n>=min&&n<=max)return Integer.toString(n);}catch(NumberFormatException ignored){}throw new IllegalArgumentException(name+" must be "+min+"-"+max+".");}
             if(choices.length>0){for(String c:choices)if(c.equalsIgnoreCase(value))return c;throw new IllegalArgumentException("Choose a valid "+name+".");}
-            if(value.length()<1||value.length()>80||!value.matches("[A-Za-z0-9 _'.,-]+"))throw new IllegalArgumentException("Enter a valid "+name+" (1-80 characters).");
+            if(value.length()<1||value.length()>80||!value.matches("[A-Za-z0-9 _'.,:-]+"))throw new IllegalArgumentException("Enter a valid "+name+" (1-80 characters).");
             return value;
         }
     }
@@ -25,7 +25,7 @@ final class Native950DeveloperActions {
         Action(String id,String aliases,String usage,String description,String category,List<Parameter> parameters,boolean configured){
             this.id=id;this.aliases=aliases;this.usage=usage;this.description=description;this.category=category;
             this.parameters=Collections.unmodifiableList(parameters);this.configured=configured;
-            confirmation=Arrays.asList("copy","clearbar","max","comp","clearnpcs","removenpc").contains(id);
+            confirmation=Arrays.asList("copy","clearbar","max","comp","clearnpcs","removenpc","clearobjects").contains(id);
         }
         String command(List<String> values){
             if(!configured||values.size()!=parameters.size())throw new IllegalArgumentException("This diagnostic requires its documented chat command.");
@@ -92,10 +92,10 @@ final class Native950DeveloperActions {
                 case "combatqa":params.add(t("Action","status","start","status","stop","reset","cleanup"));break;
                 case "spell":params.add(t("Spell","surge","strike","bolt","blast","wave","surge"));break;
                 case "gear":params.add(t("Style","melee","melee","mage","range","necro","weapons"));break;
-                case "clearnpcs":params.add(n("Radius",16,0,128));break;
+                case "clearobjects":case "clearnpcs":params.add(n("Radius",16,0,128));break;
                 case "removenpc":params.add(n("NPC index",1,1,32767));break;
                 case "locs":case "commands":params.add(n("Page",1,1,100));break;
-                case "search":case "findnpc":params.add(t("Name or ID",""));break;
+                case "gameval":case "search":case "findnpc":params.add(t("Name or ID",""));break;
                 case "savecoords":params.add(t("Location name",""));break;
                 case "uilayout":params.add(t("Action","status","status"));break;
                 case "nxt":params.add(t("Tool","status","status","banker","cook","combat","skilling","agility","barbarian","wilderness","slayer","effects","clear","bar","force"));break;
@@ -112,6 +112,8 @@ final class Native950DeveloperActions {
     }
     private static String description(String id,String fallback){
         switch(id){
+            case "clearobjects":return "Remove your placed objects within the selected radius and plane, including saved placements. Map objects and other players are protected.";
+            case "gameval":return "Browse cache-derived symbolic names with verified 950 bindings and source provenance. Read-only research tool.";
             case "heal":return "Restore health, prayer and run energy, and restore drained stats.";
             case "god":return "Toggle damage immunity. Other combat requirements remain active.";
             case "almighty":return "Toggle full developer combat mode: immunity, infinite resources and cooldown-free Surge, Escape and Dive.";

@@ -21,6 +21,7 @@ final class Native950DeveloperConsole {
     private List<String> values=Collections.emptyList();private Consumer<String> input;
     private String lastState="";
     private long epoch;
+    private Native950GamevalLookup.Entry symbol;
     private String browser="";private Native950DeveloperCatalogue.Entry entity;
     private int amount=1,rotation,typeIndex;private boolean repeat;
     private int placementSerial;
@@ -33,6 +34,14 @@ final class Native950DeveloperConsole {
         synchronized(OWNERS){OWNERS.put(p,this);}
     }
     static void openFor(Player p){Native950DeveloperConsole console; synchronized(OWNERS){console=OWNERS.get(p);}if(console!=null)console.open();}
+    static void placementsChanged(Player p){
+        Native950DeveloperConsole c; synchronized(OWNERS){c=OWNERS.get(p);}
+        if(c!=null){if(c.placement!=null)c.close();c.history.clear();c.editSelection=null;c.moving=null;if(c.open)c.render();}
+    }
+    static void gamevalsFor(Player p,String query){
+        Native950DeveloperConsole c; synchronized(OWNERS){c=OWNERS.get(p);}
+        if(c!=null&&c.mayAct()){if(c.placement!=null)c.close();if(!c.open)c.open();if(c.open){c.browseGamevals();c.query=query;c.render();}}
+    }
     boolean isOpen(){return open;}
     void open(){
         if(!Native950DeveloperActions.permitted(player,channel)){message("Developer permission is required.");return;}
@@ -142,6 +151,7 @@ final class Native950DeveloperConsole {
         button(413,38,68,30,"Clear",false,()->{query="";page=0;render();});
         int y=77;
         for(String c:Native950DeveloperActions.CATEGORIES){button(0,y,160,27,c.equals("Commands")?"All commands":c,category.equals(c)&&query.isEmpty(),()->navigate(c));y+=28;}
+        if(browser.equals("Gameval")){renderGamevals();footer();return;}
         if(browser.equals("Edits")){renderEdits();footer();return;}
         if(!browser.isEmpty()){
             renderBrowser();footer();return;
@@ -164,7 +174,7 @@ final class Native950DeveloperConsole {
         if(selected==null){
             text(500,43,229,35,17514,"SHNORKSCAPE");
             text(500,88,226,120,2100,"Select an action to inspect its details and parameters.<br><br>Use Search across every command, or choose a category.<br><br>Favourites are saved for your account.");
-            text(500,295,226,54,2100,"Items opens your Equipment Library.<br>Spawns manages your placed NPCs and objects.");
+            text(500,324,226,54,2100,"Items opens your Equipment Library.<br>Spawns manages your placed NPCs and objects.");
         }else{
             text(500,42,229,35,17514,";;"+selected.id+" "+Native950DeveloperActions.state(selected,player));
             text(500,82,227,93,2100,safe(selected.description));
@@ -185,12 +195,13 @@ final class Native950DeveloperConsole {
                 if(!selected.configured)return;
                 String command=selected.command(values);
                 if(selected.confirmation&&!confirm){confirm=true;status="This changes your account or test world. Select Confirm action to proceed.";render();return;}
-                confirm=false;execute.accept(command);if(open){status="Executed ;;"+selected.id+".";render();}
+                String actionId=selected.id;confirm=false;execute.accept(command);if(open){status="Executed ;;"+actionId+".";render();}
             });
         }
         if(selected==null){
             button(495,219,239,30,"Browse NPCs",false,()->browse("NPC"));
             button(495,252,239,30,"Browse objects",false,()->browse("Object"));
+            button(495,285,239,30,"Cache / Gamevals",false,this::browseGamevals);
         }
         footer();
     }
@@ -226,6 +237,30 @@ final class Native950DeveloperConsole {
             button(495,387,239,28,"Place in world",false,this::beginPlacement);
         }
         button(495,358,239,27,"Back to actions",false,()->{browser="";query="";page=0;render();});
+    }
+    private void browseGamevals(){browser="Gameval";category="Tools";query="";page=0;symbol=null;selected=null;confirm=false;status="Read-only symbols. 949 names, individually audited against 950. No world actions.";render();}
+    private void renderGamevals(){
+        List<Native950GamevalLookup.Entry> results=Native950GamevalLookup.search(query);
+        int pages=Math.max(1,(results.size()+PAGE_SIZE-1)/PAGE_SIZE);page=Math.max(0,Math.min(page,pages-1));
+        for(int n=0;n<PAGE_SIZE;n++){
+            int at=page*PAGE_SIZE+n;if(at>=results.size())break;Native950GamevalLookup.Entry e=results.get(at);int y=77+n*50;
+            button(171,y,310,47,"",symbol==e,()->{symbol=e;render();});
+            text(181,y+3,290,19,2100,"<col=ffd479>"+e.type+" "+e.id+"</col>");
+            text(181,y+23,290,19,2100,shortDescription(e.name));
+        }
+        if(results.isEmpty())text(181,90,290,100,2100,"No audited symbol matches.<br>This is a verified subset, not the complete cache. Use the NPC/object browsers for display-name searches.");
+        button(171,387,68,28,"Previous",false,()->{if(page>0)page--;render();});
+        text(245,389,161,24,2100,(page+1)+" / "+pages+" | "+results.size()+" symbols");
+        button(412,387,69,28,"Next",false,()->{if(page+1<pages)page++;render();});
+        text(500,43,229,35,17514,"Cache / Gamevals");
+        if(symbol==null)text(500,88,227,250,2100,"Search symbolic name, numeric ID, or interface:component.<br><br>Optional type words: component, interface, varp, varbit.<br><br>Original names: OpenRS2 2670 (949).<br>Audited target: 2691 (950.1).<br><br>Missing/changed identities are excluded. No execution or placement from this browser.");
+        else{
+            // Break long underscore-separated names for native text wrapping, preserving the full name in chat.
+            text(500,87,227,116,2100,symbol.name.replace("_","_ ").replace(":",": "));
+            text(500,207,227,145,2100,symbol.type+" "+symbol.id+"<br>Packed / numeric ID: "+symbol.packed()+"<br>"+symbol.verify()+"<br>"+symbol.evidence+"<br>Source 2670 (949) / target 2691 (950.1)");
+            button(495,354,239,29,"Print full identity to chat",false,()->{message(symbol.type+" "+symbol.id+" = "+symbol.name);message(symbol.verify()+"; "+symbol.evidence);});
+        }
+        button(495,387,239,28,"Back to tools",false,()->navigate("Tools"));
     }
     private void beginPlacement(){
         if(entity==null||!Native950DeveloperActions.permitted(player,channel))return;

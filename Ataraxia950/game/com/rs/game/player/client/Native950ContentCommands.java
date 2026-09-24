@@ -15,7 +15,7 @@ final class Native950ContentCommands {
         switch(command) {
             case "melee": case "mage": case "range": case "necro": case "meleegear": case "magegear": case "rangegear": case "ragegear": case "necrogear": case "weapons": case "gear": case "gearhelp":
             case "search": case "find": case "si": case "itemid": case "finditem":
-            case "findnpc": case "snpc": case "clearnpcs": case "removenpc": case "delnpc": case "npcs": return true;
+            case "clearobjects": case "clearobjs": case "gameval": case "findnpc": case "snpc": case "clearnpcs": case "removenpc": case "delnpc": case "npcs": return true;
             default: return false;
         }
     }
@@ -59,6 +59,21 @@ final class Native950ContentCommands {
     }
     static void handle(Player p,Channel c,String[] args) {
         String command=args[0];
+        if(command.equals("clearobjects")||command.equals("clearobjs")){
+            try{
+                if(args.length>2)throw new IllegalArgumentException("Use ;;clearobjects [radius 0-128]; default 16.");
+                int radius=args.length==2?Integer.parseInt(args[1]):16;
+                String refusal=Native950DiagnosticSpawns.refusal(p);if(refusal!=null){reply(c,refusal);return;}
+                int count=Native950DeveloperWorldEdits.clearObjects(p,radius);
+                if(count>0)Native950DeveloperConsole.placementsChanged(p);
+                reply(c,"Removed "+count+" of your placed objects within "+radius+" tiles on this plane (including saved placements).");
+            }catch(IOException failure){reply(c,"Could not save object removal; nothing removed: "+failure.getMessage());}
+            catch(IllegalArgumentException invalid){reply(c,"Use ;;clearobjects [radius 0-128]; default 16.");}
+            return;
+        }
+        if(command.equals("gameval")){
+            Native950DeveloperConsole.gamevalsFor(p,String.join(" ",Arrays.copyOfRange(args,1,args.length)));return;
+        }
         if(command.equals("gearhelp")) {
             reply(c,";;melee / ;;range / ;;mage / ;;necro: the library Best loadouts, without food.");
             reply(c,"Previous items are safely banked, then Best gear is equipped; old *gear aliases still work.");

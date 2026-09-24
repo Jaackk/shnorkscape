@@ -60,6 +60,29 @@ final class Native950DeveloperWorldEdits {
             e.actor=actor;EDITS.put(e.key,e);result.add(e);
         }return result;
     }
+    /** Command and console placements share the same ownership ledger. */
+    static Edit recordObject(Player owner,WorldObject actor){
+        if(owned(owner.getUsername()).size()>=200)throw new IllegalArgumentException("Remove placements first (200 per account).");
+        Edit e=new Edit(UUID.randomUUID().toString(),owner.getUsername(),"Object",actor.getId(),actor.getX(),actor.getY(),actor.getPlane(),actor.getType(),actor.getRotation(),false,false);
+        e.actor=actor;EDITS.put(e.key,e);return e;
+    }
+    static int clearObjects(Player p,int radius)throws IOException{
+        return clearObjects(p.getUsername(),p,radius,file(),Native950DeveloperWorldEdits::removeActor);
+    }
+    /** Persist the whole deletion before touching the world; failed writes remove nothing. */
+    static int clearObjects(String owner,WorldTile origin,int radius,Path path,java.util.function.Consumer<Edit> remove)throws IOException{
+        if(radius<0||radius>128)throw new IllegalArgumentException("Radius must be 0-128.");
+        List<Edit> selected=new ArrayList<>();
+        for(Edit e:owned(owner))if(e.kind.equals("Object")&&e.plane==origin.getPlane()
+            &&Math.max(Math.abs(e.x-origin.getX()),Math.abs(e.y-origin.getY()))<=radius)selected.add(e);
+        if(selected.isEmpty())return 0;
+        if(selected.stream().anyMatch(e->e.saved)){
+            if(!persistenceHealthy)throw new IOException("World-edit persistence is unavailable; nothing removed.");
+            List<Edit> remaining=new ArrayList<>(EDITS.values());remaining.removeAll(selected);write(path,remaining);
+        }
+        for(Edit e:selected){remove.accept(e);EDITS.remove(e.key);}
+        return selected.size();
+    }
     private static void requireOwner(Player p,Edit edit){if(edit==null||EDITS.get(edit.key)!=edit||!edit.owner.equals(p.getUsername()))throw new IllegalArgumentException("That placement is not owned by you.");}
     static void save(Player p,Edit e)throws IOException{
         requireOwner(p,e);if(!persistenceHealthy)throw new IOException("The existing world-edit file needs repair; it will not be overwritten.");if(e.saved)return;if(!alive(e))throw new IllegalArgumentException("That placement no longer exists. Place it again before saving.");

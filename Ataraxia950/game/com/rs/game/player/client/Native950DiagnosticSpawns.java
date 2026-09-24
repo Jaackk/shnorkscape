@@ -200,7 +200,12 @@ public final class Native950DiagnosticSpawns {
     /** requestedType=-1 selects a supported cache shape; explicit types must have a world model. */
     public static String spawnObject(Player player, int id, int requestedType, int rotation) {
         String refusal=refusal(player);if(refusal!=null)return refusal;
-        return spawnObjectAt(player,id,requestedType,rotation,new WorldTile(player));
+        try {
+            if(Native950DeveloperWorldEdits.owned(player.getUsername()).size()>=200)return "Remove placements first (200 per account).";
+            WorldObject object=placeObject(id,requestedType,rotation,new WorldTile(player));
+            Native950DeveloperWorldEdits.recordObject(player,object);
+            return "Placed owned object "+id+". Use ;;clearobjects [radius] or Developer Console > Spawns to remove it.";
+        }catch(IllegalArgumentException|IllegalStateException invalid){return "Cannot spawn object "+id+": "+invalid.getMessage();}
     }
 
     static String spawnObjectAt(Player player,int id,int requestedType,int rotation,WorldTile tile) {

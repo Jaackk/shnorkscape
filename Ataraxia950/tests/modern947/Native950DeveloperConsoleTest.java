@@ -26,6 +26,16 @@ public class Native950DeveloperConsoleTest {
         try(java.util.stream.Stream<Path> paths=Files.walk(dir)){for(Path path:(Iterable<Path>)paths.sorted(Comparator.reverseOrder())::iterator)Files.delete(path);}
     }
     private void restore(String key,String value){if(value==null)System.clearProperty(key);else System.setProperty(key,value);}
+    @Test public void gamevalBrowserUsesExistingReadyLifecycleAndRejectsStaleActions()throws Exception{
+        Native950DeveloperConsole.gamevalsFor(p,"623:27");assertTrue(console.isOpen());
+        java.lang.reflect.Field browser=Native950DeveloperConsole.class.getDeclaredField("browser"),query=Native950DeveloperConsole.class.getDeclaredField("query"),waiting=Native950DeveloperConsole.class.getDeclaredField("awaitingNative");
+        browser.setAccessible(true);query.setAccessible(true);waiting.setAccessible(true);
+        assertEquals("Gameval",browser.get(console));assertEquals("623:27",query.get(console));assertTrue(waiting.getBoolean(console));
+        console.handle(notification("__devready"));assertFalse(waiting.getBoolean(console));
+        Native950DeveloperConsole.gamevalsFor(p,"residual_soul");assertFalse(waiting.getBoolean(console));assertEquals("residual_soul",query.get(console));
+        assertFalse(p.isDevelopmentGodMode());console.close();assertFalse(console.isOpen());
+        console.handle(notification("__devready"));assertFalse(console.isOpen());
+    }
     @Test public void aliasesSearchAcrossCategoriesAndParameterizedCommandsUseRealHandlers(){
         assertEquals("almighty",Native950DeveloperActions.search("Items","DM",Collections.emptySet()).get(0).id);
         Native950DeveloperActions.Action a=Native950DeveloperActions.find("adrenaline");

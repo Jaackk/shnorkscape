@@ -1,3 +1,20 @@
+OWNED OBJECT CLEARING / GAMEVAL LOOKUP 2026-09-24 - LATEST
+User now authorizes focused developer improvements after Darkan research.
+Current ;;dev described by user as working rather well; preserve its lifecycle.
+Added ;;clearobjects / ;;clearobjs [0-128], default16, owner/current-plane only.
+Saved batch deletion persists before scene changes; new ;;obj uses editor ledger.
+Map objects, other owners and stale replacement identities protected.
+Added read-only ;;gameval [query] / Cache-Gamevals UI: 1385 bounded audited symbols,
+source949 provenance + target950 payload AND reference-table SHA verification.
+No guessed bindings, script/variable execution, cache patch or combat changes.
+Full1563 tests,0 failures/errors,2 existing skips. Actual-cache isolated world
+cleanup/ownership/stale-object/persistence and all1385 symbol pins PASS.
+Three generator checks PASS. New Vulkan controls/removal remain LIVE TEST PENDING.
+See docs/DEVELOPER-TOOLS-GAMEVALS-20260924.md for scope, limits and live checklist.
+Stage successor through Apply Staged Update.cmd; do NOT restart/deploy silently.
+No old untracked ;;obj ownership can be safely inferred. Clearing resets owner's
+placement history so stale undo/redo cannot resurrect deletions.
+
 DARKAN / GAMEVAL RESEARCH 2026-09-24 - LATEST
 User says ;;dev is working rather well; pause console development for now.
 Research completed in docs/DARKAN-GAMEVAL-INVESTIGATION.md, with machine-readable

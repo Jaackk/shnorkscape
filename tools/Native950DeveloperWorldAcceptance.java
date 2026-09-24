@@ -37,10 +37,36 @@ public final class Native950DeveloperWorldAcceptance {
                     Native950DeveloperWorldEdits.save(p,object);Native950DeveloperWorldEdits.cleanup(p);check(Native950DeveloperWorldEdits.alive(object),"Saved object removed by logout");
                     check(Native950DeveloperWorldEdits.read(dir.resolve("edits.tsv")).size()==1,"Saved object not persisted");
                     Native950DeveloperWorldEdits.delete(p,object);check(!Native950DeveloperWorldEdits.alive(object)&&Native950DeveloperWorldEdits.read(dir.resolve("edits.tsv")).isEmpty(),"Delete did not remove scene and persistent record");
+                    // Command placement joins the same ledger; clearing never touches another owner.
+                    String reply=Native950DiagnosticSpawns.spawnObject(p,70755,10,0);
+                    check(Native950DeveloperWorldEdits.owned(p.getUsername()).size()==1,"Command object not tracked: "+reply);
+                    Native950DeveloperWorldEdits.Edit mine=Native950DeveloperWorldEdits.owned(p.getUsername()).get(0);
+                    Native950DeveloperWorldEdits.save(p,mine);
+                    Player other=Player.createNative950("editor-other",new WorldTile(p.getX()+2,p.getY()+2,0),c);
+                    WorldObject theirs=null;
+                    for(int dx=2;dx<15&&theirs==null;dx++)try{theirs=Native950DiagnosticSpawns.placeObject(70755,10,0,new WorldTile(p.getX()+dx,p.getY(),0));}catch(IllegalArgumentException occupied){}
+                    check(theirs!=null,"No other-owner object tile");
+                    Native950DeveloperWorldEdits.Edit theirEdit=Native950DeveloperWorldEdits.recordObject(other,theirs);
+                    try{
+                        check(Native950DeveloperWorldEdits.clearObjects(p,16)==1,"Owned clear count");
+                        check(!Native950DeveloperWorldEdits.alive(mine),"Owned scene object survived clear");
+                        check(Native950DeveloperWorldEdits.alive(theirEdit),"Other player's object removed");
+                        check(Native950DeveloperWorldEdits.read(dir.resolve("edits.tsv")).isEmpty(),"Saved object would return after restart");
+                    }finally{Native950DeveloperWorldEdits.cleanup(other);}
+                    Native950DiagnosticSpawns.spawnObject(p,70755,10,0);
+                    Native950DeveloperWorldEdits.Edit stale=Native950DeveloperWorldEdits.owned(p.getUsername()).get(0);
+                    World.removeObject((WorldObject)stale.actor);
+                    WorldObject replacement=Native950DiagnosticSpawns.placeObject(70755,10,0,p);
+                    try{
+                        check(Native950DeveloperWorldEdits.clearObjects(p,0)==1,"Stale placement record not removed");
+                        check(World.getObjectWithSlot(p,Region.OBJECT_SLOTS[10])==replacement,"Stale ownership removed a replacement object");
+                    }finally{World.removeObject(replacement);}
+                    for(Native950GamevalLookup.Entry symbol:Native950GamevalLookup.search(""))check(symbol.verify().contains("SHA-256 MATCH"),"Symbol pin failed: "+symbol.id+" "+symbol.verify());
+
                 }finally{Native950DeveloperWorldEdits.cleanup(p);World.removeNative950Player(p);c.finishAndReleaseAll();world.clearNativeNpcs();}
                 return null;
             }).get(120,TimeUnit.SECONDS);
-            System.out.println("PASS: actual-cache chosen-tile NPC/object mutations, ownership, undo/redo, rotation, explicit save, temporary cleanup and persistent delete. Vulkan pending.");
+            System.out.println("PASS: actual-cache chosen-tile NPC/object mutations, ownership, undo/redo, rotation, explicit save, owned object clearing, stale replacement protection, all 1385 symbol pins and persistent delete. Vulkan pending.");
         }finally{Files.deleteIfExists(dir.resolve("edits.tsv"));Files.deleteIfExists(dir);}
     }
 }
