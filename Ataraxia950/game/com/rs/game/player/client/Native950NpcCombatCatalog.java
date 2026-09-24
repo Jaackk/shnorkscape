@@ -27,6 +27,7 @@ public final class Native950NpcCombatCatalog {
         if(npcId<0 || npcId>0x7fffff) return refused("invalid NPC id");
         if(!Native950IdValidity.get().isSafe(Native950IdValidity.Kind.NPC,npcId))
             return refused("unverified legacy NPC identity");
+        try{Native950BossRules.verifyIdentity(npcId);}catch(IllegalStateException changed){return refused("boss symbol verification failed");}
         byte[] raw=Cache.STORE.getIndexes()[18].getFile(npcId>>>7,npcId&127);
         return resolve(npcId,raw,true,NPCCombatDefinitionsDataParser.getDefinitions().get(npcId),
                 NPCStatsDataParser.getDefinitions().get(npcId),Native950NpcCombatAnimations::durationCycles);

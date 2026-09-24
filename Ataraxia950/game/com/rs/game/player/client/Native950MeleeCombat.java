@@ -727,6 +727,17 @@ public final class Native950MeleeCombat {
                 }
                 continue;
             }
+            if(fighter.target==null&&Native950BossRules.king(npc.getId())&&!npc.isDead()){
+                Player nearest=null;int nearestDistance=8;
+                for(Player candidate:access.players()){
+                    if(candidate==null||!available(candidate,npc)||candidate.getNextWorldTile()!=null)continue;
+                    int d=distanceToFootprint(candidate,npc,fighter.profile.size);
+                    if(d>0&&d<nearestDistance&&access.npcRangedReach(npc,candidate,7)){
+                        nearest=candidate;nearestDistance=d;
+                    }
+                }
+                if(nearest!=null)engageRetaliation(fighter,nearest);
+            }
             Player player=fighter.target;
             // The world restore task owns regeneration; do not heal a second time here.
             if(player==null) continue;
@@ -830,6 +841,22 @@ public final class Native950MeleeCombat {
                     }
                     if(fighter.strikes.size()>=32)throw new IllegalStateException("NPC strike queue exceeded bound");
                     fighter.strikes.add(new NpcStrike(tick+delay,damage,player));
+                    if(npc.getId()==2881){
+                        // Supreme attacks every visible player in range, with a
+                        // separate accuracy/damage roll and captured ownership.
+                        for(Player other:access.players()){
+                            if(other==null||other==player||!available(other,npc)||other.getNextWorldTile()!=null
+                                    ||distanceToFootprint(other,npc,fighter.profile.size)>7
+                                    ||!access.npcRangedReach(npc,other,7)||fighter.strikes.size()>=32)continue;
+                            Loadout otherGear;
+                            try{otherGear=loadouts.get(other);}catch(IllegalArgumentException unsupported){continue;}
+                            int otherDefence=Rs2CombatFormula.effectiveLevel(other.getSkills().getLevel(Skills.DEFENCE)
+                                    +other.getPrayer().getStatBonuses(Skills.DEFENCE),0,0,1);
+                            int otherDamage=rolls.accurate(Rs2CombatFormula.roll(Rs2CombatFormula.npcEffectiveLevel(fighter.profile.attackLevel),fighter.profile.meleeAttackBonus),
+                                    Rs2CombatFormula.roll(otherDefence,otherGear.defenceBonus))?nativeDamage(rolls.damage(fighter.profile.maxHit/10)):0;
+                            fighter.strikes.add(new NpcStrike(tick+delay,otherDamage,other));
+                        }
+                    }
                 }
                 swings++;
                 if(player.isDead())playerDied(player);
@@ -1276,7 +1303,7 @@ public final class Native950MeleeCombat {
     private void abilityImpact(Player player,Fighter fighter,int structure,int requested,int actual,Loadout gear,int baseAbilityDamage){
         Native950AbilityCatalog.Definition definition=Native950AbilityCatalog.get(structure);
         if(definition==null)return;
-        if(definition.effect==Native950AbilityCatalog.Effect.STUN&&!fighter.npc.isDead())fighter.stunnedUntil=tick+5;
+        if(definition.effect==Native950AbilityCatalog.Effect.STUN&&!fighter.npc.isDead()&&!Native950BossRules.stunImmune(fighter.npc.getId()))fighter.stunnedUntil=tick+5;
         if(structure==14728)chainSecondaryHits(player,fighter,requested,gear);
         if(structure==14730)dragonBreathSecondaryHits(player,fighter,requested,gear);
         if(structure==14735)tsunamiSecondaryHits(player,fighter,requested,gear);
@@ -1412,6 +1439,7 @@ public final class Native950MeleeCombat {
         }
         boolean critical=criticalSnapshot!=null?criticalSnapshot:requested>0&&source instanceof Player&&target instanceof NPC&&buffable&&rolls.critical();
         if(critical&&criticalSnapshot==null)requested=(int)Math.min(Integer.MAX_VALUE,((long)requested*5)/4);
+        if(target instanceof NPC&&!Native950BossRules.acceptsDamage(((NPC)target).getId(),look))requested=0;
         int damage=target instanceof Player && ((Player)target).isInvulnerable()
                 ? 0 : Math.max(0,Math.min(target.getHitpoints(),requested));
         boolean revive=target instanceof Player&&damage>=target.getHitpoints()
@@ -1586,7 +1614,7 @@ public final class Native950MeleeCombat {
     interface Rewards {void hit(Player player,NPC npc,int damage);default void hit(Player player,NPC npc,int damage,Loadout gear){hit(player,npc,damage);}void death(NPC npc,Player owner);}
     interface Loadouts {Loadout get(Player player);}
     interface Rolls {boolean accurate(long attack,long defence);int damage(int maximum);default int nativeDamageRemainder(int rawDamage){return 0;}default boolean critical(){return false;}}
-    interface Access {default void followConjureTarget(NPC actor,WorldTile target){follow(actor,target);}default void worldGraphic(WorldTile tile,int graphic){}default void followConjure(NPC actor,Player owner){follow(actor,owner);}default NPC spawnConjure(Player owner,int id){throw new IllegalStateException("Conjure actor access unavailable");}default void removeConjure(NPC actor){}default boolean bounceReach(WorldTile from,Entity to){return true;}default void retire(NPC npc){}void activate(NPC npc);boolean player(Player player);boolean npc(NPC npc);boolean clear(WorldTile tile);default boolean clear(WorldTile tile,int size){return clear(tile);}boolean reach(Entity from,Entity to);default boolean rangedReach(Player from,NPC to,int range){return reach(from,to);}default boolean npcRangedReach(NPC from,Player to,int range){return reach(from,to);}default void projectile(com.rs.game.Projectile projectile){}boolean approach(Player player,NPC npc);default boolean follow(NPC npc,WorldTile target){return false;}}
+    interface Access {default Iterable<Player> players(){return java.util.Collections.emptyList();}default void followConjureTarget(NPC actor,WorldTile target){follow(actor,target);}default void worldGraphic(WorldTile tile,int graphic){}default void followConjure(NPC actor,Player owner){follow(actor,owner);}default NPC spawnConjure(Player owner,int id){throw new IllegalStateException("Conjure actor access unavailable");}default void removeConjure(NPC actor){}default boolean bounceReach(WorldTile from,Entity to){return true;}default void retire(NPC npc){}void activate(NPC npc);boolean player(Player player);boolean npc(NPC npc);boolean clear(WorldTile tile);default boolean clear(WorldTile tile,int size){return clear(tile);}boolean reach(Entity from,Entity to);default boolean rangedReach(Player from,NPC to,int range){return reach(from,to);}default boolean npcRangedReach(NPC from,Player to,int range){return reach(from,to);}default void projectile(com.rs.game.Projectile projectile){}boolean approach(Player player,NPC npc);default boolean follow(NPC npc,WorldTile target){return false;}}
     private static final class LiveRolls implements Rolls {
         public boolean accurate(long a,long d){return ThreadLocalRandom.current().nextDouble()<Rs2CombatFormula.hitChance(a,d);}
         public int damage(int maximum){return maximum<=0?0:ThreadLocalRandom.current().nextInt(maximum+1);}
@@ -1594,6 +1622,7 @@ public final class Native950MeleeCombat {
         public boolean critical(){return ThreadLocalRandom.current().nextInt(10)==0;}
     }
     private static final class LiveAccess implements Access {
+        public Iterable<Player> players(){return World.getPlayers();}
         public void retire(NPC npc){Native950World.getInstance().discardDeadCombatNpc(npc);}
         public void activate(NPC npc){npc.enableNative950Movement();}
         public boolean player(Player player){return World.getPlayers().get(player.getIndex())==player&&player.getRealChannel()!=null&&player.getRealChannel().isActive();}

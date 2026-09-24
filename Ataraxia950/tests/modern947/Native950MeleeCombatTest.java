@@ -945,6 +945,33 @@ public class Native950MeleeCombatTest {
         for(int i=0;i<10;i++)step();assertEquals(before,access.projectiles);
         assertEquals(2,Native950MeleeCombat.skullFlightTicks(5));assertEquals(3,Native950MeleeCombat.skullFlightTicks(6));
     }
+    @Test public void kingStyleImmunityIsAppliedAtTheActualDamageBoundary()throws Exception {
+        java.lang.reflect.Method hit=Native950MeleeCombat.class.getDeclaredMethod("damage",Entity.class,Entity.class,int.class,com.rs.game.Hit.HitLook.class);
+        hit.setAccessible(true);
+        for(int id=2881;id<=2883;id++){
+            NPC king=NPC.createNative950(id,new WorldTile(3218,3258,0),3);king.setHitpoints(1000);
+            assertEquals(0,((Integer)hit.invoke(combat,player,king,100,com.rs.game.Hit.HitLook.NECROMANCY_DAMAGE)).intValue());
+            assertEquals(1000,king.getHitpoints());
+            com.rs.game.Hit.HitLook right=id==2881?com.rs.game.Hit.HitLook.MELEE_DAMAGE:id==2882?com.rs.game.Hit.HitLook.RANGE_DAMAGE:com.rs.game.Hit.HitLook.MAGIC_DAMAGE;
+            assertEquals(100,((Integer)hit.invoke(combat,player,king,100,right)).intValue());
+            assertEquals(900,king.getHitpoints());
+        }
+    }
+    @Test public void supremeAcquiresAndAttacksTwoPlayersButNotAnotherPlane(){
+        EmbeddedChannel secondChannel=new EmbeddedChannel();
+        try{
+            Player other=Player.createNative950("boss-other",new WorldTile(3217,3259,0),secondChannel);
+            other.setIndex(2);other.setActive(true);other.setHitpoints(1000);other.getCombatDefinitions().setAutoRetaliate(false);
+            player.setHitpoints(1000);player.getCombatDefinitions().setAutoRetaliate(false);access.players.add(other);combat.attach(other);
+            NPC king=NPC.createNative950(2881,new WorldTile(3218,3258,0),3);king.setIndex(3);access.npcs.add(king);
+            Native950NpcCombatProfile boss=new Native950NpcCombatProfile(2881,3,303,35000,99,99,100,4,3,60,-1,-1,-1,10,10).withAttackStyle(1,-1,-1);
+            combat.register(king,boss);
+            step();step();step();assertEquals(900,player.getHitpoints());assertEquals(900,other.getHitpoints());
+            other.setLocation(new WorldTile(3217,3259,1));
+            for(int i=0;i<8;i++)step();assertEquals(900,other.getHitpoints());
+            assertTrue(player.getHitpoints()<900);
+        }finally{secondChannel.finishAndReleaseAll();}
+    }
     private static Native950NpcCombatProfile profile(int hp,int maxHit,int respawn){return new Native950NpcCombatProfile(12353,1,2,hp,8,8,maxHit,5,3,respawn,-1,-1,-1,2,12);}
     private static final class FixedRolls implements Native950MeleeCombat.Rolls {boolean accurate=true;public boolean accurate(long attack,long defence){return accurate;}public int damage(int maximum){return maximum;}}
     private static final class FakeAccess implements Native950MeleeCombat.Access {
@@ -954,6 +981,7 @@ public class Native950MeleeCombatTest {
         public void projectile(com.rs.game.Projectile p){projectiles++;}
         public void retire(NPC npc){retired++;npcs.remove(npc);}
         public void activate(NPC npc){}
+        public Iterable<Player> players(){return players;}
         public boolean player(Player p){return players.contains(p);}
         public boolean npc(NPC n){return npcs.contains(n);}
         public boolean clear(WorldTile tile){return clear;}

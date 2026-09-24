@@ -21,10 +21,14 @@ final class Native950WorldTraversal {
         // Initial rollout: Lumbridge castle/towers and south-west Varrock. Each
         // use additionally requires a reciprocal map object on the destination
         // plane. Special dungeon/quest stairs need explicit destinations instead.
-        if(o==null||(o.getRegionId()!=12850&&o.getRegionId()!=12596))return false;
+        if(o==null||!ordinaryRegion(o.getRegionId()))return false;
         String name=o.getDefinitions().name;
         return o.getDefinitions().transforms==null&&("Ladder".equalsIgnoreCase(name)
                 ||"Staircase".equalsIgnoreCase(name)||"Stairs".equalsIgnoreCase(name));
+    }
+    static boolean ordinaryRegion(int region){
+        // Slayer Tower: reciprocal stairs are decoded from the paired 950 map.
+        return region==12850||region==12596||region==13623;
     }
     static boolean door(WorldObject o,int option){
         if(o==null||o.getType()!=0||!"Open".equalsIgnoreCase(option(o,option)))return false;
@@ -88,12 +92,15 @@ final class Native950WorldTraversal {
         }
         return best;
     }
-    private static void arrive(Player p,WorldObject source,WorldObject target){
+    static void arrive(Player p,WorldObject source,WorldObject target){
         if(p.isDead()||p.isLocked()||p.getNextWorldTile()!=null||p.isNative950ForceMovementActive()
                 ||p.getPlane()!=source.getPlane()||!Native950Woodcutting.current(source)
                 ||RouteFinder.findRoute(RouteFinder.WALK_ROUTEFINDER,p.getX(),p.getY(),p.getPlane(),p.getSize(),new ObjectStrategy(source),false)!=0)return;
         if(target!=null&&Native950Woodcutting.current(target)){
-            for(int radius=0;radius<=3;radius++)for(int dx=-radius;dx<=radius;dx++)for(int dy=-radius;dy<=radius;dy++){
+            // Large native stairs can occupy 7x7 tiles. Search their perimeter,
+            // still requiring a free floor and a valid route to the actual object.
+            int landingRadius=Math.min(16,Math.max(3,Math.max(target.getDefinitions().sizeX,target.getDefinitions().sizeY)+1));
+            for(int radius=0;radius<=landingRadius;radius++)for(int dx=-radius;dx<=radius;dx++)for(int dy=-radius;dy<=radius;dy++){
                 if(Math.max(Math.abs(dx),Math.abs(dy))!=radius)continue;
                 WorldTile tile=new WorldTile(target.getX()+dx,target.getY()+dy,target.getPlane());
                 // A wall edge does not occupy its tile. Player landings need a

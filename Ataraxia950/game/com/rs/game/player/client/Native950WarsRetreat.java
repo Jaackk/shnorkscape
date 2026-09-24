@@ -21,7 +21,7 @@ final class Native950WarsRetreat {
         if(object.getRegionId()!=REGION||object.getPlane()!=0)return false;
         int id=object.getId();
         return option==1&&(id==114748||id==114749||id==79034||id==114746)
-                ||id==114746&&option==2;
+                ||id==114746&&(option==2||option==3);
     }
     static String teleport(Player p,boolean enter){
         if(p.isDead()||p.isLocked()||p.isNative950ForceMovementActive()||p.getNextWorldTile()!=null)return "Wait until your character can teleport.";
@@ -41,7 +41,7 @@ final class Native950WarsRetreat {
     static void use(Player p,WorldObject object,int option){
         switch(object.getId()){
             case 114745:p.sendMessage(teleport(p,true));break;
-            case 114746:p.sendMessage(teleport(p,false));break;
+            case 114746:p.sendMessage(option==3?deathsOffice(p):teleport(p,false));break;
             case 114748:p.getPrayer().restorePrayer(Skills.getLevelCap(Skills.PRAYER)*10);p.sendMessage("Your prayer is restored.");break;
             case 114749:p.getCombatDefinitions().setSpecialAttackPercentage(100);p.sendMessage("Your adrenaline is restored.");break;
             case 79034:p.sendMessage(Native950DiagnosticSpawns.spawnTrainingDummy(p));break;

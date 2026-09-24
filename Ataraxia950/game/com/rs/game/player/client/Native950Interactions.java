@@ -853,7 +853,7 @@ public final class Native950Interactions {
         if (object == null || option < 1 || option > 5) return false;
         if(Native950WorldTraversal.handles(object,option))return true;
         if(Native950PhysicalBanks.accepts(object,option)&&!router.whitelistedObject(object.getId()))return true;
-        if(Native950WarsRetreat.handles(object,option))return true;
+        if((Native950WarsRetreat.handles(object,option)||Native950CombatTravel.handles(object,option)))return true;
         if(Native950Farming.isPatch(object))return Native950Farming.accepts(player,object,option);
         String[] options = object.getDefinitions().options;
         if (options == null || option > options.length) return false;
@@ -918,6 +918,7 @@ public final class Native950Interactions {
             if(router.bankInterfaceOpen())bankOpened("physical bank "+object.getId());
             else activeBank=null;
         }
+        else if(Native950CombatTravel.handles(object,pendingSkillOption))productionMenu.openChoices("SHNORKSCAPE combat travel",Native950CombatTravel.choices(player,object));
         else if(Native950WarsRetreat.handles(object,pendingSkillOption))Native950WarsRetreat.use(player,object,pendingSkillOption);
         else if(Native950Farming.isPatch(object))Native950Farming.handle(player,object,pendingSkillOption);
         else if(Native950Construction.handles(object,pendingSkillOption))productionMenu.openChoices("Construct furniture",Native950Construction.choices(player,object));

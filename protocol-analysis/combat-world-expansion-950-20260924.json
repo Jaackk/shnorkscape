@@ -1,0 +1,41 @@
+{
+  "date": "2026-09-24",
+  "status": "AUTOMATED VERIFIED; LIVE TEST PENDING",
+  "baselineAcceptedNpcs": 1880,
+  "newlyAdmittedNpcs": 0,
+  "improvedBosses": [
+    "Dagannoth Supreme",
+    "Dagannoth Prime",
+    "Dagannoth Rex"
+  ],
+  "bossRules": [
+    "counter-style damage gate shared by autos/abilities/DoTs/conjures/bounces",
+    "Prime and Supreme stun immunity; Rex remains stunnable",
+    "nearby-player acquisition",
+    "Supreme multi-player ranged hits with captured targets"
+  ],
+  "bossGaps": [
+    "projectile presentation remains incomplete for Kings",
+    "retail target switching and Provoke immunity not yet implemented",
+    "no claim of complete retail encounters"
+  ],
+  "travel": [
+    "26 reciprocal Slayer Tower stair movements verified against real950 collision",
+    "large-stair landing search uses decoded footprint",
+    "Wars Reaper portal: SHNORKSCAPE combat travel menu to Dagannoth lair / Slayer Tower / Taverley Dungeon",
+    "Wars exit option3 reaches Death office"
+  ],
+  "symbols": {
+    "newProjectAliases": 32,
+    "total": 1417,
+    "execution": "fail-closed payload + index reference SHA pins",
+    "originalGamevalClaim": false
+  },
+  "tests": {
+    "tests": 1569,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2
+  },
+  "liveServer": "not deployed or restarted"
+}
