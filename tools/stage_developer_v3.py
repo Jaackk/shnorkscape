@@ -14,11 +14,12 @@ def edit(path,fn):
 
 def main():
     mp=ROOT/'protocol-analysis/playability-candidate-20260923.json';m=json.loads(mp.read_bytes())
-    assert m['candidate']=='developer-console-v2-phase-b-20260925','Only the audited predecessor is supported'
+    assert m['candidate'] in ('developer-console-v2-phase-b-20260925',NAME),'Only audited predecessors are supported'
+    refinement=m['candidate']==NAME
     old=ROOT/'dist'/m['candidate'];dest=ROOT/'dist'/NAME
     assert (dest/'cache-v4/12/21156.dat').is_file(),'Build the complete script delta first'
     for e in m['files']:
-        assert sha(old/e['source'])==e['sha256'],('Previous candidate changed',e['source'])
+        if not refinement:assert sha(old/e['source'])==e['sha256'],('Previous candidate changed',e['source'])
         installed=ROOT/e['target'];assert installed.is_file(),e['target']
         assert sha(installed) in (e['sha256'],e['beforeSha256']),('Unreviewed runtime change',e['target'])
         target=dest/e['source'];target.parent.mkdir(parents=True,exist_ok=True)
@@ -27,7 +28,7 @@ def main():
         e['beforeSha256']=sha(installed)
     jar=ROOT/'Ataraxia950/build/libs/ataraxia-950-1.0-UNTRACKED.jar'
     shutil.copyfile(jar,dest/'ataraxia-950-1.0-UNTRACKED.jar')
-    for sid in range(21152,21157):
+    for sid in (() if refinement else range(21152,21157)):
         assert not (ROOT/f'cache/12/{sid}.dat').exists(),'New helper unexpectedly exists'
         m['files'].append({'source':f'cache-v4/12/{sid}.dat','target':f'cache/12/{sid}.dat','beforeSha256':'ABSENT'})
     for e in m['files']:e['sha256']=sha(dest/e['source'])
@@ -43,16 +44,17 @@ def main():
             return s if ref in match.group(1) else s[:match.end(1)]+",'"+ref+"'"+s[match.end(1):]
         edit(gate,patch)
     def installer(s):
+        if refinement:return s
         s=s.replace(",'developer-console-v2-phase-b-20260925')",",'developer-console-v2-phase-b-20260925','"+NAME+"')")
         at='if ($manifest.candidate -notin '
         s=s.replace(at,"if ($manifest.candidate -eq '"+NAME+"') { $expectedTargets += @(21131..21156 | ForEach-Object { \"cache/12/$_.dat\" }) }\n"+at,1)
         return s.replace('$planned = @()',"if ($manifest.candidate -eq '"+NAME+"') { $newTargets = @(21152..21156 | ForEach-Object { \"cache/12/$_.dat\" }) }\n$planned = @()",1)
     edit('Apply-PlayabilityUpdate.ps1',installer)
     def launcher(s):
-        s=s.replace('V2 Phase A test candidate.','V2 Phase B test candidate.')
+        s=s.replace('V2 Phase A test candidate.','V3 polish candidate.').replace('V2 Phase B test candidate.','V3 polish candidate.')
         s=s.replace('Native NPC scrolling, full model previews, drag rotation and integrated search.','Home, contextual navigation, grouped NPCs and actual searchable item rows.')
         s=s.replace('Primitive acceptance checkpoint: final V2 page composition follows the live test.','Includes item grants, loadouts, player preview, zoom and placement diagnostics.')
-        return s.replace('docs/DEVELOPER-CONSOLE-V2-PHASE-A-20260925.md',m['liveChecklist'])
+        return s.replace('docs/DEVELOPER-CONSOLE-V2-PHASE-A-20260925.md',m['liveChecklist']).replace('docs/DEVELOPER-CONSOLE-V2-PHASE-B-20260925.md',m['liveChecklist'])
     edit('Apply Staged Update.cmd',launcher)
     print('Packaged',NAME,len(m['files']),'files; jar',sha(jar),'reference',ref)
 

@@ -103,6 +103,12 @@ class Primitives(unittest.TestCase):
         vm.run(21153,strings=['__devsearch:6:','Banker'])
         self.assertEqual('__devsearch:6:Banker',vm.sent[-1])
 
+    def test_unfocused_cleanup_cannot_restore_another_domains_stale_query(self):
+        vm=VM();vm.run(21137,strings=['','__devsearch:8:','Search Teleports...'])
+        vm.vars[34130432]='man'
+        vm.run(21140)
+        self.assertEqual('Search Teleports...',vm.components[(1448<<16|4,0)]['text'])
+
     def test_selected_border_does_not_change_item_or_row_operation(self):
         vm=VM();vm.run(21144,[0,20135],['Torva','__devop:3:2000'])
         vm.run(21154,[0,3])
@@ -157,7 +163,8 @@ class Primitives(unittest.TestCase):
         vm=VM();vm.run(21135,[0,6260,1,1000,-50]);view=vm.components[(1448<<16|7,0)]['view']
         vm.run(21136,[0]);vm.run(21141,[0,2]);model=vm.components[(1448<<16|7,0)]
         self.assertEqual(6260,model['npc']);self.assertEqual(2,model['seq']);self.assertEqual(view,model['view']);self.assertEqual([],vm.sent)
-        vm.run(21135,[0,1,3,800,0]);self.assertEqual(1,model['npc']);self.assertEqual(3,model['seq'])
+        vm.run(21135,[0,1,3,800,0]);replacement=vm.components[(1448<<16|7,0)]
+        self.assertIsNot(model,replacement);self.assertEqual(1,replacement['npc']);self.assertEqual(3,replacement['seq'])
 
     def test_unverified_animation_has_no_operation_and_verified_preview_is_local(self):
         vm=VM();key=(1448<<16|5,0);vm.components[key]={'kind':4}

@@ -120,7 +120,7 @@ final class Native950DeveloperConsole {
         if(notification.startsWith("__devsearch:")){
             if(!open||awaitingNative||input!=null||placement!=null||!mayAct())return true;
             String[] fields=notification.split(":",3);
-            try{if(fields.length==3&&Long.parseLong(fields[1])==epoch&&fields[2].length()<=80){query=fields[2].trim();page=0;entity=null;variantFamily="";render();}}
+            try{if(fields.length==3&&Long.parseLong(fields[1])==epoch&&fields[2].length()<=80){query=fields[2].trim();page=0;entity=null;itemSelection=null;selectedTeleport=null;variantFamily="";render();}}
             catch(NumberFormatException ignored){}return true;
         }
         if(notification.startsWith("__devop:")){
@@ -250,7 +250,7 @@ final class Native950DeveloperConsole {
         write(Native950Packets.interfaceEvents(SHELL,4,0,0,2));
         int searchActor=buttons.size();button(334,38,74,30,"Search",false,()->{});
         write(Native950Packets.runClientScript(21152,searchActor,"__devsearch:"+epoch+":",query));
-        button(413,38,68,30,"Clear",false,()->{query="";page=0;render();});
+        button(413,38,68,30,"Clear",false,()->{query="";page=0;entity=null;itemSelection=null;selectedTeleport=null;variantFamily="";render();});
         renderContext();
         if(domain.equals("Items")){renderItems();footer();return;}
         if(domain.equals("Teleports")){renderTeleports();footer();return;}
@@ -380,7 +380,7 @@ final class Native950DeveloperConsole {
             text(181,88,300,32,17514,"BEST GEAR");
             String[] styles={"Melee","Ranged","Magic","Necromancy"};
             for(int n=0;n<4;n++){final int index=n;button(181,130+n*43,290,36,styles[n],false,()->{status=Native950DeveloperLoadouts.apply(player,Native950DeveloperLoadouts.builtins().get(index));render();});}
-            write(Native950Packets.runClientScript(21155,textChild++,495,80,239,275,1500));
+            write(Native950Packets.runClientScript(21155,textChild++,495,80,239,275,500));
             text(181,318,290,65,2100,"Equips a complete loadout.<br>Existing gear and supplies move safely to your bank.");
             button(495,387,239,28,"Open Equipment Library",false,()->quick(";;items"));return;
         }
@@ -420,10 +420,10 @@ final class Native950DeveloperConsole {
     }
     private void loadout(int index){status=Native950DeveloperLoadouts.apply(player,Native950DeveloperLoadouts.builtins().get(index));render();}
     private void renderPlayer(){
-        int model=textChild++;write(Native950Packets.runClientScript(21155,model,180,80,300,280,1500));
+        int model=textChild++;write(Native950Packets.runClientScript(21155,model,180,80,300,280,500));
         write(Native950Packets.runClientScript(21156,model,180,80,300,280));
-        String[] zoom={"Zoom -","Reset","Zoom +"};int[] change={-150,0,150};
-        for(int n=0;n<3;n++){int actor=buttons.size();button(180+n*100,367,96,28,zoom[n],false,()->{});write(Native950Packets.runClientScript(21148,actor,model,change[n],1500));}
+        String[] zoom={"Zoom -","Reset","Zoom +"};int[] change={75,0,-75};
+        for(int n=0;n<3;n++){int actor=buttons.size();button(180+n*100,367,96,28,zoom[n],false,()->{});write(Native950Packets.runClientScript(21148,actor,model,change[n],500));}
         text(495,52,239,32,17514,safe(player.getDisplayName()));
         String[][] controls={{"Heal",";;heal"},{"Max stats",";;max"},{"Almighty / DM",";;almighty"},{"Reset cooldowns",";;resetcooldowns"}};
         for(int n=0;n<controls.length;n++){final String[] c=controls[n];button(495,100+n*34,239,29,toggleLabel(c[0],c[1]),toggleActive(c[1]),()->quick(c[1]));}
@@ -489,7 +489,7 @@ final class Native950DeveloperConsole {
             Runnable select=()->{entity=e;confirm=false;report=Collections.emptyList();advanced=false;savePlacement=false;amount=1;rotation=0;typeIndex=0;for(int i=0;i<e.types.length;i++)if(e.types[i]==10)typeIndex=i;render();};
             if(browser.equals("Object")){
                 int actor=2000+n;collectionRows.put(actor,select);
-                write(Native950Packets.runClientScript(21150,n,"<col=ffd479>"+safe(e.name)+"</col><br>"+e.width+" x "+e.height+" | ID "+e.id,"__devop:"+epoch+":"+actor));continue;
+                write(Native950Packets.runClientScript(21150,n,"<col=ffd479>"+safe(label)+"</col><br>"+e.width+" x "+e.height+" | World object","__devop:"+epoch+":"+actor));if(entity!=null&&entity.id==e.id)write(Native950Packets.runClientScript(21154,n,2));continue;
             }
             button(171,77+n*50,310,47,"",entity==e,select);
             text(181,80+n*50,290,19,2100,"<col=ffd479>"+safe(label)+"</col>");
@@ -502,7 +502,7 @@ final class Native950DeveloperConsole {
         if(!report.isEmpty()){renderReport();return;}
         if(entity==null){text(500,48,229,35,17514,browser+" browser");text(500,93,227,200,2100,"Actual revision-950 names and footprints.<br><br>Search by name or exact numeric ID.<br><br>Only concrete definitions with world models are listed.<br><br>Placement is validated again by the existing diagnostic handler.");}
         else{
-            text(500,43,229,54,17514,safe(entity.name));text(500,103,227,95,2100,(entity.kind.equals("Object")&&!advanced?"Footprint: "+entity.width+" x "+entity.height+"<br>Rotation: "+(rotation*90)+" degrees<br>950 world-model definition":entity.details())+(bossOnly?"<br>"+Native950BossCatalogue.find(entity.id).status:""));
+            text(500,43,229,60,17514,titleLines(entity.name));text(500,103,227,95,2100,(entity.kind.equals("Object")&&!advanced?"Footprint: "+entity.width+" x "+entity.height+"<br>Rotation: "+(rotation*90)+" degrees<br>950 world-model definition":entity.details())+(bossOnly?"<br>"+Native950BossCatalogue.find(entity.id).status:""));
             if(browser.equals("NPC")){
                 button(495,219,239,30,"Amount: "+amount,false,()->prompt("NPC amount (1-50):",v->{try{int n=Integer.parseInt(v);if(n<1||n>50)throw new NumberFormatException();amount=n;}catch(NumberFormatException e){throw new IllegalArgumentException("Amount must be 1-50.");}}));
                 button(495,252,239,30,"Respawn: "+(repeat?"ON":"OFF"),false,()->{repeat=!repeat;render();});
@@ -546,7 +546,7 @@ final class Native950DeveloperConsole {
             // Different container/nonce namespace: never leave holes in host5's
             // contiguous CC_CREATE indices for the inspector buttons that follow.
             rowEntities.put(actor,e);
-            write(Native950Packets.runClientScript(21132,n,count,"<col=ffd479>"+safe(e.name)+"</col><br>Level "+Math.max(0,e.level)+" | "+e.width+" x "+e.height,
+            write(Native950Packets.runClientScript(21132,n,count,"<col=ffd479>"+safe(rowName(e.name,34))+"</col><br>Level "+Math.max(0,e.level)+" | "+e.width+" x "+e.height,
                     "__devop:"+epoch+":"+actor));
         }
         write(Native950Packets.runClientScript(21133));
@@ -587,7 +587,7 @@ final class Native950DeveloperConsole {
         write(Native950Packets.runClientScript(21135,previewChild,preview.npc,preview.idle,preview.zoom,preview.height));
         write(Native950Packets.runClientScript(21143,idleActor,previewChild,preview.idle));
         write(Native950Packets.runClientScript(21143,attackActor,previewChild,preview.attack));
-        int[] zoomChanges={-150,0,150};for(int n=0;n<3;n++)write(Native950Packets.runClientScript(21148,zoomActors[n],previewChild,zoomChanges[n],preview.zoom));
+        int[] zoomChanges={150,0,-150};for(int n=0;n<3;n++)write(Native950Packets.runClientScript(21148,zoomActors[n],previewChild,zoomChanges[n],preview.zoom));
         Native950BugTest.event(player,"developer-console","preview","npc",entity.id,"idle",preview.idle,"attack",preview.attack,"zoom",preview.zoom,"nativeFraming",preview.nativeFraming);
     }
     private void previewSequence(boolean attack){

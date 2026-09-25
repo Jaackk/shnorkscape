@@ -14,6 +14,9 @@ final class Native950DeveloperPreview {
         this.npc=npc;this.idle=idle;this.attack=attack;this.zoom=zoom;this.height=height;this.nativeFraming=nativeFraming;
     }
     static Native950DeveloperPreview unavailable(){return new Native950DeveloperPreview(-1,-1,-1,1000,0,false);}
+    // Camera distance grows with footprint; the old inverse made large actors overflow.
+    // This is a conservative fallback, not a claim of measured model bounds.
+    static int fallbackDistance(int size){return Math.min(6000,800*(int)Math.ceil(Math.sqrt(Math.max(1,size))));}
     static Native950DeveloperPreview resolve(int id){
         if(Cache.STORE==null)return new Native950DeveloperPreview(-1,-1,-1,1000,0,false);
         NPCDefinitions d=NPCDefinitions.getNPCDefinitions(id);
@@ -41,6 +44,6 @@ final class Native950DeveloperPreview {
         }
         // Explicit provisional framing for ordinary definitions; physical small/
         // large acceptance is required. Animation identity is never inferred from size.
-        return new Native950DeveloperPreview(id,idle,attack,Math.max(250,1100/Math.max(1,d.size)),0,false);
+        return new Native950DeveloperPreview(id,idle,attack,fallbackDistance(d.size),0,false);
     }
 }

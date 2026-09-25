@@ -49,9 +49,10 @@ def programs(api):
     c.label('done').add(il(0),sl(0),call(21127))
     out[21134]=c.raw(4,1,args=3)
     # 21135: create/update a full NPC model; every selection resets old sequence.
-    c=Code().add(*ints(host(7)),il(0),(0x109,0),*ints(1)).jump(0x647,'exists')
-    c.add(*ints(host(7),6),il(0),(0x691,0),*ints(224,130,0,0),(0x8c3,0),*ints(501,93,0,0),(0x828,0))
-    c.label('exists').add(il(1),(0x1fc,0),*ints(-1),(0x67f,0),il(2),(0x67f,0),
+    # Native CS3503 recreates the model actor when its subject changes. Reuse
+    # its slot, not a stale rendered model; the list/search remain untouched.
+    c=Code().add(*ints(host(7),6),il(0),(0x691,0),*ints(224,130,0,0),(0x8c3,0),*ints(501,93,0,0),(0x828,0))
+    c.add(il(1),(0x1fc,0),*ints(-1),(0x67f,0),il(2),(0x67f,0),
                          *ints(0),il(4),*ints(0,180,0),il(3),(0x112,0))
     out[21135]=c.raw(5)
     # 21136: drag-to-rotate uses native CS11619's hooks with a dynamic model slot.
@@ -95,7 +96,8 @@ def programs(api):
     c.label('cancel').add(sl(1),(0x195,34130432),call(21140)).jump(0x713,'done')
     c.label('cursor').add(il(0),(0x1ca,33817856),(0x1ca,34130432),call(1553),(0x195,33817856)).label('done')
     out[21139]=c.raw(2,2)
-    c=Code().add(*ints(-1),push(''),*ints(host(4)),(0x375,0),*ints(11,0),call(8841),
+    c=Code().add((0x1ca,34289920),*ints(11)).jump(0x412,'done')
+    c.add(*ints(-1),push(''),*ints(host(4)),(0x375,0),*ints(11,0),call(8841),
                  *ints(host(4),0),(0x109,0),*ints(1)).jump(0x412,'done')
     c.add((0x1ca,34130432),(0x1f1,0)).label('done')
     out[21140]=c.raw()
@@ -169,7 +171,7 @@ def programs(api):
     out[21154]=c.raw(2)
     # Parameterised local-player preview and matching native rotation hit region.
     c=Code().add(*ints(host(7),6),il(0),(0x691,0),il(3),il(4),*ints(0,0),(0x8c3,0),il(1),il(2),*ints(0,0),(0x828,0),
-                 (0x79b,0),*ints(0,0,0,180,0),il(5),(0x112,0))
+                 (0x79b,0),*ints(0,100,0,0,0),il(5),(0x112,0))
     out[21155]=c.raw(6)
     c=Code().add(il(1),il(2),*ints(0,0,host(6)),(0x7c5,0),il(3),il(4),*ints(0,0,host(6)),(0x55,0),
                  *ints(0,host(6)),(0xe4,0),*ints(host(6)),(0x8a2,0),*ints(-1,host(6)),(0x353,0))
