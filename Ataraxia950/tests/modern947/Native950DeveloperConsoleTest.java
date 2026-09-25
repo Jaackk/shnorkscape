@@ -66,6 +66,17 @@ public class Native950DeveloperConsoleTest {
         assertTrue(Native950DeveloperActions.state(god,p).contains("ON"));assertTrue(Native950DeveloperActions.state(dm,p).contains("OFF"));
         Native950DevelopmentCommands.handle(p,channel,";;dm");assertTrue(Native950DeveloperActions.state(dm,p).contains("ON"));
     }
+    @Test public void typedFavouritesPersistWithoutLeakingIntoCommandResults()throws Exception{
+        Set<String> saved=new LinkedHashSet<>(Arrays.asList("heal","npc:1","item:995"));
+        Native950DeveloperPreferences.save("tester",saved);
+        assertEquals(saved,Native950DeveloperPreferences.load("tester"));
+        assertEquals(1,Native950DeveloperActions.search("Favourites","",saved).size());
+        assertFalse(Native950DeveloperPreferences.load("nooby").contains("npc:1"));
+        assertFalse(Native950DeveloperPreferences.valid("npc:9999999"));
+        assertFalse(Native950DeveloperPreferences.valid("object:../1"));
+        saved.remove("npc:1");Native950DeveloperPreferences.save("tester",saved);
+        assertFalse(Native950DeveloperPreferences.load("tester").contains("npc:1"));
+    }
     @Test public void preferencesAreIndependentAndRoundTripWithoutCharacterSave()throws Exception{
         Set<String> mine=new LinkedHashSet<>(Arrays.asList("heal","infammo"));Native950DeveloperPreferences.save("tester",mine);
         assertEquals(mine,Native950DeveloperPreferences.load("tester"));assertFalse(Native950DeveloperPreferences.load("nooby").contains("infammo"));

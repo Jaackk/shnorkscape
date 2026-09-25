@@ -48,5 +48,24 @@
     "failures": 0,
     "errors": 0,
     "skipped": 0
+  },
+  "followup": {
+    "status": "STAGED; AUTOMATED VERIFIED; LIVE TEST PENDING; REQUEST PARTIAL",
+    "regression": {
+      "tests": 1595,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 2
+    },
+    "scriptTests": 23,
+    "physical": "Not run for this checkpoint. Rotation correction is not yet live accepted.",
+    "remaining": [
+      "gold-star widgets",
+      "cross-family boss favourites",
+      "Quest/Passive/Aggressive/Slayer categories",
+      "object previews",
+      "additional NPC visuals",
+      "remaining Home icons"
+    ]
   }
 }

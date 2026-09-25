@@ -63,16 +63,15 @@ def programs(api):
     c.add(il(1),(0x1fc,0),*ints(-1),(0x67f,0),il(2),(0x67f,0),
                          *ints(0),il(4),*ints(0,180,0),il(3),(0x112,0))
     out[21135]=c.raw(6)
-    # 21136: drag-to-rotate uses native CS11619's hooks with a dynamic model slot.
-    # Static 6 is a drag layer under actor host5; static 4 is reserved for search.
-    c=Code()
-    for child in (20,21,22):c.add(*ints(1,host(child)),(0xe4,0))
-    c.add(*ints(491,70,0,0,host(6)),(0x7c5,0),*ints(247,177,0,0,host(6)),(0x55,0),*ints(0,host(6)),(0xe4,0),
-          *ints(host(6)),(0x8a2,0),*ints(-1,host(6)),(0x353,0))
-    for sid,op in ((8479,0x815),(8480,0x732)):
-        c.add(*ints(sid,host(6),host(8),0),push('iii'),*ints(host(6)),(op,0))
-    c.add(*ints(189,host(6)),(0x413,0))
-    out[21136]=c.raw(1)
+    # Bind rotation to the model's own clipping/input pane, not the old
+    # sibling layer behind it. Native CS11619 hooks still target model slot 0.
+    def rotation(c):
+        c.add(*ints(host(8)),(0x8a2,0),*ints(-1,host(8)),(0x353,0))
+        for sid,op in ((8479,0x815),(8480,0x732)):
+            c.add(*ints(sid,host(8),host(8),0),push('iii'),*ints(host(8)),(op,0))
+        c.add(*ints(189,host(8)),(0x413,0))
+        return c
+    out[21136]=rotation(Code()).raw(1)
     # 21137: create integrated search. No native text component is repurposed.
     c=Code().add(*ints(8,38,0,0,host(4)),(0x7c5,0),
                  *ints(320,30,0,0,host(4)),(0x55,0),*ints(0,host(4)),(0xe4,0))
@@ -138,7 +137,12 @@ def programs(api):
     out[21145]=script(ints(host(3))+[(0x5,0)])
     # Inspector item icon: slot, item, x, y, width, height.
     c=Code().add(*ints(host(7),5),il(0),(0x691,0),il(4),il(5),*ints(0,0),(0x8c3,0),
-                 il(2),il(3),*ints(0,0),(0x828,0),il(1),*ints(1),(0x550,0))
+                 il(2),il(3),*ints(0,0),(0x828,0))
+    # Native CS7918 uses CC_SETGRAPHIC834. Negative asset IDs select sprites;
+    # positive IDs retain the existing inventory-item contract.
+    c.add(il(1),*ints(0),(0x1f9,0),il(1)).jump(0x647,'item')
+    c.add(il(1),*ints(-1),(0x51e,0),(0x834,0)).jump(0x713,'done')
+    c.label('item').add(il(1),*ints(1),(0x550,0)).label('done')
     out[21146]=c.raw(6)
     # Model zoom changes retain the native drag angles (CS1165 getter order).
     c=Code().add(*ints(host(8),0),(0x109,0),*ints(1)).jump(0x412,'done')
@@ -183,11 +187,5 @@ def programs(api):
     c.add(*ints(host(8),6,0),(0x691,0),il(3),il(4),*ints(0,0),(0x8c3,0),*ints(0,0,0,0),(0x828,0),
                  (0x79b,0),*ints(0,100,0,0,0),il(5),(0x112,0))
     out[21155]=c.raw(6)
-    c=Code().add(il(1),il(2),*ints(0,0,host(6)),(0x7c5,0),il(3),il(4),*ints(0,0,host(6)),(0x55,0),
-                 *ints(0,host(6)),(0xe4,0),*ints(host(6)),(0x8a2,0),*ints(-1,host(6)),(0x353,0))
-    for sid,op in ((8479,0x815),(8480,0x732)):
-        c.add(*ints(sid,host(6),host(8),0),push('iii'),*ints(host(6)),(op,0))
-    c.add(*ints(189,host(6)),(0x413,0))
-    for child in (20,21,22):c.add(*ints(1,host(child)),(0xe4,0))
-    out[21156]=c.raw(5)
+    out[21156]=rotation(Code()).raw(5)
     return out

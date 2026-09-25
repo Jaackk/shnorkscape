@@ -23,8 +23,8 @@ final class Native950DeveloperConsole {
     }
     private Native950EquipmentCatalogue.Entry itemSelection;
     private final LinkedHashMap<Integer,Native950EquipmentCatalogue.Entry> recentItems=new LinkedHashMap<>();
-    private final Set<Integer> favouriteItems=new LinkedHashSet<>();
-    private int previewChild,previewTitle,previewInfo,idleActor,attackActor;private Native950DeveloperPreview preview;
+
+    private int previewChild,previewTitle,previewInfo,previewFavourite,idleActor,attackActor;private Native950DeveloperPreview preview;
     private final int[] zoomActors=new int[3];
     private static final Map<Player,Native950DeveloperConsole> OWNERS=new IdentityHashMap<>();
     private final Player player;private final Channel channel;private final Runnable prepare,verify;
@@ -211,8 +211,9 @@ final class Native950DeveloperConsole {
         case "npc":case "findnpc":return "Browse NPCs";case "obj":return "Browse objects";case "bosses":return "Boss encounters";
         default:return Character.toUpperCase(a.id.charAt(0))+a.id.substring(1);}
     }
-    private void favourite(Native950DeveloperActions.Action a){
-        Set<String> changed=new LinkedHashSet<>(favourites);if(!changed.remove(a.id))changed.add(a.id);
+    private void favourite(Native950DeveloperActions.Action a){toggleFavourite(a.id);}
+    private void toggleFavourite(String id){
+        Set<String> changed=new LinkedHashSet<>(favourites);if(!changed.remove(id))changed.add(id);
         try{Native950DeveloperPreferences.save(player.getUsername(),changed);favourites=changed;status="Favourites saved.";}
         catch(java.io.IOException e){status="Could not save favourites; existing preferences preserved.";}render();
     }
@@ -324,6 +325,7 @@ final class Native950DeveloperConsole {
         List<String> output=Native950DeveloperOutput.run(player,channel,()->execute.accept(command));
         status=output.isEmpty()?"Action completed.":output.get(0);if(open)render();
     }
+    private void homeSprite(int sprite,int x,int y){write(Native950Packets.runClientScript(21146,textChild++,-sprite,x,y,28,28));}
     private void homeIcon(String name,int x,int y){
         if(Cache.STORE==null)return;
         for(Native950EquipmentCatalogue.Entry e:Native950DeveloperItems.search(name))if(e.name.equalsIgnoreCase(name)){
@@ -334,13 +336,19 @@ final class Native950DeveloperConsole {
         text(8,44,720,28,17514,"QUICK ACTIONS");
         String[][] actions={{"Heal",";;heal"},{"Almighty (DM)",";;almighty"},{"Open bank",";;bank"},{"War's Retreat",";;wars"},{"Reset cooldowns",";;resetcooldowns"},{"Equipment Library",";;items"}};
         for(int n=0;n<actions.length;n++){final String[] a=actions[n];button(8+(n%3)*244,80+(n/3)*43,236,37,toggleLabel(a[0],a[1]),toggleActive(a[1]),()->quick(a[1]));}
-        String[] icons={"Shark","Overload flask (6)","Coins","Law rune","","Torva platebody"};
+        String[] icons={"","Overload flask (6)","Coins","Law rune","","Torva platebody"};
         for(int n=0;n<icons.length;n++)if(!icons[n].isEmpty())homeIcon(icons[n],15+(n%3)*244,84+(n/3)*43);
         text(8,172,720,28,17514,"EXPLORE / TEST");
         String[] domains={"NPCs","Objects","Items","Bosses","Combat","Teleports","Tools","Spawns","Player"};
         for(int n=0;n<domains.length;n++){final String d=domains[n];button(8+(n%3)*244,209+(n/3)*38,236,33,d,false,()->navigate(d));}
-        String[] domainIcons={"Bones","Spade","Torva full helm","Dragon bones","Rune sword","Law rune","Hammer","","Rune platebody"};
+        String[] domainIcons={"Bones","","","","","Law rune","","","Rune platebody"};
         for(int n=0;n<domainIcons.length;n++)if(!domainIcons[n].isEmpty())homeIcon(domainIcons[n],15+(n%3)*244,211+(n/3)*38);
+        homeSprite(13199,15,84); // Constitution heart, native skill sprite / CS8894.
+        homeSprite(13209,259,211); // Construction.
+        homeSprite(8123,503,211); // Native bank scroll/catalogue.
+        homeSprite(30936,15,249); // Native skull.
+        homeSprite(13193,259,249); // Native Attack sword.
+
         text(8,331,350,25,17514,"RECENT ITEMS");text(377,331,350,25,17514,"FAVOURITE ACTIONS");
         List<Native950EquipmentCatalogue.Entry> recent=new ArrayList<>(recentItems.values());Collections.reverse(recent);
         for(int n=0;n<Math.min(2,recent.size());n++){final Native950EquipmentCatalogue.Entry e=recent.get(n);button(8,362+n*27,350,25,e.name,false,()->{navigate("Items");itemSelection=e;render();});}
@@ -349,11 +357,11 @@ final class Native950DeveloperConsole {
     private void renderContext(){
         String[] entries;
         switch(domain){
-            case "NPCs": entries=new String[]{"All NPCs","Bosses","All variants","My spawns"};break;
-            case "Objects": entries=new String[]{"All Objects","Banking","Portals","My spawns"};break;
+            case "NPCs": entries=new String[]{"All NPCs","Bosses","Favourites","All variants","My spawns"};break;
+            case "Objects": entries=new String[]{"All Objects","Banking","Portals","Favourites","My spawns"};break;
             case "Items": entries=new String[]{"All Items","Best Gear","Weapons","Armour","Necromancy","Consumables","Favourites","Recent"};break;
-            case "Bosses": entries=new String[]{"All Bosses","Supported","Partial","Blocked","My spawns"};break;
-            case "Combat": entries=new String[]{"Quick Controls","Loadouts","Abilities","NPC Inspector","Boss Inspector","Combat QA"};break;
+            case "Bosses": entries=new String[]{"All Bosses","Supported","Partial","Blocked","Favourites","My spawns"};break;
+            case "Combat": entries=new String[]{"Quick Controls","Loadouts","Combat Commands","NPC Inspector","Boss Inspector","Combat QA"};break;
             case "Teleports": entries=new String[]{"Destinations","Custom"};break;
             default: entries=new String[]{"Commands","Favourites","Gamevals / Cache","Player","Bug Test","World Editor","Settings"};break;
         }
@@ -366,10 +374,10 @@ final class Native950DeveloperConsole {
             if(s.equals("Gamevals / Cache")){browseGamevals();return;}
             if(s.equals("Bug Test")){quick(";;bugtest");return;}
             if(domain.equals("Combat")){
-                String id=s.equals("Abilities")?"abilityinfo":s.equals("NPC Inspector")?"npcinfo":s.equals("Boss Inspector")?"bossinfo":s.equals("Combat QA")?"combatqa":null;
+                String id=s.equals("NPC Inspector")?"npcinfo":s.equals("Boss Inspector")?"bossinfo":s.equals("Combat QA")?"combatqa":null;
                 if(id!=null){select(Native950DeveloperActions.find(id));return;}
             }
-            if(s.equals("Player")||s.equals("Settings")||s.equals("Commands")||s.equals("Favourites")&&!domain.equals("Items")){category=s;browser="";selected=null;}
+            if(s.equals("Player")||s.equals("Settings")||s.equals("Commands")||s.equals("Favourites")&&domain.equals("Tools")){category=s;browser="";selected=null;}
             if(domain.equals("NPCs")){bossOnly=s.equals("Bosses");entity=null;variantFamily="";}
             if(domain.equals("Objects")){query=s.equals("Banking")?"bank":s.equals("Portals")?"portal":"";entity=null;}
             render();
@@ -387,7 +395,7 @@ final class Native950DeveloperConsole {
         }
         List<Native950EquipmentCatalogue.Entry> results=new ArrayList<>(section.equals("Recent")?recentItems.values():Native950DeveloperItems.search(query));
         if(section.equals("Favourites")){
-            results.clear();for(int id:favouriteItems)results.addAll(Native950DeveloperItems.search(String.valueOf(id)));
+            results.clear();for(String id:favourites)if(id.startsWith("item:"))results.addAll(Native950DeveloperItems.search(id.substring(5)));
         }
         if((section.equals("Recent")||section.equals("Favourites"))&&!query.isEmpty())results.removeIf(e->!e.name.toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT))&&!String.valueOf(e.id).equals(query));
         if(section.equals("Weapons"))results.removeIf(e->e.slot!=3&&e.slot!=5);
@@ -404,9 +412,9 @@ final class Native950DeveloperConsole {
             if(itemSelection!=null&&itemSelection.id==e.id)write(Native950Packets.runClientScript(21154,n,3));
         }
         write(Native950Packets.runClientScript(21133));write(Native950Packets.interfaceEvents(SHELL,9,0,Math.max(0,count*3-1),2));
-        button(171,387,76,28,"Earlier",false,()->{if(page>0){page--;render();}});
+        button(171,387,76,28,"Previous",false,()->{if(page>0){page--;render();}});
         text(251,389,145,24,2100,(page+1)+" / "+pages+" | "+results.size()+" items");
-        button(402,387,79,28,"More",false,()->{if(page+1<pages){page++;render();}});
+        button(402,387,79,28,"Next",false,()->{if(page+1<pages){page++;render();}});
         if(itemSelection!=null){
             final Native950EquipmentCatalogue.Entry e=itemSelection;
             text(500,43,229,60,2100,titleLines(e.name));write(Native950Packets.runClientScript(21146,textChild++,e.id,578,103,64,64));
@@ -415,8 +423,8 @@ final class Native950DeveloperConsole {
             button(616,235,118,29,"Give X",false,()->prompt("Quantity (1-1000000):",v->status=Native950DeveloperItems.give(player,e.id,Integer.parseInt(v))));
             button(495,269,116,29,"Equip",false,()->{status=Native950DeveloperItems.equip(player,e.id);render();});
             button(616,269,118,29,"Add to bank",false,()->prompt("Bank quantity (1-1000000):",v->status=Native950DeveloperItems.bank(player,e.id,Integer.parseInt(v))));
-            button(495,303,239,29,favouriteItems.contains(e.id)?"Remove favourite":"Add favourite",false,()->{if(!favouriteItems.remove(e.id))favouriteItems.add(e.id);render();});
-            button(495,337,239,29,"More info",false,()->showReport(Arrays.asList(e.name,Native950DeveloperItems.details(e.id).replace("<br>"," | "),"Shared Equipment Library safe index; infinite catalogue stock.","Favourites and Recent on this page are retained for this session.")));
+            button(495,303,239,29,favourites.contains("item:"+e.id)?"<col=ffd166>* Favourited</col>":"* Favourite",favourites.contains("item:"+e.id),()->toggleFavourite("item:"+e.id));
+            button(495,337,239,29,"More info",false,()->showReport(Arrays.asList(e.name,Native950DeveloperItems.details(e.id).replace("<br>"," | "),"Shared Equipment Library safe index; infinite catalogue stock.","Favourites are saved per account; Recent is retained for this session.")));
         }else text(500,53,229,80,17514,"Search and select an item");
         button(495,387,239,28,"Open Equipment Library",false,()->quick(";;items"));
     }
@@ -435,11 +443,16 @@ final class Native950DeveloperConsole {
         button(495,387,239,28,"Open Equipment Library",false,()->quick(";;items"));
     }
     private void renderCombat(){
+        if(section.equals("Loadouts")){
+            text(181,86,300,30,17514,"COMBAT LOADOUTS");
+            String[] styles={"Melee","Ranged","Magic","Necromancy"};
+            for(int n=0;n<4;n++){final int i=n;button(181,132+n*48,290,40,styles[n],false,()->loadout(i));}
+            button(495,344,239,36,"Player preview",false,()->navigate("Player"));
+            return;
+        }
         text(181,86,300,30,17514,"COMBAT CONTROLS");
         String[][] controls={{"Damage immunity",";;god"},{"Almighty / DM",";;almighty"},{"Infinite adrenaline",";;infadren"},{"Infinite prayer",";;infprayer"},{"Reset cooldowns",";;resetcooldowns"}};
         for(int n=0;n<controls.length;n++){final String[] c=controls[n];button(181,132+n*43,290,36,toggleLabel(c[0],c[1]),toggleActive(c[1]),()->quick(c[1]));}
-        text(500,86,229,30,17514,"LOADOUTS");String[] styles={"Melee","Ranged","Magic","Necromancy"};
-        for(int n=0;n<4;n++){final int i=n;button(495,132+n*43,239,36,styles[n],false,()->loadout(i));}
         button(495,344,239,36,"Player preview",false,()->navigate("Player"));
     }
     private void renderTeleports(){
@@ -490,6 +503,7 @@ final class Native950DeveloperConsole {
     private void renderBrowser(){
         if(browser.equals("NPC")&&report.isEmpty()&&!npcAdvanced){renderNpcBrowser();return;}
         List<Native950DeveloperCatalogue.Entry> results=bossOnly?Native950BossCatalogue.search(query):Native950DeveloperCatalogue.search(browser,query);
+        if(section.equals("Favourites")){results=new ArrayList<>(results);results.removeIf(e->!favourites.contains("object:"+e.id));}
         int window=browser.equals("Object")?BROWSER_WINDOW:PAGE_SIZE;
         int pages=Math.max(1,(results.size()+window-1)/window);page=Math.max(0,Math.min(page,pages-1));
         int count=Math.min(window,results.size()-page*window);if(browser.equals("Object"))viewport(count);
@@ -538,14 +552,15 @@ final class Native950DeveloperConsole {
                 if(!confirm){confirm=true;status="Creates your temporary encounter. Click Confirm test encounter.";render();return;}
                 confirm=false;showReport(Native950DeveloperOutput.run(player,channel,()->execute.accept(";;bossfight "+entity.id)));
             });
-        else button(495,358,239,27,"Back to actions",false,()->{browser="";query="";page=0;render();});
+        else if(entity!=null)button(495,358,239,27,favourites.contains("object:"+entity.id)?"<col=ffd166>* Favourited</col>":"* Favourite",favourites.contains("object:"+entity.id),()->toggleFavourite("object:"+entity.id));
     }
     /** Bounded rows scroll locally; selecting one never tears down the viewport. */
     private void renderNpcBrowser(){
         List<Native950DeveloperCatalogue.Entry> results=!variantFamily.isEmpty()?new ArrayList<>(Native950DeveloperCatalogue.search("NPC",variantFamily)):
             bossOnly?Native950BossCatalogue.search(query):section.equals("All variants")?Native950DeveloperCatalogue.search("NPC",query):Native950DeveloperCatalogue.groupedNpcs(query);
         if(!variantFamily.isEmpty())results.removeIf(e->!e.name.equalsIgnoreCase(variantFamily));
-        if(domain.equals("Bosses")&&!section.isEmpty()&&!section.equals("All Bosses")){
+        if(section.equals("Favourites")){results=new ArrayList<>(results);results.removeIf(e->!favourites.contains("npc:"+e.id));}
+        if(domain.equals("Bosses")&&Arrays.asList("Supported","Partial","Blocked").contains(section)){
             results=new ArrayList<>(results);results.removeIf(e->{Native950BossCatalogue.Boss b=Native950BossCatalogue.find(e.id);return b==null||!b.status.toLowerCase(Locale.ROOT).contains(section.toLowerCase(Locale.ROOT));});
         }
         int pages=Math.max(1,(results.size()+BROWSER_WINDOW-1)/BROWSER_WINDOW);page=Math.max(0,Math.min(page,pages-1));
@@ -563,10 +578,12 @@ final class Native950DeveloperConsole {
         }
         write(Native950Packets.runClientScript(21133));
         write(Native950Packets.interfaceEvents(SHELL,9,0,Math.max(0,count*2-1),30));
-        button(171,387,76,28,"Earlier",false,()->{if(page>0){page--;entity=null;render();}});
+        button(171,387,76,28,"Previous",false,()->{if(page>0){page--;entity=null;render();}});
         text(251,389,145,24,2100,count==0?"No matches":(start+1)+"-"+(start+count)+" of "+results.size());
-        button(402,387,79,28,"More",false,()->{if(page+1<pages){page++;entity=null;render();}});
-        previewTitle=textChild;text(500,43,229,45,2100,"No matching NPCs");
+        button(402,387,79,28,"Next",false,()->{if(page+1<pages){page++;entity=null;render();}});
+        previewTitle=textChild;text(500,43,192,45,2100,"No matching NPCs");
+        button(699,39,35,27,"",false,()->{if(entity!=null)toggleFavourite("npc:"+entity.id);});
+        previewFavourite=textChild;text(704,42,25,24,2100,"*");
         String[] zoomLabels={"Zoom -","Reset","Zoom +"};
         for(int n=0;n<3;n++){zoomActors[n]=buttons.size();button(495+n*80,247,77,25,zoomLabels[n],false,()->{});}
         previewInfo=textChild;text(500,277,227,16,2100,"");
@@ -594,6 +611,7 @@ final class Native950DeveloperConsole {
         try{preview=Native950DeveloperPreview.resolve(entity.id);}catch(RuntimeException invalid){preview=Native950DeveloperPreview.unavailable();}
 
         write(Native950Packets.runClientScript(21142,previewTitle,titleLines(entity.name)));
+        write(Native950Packets.runClientScript(21142,previewFavourite,favourites.contains("npc:"+entity.id)?"<col=ffd166>*</col>":"<col=aaaaaa>*</col>"));
         write(Native950Packets.runClientScript(21142,previewInfo,(preview.npc<0?"Preview unavailable":"Level "+Math.max(0,entity.level)+" | "+entity.width+" x "+entity.height)));
         write(Native950Packets.runClientScript(21135,previewChild,preview.npc,preview.idle,preview.zoom,preview.height,preview.nativeFraming?111:176));
         write(Native950Packets.runClientScript(21143,idleActor,previewChild,preview.idle));

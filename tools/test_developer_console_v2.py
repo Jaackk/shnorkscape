@@ -54,6 +54,7 @@ class VM:
             elif op==0x4a9:self.components[self.active]['hidden']=pop(1)[0]
             elif op==0x1fc:self.components[self.active]['npc']=pop(1)[0]
             elif op==0x550:self.components[self.active]['item']=pop(2)
+            elif op==0x834:self.components[self.active]['sprite']=pop(1)[0]
             elif op==0x79b:self.components[self.active]['player']=True
             elif op in (0x763,0x25d,0x836,0x804,0x73b,0x526):iv.append(self.components[self.active]['view'][(0x763,0x25d,0x836,0x804,0x73b,0x526).index(op)])
             elif op==0x67f:self.components[self.active]['seq']=pop(1)[0]
@@ -92,6 +93,16 @@ class VM:
         assert not iv and not sv,(sid,'unbalanced',iv,sv)
 
 class Primitives(unittest.TestCase):
+    def test_rotation_hooks_belong_to_visible_model_viewport(self):
+        for sid,args in ((21136,[0]),(21156,[0,180,80,300,280])):
+            vm=VM();vm.run(sid,args)
+            hooks=[h for h in vm.native if h[0]=='hook']
+            self.assertEqual([(1448<<16|8,8479,[1448<<16|8,1448<<16|8,0]),(1448<<16|8,8480,[1448<<16|8,1448<<16|8,0])],[(h[1],h[2],h[3]) for h in hooks])
+    def test_native_sprite_icon_does_not_request_inventory_item(self):
+        vm=VM();vm.run(21146,[0,-13199,15,84,28,28])
+        icon=vm.components[(1448<<16|7,0)]
+        self.assertEqual(13199,icon['sprite']);self.assertNotIn('item',icon)
+
     def test_search_update_retains_component_and_button_submits_typed_buffer(self):
         vm=VM();vm.run(21137,strings=['Man','__devsearch:4:','Search NPCs...'])
         field=vm.components[(1448<<16|4,0)]
