@@ -568,8 +568,8 @@ final class Native950DeveloperConsole {
         button(402,387,79,28,"More",false,()->{if(page+1<pages){page++;entity=null;render();}});
         previewTitle=textChild;text(500,43,229,45,2100,"No matching NPCs");
         String[] zoomLabels={"Zoom -","Reset","Zoom +"};
-        for(int n=0;n<3;n++){zoomActors[n]=buttons.size();button(495+n*80,229,77,25,zoomLabels[n],false,()->{});}
-        previewInfo=textChild;text(500,259,227,32,2100,"Drag the preview to rotate it.");
+        for(int n=0;n<3;n++){zoomActors[n]=buttons.size();button(495+n*80,247,77,25,zoomLabels[n],false,()->{});}
+        previewInfo=textChild;text(500,277,227,16,2100,"");
         idleActor=buttons.size();button(495,294,116,27,"Idle",false,()->previewSequence(false));
         attackActor=buttons.size();button(616,294,118,27,"Attack",false,()->previewSequence(true));
         button(495,325,116,27,"Spawn near me",false,()->{if(entity!=null)spawnNear();});
@@ -594,9 +594,8 @@ final class Native950DeveloperConsole {
         try{preview=Native950DeveloperPreview.resolve(entity.id);}catch(RuntimeException invalid){preview=Native950DeveloperPreview.unavailable();}
 
         write(Native950Packets.runClientScript(21142,previewTitle,titleLines(entity.name)));
-        write(Native950Packets.runClientScript(21142,previewInfo,(preview.npc<0?"Preview unavailable":"Level "+Math.max(0,entity.level)+" | "+entity.width+" x "+entity.height)+
-                (preview.attack<0?"<br>No verified attack preview":"<br>Drag to rotate | Idle / Attack")));
-        write(Native950Packets.runClientScript(21135,previewChild,preview.npc,preview.idle,preview.zoom,preview.height,preview.nativeFraming?93:158));
+        write(Native950Packets.runClientScript(21142,previewInfo,(preview.npc<0?"Preview unavailable":"Level "+Math.max(0,entity.level)+" | "+entity.width+" x "+entity.height)));
+        write(Native950Packets.runClientScript(21135,previewChild,preview.npc,preview.idle,preview.zoom,preview.height,preview.nativeFraming?111:176));
         write(Native950Packets.runClientScript(21143,idleActor,previewChild,preview.idle));
         write(Native950Packets.runClientScript(21143,attackActor,previewChild,preview.attack));
         int[] zoomChanges={150,0,-150};for(int n=0;n<3;n++)write(Native950Packets.runClientScript(21148,zoomActors[n],previewChild,zoomChanges[n],preview.zoom));

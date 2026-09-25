@@ -14,9 +14,11 @@ final class Native950DeveloperPreview {
         this.npc=npc;this.idle=idle;this.attack=attack;this.zoom=zoom;this.height=height;this.nativeFraming=nativeFraming;
     }
     static Native950DeveloperPreview unavailable(){return new Native950DeveloperPreview(-1,-1,-1,1000,0,false);}
-    // Camera distance grows with footprint; the old inverse made large actors overflow.
-    // This is a conservative fallback, not a claim of measured model bounds.
-    static int fallbackDistance(int size){return Math.min(6000,size<=1?800:1000*Math.min(6,size));}
+    // Vulkan-calibrated fallback for common human / small / medium actors.
+    // Man at 650 and Supreme at 1350 occupy ~160-170px. Preserve large-actor
+    // distance (including the user-accepted Vorago framing). Native Beasts
+    // metadata still wins. Footprint is not a universal mesh-bounds estimator.
+    static int fallbackDistance(int size){return size<=1?650:size<=3?450*size:1000*Math.min(6,size);}
     static Native950DeveloperPreview resolve(int id){
         if(Cache.STORE==null)return new Native950DeveloperPreview(-1,-1,-1,1000,0,false);
         NPCDefinitions d=NPCDefinitions.getNPCDefinitions(id);

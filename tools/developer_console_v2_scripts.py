@@ -58,8 +58,8 @@ def programs(api):
     # 21135: create/update a full NPC model; every selection resets old sequence.
     # Native CS3503 recreates the model actor when its subject changes. Reuse
     # its slot, not a stale rendered model; the list/search remain untouched.
-    c=viewport(reserve(Code()),491,43,247,186)
-    c.add(*ints(host(8),6,0),(0x691,0),*ints(224,130,0,0),(0x8c3,0),*ints(10),il(5),*ints(-43),(0x1d,0),*ints(0,0),(0x828,0))
+    c=viewport(reserve(Code()),491,70,247,177)
+    c.add(*ints(host(8),6,0),(0x691,0),*ints(224,130,0,0),(0x8c3,0),*ints(10),il(5),*ints(-70),(0x1d,0),*ints(0,0),(0x828,0))
     c.add(il(1),(0x1fc,0),*ints(-1),(0x67f,0),il(2),(0x67f,0),
                          *ints(0),il(4),*ints(0,180,0),il(3),(0x112,0))
     out[21135]=c.raw(6)
@@ -67,7 +67,7 @@ def programs(api):
     # Static 6 is a drag layer under actor host5; static 4 is reserved for search.
     c=Code()
     for child in (20,21,22):c.add(*ints(1,host(child)),(0xe4,0))
-    c.add(*ints(501,93,0,0,host(6)),(0x7c5,0),*ints(224,130,0,0,host(6)),(0x55,0),*ints(0,host(6)),(0xe4,0),
+    c.add(*ints(491,70,0,0,host(6)),(0x7c5,0),*ints(247,177,0,0,host(6)),(0x55,0),*ints(0,host(6)),(0xe4,0),
           *ints(host(6)),(0x8a2,0),*ints(-1,host(6)),(0x353,0))
     for sid,op in ((8479,0x815),(8480,0x732)):
         c.add(*ints(sid,host(6),host(8),0),push('iii'),*ints(host(6)),(op,0))
