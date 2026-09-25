@@ -16,7 +16,7 @@ final class Native950DeveloperPreview {
     static Native950DeveloperPreview unavailable(){return new Native950DeveloperPreview(-1,-1,-1,1000,0,false);}
     // Camera distance grows with footprint; the old inverse made large actors overflow.
     // This is a conservative fallback, not a claim of measured model bounds.
-    static int fallbackDistance(int size){return Math.min(6000,800*(int)Math.ceil(Math.sqrt(Math.max(1,size))));}
+    static int fallbackDistance(int size){return Math.min(6000,size<=1?800:1000*Math.min(6,size));}
     static Native950DeveloperPreview resolve(int id){
         if(Cache.STORE==null)return new Native950DeveloperPreview(-1,-1,-1,1000,0,false);
         NPCDefinitions d=NPCDefinitions.getNPCDefinitions(id);

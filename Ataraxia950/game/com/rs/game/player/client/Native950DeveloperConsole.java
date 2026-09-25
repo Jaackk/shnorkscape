@@ -471,7 +471,7 @@ final class Native950DeveloperConsole {
     static String titleLines(String value){
         StringBuilder out=new StringBuilder();int column=0,lines=1;
         for(String word:safe(value).split(" ")){
-            if(column>0&&column+word.length()+1>20){if(++lines>3){out.append("...");break;}out.append("<br>");column=0;}
+            if(column>0&&column+word.length()+1>16){if(++lines>3){out.append("...");break;}out.append("<br>");column=0;}
             if(column>0){out.append(' ');column++;}out.append(word);column+=word.length();
         }return out.toString();
     }
