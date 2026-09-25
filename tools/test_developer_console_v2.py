@@ -137,7 +137,7 @@ class Primitives(unittest.TestCase):
         vm.run(21146,[0,20135,578,103,64,64]);self.assertEqual([20135,1],vm.components[(1448<<16|7,0)]['item'])
 
     def test_zoom_preserves_drag_angles_clamps_and_resets_locally(self):
-        vm=VM();vm.run(21135,[0,6260,1,1000,20]);key=(1448<<16|7,0)
+        vm=VM();vm.run(21135,[0,6260,1,1000,20,93]);key=(1448<<16|7,0)
         vm.components[key]['view']=[12,20,30,420,50,1000]
         vm.run(21147,[0,150,1000]);self.assertEqual([12,20,30,420,50,1150],vm.components[key]['view'])
         vm.run(21147,[0,-9999,1000]);self.assertEqual(50,vm.components[key]['view'][-1])
@@ -160,10 +160,10 @@ class Primitives(unittest.TestCase):
         self.assertEqual(['Select','Spawn near me','Place in world','Inspect'],list(vm.components[(1448<<16|9,1)]['menu'].values()))
 
     def test_model_sequence_changes_preserve_camera_and_never_spawn_world_entity(self):
-        vm=VM();vm.run(21135,[0,6260,1,1000,-50]);view=vm.components[(1448<<16|7,0)]['view']
+        vm=VM();vm.run(21135,[0,6260,1,1000,-50,93]);view=vm.components[(1448<<16|7,0)]['view']
         vm.run(21136,[0]);vm.run(21141,[0,2]);model=vm.components[(1448<<16|7,0)]
         self.assertEqual(6260,model['npc']);self.assertEqual(2,model['seq']);self.assertEqual(view,model['view']);self.assertEqual([],vm.sent)
-        vm.run(21135,[0,1,3,800,0]);replacement=vm.components[(1448<<16|7,0)]
+        vm.run(21135,[0,1,3,800,0,158]);replacement=vm.components[(1448<<16|7,0)]
         self.assertIsNot(model,replacement);self.assertEqual(1,replacement['npc']);self.assertEqual(3,replacement['seq'])
 
     def test_unverified_animation_has_no_operation_and_verified_preview_is_local(self):

@@ -569,7 +569,7 @@ final class Native950DeveloperConsole {
         });
         previewChild=textChild++;
         // Reserve a contiguous child even for empty searches; later updates reuse it.
-        write(Native950Packets.runClientScript(21135,previewChild,-1,-1,1000,0));
+        write(Native950Packets.runClientScript(21135,previewChild,-1,-1,1000,0,93));
         write(Native950Packets.runClientScript(21136,previewChild));
         write(Native950Packets.runClientScript(21143,idleActor,previewChild,-1));
         write(Native950Packets.runClientScript(21143,attackActor,previewChild,-1));
@@ -584,7 +584,7 @@ final class Native950DeveloperConsole {
         write(Native950Packets.runClientScript(21142,previewTitle,titleLines(entity.name)));
         write(Native950Packets.runClientScript(21142,previewInfo,(preview.npc<0?"Preview unavailable":"Level "+Math.max(0,entity.level)+" | "+entity.width+" x "+entity.height)+
                 (preview.attack<0?"<br>No verified attack preview":"<br>Drag to rotate | Idle / Attack")));
-        write(Native950Packets.runClientScript(21135,previewChild,preview.npc,preview.idle,preview.zoom,preview.height));
+        write(Native950Packets.runClientScript(21135,previewChild,preview.npc,preview.idle,preview.zoom,preview.height,preview.nativeFraming?93:158));
         write(Native950Packets.runClientScript(21143,idleActor,previewChild,preview.idle));
         write(Native950Packets.runClientScript(21143,attackActor,previewChild,preview.attack));
         int[] zoomChanges={150,0,-150};for(int n=0;n<3;n++)write(Native950Packets.runClientScript(21148,zoomActors[n],previewChild,zoomChanges[n],preview.zoom));

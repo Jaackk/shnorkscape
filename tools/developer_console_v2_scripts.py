@@ -51,10 +51,10 @@ def programs(api):
     # 21135: create/update a full NPC model; every selection resets old sequence.
     # Native CS3503 recreates the model actor when its subject changes. Reuse
     # its slot, not a stale rendered model; the list/search remain untouched.
-    c=Code().add(*ints(host(7),6),il(0),(0x691,0),*ints(224,130,0,0),(0x8c3,0),*ints(501,93,0,0),(0x828,0))
+    c=Code().add(*ints(host(7),6),il(0),(0x691,0),*ints(224,130,0,0),(0x8c3,0),*ints(501),il(5),*ints(0,0),(0x828,0))
     c.add(il(1),(0x1fc,0),*ints(-1),(0x67f,0),il(2),(0x67f,0),
                          *ints(0),il(4),*ints(0,180,0),il(3),(0x112,0))
-    out[21135]=c.raw(5)
+    out[21135]=c.raw(6)
     # 21136: drag-to-rotate uses native CS11619's hooks with a dynamic model slot.
     # Static 6 is a drag layer under actor host5; static 4 is reserved for search.
     c=Code()
