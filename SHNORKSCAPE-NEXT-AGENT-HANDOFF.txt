@@ -1,3 +1,14 @@
+NATIVE UI CAPABILITY RESEARCH 2026-09-25 - RESEARCH ONLY
+Latest user rejects current dev-console UX; do not treat the staged UX as live accepted.
+Read docs/DEV-UI-NATIVE-CAPABILITIES-950.md and protocol-analysis/dev-ui-native-capabilities-950.json.
+28 targeted interfaces / 52 headers / 42 scripts audited. Native full NPC + separate sequence setters
+confirmed statically in Beasts753:40, booth549:19 and marketplaceCS11613; no new Vulkan preview acceptance.
+Keep1448/backend provisionally; native scrolling and preview composition are future implementation work.
+Complete loc preview, arbitrary FX/projectiles and precommit footprint/ghost remain unproven.
+Floating-object cause unresolved: fresh placements omit original optional map transforms; compare a failing ID/tile.
+Legacy IComponentDefinitions format11 hook decode is unreliable; CS6449/6451 are empty.
+No gameplay/UI/cache/save/installer/stage changes, no restart/deployment. User will supply next mockup/prompt.
+
 STAGED DEVELOPER CONSOLE UX SUCCESSOR 2026-09-25
 Source76ea6c0 pushed and remote verified. Apply Staged Update.cmd selects developer-console-ux-20260925.
 25 pinned files + launch cache gates CheckOnly PASS; five disposable installer fixtures PASS.
