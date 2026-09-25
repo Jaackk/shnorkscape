@@ -90,6 +90,32 @@ class VM:
         assert not iv and not sv,(sid,'unbalanced',iv,sv)
 
 class Primitives(unittest.TestCase):
+    def test_search_update_retains_component_and_button_submits_typed_buffer(self):
+        vm=VM();vm.run(21137,strings=['Man','__devsearch:4:','Search NPCs...'])
+        field=vm.components[(1448<<16|4,0)]
+        vm.run(21137,strings=['Man','__devsearch:5:','Search NPCs...'])
+        self.assertIs(field,vm.components[(1448<<16|4,0)])
+        vm.run(21138,strings=['__devsearch:5:','Man'])
+        vm.vars[34130432]='Banker'
+        vm.run(21153,strings=['__devsearch:5:','Man'])
+        self.assertEqual(['__devsearch:5:Banker'],vm.sent)
+        self.assertEqual(0,vm.vars[34289920])
+        vm.run(21153,strings=['__devsearch:6:','Banker'])
+        self.assertEqual('__devsearch:6:Banker',vm.sent[-1])
+
+    def test_selected_border_does_not_change_item_or_row_operation(self):
+        vm=VM();vm.run(21144,[0,20135],['Torva','__devop:3:2000'])
+        vm.run(21154,[0,3])
+        self.assertEqual(0xffd479,vm.components[(1448<<16|9,0)]['colour'])
+        self.assertEqual([20135,1],vm.components[(1448<<16|9,1)]['item'])
+        self.assertEqual({1:'Select'},vm.components[(1448<<16|9,2)]['menu'])
+
+    def test_player_preview_and_rotation_share_the_same_bounds(self):
+        vm=VM();vm.run(21155,[0,180,80,300,280,1500]);vm.run(21156,[0,180,80,300,280])
+        self.assertTrue(vm.components[(1448<<16|7,0)]['player'])
+        self.assertEqual(1500,vm.components[(1448<<16|7,0)]['view'][-1])
+        self.assertEqual([],vm.sent)
+
     def test_collection_inspector_rebuild_keeps_scroll_but_new_query_resets(self):
         vm=VM();key='scroll:'+str(1448<<16|9);vm.vars[key]=400
         vm.run(21151,[100,0]);self.assertEqual(400,vm.vars[key])
@@ -140,14 +166,14 @@ class Primitives(unittest.TestCase):
         self.assertEqual(('hook',key,21141,[7,17389]),vm.native[-1]);self.assertEqual([],vm.sent)
 
     def test_search_edits_locally_submits_once_and_releases_keyboard(self):
-        vm=VM();vm.run(21137,strings=['','__devsearch:4:']);vm.run(21138,strings=['__devsearch:4:',''])
+        vm=VM();vm.run(21137,strings=['','__devsearch:4:','Search NPCs...']);vm.run(21138,strings=['__devsearch:4:',''])
         for ch in 'Man':vm.run(21139,[0,ord(ch)],['__devsearch:4:',''])
         self.assertEqual([],vm.sent);self.assertEqual('Man',vm.vars[34130432])
         vm.run(21139,[84,0],['__devsearch:4:','']);self.assertEqual(['__devsearch:4:Man'],vm.sent);self.assertEqual(0,vm.vars[34289920])
         vm.run(21139,[0,ord('x')],['__devsearch:4:','']);self.assertEqual('Man',vm.vars[34130432])
 
     def test_cancel_restores_query_and_does_not_submit_or_hold_focus(self):
-        vm=VM();vm.run(21137,strings=['Man','__devsearch:4:']);vm.run(21138,strings=['__devsearch:4:','Man'])
+        vm=VM();vm.run(21137,strings=['Man','__devsearch:4:','Search NPCs...']);vm.run(21138,strings=['__devsearch:4:','Man'])
         vm.run(21139,[85,0],['__devsearch:4:','Man']);self.assertEqual('Ma',vm.vars[34130432])
         vm.run(21139,[13,0],['__devsearch:4:','Man']);self.assertEqual('Man',vm.vars[34130432]);self.assertEqual([],vm.sent);self.assertEqual(0,vm.vars[34289920])
 

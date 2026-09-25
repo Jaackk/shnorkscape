@@ -84,7 +84,7 @@ final class Native950DeveloperConsole {
         write(Native950Packets.varbitSmall(18994,1));write(Native950Packets.varbitSmall(29607,2));write(Native950Packets.varcLarge(2911,1));
         for(int bit:new int[]{19029,19031,19032,19033,47565,60056,19004})write(Native950Packets.varbitSmall(bit,0));
         write(Native950Packets.runClientScript(8288,1));write(Native950Packets.runClientScript(8193));
-        write(Native950Packets.hideInterface(SHELL,1,true));write(Native950Packets.hideInterface(1477,708,false));
+        write(Native950Packets.hideInterface(SHELL,1,true));write(Native950Packets.hideInterface(1477,708,true));
         write(Native950Packets.interfaceEvents(1477,717,1,1,2));
         Native950BugTest.event(player,"developer-console","awaiting-native-ready","epoch",epoch);
     }
@@ -245,9 +245,11 @@ final class Native950DeveloperConsole {
             final String c=tabs[i];
             button(i*93,0,91,30,c,domain.equals(c),()->navigate(c));
         }
-        if(domain.equals("Home")){renderHome();footer();return;}
-        write(Native950Packets.runClientScript(21137,query,"__devsearch:"+epoch+":"));
+        if(domain.equals("Home")){write(Native950Packets.hideInterface(SHELL,4,true));renderHome();footer();return;}
+        write(Native950Packets.runClientScript(21137,query,"__devsearch:"+epoch+":","Search "+(category.equals("Player")?"player actions":domain)+"..."));
         write(Native950Packets.interfaceEvents(SHELL,4,0,0,2));
+        int searchActor=buttons.size();button(334,38,74,30,"Search",false,()->{});
+        write(Native950Packets.runClientScript(21152,searchActor,"__devsearch:"+epoch+":",query));
         button(413,38,68,30,"Clear",false,()->{query="";page=0;render();});
         renderContext();
         if(domain.equals("Items")){renderItems();footer();return;}
@@ -301,17 +303,32 @@ final class Native950DeveloperConsole {
         footer();
     }
     private void footer(){
+        write(Native950Packets.hideInterface(1477,708,false));
         text(0,421,734,25,2100,"<col=86efac>Developer</col>  |  "+safe(player.getDisplayName())+"  |  "+safe(status));
         write(Native950Packets.interfaceEvents(SHELL,ACTORS,0,Math.max(0,buttons.size()-1),30));
         Native950BugTest.event(player,"developer-console","render","micros",(System.nanoTime()-renderStarted)/1000,"actors",buttons.size(),"text",textChild);
         channel.flush();
     }
+    private static final class NavigationState {
+        final String query,section,variant;final int page;final boolean bossOnly,npcAdvanced;
+        final Native950DeveloperCatalogue.Entry entity;
+        NavigationState(Native950DeveloperConsole c){query=c.query;section=c.section;variant=c.variantFamily;page=c.page;bossOnly=c.bossOnly;npcAdvanced=c.npcAdvanced;entity=c.entity;}
+        void restore(Native950DeveloperConsole c){c.query=query;c.section=section;c.variantFamily=variant;c.page=page;c.bossOnly=bossOnly;c.npcAdvanced=npcAdvanced;c.entity=entity;}
+    }
+    private final Map<String,NavigationState> navigation=new HashMap<>();
+    private String navigationKey="Home";
     private void navigate(String c){
-        domain=c.equals("World")?"Objects":c;section="";
-        if(c.equals("NPCs")||c.equals("Bosses")){browse("NPC");bossOnly=c.equals("Bosses");domain=c;render();return;}
-        if(c.equals("World")||c.equals("Objects")){browse("Object");return;}
-        if(c.equals("Commands")||c.equals("Favourites")||c.equals("Settings")||c.equals("Spawns")||c.equals("Player")||c.equals("Quests"))domain="Tools";
-        report=Collections.emptyList();clearConfirmation="";category=c;query="";page=0;confirm=false;browser=c.equals("Spawns")?"Edits":"";entity=null;selected=null;render();}
+        c=c.equals("World")?"Objects":c;
+        navigation.put(navigationKey,new NavigationState(this));navigationKey=c;
+        domain=c;section="";query="";page=0;variantFamily="";bossOnly=c.equals("Bosses");npcAdvanced=false;
+        report=Collections.emptyList();clearConfirmation="";category=c;confirm=false;entity=null;selected=null;
+        browser=c.equals("NPCs")||c.equals("Bosses")?"NPC":c.equals("Objects")?"Object":c.equals("Spawns")?"Edits":"";
+        if(Arrays.asList("Commands","Favourites","Settings","Spawns","Player","Quests").contains(c))domain="Tools";
+        NavigationState saved=navigation.get(c);if(saved!=null)saved.restore(this);
+        status="Select a result or action.";render();
+    }
+    private boolean toggleActive(String command){Native950DeveloperActions.Action a=Native950DeveloperActions.find(command.substring(2));return a!=null&&Native950DeveloperActions.state(a,player).contains(">ON<");}
+    private String toggleLabel(String name,String command){Native950DeveloperActions.Action a=Native950DeveloperActions.find(command.substring(2));String state=a==null?"":Native950DeveloperActions.state(a,player);return name+(state.isEmpty()?"":" ["+state+"]");}
     private void quick(String command){
         List<String> output=Native950DeveloperOutput.run(player,channel,()->execute.accept(command));
         status=output.isEmpty()?"Action completed.":output.get(0);if(open)render();
@@ -319,7 +336,7 @@ final class Native950DeveloperConsole {
     private void renderHome(){
         text(8,44,720,28,17514,"QUICK ACTIONS");
         String[][] actions={{"Heal",";;heal"},{"Almighty (DM)",";;almighty"},{"Open bank",";;bank"},{"War's Retreat",";;wars"},{"Reset cooldowns",";;resetcooldowns"},{"Equipment Library",";;items"}};
-        for(int n=0;n<actions.length;n++){final String[] a=actions[n];button(8+(n%3)*244,80+(n/3)*43,236,37,a[0],false,()->quick(a[1]));}
+        for(int n=0;n<actions.length;n++){final String[] a=actions[n];button(8+(n%3)*244,80+(n/3)*43,236,37,toggleLabel(a[0],a[1]),toggleActive(a[1]),()->quick(a[1]));}
         text(8,172,720,28,17514,"EXPLORE / TEST");
         String[] domains={"NPCs","Objects","Items","Bosses","Combat","Teleports","Tools","Spawns","Player"};
         for(int n=0;n<domains.length;n++){final String d=domains[n];button(8+(n%3)*244,209+(n/3)*38,236,33,d,false,()->navigate(d));}
@@ -339,9 +356,10 @@ final class Native950DeveloperConsole {
             case "Teleports": entries=new String[]{"Destinations","Custom"};break;
             default: entries=new String[]{"Commands","Favourites","Gamevals / Cache","Player","Bug Test","World Editor","Settings"};break;
         }
+        if(category.equals("Player"))entries=new String[]{"Overview","Loadouts","Commands"};
         if(browser.equals("Edits"))entries=new String[]{"All placements","My NPCs","My Objects","Temporary","Saved","Back to tools"};
-        for(int n=0;n<entries.length;n++){final String s=entries[n];button(0,77+n*32,160,29,s,section.equals(s),()->{
-            section=s;page=0;if(!s.equals("All variants"))query="";report=Collections.emptyList();
+        for(int n=0;n<entries.length;n++){final String s=entries[n];button(0,77+n*32,160,29,s,section.equals(s)||(section.isEmpty()&&n==0),()->{
+            section=s;page=0;report=Collections.emptyList();
             if(s.equals("Back to tools")){navigate("Tools");return;}
             if(s.equals("My spawns")||s.equals("World Editor")){navigate("Spawns");return;}
             if(s.equals("Gamevals / Cache")){browseGamevals();return;}
@@ -362,6 +380,7 @@ final class Native950DeveloperConsole {
             text(181,88,300,32,17514,"BEST GEAR");
             String[] styles={"Melee","Ranged","Magic","Necromancy"};
             for(int n=0;n<4;n++){final int index=n;button(181,130+n*43,290,36,styles[n],false,()->{status=Native950DeveloperLoadouts.apply(player,Native950DeveloperLoadouts.builtins().get(index));render();});}
+            write(Native950Packets.runClientScript(21155,textChild++,495,80,239,275,1500));
             text(181,318,290,65,2100,"Equips a complete loadout.<br>Existing gear and supplies move safely to your bank.");
             button(495,387,239,28,"Open Equipment Library",false,()->quick(";;items"));return;
         }
@@ -379,7 +398,8 @@ final class Native950DeveloperConsole {
         for(int n=0;n<count;n++){
             final Native950EquipmentCatalogue.Entry e=results.get(start+n);int actor=2000+n;
             collectionRows.put(actor,()->{itemSelection=e;recentItems.remove(e.id);recentItems.put(e.id,e);while(recentItems.size()>20)recentItems.remove(recentItems.keySet().iterator().next());render();});
-            write(Native950Packets.runClientScript(21144,n,e.id,"<col=ffd479>"+safe(e.name)+"</col><br>"+(e.tier>0?"Tier "+e.tier:"ID "+e.id),"__devop:"+epoch+":"+actor));
+            write(Native950Packets.runClientScript(21144,n,e.id,"<col=ffd479>"+safe(rowName(e.name,32))+"</col><br>"+(e.tier>0?"Tier "+e.tier:"Inventory item"),"__devop:"+epoch+":"+actor));
+            if(itemSelection!=null&&itemSelection.id==e.id)write(Native950Packets.runClientScript(21154,n,3));
         }
         write(Native950Packets.runClientScript(21133));write(Native950Packets.interfaceEvents(SHELL,9,0,Math.max(0,count*3-1),2));
         button(171,387,76,28,"Earlier",false,()->{if(page>0){page--;render();}});
@@ -387,8 +407,8 @@ final class Native950DeveloperConsole {
         button(402,387,79,28,"More",false,()->{if(page+1<pages){page++;render();}});
         if(itemSelection!=null){
             final Native950EquipmentCatalogue.Entry e=itemSelection;
-            text(500,43,229,60,17514,safe(e.name));write(Native950Packets.runClientScript(21146,textChild++,e.id,578,103,64,64));
-            text(500,173,229,58,2100,Native950DeveloperItems.details(e.id));
+            text(500,43,229,60,17514,titleLines(e.name));write(Native950Packets.runClientScript(21146,textChild++,e.id,578,103,64,64));
+            text(500,173,229,58,2100,Native950DeveloperItems.details(e.id).replaceFirst("ID [0-9]+<br>",""));
             button(495,235,116,29,"Give 1",false,()->{status=Native950DeveloperItems.give(player,e.id,1);render();});
             button(616,235,118,29,"Give X",false,()->prompt("Quantity (1-1000000):",v->status=Native950DeveloperItems.give(player,e.id,Integer.parseInt(v))));
             button(495,269,116,29,"Equip",false,()->{status=Native950DeveloperItems.equip(player,e.id);render();});
@@ -400,17 +420,20 @@ final class Native950DeveloperConsole {
     }
     private void loadout(int index){status=Native950DeveloperLoadouts.apply(player,Native950DeveloperLoadouts.builtins().get(index));render();}
     private void renderPlayer(){
-        write(Native950Packets.runClientScript(21149,textChild++));
+        int model=textChild++;write(Native950Packets.runClientScript(21155,model,180,80,300,280,1500));
+        write(Native950Packets.runClientScript(21156,model,180,80,300,280));
+        String[] zoom={"Zoom -","Reset","Zoom +"};int[] change={-150,0,150};
+        for(int n=0;n<3;n++){int actor=buttons.size();button(180+n*100,367,96,28,zoom[n],false,()->{});write(Native950Packets.runClientScript(21148,actor,model,change[n],1500));}
         text(495,52,239,32,17514,safe(player.getDisplayName()));
         String[][] controls={{"Heal",";;heal"},{"Max stats",";;max"},{"Almighty / DM",";;almighty"},{"Reset cooldowns",";;resetcooldowns"}};
-        for(int n=0;n<controls.length;n++){final String[] c=controls[n];button(495,100+n*34,239,29,c[0],false,()->quick(c[1]));}
+        for(int n=0;n<controls.length;n++){final String[] c=controls[n];button(495,100+n*34,239,29,toggleLabel(c[0],c[1]),toggleActive(c[1]),()->quick(c[1]));}
         String[] styles={"Melee","Ranged","Magic","Necromancy"};for(int n=0;n<4;n++){final int i=n;button(495+(n%2)*121,250+(n/2)*35,118,30,styles[n],false,()->loadout(i));}
         button(495,387,239,28,"Open Equipment Library",false,()->quick(";;items"));
     }
     private void renderCombat(){
         text(181,86,300,30,17514,"COMBAT CONTROLS");
         String[][] controls={{"Damage immunity",";;god"},{"Almighty / DM",";;almighty"},{"Infinite adrenaline",";;infadren"},{"Infinite prayer",";;infprayer"},{"Reset cooldowns",";;resetcooldowns"}};
-        for(int n=0;n<controls.length;n++){final String[] c=controls[n];button(181,132+n*43,290,36,c[0],false,()->quick(c[1]));}
+        for(int n=0;n<controls.length;n++){final String[] c=controls[n];button(181,132+n*43,290,36,toggleLabel(c[0],c[1]),toggleActive(c[1]),()->quick(c[1]));}
         text(500,86,229,30,17514,"LOADOUTS");String[] styles={"Melee","Ranged","Magic","Necromancy"};
         for(int n=0;n<4;n++){final int i=n;button(495,132+n*43,239,36,styles[n],false,()->loadout(i));}
         button(495,344,239,36,"Player preview",false,()->navigate("Player"));
@@ -428,18 +451,29 @@ final class Native950DeveloperConsole {
         try{for(Native950SavedLocations.Place p:Native950SavedLocations.list())destinations.add(new String[]{p.name,p.owner,";;tele "+p.x+" "+p.y+" "+p.plane});}
         catch(java.io.IOException e){status="Could not read saved destinations.";}
         destinations.removeIf(d->!d[0].toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT)));
-        int count=Math.min(100,destinations.size());viewport(count);
+        int pages=Math.max(1,(destinations.size()+99)/100);page=Math.min(page,pages-1);int start=page*100,count=Math.min(100,destinations.size()-start);viewport(count);
         for(int n=0;n<count;n++){
-            final String[] d=destinations.get(n);int actor=2000+n;
+            final String[] d=destinations.get(start+n);int actor=2000+n;
             collectionRows.put(actor,()->{status="Selected "+d[0];selectedTeleport=d;render();});
             write(Native950Packets.runClientScript(21150,n,"<col=ffd479>"+safe(d[0])+"</col><br>"+safe(d[1]),"__devop:"+epoch+":"+actor));
+            if(selectedTeleport!=null&&selectedTeleport[2].equals(d[2]))write(Native950Packets.runClientScript(21154,n,2));
         }
         write(Native950Packets.runClientScript(21133));write(Native950Packets.interfaceEvents(SHELL,9,0,Math.max(0,count*2-1),2));
+        if(page>0)button(171,387,90,28,"Previous",false,()->{page--;render();});
+        if(page+1<pages)button(391,387,90,28,"Next",false,()->{page++;render();});
         if(selectedTeleport!=null){text(500,52,229,90,17514,safe(selectedTeleport[0]));button(495,250,239,35,"Teleport",false,()->quick(selectedTeleport[2]));}
         button(495,344,239,35,"Open World Map",false,()->{
             close();if(!player.getInterfaceManager().openNative950DeveloperWorldMap(this::open)){status="World map is unavailable for this session.";open();}
         });
         text(500,391,229,30,2100,"Close the map to return here.");
+    }
+    static String rowName(String value,int limit){return value.length()<=limit?value:value.substring(0,limit-3)+"...";}
+    static String titleLines(String value){
+        StringBuilder out=new StringBuilder();int column=0,lines=1;
+        for(String word:safe(value).split(" ")){
+            if(column>0&&column+word.length()+1>20){if(++lines>3){out.append("...");break;}out.append("<br>");column=0;}
+            if(column>0){out.append(' ');column++;}out.append(word);column+=word.length();
+        }return out.toString();
     }
     private static String shortDescription(String value){return value.length()>43?value.substring(0,40)+"...":value;}
     private void browse(String kind){variantFamily="";report=Collections.emptyList();advanced=false;npcAdvanced=false;bossOnly=false;browser=kind;domain=kind.equals("NPC")?"NPCs":"Objects";category=domain;query="";page=0;entity=null;selected=null;confirm=false;status="Search by name, exact ID or audited symbol. Select a result to place it.";render();}
@@ -545,9 +579,10 @@ final class Native950DeveloperConsole {
         entity=e;confirm=false;report=Collections.emptyList();amount=1;repeat=false;updatePreview();channel.flush();
     }
     private void updatePreview(){
-        preview=Native950DeveloperPreview.resolve(entity.id);
-        write(Native950Packets.runClientScript(21142,previewTitle,safe(entity.name)));
-        write(Native950Packets.runClientScript(21142,previewInfo,"Level "+Math.max(0,entity.level)+" | "+entity.width+" x "+entity.height+
+        try{preview=Native950DeveloperPreview.resolve(entity.id);}catch(RuntimeException invalid){preview=Native950DeveloperPreview.unavailable();}
+
+        write(Native950Packets.runClientScript(21142,previewTitle,titleLines(entity.name)));
+        write(Native950Packets.runClientScript(21142,previewInfo,(preview.npc<0?"Preview unavailable":"Level "+Math.max(0,entity.level)+" | "+entity.width+" x "+entity.height)+
                 (preview.attack<0?"<br>No verified attack preview":"<br>Drag to rotate | Idle / Attack")));
         write(Native950Packets.runClientScript(21135,previewChild,preview.npc,preview.idle,preview.zoom,preview.height));
         write(Native950Packets.runClientScript(21143,idleActor,previewChild,preview.idle));
@@ -608,7 +643,7 @@ final class Native950DeveloperConsole {
         write(Native950Packets.hideInterface(1477,708,true));write(Native950Packets.interfaceEvents(1477,8,-1,-1,254));
         write(Native950Packets.interfaceEvents(SHELL,11,placement.slot,placement.slot,64<<11));
         write(Native950Packets.runClientScript(INIT+4,placement.slot,"PLACING: "+entity.name,"__devcancel:"+placement.slot));
-        status="PLACING: "+entity.name+" - click a clear world tile; Escape/right-click cancels.";
+        status="PLACING: "+entity.name+" ("+entity.width+"x"+entity.height+") - click a clear world tile; Escape/right-click cancels.";
         message(status);
         Native950BugTest.event(player,"developer-placement","armed","kind",entity.kind,"id",entity.id,"slot",placement.slot,"size",entity.width,"amount",amount);
     }
@@ -715,7 +750,7 @@ final class Native950DeveloperConsole {
     }
     private boolean mayAct(){return Native950DeveloperActions.permitted(player,channel)&&player.isActive()&&!player.isDead()&&!player.hasFinished()&&!player.isLocked()&&!player.closeInterfaceLocked;}
     private void button(int x,int y,int w,int h,String label,boolean selected,Runnable action){
-        int actor=buttons.size();buttons.put(actor,action);write(Native950Packets.runClientScript(BUTTON,actor,x,y,w,h,selected?1:0,rowActions.containsKey(actor)?1:0,label,"__devop:"+epoch+":"+actor));
+        int actor=buttons.size();buttons.put(actor,action);write(Native950Packets.runClientScript(BUTTON,actor,x,y,w,h,selected?1:0,rowActions.containsKey(actor)?1:0,(selected?"<col=ffd479>"+label+"</col>":label),"__devop:"+epoch+":"+actor));
     }
     private void text(int x,int y,int w,int h,int style,String text){write(Native950Packets.runClientScript(TEXT,textChild++,x,y,w,h,style,text));}
     private void write(Native950Packets.Packet p){channel.write(p);}

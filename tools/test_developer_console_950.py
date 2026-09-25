@@ -19,6 +19,7 @@ class DeveloperScripts(unittest.TestCase):
                     b,a=ints.pop(),ints.pop()
                     if a!=b:pc+=arg
                 elif op==0x267:joined=''.join(strings[-arg:]);del strings[-arg:];strings.append(joined)
+                elif op==0xe4:self.assertEqual((1,1477<<16|708),tuple(ints[-2:]));del ints[-2:]
                 elif op==0x77b:sent.append(strings.pop())
                 elif op==0x895:self.assertEqual(21140,arg)
                 elif op==0x495:break
@@ -93,6 +94,7 @@ class DeveloperScripts(unittest.TestCase):
                 elif op==0x412:
                     b,a=ints.pop(),ints.pop()
                     if a!=b:pc+=arg
+                elif op==0xe4:self.assertEqual((1,1477<<16|708),tuple(ints[-2:]));del ints[-2:]
                 elif op==0x77b:sent.append(strings.pop())
                 elif op==0x495:break
                 else:self.fail(hex(op))
@@ -120,6 +122,7 @@ class DeveloperScripts(unittest.TestCase):
                         elif op==0x1f1:self.assertTrue(mounted);text=strings.pop()
                         elif op==0x8b9:self.assertTrue(mounted);self.assertEqual(MARKER_COMPONENT,ints.pop());strings.append(text)
                         elif op==0x3f:b,a=strings.pop(),strings.pop();ints.append(int(a!=b))
+                        elif op==0xe4:self.assertEqual((1,1477<<16|708),tuple(ints[-2:]));del ints[-2:]
                         elif op==0x77b:sent.append(strings.pop())
                         elif op==0x495:break
                         else:self.fail(hex(op))

@@ -29,12 +29,13 @@ def script(ops, ni=0, ns=0):
     return raw
 def programs():
     init=[]
-    for c in (3,5,7,9,11):
+    for c in (3,5,7):
         h=1448<<16|c
         init+=ints(h)+[(0x5,0)]+ints(0,0,0,0,h)+[(0x7c5,0)]+ints(742,450,0,0,h)+[(0x55,0)]
         init+=ints(0 if c in (3,5,7) else 1,h)+[(0xe4,0)]
-    init += [call(21140)]
-    for c in (4,6): init += ints(1,1448<<16|c)+[(0xe4,0)]
+    # Do not reset list geometry before CS21151 captures its scroll position.
+    # The search field also survives inspector redraws; refresh its hook in place.
+    for c in (6,9,11): init += ints(1,1448<<16|c)+[(0xe4,0)]
     # CS8289 resolves the native title host from struct21301/3506 and uses
     # dynamic child14 (child3 is a frame component). 713 is NOT the title: putting text there clips under tabs.
     init+=ints(1,1477<<16|714)+[(0xe4,0)]
@@ -97,8 +98,11 @@ def ready_bridge():
     original=b'\0'+b''.join(instruction(*op) for op in old)+struct.pack('>I',20)+tail[4:]
     assert hashlib.sha256(original).hexdigest()=='5bd6296bb761633d83eb47a86757815ee88d0369ab844439a11f13792f24d5f7', 'Unexpected native8286 body'
     # IF_FIND protects ordinary management when the developer shell is absent.
-    extra=ints(MARKER_COMPONENT)+[(0x5a2,0)]+ints(1)+[(0x412,8)]
-    extra+=ints(MARKER_COMPONENT)+[(0x8b9,0),push('SHNORKSCAPE Developer Console'),(0x3f,0)]+ints(0)+[(0x412,2),push('__devready'),(0x77b,0)]
+    extra=ints(MARKER_COMPONENT)+[(0x5a2,0)]+ints(1)+[(0x412,11)]
+    extra+=ints(MARKER_COMPONENT)+[(0x8b9,0),push('SHNORKSCAPE Developer Console'),(0x3f,0)]+ints(0)+[(0x412,5)]
+    # Native refresh has completed. Keep the window unpainted until the server
+    # publishes the full console page; do not delay or remove the acknowledgement.
+    extra+=ints(1,1477<<16|708)+[(0xe4,0),push('__devready'),(0x77b,0)]
     updated=old[:-1]+extra+[old[-1]]
     return raw[:raw.index(0)+1]+b''.join(instruction(*op) for op in updated)+struct.pack('>I',len(updated))+tail[4:]
 
@@ -112,7 +116,7 @@ def append_reference(raw, additions):
         n=4 if raw[p]&128 else 2;v=int.from_bytes(raw[p:p+n],'big')&0x7fffffff;p+=n;return v
     total=count();ids=[];last=0
     for _ in range(total):last+=count();ids.append(last)
-    assert all(sid in ids or BASE+6<=sid<=21151 for sid in additions), 'Only audited developer helpers may be appended'
+    assert all(sid in ids or BASE+6<=sid<=21156 for sid in additions), 'Only audited developer helpers may be appended'
     arrays=[]
     for width in (4,4,4,8,4):arrays.append([raw[p+i*width:p+(i+1)*width] for i in range(total)]);p+=total*width
     counts=[count() for _ in ids];files=[]
@@ -137,7 +141,7 @@ def append_reference(raw, additions):
     return out+b''.join(b''.join(a) for a in arrays)+b''.join(smart(n) for n in counts)+b''.join(files)+b''.join(names)
 
 def main():
-    dest=ROOT/'dist/developer-console-v2-phase-b-20260925/cache-v4';dest.mkdir(parents=True,exist_ok=True)
+    dest=ROOT/'dist/developer-console-v3-20260925/cache-v4';dest.mkdir(parents=True,exist_ok=True)
     additions={};pins={}
     for sid,payload in programs().items():
         packed=container(payload);additions[sid]=(packed,payload)

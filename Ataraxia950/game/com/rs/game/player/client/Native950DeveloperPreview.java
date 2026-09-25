@@ -13,6 +13,7 @@ final class Native950DeveloperPreview {
     private Native950DeveloperPreview(int npc,int idle,int attack,int zoom,int height,boolean nativeFraming){
         this.npc=npc;this.idle=idle;this.attack=attack;this.zoom=zoom;this.height=height;this.nativeFraming=nativeFraming;
     }
+    static Native950DeveloperPreview unavailable(){return new Native950DeveloperPreview(-1,-1,-1,1000,0,false);}
     static Native950DeveloperPreview resolve(int id){
         if(Cache.STORE==null)return new Native950DeveloperPreview(-1,-1,-1,1000,0,false);
         NPCDefinitions d=NPCDefinitions.getNPCDefinitions(id);

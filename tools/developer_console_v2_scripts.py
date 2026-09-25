@@ -65,15 +65,17 @@ def programs(api):
     c.add(*ints(189,host(6)),(0x413,0))
     out[21136]=c.raw(1)
     # 21137: create integrated search. No native text component is repurposed.
-    c=Code().add(*ints(host(4)),(0x5,0),*ints(8,38,0,0,host(4)),(0x7c5,0),
-                 *ints(396,30,0,0,host(4)),(0x55,0),*ints(0,host(4)),(0xe4,0))
+    c=Code().add(*ints(8,38,0,0,host(4)),(0x7c5,0),
+                 *ints(320,30,0,0,host(4)),(0x55,0),*ints(0,host(4)),(0xe4,0))
     for child in (17,18,19):c.add(*ints(1,host(child)),(0xe4,0))
-    c.add(*ints(host(4),0,0,0,0,0,396,30,0,0,2100),sl(0),call(2995),
-          *ints(1),push('Search'),(0x83c,0),*ints(21138),sl(1),sl(0),push('ss'),(0x6a,0))
+    c.add(*ints(host(4),0),(0x109,0),*ints(1)).jump(0x647,'exists')
+    c.add(*ints(host(4),0,8,3,0,0,304,24,0,0,2100),sl(0),call(2995))
+    c.add(*ints(host(4),3,1),(0x691,0),*ints(320,30,0,0),(0x8c3,0),*ints(0,0,0,0),(0x828,0),*ints(0xa99b78),(0x1a5,0))
+    c.label('exists').add(*ints(host(4),0),(0x109,0),*ints(1)).jump(0x412,'done')
+    c.add(*ints(1),push('Search'),(0x83c,0),*ints(21138),sl(1),sl(0),push('ss'),(0x6a,0),sl(0),(0x1f1,0))
     c.add(sl(0),push(''),(0x3f,0),*ints(0)).jump(0x412,'done')
-    c.add(push('Search names or IDs...'),(0x1f1,0)).label('done')
-    c.add(*ints(host(4),3,1),(0x691,0),*ints(396,30,0,0),(0x8c3,0),*ints(0,0,0,0),(0x828,0),*ints(0xa99b78),(0x1a5,0))
-    out[21137]=c.raw(0,2)
+    c.add(sl(2),(0x1f1,0)).label('done')
+    out[21137]=c.raw(0,3)
     # 21138: acquire EXACT native text context11, bind the keycode/character
     # sentinels from CS9833, reuse its editor buffer while the field owns focus.
     c=Code().add(sl(1),(0x195,34130432),sl(1),(0x25f,0),(0x195,33817856),
@@ -152,4 +154,27 @@ def programs(api):
     c=Code().add(*ints(host(9)),(0xd1,0),(0x592,2),il(0),call(21131),il(1),*ints(0)).jump(0x412,'done')
     c.add(*ints(0),il(2),*ints(host(9)),(0x1a2,0)).label('done')
     out[21151]=c.raw(3,args=2)
+    # Search button reads the native editor buffer if focused; otherwise reruns
+    # the existing query. It replaces only this button's native operation.
+    c=Code().add(*ints(host(5)),il(0),(0x109,0),*ints(1)).jump(0x412,'done')
+    c.add(*ints(21153),sl(0),sl(1),push('ss'),(0x6a,0)).label('done')
+    out[21152]=c.raw(1,2)
+    c=Code().add(sl(0),(0x1ca,34289920),*ints(11)).jump(0x412,'unfocused')
+    c.add((0x1ca,34130432)).jump(0x713,'submit')
+    c.label('unfocused').add(sl(1)).label('submit').add((0x267,2),(0x77b,0),call(21140))
+    out[21153]=c.raw(0,2)
+    # Consistent selected border for item and generic collection rows.
+    c=Code().add(*ints(host(9)),il(0),il(1),(0x51e,0),(0x109,0),*ints(1)).jump(0x412,'done')
+    c.add(*ints(0xffd479),(0x1a5,0)).label('done')
+    out[21154]=c.raw(2)
+    # Parameterised local-player preview and matching native rotation hit region.
+    c=Code().add(*ints(host(7),6),il(0),(0x691,0),il(3),il(4),*ints(0,0),(0x8c3,0),il(1),il(2),*ints(0,0),(0x828,0),
+                 (0x79b,0),*ints(0,0,0,180,0),il(5),(0x112,0))
+    out[21155]=c.raw(6)
+    c=Code().add(il(1),il(2),*ints(0,0,host(6)),(0x7c5,0),il(3),il(4),*ints(0,0,host(6)),(0x55,0),
+                 *ints(0,host(6)),(0xe4,0),*ints(host(6)),(0x8a2,0),*ints(-1,host(6)),(0x353,0))
+    for sid,op in ((8479,0x815),(8480,0x732)):
+        c.add(*ints(sid,host(6),host(7)),il(0),push('iii'),*ints(host(6)),(op,0))
+    c.add(*ints(189,host(6)),(0x413,0))
+    out[21156]=c.raw(5)
     return out

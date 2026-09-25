@@ -1,0 +1,11 @@
+{
+  "status": "AUTOMATED VERIFIED; physical successor test pending",
+  "focusedJava": {
+    "tests": 43,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "scriptTests": 20,
+  "runtime": "not deployed yet"
+}

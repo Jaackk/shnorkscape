@@ -261,6 +261,27 @@ public class Native950DeveloperConsoleTest {
         assertTrue(Native950DeveloperCatalogue.variants(e).size()>1);
         assertEquals(e.id,Native950DeveloperCatalogue.groupedNpcs(String.valueOf(e.id)).get(0).id);
     }
+    @Test public void usefulFamiliesRankAheadOfAlphabeticalHelperNames(){
+        Native950DeveloperCatalogue.Entry helper=new Native950DeveloperCatalogue.Entry(new String[]{"NPC","1","A dragon model helper","1","1","0",""});
+        Native950DeveloperCatalogue.Entry actor=new Native950DeveloperCatalogue.Entry(new String[]{"NPC","2","Green dragon","2","2","63",""});
+        Map<Integer,Integer> ranks=new HashMap<>();ranks.put(1,0);ranks.put(2,500);
+        List<Native950DeveloperCatalogue.Entry> raw=Arrays.asList(helper,actor);
+        assertEquals(2,Native950DeveloperCatalogue.group(raw,ranks).get(0).id);
+        assertEquals(2,raw.size());
+    }
+    @Test public void boundedNamesKeepRowsReadableWithoutChangingIdentity(){
+        assertEquals("Torva",Native950DeveloperConsole.rowName("Torva",32));
+        String name=String.join("",Collections.nCopies(70,"x"));
+        assertEquals(32,Native950DeveloperConsole.rowName(name,32).length());
+        assertTrue(Native950DeveloperConsole.rowName(name,32).endsWith("..."));
+    }
+    @Test public void majorDomainRoundTripRestoresItsOwnQueryAndWindow()throws Exception{
+        console.open();console.handle(notification("__devready"));invoke("navigate",String.class,"NPCs");
+        java.lang.reflect.Field q=Native950DeveloperConsole.class.getDeclaredField("query");q.setAccessible(true);q.set(console,"dragon");
+        invoke("navigate",String.class,"Objects");assertEquals("",field("query"));q.set(console,"bank");
+        invoke("navigate",String.class,"NPCs");assertEquals("dragon",field("query"));
+        invoke("navigate",String.class,"Objects");assertEquals("bank",field("query"));
+    }
     private static Native950Actions.StringDialogueAction notification(String text)throws Exception{
         java.lang.reflect.Constructor<Native950Actions.StringDialogueAction> c=Native950Actions.StringDialogueAction.class.getDeclaredConstructor(boolean.class,String.class);c.setAccessible(true);return c.newInstance(false,text);
     }

@@ -27,14 +27,20 @@ final class Native950DeveloperCatalogue {
     static List<Entry> groupedNpcs(String query){
         List<Entry> raw=search("NPC",query);
         if(Native950DeveloperSearch.exactId(query)>=0)return raw;
-        return group(raw,Ranks.VALUES);
+        List<Entry> result=group(raw,Ranks.VALUES);
+        // Exact display-name searches still outrank partial-name families.
+        result.sort(Comparator.comparing((Entry e)->!e.name.equalsIgnoreCase(query.trim())));
+        return result;
     }
     static List<Entry> group(List<Entry> raw,Map<Integer,Integer> ranks){
         Map<String,Entry> groups=new LinkedHashMap<>();
         for(Entry e:raw){Entry previous=groups.get(e.lowerName);
             if(previous==null||ranks.getOrDefault(e.id,0)>ranks.getOrDefault(previous.id,0))groups.put(e.lowerName,e);
         }
-        return new ArrayList<>(groups.values());
+        List<Entry> result=new ArrayList<>(groups.values());
+        result.sort(Comparator.comparingInt((Entry e)->ranks.getOrDefault(e.id,0)).reversed()
+                .thenComparing(e->e.name,String.CASE_INSENSITIVE_ORDER).thenComparingInt(e->e.id));
+        return result;
     }
     static List<Entry> variants(Entry selected){
         List<Entry> result=new ArrayList<>();for(Entry e:search("NPC",selected.name))if(e.lowerName.equals(selected.lowerName))result.add(e);return result;
