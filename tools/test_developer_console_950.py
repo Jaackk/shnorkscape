@@ -20,6 +20,7 @@ class DeveloperScripts(unittest.TestCase):
                     if a!=b:pc+=arg
                 elif op==0x267:joined=''.join(strings[-arg:]);del strings[-arg:];strings.append(joined)
                 elif op==0x77b:sent.append(strings.pop())
+                elif op==0x895:self.assertEqual(21140,arg)
                 elif op==0x495:break
                 else:self.fail('Unexpected opcode '+hex(op))
             self.assertEqual(['__devop:123:17'+suffix],sent);self.assertEqual([],ints);self.assertEqual([],strings)

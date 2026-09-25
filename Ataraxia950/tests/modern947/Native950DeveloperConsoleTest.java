@@ -94,6 +94,28 @@ public class Native950DeveloperConsoleTest {
         console.handle(notification("__devcancel:1"));assertFalse(console.isOpen());assertNull(move.get(console));assertNull(pending.get(console));
         console.open();console.dispose();assertFalse(console.isOpen());
     }
+    @Test public void integratedSearchIsBoundedEpochScopedAndDoesNotExecuteCommands()throws Exception{
+        console.open();console.handle(notification("__devready"));
+        java.lang.reflect.Field ep=Native950DeveloperConsole.class.getDeclaredField("epoch"),q=Native950DeveloperConsole.class.getDeclaredField("query");ep.setAccessible(true);q.setAccessible(true);
+        long before=ep.getLong(console);
+        console.handle(notification("__devsearch:"+(before-1)+":god"));assertEquals("",q.get(console));
+        console.handle(notification("__devsearch:"+before+":"+String.join("",Collections.nCopies(81,"x"))));assertEquals("",q.get(console));
+        console.handle(notification("__devsearch:"+before+":;;god"));assertEquals(";;god",q.get(console));assertFalse(p.isDevelopmentGodMode());
+        assertTrue(ep.getLong(console)>before);
+        console.handle(notification("__devsearch:"+before+":heal"));assertEquals(";;god",q.get(console));
+        console.close();console.handle(notification("__devsearch:"+ep.getLong(console)+":bank"));assertEquals(";;god",q.get(console));
+    }
+    @Test public void scrollingRowsDoNotCreateGapsInNativeButtonIndicesAndSelectionKeepsEpoch()throws Exception{
+        console.open();console.handle(notification("__devready"));
+        java.lang.reflect.Method browse=Native950DeveloperConsole.class.getDeclaredMethod("browse",String.class);browse.setAccessible(true);browse.invoke(console,"NPC");
+        java.lang.reflect.Field buttons=Native950DeveloperConsole.class.getDeclaredField("buttons"),rows=Native950DeveloperConsole.class.getDeclaredField("rowEntities"),ep=Native950DeveloperConsole.class.getDeclaredField("epoch");
+        buttons.setAccessible(true);rows.setAccessible(true);ep.setAccessible(true);
+        Map<Integer,?> actors=(Map<Integer,?>)buttons.get(console),entries=(Map<Integer,?>)rows.get(console);
+        assertEquals(100,entries.size());for(int i=0;i<actors.size();i++)assertTrue("Missing native child "+i,actors.containsKey(i));
+        assertTrue(Collections.disjoint(actors.keySet(),entries.keySet()));long before=ep.getLong(console);drain();
+        console.handle(notification("__devop:"+before+":1000"));assertEquals(before,ep.getLong(console));
+        assertEquals(-1,index(drain(),com.rs.network.protocol.modern950.Native950Packets.runClientScript(Native950DeveloperConsole.INIT)));
+    }
     @Test public void worldCapacityFailureReturnsToConsoleInsteadOfDisconnecting()throws Exception{
         console.open();console.handle(notification("__devready"));java.lang.reflect.Field ep=Native950DeveloperConsole.class.getDeclaredField("epoch"),bs=Native950DeveloperConsole.class.getDeclaredField("buttons");ep.setAccessible(true);bs.setAccessible(true);
         ((Map<Integer,Runnable>)bs.get(console)).put(0,()->{throw new IllegalStateException("World is full");});

@@ -33,6 +33,8 @@ def programs():
         h=1448<<16|c
         init+=ints(h)+[(0x5,0)]+ints(0,0,0,0,h)+[(0x7c5,0)]+ints(742,450,0,0,h)+[(0x55,0)]
         init+=ints(0 if c in (3,5,7) else 1,h)+[(0xe4,0)]
+    init += [call(21140)]
+    for c in (4,6): init += ints(1,1448<<16|c)+[(0xe4,0)]
     # CS8289 resolves the native title host from struct21301/3506 and uses
     # dynamic child14 (child3 is a frame component). 713 is NOT the title: putting text there clips under tabs.
     init+=ints(1,1477<<16|714)+[(0xe4,0)]
@@ -53,11 +55,11 @@ def programs():
     # Same CC_SETONOP contract as native CS10324; callback carries a per-render
     # capability, so delayed input can never execute a new row at an old slot.
     # Native CS10324 uses CC_SETOP083c and event_op=-2147483644.
-    button += [(0x35e,6)]+ints(1)+[(0x412,12)]
-    for number,label in ((1,'Open Details'),(2,'Execute Now'),(3,'Add/Remove Favourite'),(4,'Open Details')):
+    button += [(0x35e,6)]+ints(1)+[(0x412,9)]
+    for number,label in ((1,'Select'),(2,'Execute Now'),(3,'Add/Remove Favourite')):
         button += ints(number)+[push(label),(0x83c,0)]
     button += ints(BASE+3,-2147483644)+[(0x25a,1),push('is'),(0x6a,0)]
-    notify=[]
+    notify=[call(21140)]
     for operation in (2,3,4):
         notify += [(0x35e,0)]+ints(operation)+[(0x412,5),(0x25a,0),push(':'+str(operation)),(0x267,2),(0x77b,0),(0x495,0)]
     notify += [(0x25a,0),(0x77b,0)]
@@ -79,7 +81,8 @@ def programs():
     arm+=ints(1448<<16|11)+[(0x35e,0),(NATIVE_SELECT,0)]
     # Two int locals, only one argument (the target actor index).
     armraw=bytearray(script(arm,2,2));end=len(armraw)-19;armraw[end+10:end+12]=struct.pack('>H',1)
-    return {BASE:script(init),BASE+1:script(button,7,2),BASE+2:script(text,6,1),BASE+3:script(notify,1,1),BASE+4:bytes(armraw),BASE+5:script([(0x8aa,0)]),BASE+6:script(ints(MARKER_COMPONENT)+[(0x5a2,0)]+ints(1)+[(0x412,2),(0x25a,0),(0x1f1,0)],0,1),8286:ready_bridge()}
+    from developer_console_v2_scripts import programs as v2
+    return {BASE:script(init),BASE+1:script(button,7,2),BASE+2:script(text,6,1),BASE+3:script(notify,1,1),BASE+4:bytes(armraw),BASE+5:script([(0x8aa,0)]),BASE+6:script(ints(MARKER_COMPONENT)+[(0x5a2,0)]+ints(1)+[(0x412,2),(0x25a,0),(0x1f1,0)],0,1),8286:ready_bridge(),**v2((push,ints,call,script))}
 
 def ready_bridge():
     """Acknowledge the REAL varc2911 management refresh, after its native work.
@@ -109,7 +112,7 @@ def append_reference(raw, additions):
         n=4 if raw[p]&128 else 2;v=int.from_bytes(raw[p:p+n],'big')&0x7fffffff;p+=n;return v
     total=count();ids=[];last=0
     for _ in range(total):last+=count();ids.append(last)
-    assert all(sid in ids or sid==BASE+6 for sid in additions), 'Only the audited marker helper may be appended'
+    assert all(sid in ids or BASE+6<=sid<=21143 for sid in additions), 'Only audited developer helpers may be appended'
     arrays=[]
     for width in (4,4,4,8,4):arrays.append([raw[p+i*width:p+(i+1)*width] for i in range(total)]);p+=total*width
     counts=[count() for _ in ids];files=[]
@@ -134,7 +137,7 @@ def append_reference(raw, additions):
     return out+b''.join(b''.join(a) for a in arrays)+b''.join(smart(n) for n in counts)+b''.join(files)+b''.join(names)
 
 def main():
-    dest=ROOT/'dist/developer-console-cache-ux-20260925/cache-v4';dest.mkdir(parents=True,exist_ok=True)
+    dest=ROOT/'dist/developer-console-v2-phase-a-20260925/cache-v4';dest.mkdir(parents=True,exist_ok=True)
     additions={};pins={}
     for sid,payload in programs().items():
         packed=container(payload);additions[sid]=(packed,payload)
@@ -146,9 +149,9 @@ def main():
     ref=append_reference(unpack((ROOT/'cache/255/12.dat').read_bytes()),additions)
     (dest/'255').mkdir(exist_ok=True);(dest/'255/12.dat').write_bytes(container(ref))
     (ROOT/'protocol-analysis/developer-console-scripts-950.json').write_bytes((json.dumps({'scripts':pins,'nativeButton':10410,'nativeText':2995,'shell':1448,'status':'AUTOMATED VERIFIED; Vulkan visual acceptance pending'},indent=2)+'\n').encode())
-    for sid in (10410,10899,2995,10644,10324,8289,8418):
-        pins[str(sid)]=hashlib.sha256((ROOT/f'temp/library-followup-trace/12-{sid}-0.bin').read_bytes()).hexdigest()
+    for sid in (10410,10899,2995,10644,10324,8289,8418,7791,31,8479,8480,8481,8482,9620,7170,1553,8841):
+        pins[str(sid)]=hashlib.sha256(unpack((ROOT/f'cache/12/{sid}.dat').read_bytes())).hexdigest()
     (ROOT/'Ataraxia950/resources/native950/developer-console-950.properties').write_bytes((''.join(f'{sid}={value}\n' for sid,value in sorted(pins.items()))).encode())
-    print('Staged seven developer helpers and scoped native-ready bridge; live cache untouched.')
+    print('Staged developer V2 Phase-A helpers; live cache untouched.')
 if __name__=='__main__':main()
 
