@@ -121,7 +121,7 @@ try {
 } finally { foreach($key in $previous.Keys) { [Environment]::SetEnvironmentVariable($key,$previous[$key],'Process') } }
 $info = Get-CimInstance Win32_Process -Filter "ProcessId = $($started.Id)"
 if (!$info) { throw '950 server exited. See logs/server.err.log.' }
-[pscustomobject]@{ProcessId=$started.Id;Workspace=$root;CreatedUtc=$info.CreationDate.ToUniversalTime().ToString('o');JavaPath=$JavaPath;ClassPath=$classPath} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $log 'server.pid.json') -Encoding UTF8
+[pscustomobject]@{ProcessId=$started.Id;Workspace=$root;CreatedUtc=$info.CreationDate.ToUniversalTime().ToString('o');JavaPath=$JavaPath;ClassPath=$classPath;LanAddress=$LanAddress} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $log 'server.pid.json') -Encoding UTF8
 Write-Host "950 test server started: PID $($started.Id). Test ports8950 /43650. See logs for readiness."
 
 

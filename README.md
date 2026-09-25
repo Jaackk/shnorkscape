@@ -15,6 +15,15 @@ Updated from the main project on 12 September 2026. See [update notes](docs/UPDA
 
 ## Play
 
+For staged updates, double-click **[Update and Play.cmd](Update%20and%20Play.cmd)**.
+It checks the update first, closes this bundle's local clients, stops the server,
+applies the update with its normal backup/rollback, then waits for the server to
+be ready before opening the game. Existing LAN mode is retained. No separate
+Stop/Apply/Play steps are needed. If any step fails, later steps do not run.
+`Update and Play.cmd -CheckOnly` checks readiness without stopping or installing.
+Other installations are never stopped; a still-connected remote client must log
+out before this server can be stopped safely.
+
 1. Keep this proven V5 production build at `C:\Games\950OpenSource`. Moving it requires a separately validated build; the normal launcher fails closed on another path.
 2. Download **Cache (Flat file)** from [OpenRS2 cache 2691 — English 950.1, September 7, 2026](https://archive.openrs2.org/caches/runescape/2691). [Direct download](https://archive.openrs2.org/caches/runescape/2691/flat-file.tar.gz).
 3. Extract the archive **into this project folder**. It already contains `cache`. The result must include `cache\255\12.dat`, not `cache\cache\255\12.dat`. Allow about 24 GB for the extracted server cache, plus space for the download and the client's own local cache.

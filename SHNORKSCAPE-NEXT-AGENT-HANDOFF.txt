@@ -1,3 +1,11 @@
+ONE-CLICK UPDATE LAUNCHER - 2026-09-25
+User now uses Update and Play.cmd: precheck -> close own local clients -> stop -> apply -> existing readiness/client launcher.
+Reads the current staged manifest; future candidates need no wrapper changes. Existing Apply Staged Update.cmd remains available.
+Preserves verified running/saved LAN address and Vulkan workspace gates; unrelated Java/game processes are never killed.
+Remote game sessions block shutdown until disconnected. Errors prevent later stages; same client-launch mutex covers the sequence.
+Implementation was tested with disposable mocked lifecycle fixtures plus real CheckOnly, NOT a live restart.
+Agent still must not run the mutating launcher without user authorization to restart/deploy.
+
 DEVELOPER CONSOLE V2 PHASE B CHECKPOINT - 2026-09-25
 Source ec9adeb pushed/remote verified. Candidate dist/developer-console-v2-phase-b-20260925.
 Apply Staged Update.cmd selects this 46-file candidate; CheckOnly and six fixtures PASS.
