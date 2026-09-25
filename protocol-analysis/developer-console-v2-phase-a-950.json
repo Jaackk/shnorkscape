@@ -1,0 +1,55 @@
+{
+  "milestone": "Developer Console V2 Phase A",
+  "status": "AUTOMATED VERIFIED / LIVE TEST PENDING",
+  "sourceCommit": "b6c84d8d1a7ac5772be1dc83ccd01ec586474e46",
+  "candidate": "developer-console-v2-phase-a-20260925",
+  "fullRegression": {
+    "tests": 1585,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2,
+    "scope": "Core primitive implementation; final local preview controls then received focused verification"
+  },
+  "finalFocusedJava": {
+    "tests": 21,
+    "failures": 0,
+    "errors": 0
+  },
+  "scriptTests": 13,
+  "installerFixtures": 6,
+  "cachePreflight": "PASS against isolated overlay; verification not bypassed",
+  "realCachePreviewProbe": {
+    "Man": {
+      "id": 1,
+      "idle": 808,
+      "attack": 422,
+      "zoom": 1100,
+      "framing": "provisional"
+    },
+    "Graardor": {
+      "id": 6260,
+      "idle": 17387,
+      "attack": 17389,
+      "zoom": 1325,
+      "height": 240,
+      "framing": "Beasts"
+    },
+    "Vorago": {
+      "id": 17161,
+      "idle": 20333,
+      "attack": -1,
+      "zoom": 250,
+      "framing": "provisional"
+    }
+  },
+  "candidateJarSha256": "FF25D5FE06576BE753630821E253E95333459A2CE9512204A351EEA12E51098F",
+  "scriptReferenceSha256": "FFE16E04B1275A7AC467DF8483306128A82F686E99AD927DE7DCCC27C941EFCC",
+  "installed": false,
+  "restarted": false,
+  "limits": [
+    "No new physical Vulkan acceptance yet",
+    "General NPC framing provisional",
+    "Search submits on Enter; full final text-field/caret polish remains Phase B",
+    "Final Home/Item/Object/Boss/Combat/Spawns/Travel/Animation Lab composition not implemented in Phase A"
+  ]
+}

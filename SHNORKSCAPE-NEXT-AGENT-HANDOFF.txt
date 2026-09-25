@@ -1,3 +1,32 @@
+DEVELOPER CONSOLE V2 PHASE A - 2026-09-25
+User prompt: attachments/735557ef-6c00-4f1a-9586-096026e27d30/Pasted text.txt.
+Source checkpoint b6c84d8 pushed and remote verified. One primary agent.
+Native1448 readiness/marker and all world-editor ownership/backend paths preserved.
+Added bounded native NPC scrolling, local selection highlight, independent full NPC
+model/sequence preview, native drag rotation, in-console text editing and scoped menus.
+Known gap: ordinary/large NPC framing is provisional; no physical Vulkan pass yet.
+Search submits on Enter; final caret styling and full V2 page composition remain pending.
+The user explicitly requires Phase-A physical acceptance BEFORE substantial final layout.
+Asked user to apply/test; do not call Phase B/C complete or silently deploy to get evidence.
+
+Candidate: dist/developer-console-v2-phase-a-20260925; Apply Staged Update.cmd updated.
+38 pinned files and launch gates CheckOnly PASS. Six installer fixtures PASS.
+Jar FF25D5FE06576BE753630821E253E95333459A2CE9512204A351EEA12E51098F.
+Index12 FFE16E04B1275A7AC467DF8483306128A82F686E99AD927DE7DCCC27C941EFCC.
+Original cache/client/runtime files were not replaced; no restart or installation.
+Previous dist/developer-console-ux-20260925 retained; backup pre-edit-20260925-014913-779.
+Full core regression 1585 tests / 0 failures/errors / 2 existing skips; final focused
+console suite 21/21, 13 script tests, real-cache preview/pin probe and isolated preflight PASS.
+Docs/checklist: docs/DEVELOPER-CONSOLE-V2-PHASE-A-20260925.md.
+Evidence: protocol-analysis/developer-console-v2-phase-a-950.json.
+New script range21131-21143; scroll host9 + scrollbar11, search static4/dynamic0,
+preview host7/dynamic reserved child, rotation layer6. Native ready text1448:14 untouched.
+Row nonces1000+ separate from host5 button indices: never create child-index holes.
+NPC local animation controls lose their operation when no validated binding exists.
+Next: get short Vulkan results for search, wheel/drag/clipped-row selection, Man/Graardor/
+Vorago preview/rotation, placement and close->keybind. Fix concrete boundary evidence,
+then proceed with the user's Home/NPC/Object/Item/Boss/Combat/Spawns/Travel/Tools design.
+
 NATIVE UI CAPABILITY RESEARCH 2026-09-25 - RESEARCH ONLY
 Latest user rejects current dev-console UX; do not treat the staged UX as live accepted.
 Read docs/DEV-UI-NATIVE-CAPABILITIES-950.md and protocol-analysis/dev-ui-native-capabilities-950.json.

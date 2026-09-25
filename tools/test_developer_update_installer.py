@@ -51,6 +51,16 @@ class Installer(unittest.TestCase):
         m=json.loads(json.dumps(self.manifest));m['files'][-1]['target']='cache/12/999999.dat'
         (self.base/'protocol-analysis/playability-candidate-20260923.json').write_text(json.dumps(m));self.check(False)
 
+    def test_new_primitive_is_absent_or_exact_candidate_never_an_unknown_existing_script(self):
+        entries=[e for e in self.manifest['files'] if e['target']=='cache/12/21143.dat']
+        if not entries:self.skipTest('Candidate predates V2 primitives')
+        entry=entries[0];self.assertEqual('ABSENT',entry['beforeSha256']);dst=self.base/entry['target']
+        self.check(True)
+        shutil.copyfile(self.base/'dist'/self.manifest['candidate']/entry['source'],dst)
+        try:
+            self.check(True);dst.write_bytes(b'unrelated definition');self.check(False)
+        finally:dst.unlink()
+
     def test_missing_existing_target_is_rejected(self):
         entry=next(e for e in self.manifest['files'] if e['target']=='cache/12/5591.dat');dst=self.base/entry['target'];raw=dst.read_bytes();dst.unlink()
         try:self.check(False)
