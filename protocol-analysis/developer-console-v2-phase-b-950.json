@@ -1,0 +1,47 @@
+{
+  "status": "AUTOMATED VERIFIED; new controls and visual composition LIVE TEST PENDING",
+  "phaseA": "CONFIRMED LIVE by user",
+  "fullRegression": {
+    "tests": 1589,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 2
+  },
+  "scriptTests": 17,
+  "nativeHelpers": "21144-21151",
+  "placementEvidence": {
+    "npc": 17182,
+    "source": "1448:11",
+    "slot": 7,
+    "tile": [
+      3291,
+      10147,
+      0
+    ],
+    "outcome": "Previous log did not capture commit result; new diagnostics added"
+  },
+  "preserved": [
+    "keyboard context24 cleanup",
+    "library catalogue and real-bank isolation",
+    "registry and world-editor ownership",
+    "NPC native preview and rotation",
+    "running runtime"
+  ],
+  "partial": [
+    "automatic model framing",
+    "startup flash",
+    "map click-to-teleport",
+    "persistent item favourites",
+    "Weapons Only controls",
+    "Home icons and final visual composition"
+  ],
+  "focusedRegression": {
+    "tests": 50,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "pairedCache": "PASS: Torva 24 matches, exact IDs, item hashes, canonical NPCs and helper pins",
+  "isolatedPreflight": "PASS",
+  "worldEditorRegression": "PASS: real-cache placement, ownership, two-player clearing, undo/redo, persistence and stale replacement"
+}

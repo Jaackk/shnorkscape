@@ -112,7 +112,7 @@ def append_reference(raw, additions):
         n=4 if raw[p]&128 else 2;v=int.from_bytes(raw[p:p+n],'big')&0x7fffffff;p+=n;return v
     total=count();ids=[];last=0
     for _ in range(total):last+=count();ids.append(last)
-    assert all(sid in ids or BASE+6<=sid<=21143 for sid in additions), 'Only audited developer helpers may be appended'
+    assert all(sid in ids or BASE+6<=sid<=21151 for sid in additions), 'Only audited developer helpers may be appended'
     arrays=[]
     for width in (4,4,4,8,4):arrays.append([raw[p+i*width:p+(i+1)*width] for i in range(total)]);p+=total*width
     counts=[count() for _ in ids];files=[]
@@ -137,7 +137,7 @@ def append_reference(raw, additions):
     return out+b''.join(b''.join(a) for a in arrays)+b''.join(smart(n) for n in counts)+b''.join(files)+b''.join(names)
 
 def main():
-    dest=ROOT/'dist/developer-console-v2-phase-a-20260925/cache-v4';dest.mkdir(parents=True,exist_ok=True)
+    dest=ROOT/'dist/developer-console-v2-phase-b-20260925/cache-v4';dest.mkdir(parents=True,exist_ok=True)
     additions={};pins={}
     for sid,payload in programs().items():
         packed=container(payload);additions[sid]=(packed,payload)
@@ -152,6 +152,6 @@ def main():
     for sid in (10410,10899,2995,10644,10324,8289,8418,7791,31,8479,8480,8481,8482,9620,7170,1553,8841):
         pins[str(sid)]=hashlib.sha256(unpack((ROOT/f'cache/12/{sid}.dat').read_bytes())).hexdigest()
     (ROOT/'Ataraxia950/resources/native950/developer-console-950.properties').write_bytes((''.join(f'{sid}={value}\n' for sid,value in sorted(pins.items()))).encode())
-    print('Staged developer V2 Phase-A helpers; live cache untouched.')
+    print('Staged developer V2 Phase-B helpers; live cache untouched.')
 if __name__=='__main__':main()
 

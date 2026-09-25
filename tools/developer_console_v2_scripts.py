@@ -50,7 +50,7 @@ def programs(api):
     out[21134]=c.raw(4,1,args=3)
     # 21135: create/update a full NPC model; every selection resets old sequence.
     c=Code().add(*ints(host(7)),il(0),(0x109,0),*ints(1)).jump(0x647,'exists')
-    c.add(*ints(host(7),6),il(0),(0x691,0),*ints(224,165,0,0),(0x8c3,0),*ints(501,93,0,0),(0x828,0))
+    c.add(*ints(host(7),6),il(0),(0x691,0),*ints(224,130,0,0),(0x8c3,0),*ints(501,93,0,0),(0x828,0))
     c.label('exists').add(il(1),(0x1fc,0),*ints(-1),(0x67f,0),il(2),(0x67f,0),
                          *ints(0),il(4),*ints(0,180,0),il(3),(0x112,0))
     out[21135]=c.raw(5)
@@ -58,7 +58,7 @@ def programs(api):
     # Static 6 is a drag layer under actor host5; static 4 is reserved for search.
     c=Code()
     for child in (20,21,22):c.add(*ints(1,host(child)),(0xe4,0))
-    c.add(*ints(501,93,0,0,host(6)),(0x7c5,0),*ints(224,165,0,0,host(6)),(0x55,0),*ints(0,host(6)),(0xe4,0),
+    c.add(*ints(501,93,0,0,host(6)),(0x7c5,0),*ints(224,130,0,0,host(6)),(0x55,0),*ints(0,host(6)),(0xe4,0),
           *ints(host(6)),(0x8a2,0),*ints(-1,host(6)),(0x353,0))
     for sid,op in ((8479,0x815),(8480,0x732)):
         c.add(*ints(sid,host(6),host(7)),il(0),push('iii'),*ints(host(6)),(op,0))
@@ -72,6 +72,7 @@ def programs(api):
           *ints(1),push('Search'),(0x83c,0),*ints(21138),sl(1),sl(0),push('ss'),(0x6a,0))
     c.add(sl(0),push(''),(0x3f,0),*ints(0)).jump(0x412,'done')
     c.add(push('Search names or IDs...'),(0x1f1,0)).label('done')
+    c.add(*ints(host(4),3,1),(0x691,0),*ints(396,30,0,0),(0x8c3,0),*ints(0,0,0,0),(0x828,0),*ints(0xa99b78),(0x1a5,0))
     out[21137]=c.raw(0,2)
     # 21138: acquire EXACT native text context11, bind the keycode/character
     # sentinels from CS9833, reuse its editor buffer while the field owns focus.
@@ -109,4 +110,46 @@ def programs(api):
     c.add(*ints(1),push('Preview'),(0x83c,0),*ints(21141),il(1),il(2),push('ii'),(0x6a,0)).jump(0x713,'done')
     c.label('disabled').add(*ints(1),push(''),(0x83c,0),*ints(-1),push(''),(0x6a,0)).label('done')
     out[21143]=c.raw(3)
+    # 21144: actual item rows, with native inventory sprites. Active SETOBJ550
+    # and explicit3c0 share the exact950 item setter (1401d1020); only the
+    # component lookup wrapper differs. No rendered-image substitutes.
+    c=Code().add(*ints(host(9),3),il(0),*ints(3),(0x51e,0),(0x691,0),
+                 *ints(290,47,0,0),(0x8c3,0),*ints(0),il(0),*ints(50),(0x51e,0),*ints(0,0),(0x828,0),
+                 *ints(0x554d3b),(0x1a5,0))
+    c.add(*ints(host(9),5),il(0),*ints(3),(0x51e,0),*ints(1),(0x1d,0),(0x691,0),
+          *ints(40,40,0,0),(0x8c3,0),*ints(4),il(0),*ints(50),(0x51e,0),*ints(3),(0x1d,0),*ints(0,0),(0x828,0),
+          il(1),*ints(1),(0x550,0))
+    c.add(*ints(host(9)),il(0),*ints(3),(0x51e,0),*ints(2),(0x1d,0),*ints(48),
+          il(0),*ints(50),(0x51e,0),*ints(2),(0x1d,0),*ints(0,0,236,43,0,0,2100),sl(0),call(2995),
+          *ints(1),push('Select'),(0x83c,0),*ints(21127,-2147483644),sl(1),push('is'),(0x6a,0))
+    out[21144]=c.raw(2,2)
+    out[21145]=script(ints(host(3))+[(0x5,0)])
+    # Inspector item icon: slot, item, x, y, width, height.
+    c=Code().add(*ints(host(7),5),il(0),(0x691,0),il(4),il(5),*ints(0,0),(0x8c3,0),
+                 il(2),il(3),*ints(0,0),(0x828,0),il(1),*ints(1),(0x550,0))
+    out[21146]=c.raw(6)
+    # Model zoom changes retain the native drag angles (CS1165 getter order).
+    c=Code().add(*ints(host(7)),il(0),(0x109,0),*ints(1)).jump(0x412,'done')
+    c.add((0x763,0),(0x25d,0),(0x836,0),(0x804,0),(0x73b,0),il(1),*ints(0)).jump(0x647,'reset')
+    c.add((0x526,0),il(1),(0x1d,0),*ints(50),(0x1f9,0),*ints(6000),(0x4d3,0)).jump(0x713,'apply')
+    c.label('reset').add(il(2)).label('apply').add((0x112,0)).label('done')
+    out[21147]=c.raw(3)
+    c=Code().add(*ints(host(5)),il(0),(0x109,0),*ints(1)).jump(0x412,'done')
+    c.add(*ints(21147),il(1),il(2),il(3),push('iii'),(0x6a,0)).label('done')
+    out[21148]=c.raw(4)
+    # Local-player model setter confirmed by native CS3503.
+    c=Code().add(*ints(host(7),6),il(0),(0x691,0),*ints(270,275,0,0),(0x8c3,0),*ints(180,85,0,0),(0x828,0),
+                 (0x79b,0),*ints(0,0,0,180,0,900),(0x112,0))
+    out[21149]=c.raw(1)
+    # Generic collection row: select only; it cannot inherit NPC spawn operations.
+    c=Code().add(*ints(host(9),3),il(0),*ints(2),(0x51e,0),(0x691,0),
+                 *ints(290,47,0,0),(0x8c3,0),*ints(0),il(0),*ints(50),(0x51e,0),*ints(0,0),(0x828,0),*ints(0x554d3b),(0x1a5,0))
+    c.add(*ints(host(9)),il(0),*ints(2),(0x51e,0),*ints(1),(0x1d,0),*ints(8),il(0),*ints(50),(0x51e,0),*ints(2),(0x1d,0),
+          *ints(0,0,276,43,0,0,2100),sl(0),call(2995),*ints(1),push('Select'),(0x83c,0),*ints(21127,-2147483644),sl(1),push('is'),(0x6a,0))
+    out[21150]=c.raw(1,2)
+    # Save native scroll before rebuilding a collection's children. Search,
+    # domain and page changes request a reset; inspector actions do not.
+    c=Code().add(*ints(host(9)),(0xd1,0),(0x592,2),il(0),call(21131),il(1),*ints(0)).jump(0x412,'done')
+    c.add(*ints(0),il(2),*ints(host(9)),(0x1a2,0)).label('done')
+    out[21151]=c.raw(3,args=2)
     return out

@@ -253,6 +253,18 @@ public final class Native950Containers {
         return Result.moved(moved);
     }
 
+    /** Atomic developer grant; existing bank entries and their saved state are preserved. */
+    Result receiveDeveloperBankItem(int id,int amount){
+        checkOwner();validateState();requireType(id);
+        if(amount<1)return Result.INVALID;
+        Item[] next=copy(bank.bankTabs[0]);int at=indexOf(next,id);
+        if(at<0&&next.length>=Bank.MAX_BANK_SIZE)return Result.FULL;
+        int current=at<0?0:next[at].getAmount();
+        if((long)current+amount>Integer.MAX_VALUE)return Result.FULL;
+        if(at<0){at=next.length;next=Arrays.copyOf(next,at+1);next[at]=new Item(id,amount);}
+        else next[at].setAmount(current+amount);
+        bank.bankTabs=new Item[][]{next};return Result.moved(amount);
+    }
     /** Exact read-only capacity preview used for native actor prediction and commit. */
     public int withdrawableAmount(int slot, int expectedId, int requested) {
         return withdrawableAmount(slot, expectedId, requested, expectedId);

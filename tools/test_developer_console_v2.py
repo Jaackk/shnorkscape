@@ -28,8 +28,8 @@ class VM:
                 a,b=pop(2)
                 if (a==b)==(op==0x647):pc+=arg
             elif op==0x713:pc+=arg
-            elif op in (0x1d,0x51e,0x1f9):
-                a,b=pop(2);iv.append(a+b if op==0x1d else a*b if op==0x51e else max(a,b))
+            elif op in (0x1d,0x51e,0x1f9,0x4d3):
+                a,b=pop(2);iv.append(a+b if op==0x1d else a*b if op==0x51e else max(a,b) if op==0x1f9 else min(a,b))
             elif op==0x3f:b,a=sv.pop(),sv.pop();iv.append(int(a!=b))
             elif op==0x25f:iv.append(len(sv.pop()))
             elif op==0x267:s=''.join(sv[-arg:]);del sv[-arg:];sv.append(s)
@@ -43,11 +43,17 @@ class VM:
                 key=tuple(pop(2));iv.append(int(key in self.components));self.active=key
             elif op in (0x55,0x7c5):pop(5)
             elif op in (0x8c3,0x828):pop(4)
-            elif op in (0xa0,0x1a2):pop(3)
+            elif op==0xa0:pop(3)
+            elif op==0x1a2:
+                x,y,parent=pop(3);self.vars['scroll:'+str(parent)]=y
+            elif op==0xd1:iv.append(self.vars.get('scroll:'+str(pop(1)[0]),0))
             elif op in (0xe4,0x353,0x413):pop(2)
             elif op==0x8a2:pop(1)
             elif op==0x1a5:self.components[self.active]['colour']=pop(1)[0]
             elif op==0x1fc:self.components[self.active]['npc']=pop(1)[0]
+            elif op==0x550:self.components[self.active]['item']=pop(2)
+            elif op==0x79b:self.components[self.active]['player']=True
+            elif op in (0x763,0x25d,0x836,0x804,0x73b,0x526):iv.append(self.components[self.active]['view'][(0x763,0x25d,0x836,0x804,0x73b,0x526).index(op)])
             elif op==0x67f:self.components[self.active]['seq']=pop(1)[0]
             elif op==0x112:self.components[self.active]['view']=pop(6)
             elif op==0x1f1:self.components[self.active]['text']=sv.pop()
@@ -84,6 +90,33 @@ class VM:
         assert not iv and not sv,(sid,'unbalanced',iv,sv)
 
 class Primitives(unittest.TestCase):
+    def test_collection_inspector_rebuild_keeps_scroll_but_new_query_resets(self):
+        vm=VM();key='scroll:'+str(1448<<16|9);vm.vars[key]=400
+        vm.run(21151,[100,0]);self.assertEqual(400,vm.vars[key])
+        vm.run(21151,[100,1]);self.assertEqual(0,vm.vars[key])
+    def test_item_rows_use_real_item_icons_and_select_only_contract(self):
+        vm=VM();vm.run(21131,[100])
+        for row in range(100):vm.run(21144,[row,20135+row],['Torva','__devop:3:'+str(2000+row)])
+        self.assertEqual(300,len(vm.components))
+        for row in range(100):
+            self.assertEqual([20135+row,1],vm.components[(1448<<16|9,row*3+1)]['item'])
+            self.assertEqual({1:'Select'},vm.components[(1448<<16|9,row*3+2)]['menu'])
+        self.assertEqual([],vm.sent)
+        vm.run(21146,[0,20135,578,103,64,64]);self.assertEqual([20135,1],vm.components[(1448<<16|7,0)]['item'])
+
+    def test_zoom_preserves_drag_angles_clamps_and_resets_locally(self):
+        vm=VM();vm.run(21135,[0,6260,1,1000,20]);key=(1448<<16|7,0)
+        vm.components[key]['view']=[12,20,30,420,50,1000]
+        vm.run(21147,[0,150,1000]);self.assertEqual([12,20,30,420,50,1150],vm.components[key]['view'])
+        vm.run(21147,[0,-9999,1000]);self.assertEqual(50,vm.components[key]['view'][-1])
+        vm.run(21147,[0,9999,1000]);self.assertEqual(6000,vm.components[key]['view'][-1])
+        vm.run(21147,[0,0,1000]);self.assertEqual([12,20,30,420,50,1000],vm.components[key]['view']);self.assertEqual([],vm.sent)
+
+    def test_generic_rows_do_not_expose_npc_actions_and_player_model_is_local(self):
+        vm=VM();vm.run(21150,[0],['Destination','__devop:2:2000'])
+        self.assertEqual({1:'Select'},vm.components[(1448<<16|9,1)]['menu'])
+        vm.run(21149,[0]);self.assertTrue(vm.components[(1448<<16|7,0)]['player']);self.assertEqual([],vm.sent)
+
     def test_bounded_rows_share_parent_and_selection_does_not_rebuild(self):
         vm=VM();vm.run(21131,[100])
         for row in range(100):vm.run(21132,[row,100],[f'NPC {row}','__devop:4:'+str(row)])

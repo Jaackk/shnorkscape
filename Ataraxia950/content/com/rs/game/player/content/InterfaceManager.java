@@ -1959,6 +1959,11 @@ public class InterfaceManager {
         native947WorldMap = java.util.Objects.requireNonNull(worldMap, "worldMap");
     }
 
+    public boolean openNative950DeveloperWorldMap(Runnable back){
+        if(!player.isNative950()||native947WorldMap==null)return false;
+        native947WorldMap.openDeveloper(back);return true;
+    }
+
     public void removeWorldMapInterface() {
         if (player.isNative950()) {
             if (native947WorldMap != null) native947WorldMap.close();

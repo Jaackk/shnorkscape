@@ -1,3 +1,19 @@
+DEVELOPER CONSOLE V2 PHASE B CHECKPOINT - 2026-09-25
+Phase A is now USER LIVE ACCEPTED: preserve NPC models, rotation, scrolling and search.
+Latest instructions: eight top domains; contextual sidebar, no duplicate navigation;
+Items is a real browser over the existing Equipment Library index, not command rows.
+Phase B source implements Home, contextual navigation, item icons/actions, grouped NPCs,
+local zoom, player preview/loadouts, scroll collections, audited travel + native map return.
+No live deployment/restart. Final candidate/validation are recorded in manifest/report.
+Docs: docs/DEVELOPER-CONSOLE-V2-PHASE-B-20260925.md.
+Current new widgets/layout remain LIVE TEST PENDING. Do not declare V2 complete.
+Important remaining: automatic model framing, startup flash, map click-to-teleport,
+Weapons Only controls, richer Home icons, persistent cross-domain favourites/recents.
+Vorago failure reached opcode85 source1448:11 slot7 at3291,10147 in latest Jaxa log.
+Old render overwrote placement status; fixed. Commit outcome absent from prior log;
+new placement boundary diagnostics must establish actual rejection, not speculation.
+One primary agent; preserve all accepted combat/library/editor state. No arbitrary delays.
+
 DEVELOPER CONSOLE V2 PHASE A - 2026-09-25
 User prompt: attachments/735557ef-6c00-4f1a-9586-096026e27d30/Pasted text.txt.
 Source checkpoint b6c84d8 pushed and remote verified. One primary agent.

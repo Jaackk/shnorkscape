@@ -13,6 +13,32 @@ final class Native950DeveloperCatalogue {
         String details(){return kind+" ID: "+id+"<br>Footprint: "+width+" x "+height+(kind.equals("NPC")?"<br>Cache combat level: "+Math.max(0,level):"<br>Native types: "+Arrays.toString(types));}
     }
     private static final class Index {static final List<Entry> ALL=load();}
+    private static final class Ranks {
+        static final Map<Integer,Integer> VALUES=loadRanks();
+        private static Map<Integer,Integer> loadRanks(){
+            Map<Integer,Integer> result=new HashMap<>();
+            try(InputStream in=Native950DeveloperCatalogue.class.getResourceAsStream("/native950/developer-npc-ranks-950.tsv")){
+                if(in==null)throw new IllegalStateException("Missing NPC ranks");
+                BufferedReader reader=new BufferedReader(new InputStreamReader(in,StandardCharsets.UTF_8));String line;
+                while((line=reader.readLine())!=null)if(!line.startsWith("#")){String[] p=line.split("\t");result.put(Integer.parseInt(p[0]),Integer.parseInt(p[1]));}
+            }catch(IOException e){throw new IllegalStateException(e);}return result;
+        }
+    }
+    static List<Entry> groupedNpcs(String query){
+        List<Entry> raw=search("NPC",query);
+        if(Native950DeveloperSearch.exactId(query)>=0)return raw;
+        return group(raw,Ranks.VALUES);
+    }
+    static List<Entry> group(List<Entry> raw,Map<Integer,Integer> ranks){
+        Map<String,Entry> groups=new LinkedHashMap<>();
+        for(Entry e:raw){Entry previous=groups.get(e.lowerName);
+            if(previous==null||ranks.getOrDefault(e.id,0)>ranks.getOrDefault(previous.id,0))groups.put(e.lowerName,e);
+        }
+        return new ArrayList<>(groups.values());
+    }
+    static List<Entry> variants(Entry selected){
+        List<Entry> result=new ArrayList<>();for(Entry e:search("NPC",selected.name))if(e.lowerName.equals(selected.lowerName))result.add(e);return result;
+    }
     private static final Map<String,List<Entry>> RESULTS=new LinkedHashMap<String,List<Entry>>(32,0.75f,true){
         protected boolean removeEldestEntry(Map.Entry<String,List<Entry>> e){return size()>32;}
     };

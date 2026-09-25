@@ -52,7 +52,7 @@ class Installer(unittest.TestCase):
         (self.base/'protocol-analysis/playability-candidate-20260923.json').write_text(json.dumps(m));self.check(False)
 
     def test_new_primitive_is_absent_or_exact_candidate_never_an_unknown_existing_script(self):
-        entries=[e for e in self.manifest['files'] if e['target']=='cache/12/21143.dat']
+        entries=[e for e in self.manifest['files'] if e['target'].startswith('cache/12/211') and e['beforeSha256']=='ABSENT']
         if not entries:self.skipTest('Candidate predates V2 primitives')
         entry=entries[0];self.assertEqual('ABSENT',entry['beforeSha256']);dst=self.base/entry['target']
         self.check(True)

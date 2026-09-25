@@ -180,6 +180,7 @@ public class Native950DeveloperConsoleTest {
     }
     @Test public void rightClickHealRunsSharedHandlerAndReportsInsideConsole()throws Exception{
         console.open();console.handle(notification("__devready"));p.setHitpoints(1);drain();
+        invoke("navigate",String.class,"Favourites");
         Map<Integer,Native950DeveloperActions.Action> rows=(Map<Integer,Native950DeveloperActions.Action>)field("rowActions");
         int actor=rows.entrySet().stream().filter(e->e.getValue().id.equals("heal")).findFirst().get().getKey();long epoch=(Long)field("epoch");
         console.handle(notification("__devop:"+(epoch-1)+":"+actor+":2"));assertEquals(1,p.getHitpoints());
@@ -195,6 +196,7 @@ public class Native950DeveloperConsoleTest {
     }
     @Test public void physicalDoubleClickWithSameRenderTokenExecutesOnlyInspectedActionOnce()throws Exception{
         console.open();console.handle(notification("__devready"));p.setHitpoints(1);
+        invoke("navigate",String.class,"Favourites");
         Map<Integer,Native950DeveloperActions.Action> rows=(Map<Integer,Native950DeveloperActions.Action>)field("rowActions");
         int actor=rows.entrySet().stream().filter(e->e.getValue().id.equals("heal")).findFirst().get().getKey();
         String click="__devop:"+field("epoch")+":"+actor;
@@ -219,6 +221,16 @@ public class Native950DeveloperConsoleTest {
             assertFalse(Native950DeveloperOutput.capture(p,"later combat"));assertFalse(Native950DeveloperOutput.capture(channel,"typed command"));
         }finally{other.finishAndReleaseAll();}
     }
+    @Test public void npcRefreshPreservesPlacementFailureInsteadOfReplacingItWithHelp()throws Exception{
+        console.open();console.handle(notification("__devready"));
+        invoke("navigate",String.class,"NPCs");
+        java.lang.reflect.Field status=Native950DeveloperConsole.class.getDeclaredField("status");status.setAccessible(true);
+        status.set(console,"A footprint in this formation is blocked or occupied. Choose a clear area.");
+        java.lang.reflect.Method render=Native950DeveloperConsole.class.getDeclaredMethod("render");render.setAccessible(true);render.invoke(console);
+        assertEquals("A footprint in this formation is blocked or occupied. Choose a clear area.",status.get(console));
+        console.close();console.open();console.handle(notification("__devready"));
+        assertEquals("A footprint in this formation is blocked or occupied. Choose a clear area.",status.get(console));
+    }
     @Test public void indexedSearchFindsNamesIdsAndAuditedSymbolsWithoutLeakingMutableResults(){
         List<Native950DeveloperCatalogue.Entry> named=Native950DeveloperCatalogue.search("NPC","VoRaGo");assertFalse(named.isEmpty());
         assertTrue(named.stream().allMatch(e->e.name.toLowerCase(Locale.ROOT).contains("vorago")));
@@ -227,6 +239,27 @@ public class Native950DeveloperConsoleTest {
         try{named.clear();fail();}catch(UnsupportedOperationException expected){}
         List<Native950DeveloperCatalogue.Entry> objects=Native950DeveloperCatalogue.search("Object","bank chest");assertFalse(objects.isEmpty());
         assertTrue(objects.stream().allMatch(e->e.types.length>0));
+    }
+    @Test public void homeIsDefaultAndCollectionClicksAreBoundToRenderEpoch()throws Exception{
+        console.open();console.handle(notification("__devready"));assertEquals("Home",field("domain"));
+        assertTrue(((Map<?,?>)field("rowActions")).isEmpty());
+        Map<Integer,Runnable> rows=(Map<Integer,Runnable>)field("collectionRows");final int[] calls={0};rows.put(2000,()->calls[0]++);
+        long epoch=(Long)field("epoch");console.handle(notification("__devop:"+(epoch-1)+":2000"));assertEquals(0,calls[0]);
+        console.handle(notification("__devop:"+epoch+":2000:2"));assertEquals(0,calls[0]);
+        console.handle(notification("__devop:"+epoch+":2000"));assertEquals(1,calls[0]);
+        invoke("navigate",String.class,"Objects");console.handle(notification("__devop:"+epoch+":2000"));assertEquals(1,calls[0]);
+    }
+    @Test public void groupingPrioritisesFunctionalRepresentativeAndPreservesVariants(){
+        Native950DeveloperCatalogue.Entry scenery=new Native950DeveloperCatalogue.Entry(new String[]{"NPC","1","Banker","1","1","0",""});
+        Native950DeveloperCatalogue.Entry banker=new Native950DeveloperCatalogue.Entry(new String[]{"NPC","2","Banker","1","1","0",""});
+        List<Native950DeveloperCatalogue.Entry> raw=Arrays.asList(scenery,banker);
+        Map<Integer,Integer> ranks=new HashMap<>();ranks.put(1,0);ranks.put(2,1000);
+        assertEquals(2,Native950DeveloperCatalogue.group(raw,ranks).get(0).id);assertEquals(2,raw.size());
+        List<Native950DeveloperCatalogue.Entry> vorago=Native950DeveloperCatalogue.groupedNpcs("Vorago");
+        assertEquals(1,vorago.stream().filter(e->e.name.equalsIgnoreCase("Vorago")).count());
+        Native950DeveloperCatalogue.Entry e=vorago.stream().filter(v->v.name.equalsIgnoreCase("Vorago")).findFirst().get();
+        assertTrue(Native950DeveloperCatalogue.variants(e).size()>1);
+        assertEquals(e.id,Native950DeveloperCatalogue.groupedNpcs(String.valueOf(e.id)).get(0).id);
     }
     private static Native950Actions.StringDialogueAction notification(String text)throws Exception{
         java.lang.reflect.Constructor<Native950Actions.StringDialogueAction> c=Native950Actions.StringDialogueAction.class.getDeclaredConstructor(boolean.class,String.class);c.setAccessible(true);return c.newInstance(false,text);

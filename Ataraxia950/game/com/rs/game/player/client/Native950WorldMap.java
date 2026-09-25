@@ -17,6 +17,11 @@ public final class Native950WorldMap {
     private final Channel channel;
     private final Runnable verifier;
     private boolean open;
+    private Runnable developerReturn;
+    public void openDeveloper(Runnable back){
+        if(!Native950DeveloperActions.permitted(player,channel))throw new IllegalArgumentException("Developer permission is required.");
+        open();developerReturn=back;
+    }
 
     Native950WorldMap(Player player, Channel channel) {
         this(player, channel, Native950WorldMap::verify);
@@ -41,7 +46,7 @@ public final class Native950WorldMap {
     boolean handle(Native950Actions.InterfaceAction action) {
         if (isOpenRequest(action)) { open(); return true; }
         if (open && action.interfaceId() == 1422 && action.componentId() == 111 && action.option() == 1) {
-            close();
+            Runnable back=developerReturn;close();if(back!=null)back.run();
             return true;
         }
         // Unknown controls keep their existing unmatched-pair counter. Some have
@@ -72,6 +77,7 @@ public final class Native950WorldMap {
     }
 
     public void close() {
+        developerReturn=null;
         if (!open) return;
         open = false;
         // The cache's close script restores its HUD flags and removes map input hooks.
