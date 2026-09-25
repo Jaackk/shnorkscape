@@ -33,7 +33,7 @@ def programs(api):
     # 21132: row border + one full-size native text actor in the SAME container.
     c=Code().add(*ints(host(9),3),il(0),*ints(2),(0x51e,0),(0x691,0),
                  *ints(290,47,0,0),(0x8c3,0),*ints(0),il(0),*ints(50),(0x51e,0),*ints(0,0),(0x828,0),
-                 *ints(0x554d3b),(0x1a5,0))
+                 *ints(0x554d3b),(0x8f,0))
     c.add(*ints(host(9)),il(0),*ints(2),(0x51e,0),*ints(1),(0x1d,0),*ints(8),
           il(0),*ints(50),(0x51e,0),*ints(2),(0x1d,0),*ints(0,0,276,43,0,0,2100),sl(0),call(2995))
     for n,label in ((1,'Select'),(2,'Spawn near me'),(3,'Place in world'),(4,'Inspect')):
@@ -44,14 +44,22 @@ def programs(api):
     # 21134: immediate local highlight, followed by server-authoritative nonce.
     c=Code().add(*ints(0),(0x592,3)).label('loop').add(il(3),il(2)).jump(0x647,'done')
     c.add(*ints(host(9)),il(3),*ints(2),(0x51e,0),(0x109,0),*ints(1)).jump(0x412,'next')
-    c.add(*ints(0x554d3b),(0x1a5,0),il(3),il(1)).jump(0x412,'next')
-    c.add(*ints(0xffd479),(0x1a5,0)).label('next').add(il(3),*ints(1),(0x1d,0),(0x592,3)).jump(0x713,'loop')
+    c.add(*ints(0),(0x1a5,0),*ints(0x554d3b),(0x8f,0),il(3),il(1)).jump(0x412,'next')
+    c.add(*ints(1),(0x1a5,0),*ints(0x234d68),(0x8f,0)).label('next').add(il(3),*ints(1),(0x1d,0),(0x592,3)).jump(0x713,'loop')
     c.label('done').add(il(0),sl(0),call(21127))
     out[21134]=c.raw(4,1,args=3)
+    def reserve(c):
+        c.add(*ints(host(7),3),il(0),(0x691,0),*ints(1),(0x4a9,0))
+        return c
+    def viewport(c,x,y,w,h):
+        c.add(*ints(x,y,0,0,host(8)),(0x7c5,0),*ints(w,h,0,0,host(8)),(0x55,0),*ints(0,host(8)),(0xe4,0))
+        for child in (23,24,25):c.add(*ints(1,host(child)),(0xe4,0))
+        return c
     # 21135: create/update a full NPC model; every selection resets old sequence.
     # Native CS3503 recreates the model actor when its subject changes. Reuse
     # its slot, not a stale rendered model; the list/search remain untouched.
-    c=Code().add(*ints(host(7),6),il(0),(0x691,0),*ints(224,130,0,0),(0x8c3,0),*ints(501),il(5),*ints(0,0),(0x828,0))
+    c=viewport(reserve(Code()),491,43,247,186)
+    c.add(*ints(host(8),6,0),(0x691,0),*ints(224,130,0,0),(0x8c3,0),*ints(10),il(5),*ints(-43),(0x1d,0),*ints(0,0),(0x828,0))
     c.add(il(1),(0x1fc,0),*ints(-1),(0x67f,0),il(2),(0x67f,0),
                          *ints(0),il(4),*ints(0,180,0),il(3),(0x112,0))
     out[21135]=c.raw(6)
@@ -62,7 +70,7 @@ def programs(api):
     c.add(*ints(501,93,0,0,host(6)),(0x7c5,0),*ints(224,130,0,0,host(6)),(0x55,0),*ints(0,host(6)),(0xe4,0),
           *ints(host(6)),(0x8a2,0),*ints(-1,host(6)),(0x353,0))
     for sid,op in ((8479,0x815),(8480,0x732)):
-        c.add(*ints(sid,host(6),host(7)),il(0),push('iii'),*ints(host(6)),(op,0))
+        c.add(*ints(sid,host(6),host(8),0),push('iii'),*ints(host(6)),(op,0))
     c.add(*ints(189,host(6)),(0x413,0))
     out[21136]=c.raw(1)
     # 21137: create integrated search. No native text component is repurposed.
@@ -71,7 +79,7 @@ def programs(api):
     for child in (17,18,19):c.add(*ints(1,host(child)),(0xe4,0))
     c.add(*ints(host(4),0),(0x109,0),*ints(1)).jump(0x647,'exists')
     c.add(*ints(host(4),0,8,3,0,0,304,24,0,0,2100),sl(0),call(2995))
-    c.add(*ints(host(4),3,1),(0x691,0),*ints(320,30,0,0),(0x8c3,0),*ints(0,0,0,0),(0x828,0),*ints(0xa99b78),(0x1a5,0))
+    c.add(*ints(host(4),3,1),(0x691,0),*ints(320,30,0,0),(0x8c3,0),*ints(0,0,0,0),(0x828,0),*ints(0xa99b78),(0x8f,0))
     c.label('exists').add(*ints(host(4),0),(0x109,0),*ints(1)).jump(0x412,'done')
     c.add(*ints(1),push('Search'),(0x83c,0),*ints(21138),sl(1),sl(0),push('ss'),(0x6a,0),sl(0),(0x1f1,0))
     c.add(sl(0),push(''),(0x3f,0),*ints(0)).jump(0x412,'done')
@@ -101,7 +109,7 @@ def programs(api):
                  *ints(host(4),0),(0x109,0),*ints(1)).jump(0x412,'done')
     c.add((0x1ca,34130432),(0x1f1,0)).label('done')
     out[21140]=c.raw()
-    c=Code().add(*ints(host(7)),il(0),(0x109,0),*ints(1)).jump(0x412,'done')
+    c=Code().add(*ints(host(8),0),(0x109,0),*ints(1)).jump(0x412,'done')
     c.add(*ints(-1),(0x67f,0),il(1),(0x67f,0)).label('done')
     out[21141]=c.raw(2)
     c=Code().add(*ints(host(7)),il(0),(0x109,0),*ints(1)).jump(0x412,'done')
@@ -119,7 +127,7 @@ def programs(api):
     # component lookup wrapper differs. No rendered-image substitutes.
     c=Code().add(*ints(host(9),3),il(0),*ints(3),(0x51e,0),(0x691,0),
                  *ints(290,47,0,0),(0x8c3,0),*ints(0),il(0),*ints(50),(0x51e,0),*ints(0,0),(0x828,0),
-                 *ints(0x554d3b),(0x1a5,0))
+                 *ints(0x554d3b),(0x8f,0))
     c.add(*ints(host(9),5),il(0),*ints(3),(0x51e,0),*ints(1),(0x1d,0),(0x691,0),
           *ints(40,40,0,0),(0x8c3,0),*ints(4),il(0),*ints(50),(0x51e,0),*ints(3),(0x1d,0),*ints(0,0),(0x828,0),
           il(1),*ints(1),(0x550,0))
@@ -133,7 +141,7 @@ def programs(api):
                  il(2),il(3),*ints(0,0),(0x828,0),il(1),*ints(1),(0x550,0))
     out[21146]=c.raw(6)
     # Model zoom changes retain the native drag angles (CS1165 getter order).
-    c=Code().add(*ints(host(7)),il(0),(0x109,0),*ints(1)).jump(0x412,'done')
+    c=Code().add(*ints(host(8),0),(0x109,0),*ints(1)).jump(0x412,'done')
     c.add((0x763,0),(0x25d,0),(0x836,0),(0x804,0),(0x73b,0),il(1),*ints(0)).jump(0x647,'reset')
     c.add((0x526,0),il(1),(0x1d,0),*ints(50),(0x1f9,0),*ints(6000),(0x4d3,0)).jump(0x713,'apply')
     c.label('reset').add(il(2)).label('apply').add((0x112,0)).label('done')
@@ -147,7 +155,7 @@ def programs(api):
     out[21149]=c.raw(1)
     # Generic collection row: select only; it cannot inherit NPC spawn operations.
     c=Code().add(*ints(host(9),3),il(0),*ints(2),(0x51e,0),(0x691,0),
-                 *ints(290,47,0,0),(0x8c3,0),*ints(0),il(0),*ints(50),(0x51e,0),*ints(0,0),(0x828,0),*ints(0x554d3b),(0x1a5,0))
+                 *ints(290,47,0,0),(0x8c3,0),*ints(0),il(0),*ints(50),(0x51e,0),*ints(0,0),(0x828,0),*ints(0x554d3b),(0x8f,0))
     c.add(*ints(host(9)),il(0),*ints(2),(0x51e,0),*ints(1),(0x1d,0),*ints(8),il(0),*ints(50),(0x51e,0),*ints(2),(0x1d,0),
           *ints(0,0,276,43,0,0,2100),sl(0),call(2995),*ints(1),push('Select'),(0x83c,0),*ints(21127,-2147483644),sl(1),push('is'),(0x6a,0))
     out[21150]=c.raw(1,2)
@@ -167,16 +175,19 @@ def programs(api):
     out[21153]=c.raw(0,2)
     # Consistent selected border for item and generic collection rows.
     c=Code().add(*ints(host(9)),il(0),il(1),(0x51e,0),(0x109,0),*ints(1)).jump(0x412,'done')
-    c.add(*ints(0xffd479),(0x1a5,0)).label('done')
+    c.add(*ints(1),(0x1a5,0),*ints(0x234d68),(0x8f,0)).label('done')
     out[21154]=c.raw(2)
     # Parameterised local-player preview and matching native rotation hit region.
-    c=Code().add(*ints(host(7),6),il(0),(0x691,0),il(3),il(4),*ints(0,0),(0x8c3,0),il(1),il(2),*ints(0,0),(0x828,0),
+    c=reserve(Code()).add(il(1),il(2),*ints(0,0,host(8)),(0x7c5,0),il(3),il(4),*ints(0,0,host(8)),(0x55,0),*ints(0,host(8)),(0xe4,0))
+    for child in (23,24,25):c.add(*ints(1,host(child)),(0xe4,0))
+    c.add(*ints(host(8),6,0),(0x691,0),il(3),il(4),*ints(0,0),(0x8c3,0),*ints(0,0,0,0),(0x828,0),
                  (0x79b,0),*ints(0,100,0,0,0),il(5),(0x112,0))
     out[21155]=c.raw(6)
     c=Code().add(il(1),il(2),*ints(0,0,host(6)),(0x7c5,0),il(3),il(4),*ints(0,0,host(6)),(0x55,0),
                  *ints(0,host(6)),(0xe4,0),*ints(host(6)),(0x8a2,0),*ints(-1,host(6)),(0x353,0))
     for sid,op in ((8479,0x815),(8480,0x732)):
-        c.add(*ints(sid,host(6),host(7)),il(0),push('iii'),*ints(host(6)),(op,0))
+        c.add(*ints(sid,host(6),host(8),0),push('iii'),*ints(host(6)),(op,0))
     c.add(*ints(189,host(6)),(0x413,0))
+    for child in (20,21,22):c.add(*ints(1,host(child)),(0xe4,0))
     out[21156]=c.raw(5)
     return out

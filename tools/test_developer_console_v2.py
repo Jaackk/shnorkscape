@@ -49,7 +49,9 @@ class VM:
             elif op==0xd1:iv.append(self.vars.get('scroll:'+str(pop(1)[0]),0))
             elif op in (0xe4,0x353,0x413):pop(2)
             elif op==0x8a2:pop(1)
-            elif op==0x1a5:self.components[self.active]['colour']=pop(1)[0]
+            elif op==0x8f:self.components[self.active]['colour']=pop(1)[0]
+            elif op==0x1a5:self.components[self.active]['fill']=pop(1)[0]
+            elif op==0x4a9:self.components[self.active]['hidden']=pop(1)[0]
             elif op==0x1fc:self.components[self.active]['npc']=pop(1)[0]
             elif op==0x550:self.components[self.active]['item']=pop(2)
             elif op==0x79b:self.components[self.active]['player']=True
@@ -112,14 +114,14 @@ class Primitives(unittest.TestCase):
     def test_selected_border_does_not_change_item_or_row_operation(self):
         vm=VM();vm.run(21144,[0,20135],['Torva','__devop:3:2000'])
         vm.run(21154,[0,3])
-        self.assertEqual(0xffd479,vm.components[(1448<<16|9,0)]['colour'])
+        self.assertEqual(0x234d68,vm.components[(1448<<16|9,0)]['colour'])
         self.assertEqual([20135,1],vm.components[(1448<<16|9,1)]['item'])
         self.assertEqual({1:'Select'},vm.components[(1448<<16|9,2)]['menu'])
 
     def test_player_preview_and_rotation_share_the_same_bounds(self):
         vm=VM();vm.run(21155,[0,180,80,300,280,1500]);vm.run(21156,[0,180,80,300,280])
-        self.assertTrue(vm.components[(1448<<16|7,0)]['player'])
-        self.assertEqual(1500,vm.components[(1448<<16|7,0)]['view'][-1])
+        self.assertTrue(vm.components[(1448<<16|8,0)]['player'])
+        self.assertEqual(1500,vm.components[(1448<<16|8,0)]['view'][-1])
         self.assertEqual([],vm.sent)
 
     def test_collection_inspector_rebuild_keeps_scroll_but_new_query_resets(self):
@@ -137,7 +139,7 @@ class Primitives(unittest.TestCase):
         vm.run(21146,[0,20135,578,103,64,64]);self.assertEqual([20135,1],vm.components[(1448<<16|7,0)]['item'])
 
     def test_zoom_preserves_drag_angles_clamps_and_resets_locally(self):
-        vm=VM();vm.run(21135,[0,6260,1,1000,20,93]);key=(1448<<16|7,0)
+        vm=VM();vm.run(21135,[0,6260,1,1000,20,93]);key=(1448<<16|8,0)
         vm.components[key]['view']=[12,20,30,420,50,1000]
         vm.run(21147,[0,150,1000]);self.assertEqual([12,20,30,420,50,1150],vm.components[key]['view'])
         vm.run(21147,[0,-9999,1000]);self.assertEqual(50,vm.components[key]['view'][-1])
@@ -155,15 +157,15 @@ class Primitives(unittest.TestCase):
         vm.run(21133);before=set(vm.components)
         vm.run(21134,[1,99,100],['__devop:4:99'])
         self.assertEqual(before,set(vm.components));self.assertEqual(['__devop:4:99'],vm.sent)
-        self.assertEqual(200,len(vm.components));self.assertEqual(0xffd479,vm.components[(1448<<16|9,198)]['colour'])
+        self.assertEqual(200,len(vm.components));self.assertEqual(0x234d68,vm.components[(1448<<16|9,198)]['colour'])
         self.assertEqual(0x554d3b,vm.components[(1448<<16|9,0)]['colour'])
         self.assertEqual(['Select','Spawn near me','Place in world','Inspect'],list(vm.components[(1448<<16|9,1)]['menu'].values()))
 
     def test_model_sequence_changes_preserve_camera_and_never_spawn_world_entity(self):
-        vm=VM();vm.run(21135,[0,6260,1,1000,-50,93]);view=vm.components[(1448<<16|7,0)]['view']
-        vm.run(21136,[0]);vm.run(21141,[0,2]);model=vm.components[(1448<<16|7,0)]
+        vm=VM();vm.run(21135,[0,6260,1,1000,-50,93]);view=vm.components[(1448<<16|8,0)]['view']
+        vm.run(21136,[0]);vm.run(21141,[0,2]);model=vm.components[(1448<<16|8,0)]
         self.assertEqual(6260,model['npc']);self.assertEqual(2,model['seq']);self.assertEqual(view,model['view']);self.assertEqual([],vm.sent)
-        vm.run(21135,[0,1,3,800,0,158]);replacement=vm.components[(1448<<16|7,0)]
+        vm.run(21135,[0,1,3,800,0,158]);replacement=vm.components[(1448<<16|8,0)]
         self.assertIsNot(model,replacement);self.assertEqual(1,replacement['npc']);self.assertEqual(3,replacement['seq'])
 
     def test_unverified_animation_has_no_operation_and_verified_preview_is_local(self):

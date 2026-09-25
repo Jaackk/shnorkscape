@@ -26,6 +26,22 @@ public class Native950DeveloperConsoleTest {
         try(java.util.stream.Stream<Path> paths=Files.walk(dir)){for(Path path:(Iterable<Path>)paths.sorted(Comparator.reverseOrder())::iterator)Files.delete(path);}
     }
     private void restore(String key,String value){if(value==null)System.clearProperty(key);else System.setProperty(key,value);}
+    @Test public void domainEntryResetsFiltersQuerySelectionAndScroll()throws Exception{
+        java.lang.reflect.Method nav=Native950DeveloperConsole.class.getDeclaredMethod("navigate",String.class);nav.setAccessible(true);
+        nav.invoke(console,"NPCs");
+        for(String name:new String[]{"section","query","lastCollection"}){java.lang.reflect.Field f=Native950DeveloperConsole.class.getDeclaredField(name);f.setAccessible(true);f.set(console,"old filter");}
+        nav.invoke(console,"Items");nav.invoke(console,"NPCs");
+        for(String name:new String[]{"section","query","lastCollection"}){java.lang.reflect.Field f=Native950DeveloperConsole.class.getDeclaredField(name);f.setAccessible(true);assertEquals("",f.get(console));}
+    }
+    @Test public void filteredSelectionDefaultsToFirstAndClearsOnEmpty(){
+        Native950DeveloperCatalogue.Entry a=new Native950DeveloperCatalogue.Entry(new String[]{"NPC","1","A","1","1","1",""});
+        Native950DeveloperCatalogue.Entry b=new Native950DeveloperCatalogue.Entry(new String[]{"NPC","2","B","1","1","1",""});
+        assertSame(a,Native950DeveloperConsole.selectionOrFirst(Arrays.asList(a,b),0,2,null));
+        assertSame(b,Native950DeveloperConsole.selectionOrFirst(Arrays.asList(a,b),1,1,a));
+        assertSame(b,Native950DeveloperConsole.selectionOrFirst(Arrays.asList(a,b),0,2,b));
+        assertNull(Native950DeveloperConsole.selectionOrFirst(Collections.emptyList(),0,0,b));
+        assertTrue(Native950DeveloperConsole.titleLines("Hand wrap of the First Necromancer (Shadow)").split("<br>").length<=2);
+    }
     @Test public void gamevalBrowserUsesExistingReadyLifecycleAndRejectsStaleActions()throws Exception{
         Native950DeveloperConsole.gamevalsFor(p,"623:27");assertTrue(console.isOpen());
         java.lang.reflect.Field browser=Native950DeveloperConsole.class.getDeclaredField("browser"),query=Native950DeveloperConsole.class.getDeclaredField("query"),waiting=Native950DeveloperConsole.class.getDeclaredField("awaitingNative");
@@ -275,12 +291,12 @@ public class Native950DeveloperConsoleTest {
         assertEquals(32,Native950DeveloperConsole.rowName(name,32).length());
         assertTrue(Native950DeveloperConsole.rowName(name,32).endsWith("..."));
     }
-    @Test public void majorDomainRoundTripRestoresItsOwnQueryAndWindow()throws Exception{
+    @Test public void majorDomainRoundTripStartsWithCleanQuery()throws Exception{
         console.open();console.handle(notification("__devready"));invoke("navigate",String.class,"NPCs");
         java.lang.reflect.Field q=Native950DeveloperConsole.class.getDeclaredField("query");q.setAccessible(true);q.set(console,"dragon");
         invoke("navigate",String.class,"Objects");assertEquals("",field("query"));q.set(console,"bank");
-        invoke("navigate",String.class,"NPCs");assertEquals("dragon",field("query"));
-        invoke("navigate",String.class,"Objects");assertEquals("bank",field("query"));
+        invoke("navigate",String.class,"NPCs");assertEquals("",field("query"));
+        invoke("navigate",String.class,"Objects");assertEquals("",field("query"));
     }
     private static Native950Actions.StringDialogueAction notification(String text)throws Exception{
         java.lang.reflect.Constructor<Native950Actions.StringDialogueAction> c=Native950Actions.StringDialogueAction.class.getDeclaredConstructor(boolean.class,String.class);c.setAccessible(true);return c.newInstance(false,text);

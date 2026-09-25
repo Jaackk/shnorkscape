@@ -35,7 +35,10 @@ def programs():
         init+=ints(0 if c in (3,5,7) else 1,h)+[(0xe4,0)]
     # Do not reset list geometry before CS21151 captures its scroll position.
     # The search field also survives inspector redraws; refresh its hook in place.
-    for c in (6,9,11): init += ints(1,1448<<16|c)+[(0xe4,0)]
+    for c in (6,8,9,11): init += ints(1,1448<<16|c)+[(0xe4,0)]
+    # Console has no native category strip: place the content directly below the title.
+    init+=ints(800,550,0,0,1477<<16|708)+[(0x55,0)]
+    init+=ints(0,66,1,0,1477<<16|715)+[(0x7c5,0)]
     # CS8289 resolves the native title host from struct21301/3506 and uses
     # dynamic child14 (child3 is a frame component). 713 is NOT the title: putting text there clips under tabs.
     init+=ints(1,1477<<16|714)+[(0xe4,0)]
@@ -48,7 +51,7 @@ def programs():
     # Native type3 outline components, using the same size/position/colour
     # setters as CS6204. Keep the native textured frame behind all three panes.
     for child,(x,y,w,h) in enumerate(((0,73,162,313),(169,73,314,305),(491,38,247,378))):
-        init+=ints(1448<<16|3,3,child)+[(0x691,0)]+ints(w,h,0,0)+[(0x8c3,0)]+ints(x,y,0,0)+[(0x828,0)]+ints(0x6d5b38)+[(0x1a5,0)]
+        init+=ints(1448<<16|3,3,child)+[(0x691,0)]+ints(w,h,0,0)+[(0x8c3,0)]+ints(x,y,0,0)+[(0x828,0)]+ints(0x6d5b38)+[(0x8f,0)]
     # Button arguments: actor, x,y,width,height,selected,text. Native nine-slice
     # visuals live in host3; operation actors in host5, as in the Beasts browser.
     button=ints(1448<<16|3,1448<<16|5,28556)
@@ -67,8 +70,9 @@ def programs():
     # CS10410 returns the next actor index; the caller has its own actor allocation.
     text=ints(1448<<16|7)+[(0x35e,0),(0x35e,1),(0x35e,2)]+ints(0,0)
     text += [(0x35e,3),(0x35e,4)]+ints(0,0)+[(0x35e,5),(0x25a,0),call(2995)]
+    text += ints(0,0,0)+[(0x761,0)]
     # Headings reuse CS8289's native serif font; body text retains CS2995 style.
-    text += [(0x35e,5)]+ints(17514)+[(0x412,4)]+ints(60)+[(0x742,0)]+ints(0xffd479)+[(0x1a5,0)]
+    text += [(0x35e,5)]+ints(17514)+[(0x412,4)]+ints(60)+[(0x742,0)]+ints(0xffd479)+[(0x8f,0)]
     # A distinct source slot per placement rejects late opcode85 packets from old
     # selections. CC_CREATE requires contiguous preceding children; they are hidden.
     arm=ints(1448<<16|11)+[(0x5,0)]+ints(0)+[(0x592,1)]

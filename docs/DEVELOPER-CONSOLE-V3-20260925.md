@@ -55,3 +55,12 @@ Jar SHA256: 1E5556E4992375691AC4025C58BFB6C52BE87FD4E2C53E015CA1058D865FEDF5.
 Script reference SHA256: 6D4D86AF13754607EDE54871A6349D3C901DBAB0F99CDF1CB40E369596A15239.
 Final rollback: backups/playability-update-20260925-054255-434.
 Vorago at the lower fallback origin plus a larger native camera distance was physically unclipped and usable. That measured direction informed the final footprint-distance formula; its final default and the last title-wrap change are not yet re-observed on the final build. Baby black dragon rendered, but small; zoom remains useful. Celestial catalytic wand's large title still clipped at the old threshold, prompting the final earlier wrapping.
+
+## Follow-up: live visual bounds and selection feedback (25 September)
+User screenshots supersede the earlier provisional visual assessment. New domain navigation intentionally resets its query, filter, selection and scroll; the prior state-retention requirement is superseded. Search chooses the first filtered NPC automatically and empty results clear the inspector.
+
+Exact script findings: CS10644 applies a theme-provided text alignment, including vertical centring. Wrapped large serif headings could extend upward outside short boxes. Inspector headings now use compact native text with explicit top-left alignment and at most two lines. CS1341/10644 prove normalized 0x008f is colour; 0x01a5 is rectangle fill. Prior helper/tests incorrectly treated fill as colour, explaining white, indistinguishable row borders. Selected rows now use a filled blue rectangle without replacing their operation actor.
+
+The management content host 1477:715 is explicitly positioned beneath the title after the existing readiness handshake; no sleep or alternate open path. Model actors now live under bounded static type-0 container 1448:8, separate from text host7. Existing drag/sequence/zoom hooks target that actor. Player camera distance is 380, with inherited drag decorations hidden. Home adds actual safe-library item icons where the exact named definition exists.
+
+Status: implementation and regression work in progress; clipping and revised layout require physical Vulkan confirmation. Uniform framing of arbitrary meshes remains unresolved: footprint alone does not establish rendered model bounds. No guessed model decoder is introduced.

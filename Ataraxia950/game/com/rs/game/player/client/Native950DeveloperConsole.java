@@ -30,7 +30,7 @@ final class Native950DeveloperConsole {
     private final Player player;private final Channel channel;private final Runnable prepare,verify;
     private final Consumer<String> execute;private final Map<Integer,Runnable> buttons=new HashMap<>();
     private Set<String> favourites=new LinkedHashSet<>();private boolean open,confirm,awaitingNative;
-    private String category="Favourites",query="",status="Select an action to inspect and configure it.";
+    private String category="Favourites",query="",status="";
     private int page,textChild;private Native950DeveloperActions.Action selected;
     private List<String> values=Collections.emptyList();private Consumer<String> input;
     private String lastState="";
@@ -281,7 +281,7 @@ final class Native950DeveloperConsole {
             text(500,88,226,120,2100,"Select an action to inspect its details and parameters.<br><br>Use Search across every command, or choose a category.<br><br>Favourites are saved for your account.");
             text(500,324,226,54,2100,"Items opens your Equipment Library.<br>Spawns manages your placed NPCs and objects.");
         }else{
-            text(500,42,229,35,17514,label(selected)+" "+Native950DeveloperActions.state(selected,player));
+            text(500,42,229,45,2100,titleLines(label(selected))+" "+Native950DeveloperActions.state(selected,player));
             text(500,82,227,93,2100,safe(selected.description));
             text(500,174,227,42,2100,"<col=ffd479>Usage</col><br>"+safe(selected.usage));
             for(int i=0;i<selected.parameters.size();i++){
@@ -304,28 +304,19 @@ final class Native950DeveloperConsole {
     }
     private void footer(){
         write(Native950Packets.hideInterface(1477,708,false));
-        text(0,421,734,25,2100,"<col=86efac>Developer</col>  |  "+safe(player.getDisplayName())+"  |  "+safe(status));
+        text(0,421,734,25,2100,"<col=86efac>Developer</col>  |  "+safe(player.getDisplayName())+(status.isEmpty()?"":"  |  "+safe(status)));
         write(Native950Packets.interfaceEvents(SHELL,ACTORS,0,Math.max(0,buttons.size()-1),30));
         Native950BugTest.event(player,"developer-console","render","micros",(System.nanoTime()-renderStarted)/1000,"actors",buttons.size(),"text",textChild);
         channel.flush();
     }
-    private static final class NavigationState {
-        final String query,section,variant;final int page;final boolean bossOnly,npcAdvanced;
-        final Native950DeveloperCatalogue.Entry entity;
-        NavigationState(Native950DeveloperConsole c){query=c.query;section=c.section;variant=c.variantFamily;page=c.page;bossOnly=c.bossOnly;npcAdvanced=c.npcAdvanced;entity=c.entity;}
-        void restore(Native950DeveloperConsole c){c.query=query;c.section=section;c.variantFamily=variant;c.page=page;c.bossOnly=bossOnly;c.npcAdvanced=npcAdvanced;c.entity=entity;}
-    }
-    private final Map<String,NavigationState> navigation=new HashMap<>();
-    private String navigationKey="Home";
     private void navigate(String c){
         c=c.equals("World")?"Objects":c;
-        navigation.put(navigationKey,new NavigationState(this));navigationKey=c;
         domain=c;section="";query="";page=0;variantFamily="";bossOnly=c.equals("Bosses");npcAdvanced=false;
         report=Collections.emptyList();clearConfirmation="";category=c;confirm=false;entity=null;selected=null;
         browser=c.equals("NPCs")||c.equals("Bosses")?"NPC":c.equals("Objects")?"Object":c.equals("Spawns")?"Edits":"";
         if(Arrays.asList("Commands","Favourites","Settings","Spawns","Player","Quests").contains(c))domain="Tools";
-        NavigationState saved=navigation.get(c);if(saved!=null)saved.restore(this);
-        status="Select a result or action.";render();
+        itemSelection=null;selectedTeleport=null;preview=null;lastCollection="";
+        status="";render();
     }
     private boolean toggleActive(String command){Native950DeveloperActions.Action a=Native950DeveloperActions.find(command.substring(2));return a!=null&&Native950DeveloperActions.state(a,player).contains(">ON<");}
     private String toggleLabel(String name,String command){Native950DeveloperActions.Action a=Native950DeveloperActions.find(command.substring(2));String state=a==null?"":Native950DeveloperActions.state(a,player);return name+(state.isEmpty()?"":" ["+state+"]");}
@@ -333,13 +324,23 @@ final class Native950DeveloperConsole {
         List<String> output=Native950DeveloperOutput.run(player,channel,()->execute.accept(command));
         status=output.isEmpty()?"Action completed.":output.get(0);if(open)render();
     }
+    private void homeIcon(String name,int x,int y){
+        if(Cache.STORE==null)return;
+        for(Native950EquipmentCatalogue.Entry e:Native950DeveloperItems.search(name))if(e.name.equalsIgnoreCase(name)){
+            write(Native950Packets.runClientScript(21146,textChild++,e.id,x,y,28,28));return;
+        }
+    }
     private void renderHome(){
         text(8,44,720,28,17514,"QUICK ACTIONS");
         String[][] actions={{"Heal",";;heal"},{"Almighty (DM)",";;almighty"},{"Open bank",";;bank"},{"War's Retreat",";;wars"},{"Reset cooldowns",";;resetcooldowns"},{"Equipment Library",";;items"}};
         for(int n=0;n<actions.length;n++){final String[] a=actions[n];button(8+(n%3)*244,80+(n/3)*43,236,37,toggleLabel(a[0],a[1]),toggleActive(a[1]),()->quick(a[1]));}
+        String[] icons={"Shark","Overload flask (6)","Coins","Law rune","","Torva platebody"};
+        for(int n=0;n<icons.length;n++)if(!icons[n].isEmpty())homeIcon(icons[n],15+(n%3)*244,84+(n/3)*43);
         text(8,172,720,28,17514,"EXPLORE / TEST");
         String[] domains={"NPCs","Objects","Items","Bosses","Combat","Teleports","Tools","Spawns","Player"};
         for(int n=0;n<domains.length;n++){final String d=domains[n];button(8+(n%3)*244,209+(n/3)*38,236,33,d,false,()->navigate(d));}
+        String[] domainIcons={"Bones","Spade","Torva full helm","Dragon bones","Rune sword","Law rune","Hammer","","Rune platebody"};
+        for(int n=0;n<domainIcons.length;n++)if(!domainIcons[n].isEmpty())homeIcon(domainIcons[n],15+(n%3)*244,211+(n/3)*38);
         text(8,331,350,25,17514,"RECENT ITEMS");text(377,331,350,25,17514,"FAVOURITE ACTIONS");
         List<Native950EquipmentCatalogue.Entry> recent=new ArrayList<>(recentItems.values());Collections.reverse(recent);
         for(int n=0;n<Math.min(2,recent.size());n++){final Native950EquipmentCatalogue.Entry e=recent.get(n);button(8,362+n*27,350,25,e.name,false,()->{navigate("Items");itemSelection=e;render();});}
@@ -359,7 +360,7 @@ final class Native950DeveloperConsole {
         if(category.equals("Player"))entries=new String[]{"Overview","Loadouts","Commands"};
         if(browser.equals("Edits"))entries=new String[]{"All placements","My NPCs","My Objects","Temporary","Saved","Back to tools"};
         for(int n=0;n<entries.length;n++){final String s=entries[n];button(0,77+n*32,160,29,s,section.equals(s)||(section.isEmpty()&&n==0),()->{
-            section=s;page=0;report=Collections.emptyList();
+            section=s;page=0;entity=null;itemSelection=null;selectedTeleport=null;report=Collections.emptyList();status="";
             if(s.equals("Back to tools")){navigate("Tools");return;}
             if(s.equals("My spawns")||s.equals("World Editor")){navigate("Spawns");return;}
             if(s.equals("Gamevals / Cache")){browseGamevals();return;}
@@ -394,6 +395,7 @@ final class Native950DeveloperConsole {
         if(section.equals("Necromancy"))results.removeIf(e->e.category!=4&&!e.name.toLowerCase(Locale.ROOT).contains("necrom"));
         if(section.equals("Consumables"))results.removeIf(e->e.slot>=0);
         int pages=Math.max(1,(results.size()+99)/100);page=Math.min(page,pages-1);int start=page*100,count=Math.min(100,results.size()-start);
+        if(itemSelection==null||!results.contains(itemSelection))itemSelection=count==0?null:results.get(start);
         viewport(count);
         for(int n=0;n<count;n++){
             final Native950EquipmentCatalogue.Entry e=results.get(start+n);int actor=2000+n;
@@ -407,7 +409,7 @@ final class Native950DeveloperConsole {
         button(402,387,79,28,"More",false,()->{if(page+1<pages){page++;render();}});
         if(itemSelection!=null){
             final Native950EquipmentCatalogue.Entry e=itemSelection;
-            text(500,43,229,60,17514,titleLines(e.name));write(Native950Packets.runClientScript(21146,textChild++,e.id,578,103,64,64));
+            text(500,43,229,60,2100,titleLines(e.name));write(Native950Packets.runClientScript(21146,textChild++,e.id,578,103,64,64));
             text(500,173,229,58,2100,Native950DeveloperItems.details(e.id).replaceFirst("ID [0-9]+<br>",""));
             button(495,235,116,29,"Give 1",false,()->{status=Native950DeveloperItems.give(player,e.id,1);render();});
             button(616,235,118,29,"Give X",false,()->prompt("Quantity (1-1000000):",v->status=Native950DeveloperItems.give(player,e.id,Integer.parseInt(v))));
@@ -420,11 +422,13 @@ final class Native950DeveloperConsole {
     }
     private void loadout(int index){status=Native950DeveloperLoadouts.apply(player,Native950DeveloperLoadouts.builtins().get(index));render();}
     private void renderPlayer(){
-        int model=textChild++;write(Native950Packets.runClientScript(21155,model,180,80,300,280,500));
+        int model=textChild++;write(Native950Packets.runClientScript(21155,model,180,80,300,280,380));
         write(Native950Packets.runClientScript(21156,model,180,80,300,280));
         String[] zoom={"Zoom -","Reset","Zoom +"};int[] change={75,0,-75};
-        for(int n=0;n<3;n++){int actor=buttons.size();button(180+n*100,367,96,28,zoom[n],false,()->{});write(Native950Packets.runClientScript(21148,actor,model,change[n],500));}
-        text(495,52,239,32,17514,safe(player.getDisplayName()));
+        for(int n=0;n<3;n++){int actor=buttons.size();button(180+n*100,367,96,28,zoom[n],false,()->{});write(Native950Packets.runClientScript(21148,actor,model,change[n],380));}
+        text(495,48,239,30,17514,safe(player.getDisplayName()));
+        text(500,80,229,20,2100,"Player testing");
+        text(500,225,229,22,2100,"<col=ffd479>LOADOUTS</col>");
         String[][] controls={{"Heal",";;heal"},{"Max stats",";;max"},{"Almighty / DM",";;almighty"},{"Reset cooldowns",";;resetcooldowns"}};
         for(int n=0;n<controls.length;n++){final String[] c=controls[n];button(495,100+n*34,239,29,toggleLabel(c[0],c[1]),toggleActive(c[1]),()->quick(c[1]));}
         String[] styles={"Melee","Ranged","Magic","Necromancy"};for(int n=0;n<4;n++){final int i=n;button(495+(n%2)*121,250+(n/2)*35,118,30,styles[n],false,()->loadout(i));}
@@ -461,19 +465,25 @@ final class Native950DeveloperConsole {
         write(Native950Packets.runClientScript(21133));write(Native950Packets.interfaceEvents(SHELL,9,0,Math.max(0,count*2-1),2));
         if(page>0)button(171,387,90,28,"Previous",false,()->{page--;render();});
         if(page+1<pages)button(391,387,90,28,"Next",false,()->{page++;render();});
-        if(selectedTeleport!=null){text(500,52,229,90,17514,safe(selectedTeleport[0]));button(495,250,239,35,"Teleport",false,()->quick(selectedTeleport[2]));}
+        if(selectedTeleport!=null){text(500,52,229,60,2100,titleLines(selectedTeleport[0]));button(495,250,239,35,"Teleport",false,()->quick(selectedTeleport[2]));}
         button(495,344,239,35,"Open World Map",false,()->{
             close();if(!player.getInterfaceManager().openNative950DeveloperWorldMap(this::open)){status="World map is unavailable for this session.";open();}
         });
         text(500,391,229,30,2100,"Close the map to return here.");
     }
     static String rowName(String value,int limit){return value.length()<=limit?value:value.substring(0,limit-3)+"...";}
+    /** Inspector headings use a compact native font and top alignment, at most two lines. */
     static String titleLines(String value){
         StringBuilder out=new StringBuilder();int column=0,lines=1;
-        for(String word:safe(value).split(" ")){
-            if(column>0&&column+word.length()+1>16){if(++lines>3){out.append("...");break;}out.append("<br>");column=0;}
+        for(String token:safe(value).split(" ")){
+            String word=rowName(token,27);
+            if(column>0&&column+word.length()+1>27){if(++lines>2){out.append("...");break;}out.append("<br>");column=0;}
             if(column>0){out.append(' ');column++;}out.append(word);column+=word.length();
         }return out.toString();
+    }
+    static Native950DeveloperCatalogue.Entry selectionOrFirst(List<Native950DeveloperCatalogue.Entry> results,int start,int count,Native950DeveloperCatalogue.Entry selected){
+        if(selected!=null)for(int n=start;n<start+count;n++)if(results.get(n).id==selected.id)return results.get(n);
+        return count==0?null:results.get(start);
     }
     private static String shortDescription(String value){return value.length()>43?value.substring(0,40)+"...":value;}
     private void browse(String kind){variantFamily="";report=Collections.emptyList();advanced=false;npcAdvanced=false;bossOnly=false;browser=kind;domain=kind.equals("NPC")?"NPCs":"Objects";category=domain;query="";page=0;entity=null;selected=null;confirm=false;status="Search by name, exact ID or audited symbol. Select a result to place it.";render();}
@@ -502,7 +512,7 @@ final class Native950DeveloperConsole {
         if(!report.isEmpty()){renderReport();return;}
         if(entity==null){text(500,48,229,35,17514,browser+" browser");text(500,93,227,200,2100,"Actual revision-950 names and footprints.<br><br>Search by name or exact numeric ID.<br><br>Only concrete definitions with world models are listed.<br><br>Placement is validated again by the existing diagnostic handler.");}
         else{
-            text(500,43,229,60,17514,titleLines(entity.name));text(500,103,227,95,2100,(entity.kind.equals("Object")&&!advanced?"Footprint: "+entity.width+" x "+entity.height+"<br>Rotation: "+(rotation*90)+" degrees<br>950 world-model definition":entity.details())+(bossOnly?"<br>"+Native950BossCatalogue.find(entity.id).status:""));
+            text(500,43,229,60,2100,titleLines(entity.name));text(500,103,227,95,2100,(entity.kind.equals("Object")&&!advanced?"Footprint: "+entity.width+" x "+entity.height+"<br>Rotation: "+(rotation*90)+" degrees<br>950 world-model definition":entity.details())+(bossOnly?"<br>"+Native950BossCatalogue.find(entity.id).status:""));
             if(browser.equals("NPC")){
                 button(495,219,239,30,"Amount: "+amount,false,()->prompt("NPC amount (1-50):",v->{try{int n=Integer.parseInt(v);if(n<1||n>50)throw new NumberFormatException();amount=n;}catch(NumberFormatException e){throw new IllegalArgumentException("Amount must be 1-50.");}}));
                 button(495,252,239,30,"Respawn: "+(repeat?"ON":"OFF"),false,()->{repeat=!repeat;render();});
@@ -540,6 +550,7 @@ final class Native950DeveloperConsole {
         }
         int pages=Math.max(1,(results.size()+BROWSER_WINDOW-1)/BROWSER_WINDOW);page=Math.max(0,Math.min(page,pages-1));
         int start=page*BROWSER_WINDOW,count=Math.min(BROWSER_WINDOW,results.size()-start);
+        entity=selectionOrFirst(results,start,count,entity);
         viewport(count);
         for(int n=0;n<count;n++){
             Native950DeveloperCatalogue.Entry e=results.get(start+n);int actor=1000+n;
@@ -548,13 +559,14 @@ final class Native950DeveloperConsole {
             rowEntities.put(actor,e);
             write(Native950Packets.runClientScript(21132,n,count,"<col=ffd479>"+safe(rowName(e.name,34))+"</col><br>Level "+Math.max(0,e.level)+" | "+e.width+" x "+e.height,
                     "__devop:"+epoch+":"+actor));
+            if(entity!=null&&entity.id==e.id)write(Native950Packets.runClientScript(21154,n,2));
         }
         write(Native950Packets.runClientScript(21133));
         write(Native950Packets.interfaceEvents(SHELL,9,0,Math.max(0,count*2-1),30));
         button(171,387,76,28,"Earlier",false,()->{if(page>0){page--;entity=null;render();}});
         text(251,389,145,24,2100,count==0?"No matches":(start+1)+"-"+(start+count)+" of "+results.size());
         button(402,387,79,28,"More",false,()->{if(page+1<pages){page++;entity=null;render();}});
-        previewTitle=textChild;text(500,43,229,45,17514,"Select an NPC");
+        previewTitle=textChild;text(500,43,229,45,2100,"No matching NPCs");
         String[] zoomLabels={"Zoom -","Reset","Zoom +"};
         for(int n=0;n<3;n++){zoomActors[n]=buttons.size();button(495+n*80,229,77,25,zoomLabels[n],false,()->{});}
         previewInfo=textChild;text(500,259,227,32,2100,"Drag the preview to rotate it.");
