@@ -1,9 +1,10 @@
 {
   "status": "DEPLOYED; AUTOMATED VERIFIED; PHYSICAL PARTIAL (not full V3 acceptance)",
-  "sourceCommit": "066bbb28d80ab60345221c397a1891985e36dbbd",
+  "sourceCommit": "e7db9bfc02bee0441c0777967ccd8473980e901a",
   "candidate": "developer-console-v3-20260925",
   "fullRegression": {
-    "tests": 1592,
+    "sourceCommit": "51eb4c36cf7c39f014d32381efd62eeb0dfadfe0",
+    "tests": 1594,
     "failures": 0,
     "errors": 0,
     "skipped": 2
@@ -24,15 +25,28 @@
     "Search button and Enter",
     "Domain query isolation",
     "Teleport bottom-row selection retained scroll",
-    "Native item icons and inspector"
+    "Native item icons and inspector",
+    "Compact header without former empty band; Home native item icons; generic footer removed",
+    "Blue filled selected Boss/Item/NPC row; default first result",
+    "Shadow hand-wrap long title fully inside inspector",
+    "Angel of Death query auto-selected and rendered Nex without row click",
+    "Player preview approximately230px and no inherited PANEL decoration",
+    "Supreme extreme zoom cropped to preview rectangle; no spill into result list or controls",
+    "Final e7db9bf fresh login/open and Supreme default ~170px confirmed; extreme zoom clipped below the title and above controls; Reset restored calibrated size"
   ],
   "pending": [
-    "Final default distance and shorter title-wrap need another final-build visual check",
-    "Full grant/equip/bank/loadout/placement/encounter action matrix",
-    "New Player drag rotation",
-    "Single-frame startup flash absence"
+    "Exact uniform per-mesh size for every cache NPC: native bounds API / complete NXT mesh bounds reader not established",
+    "Full grant/equip/bank/loadout/placement/encounter action matrix unchanged and not repeated",
+    "Drag rotation callback ownership preserved; automated short drag did not conclusively demonstrate movement",
+    "Single-frame startup flash absence needs frame capture, though fresh open worked"
   ],
   "runtime": "Deployed via Update and Play; cache verification retained",
-  "jarSha256": "1E5556E4992375691AC4025C58BFB6C52BE87FD4E2C53E015CA1058D865FEDF5",
-  "scriptReferenceSha256": "6D4D86AF13754607EDE54871A6349D3C901DBAB0F99CDF1CB40E369596A15239"
+  "jarSha256": "A3F40B21DDF763F450CA14FAB36F17071A36E8952B58B783C73CEA6BE74E7BB1",
+  "scriptReferenceSha256": "FF71408A2601E0072860E9F8728C073B25984772924B6C719DA82266957DBAA1",
+  "focusedFinalRegression": {
+    "tests": 29,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
 }

@@ -1063,3 +1063,5 @@ entries (Best40 ->83; total643), and presents gear in descending tier while
 keeping groups adjacent. P0 keyboard-context close fix remains included.
 See docs/BANK-SORT-AND-LIBRARY-TIERS-20260923.md. Apply Staged Update.cmd targets
 dist/bank-sort-20260923. Native visual tooltip/sort acceptance awaits user apply.
+
+25 Sep 2026 live UI feedback follow-up: runtime e7db9bf. See docs/DEVELOPER-CONSOLE-V3-20260925.md and protocol-analysis/developer-console-v3-950.json. Major domain navigation NOW RESETS to first contextual filter/query/selection (latest user instruction supersedes retention). Fixed native colour-vs-fill opcode error, top-aligned bounded compact inspector headings, visible selection, auto-first NPC, header gap, footer prompt, Home item icons and larger Player. Models moved to native clipping parent1448:8; rotation/zoom/sequence targets updated. Common small/medium fallback distances calibrated live; native boss framing and large Vorago preserved. Uniform every-mesh framing remains PARTIAL. No unrelated combat, equipment, world ownership changes. Final deployment backup backups/playability-update-20260925-062430-737.
