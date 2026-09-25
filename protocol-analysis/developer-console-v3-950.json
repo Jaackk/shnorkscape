@@ -1,11 +1,38 @@
 {
-  "status": "AUTOMATED VERIFIED; physical successor test pending",
-  "focusedJava": {
-    "tests": 43,
+  "status": "DEPLOYED; AUTOMATED VERIFIED; PHYSICAL PARTIAL (not full V3 acceptance)",
+  "sourceCommit": "066bbb28d80ab60345221c397a1891985e36dbbd",
+  "candidate": "developer-console-v3-20260925",
+  "fullRegression": {
+    "tests": 1592,
     "failures": 0,
     "errors": 0,
-    "skipped": 0
+    "skipped": 2
   },
-  "scriptTests": 20,
-  "runtime": "not deployed yet"
+  "scriptTests": 21,
+  "installerFixtures": {
+    "tests": 6,
+    "failures": 0,
+    "skipped": 1
+  },
+  "updateAndPlayFixtures": 6,
+  "launchIdentityTests": 1,
+  "physical": [
+    "Fresh opens without diagnostic redraw",
+    "Player framing and Zoom +",
+    "Vorago, Nex, Kalphite King, Banker, dragon searches",
+    "Nex/Kalphite King models and Kalphite King Attack",
+    "Search button and Enter",
+    "Domain query isolation",
+    "Teleport bottom-row selection retained scroll",
+    "Native item icons and inspector"
+  ],
+  "pending": [
+    "Final default distance and shorter title-wrap need another final-build visual check",
+    "Full grant/equip/bank/loadout/placement/encounter action matrix",
+    "New Player drag rotation",
+    "Single-frame startup flash absence"
+  ],
+  "runtime": "Deployed via Update and Play; cache verification retained",
+  "jarSha256": "1E5556E4992375691AC4025C58BFB6C52BE87FD4E2C53E015CA1058D865FEDF5",
+  "scriptReferenceSha256": "6D4D86AF13754607EDE54871A6349D3C901DBAB0F99CDF1CB40E369596A15239"
 }

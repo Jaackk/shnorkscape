@@ -1,3 +1,22 @@
+DEVELOPER CONSOLE V3 POLISH CHECKPOINT - 2026-09-25
+The V3 user prompt explicitly authorized deployment/start and physical Vulkan testing.
+Do not apply the older stage-only restriction to this authorized pass. User also explicitly offered control.
+Several real Update and Play cycles passed, including cache verification and runtime rollback backups.
+Implemented stable padded search + Search/Enter/Clear, domain query/selection state, native list scroll retention,
+stronger collection selection, bounded names, useful player framing/zoom, Best Gear local preview,
+NPC representative ranking, increasing footprint camera-distance fallback, guarded input cleanup,
+and ready-handshake management visibility. Preserve underlying actions/library/editor/combat.
+Full Java 1592/0 failures/0 errors/2 skips; script VM21 passed. Final refinements jar build + relevant script verification.
+PHYSICAL: Home/Player/NPC/Items/Objects/Teleports navigation; Player size + Zoom plus;
+Vorago/Nex/Kalphite King/Banker/dragon search; Nex/Kalphite King models; Kalphite King Attack;
+Search button + Enter; query isolation; Teleport bottom-row scroll retention; normal fresh opens.
+PARTIAL: automatic fallback framing, stronger NPC selection, drag independently observed only as cursor,
+Home icons/full Player sections, full item-grant/loadout/placement/encounter acceptance, exact-name dragon ranking.
+No grant/loadout/spawn/teleport was used during these checks; Jaxa inventory/equipment were not altered by tests.
+Object assembled preview, world-map coordinates, teleport FX and header reclamation remain bounded-research blockers.
+Read docs/DEVELOPER-CONSOLE-V3-20260925.md and protocol-analysis/developer-console-v3-950.json.
+This is NOT full V3 completion/live acceptance. Source and exact candidate hashes are in the staged manifest.
+
 ONE-CLICK UPDATE LAUNCHER - 2026-09-25
 User now uses Update and Play.cmd: precheck -> close own local clients -> stop -> apply -> existing readiness/client launcher.
 Reads the current staged manifest; future candidates need no wrapper changes. Existing Apply Staged Update.cmd remains available.
