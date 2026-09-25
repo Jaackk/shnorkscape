@@ -1,4 +1,7 @@
 DEVELOPER CONSOLE V2 PHASE B CHECKPOINT - 2026-09-25
+Source ec9adeb pushed/remote verified. Candidate dist/developer-console-v2-phase-b-20260925.
+Apply Staged Update.cmd selects this 46-file candidate; CheckOnly and six fixtures PASS.
+Full1589/0fail/0error/2skip; final focused50/0fail;17 script checks; paired-cache and editor probes PASS.
 Phase A is now USER LIVE ACCEPTED: preserve NPC models, rotation, scrolling and search.
 Latest instructions: eight top domains; contextual sidebar, no duplicate navigation;
 Items is a real browser over the existing Equipment Library index, not command rows.

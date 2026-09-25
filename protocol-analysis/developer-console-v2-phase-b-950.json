@@ -43,5 +43,11 @@
   },
   "pairedCache": "PASS: Torva 24 matches, exact IDs, item hashes, canonical NPCs and helper pins",
   "isolatedPreflight": "PASS",
-  "worldEditorRegression": "PASS: real-cache placement, ownership, two-player clearing, undo/redo, persistence and stale replacement"
+  "worldEditorRegression": "PASS: real-cache placement, ownership, two-player clearing, undo/redo, persistence and stale replacement",
+  "candidate": "developer-console-v2-phase-b-20260925",
+  "sourceCommit": "ec9adeb335d046b20564274398b9dffd77e8e3b0",
+  "installer": "PASS: 46 pinned files and launch gates, six disposable fixtures",
+  "runtime": "All targets unchanged; no deployment/restart",
+  "jarSha256": "7E3957283A0EA092801AC5BC3ED436F029A2C44A73E86DC1D5F604AAEFA71C47",
+  "index12Sha256": "440072F3F702D5C117DF3634E8AD57D0CD321218250AE9A902F035EC1BDE5505"
 }
