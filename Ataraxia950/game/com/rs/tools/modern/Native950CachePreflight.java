@@ -54,6 +54,8 @@ public final class Native950CachePreflight {
         com.rs.game.player.client.Native950Invention.verifyCacheBindings();
         com.rs.game.player.client.Native950Archaeology.verifyCacheBindings();
         com.rs.game.player.client.Native950Dungeoneering.verifyCacheBindings();
-        System.out.println("PASS 950 cache preflight: 950 identity table, UI table, toolbelt, native Make-X and Smithing/Smelting, settings (including pending controls), dialogue, quantity input, world map, lodestone network and teleport effects, ordinary HP bars, melee hitmarks, animations, starter equipment, Runecrafting, Divination, Thieving, Hunter, Crafting, Summoning Smithing, Slayer masters and three Agility courses");
+        com.rs.game.player.client.Native950NpcAttackAnimations.verifyCacheBindings();
+        com.rs.game.player.client.Native950NpcDrawnWeapons.verifyCacheBindings();
+        System.out.println("PASS 950 cache preflight: 950 identity table, UI table, toolbelt, native Make-X and Smithing/Smelting, settings (including pending controls), dialogue, quantity input, world map, lodestone network and teleport effects, ordinary HP bars, melee hitmarks, animations, starter equipment, Runecrafting, Divination, Thieving, Hunter, Crafting, Summoning Smithing, Slayer masters, three Agility courses and the exact-950 NPC weapon-swing preview tables");
     }
 }

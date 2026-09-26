@@ -4,7 +4,7 @@
     {
       "source": "ataraxia-950-1.0-UNTRACKED.jar",
       "target": "OpenNXT/runtime/lib/ataraxia-950-1.0-UNTRACKED.jar",
-      "sha256": "21601AF2EFD26785F0A89B62F0E9535DC552D6168F38F0BF78C7720F95C729D6",
+      "sha256": "CB5A1B7E3B2FC3A16FB2DE731A8159636658E5C8F3D7C30B797C69F95192941E",
       "beforeSha256": "21601AF2EFD26785F0A89B62F0E9535DC552D6168F38F0BF78C7720F95C729D6"
     },
     {
@@ -308,8 +308,23 @@
       "sha256": "96BD4534BDFEF1B538EB5DE29C15538DDD28005D11FC2039FCEE3B4D2C1E7B2C"
     }
   ],
-  "sourceCommit": "734982ff37d76cd38afa2b3325dbe0988bb4805e",
-  "validationReport": "protocol-analysis/developer-console-v3-950.json",
-  "liveChecklist": "docs/DEVELOPER-CONSOLE-V3-20260925.md",
-  "liveAcceptance": "V3 polish checkpoint. Automated verification is recorded in the report; new Vulkan controls remain live-test pending."
+  "sourceCommit": "1187f447f97b1db3ad0804ffa7a6508eb148dfa9",
+  "validationReport": "protocol-analysis/stage-b-phase4-20260926.json",
+  "liveChecklist": "docs/STAGE-B-PHASE4-NPC-ANIMATIONS-20260926.md",
+  "liveAcceptance": "READY FOR USER TEST: Stage B Phase 4 preview-only animation fallback; no visual acceptance claimed.",
+  "sourceState": "uncommitted; owner approval required before commit/push",
+  "sourceFilesSha256": {
+    "Ataraxia950/game/com/rs/game/player/client/Native950CombatInspector.java": "E1A9992DD71EBA157C0D8F4223D400F6A5B3A147EAB4BEDAF6D9C4E8DD01EABC",
+    "Ataraxia950/game/com/rs/game/player/client/Native950DeveloperPreview.java": "583DDBABAA060241950CDE062CD93A141628C7666EAEFFBC802B9378EA41E85C",
+    "Ataraxia950/game/com/rs/game/player/client/Native950NpcAttackAnimations.java": "B77DE7CA7C2842A03D9D85914F9473A10F3B0D65A47312ECBE5428BFC2AF1C90",
+    "Ataraxia950/game/com/rs/game/player/client/Native950NpcCombatAnimations.java": "612B96C197E6082C86F6F0EF0AC55025C35473101BDC0447B5DD3BCDB6E00D38",
+    "Ataraxia950/game/com/rs/game/player/client/Native950NpcDrawnWeapons.java": "30F477AA756EE304554108843D619CA9E660E760045CD5151D843AAC54B6D192",
+    "Ataraxia950/game/com/rs/tools/modern/Native950CachePreflight.java": "0E6A028BBC004E1AAC1B0C4CC35DD8976788CF23C3CFBB7E184FE01AED8EF915",
+    "Ataraxia950/resources/native950/npcanim-950.properties": "21639A7B13CF3325B0365FE576CCEC2303E6E163000420A47EA4BD4C372F021F",
+    "Ataraxia950/resources/native950/npcanim-attacks-950.tsv": "5106F91B8AF661F1566F774AB6C8DA754D15D1DCF401E8CDB9672DF746CD2056",
+    "Ataraxia950/resources/native950/npcanim2-950.properties": "E38476A59ABA1A0AC3DB5E5B42527FF4CFDF7E75564F1802694CC70B1B56133B",
+    "Ataraxia950/resources/native950/npcanim2-drawn-950.tsv": "93C12657D1AA15B50150A11D6CB6BAD12911EC5723D08D6E0D06CB44279111E4",
+    "Ataraxia950/tests/com/rs/game/player/client/Native950NpcAnimationGapCoverageTest.java": "CC15B2ECF7B4800F5D7842E1A741F6B2485AD21F323817B9E36CF10491851DCA",
+    "Ataraxia950/tests/com/rs/game/player/client/Native950NpcCombatAnimationsRenderGateTest.java": "5CDB6E02047974BE5A3D505DFD4047B3DA9E12EB1BCDDC9F2C02896FDF57F794"
+  }
 }

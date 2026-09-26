@@ -72,6 +72,34 @@ public final class Native950NpcCombatAnimations {
         return sequence == null ? -1 : sequence.durationCycles;
     }
 
+    /**
+     * Reject the known legacy-frame-on-animaya mismatch. A matching family is only a necessary
+     * condition, never proof that a sequence binds the creature's model/skeleton.
+     *
+     * <p>Adopted from Artaven (Stage B Phase 4). Shnorkscape's own combat resolution
+     * ({@code Native950NpcCombatCatalog}) is unchanged by this method; only the Developer Console's
+     * NPC preview consults it, so this can only ever withhold a preview animation, never a live one.
+     */
+    public static boolean compatibleWithRender(int renderId,int sequenceId) {
+        if(sequenceId<0||renderId<0)return true;
+        try {
+            byte[] raw=Cache.STORE.getIndexes()[2].getFile(32,renderId);
+            if(raw==null)return false;
+            int stand=com.rs.cache.loaders.RenderAnimDefinitions.decodeStrict947(renderId,raw,null).standAnimation;
+            if(stand<0)return true;
+            byte[] standing=Cache.STORE.getIndexes()[20].getFile(stand>>>7,stand&127);
+            byte[] combat=Cache.STORE.getIndexes()[20].getFile(sequenceId>>>7,sequenceId&127);
+            if(standing==null||combat==null)return false;
+            return compatibleFamilies(AnimationDefinitions.decodeStrict947(stand,standing,null),
+                    AnimationDefinitions.decodeStrict947(sequenceId,combat,null));
+        }catch(RuntimeException unreadable){return false;}
+    }
+    static boolean compatibleFamilies(AnimationDefinitions stand,AnimationDefinitions combat) {
+        boolean animayaStand=(stand.anIntArray2153==null||stand.anIntArray2153.length==0)&&stand.modernInt26b>0;
+        boolean legacyCombat=combat.anIntArray2153!=null&&combat.anIntArray2153.length>0;
+        return !animayaStand||!legacyCombat;
+    }
+
     public static boolean hasCatalogBinding(int sequenceId) { return BINDINGS.containsKey(sequenceId); }
     public static int verifiedDefinitionCount() { return BINDINGS.size(); }
 

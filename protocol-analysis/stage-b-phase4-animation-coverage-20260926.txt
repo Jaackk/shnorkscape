@@ -1,0 +1,66 @@
+[26 Sept 2026, 7:07:20 pm] [INFO] Modern read-only cache initiated from C:\Games\950OpenSource\cache
+[26 Sept 2026, 7:07:20 pm] [INFO] Loaded 2644 NPC combat definitions.
+[26 Sept 2026, 7:07:20 pm] [INFO] Loaded 6706 NPC combat stats.
+npc	name	before	after	result	evidence
+9	Guard	-1	37385	GAINED	declared-family
+3228	Guard	-1	37385	GAINED	declared-family
+3229	Guard	-1	37467	GAINED	declared-family
+3230	Guard	-1	37380	GAINED	declared-family
+3231	Guard	-1	37462	GAINED	declared-family
+3232	Guard	-1	37462	GAINED	declared-family
+3233	Guard	-1	37462	GAINED	declared-family
+195	Bandit Brawler	-1	37369	GAINED	declared-family
+23158	Bandit Brawler	-1	18321	GAINED	declared-family
+202	Black Heather	-1	18321	GAINED	declared-family
+203	Donny the Lad	-1	37371	GAINED	declared-family
+204	Speedy Keith	-1	37462	GAINED	declared-family
+19875	Iorwerth scout	-1	37374	GAINED	declared-family
+19877	Iorwerth guard	-1	37373	GAINED	declared-family
+19879	Iorwerth guard	-1	37373	GAINED	declared-family
+30023	Armoured phantom	-1	37373	GAINED	declared-family
+837	Shantay guard	-1	37378	GAINED	C
+912	Battle mage	-1	18321	GAINED	C
+913	Battle mage	-1	18321	GAINED	C
+1367	Skraeling	-1	37385	GAINED	C
+1904	Menaphite Thug	-1	37367	GAINED	A
+2246	Khazard trooper	-1	37379	GAINED	A
+2709	Fire wizard	-1	18321	GAINED	C
+2710	Water wizard	-1	18321	GAINED	C
+2711	Earth wizard	-1	18321	GAINED	C
+2712	Air wizard	-1	18321	GAINED	C
+4990	Mercenary	-1	37385	GAINED	C
+4992	Mercenary	-1	37385	GAINED	C
+5842	Outlaw	-1	37385	GAINED	C
+5843	Outlaw	-1	37385	GAINED	C
+5844	Outlaw	-1	37385	GAINED	C
+5845	Outlaw	-1	37385	GAINED	C
+5846	Outlaw	-1	37385	GAINED	C
+5847	Outlaw	-1	37385	GAINED	C
+5848	Outlaw	-1	37385	GAINED	C
+5849	Outlaw	-1	37385	GAINED	C
+5850	Outlaw	-1	37385	GAINED	C
+5851	Outlaw	-1	37385	GAINED	C
+5919	Guard	-1	37378	GAINED	C
+5920	Guard	-1	37378	GAINED	C
+8324	Elite Black Knight	-1	37372	GAINED	A
+8871	Dark wizard	-1	18321	GAINED	C
+8872	Dark wizard	-1	18321	GAINED	C
+8873	Dark wizard	-1	18321	GAINED	C
+8874	Dark wizard	-1	35449	GAINED	A
+9234	Guard	-1	37378	GAINED	C
+19814	Cadarn ranger	-1	37462	GAINED	B
+19816	Cadarn ranger	-1	37462	GAINED	B
+19818	Cadarn magus	-1	18321	GAINED	B
+19820	Cadarn magus	-1	18321	GAINED	B
+22470	Seren archer	18237	18237	RETAINED	C
+22471	Seren warrior	18235	18235	RETAINED	C
+22488	Black Knight	18240	18240	RETAINED	B
+22489	Black Knight	18245	18245	RETAINED	B
+22498	Ancient warrior	18222	18222	RETAINED	A
+CONTROL 1 Man idle=808 attack=422 zoom=650
+CONTROL 172 Dark wizard idle=-1 attack=-1 zoom=650
+CONTROL 6260 General Graardor idle=17387 attack=17389 zoom=1325
+CONTROL 21502 Abyssal demon idle=24429 attack=24431 zoom=812
+CONTROL 22472 Seren mage idle=37633 attack=20743 zoom=650
+CONTROL 22478 Necromancer idle=37633 attack=-1 zoom=650
+PASS rows=55 gained=50 retained=5 refused=0 drawnBlocksAccepted=34; cache pins and Developer Console verification passed; no visual acceptance claimed

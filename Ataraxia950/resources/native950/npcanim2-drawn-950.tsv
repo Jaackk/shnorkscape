@@ -1,0 +1,85 @@
+# Stream npcanim2 (TOP50 round 5): per-creature ATTACK and BLOCK animations for creatures that
+# carry NO weapon-family parameter 2816 - the ones round 4's table cannot reach, including the
+# Varrock guards and the elemental wizards the user reported still standing rigid.
+#
+# THE ROUTE. A creature that wields a weapon is DRAWN HOLDING IT. Its 950 definition's `models`
+# array contains the very worn model an item definition publishes in maleEquip1/femaleEquip1/
+# maleEquip2/femaleEquip2, so the model maps back to the items that wear it, their own parameter
+# 686 names the weapon struct, and that struct's parameter 2914 (typed ANIMATION by the cache's own
+# ParamType table) is the attack sequence, 2917 the block sequence - the same two struct fields
+# Native950MeleeWeapons.java:69-70 already reads for a PLAYER holding that weapon. A row ships only
+# when the creature's models reach EXACTLY ONE weapon family; two families is a refusal.
+#
+# CALIBRATION, not assumption. On the 250 attackable definitions that carry BOTH parameter 2816 and
+# a drawn weapon model, 39 are ambiguous and of the remaining 211 the drawn weapon's 2914 equals the
+# declared family's 2914 on 183 (86.7%). The 28 disagreements are all the same shape - the creature
+# is drawn with a specific named weapon of a neighbouring melee family (Elite Sotapanna 25574
+# declares 14930 and is drawn with a Tetsu katana, struct 14923) - never an unrelated sequence.
+# Where both routes exist and disagree the DECLARED family wins and nothing is shipped from the
+# model. reports/r5-npcanim2-model-calibration.tsv has all 250.
+#
+# RENDER GATE. Native950NpcCombatAnimations.compatibleWithRender refuses a legacy-frame combat
+# sequence on a creature whose BAS stand animation is a modern/animaya one. The catalogue applies it
+# to the inherited authored animation; the round-4 published table bypasses it. Every row here is
+# re-checked against it at startup: an incompatible ATTACK sequence is a hard startup failure (no
+# such row is shipped) and an incompatible BLOCK sequence is dropped per creature at runtime, which
+# is why Seren archer 22470, Seren warrior 22471, Ancient warrior 22498 and Black Knights
+# 22488/22489 will swing but not flinch. Seren mage 22472 and Necromancer 22478 are REFUSED
+# outright by that gate: their only candidate, staff 18321, is legacy and their stand 37633 is not.
+#
+# EVIDENCE CLASSES, stated per row and asserted at startup:
+#   A - the RS3 wiki names the weapon (or its class) on the creature's OWN page, and the cache's
+#       drawn model is a weapon of exactly that class. The round-4 bar.
+#   B - the creature's own parameter 2816 AND its drawn model independently name the SAME weapon
+#       struct: two cache tables agreeing (index 18 parameters vs index 18 models -> index 19 item
+#       -> index 22 struct).
+#   C - the drawn model alone. The wiki page confirms the creature's id, level and combat style -
+#       quoted in the row - but does NOT name its weapon. This is one notch below A and B and is
+#       recorded as such: what a class C row plays is the attack of the weapon the client itself
+#       draws in that creature's hand, so a wrong row is a swing of a neighbouring melee family,
+#       never an unrelated sequence. 86.7% is the measured agreement rate above.
+#
+# Everything the row depends on - the creature (index 18), the carrier item (index 19), the struct
+# (index 22) and both sequences (index 20) - is SHA-256 pinned in npcanim2-950.properties and
+# re-read at startup by Native950NpcDrawnWeapons.verifyCacheBindings().
+#
+# npcId	npcName	struct	attackSeq	blockSeq	itemId	itemName	model	evidence	route	wikiPage	wikiEvidence
+837	Shantay guard	14922	37378	18292	45445	Steel sword	79896	C	drawn-model	Shantay guard	Infobox Monster id = 837, level 15; the page does not name the weapon, so the drawn Steel sword model is the only source.
+912	Battle mage	14937	18321	18294	28738	Infernal staff	87746	C	drawn-model	Battle mage	Infobox Monster id1 = 912, level 77, style magic; the page does not name the staff, so the drawn Infernal staff model is the only source.
+913	Battle mage	14937	18321	18294	28737	Icyenic staff	87743	C	drawn-model	Battle mage	Infobox Monster id2 = 913, level 77, style magic; the page does not name the staff, so the drawn Icyenic staff model is the only source.
+1367	Skraeling	14923	37385	18292	3757	Fremennik blade	4236	C	drawn-model	Skraeling	Infobox Monster id1 = 1367, level 5; the page does not name the weapon, so the drawn Fremennik blade model is the only source.
+1904	Menaphite Thug	14925	37367	18292	4599	Oak-blackjack	6099	A	drawn-model	Menaphite Thug	"Although they wield blackjacks, they use battleaxe sound effects when attacking." Infobox Monster id1 = 1904; the drawn model is the Oak-blackjack's, whose own parameter 686 is the 14925 club family.
+2246	Khazard trooper	14931	37379	18298	1251	Bronze spear (p)	540	A	drawn-model	Khazard trooper	"While some Troopers use a mace and shield and others use a spear, both are level 44 and have exactly the same stats." The wiki names two weapons and does not say which id carries which; the cache decides it - 2246 is drawn with the spear model 540 and 475 is not.
+2709	Fire wizard	14937	18321	18294	1389	Magic staff	534	C	drawn-model	Fire wizard	Infobox Monster id = 2709, level 25, style magic, acc_magic 292 = cache parameter 3; the page names the spells (Fire Strike, a pre-EoC Weaken) but not the staff, so the drawn Magic staff model is the source chosen. It is NOT the only cache candidate: the spell structs the shipped projectiles-950.tsv already binds to this creature publish their own ANIMATION-typed 2914 (Weaken 14745 = 18254, Fire Strike 14746 = 37281) - two numbers with no rule to choose between them, while 18321 shares frame archive 11509 with 18306, the cache's own two-handed variant of that same Weaken cast. Reasoning, not proof; see report section 5.
+2710	Water wizard	14937	18321	18294	1389	Magic staff	534	C	drawn-model	Water wizard	Infobox Monster id = 2710, level 19, style magic, acc_magic 245 = cache parameter 3; the page names the spells but not the staff. The drawn staff is not the only cache candidate - see the 2709 row and report section 5 for the competing spell-struct numbers.
+2711	Earth wizard	14937	18321	18294	1389	Magic staff	534	C	drawn-model	Earth wizard	Infobox Monster id = 2711, level 22, style magic, acc_magic 268 = cache parameter 3; the page names the spells but not the staff. The drawn staff is not the only cache candidate - see the 2709 row and report section 5 for the competing spell-struct numbers.
+2712	Air wizard	14937	18321	18294	1389	Magic staff	534	C	drawn-model	Air wizard	Infobox Monster id = 2712, level 16, style magic, acc_magic 223 = cache parameter 3; the page names the spells but not the staff. The drawn staff is not the only cache candidate - see the 2709 row and report section 5 for the competing spell-struct numbers.
+4990	Mercenary	14923	37385	18292	975	Machete	566	C	drawn-model	Mercenary	Infobox Monster id = 4989,4990,4991,4992, level 35, style melee; the page does not name the weapon.
+4992	Mercenary	14923	37385	18292	975	Machete	566	C	drawn-model	Mercenary	Infobox Monster id = 4989,4990,4991,4992, level 35, style melee; the page does not name the weapon.
+5842	Outlaw	14924	37385	18292	45447	Steel scimitar	80124	C	drawn-model	Outlaw	Infobox Monster id = 5842..5851, level 32; the page does not name the weapon.
+5843	Outlaw	14924	37385	18292	45447	Steel scimitar	80124	C	drawn-model	Outlaw	Infobox Monster id = 5842..5851, level 32; the page does not name the weapon.
+5844	Outlaw	14924	37385	18292	45447	Steel scimitar	80124	C	drawn-model	Outlaw	Infobox Monster id = 5842..5851, level 32; the page does not name the weapon.
+5845	Outlaw	14924	37385	18292	45447	Steel scimitar	80124	C	drawn-model	Outlaw	Infobox Monster id = 5842..5851, level 32; the page does not name the weapon.
+5846	Outlaw	14924	37385	18292	45447	Steel scimitar	80124	C	drawn-model	Outlaw	Infobox Monster id = 5842..5851, level 32; the page does not name the weapon.
+5847	Outlaw	14924	37385	18292	45447	Steel scimitar	80124	C	drawn-model	Outlaw	Infobox Monster id = 5842..5851, level 32; the page does not name the weapon.
+5848	Outlaw	14924	37385	18292	45447	Steel scimitar	80124	C	drawn-model	Outlaw	Infobox Monster id = 5842..5851, level 32; the page does not name the weapon.
+5849	Outlaw	14924	37385	18292	45447	Steel scimitar	80124	C	drawn-model	Outlaw	Infobox Monster id = 5842..5851, level 32; the page does not name the weapon.
+5850	Outlaw	14924	37385	18292	45447	Steel scimitar	80124	C	drawn-model	Outlaw	Infobox Monster id = 5842..5851, level 32; the page does not name the weapon.
+5851	Outlaw	14924	37385	18292	45447	Steel scimitar	80124	C	drawn-model	Outlaw	Infobox Monster id = 5842..5851, level 32; the page does not name the weapon.
+5919	Guard	14922	37378	18292	1277	Bronze sword	74312	C	drawn-model	Guard (Varrock)	Infobox Monster version1 Male id1 = 5919, level 25, style melee, speed 4, acc_melee 292 and armour 292 - the cache agrees exactly (combatLevel 25, parameter 26 = 1 melee, 14 = 4, 29 = 292, 2865 = 292). The page does not name the weapon; the drawn model 74312 is worn by nothing in the cache except the two definitions named "Bronze sword".
+5920	Guard	14922	37378	18292	1277	Bronze sword	74312	C	drawn-model	Guard (Varrock)	Infobox Monster version2 Captain id2 = 5920, level 25, style melee; same drawn Bronze sword model 74312.
+8324	Elite Black Knight	14930	37372	18293	1313	Black 2h sword	74535	A	drawn-model	Elite Black Knight	"Although Elite Black Knights are followers of Zamorak, they used to wield what looked distinctly like a Saradomin sword. However, they now wield black 2h swords." Infobox Monster id = 8324,8325,8326,8327; the drawn model 74535 is the Black 2h sword's own worn model.
+8871	Dark wizard	14937	18321	18294	1383	Staff of water	79957	C	drawn-model	Dark wizard	Infobox Monster version7 "Varrock stone circle (7)" id7 = 8871, and the page's own map pins 8871 at 3225,3365 / 3225,3374 / 3232,3367. The page names the spells, not the staff; the drawn Staff of water model is the only source for the sequence.
+8872	Dark wizard	14937	18321	18294	1383	Staff of water	79957	C	drawn-model	Dark wizard	Infobox Monster version8 id8 = 8872, map pins 3223,3372 / 3230,3363 / 3232,3372 - the creature round 4's live capture shows the user fighting. The page names the spells, not the staff.
+8873	Dark wizard	14937	18321	18294	1385	Staff of earth	79964	C	drawn-model	Dark wizard	Infobox Monster version9 id9 = 8873, map pins 3223,3367 / 3230,3365 / 3230,3374. The page names the spells, not the staff.
+8874	Dark wizard	48358	35449	18292	55502	Death guard	129134	A	drawn-model	Dark wizard	"one variant uses basic Necromancy attacks" - and 8874 is the necromancy variant twice over: infobox id10 = 8874 with style10 Necromancy, and the cache's own combat class parameter 26 = 17 (necromancy) against 3 for 8871-8873. The drawn model 129134 is the Death guard's, the revision's necromancy weapon.
+9234	Guard	14922	37378	18292	1277	Bronze sword	74312	C	drawn-model	Guard (Varrock)	Infobox Monster version3 Female id3 = 9234, level 25, style melee; same drawn Bronze sword model 74312. NOTE: the combat catalogue refuses 9234 a profile today ("unverified legacy NPC identity"), so this row is data and changes nothing a player sees until that refusal is lifted.
+19814	Cadarn ranger	14940	37462	18295	32228	Crystal bow	97324	B	param2816+drawn-model	Cadarn ranger	Infobox Monster id = 19814, level 122. The creature's own parameter 2816 names struct 14940 and its drawn model 97324 is the Crystal bow's, whose parameter 686 is also 14940: two cache tables agreeing.
+19816	Cadarn ranger	14940	37462	18295	32228	Crystal bow	97324	B	param2816+drawn-model	Cadarn ranger	Second id of the same creature; parameter 2816 and the drawn Crystal bow model agree on struct 14940.
+19818	Cadarn magus	14937	18321	18294	32210	Crystal staff	98985	B	param2816+drawn-model	Cadarn magus	Infobox Monster id = 19818, level 122. Parameter 2816 names struct 14937 and the drawn model 98985 is the Crystal staff's, whose parameter 686 is also 14937.
+19820	Cadarn magus	14937	18321	18294	32210	Crystal staff	98985	B	param2816+drawn-model	Cadarn magus	Second id of the same creature; parameter 2816 and the drawn Crystal staff model agree on struct 14937.
+22470	Seren archer	14940	37462	18295	32228	Crystal bow	97324	C	drawn-model	Seren archer	Infobox Monster id = 22470, level 108; the page does not name the bow. Its BLOCK sequence is dropped at runtime - legacy 18295 on the animaya stand 37629.
+22471	Seren warrior	14921	37374	18292	32222	Crystal dagger	98971	C	drawn-model	Seren warrior	Infobox Monster id = 22471, level 108; the page does not name the weapon. Its BLOCK sequence is dropped at runtime - legacy 18292 on the animaya stand 37632.
+22488	Black Knight	14925	37367	18292	1426	Black mace	74825	B	param2816+drawn-model	Black Knight	Parameter 2816 names struct 14925 and the drawn model 74825 is the Black mace's, whose parameter 686 is also 14925. Its BLOCK sequence is dropped at runtime - legacy 18292 on the animaya stand 37632.
+22489	Black Knight	14931	37379	18298	4580	Black spear	80153	B	param2816+drawn-model	Black Knight	Parameter 2816 names struct 14931 and the drawn model 80153 is the Black spear's, whose parameter 686 is also 14931. Its BLOCK sequence is dropped at runtime - legacy 18298 on the animaya stand 37640.
+22498	Ancient warrior	14933	37369	18294	16965	Gorgonite maul	56294	A	drawn-model	Ancient warrior (Heart of Gielinor)	"Due to Torva not possessing any known weapons, the ancient warriors use chaotic mauls as placeholders." Infobox Monster id = 22498, level 108, style Melee; the drawn model 56294 is the Gorgonite maul's, struct 14933, the same maul family the wiki names. Its BLOCK sequence is dropped at runtime - legacy 18294 on the animaya stand 37633.

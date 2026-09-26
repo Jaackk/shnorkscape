@@ -64,6 +64,19 @@ final class Native950DeveloperPreview {
         }
         Native950NpcCombatProfile combat=Native950NpcCombatCatalog.inspectRunningCache(id).profile;
         int attack=combat==null?-1:combat.attackAnim;
+        // Stage B Phase 4: fill preview-only gaps from the declared weapon family or the
+        // evidenced drawn weapon. Drawn-model class C is an inference about NPC behaviour,
+        // not a cache-published NPC attack contract. The family gate rejects a known render
+        // mismatch; passing it does not prove anatomical correctness. Retain authored attacks
+        // and keep this fallback out of Native950NpcCombatCatalog/live combat.
+        if(attack<0){
+            // Native950CachePreflight re-hashes every row of both tables against the real cache at
+            // startup (matching the established pattern for lazily-consulted metadata elsewhere in
+            // this file, e.g. Beasts framing below); this hot path trusts that check rather than
+            // re-verifying the whole table on every preview request.
+            int published=Native950NpcAttackAnimations.attackFor(id);
+            if(published>=0&&Native950NpcCombatAnimations.compatibleWithRender(d.renderEmote,published))attack=published;
+        }
         Native950CacheReader reader=new Native950CacheReader.Flat();
         // A developer-saved default always wins over every automatic tier below;
         // it exists specifically to correct them. Height/anchor stay automatic.

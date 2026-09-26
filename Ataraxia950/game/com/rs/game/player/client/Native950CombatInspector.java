@@ -1,6 +1,8 @@
 package com.rs.game.player.client;
 
+import com.rs.cache.loaders.NPCDefinitions;
 import com.rs.game.player.Player;
+import com.rs.game.player.actions.slayer.SlayerTaskData;
 import com.rs.utils.data.parsers.npcs.NPCDropsDataParser;
 import java.util.*;
 
@@ -23,6 +25,7 @@ final class Native950CombatInspector {
         }
         com.rs.utils.data.parsers.npcs.pojos.NPCDrop[] drops=NPCDropsDataParser.getDrops(id);
         out.add("Authored drop rows="+(drops==null?0:drops.length)+"; actual awards retain per-item950 validation and damage-credit ownership.");
+        out.add(slayerSummary(id));
         out.add("Encounter policy="+(Native950BossRules.king(id)?"Dagannoth King PARTIAL":id==6260?"Graardor normal PARTIAL":"no curated boss policy; ordinary admission does not certify a boss"));
         for(Native950GamevalLookup.Entry e:Native950GamevalLookup.search(Integer.toString(id)))if(e.type.equals("npc"))out.add("Symbol: "+e.name+"; "+e.verify());
         return out;
@@ -35,6 +38,30 @@ final class Native950CombatInspector {
         List<String> out=new ArrayList<>();out.add(rows.size()+" matches; use ;;npcinfo <exact ID> to inspect. First 12:");
         for(int i=0;i<Math.min(12,rows.size());i++)out.add(rows.get(i).id+" - "+rows.get(i).name);
         return out;
+    }
+    /**
+     * Stage B Phase 4: two independent, disagreement-tolerant Slayer signals, reported side by
+     * side rather than merged into one verdict. NPC parameter 50 is a raw cache category id -
+     * present on this cache for Abyssal demon (42), Exiled Kalphite Queen (53) and others, but
+     * empirically absent on plenty of otherwise-ordinary attackable creatures of the same species,
+     * so its absence proves nothing. The name match is the inherited legacy table
+     * ({@code SlayerTaskData}) already used for real task assignment; this method changes no
+     * gameplay behaviour, it only surfaces both signals for a developer to cross-check.
+     */
+    private static String slayerSummary(int id){
+        NPCDefinitions definition;
+        try{definition=NPCDefinitions.getNPCDefinitions(id);}catch(RuntimeException undecodable){definition=null;}
+        Object param=definition==null||definition.clientScriptData==null?null:definition.clientScriptData.get(50);
+        String cacheCategory=param instanceof Integer?String.valueOf(param):"none";
+        String nameMatch="none";
+        if(definition!=null&&definition.name!=null){
+            String trimmed=definition.name.trim();
+            outer: for(SlayerTaskData task:SlayerTaskData.values())
+                for(String monster:task.getMonsters())
+                    if(monster.equalsIgnoreCase(trimmed)){nameMatch=task.toString();break outer;}
+        }
+        return "Slayer: cache category param50="+cacheCategory+"; task-name match="+nameMatch
+                +" (independent signals; a mismatch or an absent cache param is not itself an error).";
     }
     static void send(Player p,List<String> lines){for(String line:lines)p.sendMessage(line);}
 }

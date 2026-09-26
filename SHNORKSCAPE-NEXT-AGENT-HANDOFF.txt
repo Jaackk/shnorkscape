@@ -1,4 +1,17 @@
-LATEST - 2026-09-26 - DEVELOPER CONSOLE PREVIEW CLIPPING/DRAG/ZOOM + ARTAVEN COMPARISON (COMMITTED, OPEN ITEMS)
+LATEST - 2026-09-26 - STAGE B PHASE 4: READY FOR USER TEST, UNCOMMITTED
+Owner explicitly forbids commit/push until approval; preserve all inherited work on base1187f44.
+Read docs/STAGE-B-PHASE4-NPC-ANIMATIONS-20260926.md and protocol-analysis/stage-b-phase4-20260926.json.
+Two Artaven NPC weapon-animation tables selectively adapted as PREVIEW-ONLY fallback:55rows,
+50 newly available Attacks; five existing authored Attacks retained. No live combat/catalogue rewrite.
+Provenance differs:16 declared-family; drawn39=A5/B6/C28, with C model-only inference (not exact NPC behaviour).
+Real fresh-JVM startup preflight passes both tables; full suite1626/0fail/0error/2skip; focused9pass.
+Slayer addition is only inspector param50 plus legacy task-name cross-check; no large Slayer table import.
+Java/resources-only candidate: no script/cache/Kotlin changes, no agent restart/client QA.
+Owner runs Update and Play.cmd, then tests Guard5919, Armoured phantom30023, Fire wizard2709,
+Graardor6260 Idle/Attack and unchanged framing/drag/zoom. Visual correctness USER TEST PENDING.
+No Phase5, V3, map viewer, economy, GitHub cleanup or Save-preview work in this pass.
+
+PREVIOUS - 2026-09-26 - DEVELOPER CONSOLE PREVIEW CLIPPING/DRAG/ZOOM + ARTAVEN COMPARISON (COMMITTED, OPEN ITEMS)
 Read docs/HANDOFF-PREVIEW-CLIPPING-AND-UPSTREAM-20260926.md first; its section 0 lists everything unfinished.
 LIVE: NPC preview clipped inside its box; drag rotation keeps the model visible; Zoom -/Reset/+ immediate.
 LIVE-FAILED (parked by owner): Save does not restore a saved preview zoom after reselection.

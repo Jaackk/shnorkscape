@@ -1,0 +1,54 @@
+# Stream npcanim (TOP50 round 4): per-creature ATTACK and BLOCK animations, as data.
+#
+# A row ships only where TWO independent sources name the same weapon family:
+#
+#   1. cache - the creature's own 950 definition carries parameter 2816, which the cache's own
+#              parameter TYPE table (index 2, group 11, opcode 101 -> ScriptVarType id 73 STRUCT)
+#              declares to be a struct reference. That struct carries parameter 2914, which the
+#              same table types ANIMATION (ScriptVarType id 6), and 2917 likewise. 2914/2917 are
+#              the attack and block sequences this server ALREADY reads for player weapons -
+#              Native950MeleeWeapons.java:69-70, and the same pair for ranged, magic and
+#              necromancy weapons and for spell structs. The struct ids are the shipped weapon
+#              families of resources/native950/melee-weapons-950.tsv (14921 dagger, 14923 sword,
+#              14929 battleaxe, 14932 halberd, 14933 maul, 14935 whip, 14937 staff, 14939/14940
+#              bow, 14941 crossbow). The NPC definition, the struct and both sequence definitions
+#              are SHA-256 pinned in npcanim-950.properties and re-read at startup.
+#   2. wiki   - the RS3 wiki names, on the creature's own page, the weapon the creature carries,
+#              and the cache item of exactly that name carries the SAME struct in its own
+#              parameter 686. The quoted evidence is in the row.
+#
+# Every other creature keeps -1 and swings silently, exactly as before. In particular all ten
+# attackable DARK WIZARDS (172, 174, 3242, 3243, 3244, 3245, 8871, 8872, 8873, 8874 - 8872 being the
+# id the live capture shows the user fighting at the Varrock stone circle) carry no animation-typed
+# and no struct-typed parameter at all, their BAS (2699 for the 172 group, 2698 for 8871-8874)
+# publishes only stand/walk/run, and the wiki publishes no animation id, so there is nothing to ship
+# for them. Three UNPLACED definitions also named "Dark wizard" - 29292, 29293 elder, 29294 master -
+# do name struct 14938; nothing is shipped for them either. See reports/r4-npcanim-2026-09-21.md.
+#
+# Every creature in this table is a MELEE-REACH creature (attackStyle MELEE, attackRange 1). Falador
+# guards 3229/3231/3232/3233 deal RANGED-typed damage but still walk into contact to do it, because
+# nothing on this revision publishes a per-creature reach. No creature that attacks the player from
+# a distance gains an animation from this table.
+#
+# Recorded disagreement (brief rule: record both): Speedy Keith's own parameter 2816 is the 14940
+# chargebow struct while the wiki's named strykebow (item 34158) carries struct 14939. Both
+# structs publish the SAME attack sequence 37462 and the same block 18295, so the shipped number
+# is identical either way; the creature's own struct is the one used.
+#
+# npcId	npcName	struct	attackSeq	blockSeq	itemId	itemName	wikiPage	wikiEvidence
+9	Guard	14923	37385	18292	1291	Bronze longsword	Guard (Falador)	Infobox Monster version1 for id 9 is "Sword (weak to fire)"; image1 is "Guard (Falador, sword)".
+3228	Guard	14923	37385	18292	1291	Bronze longsword	Guard (Falador)	Infobox Monster version2 for id 3228 is "Sword (weak to water)"; image2 is "Guard (Falador, sword)".
+3229	Guard	14941	37467	18292	837	Crossbow	Guard (Falador)	Infobox Monster version3 for id 3229 is "Crossbow"; image3 is "Guard (Falador, crossbow)".
+3230	Guard	14929	37380	18292	1363	Iron battleaxe	Guard (Falador)	Infobox Monster version4 for id 3230 is "Axe"; image4 is "Guard (Falador, axe)".
+3231	Guard	14939	37462	18295	841	Shortbow	Guard (Falador)	Infobox Monster version5 for id 3231 is "Bow (1)"; image5 is "Guard (Falador, bow, 1)".
+3232	Guard	14939	37462	18295	841	Shortbow	Guard (Falador)	Infobox Monster version6 for id 3232 is "Bow (2)".
+3233	Guard	14939	37462	18295	841	Shortbow	Guard (Falador)	Infobox Monster version7 for id 3233 is "Bow (3)".
+195	Bandit Brawler	14933	37369	18294	4153	Granite maul	Bandit Brawler	Melee, Ranged, and Magic Bandit Brawlers wield the granite maul, dark bow, and staff of light respectively, all members-only weapons.
+23158	Bandit Brawler	14937	18321	18294	15486	Staff of light	Bandit Brawler	Melee, Ranged, and Magic Bandit Brawlers wield the granite maul, dark bow, and staff of light respectively, all members-only weapons.
+202	Black Heather	14937	18321	18294	34155	Staff of darkness	Black Heather	She wields a staff of darkness.
+203	Donny the Lad	14935	37371	18299	34150	Lava whip	Donny the Lad	He wields a lava whip and a unique off-hand scimitar.
+204	Speedy Keith	14940	37462	18295	34158	Strykebow	Speedy Keith	He wields a strykebow.
+19875	Iorwerth scout	14921	37374	18292	32222	Crystal dagger	Iorwerth scout	Despite dual-wielding crystal daggers, they are able to use two-handed abilities such as Smash and Quake.
+19877	Iorwerth guard	14932	37373	18294	32219	Crystal halberd	Iorwerth guard	They wield crystal halberds and therefore can hit players from one square away as well as up close.
+19879	Iorwerth guard	14932	37373	18294	32219	Crystal halberd	Iorwerth guard	They wield crystal halberds and therefore can hit players from one square away as well as up close.
+30023	Armoured phantom	14932	37373	18294	3190	Bronze halberd	Armoured phantom	Armoured phantoms' auto-attacks utilise halberd/two-handed sword animations, Slice and Punish despite not utilising adrenaline.
