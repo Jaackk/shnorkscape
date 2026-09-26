@@ -6,9 +6,16 @@ ROOT=Path(__file__).resolve().parents[1]
 class Installer(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.base=Path(tempfile.mkdtemp(prefix='dev-installer-',dir=ROOT/'temp')).resolve()
+        temp_root=ROOT/'temp'
+        temp_root.mkdir(exist_ok=True)
+        cls.base=Path(tempfile.mkdtemp(prefix='dev-installer-',dir=temp_root)).resolve()
         assert cls.base.is_relative_to((ROOT/'temp').resolve())
         cls.manifest=json.loads((ROOT/'protocol-analysis/playability-candidate-20260923.json').read_bytes())
+        candidate=ROOT/'dist'/cls.manifest['candidate']
+        if not candidate.is_dir():
+            raise unittest.SkipTest(
+                'requires the generated staged candidate under dist; source-only clones do not include staged binaries'
+            )
         for name in ('Apply-PlayabilityUpdate.ps1','Start-950Server.ps1','Test-Bundle.ps1','Prepare-ClientCache.ps1'):
             shutil.copyfile(ROOT/name,cls.base/name)
         for entry in cls.manifest['files']:

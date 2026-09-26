@@ -4,16 +4,14 @@ The folder name is a project label, not a licence grant over every included comp
 
 - **OpenNXT source:** the original GNU GPL version 3 text is preserved in `OpenNXT/LICENSE`. Original authorship and copyright comments remain in the source. This bundle includes the current source and an offline build script for its deployed frontend.
 - **Ataraxia source and content:** source and attribution are included, with local migration changes. No project-wide LICENSE/COPYING file or permission granting a new licence was found in the supplied source. Its redistribution terms must be established before publishing it as an open-source release. This package does not relicense that material.
-- **RuneScape native clients and game cache:** third-party Jagex software/assets, separate from the server source's licence. Native binaries are included from the existing local project; their source is not available here. The cache is excluded. OpenRS2's availability of a cache download does not make those game assets open source or grant redistribution rights over them.
-- **Eclipse Temurin/OpenJDK:** Java 8 and Java 25 distributions are included unchanged with their original licence and third-party notices (`runtime/java8/LICENSE`, `runtime/java8/THIRD_PARTY_README`, `runtime/java25/legal`). Source archives included by those distributions remain present.
-- **Gradle 4.9:** its licence and notices remain under `.gradle-ataraxia/wrapper/dists/.../gradle-4.9`. Pinned offline dependencies retain their original metadata and embedded notices.
-- **Kotlin/compiler and runtime libraries:** original JARs are preserved with embedded META-INF licence/notice files where supplied. Dependency versions are visible in filenames and the engine build definition.
+- **RuneScape native clients and game cache:** third-party Jagex software/assets, separate from the server source's licence. They are not tracked in this source repository. OpenRS2's availability of a cache download does not make those game assets open source or grant redistribution rights over them.
+- **Eclipse Temurin/OpenJDK:** local development bundles may use Java 8 and Java 25 distributions under their own licences and notices. Those runtime distributions are not tracked here.
+- **Gradle and offline dependencies:** local wrapper distributions, caches, and binary dependency mirrors retain their own licences and metadata and are excluded from Git.
+- **Kotlin/compiler and runtime libraries:** local compiler and runtime binaries remain subject to their original licences and notices and are excluded from Git. Source build definitions record the versions expected by the project.
 - **Historical third-party data:** content provenance is retained in the source's porting notes, including references to 2009scape combat data. These references are attribution, not a blanket licence assertion.
 
-## Portable snapshot changes
+## Repository distribution
 
-Prepared from the working 950RevTest snapshot on September 12, 2026. The original project was left unchanged. Portable launch/build tools resolve paths from their own folder, and the client initializer regenerates isolated storage paths after a move. The engine and full frontend are rebuilt from the included source.
+This public repository contains source, tests, required source resources, and development tooling. Operational credentials, player saves, client state, caches, logs, implementation backups, native clients, and local build/runtime distributions are excluded. Optional legacy integrations are disabled by default and use empty configuration values. Local protocol keys retained in source are development material for the paired local client, not credentials for a public service. Login is for local development and does not verify passwords.
 
-The portable copy removes embedded operational database/site/donation credentials, token-bearing mailing recipients, fixed privileged legacy account lists and legacy service addresses. Optional legacy integrations are disabled by default and use empty configuration values. Local protocol RSA/TLS keys remain to match the bundled local client; they are development keys, not credentials for a public service. Login is for local development and does not verify passwords.
-
-The matching cache is OpenRS2 2691 (950.1), identified in CACHE.json. Current player saves, client state, caches, private project logs and implementation backups are excluded.
+The matching cache is OpenRS2 2691 (950.1), identified in `CACHE.json`, and must be supplied separately.

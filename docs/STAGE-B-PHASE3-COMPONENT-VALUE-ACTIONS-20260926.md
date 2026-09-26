@@ -127,8 +127,8 @@ real component emits this opcode. The instruction was explicit not to conflate "
 bit 24" with "this fixes Equipment Binding," and the cache evidence bears that caution out: it
 doesn't, because 365:19/20 don't use bit 24 at all.
 
-The actual reported Equipment Binding bug ("weapon changes do not select the bar",
-`SHNORKSCAPE-NEXT-AGENT-HANDOFF.txt:312`) is in `Native950CombatPreferences.equipmentChanged()` /
+The actual reported Equipment Binding bug ("weapon changes do not select the bar") is in
+`Native950CombatPreferences.equipmentChanged()` /
 `boundBar()` — an application-side call-timing or matching issue on an already-working transport,
 unrelated to any missing packet decode.
 

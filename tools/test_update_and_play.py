@@ -7,7 +7,9 @@ PS=Path(os.environ['SystemRoot'])/'System32/WindowsPowerShell/v1.0/powershell.ex
 
 class UpdateAndPlay(unittest.TestCase):
     def run_case(self, case='normal', check=False):
-        with tempfile.TemporaryDirectory(prefix='update-play-',dir=ROOT/'temp') as tmp:
+        temp_root=ROOT/'temp'
+        temp_root.mkdir(exist_ok=True)
+        with tempfile.TemporaryDirectory(prefix='update-play-',dir=temp_root) as tmp:
             root=Path(tmp);(root/'logs').mkdir();events=root/'events.txt'
             def write(name,text): (root/name).write_text(text,encoding='utf-8')
             write('Client-LaunchLock.ps1', """function Enter-950ClientLock($Root) {

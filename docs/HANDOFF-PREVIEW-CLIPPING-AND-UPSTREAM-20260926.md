@@ -25,7 +25,7 @@ The owner approved committing and pushing this state on 2026-09-26, with unfinis
    remaining open questions (per-quest completeness, Grand Exchange audit, opcode 124 semantics,
    `Native950AdmissionBuffer`, and separating real features from evidence programs in the 760
    Artaven-only files).
-7. **Older open items** still stand in `SHNORKSCAPE-NEXT-AGENT-HANDOFF.txt`: Necromancy partial,
+7. **Older open items** remain in the owner-local development handoff: Necromancy partial,
    P0 intermittent keybind death, object previews, remaining console categories/icons, etc.
 
 Status words used: **LIVE** = owner physically tested in the Vulkan client; **LIVE-FAILED**;

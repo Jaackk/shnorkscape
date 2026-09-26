@@ -19,7 +19,7 @@
 - Existing protocol vectors passed against the newly built frontend. Full build compiled 337 Kotlin and 2 Java sources using bundled tools.
 - The live-client guard correctly refused preparation while the normal client was open. All PowerShell launchers parsed under Windows PowerShell.
 
-The full legacy gameplay test suite was not rerun: no gameplay engine source changed. Its previous passing results remain in docs/engine-test-summary.json. This change was limited to the standalone; 950RevTest and AstraNXT source were not changed.
+The full legacy gameplay test suite was not rerun for this historical performance measurement because no gameplay engine source changed. This result covers the standalone cache path only.
 
 ## Scope
 

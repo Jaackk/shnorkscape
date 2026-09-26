@@ -1,14 +1,18 @@
 # 950 cache lists and diagnostic commands
 
-The lists come from the selected local 950 cache, not the old 910 ID tables:
+The locally generated lists come from the selected 950 cache, not the old 910 ID tables. They are
+excluded from the public repository because the authoritative runtime search tables are tracked and
+the raw exports are reproducible:
 
 - ../dumps/items.txt — 63,414 item definitions
 - ../dumps/npcs.txt — 32,762 NPC definitions
 - ../dumps/objects.txt — 140,252 object definitions
 
-Each UTF-8 text file contains ascending IDs and tab-separated names. Unnamed definitions remain listed as <unnamed>. The item list resolves note/lent/bound/shard name templates from this same cache and records variant details. A listed definition can still be a placeholder or conditional form without a standalone world model. See ../dumps/export-report.json for source/output hashes and counts; all strict decoding checks completed with zero errors.
+Each UTF-8 text file contains ascending IDs and tab-separated names. Unnamed definitions remain listed as <unnamed>. The item list resolves note/lent/bound/shard name templates from this same cache and records variant details. A listed definition can still be a placeholder or conditional form without a standalone world model. The local `export-report.json` records source/output hashes and counts; all strict decoding checks completed with zero errors.
 
 Run ../Export-950CacheNames.ps1 to regenerate the three lists. It only reads the cache and writes the exports.
+`Native950CraftingAssetDump` and `Native950FarmingConstructionAssetDump` consume the generated
+`dumps/objects.txt`; run the exporter before using either optional research tool in a source-only clone.
 
 ## In-game commands
 

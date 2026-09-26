@@ -16,4 +16,4 @@ Item-on-item69 validates both backpack1473:5 endpoints, exact slot IDs, distinct
 - Native950ProductionTest covers full-bag replacement, failed multi-output rollback, duplicate-input accounting, stack overflow/preview immutability, controller refusal, quantity bounds, tool retention/loss and cancellation.
 - Native950ProductionAcceptance exercises encrypted native actions through the production menu, original scheduler, resource use, native UPDATE_STAT and save capture. See production-acceptance-950.md.
 
-Use PLAYTEST-950.md for the user-facing checks. Smelting, Fishing/Cooking and Prayer have independent cache admission, original-data provenance and acceptance documents in this folder.
+The user-facing playtest checklist is retained in the owner-local history. Smelting, Fishing/Cooking and Prayer have independent cache admission, original-data provenance and acceptance documents in this folder.

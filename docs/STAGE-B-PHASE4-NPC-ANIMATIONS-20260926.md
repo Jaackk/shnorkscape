@@ -145,7 +145,7 @@ resource files; base1187f44 is not represented as containing this uncommitted im
 No direct `-Deploy`, Kotlin rebuild or runtime jar replacement was necessary for this additive,
 Java/resources-only change. This preserves the running installation until the owner applies it.
 
-Additional tracked reporting files: this document, `SHNORKSCAPE-NEXT-AGENT-HANDOFF.txt`,
+Additional public reporting files: this document,
 `protocol-analysis/stage-b-phase4-20260926.json`,
 `protocol-analysis/stage-b-phase4-animation-coverage-20260926.txt`, and the existing
 `protocol-analysis/playability-candidate-20260923.json`. The standalone acceptance tool is intentional

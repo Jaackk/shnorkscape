@@ -1,78 +1,81 @@
-# 950OpenSource — portable local 950 project
+# Shnorkscape
 
-This Windows x64 bundle contains the current 950 server, both Windows client renderers, server source, gameplay data, Java runtimes and offline build dependencies. Supply the cache separately. Every launch enables all currently implemented content.
+Shnorkscape is a revision 950 RuneScape 3 private-server development project
+built from the Ataraxia and OpenNXT lineage. It combines a Java gameplay engine
+with the Kotlin/Java OpenNXT frontend, exact-cache protocol bindings, automated
+tests, and native-client development tooling.
 
-## Current update
+The project has moved substantially beyond its original base. Implemented areas
+include modern combat foundations, Necromancy resources and conjures, native
+buff and action-bar integration, banking and equipment tools, broad skilling and
+world content, and a native Developer Console. Coverage is still incomplete:
+some bosses, quests, encounters, presentation bindings, and retail edge cases
+remain under development.
 
-2026-09-20: normal **Play.cmd** now selects the unchanged, live-proven V5 Vulkan
-workspace client and starts/requires the explicit Jaxa-only capture/restore
-server profile. No separate manual diagnostic launch is needed. This build is
-hash/path pinned to `C:\Games\950OpenSource`; it must not silently regenerate or
-fall back if assets differ. See [production launch verification](docs/NATIVE-950-PLAY-WORKSPACE-LAUNCH.md).
-OpenGL remains explicit and does not support V5 automatic workspace capture.
+## Requirements
 
-Updated from the main project on 12 September 2026. See [update notes](docs/UPDATE-2026-09-12.md) for included work and known UI issues. The older archive was moved outside this folder during the privacy cleanup. Read [the privacy check](PRIVACY-CHECK.md), then create a fresh archive before launching again.
+The proven development profile currently targets Windows x64 and the workspace
+path `C:\Games\950OpenSource`. It uses OpenRS2 cache **2691** (English revision
+950.1). Download its
+[Flat file archive](https://archive.openrs2.org/caches/runescape/2691/flat-file.tar.gz)
+and extract it into the repository so `cache\255\12.dat` exists.
 
-## Play
+Runtime JDKs, the Kotlin compiler, native clients, client patches, and dependency
+JARs are deliberately excluded from Git because they are generated, local, or
+third-party material. The normal local development bundle supplies them under
+`runtime`, `compiler`, `client`, `patches`, `dependencies`, and
+`OpenNXT/runtime`. A source clone needs equivalent local prerequisites before it
+can use the bundled Windows scripts. See [licensing and provenance](LICENSING.md)
+before distributing a runnable bundle.
 
-For staged updates, double-click **[Update and Play.cmd](Update%20and%20Play.cmd)**.
-It checks the update first, closes this bundle's local clients, stops the server,
-applies the update with its normal backup/rollback, then waits for the server to
-be ready before opening the game. Existing LAN mode is retained. No separate
-Stop/Apply/Play steps are needed. If any step fails, later steps do not run.
-`Update and Play.cmd -CheckOnly` checks readiness without stopping or installing.
-Other installations are never stopped; a still-connected remote client must log
-out before this server can be stopped safely.
+## Build
 
-1. Keep this proven V5 production build at `C:\Games\950OpenSource`. Moving it requires a separately validated build; the normal launcher fails closed on another path.
-2. Download **Cache (Flat file)** from [OpenRS2 cache 2691 — English 950.1, September 7, 2026](https://archive.openrs2.org/caches/runescape/2691). [Direct download](https://archive.openrs2.org/caches/runescape/2691/flat-file.tar.gz).
-3. Extract the archive **into this project folder**. It already contains `cache`. The result must include `cache\255\12.dat`, not `cache\cache\255\12.dat`. Allow about 24 GB for the extracted server cache, plus space for the download and the client's own local cache.
-4. Double-click **Play.cmd**. No Java, Python, database, IDE or build-tool installation is required. If your graphics hardware lacks Vulkan support, use **Play-OpenGL.cmd**. A suitable installed graphics driver is required.
-5. Enter a local username and any disposable password, select **World 1**, and press **Play Now**. Characters are created automatically. Use the same username to resume that character.
-
-This is a local development login: passwords are **not verified**. Do not enter real account credentials. The server binds to this computer's loopback address `127.0.0.2`, on ports 8950/43650 and HTTP alias 80. Stop another copy using these ports first. The launcher identifies a conflicting server and its folder. Each folder's Stop button stops only its own copy. If another copy is running, use the Stop launcher in that other folder before Play.cmd here.
-
-**Stop.cmd** closes this bundle's server and client. **Check-Setup.cmd** checks tools and cache compatibility. Launch errors remain visible; details are in `logs`.
-
-With Windows' built-in extractor, run this from the project folder, replacing the archive path:
+Stop the local server and clients, then run:
 
 ```powershell
-tar -xzf "C:\Downloads\flat-file.tar.gz" -C .
+.\Build-All.ps1
 ```
 
-Use cache **2691**. Cache **2687** is also revision 950.1 but has different scripts. Launch checks reject incompatible cache data.
+`Build-All.cmd` is the double-click entry point. The build runs the Ataraxia
+tests, builds the OpenNXT frontend and revision-950 overrides, and verifies the
+protocol and JS5 payload. Individual build scripts remain available for focused
+work.
 
-## First launch and new areas
+## Run
 
-Play.cmd now prepares the client's startup assets directly from the supplied flat cache before opening the game. This is automatic, uses the bundled Java runtime and needs no internet. A fresh preparation imports 28,579 startup groups and 45 reference tables into roughly 40 MB of client databases. On the development machine it took about 27 seconds; the isolated prepared client then reached the login screen within 11 seconds. Timings vary with the device and filesystem cache.
+With the local prerequisites and cache in place, use `Play.cmd`. It starts the
+complete local profile and the validated Vulkan client. `Play-OpenGL.cmd` is the
+explicit fallback renderer. `Stop.cmd` stops only processes recorded for this
+workspace, and `Check-Setup.cmd` validates the local bundle.
 
-Later launches use a completion marker and skip the import. Existing valid assets are reused; settings, shaders and characters are preserved. If you need to recheck/rebuild the prepared startup assets, close this client's window and run **Prepare-ClientCache.cmd**. It resumes safely after an interrupted preparation. It refuses to write while this copy's client is open.
+`Update and Play.cmd` is the developer workflow for an already prepared staged
+candidate: it checks, stops, applies with rollback protection, waits for server
+readiness, and launches the client. It is not required for a normal source build.
 
-`cache` contains the server's original game files; `client-state` contains the client's native databases. Keep `client-state` between sessions. World models, textures, audio and other assets outside the startup set still arrive from the local server as needed. The server now forwards compressed cache payloads without unnecessarily decompressing them first. This improves the transfer path but does not preload the entire world or promise an eleven-second first visit to every area.
+The login service is for local development. Use a disposable password; do not
+enter credentials used anywhere else. Character saves, cache data, logs, client
+state, and local configuration are ignored by Git.
 
-## Move and back up
+## Repository layout
 
-Use Stop.cmd before backing up or zipping. The current pinned V5 production path
-is not automatically relocatable; do not apply the older portable-client recipe
-to it. Keep `workspace-state950` alongside character and client-state backups.
+- `Ataraxia950/` — gameplay engine, content, resources, and tests.
+- `OpenNXT/` — frontend, protocol, cache-serving, and launcher source.
+- `protocol-analysis/` — revision-specific inputs and durable technical evidence.
+- `tools/` — reproducible cache, protocol, staging, and diagnostic tools.
+- `docs/` — maintained architecture, workflow, and subsystem documentation.
 
-Characters live in `players\modern950\players`; client preferences and its local cache live in `client-state`. Keep these when backing up your own game. This initial bundle contains no existing characters or client state. Logs and temporary files also stay here.
+Useful starting points include the
+[engineering workflow](docs/AI-ENGINEERING-WORKFLOW.md),
+[native UI capability reference](docs/DEV-UI-NATIVE-CAPABILITIES-950.md),
+[client initialization guide](docs/README-client-initialization.md),
+[custom boss template](docs/CUSTOM-BOSS-TEMPLATE.md), and
+[Artaven comparison](docs/SHNORKSCAPE-ARTAVEN-COMPARISON-20260926.md).
 
-For a fresh shareable copy, exclude contents of `cache`, `client-state`, `players`, `server-home`, `logs` and `temp`. Keep CACHE.json and this README for the matching cache instructions. Review LICENSING.md before public distribution.
+## Project and licensing status
 
-## Build and develop
-
-After stopping this bundle, double-click **Build-All.cmd**. It builds/tests the Java gameplay engine, builds the full Kotlin/Java OpenNXT frontend and rebuilds the current 950 overrides, then runs protocol and cache-transfer checks. It uses the included Java 8, Java 25, Kotlin compiler and pinned offline dependencies. The normal build needs no internet.
-
-- `Ataraxia950`: gameplay engine, skills, tests and content data.
-- `OpenNXT/src`: frontend/protocol/cache-serving source, including generated mappings.
-- `OpenNXT/runtime/lib`: prebuilt server and dependencies.
-- `patches/classes`: compiled 950 overrides, rebuilt by Build-950Lobby.ps1.
-- `tools`: porting and diagnostic source. Optional historical Python research tools require Python and their imports; normal play and Build-All do not.
-- `runtime`, `compiler`, `.gradle-ataraxia`: included build/runtime tools.
-- `dependencies/maven`: portable offline dependencies; build indexes regenerate locally.
-- `docs/history`: prior porting notes, retained as historical context. This README is the portable bundle's entry point.
-
-This is the current migration snapshot, not a complete implementation of every RuneScape system. Implemented skills, interfaces, banking, equipment, combat, drops/XP, teleports and world NPC population are included. Legacy source beyond the ported systems remains available for further development. Local diagnostic commands are enabled, including `;;item <id> <quantity>`, `;;npc <id>` and `;;obj <id>`.
-
-See LICENSING.md for component ownership and VALIDATION.md for package checks.
+This repository is an active research and development snapshot rather than a
+claim of complete RuneScape parity. Revision-specific IDs and contracts are
+pinned to the paired cache where evidence exists; incomplete systems should be
+treated as such. Component ownership and redistribution constraints are detailed
+in [LICENSING.md](LICENSING.md). The RuneScape client and cache are third-party
+assets and are not licensed by this repository.

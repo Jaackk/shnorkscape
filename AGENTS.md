@@ -23,6 +23,19 @@ files in this project. This includes code, configuration, scripts and docs.
 Protect Jaxa's character. Do not alter unrelated games or their worlds. This rule
 is agent guidance, not an OS-level lock against manual or external edits.
 
+# Local file preservation
+
+AI agents must never delete, prune, move, or clean files from the owner's local
+Shnorkscape workspace merely because those files are unnecessary for GitHub.
+Public repository cleanup means removing unnecessary files from Git tracking and
+ignoring them while preserving the owner's local copies. Local deletion requires
+explicit owner permission.
+
+This applies to prompts, AI handoffs, research, protocol evidence, screenshots,
+diagnostic output, backups, generated reports, historical notes, staging
+artefacts, temporary analysis, development helpers, and other local workspace
+material.
+
 # Git attribution
 
 AI agents must never add themselves, their AI company, a bot, or any AI tooling

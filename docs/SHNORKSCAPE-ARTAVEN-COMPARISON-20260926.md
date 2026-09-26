@@ -237,9 +237,9 @@ Treat it as high-risk: it needs strong evidence and focused tests before any cha
 
 ## 6. Shnorkscape functionality and validation status
 
-Status is taken from Shnorkscape's `SHNORKSCAPE-NEXT-AGENT-HANDOFF.txt` status words (IMPLEMENTED /
-AUTOMATED-TESTED / LIVE-CONFIRMED / LIVE-FAILED / NOT TESTED) and from git history. It was not re-run
-here.
+Status was taken from the local development handoff's IMPLEMENTED /
+AUTOMATED-TESTED / LIVE-CONFIRMED / LIVE-FAILED / NOT TESTED labels and from git history. The local
+handoff is deliberately excluded from the public repository, and the status was not re-run here.
 
 | System | Where | Status |
 |---|---|---|

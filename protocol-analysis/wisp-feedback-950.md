@@ -16,6 +16,6 @@ The companion compass correction mounts1919 at1465:12 with permanent HUD type1 i
 
 Native950NpcSkillsAcceptance adds an encrypted level1 Harvest click with28 occupied slots, existing Pale energy and an existing memory. The new assertion failed against the old behavior with both the capacity message and generic message decoded. It requires exactly one unfiltered capacity explanation, no item/XP change on refusal, successful harvesting after freeing a memory slot, and one clear capacity explanation when that slot fills again. A higher-tier wisp must retain its specific level10 refusal.
 
-Native950UiAcceptance now runs the real compass bootstrap and verifies the permanent type from encrypted IF_OPENSUB output while exercising Settings, Escape and world-map modal handling. These tests do not render the client. Final deployment/validation results are recorded in HANDOFF-950.md.
+Native950UiAcceptance now runs the real compass bootstrap and verifies the permanent type from encrypted IF_OPENSUB output while exercising Settings, Escape and world-map modal handling. These tests do not render the client. Chronological deployment records remain owner-local.
 
 Backups: implementation-backup/2026-09-12-wisp-compass; compass originals separately in implementation-backup/2026-09-12-compass-modal-fix.
