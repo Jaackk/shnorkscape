@@ -32,8 +32,8 @@ public final class Native950ActionsTest {
             assertTrue("opcode " + opcode + " is implemented but not reported as such",
                     Native950Actions.isImplemented(opcode));
         }
-        // 55 rows: 10 IF_BUTTON + 6 object + 6 NPC + 10 player + 6 ground item + 17 singles.
-        assertEquals(59, Native950Actions.implementedOpcodes().length);
+        // 60 rows: 10 IF_BUTTON + 6 object + 6 NPC + 10 player + 6 ground item + 22 singles.
+        assertEquals(60, Native950Actions.implementedOpcodes().length);
         int previous = -1;
         for (int opcode : Native950Actions.implementedOpcodes()) {
             assertTrue("duplicate or unsorted opcode " + opcode, opcode > previous);

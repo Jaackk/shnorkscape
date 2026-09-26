@@ -105,6 +105,25 @@ public final class Native950Actions {
     private static final int ITEM_ON_OBJECT_OPCODE = 90, ITEM_ON_NPC_OPCODE = 19, ITEM_ON_PLAYER_OPCODE = 102;
     /** Selected component on a ground tile, size13; exact950 writer0x1400e4e34..0x1400e4f5b. */
     private static final int INTERFACE_ON_TILE_OPCODE = 85;
+    /**
+     * Native component value/selection change (a settings text field commit or a "bar"
+     * stepper's resulting value), size 11. Sender 950 {@code 0x1401a9e80}: the descriptor at
+     * {@code 0x140e94aa0} (base + 16*124) confirms the opcode independently of
+     * {@link Native950Protocol#clientSize}. Its caller, the event router at 950
+     * {@code 0x1401a91c0}, gates dispatch on a component lookup (950 {@code 0x1401a1070},
+     * the same interface-id/component-id hashed lookup {@code IComponentDefinitions} decodes)
+     * whose result's byte 3 is tested {@code &1} - bit 24 of that component's
+     * {@code activeProperties.settings}, i.e. {@code IF_SETEVENTS}. Of the 104,285 real 950
+     * components, only 10 set that bit: six type-13 native text inputs (each carrying an
+     * {@code additionalHooks[1]} tagged {@code "event_text"}, a separate string-carrying
+     * contract) and two type-16 "bar" pairs (interfaces 590 and 1438, components 7/8 and
+     * 18/19), whose {@code additionalHooks[2]} is the more plausible source of this integer
+     * value/slot change. Neither settings-page row 365:19 nor 365:20 (the existing Equipment
+     * Binding row-select/value protocol, {@link com.rs.game.player.client.Native950Settings})
+     * sets this bit; that feature already runs over ordinary {@code IF_BUTTON} and is
+     * unrelated to this opcode. See docs/STAGE-B-PHASE3-COMPONENT-VALUE-ACTIONS-20260926.md.
+     */
+    private static final int COMPONENT_VALUE_OPCODE = 124;
 
     /**
      * Rows whose framing is known but whose <em>meaning</em> is not derived on 950. They are listed
@@ -189,6 +208,7 @@ public final class Native950Actions {
                     : opcode == PAUSE_BUTTON_OPCODE ? (Action) PauseButtonAction.INSTANCE
                     : CloseModalAction.INSTANCE;
         }
+        if (opcode == COMPONENT_VALUE_OPCODE) return decodeComponentValue(payload);
         if (opcode == COUNT_DIALOGUE_OPCODE) return decodeCountDialogue(payload);
         if (opcode == STRING_DIALOGUE_OPCODE || opcode == NAME_DIALOGUE_OPCODE)
             return decodeStringDialogue(opcode, payload);
@@ -229,7 +249,7 @@ public final class Native950Actions {
                 || opcode == CLOSE_MODAL_OPCODE || opcode == KEEP_ALIVE_OPCODE
                 || opcode == DIALOGUE_CLICK_OPCODE || opcode == MUSIC_ENDED_OPCODE
                 || opcode == WINDOW_REPORT_OPCODE || opcode == MAP_BUILD_REPORT_OPCODE
-                || opcode == WORLDLIST_FETCH_OPCODE || isChatOpcode(opcode);
+                || opcode == WORLDLIST_FETCH_OPCODE || opcode == COMPONENT_VALUE_OPCODE || isChatOpcode(opcode);
     }
 
     /** The two huffman-compressed client rows; the transport gives them their own drop lane. */
@@ -248,7 +268,7 @@ public final class Native950Actions {
      */
     public static int[] implementedOpcodes() {
         int[] all = new int[INTERFACE_OPCODES.length + OBJECT_OPCODES.length + NPC_OPCODES.length
-                + PLAYER_OPCODES.length + GROUND_ITEM_OPCODES.length + 21];
+                + PLAYER_OPCODES.length + GROUND_ITEM_OPCODES.length + 22];
         int at = 0;
         for (int opcode : INTERFACE_OPCODES) all[at++] = opcode;
         for (int opcode : OBJECT_OPCODES) all[at++] = opcode;
@@ -260,7 +280,8 @@ public final class Native950Actions {
                 NAME_DIALOGUE_OPCODE, PAUSE_BUTTON_OPCODE, CLOSE_MODAL_OPCODE,
                 MESSAGE_PUBLIC_OPCODE, MESSAGE_PRIVATE_OPCODE, MUSIC_ENDED_OPCODE,
                 WINDOW_REPORT_OPCODE, MAP_BUILD_REPORT_OPCODE, WORLDLIST_FETCH_OPCODE, ITEM_ON_ITEM_OPCODE,
-                ITEM_ON_OBJECT_OPCODE, ITEM_ON_NPC_OPCODE, ITEM_ON_PLAYER_OPCODE, INTERFACE_ON_TILE_OPCODE};
+                ITEM_ON_OBJECT_OPCODE, ITEM_ON_NPC_OPCODE, ITEM_ON_PLAYER_OPCODE, INTERFACE_ON_TILE_OPCODE,
+                COMPONENT_VALUE_OPCODE};
         for (int opcode : singles) all[at++] = opcode;
         Arrays.sort(all);
         return all;
@@ -358,6 +379,36 @@ public final class Native950Actions {
         int hash = ((payload[3] & 255) << 16) | ((payload[4] & 255) << 24)
                 | (payload[5] & 255) | ((payload[6] & 255) << 8);
         return new InterfaceAction(option, hash, sentinel16(shortBE(payload, 7)), sentinel24(item));
+    }
+
+    /**
+     * Component value/selection, size 11. Sender 950 {@code 0x1401a9e80} (see
+     * {@link #COMPONENT_VALUE_OPCODE}), traced instruction-by-instruction:
+     *
+     * <pre>
+     *   b0      value &gt;&gt;&gt; 8            0x1401a9ee0 sar ecx,8 on the stack-passed value arg
+     *   b1      value &amp; 255            0x1401a9f06 mov byte[cursor],r8b (still the original value)
+     *   b2      value &gt;&gt;&gt; 24           0x1401a9f11 sar ecx,0x18
+     *   b3      value &gt;&gt;&gt; 16           0x1401a9f14 sar r8d,0x10; byte written is now r8b
+     *   b4,b5   slot, big-endian u16    0x1401a9f47..f65: register byte-swapped before the store
+     *   b6..b9  hash, little-endian i32 0x1401a9f7e..fc1: dil/edi shifted 0,8,16,24 in that order
+     *   b10     0x80 - selected(0/1)    0x1401a9fc5 mov ecx,0x80; 0x1401a9fce sub cl,[flag]
+     * </pre>
+     *
+     * <p>The caller (event router 950 {@code 0x1401a91c0}) gates on {@code IF_SETEVENTS} bit 24;
+     * see the field note on {@link #COMPONENT_VALUE_OPCODE}. hash and slot use the same 65535/-1
+     * sentinel convention as {@link InterfaceAction}.
+     */
+    private static ComponentValueAction decodeComponentValue(byte[] payload) {
+        if (payload == null || payload.length != 11) return null;
+        int value = ((payload[2] & 255) << 24) | ((payload[3] & 255) << 16)
+                | ((payload[0] & 255) << 8) | (payload[1] & 255);
+        int slot = shortBE(payload, 4);
+        int hash = ((payload[9] & 255) << 24) | ((payload[8] & 255) << 16)
+                | ((payload[7] & 255) << 8) | (payload[6] & 255);
+        int flag = (128 - (payload[10] & 255)) & 255;
+        if (flag > 1) return null;
+        return new ComponentValueAction(hash, sentinel16(slot), value, flag == 1);
     }
 
     /**
@@ -841,6 +892,27 @@ public final class Native950Actions {
         public int slot() { return slot; }
         /** -1 is the absent-item sentinel; this is an untrusted client claim. */
         public int itemId() { return itemId; }
+    }
+
+    /**
+     * A native component reporting a resulting value/selection, opcode 124. {@code slot} is the
+     * dynamic child index the client targeted, or -1 for a component without one (the native
+     * 65535 sentinel, matching {@link InterfaceAction#slot()}). {@code value} is the client's
+     * unvalidated int payload (a stepper's new count, or similar); {@code selected} is the
+     * accompanying flag byte, decoded true only for its one valid alternate encoding.
+     */
+    public static final class ComponentValueAction implements Action {
+        private final int componentHash, slot, value;
+        private final boolean selected;
+        private ComponentValueAction(int componentHash, int slot, int value, boolean selected) {
+            this.componentHash = componentHash; this.slot = slot; this.value = value; this.selected = selected;
+        }
+        public int componentHash() { return componentHash; }
+        public int interfaceId() { return componentHash >>> 16; }
+        public int componentId() { return componentHash & 65535; }
+        public int slot() { return slot; }
+        public int value() { return value; }
+        public boolean selected() { return selected; }
     }
 
     public static final class ObjectAction implements Action {

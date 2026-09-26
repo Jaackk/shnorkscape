@@ -189,13 +189,15 @@ parser, and `Ataraxia950/game/com/rs/tools/InterfaceFullDumper.java` is also a d
 records exact, previously 14,415 threw). Evidence, classification and tests:
 `docs/STAGE-B-PHASE2-COMPONENT-DECODER-20260926.md`.
 
-### 5.4 Component value actions (VERIFIED-CODE exists; semantics UNVERIFIED here)
+### 5.4 Component value actions — INVESTIGATED 2026-09-26 (Stage B Phase 3, uncommitted pending approval)
 
 `Ataraxia950/network/com/rs/network/protocol/modern950/Native950ComponentValueActions.java` defines
-`OPCODE=124`. Codex previously noted an 11-byte selection message and IF_SETEVENTS bit 24.
-
-Possibly relevant to Shnorkscape's unresolved Action Bar equipment binding, and a candidate transport
-for reporting client-side control values. Establish exact semantics before use.
+`OPCODE=124`. Independently disassembled and confirmed exact (sender 950 `0x1401a9e80`, router
+`0x1401a91c0` gating on `IF_SETEVENTS` bit 24 via the same component-hash lookup the Phase 2 decoder
+uses). Decode support adopted into `Native950Actions`. **Not** relevant to Action Bar equipment
+binding: interface 365 components 19/20 (that feature's actual transport, over ordinary `IF_BUTTON`)
+do not set bit 24. Full derivation, the 10 real components that do set it, and what remains open:
+`docs/STAGE-B-PHASE3-COMPONENT-VALUE-ACTIONS-20260926.md`.
 
 ### 5.5 Grand Exchange (VERIFIED-CODE, behaviour summary only)
 
@@ -300,7 +302,7 @@ identities, not raw wire values.
    1. ~~Region identity removal (5.1)~~ **ADOPTED 2026-09-26**
    2. ~~NPC viewport identity set (5.2)~~ **ADOPTED 2026-09-26**
    3. ~~IComponentDefinitions (5.3)~~ **ADOPTED 2026-09-26** (Phase 2)
-   4. Component value actions (5.4)
+   4. ~~Component value actions (5.4)~~ **INVESTIGATED 2026-09-26** (Phase 3, decode-only)
    5. NPC animation/metadata tables
    6. housing placement contracts
    7. Grand Exchange (audit first)

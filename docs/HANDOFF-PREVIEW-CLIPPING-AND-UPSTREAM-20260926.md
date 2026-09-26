@@ -206,7 +206,14 @@ Full technical report: `docs/SHNORKSCAPE-ARTAVEN-COMPARISON-20260926.md`.
 Artaven's snapshot is at `C:\Games\UpdatedAuthorFiles\950OpenSource-2026-09-25\950OpenSource` (READ-ONLY).
 Key verified findings:
 
-- **Decoder.** Artaven's `IComponentDefinitions` supports modern widget types 10–16 and format 9/11 hooks.
+- **Decoder.** Artaven's `IComponentDefinitions` supports modern widget types 10–16 and format 9/11 hooks. Adopted (Stage B Phase 2).
+- **Opcode 124.** Native component value/selection. Wire contract independently verified against
+  the client binary; Shnorkscape now decodes it (decode-only, no gameplay consumer added). Confirmed
+  NOT the missing mechanism for Action Bar Equipment Binding — interface 365 components 19/20 (that
+  feature's real transport) don't set the gating bit. The actual Equipment Binding bug
+  (`Native950CombatPreferences.equipmentChanged()`/`boundBar()`, weapon changes not selecting the
+  bar) remains open. Live semantics of the 10 real components that do set the bit are unproven
+  without a packet capture. See docs/STAGE-B-PHASE3-COMPONENT-VALUE-ACTIONS-20260926.md.
 - **Grand Exchange.** Real order book with optional `grandExchange.autoFill` system liquidity.
 - **Souls.** Artaven clamps souls to capacity; ours intentionally does not. Keep ours.
 

@@ -7,8 +7,10 @@ jar -Deploy -> Build-950Lobby -> manifest jar re-pin -> stage_developer_v3.py ->
 -> owner runs Update and Play. Stale jar pins make ;;dev throw IllegalStateException.
 Artaven snapshot (READ-ONLY): C:\Games\UpdatedAuthorFiles\950OpenSource-2026-09-25\950OpenSource
 Comparison: docs/SHNORKSCAPE-ARTAVEN-COMPARISON-20260926.md. Stage B Phase 1 (Region/NPC viewport
-identity, 1d8ca70) and Phase 2 (IComponentDefinitions decoder; docs/STAGE-B-PHASE2-COMPONENT-DECODER-20260926.md)
-done. Later phases only when the owner says CONTINUE TO ARTAVEN AUDIT.
+identity, 39240df), Phase 2 (IComponentDefinitions decoder; docs/STAGE-B-PHASE2-COMPONENT-DECODER-20260926.md)
+and Phase 3 (opcode 124 component-value decode, NOT relevant to Equipment Binding;
+docs/STAGE-B-PHASE3-COMPONENT-VALUE-ACTIONS-20260926.md) done. Later phases only when the owner says
+CONTINUE TO ARTAVEN AUDIT.
 
 DEVELOPER CONSOLE V3 POLISH CHECKPOINT - 2026-09-25
 The V3 user prompt explicitly authorized deployment/start and physical Vulkan testing.
