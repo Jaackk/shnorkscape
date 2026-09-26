@@ -311,8 +311,8 @@
   "sourceCommit": "1187f447f97b1db3ad0804ffa7a6508eb148dfa9",
   "validationReport": "protocol-analysis/stage-b-phase4-20260926.json",
   "liveChecklist": "docs/STAGE-B-PHASE4-NPC-ANIMATIONS-20260926.md",
-  "liveAcceptance": "READY FOR USER TEST: Stage B Phase 4 preview-only animation fallback; no visual acceptance claimed.",
-  "sourceState": "uncommitted; owner approval required before commit/push",
+  "liveAcceptance": "USER TEST PASSED 2026-09-26: owner approves Phase4 preview animations; inferred mappings remain inferred",
+  "sourceState": "owner-approved Phase4 implementation; source hashes identify the tested checkpoint",
   "sourceFilesSha256": {
     "Ataraxia950/game/com/rs/game/player/client/Native950CombatInspector.java": "E1A9992DD71EBA157C0D8F4223D400F6A5B3A147EAB4BEDAF6D9C4E8DD01EABC",
     "Ataraxia950/game/com/rs/game/player/client/Native950DeveloperPreview.java": "583DDBABAA060241950CDE062CD93A141628C7666EAEFFBC802B9378EA41E85C",

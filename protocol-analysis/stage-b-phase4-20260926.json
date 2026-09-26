@@ -1,7 +1,7 @@
 {
-  "status": "READY FOR USER TEST",
+  "status": "USER TEST PASSED - APPROVED",
   "baseCommit": "1187f447f97b1db3ad0804ffa7a6508eb148dfa9",
-  "sourceState": "uncommitted; owner approval required before commit/push",
+  "sourceState": "owner-approved Phase4 implementation; source hashes identify the tested checkpoint",
   "sourceFilesSha256": {
     "Ataraxia950/game/com/rs/game/player/client/Native950CombatInspector.java": "E1A9992DD71EBA157C0D8F4223D400F6A5B3A147EAB4BEDAF6D9C4E8DD01EABC",
     "Ataraxia950/game/com/rs/game/player/client/Native950DeveloperPreview.java": "583DDBABAA060241950CDE062CD93A141628C7666EAEFFBC802B9378EA41E85C",
@@ -33,9 +33,9 @@
   },
   "preflight": "PASS fresh JVM, built classes and staged jar; both tables",
   "consoleVerification": "PASS staged jar against installed cache",
-  "visualAcceptance": "USER TEST PENDING; no client automation performed",
+  "visualAcceptance": "2026-09-26: owner physically tested new NPC preview animations and found them acceptable for now; individual NPC outcomes not supplied; inferred mappings remain inferred",
   "stagedJarSha256": "CB5A1B7E3B2FC3A16FB2DE731A8159636658E5C8F3D7C30B797C69F95192941E",
-  "deployment": "STAGED ONLY; runtime untouched; owner runs Update and Play.cmd",
+  "deployment": "Candidate built/staged; owner reports physical test passed; no agent restart during approval checkpoint",
   "unchangedNonJarArtifacts": 50,
   "slayer": "Inspector param50 + legacy name match only; no Slayer table import",
   "upstreamReference": "C:/Games/UpdatedAuthorFiles/950OpenSource-2026-09-25/950OpenSource (read-only)",

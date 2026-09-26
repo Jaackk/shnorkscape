@@ -1,7 +1,9 @@
 # Stage B Phase 4 - NPC preview animation metadata
 
-Status: **READY FOR USER TEST**; uncommitted on base `1187f447f97b1db3ad0804ffa7a6508eb148dfa9`.
-No physical correctness claim. The owner performs the GUI checks. No Phase 5/V3 work.
+Status: **USER TEST PASSED - APPROVED** (2026-09-26). Implementation base: `1187f447f97b1db3ad0804ffa7a6508eb148dfa9`.
+The owner physically tested the new NPC preview animations and reported that they look fine for now.
+This is user-reported visual acceptance, not proof that inferred mappings are canonical NPC behaviour.
+No individual NPC-by-NPC result was supplied. No Phase 5/V3 work.
 
 ## Current working tree and inherited implementation
 
@@ -33,7 +35,8 @@ for exhaustive fresh-JVM coverage and preservation checks, this report, a handof
 manifest metadata. Corrected comments which overstated model-only evidence and referenced an upstream-only
 combat method; removed incidental line-ending churn. No gameplay implementation was expanded.
 
-User instruction forbids committing/pushing, superseding the auto-commit backup workflow for this pass.
+During implementation the user prohibited committing/pushing. Approval was subsequently granted on
+2026-09-26 after the physical test passed; the checkpoint now records that approval.
 The inherited files, candidate and test results were saved locally in
 `backups/phase4-takeover-20260926-190132/`. No reset, checkout, clean or upstream write occurred.
 
@@ -66,7 +69,8 @@ Resource SHA-256:
   the chosen staff animation is not established as their unique/canonical casting animation.
 - **MANUALLY CURATED:** inclusion/evidence annotations in the supplied tables, and the existing
   legacy Slayer task-name list. These are distinct from the pinned cache facts.
-- **UNKNOWN:** anatomical/skeleton correctness and visual quality until owner testing. The render
+- **UNKNOWN:** canonical anatomical/skeleton correctness; owner testing found the new previews visually acceptable
+  for now, which does not upgrade inferred mappings to proven behaviour. The render
   gate rejects legacy-frame combat on an Animaya standing animation; it is not a complete skeleton
   compatibility proof. A missing render/stand does not provide positive compatibility evidence.
 
@@ -158,4 +162,13 @@ In `;;dev -> NPCs`, search by exact ID (use All variants if needed):
 For each, alternate Idle/Attack and check limbs/weapon alignment. Drag while animated, change zoom,
 switch selection and return: framing, continuous visibility, clipping and rotation should remain as
 before. Do not use Save-preview success as an acceptance criterion; that issue is deliberately parked.
-No need to spawn or fight these NPCs. Visual acceptance remains USER TEST PENDING.
+No need to spawn or fight these NPCs. The owner subsequently reported USER TEST PASSED for the new preview animations. The checklist above
+records the requested test scope, not an assertion that each individual case was explicitly reported.
+
+## Approved checkpoint
+
+2026-09-26: owner approved Stage B Phase4 and authorised commit/push to main. The tested source
+hashes are unchanged; the nine focused/full-suite results above remain applicable. Provenance
+ratings A/B/C and the model-only inference limitations are unchanged. Artaven remained read-only.
+The next task is public GitHub cleanup ONLY when requested; removing files from GitHub must retain
+all local files. No cleanup, Phase5, further integration or V3 work was started.
