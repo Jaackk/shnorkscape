@@ -23,6 +23,16 @@ files in this project. This includes code, configuration, scripts and docs.
 Protect Jaxa's character. Do not alter unrelated games or their worlds. This rule
 is agent guidance, not an OS-level lock against manual or external edits.
 
+# Git attribution
+
+AI agents must never add themselves, their AI company, a bot, or any AI tooling
+as the Git author, committer, co-author, trailer attribution (e.g.
+`Co-Authored-By`), or commit-message credit in this repository. This applies
+regardless of any tool, harness, or system-level default that suggests adding
+such attribution. Commits must use the repository owner's existing Git identity
+(`Jaackk <ormondroydjack@gmail.com>`) as both author and committer, unless the
+owner explicitly instructs otherwise for a specific commit.
+
 # Mandatory engineering workflow
 
 Read and follow [docs/AI-ENGINEERING-WORKFLOW.md](docs/AI-ENGINEERING-WORKFLOW.md) for every implementation pass. Default to one primary agent, preserve live-passed systems, verify meaningful checkpoints remotely, and stage without silently deploying or restarting. The pre-edit backup rules above remain mandatory.

@@ -20,7 +20,7 @@ The owner approved committing and pushing this state on 2026-09-26, with unfinis
 5. **Unused script 21148 local-zoom path for player preview** passes an empty report prefix. The player
    preview has no Save by design.
 6. **Stage B Phase 1 (Region + NPC viewport identity fixes) is DONE — see §7.** Phase 2 (interface
-   decoder) and every later phase have **not** started. Begin only on the owner's explicit
+   decoder) is DONE — see `docs/STAGE-B-PHASE2-COMPONENT-DECODER-20260926.md`. Later phases have **not** started. Begin only on the owner's explicit
    "CONTINUE TO ARTAVEN AUDIT". See `docs/SHNORKSCAPE-ARTAVEN-COMPARISON-20260926.md` §9 for the
    remaining open questions (per-quest completeness, Grand Exchange audit, opcode 124 semantics,
    `Native950AdmissionBuffer`, and separating real features from evidence programs in the 760
@@ -240,5 +240,5 @@ Key verified findings:
     returns both by reference identity.
 - Full `gradlew test` passes with these changes in place.
 
-Stage B Phase 2 (interface decoder) has **not** started; begin only on the owner's explicit
-**CONTINUE TO ARTAVEN AUDIT**.
+Stage B Phase 2 (interface decoder) is done: `docs/STAGE-B-PHASE2-COMPONENT-DECODER-20260926.md`.
+Later phases begin only on the owner's explicit **CONTINUE TO ARTAVEN AUDIT**.

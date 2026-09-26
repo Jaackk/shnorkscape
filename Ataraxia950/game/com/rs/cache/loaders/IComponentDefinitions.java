@@ -13,9 +13,43 @@ import java.util.Arrays;
 public class IComponentDefinitions {
 	
 
-	private static final IComponentDefinitions[][] icomponentsdefs = new IComponentDefinitions[Utils
-			.getInterfaceDefinitionsSize()][];
-	
+	/** Allocated on first accessor use so that decode() stays usable without a loaded cache (synthetic-record tests). */
+	private static IComponentDefinitions[][] icomponentsdefs;
+
+	/** Components rejected by {@link #decode(InputStream)}; see {@link #decodeFailures()}. */
+	private static int decodeFailures;
+
+	/** Components whose decode threw part-way and was caught; see {@link #incompleteDecodes()}. */
+	private static int incompleteDecodes;
+
+	/** True when this component's record was only partially decoded. */
+	public boolean decodeIncomplete;
+
+	/** Version-specific bytes whose layout is established but whose meaning is not inferred. */
+	public byte[] modernFormatExtension;
+	/** Type-10 visual prefix; current-cache boundaries proven, rendering fields intentionally opaque. */
+	public byte[] nativeTextButtonPrefix;
+	/** Four header bytes present on components using aspect mode 4. */
+	public byte[] aspectRatioExtension;
+	/** Additional typed hooks (three in version 6, four in 9/11), with unnamed semantics. */
+	public Object[][] additionalHooks;
+	/** Exact decoder failure/boundary reason, rather than a silently missing hook. */
+	public String decodeFailureReason;
+	/** Native widget types 11 (6 bytes) and 15 (10 bytes): boundary established over every record, meaning opaque. */
+	public byte[] nativeWidgetBlock;
+	/** Native text-bearing widget types 12/13/16: opaque bytes before the label font (33/39/5). */
+	public byte[] nativeWidgetPrefix;
+	/** Native text-bearing widget types 12/13/16: label font (bigsmart, -1 when unset), flag byte and label string. */
+	public int nativeLabelFont = -1;
+	public int nativeLabelFlag;
+	public String nativeLabelText;
+	/** Native text-bearing widget types 12/13/16: opaque bytes after the label (10/86/86). */
+	public byte[] nativeWidgetSuffix;
+	/** Type 16 only: the two counted arrays (n bytes, m ints) and the 87 fixed bytes that follow them. */
+	public byte[] nativeType16Bytes;
+	public int[] nativeType16Ints;
+	public byte[] nativeType16Middle;
+
 	short[] aShortArray1118;
 	public static int anInt1119;
 	public Object[] onTargetLeaveHook;
@@ -258,7 +292,6 @@ public class IComponentDefinitions {
 			if ((type & 0x80) != 0) {
 				type = (type & 0x7f);
 				name = buffer.readString();
-				Logger.getGlobal().info("Name: " + name);
 			}
 			contentType = buffer.readUnsignedShort();
 			basePositionX = buffer.readShort();
@@ -269,6 +302,10 @@ public class IComponentDefinitions {
 			aspectHeightType = (byte) buffer.readByte();
 			aspectXType = (byte) buffer.readByte();
 			aspectYType = (byte) buffer.readByte();
+			if (format >= 5 && (aspectWidthType == 4 || aspectHeightType == 4)) {
+				aspectRatioExtension = new byte[4];
+				buffer.readBytes(aspectRatioExtension);
+			}
 			parentLayer = buffer.readUnsignedShort();
 			if (65535 == parentLayer)
 				parentLayer = -1;
@@ -344,7 +381,13 @@ public class IComponentDefinitions {
 			/**
 			 * Text Component
 			 */
-			if (type == 4) {
+			if (type == 10) {
+				if (format != 6 && format != 9 && format != 11)
+					throw new IllegalArgumentException("Unsupported type-10 format " + format);
+				nativeTextButtonPrefix = new byte[38];
+				buffer.readBytes(nativeTextButtonPrefix);
+			}
+			if (type == 4 || type == 10) {
 				fontId = buffer.readBigSmart();
 				if (format >= 2)
 					fontMonochrome = buffer.readUnsignedByte() == 1;
@@ -373,7 +416,70 @@ public class IComponentDefinitions {
 				colour = buffer.readInt();
 				aBoolean1174 = buffer.readUnsignedByte() == 1;
 			}
-			int optionMask = buffer.read24BitInt();
+
+			/**
+			 * Native widget types 11/12/13/15/16 (formats 9 and 11 only; 143 records in this cache,
+			 * 125 of them byte-identical in 947). Boundaries were established per type by finding the
+			 * unique offset at which the common tail below consumes each record exactly
+			 * (adopted from Artaven's decoder; Native950ComponentDecoderCacheTest re-checks every
+			 * record of the pinned 950 cache). Types 12/13/16 carry a
+			 * bigsmart font, a flag byte and a label string whose length moves the boundary; type 16
+			 * additionally carries two counted arrays. Everything else stays opaque on purpose.
+			 */
+			if (type == 11 || type == 12 || type == 13 || type == 15 || type == 16) {
+				if (format != 9 && format != 11)
+					throw new IllegalArgumentException("Unsupported native widget format " + format + " for type " + type);
+				if (type == 11 || type == 15) {
+					nativeWidgetBlock = new byte[type == 11 ? 6 : 10];
+					buffer.readBytes(nativeWidgetBlock);
+				} else {
+					nativeWidgetPrefix = new byte[type == 12 ? 33 : type == 13 ? 39 : 5];
+					buffer.readBytes(nativeWidgetPrefix);
+					if (type == 16) {
+						int count = buffer.readInt();
+						if (count < 0 || count > buffer.getRemaining())
+							throw new IllegalArgumentException("Bad type-16 byte count " + count);
+						nativeType16Bytes = new byte[count];
+						buffer.readBytes(nativeType16Bytes);
+						int ints = buffer.readUnsignedShort();
+						if (ints * 4 > buffer.getRemaining())
+							throw new IllegalArgumentException("Bad type-16 int count " + ints);
+						nativeType16Ints = new int[ints];
+						for (int i = 0; i < ints; i++)
+							nativeType16Ints[i] = buffer.readInt();
+						nativeType16Middle = new byte[87];
+						buffer.readBytes(nativeType16Middle);
+					}
+					nativeLabelFont = buffer.readBigSmart();
+					nativeLabelFlag = buffer.readUnsignedByte();
+					nativeLabelText = buffer.readString();
+					nativeWidgetSuffix = new byte[type == 12 ? 10 : 86];
+					buffer.readBytes(nativeWidgetSuffix);
+				}
+			}
+			if (type != 0 && type != 3 && type != 4 && type != 5 && type != 6 && type != 9 && type != 10
+					&& type != 11 && type != 12 && type != 13 && type != 15 && type != 16)
+				throw new IllegalArgumentException("Unsupported component type " + type);
+			if (format > 11)
+				throw new IllegalArgumentException("Unsupported component format " + format);
+			// The option mask starts AFTER this extension. Reading it as key data caused the
+			// old index-14 exception and lost options/hooks on otherwise ordinary widgets.
+			// The 950 client reads the option mask as a 32-bit big-endian integer whenever
+			// format >= 6 and as a 24-bit one below that (rs2client.exe: the 4-byte read at
+			// 0x14034057f against the 3-byte one at 0x1403405be, both feeding the same
+			// variable), so the extension ends one byte earlier than the first reading
+			// assumed and bit 24 of the mask is no longer lost. Total bytes are unchanged.
+			// The extension lengths are empirical record boundaries (every 950 record consumes
+			// exactly); their bytes are the unparsed tail of the modern type block and stay opaque.
+			// See docs/STAGE-B-PHASE2-COMPONENT-DECODER-20260926.md.
+			boolean wideOptionMask = format == 6 || format == 9 || format == 11;
+			if (wideOptionMask) {
+				int extensionLength = format == 6 ? (type == 0 ? 12 : type == 5 ? 8 : 4)
+						: (type == 0 || type == 5 ? 9 : 5);
+				modernFormatExtension = new byte[extensionLength];
+				buffer.readBytes(modernFormatExtension);
+			}
+			int optionMask = wideOptionMask ? buffer.readInt() : buffer.read24BitInt();
 			int rate = buffer.readUnsignedByte();
 			if (rate != 0) {
 				aByteArray1185 = new byte[11];
@@ -476,18 +582,36 @@ public class IComponentDefinitions {
 			onScrollWheelHook = create(buffer);
 			onVarcTransmitHook = create(buffer);
 			onVarcstrTransmitHook = create(buffer);
+			if (format == 6 || format == 9 || format == 11) {
+				// Unnamed extra hooks (3 in format 6, 4 in formats 9/11) precede the five trigger
+				// lists. Treating them as trigger lists fits empty records but shifts the real
+				// varp/inventory/stat triggers; every non-null extra hook in the 950 cache names
+				// an existing index-12 script.
+				additionalHooks = new Object[format == 6 ? 3 : 4][];
+				for (int i = 0; i < additionalHooks.length; i++)
+					additionalHooks[i] = create(buffer);
+			}
 			varpTransmitList = decodeTransmitList(buffer, 1930385253);
 			invTransmitList = decodeTransmitList(buffer, 1885577185);
 			statTransmitList = decodeTransmitList(buffer, 2036299454);
 			varcTransmitList = decodeTransmitList(buffer, 1866337228);
 			varcstrTransmitList = decodeTransmitList(buffer, 1808578494);
+			if (buffer.getRemaining() != 0)
+				throw new IllegalArgumentException("Trailing component bytes: " + buffer.getRemaining());
 
 			// if (id == 596) {
 			// Logger.getGlobal().info("loginScreen width: " + width);
 			// }
 
 		} catch (RuntimeException runtimeexception) {
-//			throw Class346.throwException(runtimeexception, new StringBuilder().append("eg.x(").append(')').toString());
+			// Keep established header/body fields visible, but never claim that an unsupported
+			// widget type, malformed hook or trailing record was completely decoded. Consumers
+			// requiring options/hooks must reject decodeIncomplete. The full 950 sweep
+			// decodes all 104,285 records (Native950ComponentDecoderCacheTest); this branch
+			// remains for truncated, trailing or future-format records.
+			decodeIncomplete = true;
+			decodeFailureReason = runtimeexception.toString();
+			incompleteDecodes++;
 		}
 	}
 	public static String BLOCK_IDS = "";
@@ -505,6 +629,8 @@ public class IComponentDefinitions {
 					objects[i_26_] = class298_sub53.readInt();
 				else if (i_27_ == 1)
 					objects[i_26_] = class298_sub53.readString();
+				else
+					throw new IllegalArgumentException("Unsupported component hook argument " + i_27_);
 			}
 			aBoolean1238 = true;
 			if (BLOCK_IDS.length() > 0) {
@@ -520,10 +646,7 @@ public class IComponentDefinitions {
 			}
 			return objects;
 		} catch (RuntimeException runtimeexception) {
-			return null;
-			// Logger.getGlobal().info();
-			// throw Class346.method4175(runtimeexception, new
-			// StringBuilder().append("eg.r(").append(')').toString());
+			throw runtimeexception;
 		}
 	}
 
@@ -555,7 +678,7 @@ public class IComponentDefinitions {
 				is[i_42_] = class298_sub53.readInt();
 			return is;
 		} catch (RuntimeException runtimeexception) {
-			return null;
+			throw runtimeexception;
 		}
 
 	}
@@ -823,25 +946,64 @@ public class IComponentDefinitions {
 //		}
 //	}
 	
+	/**
+	 * Decodes every component of an interface.
+	 *
+	 * <p>The first byte selects the component layout version (255 is represented as -1).
+	 * The historical if1 accessor guard is gone; decode() handles all ordinary widget types
+	 * in the paired950 versions and the native widget types 10/11/12/13/15/16 with bounded
+	 * opaque blocks; a record that still does not consume exactly carries decodeIncomplete
+	 * with an explicit failure reason.
+	 *
+	 * <p>An exception escaping decode() leaves that component null and increments
+	 * decodeFailures(). A retained partial record increments incompleteDecodes() instead.
+	 * The shared cache slot is published only after the whole interface is built, so a failure
+	 * part-way through can no longer leave a half-filled array behind for the next caller to read
+	 * as if it were complete.
+	 */
 	public static IComponentDefinitions[] getInterface(int id) {
-		if (id >= icomponentsdefs.length)
+		if (icomponentsdefs == null)
+			icomponentsdefs = new IComponentDefinitions[Utils.getInterfaceDefinitionsSize()][];
+		if (id < 0 || id >= icomponentsdefs.length)
 			return null;
 		if (icomponentsdefs[id] == null) {
-			icomponentsdefs[id] = new IComponentDefinitions[Utils
+			IComponentDefinitions[] components = new IComponentDefinitions[Utils
 					.getInterfaceDefinitionsComponentsSize(id)];
-			for (int i = 0; i < icomponentsdefs[id].length; i++) {
+			for (int i = 0; i < components.length; i++) {
 				byte[] data = Cache.STORE.getIndexes()[3].getFile(id, i);
-				if (data != null) {
-					IComponentDefinitions defs = icomponentsdefs[id][i] = new IComponentDefinitions();
-					defs.ihash = i + (id << 16);
-					if (data[0] != -1) {
-						throw new IllegalStateException("if1");
-					}
-					defs.decode(new InputStream(data));
+				if (data == null || data.length == 0)
+					continue;
+				IComponentDefinitions defs = new IComponentDefinitions();
+				defs.ihash = i + (id << 16);
+				try {
+					defs.decode(new InputStream(data, true));
+					components[i] = defs;
+				} catch (RuntimeException malformed) {
+					decodeFailures++;
+					Logger.getGlobal().warn("IComponentDefinitions: component " + id + ":" + i
+							+ " did not decode (" + malformed + ")");
 				}
 			}
+			icomponentsdefs[id] = components;
 		}
 		return icomponentsdefs[id];
+	}
+
+	/**
+	 * Components whose exception escaped decode() and prevented accessor publication.
+	 * This does not count retained partial records; see incompleteDecodes().
+	 */
+	public static int decodeFailures() {
+		return decodeFailures;
+	}
+
+	/**
+	 * Components whose record was only partially read because {@link #decode(InputStream)} threw
+	 * part-way through (zero on the pinned 950 cache): such components are missing later fields,
+	 * including their options and cs2 hooks.
+	 */
+	public static int incompleteDecodes() {
+		return incompleteDecodes;
 	}
 
 

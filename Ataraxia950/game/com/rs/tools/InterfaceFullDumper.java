@@ -84,11 +84,10 @@ public class InterfaceFullDumper {
             w.write("==== Interface " + id + " : out of range ====\n");
             return;
         }
-        // Bypass IComponentDefinitions.getInterface() because it has an
-        // overly-strict header check (throws "if1" if the first byte isn't
-        // -1/0xFF), which rejects old-format interfaces even though the
-        // decoder itself handles both formats. We iterate components manually
-        // and call decode() directly.
+        // Iterate components manually and call decode() directly so each
+        // component's outcome is written out (getInterface() only logs).
+        // decode() no longer throws: a record that does not consume exactly
+        // is kept with decodeIncomplete/decodeFailureReason set.
         int compCount = Utils.getInterfaceDefinitionsComponentsSize(id);
         if (compCount <= 0) {
             w.write("==== Interface " + id + " : no components (size=" + compCount + ") ====\n");
@@ -111,8 +110,11 @@ public class InterfaceFullDumper {
                 // The decoder reads the format byte itself (handles both
                 // 0xFF/255 for new format and other values for old format),
                 // so we don't strip anything.
-                def.decode(new InputStream(data));
-                decoded++;
+                def.decode(new InputStream(data, true));
+                if (def.decodeIncomplete)
+                    w.write("  [comp " + c + "] decode incomplete: " + def.decodeFailureReason + "\n");
+                else
+                    decoded++;
             } catch (Throwable t) {
                 w.write("  [comp " + c + "] decode failed: " + t.getClass().getSimpleName()
                         + ": " + t.getMessage() + "\n");

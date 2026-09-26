@@ -29,7 +29,7 @@ Provenance discipline:
 - Names such as `mtxmgt`, `boothpreview`, `marketplace_preview` and `bslay_boss_info` were discovery leads from original 949 cache-2670 Gamevals. Their **950 numeric behaviour was examined separately**. These names have not all been promoted to verified 950 runtime symbols.
 - Existing audited symbols for 1448/1477/517/623 retain their existing provenance in `Ataraxia950/resources/native950/gameval-lookup-950.tsv`. No runtime lookup entries were added.
 - Hex opcodes below are the repository's **normalized** script identities, not values to write directly into 950 bytecode. Use the audited mapping in `protocol-analysis/ui-scripts-950-evidence.json`.
-- The legacy Java `IComponentDefinitions` decoder misreads modern format-11 hooks, including impossible hook arrays and incomplete model records. Its hook output was rejected. This report uses common headers, exact serialized argument records and decoded scripts instead.
+- The legacy Java `IComponentDefinitions` decoder misreads modern format-11 hooks, including impossible hook arrays and incomplete model records. Its hook output was rejected. (Fixed 2026-09-26 in Stage B Phase 2: all 104,285 records now decode exactly and `1311:362` yields the same CS4213 load hook; see `docs/STAGE-B-PHASE2-COMPONENT-DECODER-20260926.md`.) This report uses common headers, exact serialized argument records and decoded scripts instead.
 - CS3503 contains unmapped wire opcode `0x0582`. The research decoder retains it as UNKNOWN with a one-byte operand; complete instruction-count/end-boundary agreement was checked. Its semantics were not guessed or added to the production map.
 
 ## Capability matrix

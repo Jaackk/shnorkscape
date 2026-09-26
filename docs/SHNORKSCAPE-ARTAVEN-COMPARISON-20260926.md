@@ -170,7 +170,7 @@ specific hunks; never copy whole files.
   fail against the pre-fix code and pass after. See
   `docs/HANDOFF-PREVIEW-CLIPPING-AND-UPSTREAM-20260926.md` §7 for the exact commit.
 
-### 5.3 Interface decoder — ARTAVEN BETTER (VERIFIED-DIFF, about 200 changed lines)
+### 5.3 Interface decoder — ARTAVEN BETTER — ADOPTED 2026-09-26 (Stage B Phase 2, uncommitted pending approval)
 
 Artaven's `IComponentDefinitions` adds:
 - `decodeIncomplete` plus a static `incompleteDecodes` counter and failure reasons;
@@ -185,8 +185,9 @@ modern format-11 hooks. Artaven's version targets exactly that gap.
 
 Shnorkscape tooling depends on this decoder: `tools/research_native_ui_950.py` has its own header
 parser, and `Ataraxia950/game/com/rs/tools/InterfaceFullDumper.java` is also a differing file.
-Recommendation: adopt it after running both the Artaven decode test
-(`IComponentNativeWidgetDecodeTest`) and Shnorkscape's interface-dependent tests.
+**Outcome:** adopted after exact-950 validation (client disassembly + full-cache sweep: 104,285/104,285
+records exact, previously 14,415 threw). Evidence, classification and tests:
+`docs/STAGE-B-PHASE2-COMPONENT-DECODER-20260926.md`.
 
 ### 5.4 Component value actions (VERIFIED-CODE exists; semantics UNVERIFIED here)
 
@@ -298,7 +299,7 @@ identities, not raw wire values.
 2. Suggested order, smallest and most provable first:
    1. ~~Region identity removal (5.1)~~ **ADOPTED 2026-09-26**
    2. ~~NPC viewport identity set (5.2)~~ **ADOPTED 2026-09-26**
-   3. IComponentDefinitions (5.3) — next, only on explicit owner go-ahead
+   3. ~~IComponentDefinitions (5.3)~~ **ADOPTED 2026-09-26** (Phase 2)
    4. Component value actions (5.4)
    5. NPC animation/metadata tables
    6. housing placement contracts
