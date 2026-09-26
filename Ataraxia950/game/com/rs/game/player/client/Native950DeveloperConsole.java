@@ -25,7 +25,10 @@ final class Native950DeveloperConsole {
     private final LinkedHashMap<Integer,Native950EquipmentCatalogue.Entry> recentItems=new LinkedHashMap<>();
 
     private int previewChild,previewTitle,previewInfo,previewFavourite,idleActor,attackActor;private Native950DeveloperPreview preview;
+    private static final int[] ZOOM_CHANGES={150,0,-150};
     private final int[] zoomActors=new int[3];
+    /** Zoom the client reports it is showing (CS21147); Save persists exactly this. */
+    private int currentZoom;
     private static final Map<Player,Native950DeveloperConsole> OWNERS=new IdentityHashMap<>();
     private final Player player;private final Channel channel;private final Runnable prepare,verify;
     private final Consumer<String> execute;private final Map<Integer,Runnable> buttons=new HashMap<>();
@@ -122,6 +125,16 @@ final class Native950DeveloperConsole {
             String[] fields=notification.split(":",3);
             try{if(fields.length==3&&Long.parseLong(fields[1])==epoch&&fields[2].length()<=80){query=fields[2].trim();page=0;entity=null;itemSelection=null;selectedTeleport=null;variantFamily="";render();}}
             catch(NumberFormatException ignored){}return true;
+        }
+        if(notification.startsWith("__devzoom:")){
+            if(!open||awaitingNative||placement!=null||!mayAct()||entity==null||preview==null)return true;
+            String[] fields=notification.split(":",-1);
+            try{
+                if(fields.length==4&&Long.parseLong(fields[1])==epoch&&Integer.parseInt(fields[2])==entity.id){
+                    int zoom=reportedZoom(fields[3]);
+                    if(Native950DeveloperPreviewOverrides.validZoom(zoom))currentZoom=zoom;
+                }
+            }catch(NumberFormatException ignored){}return true;
         }
         if(notification.startsWith("__devop:")){
             if(!open||awaitingNative||input!=null||placement!=null||!mayAct())return true;
@@ -433,7 +446,7 @@ final class Native950DeveloperConsole {
         int model=textChild++;write(Native950Packets.runClientScript(21155,model,180,80,300,280,380));
         write(Native950Packets.runClientScript(21156,model,180,80,300,280));
         String[] zoom={"Zoom -","Reset","Zoom +"};int[] change={75,0,-75};
-        for(int n=0;n<3;n++){int actor=buttons.size();button(180+n*100,367,96,28,zoom[n],false,()->{});write(Native950Packets.runClientScript(21148,actor,model,change[n],380));}
+        for(int n=0;n<3;n++){int actor=buttons.size();button(180+n*100,367,96,28,zoom[n],false,()->{});write(Native950Packets.runClientScript(21148,actor,model,change[n],380,""));}
         text(495,48,239,30,17514,safe(player.getDisplayName()));
         text(500,80,229,20,2100,"Player testing");
         text(500,225,229,22,2100,"<col=ffd479>LOADOUTS</col>");
@@ -584,8 +597,11 @@ final class Native950DeveloperConsole {
         previewTitle=textChild;text(500,43,192,45,2100,"No matching NPCs");
         button(699,39,35,27,"",false,()->{if(entity!=null)toggleFavourite("npc:"+entity.id);});
         previewFavourite=textChild;text(704,42,25,24,2100,"*");
+        // These keep their native server notification: the server owns the zoom and
+        // pushes it to the model, so Save persists exactly what is on screen.
         String[] zoomLabels={"Zoom -","Reset","Zoom +"};
-        for(int n=0;n<3;n++){zoomActors[n]=buttons.size();button(495+n*80,247,77,25,zoomLabels[n],false,()->{});}
+        for(int n=0;n<3;n++){zoomActors[n]=buttons.size();button(495+n*58,247,55,25,zoomLabels[n],false,()->{});}
+        button(495+3*58,247,57,25,"Save",false,this::saveDefaultZoom);
         previewInfo=textChild;text(500,277,227,16,2100,"");
         idleActor=buttons.size();button(495,294,116,27,"Idle",false,()->previewSequence(false));
         attackActor=buttons.size();button(616,294,118,27,"Attack",false,()->previewSequence(true));
@@ -609,6 +625,7 @@ final class Native950DeveloperConsole {
     }
     private void updatePreview(){
         try{preview=Native950DeveloperPreview.resolve(entity.id);}catch(RuntimeException invalid){preview=Native950DeveloperPreview.unavailable();}
+        currentZoom=preview.zoom;
 
         write(Native950Packets.runClientScript(21142,previewTitle,titleLines(entity.name)));
         write(Native950Packets.runClientScript(21142,previewFavourite,favourites.contains("npc:"+entity.id)?"<col=ffd166>*</col>":"<col=aaaaaa>*</col>"));
@@ -616,8 +633,30 @@ final class Native950DeveloperConsole {
         write(Native950Packets.runClientScript(21135,previewChild,preview.npc,preview.idle,preview.zoom,preview.height,preview.nativeFraming?111:176));
         write(Native950Packets.runClientScript(21143,idleActor,previewChild,preview.idle));
         write(Native950Packets.runClientScript(21143,attackActor,previewChild,preview.attack));
-        int[] zoomChanges={150,0,-150};for(int n=0;n<3;n++)write(Native950Packets.runClientScript(21148,zoomActors[n],previewChild,zoomChanges[n],preview.zoom));
+        bindZoom();
         Native950BugTest.event(player,"developer-console","preview","npc",entity.id,"idle",preview.idle,"attack",preview.attack,"zoom",preview.zoom,"nativeFraming",preview.nativeFraming);
+    }
+    /** CS21147 formats the zoom with native 0x86b, which groups thousands ("3,200"). */
+    static int reportedZoom(String text){
+        String digits=text.trim().replaceAll("[,.\\s\\u00a0]","");
+        if(!digits.matches("[0-9]{1,5}"))throw new NumberFormatException(text);
+        return Integer.parseInt(digits);
+    }
+    /** Zoom -/Reset/Zoom + run locally (CS21147) and report the resulting zoom; Reset uses the preferred default. */
+    private void bindZoom(){
+        String report="__devzoom:"+epoch+":"+entity.id+":";
+        for(int n=0;n<3;n++)write(Native950Packets.runClientScript(21148,zoomActors[n],previewChild,ZOOM_CHANGES[n],preview.zoom,preview.npc<0?"":report));
+    }
+    /** Persists the zoom currently shown. No redraw: the visible model is left exactly as it is. */
+    private void saveDefaultZoom(){
+        if(entity==null||preview==null||preview.npc<0)return;
+        String result;
+        try{
+            Native950DeveloperPreviewOverrides.save("npc:"+entity.id,currentZoom);
+            try{preview=Native950DeveloperPreview.resolve(entity.id);bindZoom();}catch(RuntimeException keepPrevious){/* Reset keeps the old default. */}
+            result="Default size saved.";
+        }catch(IllegalArgumentException|IllegalStateException e){result="Could not save: "+e.getMessage();}
+        status=result;write(Native950Packets.runClientScript(21142,previewInfo,result));channel.flush();
     }
     private void previewSequence(boolean attack){
         if(preview==null||entity==null)return;int seq=attack?preview.attack:preview.idle;

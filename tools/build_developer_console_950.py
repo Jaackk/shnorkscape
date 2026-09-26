@@ -157,7 +157,7 @@ def main():
     ref=append_reference(unpack((ROOT/'cache/255/12.dat').read_bytes()),additions)
     (dest/'255').mkdir(exist_ok=True);(dest/'255/12.dat').write_bytes(container(ref))
     (ROOT/'protocol-analysis/developer-console-scripts-950.json').write_bytes((json.dumps({'scripts':pins,'nativeButton':10410,'nativeText':2995,'shell':1448,'status':'AUTOMATED VERIFIED; Vulkan visual acceptance pending'},indent=2)+'\n').encode())
-    for sid in (10410,10899,2995,10644,10324,8289,8418,7791,31,8479,8480,8481,8482,9620,7170,1553,8841):
+    for sid in (10410,10899,2995,10644,10324,8289,8418,7791,31,8479,8480,8481,8482,9620,9644,9319,7170,1553,8841):
         pins[str(sid)]=hashlib.sha256(unpack((ROOT/f'cache/12/{sid}.dat').read_bytes())).hexdigest()
     (ROOT/'Ataraxia950/resources/native950/developer-console-950.properties').write_bytes((''.join(f'{sid}={value}\n' for sid,value in sorted(pins.items()))).encode())
     print('Staged developer V2 Phase-B helpers; live cache untouched.')

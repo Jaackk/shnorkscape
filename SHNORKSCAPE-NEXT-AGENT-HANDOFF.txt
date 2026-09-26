@@ -1,3 +1,14 @@
+LATEST - 2026-09-26 - DEVELOPER CONSOLE PREVIEW CLIPPING/DRAG/ZOOM + ARTAVEN COMPARISON (COMMITTED, OPEN ITEMS)
+Read docs/HANDOFF-PREVIEW-CLIPPING-AND-UPSTREAM-20260926.md first; its section 0 lists everything unfinished.
+LIVE: NPC preview clipped inside its box; drag rotation keeps the model visible; Zoom -/Reset/+ immediate.
+LIVE-FAILED (parked by owner): Save does not restore a saved preview zoom after reselection.
+DEPLOY LESSON: Update and Play only installs the staged candidate. Source changes need: script builder ->
+jar -Deploy -> Build-950Lobby -> manifest jar re-pin -> stage_developer_v3.py -> verify() + -CheckOnly
+-> owner runs Update and Play. Stale jar pins make ;;dev throw IllegalStateException.
+Artaven snapshot (READ-ONLY): C:\Games\UpdatedAuthorFiles\950OpenSource-2026-09-25\950OpenSource
+Comparison: docs/SHNORKSCAPE-ARTAVEN-COMPARISON-20260926.md. Stage B (upstream integration) NOT started;
+begin only when the owner says CONTINUE TO ARTAVEN AUDIT (Phase 1A Region, 1B NPC viewport, then stop).
+
 DEVELOPER CONSOLE V3 POLISH CHECKPOINT - 2026-09-25
 The V3 user prompt explicitly authorized deployment/start and physical Vulkan testing.
 Do not apply the older stage-only restriction to this authorized pass. User also explicitly offered control.

@@ -47,8 +47,14 @@ class VM:
             elif op==0x1a2:
                 x,y,parent=pop(3);self.vars['scroll:'+str(parent)]=y
             elif op==0xd1:iv.append(self.vars.get('scroll:'+str(pop(1)[0]),0))
-            elif op in (0xe4,0x353,0x413):pop(2)
-            elif op==0x8a2:pop(1)
+            elif op in (0xe4,0x413):pop(2)
+            # CS11619/11620: 0x8a2(component) returns a component; 0x353(area,child,component).
+            elif op==0x8a2:iv.append(('parent-of',pop(1)[0]))
+            elif op==0x353:
+                area,child,component=pop(3);self.native.append(('draggable',component,area,child))
+            elif op==0x8be:
+                value,component=pop(2);self.native.append(('08be',component,value))
+            elif op==0x86b:sv.append('{:,}'.format(pop(1)[0]))   # native tostring groups thousands
             elif op==0x8f:self.components[self.active]['colour']=pop(1)[0]
             elif op==0x1a5:self.components[self.active]['fill']=pop(1)[0]
             elif op==0x4a9:self.components[self.active]['hidden']=pop(1)[0]
@@ -93,11 +99,24 @@ class VM:
         assert not iv and not sv,(sid,'unbalanced',iv,sv)
 
 class Primitives(unittest.TestCase):
-    def test_rotation_hooks_belong_to_visible_model_viewport(self):
-        for sid,args in ((21136,[0]),(21156,[0,180,80,300,280])):
-            vm=VM();vm.run(sid,args)
-            hooks=[h for h in vm.native if h[0]=='hook']
-            self.assertEqual([(1448<<16|8,8479,[1448<<16|8,1448<<16|8,0]),(1448<<16|8,8480,[1448<<16|8,1448<<16|8,0])],[(h[1],h[2],h[3]) for h in hooks])
+    def test_drag_layer_is_an_empty_sibling_of_the_model_inside_the_clipping_parent(self):
+        # Retail 1311:343 (sized parent) holds both the dynamic model and the drag
+        # layer 1311:362. Here 1448:8 clips, and its static fill-mode child 1448:24
+        # (cache header parent=8) owns the drag. The hook owner is drawn as the
+        # dragged component, so it must never contain the model; the model is the
+        # dynamic child (host8, 0), which CS8479/CS9644 find with cc_find.
+        host8,layer=1448<<16|8,1448<<16|24
+        for model,drag,args,margs in ((21135,21136,[0],[0,6260,1,1000,20,93]),(21155,21156,[0,180,80,300,280],[0,180,80,300,280,1500])):
+            vm=VM();vm.components[(layer,0)]={'kind':5}   # a template leftover
+            vm.run(model,margs);vm.run(drag,args)
+            hooks=[(h[1],h[2],h[3]) for h in vm.native if h[0]=='hook']
+            self.assertEqual([(layer,8479,[layer,host8,0]),(layer,8480,[layer,host8,0])],hooks)
+            self.assertIn((host8,0),vm.components)
+            self.assertFalse([k for k in vm.components if k[0]==layer],'drag layer must stay empty')
+            # The template's modal-cover click blocking is cleared, and the drag area is
+            # the 742x450 column (like host6 in host5), never the layer-sized host8.
+            self.assertIn(('08be',layer,0),vm.native)
+            self.assertEqual([('draggable',layer,1448<<16|7,-1)],[n for n in vm.native if n[0]=='draggable'])
     def test_native_sprite_icon_does_not_request_inventory_item(self):
         vm=VM();vm.run(21146,[0,-13199,15,84,28,28])
         icon=vm.components[(1448<<16|7,0)]
@@ -152,10 +171,23 @@ class Primitives(unittest.TestCase):
     def test_zoom_preserves_drag_angles_clamps_and_resets_locally(self):
         vm=VM();vm.run(21135,[0,6260,1,1000,20,93]);key=(1448<<16|8,0)
         vm.components[key]['view']=[12,20,30,420,50,1000]
-        vm.run(21147,[0,150,1000]);self.assertEqual([12,20,30,420,50,1150],vm.components[key]['view'])
-        vm.run(21147,[0,-9999,1000]);self.assertEqual(50,vm.components[key]['view'][-1])
-        vm.run(21147,[0,9999,1000]);self.assertEqual(6000,vm.components[key]['view'][-1])
-        vm.run(21147,[0,0,1000]);self.assertEqual([12,20,30,420,50,1000],vm.components[key]['view']);self.assertEqual([],vm.sent)
+        vm.run(21147,[0,150,1000],['']);self.assertEqual([12,20,30,420,50,1150],vm.components[key]['view'])
+        vm.run(21147,[0,-9999,1000],['']);self.assertEqual(50,vm.components[key]['view'][-1])
+        vm.run(21147,[0,9999,1000],['']);self.assertEqual(6000,vm.components[key]['view'][-1])
+        vm.run(21147,[0,0,1000],['']);self.assertEqual([12,20,30,420,50,1000],vm.components[key]['view']);self.assertEqual([],vm.sent)
+
+    def test_zoom_is_applied_locally_then_reports_the_exact_visible_value(self):
+        vm=VM();vm.run(21135,[0,6260,1,1000,20,93]);key=(1448<<16|8,0)
+        vm.components[key]['view']=[12,20,30,420,50,1000]
+        vm.components[(1448<<16|5,2)]={'kind':4}
+        vm.run(21148,[2,0,150,900],['__devzoom:7:6260:'])
+        hook=vm.native[-1];self.assertEqual(('hook',(1448<<16|5,2),21147,[0,150,900,'__devzoom:7:6260:']),hook)
+        vm.run(21147,hook[3][:3],hook[3][3:])   # the click: no server round trip first
+        self.assertEqual(1150,vm.components[key]['view'][-1])
+        self.assertEqual(['__devzoom:7:6260:1,150'],vm.sent)
+        vm.run(21147,[0,9999,900],['__devzoom:7:6260:']);self.assertEqual('__devzoom:7:6260:6,000',vm.sent[-1])
+        vm.run(21147,[0,0,900],['__devzoom:7:6260:']);self.assertEqual('__devzoom:7:6260:900',vm.sent[-1])
+        self.assertEqual([12,20,30,420,50,900],vm.components[key]['view'],'Reset must keep drag angles')
 
     def test_generic_rows_do_not_expose_npc_actions_and_player_model_is_local(self):
         vm=VM();vm.run(21150,[0],['Destination','__devop:2:2000'])

@@ -48,12 +48,38 @@ def programs(api):
     c.add(*ints(1),(0x1a5,0),*ints(0x234d68),(0x8f,0)).label('next').add(il(3),*ints(1),(0x1d,0),(0x592,3)).jump(0x713,'loop')
     c.label('done').add(il(0),sl(0),call(21127))
     out[21134]=c.raw(4,1,args=3)
+    # Preview composition mirrors retail Customisations 1311:343/362: one sized
+    # parent clips BOTH the model and an empty drag layer inside it. 1448:8 is
+    # the clipping parent (static child of host7); its static fill-mode child
+    # 1448:24 is the drag layer. The native drag system treats the hook owner
+    # as the dragged component, so it must never contain the model (0b17e86).
+    # Frame template 2003 (enum7716 -> struct21139) names 1448:24 its param3513
+    # modal cover: it creates a translucent child 0 and applies 0x08be(1), the
+    # click-blocking flag CS343/CS1898 toggle on window frames. Retail 1311:362
+    # has neither. Its template frame children 23/25 stay hidden.
     def reserve(c):
+        # host7 text children are CC_CREATE-contiguous; keep the Java-allocated slot.
         c.add(*ints(host(7),3),il(0),(0x691,0),*ints(1),(0x4a9,0))
         return c
     def viewport(c,x,y,w,h):
         c.add(*ints(x,y,0,0,host(8)),(0x7c5,0),*ints(w,h,0,0,host(8)),(0x55,0),*ints(0,host(8)),(0xe4,0))
-        for child in (23,24,25):c.add(*ints(1,host(child)),(0xe4,0))
+        for child in (23,25):c.add(*ints(1,host(child)),(0xe4,0))
+        return c
+    def drag_layer(c,w,h):
+        # CS11619's contract, but the model is the dynamic child (host8, 0), not a
+        # static component, so CS8479/9644 are given its real child index.
+        # CS11619 registers the drag as 0x353(area, -1, layer), area = 0x8a2(layer),
+        # the layer's parent; CS11620 clears it with 0x353(-1,-1,layer). Every working
+        # owner is smaller than that area (host6 in host5, host8 in host7, 362 inset in
+        # 343); 1448:24 fills host8 exactly. Use host7, the column matching host5's
+        # proven 742x450 geometry, so the drag always has room.
+        c.add(*ints(host(24)),(0x5,0),*ints(0,0,0,0,host(24)),(0x7c5,0),*w,*h,*ints(0,0,host(24)),(0x55,0),
+              *ints(0,host(24)),(0xe4,0),*ints(0,host(24)),(0x08be,0),*ints(host(7),-1,host(24)),(0x353,0))
+        for sid,op in ((8479,0x815),(8480,0x732)):
+            c.add(*ints(sid,host(24),host(8),0),push('iii'),*ints(host(24)),(op,0))
+        c.add(*ints(189,host(24)),(0x413,0))
+        # Retire the earlier column-level drag layer so it can never own input.
+        c.add(*ints(1,host(6)),(0xe4,0))
         return c
     # 21135: create/update a full NPC model; every selection resets old sequence.
     # Native CS3503 recreates the model actor when its subject changes. Reuse
@@ -63,15 +89,7 @@ def programs(api):
     c.add(il(1),(0x1fc,0),*ints(-1),(0x67f,0),il(2),(0x67f,0),
                          *ints(0),il(4),*ints(0,180,0),il(3),(0x112,0))
     out[21135]=c.raw(6)
-    # Bind rotation to the model's own clipping/input pane, not the old
-    # sibling layer behind it. Native CS11619 hooks still target model slot 0.
-    def rotation(c):
-        c.add(*ints(host(8)),(0x8a2,0),*ints(-1,host(8)),(0x353,0))
-        for sid,op in ((8479,0x815),(8480,0x732)):
-            c.add(*ints(sid,host(8),host(8),0),push('iii'),*ints(host(8)),(op,0))
-        c.add(*ints(189,host(8)),(0x413,0))
-        return c
-    out[21136]=rotation(Code()).raw(1)
+    out[21136]=drag_layer(Code(),ints(247),ints(177)).raw(1)
     # 21137: create integrated search. No native text component is repurposed.
     c=Code().add(*ints(8,38,0,0,host(4)),(0x7c5,0),
                  *ints(320,30,0,0,host(4)),(0x55,0),*ints(0,host(4)),(0xe4,0))
@@ -145,14 +163,19 @@ def programs(api):
     c.label('item').add(il(1),*ints(1),(0x550,0)).label('done')
     out[21146]=c.raw(6)
     # Model zoom changes retain the native drag angles (CS1165 getter order).
+    # Local and immediate; a change of 0 restores il(2), the preferred default.
+    # With a report prefix, the zoom now on the model (0x526) is sent back via
+    # native tostring 0x86b, so the server records exactly what is on screen.
     c=Code().add(*ints(host(8),0),(0x109,0),*ints(1)).jump(0x412,'done')
     c.add((0x763,0),(0x25d,0),(0x836,0),(0x804,0),(0x73b,0),il(1),*ints(0)).jump(0x647,'reset')
     c.add((0x526,0),il(1),(0x1d,0),*ints(50),(0x1f9,0),*ints(6000),(0x4d3,0)).jump(0x713,'apply')
-    c.label('reset').add(il(2)).label('apply').add((0x112,0)).label('done')
-    out[21147]=c.raw(3)
+    c.label('reset').add(il(2)).label('apply').add((0x112,0))
+    c.add(sl(0),push(''),(0x3f,0),*ints(0)).jump(0x647,'done')
+    c.add(sl(0),(0x526,0),(0x86b,0),(0x267,2),(0x77b,0)).label('done')
+    out[21147]=c.raw(3,1)
     c=Code().add(*ints(host(5)),il(0),(0x109,0),*ints(1)).jump(0x412,'done')
-    c.add(*ints(21147),il(1),il(2),il(3),push('iii'),(0x6a,0)).label('done')
-    out[21148]=c.raw(4)
+    c.add(*ints(21147),il(1),il(2),il(3),sl(0),push('iiis'),(0x6a,0)).label('done')
+    out[21148]=c.raw(4,1)
     # Local-player model setter confirmed by native CS3503.
     c=Code().add(*ints(host(7),6),il(0),(0x691,0),*ints(270,275,0,0),(0x8c3,0),*ints(180,85,0,0),(0x828,0),
                  (0x79b,0),*ints(0,0,0,180,0,900),(0x112,0))
@@ -181,11 +204,12 @@ def programs(api):
     c=Code().add(*ints(host(9)),il(0),il(1),(0x51e,0),(0x109,0),*ints(1)).jump(0x412,'done')
     c.add(*ints(1),(0x1a5,0),*ints(0x234d68),(0x8f,0)).label('done')
     out[21154]=c.raw(2)
-    # Parameterised local-player preview and matching native rotation hit region.
+    # Parameterised local-player preview: the same clipping parent and drag layer
+    # as the NPC preview, sized from the caller's bounds (x, y, width, height).
     c=reserve(Code()).add(il(1),il(2),*ints(0,0,host(8)),(0x7c5,0),il(3),il(4),*ints(0,0,host(8)),(0x55,0),*ints(0,host(8)),(0xe4,0))
-    for child in (23,24,25):c.add(*ints(1,host(child)),(0xe4,0))
+    for child in (23,25):c.add(*ints(1,host(child)),(0xe4,0))
     c.add(*ints(host(8),6,0),(0x691,0),il(3),il(4),*ints(0,0),(0x8c3,0),*ints(0,0,0,0),(0x828,0),
                  (0x79b,0),*ints(0,100,0,0,0),il(5),(0x112,0))
     out[21155]=c.raw(6)
-    out[21156]=rotation(Code()).raw(5)
+    out[21156]=drag_layer(Code(),[il(3)],[il(4)]).raw(5)
     return out

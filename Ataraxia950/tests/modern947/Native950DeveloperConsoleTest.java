@@ -309,6 +309,11 @@ public class Native950DeveloperConsoleTest {
         invoke("navigate",String.class,"NPCs");assertEquals("",field("query"));
         invoke("navigate",String.class,"Objects");assertEquals("",field("query"));
     }
+    @Test public void clientZoomReportsParseNativeGroupedDigits(){
+        assertEquals(3200,Native950DeveloperConsole.reportedZoom("3,200"));assertEquals(733,Native950DeveloperConsole.reportedZoom("733"));
+        assertEquals(6000,Native950DeveloperConsole.reportedZoom(" 6,000 "));
+        for(String bad:new String[]{"","abc","3,2a0","123456","-150"})try{Native950DeveloperConsole.reportedZoom(bad);fail(bad);}catch(NumberFormatException expected){}
+    }
     private static Native950Actions.StringDialogueAction notification(String text)throws Exception{
         java.lang.reflect.Constructor<Native950Actions.StringDialogueAction> c=Native950Actions.StringDialogueAction.class.getDeclaredConstructor(boolean.class,String.class);c.setAccessible(true);return c.newInstance(false,text);
     }

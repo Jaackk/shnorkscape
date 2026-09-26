@@ -942,6 +942,15 @@ public final class NPCDefinitions {
 		return renderEmote;
 	}
 
+	/** Cache resize factors (opcodes 97/98); 128 means unscaled. */
+	public int getScaleX() {
+		return scaleX;
+	}
+
+	public int getScaleY() {
+		return scaleY;
+	}
+
 	public boolean hasMarkOption() {
 		for (final String option : menuOptions) {
 			if (option != null && option.equalsIgnoreCase("mark")) {
