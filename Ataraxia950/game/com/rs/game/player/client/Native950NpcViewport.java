@@ -1,10 +1,12 @@
 package com.rs.game.player.client;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import com.rs.game.World;
 import com.rs.game.npc.NPC;
@@ -243,12 +245,17 @@ public final class Native950NpcViewport {
     public static List<NPC> nearbyNpcs(Player viewer) {
         Objects.requireNonNull(viewer, "viewer");
         List<NPC> nearby = new ArrayList<NPC>();
+        // NPC inherits coordinate-only WorldTile.equals, so a coordinate-based contains()
+        // check would drop a second, distinct NPC sharing a tile with an already-added one
+        // (companions, familiars, targets sharing a square). Dedupe by identity instead;
+        // this only guards against the same index appearing in more than one loaded region.
+        Set<NPC> seen = Collections.newSetFromMap(new IdentityHashMap<NPC, Boolean>());
         for (int regionId : viewer.getMapRegionsIds()) {
             List<Integer> indexes = World.getRegion(regionId).getNPCsIndexes();
             if (indexes == null) continue;
             for (int npcIndex : new ArrayList<Integer>(indexes)) {
                 NPC npc = World.getNPCs().get(npcIndex);
-                if (npc != null && !nearby.contains(npc)) nearby.add(npc);
+                if (npc != null && seen.add(npc)) nearby.add(npc);
             }
         }
         return nearby;

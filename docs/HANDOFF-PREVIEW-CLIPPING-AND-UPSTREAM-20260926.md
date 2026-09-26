@@ -19,10 +19,12 @@ The owner approved committing and pushing this state on 2026-09-26, with unfinis
    identical-geometry sharing help, but exceptions still need Save (blocked by item 1).
 5. **Unused script 21148 local-zoom path for player preview** passes an empty report prefix. The player
    preview has no Save by design.
-6. **Stage B (Artaven upstream audit/integration) not started.** Begin only on the owner's
-   "CONTINUE TO ARTAVEN AUDIT", with Phase 1A `Region` identity removal and Phase 1B
-   `Native950NpcViewport` identity set (keep our conjure guard), then stop for review.
-   See `docs/SHNORKSCAPE-ARTAVEN-COMPARISON-20260926.md` §9 for the remaining open questions.
+6. **Stage B Phase 1 (Region + NPC viewport identity fixes) is DONE — see §7.** Phase 2 (interface
+   decoder) and every later phase have **not** started. Begin only on the owner's explicit
+   "CONTINUE TO ARTAVEN AUDIT". See `docs/SHNORKSCAPE-ARTAVEN-COMPARISON-20260926.md` §9 for the
+   remaining open questions (per-quest completeness, Grand Exchange audit, opcode 124 semantics,
+   `Native950AdmissionBuffer`, and separating real features from evidence programs in the 760
+   Artaven-only files).
 7. **Older open items** still stand in `SHNORKSCAPE-NEXT-AGENT-HANDOFF.txt`: Necromancy partial,
    P0 intermittent keybind death, object previews, remaining console categories/icons, etc.
 
@@ -198,19 +200,45 @@ Automated state at handoff: all 23 script tests pass, full `gradlew test` passes
 acceptance probes pass. The staged candidate verifies (`verify()` OK, installer `-CheckOnly` OK) and is
 installed live.
 
-## 7. Artaven upstream comparison (read-only; Stage B not started)
+## 7. Artaven upstream comparison and Stage B
 
 Full technical report: `docs/SHNORKSCAPE-ARTAVEN-COMPARISON-20260926.md`.
 Artaven's snapshot is at `C:\Games\UpdatedAuthorFiles\950OpenSource-2026-09-25\950OpenSource` (READ-ONLY).
 Key verified findings:
 
-- **Region.** Object removal uses coordinate-only equality, so it can remove the wrong layer. The bug is
-  present in ours; Artaven removes by identity.
-- **NPC viewport.** `nearby.contains(npc)` collapses NPCs sharing a tile; the bug is present in ours.
-  Port only Artaven's identity set and keep our conjure guard.
 - **Decoder.** Artaven's `IComponentDefinitions` supports modern widget types 10–16 and format 9/11 hooks.
 - **Grand Exchange.** Real order book with optional `grandExchange.autoFill` system liquidity.
 - **Souls.** Artaven clamps souls to capacity; ours intentionally does not. Keep ours.
 
-The owner's staged plan (Stage B, only after the owner says **CONTINUE TO ARTAVEN AUDIT**) starts with
-Phase 1A Region and Phase 1B NPC viewport, then stops for review.
+### Stage B Phase 1 — ADOPTED (owner-approved, committed)
+
+- **Region object-identity removal (adopted).** `WorldObject` inherits `WorldTile`'s coordinate-only
+  `equals`, so `List.remove(object)` on `spawnedObjects`/`removedOriginalObjects` could erase a
+  different object layer (wall/floor/furniture) sharing a tile. Added
+  `Region.removeObjectIdentity(ledger, target)` (`removeIf(c -> c == target)`, Artaven's exact helper
+  and comment) and converted all 12 call sites across `spawnObject` (×2) and `removeObject` (×4
+  overloads) to use it with the already-resolved `spawned`/`removed` instance.
+  **Deliberately deferred:** Artaven's companion change routing object definitions through
+  `Native950ObjectClipping.resolve()` when `Cache.isFlatReadOnly()`. That's a separate, larger,
+  unreviewed change; not adopted in this pass.
+- **NPC viewport identity-set (adopted).** `Native950NpcViewport.nearbyNpcs()` used
+  `!nearby.contains(npc)` (coordinate-based `List.contains`), which collapsed two distinct NPCs sharing
+  a tile (companions, familiars, a target standing on another actor) into one candidate. Replaced with
+  an identity set (`Collections.newSetFromMap(new IdentityHashMap<NPC, Boolean>())`).
+  **Deliberately preserved:** our `!npc.isNative950Conjure()` guard in `describe()` was kept exactly as
+  is. Artaven's version of this file removes that guard and adds `RestlessGhost`/`QuestNpcs` visibility
+  filters that reference classes not present in our tree — neither was ported.
+- **Regression tests (new, both proven to fail against the pre-fix code, then pass after restoring the
+  fix — verified by literally reverting the two source fixes in place, rebuilding, confirming all three
+  tests failed, then restoring and confirming the full suite passed again):**
+  - `Ataraxia950/tests/modern947/Native950RegionObjectIdentityTest.java` — two tests, each placing a
+    wall and a floor-decoration object (different `OBJECT_SLOTS` layers) on one tile in an insertion
+    order chosen so an equals-based removal would target the wrong one first; asserts respawning/
+    removing one layer never erases the other's ledger entry.
+  - `Ataraxia950/tests/modern947/Native950NpcViewportIdentityTest.java` — registers two real `NPC`s
+    with the same definition on the same tile into the same world region and asserts `nearbyNpcs`
+    returns both by reference identity.
+- Full `gradlew test` passes with these changes in place.
+
+Stage B Phase 2 (interface decoder) has **not** started; begin only on the owner's explicit
+**CONTINUE TO ARTAVEN AUDIT**.

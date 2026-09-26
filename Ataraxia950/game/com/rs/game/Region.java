@@ -1002,6 +1002,13 @@ public class Region {
         }
     }
 
+    /** WorldObject inherits coordinate-only WorldTile.equals. Object layers may share a tile,
+     * so List.remove(object) can erase a different floor/wall/furniture record. Callers first
+     * select the exact ledger object by tile, plane and slot; remove that identity only. */
+    protected static void removeObjectIdentity(final List<WorldObject> ledger, final WorldObject target) {
+        if (target != null) ledger.removeIf(candidate -> candidate == target);
+    }
+
     public void spawnObject(WorldObject object, final int plane, final int localX, final int localY, final boolean original) {
         if (objects == null) {
             objects = new Short2ObjectOpenHashMap<WorldObject>();
@@ -1015,13 +1022,13 @@ public class Region {
         } else {
             final WorldObject spawned = getSpawnedObjectWithSlot(plane, localX, localY, slot);
             if (spawned != null) {
-                spawnedObjects.remove(spawned);
+                removeObjectIdentity(spawnedObjects, spawned);
                 unclip(spawned, localX, localY);
             }
             final WorldObject removed = getRemovedObjectWithSlot(plane, localX, localY, slot);
             if (removed != null) {
                 object = removed;
-                removedOriginalObjects.remove(object);
+                removeObjectIdentity(removedOriginalObjects, removed);
             } else if (objects.get(hash) != object) {
                 spawnedObjects.add(object);
                 val obj = objects.get(hash);
@@ -1056,13 +1063,13 @@ public class Region {
         } else {
             final WorldObject spawned = getSpawnedObjectWithSlot(plane, localX, localY, slot);
             if (spawned != null) {
-                spawnedObjects.remove(spawned);
+                removeObjectIdentity(spawnedObjects, spawned);
                 unclip(spawned, localX, localY);
             }
             final WorldObject removed = getRemovedObjectWithSlot(plane, localX, localY, slot);
             if (removed != null) {
                 object = removed;
-                removedOriginalObjects.remove(object);
+                removeObjectIdentity(removedOriginalObjects, removed);
             } else if (objects.get(hash) != object) {
                 spawnedObjects.add(object);
                 val obj = objects.get(hash);
@@ -1092,7 +1099,7 @@ public class Region {
         final WorldObject removed = getRemovedObjectWithSlot(plane, localX, localY, slot);
 
         if (removed != null) {
-            removedOriginalObjects.remove(object);
+            removeObjectIdentity(removedOriginalObjects, removed);
             clip(removed, localX, localY);
         }
         WorldObject original = null;
@@ -1101,7 +1108,7 @@ public class Region {
         final WorldObject spawned = getSpawnedObjectWithSlot(plane, localX, localY, slot);
         if (spawned != null) {
             object = spawned;
-            spawnedObjects.remove(object);
+            removeObjectIdentity(spawnedObjects, spawned);
             unclip(object, localX, localY);
             if (objects.get(hash) != null) {// original
                 // unclips non original to clip original above
@@ -1141,7 +1148,7 @@ public class Region {
         final short hash = (short) (localX | localY << 6 | slot << 12 | plane << 14);
         final WorldObject removed = getRemovedObjectWithSlot(plane, localX, localY, slot);
         if (removed != null) {
-            removedOriginalObjects.remove(object);
+            removeObjectIdentity(removedOriginalObjects, removed);
             if (removeClip) {
                 clip(removed, localX, localY);
             }
@@ -1150,7 +1157,7 @@ public class Region {
         final WorldObject spawned = getSpawnedObjectWithSlot(plane, localX, localY, slot);
         if (spawned != null) {
             object = spawned;
-            spawnedObjects.remove(object);
+            removeObjectIdentity(spawnedObjects, spawned);
             if (removeClip) {
                 unclip(object, localX, localY);
             }
@@ -1193,14 +1200,14 @@ public class Region {
         final short hash = (short) (localX | localY << 6 | slot << 12 | plane << 14);
         final WorldObject removed = getRemovedObjectWithSlot(plane, localX, localY, slot);
         if (removed != null) {
-            removedOriginalObjects.remove(object);
+            removeObjectIdentity(removedOriginalObjects, removed);
             clip(removed, localX, localY);
         }
         WorldObject original = null;
         final WorldObject spawned = getSpawnedObjectWithSlot(plane, localX, localY, slot);
         if (spawned != null) {
             object = spawned;
-            spawnedObjects.remove(object);
+            removeObjectIdentity(spawnedObjects, spawned);
             unclip(object, localX, localY);
             if (objects.get(hash) != null) {
                 val obj = objects.get(hash);
@@ -1240,7 +1247,7 @@ public class Region {
         final short hash = (short) (localX | localY << 6 | slot << 12 | plane << 14);
         final WorldObject removed = getRemovedObjectWithSlot(plane, localX, localY, slot);
         if (removed != null) {
-            removedOriginalObjects.remove(object);
+            removeObjectIdentity(removedOriginalObjects, removed);
             if (removeClip) {
                 clip(removed, localX, localY);
             }
@@ -1249,7 +1256,7 @@ public class Region {
         final WorldObject spawned = getSpawnedObjectWithSlot(plane, localX, localY, slot);
         if (spawned != null) {
             object = spawned;
-            spawnedObjects.remove(object);
+            removeObjectIdentity(spawnedObjects, spawned);
             if (removeClip) {
                 unclip(object, localX, localY);
             }

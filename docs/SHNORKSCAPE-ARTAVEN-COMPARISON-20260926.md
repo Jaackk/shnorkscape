@@ -139,7 +139,7 @@ specific hunks; never copy whole files.
 
 ## 5. Specific findings verified in code
 
-### 5.1 Region object removal — BUG PRESENT IN SHNORKSCAPE (VERIFIED-CODE)
+### 5.1 Region object removal — ADOPTED 2026-09-26 (was: BUG PRESENT IN SHNORKSCAPE, VERIFIED-CODE)
 
 - `WorldObject` does not override `equals`, so it inherits `WorldTile.equals`
   (`WorldTile.java:255`), which compares coordinates only.
@@ -149,11 +149,13 @@ specific hunks; never copy whole files.
 - Artaven adds `removeObjectIdentity(ledger, target)` (`removeIf(c -> c == target)`) and passes the
   exact selected ledger instance at each site.
 - Artaven also resolves modern definitions via `Native950ObjectClipping.resolve()` when
-  `Cache.isFlatReadOnly()`. That is a separate, larger change; review it independently.
-- Recommendation: adapt the identity-removal helper only, and add a regression test with two objects
-  on one tile.
+  `Cache.isFlatReadOnly()`. That is a separate, larger change; **deliberately deferred, not adopted**.
+- **Adopted:** the identity-removal helper only, at all 12 call sites, verbatim from Artaven. New
+  regression test `Native950RegionObjectIdentityTest` (2 tests, two objects on one tile), proven to
+  fail against the pre-fix code and pass after. See
+  `docs/HANDOFF-PREVIEW-CLIPPING-AND-UPSTREAM-20260926.md` §7 for the exact commit.
 
-### 5.2 NPC viewport identity — BUG PRESENT IN SHNORKSCAPE (VERIFIED-CODE)
+### 5.2 NPC viewport identity — ADOPTED 2026-09-26 (was: BUG PRESENT IN SHNORKSCAPE, VERIFIED-CODE)
 
 - `Native950NpcViewport.java:251` has `if (npc != null && !nearby.contains(npc)) nearby.add(npc);`.
   `NPC` also inherits coordinate equality, so two distinct NPCs on one tile collapse into one.
@@ -162,8 +164,11 @@ specific hunks; never copy whole files.
 - **Conflict:** Artaven's same file removes Shnorkscape's `!npc.isNative950Conjure()` guard
   (Shnorkscape line 163) and adds quest-visibility filters (`Native950RestlessGhost.visible`,
   `Native950QuestNpcs.visible`) that do not exist in Shnorkscape.
-- Recommendation: port only the identity-set hunk. Keep the conjure guard. Add a test with two NPCs
-  on one tile, one of them a conjure.
+- **Adopted:** only the identity-set hunk. The conjure guard was **deliberately preserved** unchanged;
+  the quest-visibility filters were **not** ported (their classes don't exist here). New regression
+  test `Native950NpcViewportIdentityTest` (two real NPCs, same tile, same world region), proven to
+  fail against the pre-fix code and pass after. See
+  `docs/HANDOFF-PREVIEW-CLIPPING-AND-UPSTREAM-20260926.md` §7 for the exact commit.
 
 ### 5.3 Interface decoder — ARTAVEN BETTER (VERIFIED-DIFF, about 200 changed lines)
 
@@ -291,9 +296,9 @@ identities, not raw wire values.
 
 1. Never bulk-merge. There is no common git base; 290 shared files diverged on both sides.
 2. Suggested order, smallest and most provable first:
-   1. Region identity removal (5.1)
-   2. NPC viewport identity set (5.2)
-   3. IComponentDefinitions (5.3)
+   1. ~~Region identity removal (5.1)~~ **ADOPTED 2026-09-26**
+   2. ~~NPC viewport identity set (5.2)~~ **ADOPTED 2026-09-26**
+   3. IComponentDefinitions (5.3) — next, only on explicit owner go-ahead
    4. Component value actions (5.4)
    5. NPC animation/metadata tables
    6. housing placement contracts
